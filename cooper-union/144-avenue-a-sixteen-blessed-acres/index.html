@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>144 Avenue A &mdash; Sixteen Blessed Acres</title>
+<meta name="description" content="An annotated hip-hop track tracing Tompkins Square Park from an 1834 swamp-turned-common through riots, eviction, and its curfewed 1992 reopening &mdash; every line sourced.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --iron: #17181a;
+    --iron-2: #1f2124;
+    --iron-3: #26282c;
+    --steel: #3a3d42;
+    --steel-light: #6b6f76;
+    --ember: #b8481e;
+    --ember-bright: #e8863a;
+    --ember-dim: #7a3116;
+    --paper: #e9e1cd;
+    --paper-2: #ddd3b8;
+    --ink: #2a251d;
+    --ink-soft: #5c5443;
+    --max-w: 780px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--iron);
+    color: var(--paper);
+    font-family: 'Lora', Georgia, serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; }
+
+  ::selection { background: var(--ember); color: var(--paper); }
+
+  /* ---------- Texture ---------- */
+  .grain {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.05;
+    z-index: 50;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative;
+    padding: 5.5rem 1.5rem 3.5rem;
+    text-align: center;
+    overflow: hidden;
+    background: radial-gradient(ellipse at 50% 120%, var(--ember-dim) 0%, var(--iron) 62%);
+    border-bottom: 1px solid var(--steel);
+  }
+
+  .facade {
+    position: absolute;
+    left: 50%;
+    bottom: -6px;
+    transform: translateX(-50%);
+    width: min(920px, 130%);
+    opacity: 0.55;
+    z-index: 0;
+  }
+
+  .hero-inner { position: relative; z-index: 1; }
+
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ember-bright);
+    margin: 0 0 1.1rem;
+  }
+
+  .eyebrow span { color: var(--steel-light); }
+
+  h1.title {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2.8rem, 9vw, 5.4rem);
+    line-height: 0.92;
+    letter-spacing: 0.01em;
+    margin: 0;
+    color: var(--paper);
+    text-transform: uppercase;
+  }
+
+  h1.title .addr { display: block; font-size: 0.42em; letter-spacing: 0.12em; color: var(--steel-light); font-weight: 700; margin-bottom: 0.3rem; }
+
+  .flame-rule {
+    width: 220px;
+    max-width: 60%;
+    height: 4px;
+    margin: 1.4rem auto 1.2rem;
+    background: linear-gradient(90deg, transparent, var(--ember) 15%, var(--ember-bright) 50%, var(--ember) 85%, transparent);
+    border-radius: 2px;
+  }
+
+  .tagline {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--paper-2);
+    margin: 0 0 2.4rem;
+  }
+
+  .dek {
+    max-width: 560px;
+    margin: 0 auto 2.6rem;
+    font-size: 1.02rem;
+    color: var(--paper-2);
+  }
+
+  .dek em { color: var(--ember-bright); font-style: normal; }
+
+  /* ---------- Player ---------- */
+  .player {
+    max-width: 480px;
+    margin: 0 auto;
+    background: var(--iron-2);
+    border: 1px solid var(--steel);
+    border-radius: 10px;
+    padding: 1.1rem 1.2rem 1.3rem;
+    text-align: left;
+  }
+
+  .player-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--steel-light);
+    margin-bottom: 0.7rem;
+  }
+
+  .player-label .rec {
+    color: var(--ember-bright);
+  }
+
+  audio {
+    width: 100%;
+    height: 40px;
+    filter: invert(0.86) grayscale(1) contrast(1.15) sepia(0.3) hue-rotate(-10deg) saturate(2.4);
+    border-radius: 6px;
+  }
+
+  .player-foot {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.66rem;
+    color: var(--steel-light);
+    margin-top: 0.65rem;
+    letter-spacing: 0.04em;
+  }
+
+  /* ---------- Sticky mini-nav ---------- */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: rgba(23, 24, 26, 0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--steel);
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+  }
+  .nav::-webkit-scrollbar { display: none; }
+
+  .nav-inner {
+    display: flex;
+    gap: 0.4rem;
+    padding: 0.7rem 1.2rem;
+    max-width: var(--max-w);
+    margin: 0 auto;
+  }
+
+  .nav-link {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--paper-2);
+    padding: 0.4rem 0.7rem;
+    border: 1px solid var(--steel);
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+  .nav-link:hover { border-color: var(--ember); color: var(--ember-bright); }
+  .nav-numeral { color: var(--ember); font-weight: 600; }
+
+  /* ---------- Verses ---------- */
+  main {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 3.2rem 1.4rem 5rem;
+  }
+
+  .verse { margin-bottom: 4rem; scroll-margin-top: 4.2rem; }
+  .verse:last-child { margin-bottom: 0; }
+
+  .verse-head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.9rem;
+    margin-bottom: 1.6rem;
+  }
+
+  .verse-numeral {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 700;
+    font-size: 1.9rem;
+    color: var(--ember);
+    line-height: 1;
+  }
+
+  .verse-head h2 {
+    font-family: 'IBM Plex Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: var(--paper);
+    margin: 0;
+    white-space: nowrap;
+  }
+
+  .verse-rule {
+    flex: 1;
+    height: 1px;
+    background: var(--steel);
+  }
+
+  .cards { display: flex; flex-direction: column; gap: 1.1rem; }
+
+  .card {
+    display: flex;
+    gap: 0.9rem;
+    background: var(--iron-2);
+    border: 1px solid var(--steel);
+    border-left: 3px solid var(--ember);
+    border-radius: 4px;
+    padding: 1.1rem 1.2rem;
+    transition: border-left-color 0.2s ease, background 0.2s ease;
+  }
+
+  .card:hover {
+    border-left-color: var(--ember-bright);
+    background: var(--iron-3);
+  }
+
+  .card-index {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--steel-light);
+    padding-top: 0.15rem;
+    flex-shrink: 0;
+  }
+
+  .lyric {
+    font-family: 'Lora', Georgia, serif;
+    font-weight: 600;
+    font-style: italic;
+    font-size: 1.08rem;
+    line-height: 1.4;
+    color: var(--paper);
+    margin: 0 0 0.5rem;
+  }
+  .lyric:last-of-type { margin-bottom: 0.75rem; }
+
+  .source {
+    background: var(--paper);
+    color: var(--ink);
+    border-radius: 3px;
+    padding: 0.7rem 0.85rem 0.75rem;
+  }
+
+  .tag {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ember-dim);
+    background: var(--paper-2);
+    border: 1px solid var(--ember-dim);
+    border-radius: 3px;
+    padding: 0.15rem 0.45rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .citation {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  /* ---------- Footer ---------- */
+  footer {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 1.4rem 4rem;
+    text-align: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--steel-light);
+  }
+
+  footer a { color: var(--ember-bright); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  @media (max-width: 520px) {
+    .card { flex-direction: column; gap: 0.4rem; }
+    .verse-head h2 { font-size: 0.78rem; letter-spacing: 0.12em; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+<div class="grain"></div>
+
+<header class="hero">
+  <svg class="facade" viewBox="0 0 900 220" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+    <!-- iron park fence -->
+    <g stroke="#e8863a" stroke-width="2" opacity="0.4" fill="none">
+      <line x1="20" y1="150" x2="880" y2="150"/>
+      <line x1="20" y1="170" x2="880" y2="170"/>
+    </g>
+    <g stroke="#e8863a" stroke-width="2" opacity="0.35" fill="none">
+      <line x1="40" y1="130" x2="40" y2="175"/>
+      <circle cx="40" cy="126" r="4"/>
+      <line x1="90" y1="130" x2="90" y2="175"/>
+      <circle cx="90" cy="126" r="4"/>
+      <line x1="140" y1="130" x2="140" y2="175"/>
+      <circle cx="140" cy="126" r="4"/>
+      <line x1="190" y1="130" x2="190" y2="175"/>
+      <circle cx="190" cy="126" r="4"/>
+      <line x1="240" y1="130" x2="240" y2="175"/>
+      <circle cx="240" cy="126" r="4"/>
+      <line x1="640" y1="130" x2="640" y2="175"/>
+      <circle cx="640" cy="126" r="4"/>
+      <line x1="690" y1="130" x2="690" y2="175"/>
+      <circle cx="690" cy="126" r="4"/>
+      <line x1="740" y1="130" x2="740" y2="175"/>
+      <circle cx="740" cy="126" r="4"/>
+      <line x1="790" y1="130" x2="790" y2="175"/>
+      <circle cx="790" cy="126" r="4"/>
+      <line x1="840" y1="130" x2="840" y2="175"/>
+      <circle cx="840" cy="126" r="4"/>
+    </g>
+    <!-- tree -->
+    <g stroke="#b8481e" opacity="0.45" fill="none" stroke-width="2">
+      <line x1="450" y1="180" x2="450" y2="120"/>
+      <circle cx="450" cy="80" r="46"/>
+      <circle cx="410" cy="100" r="26"/>
+      <circle cx="490" cy="100" r="26"/>
+    </g>
+    <!-- bench -->
+    <g stroke="#e8863a" opacity="0.5" fill="none" stroke-width="2">
+      <line x1="290" y1="178" x2="360" y2="178"/>
+      <line x1="290" y1="164" x2="360" y2="164"/>
+      <line x1="296" y1="164" x2="296" y2="196"/>
+      <line x1="354" y1="164" x2="354" y2="196"/>
+      <line x1="296" y1="196" x2="296" y2="202"/>
+      <line x1="354" y1="196" x2="354" y2="202"/>
+    </g>
+    <!-- fountain -->
+    <g stroke="#e8863a" opacity="0.5" fill="none" stroke-width="2">
+      <ellipse cx="580" cy="188" rx="34" ry="9"/>
+      <ellipse cx="580" cy="178" rx="18" ry="5"/>
+      <line x1="580" y1="178" x2="580" y2="150"/>
+      <path d="M580,150 q-10,10 -18,6 M580,150 q10,10 18,6"/>
+    </g>
+  </svg>
+
+  <div class="hero-inner">
+    <p class="eyebrow">Outernet Music <span>&middot;</span> Cooper Union</p>
+    <h1 class="title"><span class="addr">144 Avenue A</span>Sixteen Blessed Acres</h1>
+    <div class="flame-rule"></div>
+    <p class="tagline">Inspired by &ldquo;Super Happy&rdquo; by Tania Maria</p>
+    <p class="dek">Every line traces one park through <em>158 years</em> &mdash; an 1834 swamp graded into a common, iron&#8209;fenced in 1858, torn by riot after riot, cleared of its encampment in 1991, and reopened under curfew in 1992. Sourced line by line below.</p>
+
+    <div class="player">
+      <div class="player-label"><span class="rec">&#9679; Track</span><span>08:00</span></div>
+      <audio controls preload="metadata" src="144-avenue-a-sixteen-blessed-acres.mp3">
+        Your browser does not support the audio element. <a href="144-avenue-a-sixteen-blessed-acres.mp3">Download the track</a>.
+      </audio>
+      <div class="player-foot"><span>144 Avenue A, NY</span><span>Sixteen Blessed Acres</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="nav">
+  <div class="nav-inner">
+          <a href="#verse-1" class="nav-link"><span class="nav-numeral">I</span>Verse 1</a>
+          <a href="#chorus" class="nav-link"><span class="nav-numeral">II</span>Chorus</a>
+          <a href="#verse-2" class="nav-link"><span class="nav-numeral">III</span>Verse 2</a>
+          <a href="#bridge" class="nav-link"><span class="nav-numeral">IV</span>Bridge</a>
+          <a href="#outro" class="nav-link"><span class="nav-numeral">V</span>Outro</a>
+  </div>
+</nav>
+
+<main>
+
+    <section class="verse" id="verse-1">
+      <div class="verse-head">
+        <span class="verse-numeral">I</span>
+        <h2>Verse 1</h2>
+        <span class="verse-rule"></span>
+      </div>
+      <div class="cards">
+        
+        <article class="card">
+          <div class="card-index">01</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;the ground of Tompkins Square Park, sixteen blessed acres in these tight and dense streets&rdquo;</p>
+            <div class="source">
+              <span class="tag">Tompkins Square Park</span>
+              <p class="citation">"[E 38.) Tompkins Square Park/originally Tompkins Square, E. 7th to E. 10th Sts., Avenue A to Avenue B. 1834. Another London (Bloomsbury) park surrounded by high-density, low-rise housing. Sixteen blessed acres in these tight and dense streets." AIA. (2000) AIA Edition 4, p. 174.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">02</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;graded and landscaped between 1835 and 1850, a promise of open space and waterfront views&rdquo;</p>
+            <div class="source">
+              <span class="tag">Tompkins Square Park</span>
+              <p class="citation">"Originally swampland, Tompkins Square Park was graded and landscaped between 1835 and 1850, essentially to attract a wealthy population east with the promise of a 10.5-acre open space and waterfront views." Ferrara. (2009) A Guide to Gangsters, p. 137.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">03</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;pathways repaved, lawns replanted, the drainage system replaced&rdquo;</p><p class="lyric">&ldquo;It reopened August 25th, 1992, a midnight curfew back in place, the concrete bandshell gone — that breeding ground for graffiti torn from the southern end and hauled away&rdquo;</p>
+            <div class="source">
+              <span class="tag">Tompkins Square Park</span>
+              <p class="citation">"Pathways were repaved, lawns replanted, the drainage system replaced, and new wrought-iron and wood benches installed. The removal of the concrete bandshell erected in the 1960s in the southern end of the park— which Parks Department officials saw as a breeding ground for homelessness, drugs, and graffiti... It was replaced by a portable stage. When the park reopened on August 25, 1992, a midnight curfew was put in place." Stern. (2006) New York 2000, p. 345.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">04</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Off 9th Street and Avenue A there stands the sculpture and the water fountain&rdquo;</p>
+            <div class="source">
+              <span class="tag">Tompkins Square Park</span>
+              <p class="citation">"8. Sculpture and Water Fountain. Tompkins Square Park. Off 9th Street and Avenue A." Katz. (2002) Manhattan on Film, p. 202.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">05</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;the rose-colored eight-foot marble stela — Bruno Louis Zimm, 1906 — a lion-head spout, a shallow relief of children looking out to sea... They were earth's purest children, young and fair&rdquo;</p>
+            <div class="source">
+              <span class="tag">Tompkins Square Park</span>
+              <p class="citation">"you will see a rose-colored eight-foot marble stela with a small lion-head fountain and a shallow relief image of children looking out to sea on its south face. The inscription on this face reads: 'They were earth's purest children, young and fair.'" Kahn. (2002) City Secrets New York City, p. 146.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="verse" id="chorus">
+      <div class="verse-head">
+        <span class="verse-numeral">II</span>
+        <h2>Chorus</h2>
+        <span class="verse-rule"></span>
+      </div>
+      <div class="cards">
+        
+        <article class="card">
+          <div class="card-index">06</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Tompkins Square Park" — "Avenue A to Avenue B, East 7th to East 10th, the fixed coordinates hold&rdquo;</p>
+            <div class="source">
+              <span class="tag"></span>
+              <p class="citation">"[32a.] Tompkins Square Park, 7th to 10th St. Avenues A to B. Sixteen blessed acres in these tight and dense streets." White &amp; Willensky. (1968) AIA Edition 1, p. 78.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">07</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Clinton Square renamed for Governor Daniel D. Tompkins, opened 1834&rdquo;</p><p class="lyric">&ldquo;a swamp John Jacob Astor sold to the city, the ground beneath it all&rdquo;</p>
+            <div class="source">
+              <span class="tag">Tompkins Square</span>
+              <p class="citation">"Originally called Clinton Square... In 1834 John Jacob Astor sold the 10.5-acre (4.2-hectare) swamp (used for snipe hunting) to New York City for $93,000. Named after New York Governor Daniel D. Tompkins, the square was first opened in 1834." Jackson. (2010) The Encyclopedia of New York, p. 1323.→ Drawn from: "[E 38.) Tompkins Square Park/originally Tompkins Square, E. 7th to E. 10th Sts., Avenue A to Avenue B. 1834... Sixteen blessed acres in these tight and dense streets." AIA. (2000) AIA Edition 4, p. 174.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="verse" id="verse-2">
+      <div class="verse-head">
+        <span class="verse-numeral">III</span>
+        <h2>Verse 2</h2>
+        <span class="verse-rule"></span>
+      </div>
+      <div class="cards">
+        
+        <article class="card">
+          <div class="card-index">08</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;established 1833 by the Laws of New York, named in honour of Governor Daniel D. Tompkins, opened 1834&rdquo;</p><p class="lyric">&ldquo;Fenced with iron in 1858&rdquo;</p>
+            <div class="source">
+              <span class="tag">Tompkins Square Park</span>
+              <p class="citation">"Site: Ave. A to Ave. B, Seventh to Tenth Sts. Estab. 1833 (Laws of N. Y., 1833, Chap, 130); named in honour of Governor Daniel D. Tompkins 1833... opened 1834... fenced with iron 1858." Stokes. (1918) The Iconography of Manhattan Island Volume Three, p. 971.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">09</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Originally swampland used for snipe hunting&rdquo;</p>
+            <div class="source">
+              <span class="tag">Tompkins Square</span>
+              <p class="citation">"In 1834 John Jacob Astor sold the 10.5-acre (4.2-hectare) swamp (used for snipe hunting) to New York City for $93,000." Jackson. (2010) The Encyclopedia of New York, p. 1323.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">10</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;graded between 1835 and 1850 to draw a wealthy population east. Then the Civil War ripped the city apart and the plan for an upscale community was put on hold&rdquo;</p><p class="lyric">&ldquo;The Bread Riots of 1857, the Draft Riots of 1863, the laborer-led Stonecutter Riots of 1874&rdquo;</p><p class="lyric">&ldquo;in 1878, redesigned and reopened&rdquo;</p>
+            <div class="source">
+              <span class="tag">Tompkins Square Park</span>
+              <p class="citation">"Originally swampland, Tompkins Square Park was graded and landscaped between 1835 and 1850... With the sprawling settlement of arriving European immigrants and the Civil War ripping the city apart, plans for an upscale community were put on hold. For a better part of its history, protests and riots were a fairly regular occurrence on these grounds, most notably the Irish-led Bread Riots of 1857, the Civil War Draft Riots of 1863 and the laborer-led Stonecutter Riots of 1874... In 1878, Tompkins Square Park was redesigned and reopened to the public." Ferrara. (2009) A Guide to Gangsters, p. 137.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">11</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;This was the very center of Kleindeutschland, Little Germany — home to more than 150,000 Germans, a free library, a hospital, a town hall. Avenue B was the German Broadway, Avenue A the street for beer gardens and oyster saloons&rdquo;</p>
+            <div class="source">
+              <span class="tag">Tompkins Square</span>
+              <p class="citation">"In 1904, Tompkins Square was in the very center of a neighborhood called Kleindeutschland or Little Germany. The neighborhood was home to more than 150,000 Germans and German-Americans; a German free library, hospital, town hall, and schools." Kahn. (2002) City Secrets New York City, p. 146. And: "Avenue B, occasionally called the German Broadway, was the main commercial artery. Avenue A was the street for beer gardens, oyster saloons, and groceries." Mahon. (2021) Pretty Evil New York, p. 45.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">12</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;June 15th, 1904 — the General Slocum burned to the waterline, at least 1,021 women and children drowned or burnt, and within a very short time Kleindeutschland was no more&rdquo;</p>
+            <div class="source">
+              <span class="tag">Tompkins Square Park</span>
+              <p class="citation">"by the time the Slocum pulled into North Brother Island, at least 1,021 women and children had been drowned, killed by the churning wheel of the steamship as they tried to escape the boat, or burnt to death. Almost every family in Kleindeutschland lost a family member to the disaster and within a very short time Kleindeutschland was no more." Kahn. (2002) City Secrets New York City, p. 146.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">13</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;By 1866 the Seventh Regiment took the square as a parade ground, its ranks outgrowing the armory before the city gave them Park Avenue and 66th&rdquo;</p>
+            <div class="source">
+              <span class="tag">Tompkins Square</span>
+              <p class="citation">"By the 1860s it had more than 1000 members and had outgrown its armory at Tompkins Square. The city provided a square block at Park Avenue and 66th Street." Jackson. (2010) The Encyclopedia of New York, p. 1172.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">14</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;January 13th, 1874, seven thousand gathered, mounted police charged and injured hundreds" →&rdquo;</p>
+            <div class="source">
+              <span class="tag">Tompkins Square</span>
+              <p class="citation">"As 7000 men and women gather in Tompkins Square on Jan 13, organized by the International Working Association led by Karl Marx (not present) they listen to speeches about the First International. Mounted police charge the crowd injuring hundreds." Patterson. (2007) Resistance, p. 238.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="verse" id="bridge">
+      <div class="verse-head">
+        <span class="verse-numeral">IV</span>
+        <h2>Bridge</h2>
+        <span class="verse-rule"></span>
+      </div>
+      <div class="cards">
+        
+        <article class="card">
+          <div class="card-index">15</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;June 3rd, 1991 — the single rupture. Police moved in, sealed off the entire park behind barricades, ejected the homeless and their local supporters who had been camping out there. Within two days the earthmovers and backhoes had arrived, tearing up the turf and asphalt, demolishing the benches and the chess tables&rdquo;</p><p class="lyric">&ldquo;A police state, my dictionary said&rdquo;</p>
+            <div class="source">
+              <span class="tag">Tompkins Square Park</span>
+              <p class="citation">"One week later, early on the morning of June 3, police moved in, sealed off the entire park behind barricades, and ejected the homeless and their local supporters who had been camping out there... within two days the earthmovers and backhoes had arrived and started tearing up the turf and asphalt, demolishing the benches and chess tables." Patterson. (2007) Resistance, p. 401.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">16</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Tent City, that loose organization of homeless living in the park, leveled&rdquo;</p>
+            <div class="source">
+              <span class="tag">Tompkins Square Park</span>
+              <p class="citation">"'Tent City' was the loose organization of homeless people living in Tompkins Square Park." Janet L. Abu-Lughod. (1994) From Urban Village to East Village, p. 311.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">17</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;August 6th, 1988, the police charged the crowds in phalanxes using billy clubs, black tape over their badge numbers, nearly fifty demonstrators injured&rdquo;</p>
+            <div class="source">
+              <span class="tag">Tompkins Square Park</span>
+              <p class="citation">"on August 6, a midnight demonstration organized to protest the curfew turned into six hours of violent confrontations between demonstrators and some 450 police officers, who charged at the crowds in phalanxes using billy clubs... The Tompkins Square Park Riots resulted in the injury of nearly fifty demonstrators... many officers had put black tape over their badge numbers and in some cases removed their badges entirely." Stern. (2006) New York 2000, p. 345.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">18</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;The shantytown forced out on horseback, every person removed from the park and vicinity&rdquo;</p>
+            <div class="source">
+              <span class="tag">→</span>
+              <p class="citation">"After midnight on August 6, 1988, the police department, by orders of Mayor David Dinkins, charged into the park on horseback and forcibly removed every' person from the park and vicinity." Ferrara. (2009) A Guide to Gangsters, p. 137.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="verse" id="outro">
+      <div class="verse-head">
+        <span class="verse-numeral">V</span>
+        <h2>Outro</h2>
+        <span class="verse-rule"></span>
+      </div>
+      <div class="cards">
+        
+        <article class="card">
+          <div class="card-index">19</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;the park was the remnants of a large area designated a market in the 1811 Commissioners' Plan.&rdquo;</p>
+            <div class="source">
+              <span class="tag">MENTIONED AS: "Tompkins Square" — "From the market designated in the 1811 Commissioners' Plan" → Drawn from:</span>
+              <p class="citation">Jackson. (2010) The Encyclopedia of New York, p. 1323.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">20</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;the Temperance Fountain, H&rdquo;</p>
+            <div class="source">
+              <span class="tag">MENTIONED AS: "Tompkins Square Park</span>
+              <p class="citation"></p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">21</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;enry D. Cogswell, 1888&rdquo;</p>
+            <div class="source">
+              <span class="tag"></span>
+              <p class="citation">"The severely vandalized Temperance Fountain (Henry D. Cogswell, 1888] and the Slocum Memorial Fountain (Bruno Louis Zimm, 1906) were both restored." Stern. (2006) New York 2000, p. 345.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">22</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;to the pink Tennessee marble stele dedicated 1906&rdquo;</p>
+            <div class="source">
+              <span class="tag">MENTIONED AS: "Tompkins Square Park</span>
+              <p class="citation">"Dedicated in 1906, his 9-foot high stele is sculpted of pink Tennessee marble." Miller. (2015) Seeking New York, p. 74.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">23</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;sixteen blessed acres, Tompkins Square Park, the ground refuses to look away&rdquo;</p>
+            <div class="source">
+              <span class="tag">MENTIONED AS: "Tompkins Square Park</span>
+              <p class="citation">"[32a.] Tompkins Square Park, 7th to 10th St. Avenues A to B. Sixteen blessed acres in these tight and dense streets." White &amp; Willensky. (1968) AIA Edition 1, p. 78.]</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+</main>
+
+<footer>
+  <p>Outernet Music &mdash; Cooper Union Series &mdash; <a href="https://github.com/Willhoward89/Outernet-Music" target="_blank" rel="noopener">github.com/Willhoward89/Outernet&#8209;Music</a></p>
+</footer>
+
+</body>
+</html>
