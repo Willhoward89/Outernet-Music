@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>30 East 9th Street &mdash; Coped Roof to Cornice</title>
+<meta name="description" content="An annotated old-school hip-hop track tracing 30 East 9th Street from Hotel Martin's Sub-Rosa Club through the Hotel Lafayette's bohemian caf&eacute;, Lindbergh's Orteig Prize, John Sloan's painting, and H.I. Feldman's 1955 apartment tower &mdash; every line sourced.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,500;0,600;0,700;1,500;1,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cafe: #1c1712;
+    --cafe-2: #251e17;
+    --cafe-3: #2e2620;
+    --brass: #b9924f;
+    --brass-bright: #dcb877;
+    --brass-dim: #6e5834;
+    --wine: #5c1f28;
+    --wine-bright: #973a48;
+    --marble: #ede6d4;
+    --marble-2: #ddd0ab;
+    --ink: #241d15;
+    --ink-soft: #59503c;
+    --max-w: 780px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--cafe);
+    color: var(--marble);
+    font-family: 'Bodoni Moda', Georgia, serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; }
+
+  ::selection { background: var(--wine-bright); color: var(--marble); }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative;
+    padding: 5.5rem 1.5rem 3.5rem;
+    text-align: center;
+    overflow: hidden;
+    background: radial-gradient(ellipse at 50% 0%, rgba(185,146,79,0.14) 0%, var(--cafe) 55%);
+    border-bottom: 1px solid var(--brass-dim);
+  }
+
+  .facade {
+    position: absolute;
+    left: 50%;
+    bottom: -4px;
+    transform: translateX(-50%);
+    width: min(960px, 130%);
+    opacity: 0.8;
+    z-index: 0;
+  }
+
+  .hero-inner { position: relative; z-index: 1; }
+
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--brass-bright);
+    margin: 0 0 1.1rem;
+  }
+
+  .eyebrow span { color: var(--ink-soft); }
+
+  h1.title {
+    font-family: 'Bodoni Moda', serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    font-size: clamp(2.5rem, 8vw, 4.8rem);
+    line-height: 1;
+    letter-spacing: 0.01em;
+    margin: 0;
+    color: var(--marble);
+  }
+
+  h1.title .addr {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.32em;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--wine-bright);
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+
+  .awning-rule {
+    width: 220px;
+    max-width: 60%;
+    height: 10px;
+    margin: 1.5rem auto 1.2rem;
+    background: repeating-linear-gradient(90deg, var(--wine) 0 14px, var(--marble-2) 14px 28px);
+    border-radius: 0 0 6px 6px;
+    opacity: 0.9;
+  }
+
+  .tagline {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.76rem;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--marble-2);
+    margin: 0 0 2.4rem;
+  }
+
+  .dek {
+    max-width: 580px;
+    margin: 0 auto 2.6rem;
+    font-size: 1.05rem;
+    color: var(--marble-2);
+  }
+
+  .dek em { color: var(--wine-bright); font-style: italic; }
+
+  /* ---------- Player ---------- */
+  .player {
+    max-width: 480px;
+    margin: 0 auto;
+    background: var(--cafe-2);
+    border: 1px solid var(--brass-dim);
+    border-radius: 6px;
+    padding: 1.1rem 1.2rem 1.3rem;
+    text-align: left;
+  }
+
+  .player-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.66rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--marble-2);
+    margin-bottom: 0.7rem;
+  }
+
+  .player-label .rec { color: var(--wine-bright); }
+
+  audio {
+    width: 100%;
+    height: 40px;
+    filter: invert(0.88) grayscale(1) contrast(1.1) sepia(0.3) hue-rotate(310deg) saturate(1.8);
+    border-radius: 6px;
+  }
+
+  .player-foot {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.63rem;
+    color: var(--ink-soft);
+    margin-top: 0.65rem;
+    letter-spacing: 0.03em;
+  }
+
+  /* ---------- Sticky mini-nav ---------- */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: rgba(28, 23, 18, 0.94);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--brass-dim);
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+  }
+  .nav::-webkit-scrollbar { display: none; }
+
+  .nav-inner {
+    display: flex;
+    gap: 0.4rem;
+    padding: 0.7rem 1.2rem;
+    max-width: var(--max-w);
+    margin: 0 auto;
+  }
+
+  .nav-link {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--marble-2);
+    padding: 0.4rem 0.7rem;
+    border: 1px solid var(--brass-dim);
+    border-radius: 3px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+  .nav-link:hover { border-color: var(--wine-bright); color: var(--wine-bright); }
+  .nav-numeral { color: var(--brass-bright); font-weight: 600; }
+
+  /* ---------- Verses ---------- */
+  main {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 3.2rem 1.4rem 5rem;
+  }
+
+  .verse { margin-bottom: 4rem; scroll-margin-top: 4.2rem; }
+  .verse:last-child { margin-bottom: 0; }
+
+  .verse-head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.9rem;
+    margin-bottom: 1.6rem;
+  }
+
+  .verse-numeral {
+    font-family: 'Bodoni Moda', serif;
+    font-weight: 700;
+    font-size: 1.9rem;
+    color: var(--brass);
+    line-height: 1;
+  }
+
+  .verse-head h2 {
+    font-family: 'IBM Plex Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--marble);
+    margin: 0;
+    white-space: nowrap;
+  }
+
+  .verse-rule {
+    flex: 1;
+    height: 1px;
+    background: var(--brass-dim);
+  }
+
+  .cards { display: flex; flex-direction: column; gap: 1.1rem; }
+
+  .card {
+    display: flex;
+    gap: 0.9rem;
+    background: var(--cafe-2);
+    border: 1px solid var(--brass-dim);
+    border-radius: 4px;
+    padding: 1.15rem 1.25rem;
+    position: relative;
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+
+  .card::before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: 1.25rem;
+    right: 1.25rem;
+    height: 2px;
+    background: var(--brass);
+    opacity: 0.7;
+  }
+
+  .card:hover {
+    border-color: var(--wine-bright);
+    background: var(--cafe-3);
+  }
+
+  .card-index {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--brass-dim);
+    padding-top: 0.15rem;
+    flex-shrink: 0;
+  }
+
+  .lyric {
+    font-family: 'Bodoni Moda', serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: italic;
+    font-size: 1.14rem;
+    line-height: 1.42;
+    color: var(--marble);
+    margin: 0 0 0.75rem;
+  }
+
+  .source {
+    background: var(--marble);
+    color: var(--ink);
+    border-radius: 3px;
+    padding: 0.7rem 0.85rem 0.75rem;
+    border-left: 2px solid var(--wine);
+  }
+
+  .tag {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink);
+    background: var(--marble-2);
+    border: 1px solid var(--brass);
+    border-radius: 3px;
+    padding: 0.15rem 0.45rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .citation {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.76rem;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  /* ---------- Footer ---------- */
+  footer {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 1.4rem 4rem;
+    text-align: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  footer a { color: var(--brass-bright); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  @media (max-width: 520px) {
+    .card { flex-direction: column; gap: 0.4rem; }
+    .verse-head h2 { font-size: 0.76rem; letter-spacing: 0.12em; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <svg class="facade" viewBox="0 0 900 220" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+    <line x1="20" y1="204" x2="880" y2="204" stroke="#b9924f" stroke-width="1" opacity="0.4"/>
+    <!-- scalloped cafe awning -->
+    <g fill="none" stroke="#973a48" stroke-width="1.5" opacity="0.6">
+      <path d="M60,60 h180 v8 a10,10 0 0 1 -20,0 a10,10 0 0 1 -20,0 a10,10 0 0 1 -20,0 a10,10 0 0 1 -20,0 a10,10 0 0 1 -20,0 a10,10 0 0 1 -20,0 a10,10 0 0 1 -20,0 a10,10 0 0 1 -20,0 a10,10 0 0 1 -20,0 z"/>
+    </g>
+    <!-- marble cafe table with coupe -->
+    <g stroke="#dcb877" stroke-width="1.5" fill="none" opacity="0.5">
+      <ellipse cx="150" cy="150" rx="55" ry="10"/>
+      <line x1="150" y1="160" x2="150" y2="200"/>
+      <line x1="120" y1="200" x2="180" y2="200"/>
+      <path d="M135,120 L165,120 L150,140 Z"/>
+      <line x1="150" y1="140" x2="150" y2="150"/>
+    </g>
+    <!-- Lindbergh's Orteig Prize flight path, a biplane silhouette and dashed transatlantic arc -->
+    <g stroke="#dcb877" stroke-width="1.5" fill="none" opacity="0.55" stroke-dasharray="5 5">
+      <path d="M480,190 Q650,60 830,90"/>
+    </g>
+    <g stroke="#973a48" stroke-width="2" fill="none" opacity="0.7">
+      <path d="M650,58 l24,-4 l-6,10 l14,4 l-16,4 l4,10 l-13,-8 l-9,10 l-2,-13 l-16,-2 z"/>
+    </g>
+    <text x="450" y="26" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="2" fill="#dcb877" opacity="0.7">CAF&Eacute; LAFAYETTE</text>
+  </svg>
+
+  <div class="hero-inner">
+    <p class="eyebrow">Outernet Music <span>&middot;</span> Cooper Union</p>
+    <h1 class="title"><span class="addr">30 East 9th Street</span>Coped Roof to Cornice</h1>
+    <div class="awning-rule"></div>
+    <p class="tagline">Inspired by old&#8209;school hip&#8209;hop</p>
+    <p class="dek">Every line traces one address through <em>a century of café society</em> &mdash; Hotel Martin&rsquo;s Sub&#8209;Rosa Club, the Hotel Lafayette&rsquo;s bohemian marble tables, Lindbergh&rsquo;s Orteig Prize, a John Sloan painting at the Met, and H.I. Feldman&rsquo;s 1955 red&#8209;and&#8209;buff apartment tower. Sourced line by line below.</p>
+
+    <div class="player">
+      <div class="player-label"><span class="rec">&#9679; Track</span><span>03:23</span></div>
+      <audio controls preload="metadata" src="30-east-9th-street-coped-roof-to-cornice.mp3">
+        Your browser does not support the audio element. <a href="30-east-9th-street-coped-roof-to-cornice.mp3">Download the track</a>.
+      </audio>
+      <div class="player-foot"><span>30 East 9th Street, NY</span><span>Coped Roof to Cornice</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="nav">
+  <div class="nav-inner">
+          <a href="#verse-1" class="nav-link"><span class="nav-numeral">I</span>Verse 1</a>
+          <a href="#verse-2" class="nav-link"><span class="nav-numeral">II</span>Verse 2</a>
+          <a href="#bridge" class="nav-link"><span class="nav-numeral">III</span>Bridge</a>
+          <a href="#outro" class="nav-link"><span class="nav-numeral">IV</span>Outro</a>
+  </div>
+</nav>
+
+<main>
+
+    <section class="verse" id="verse-1">
+      <div class="verse-head">
+        <span class="verse-numeral">I</span>
+        <h2>Verse 1</h2>
+        <span class="verse-rule"></span>
+      </div>
+      <div class="cards">
+
+        <article class="card">
+          <div class="card-index">01</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Nineteen fifty-five, red-and-buff brick set the grid, / H.I. Feldman drew the massing where the old hotel is hid&rdquo;</p>
+            <div class="source">
+              <span class="tag">Lafayette Apartments</span>
+              <p class="citation">"Built in the mid-1950s on the site of the old Hotel and Cafe Lafayette... H. I. Feldman was the architect for the present red-and-buff brick structures which, with twelve floors of apartments above the street-level commercial space, seemed mammoth when they were built, but have been dwarfed by more recent buildings." Norton &amp; Patterson, (1984) Living It Up, p. 199.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">02</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;thirty East Ninth Street, garage under, gar ramp down&rdquo;</p>
+            <div class="source">
+              <span class="tag">Garage Under / Gar Ramp</span>
+              <p class="citation">"In the 1955 Manhattan Land Book, on 30 East 9th Street, there is written 'GARAGE UNDER, GAR RAMP' as well as reference to 8 Structures; 1 Story Brick or Stone or Concrete building with Store... 6 Story Brick or Stone or Concrete building with Elevators, Brick or Stone or Concrete building, Frame building." Bromley, 1955 Manhattan Land Book, p. 30.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">03</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Low-apartment Lafayette, they filed it 'LA' in the deco file&rdquo;</p>
+            <div class="source">
+              <span class="tag">LA (Low-apartment Lafayette)</span>
+              <p class="citation">"LA, 30 East 9th Street, Low-apartment Lafayette." Vlack, (1974) Art Deco Architecture in New York, p. 165.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="verse" id="verse-2">
+      <div class="verse-head">
+        <span class="verse-numeral">II</span>
+        <h2>Verse 2</h2>
+        <span class="verse-rule"></span>
+      </div>
+      <div class="cards">
+
+        <article class="card">
+          <div class="card-index">04</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Eighteen fifty-three, the Perris maps recorded first, / seventeen brick-and-stone first-class dwellings on the earth &mdash; / slate-or-metal coped, with framed extension to the back, / skylights lit the top floor only down the dwelling stack&rdquo;</p>
+            <div class="source">
+              <span class="tag">Hotel Martin</span>
+              <p class="citation">"In the 1853 Perris Maps, on 30 East 9th Street, there is reference to 17 structures; Brick or Stone dwellings first class (slate or metal roof &amp; coped) with Brick or Stone Extension and Framed Extension and skylights lighting the top floor only..." Perris, 1853 Perris Maps, p. 61.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">05</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Eighteen sixty-seven, Dripps just wrote it 'Building' plain, / seventeen the same, the row that held before it came&rdquo;</p>
+            <div class="source">
+              <span class="tag">Hotel Martin</span>
+              <p class="citation">"In the 1867 Dripps Plan, on 30 East 9th Street, there is reference to 17 structures; Building, Building, Building..." Dripps, 1867 Dripps Plan, p. 7.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">06</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Then eighteen eighty-five the Sub-Rosa Club took hold, / Hotel Martin at the corner&rdquo;</p>
+            <div class="source">
+              <span class="tag">Sub-Rosa Club</span>
+              <p class="citation">"In the 1885 Robinsons Atlas, on 30 East 9th Street, there is written 'SUB-ROSA CLUB, HOTEL MARTIN' as well as reference to 17 Structures; Brick building..." Robinson, 1885 Robinsons Atlas, p. 12.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">07</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;J.B. Martin's kitchen bold&rdquo;</p>
+            <div class="source">
+              <span class="tag">Hotel Martin</span>
+              <p class="citation">"The Martinique traces its ancestry back to one of the great originals of New York restaurateurs, J. B. Martin, who made himself and his food famous in the little Hotel Martin at Eighth Street." Chappell, (1925) The Restaurants of New York, p. 86.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">08</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;a French pension where Caruso, Melba, Nordica would dine&rdquo;</p>
+            <div class="source">
+              <span class="tag">Hotel Lafayette</span>
+              <p class="citation">"A rendezvous for opera and stage celebrities, the French pension was a living memory of New York's bygone French Quarter... Enrico Caruso, Nordica and Melba were habitues here in the Gay Nineties." William H. Honan, (1959) Greenwich Village Guide, p. 64.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">09</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Cafe Martin, Parisian air, the fine kitchen and the wine&rdquo;</p>
+            <div class="source">
+              <span class="tag">Hotel Martin</span>
+              <p class="citation">"The Cafe Martin, with its fine kitchen and well stocked cellar, had a Parisian atmosphere that New Yorkers found to their taste and it soon gained a vogue that it retains to the present day." Brown, (1924) Valentine's Manual 1924, p. 172.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">10</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Nineteen-oh-two the Orteig bought it, Lafayette its name, / twenty-five-thousand hung for Paris, Lindbergh flew the claim&rdquo;</p>
+            <div class="source">
+              <span class="tag">Hotel Lafayette</span>
+              <p class="citation">"In 1902 it was bought by Raymond Orteig&mdash;who put up a $25.000 prize for the first transatlantic airplane flight, won by Col. Charles A. Lindbergh." William H. Honan, (1959) Greenwich Village Guide, p. 64.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">11</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Marble tables, racks of newspaper, the high bohemian den&rdquo;</p>
+            <div class="source">
+              <span class="tag">Hotel Lafayette</span>
+              <p class="citation">"The Lafayette Hotel... also had a European-style café with marble tables and newspapers on racks... the Lafayette was the unrivaled meeting place of high bohemia during the twenties." Edmiston &amp; Cirino, (1976) Literary New York, p. 61.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="verse" id="bridge">
+      <div class="verse-head">
+        <span class="verse-numeral">III</span>
+        <h2>Bridge</h2>
+        <span class="verse-rule"></span>
+      </div>
+      <div class="cards">
+
+        <article class="card">
+          <div class="card-index">12</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;the mid-nineteen-fifties took the pension from the town&rdquo;</p>
+            <div class="source">
+              <span class="tag">Lafayette Apartments</span>
+              <p class="citation">"Built in the mid-1950s on the site of the old Hotel and Cafe Lafayette, a rendezvous for Greenwich Village intellectuals which was renowned for its cuisine." Norton &amp; Patterson, (1984) Living It Up, p. 199.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">13</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Sloan had painted it, the Metropolitan still hangs the light&rdquo;</p>
+            <div class="source">
+              <span class="tag">Hotel Lafayette</span>
+              <p class="citation">"The hotel was later pictured in the Metropolitan Museum of Art in a painting by John Sloan." William H. Honan, (1959) Greenwich Village Guide, p. 64.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">14</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;THE HOTEL LAFAYETTE, by John Sloan&rdquo;</p>
+            <div class="source">
+              <span class="tag">Hotel Lafayette</span>
+              <p class="citation">"IMAGE CAPTION: THE HOTEL LAFAYETTE, by John Sloan" Morris, (1951) Incredible New York, p. 305.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="verse" id="outro">
+      <div class="verse-head">
+        <span class="verse-numeral">IV</span>
+        <h2>Outro</h2>
+        <span class="verse-rule"></span>
+      </div>
+      <div class="cards">
+
+        <article class="card">
+          <div class="card-index">15</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Garage under, gar ramp, Feldman's twelve-floor stone&rdquo;</p>
+            <div class="source">
+              <span class="tag">Traffic Precinct / Hangen Bldg.</span>
+              <p class="citation">"In the 1930 Land Book of the Borough of Manhattan, on 30 East 9th Street, there is written 'HOTEL LAFAYETTE, HANGEN BLOG., '" Bromley, 1930 Land Book of the Borough of Manhattan, p. 40.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">16</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;to Hotel Martin's Sub-Rosa company, / to Lafayette where Lindbergh's prize was hung&rdquo;</p>
+            <div class="source">
+              <span class="tag">Hotel Lafayette</span>
+              <p class="citation">"At one time the hotel was owned by Raymond Orteig, who offered $25,000 to the first man to fly nonstop from New York City to Paris. Charles Lindbergh won the prize in 1927." Norton &amp; Patterson, (1984) Living It Up, p. 199.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+</main>
+
+<footer>
+  <p>Outernet Music &mdash; Cooper Union Series &mdash; <a href="https://github.com/Willhoward89/Outernet-Music" target="_blank" rel="noopener">github.com/Willhoward89/Outernet&#8209;Music</a></p>
+</footer>
+
+</body>
+</html>
