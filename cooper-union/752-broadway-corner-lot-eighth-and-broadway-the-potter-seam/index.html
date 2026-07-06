@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>752 Broadway &mdash; Corner Lot, Eighth and Broadway (The Potter Seam)</title>
+<meta name="description" content="An annotated boom bap jazz-fusion track tracing 752 Broadway, where Orlando Potter's ornate 1881 Astor Place Building and William Gompert's stark 1908 Sinclair Building were fused under one number &mdash; every line sourced.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400;1,700&family=Oswald:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --seam-bg: #17181a;
+    --seam-bg-2: #1f2022;
+    --seam-bg-3: #27282a;
+    --warm: #9c4a35;
+    --warm-bright: #c76d4c;
+    --warm-dim: #5c2c20;
+    --cool: #4d6478;
+    --cool-bright: #7d97ab;
+    --cool-dim: #2e3c47;
+    --gold: #c9a15c;
+    --paper: #e9e2d0;
+    --paper-2: #ddd2ae;
+    --ink: #232019;
+    --ink-soft: #58503e;
+    --max-w: 780px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--seam-bg);
+    color: var(--paper);
+    font-family: 'Old Standard TT', Georgia, serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; }
+
+  ::selection { background: var(--gold); color: var(--ink); }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative;
+    padding: 5.5rem 1.5rem 3.5rem;
+    text-align: center;
+    overflow: hidden;
+    background: linear-gradient(90deg, rgba(156,74,53,0.18) 0%, var(--seam-bg) 48%, var(--seam-bg) 52%, rgba(77,100,120,0.18) 100%);
+    border-bottom: 1px solid var(--ink-soft);
+  }
+
+  .facade {
+    position: absolute;
+    left: 50%;
+    bottom: -4px;
+    transform: translateX(-50%);
+    width: min(960px, 130%);
+    opacity: 0.8;
+    z-index: 0;
+  }
+
+  .hero-inner { position: relative; z-index: 1; }
+
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin: 0 0 1.1rem;
+  }
+
+  .eyebrow span { color: var(--ink-soft); }
+
+  h1.title {
+    font-family: 'Old Standard TT', serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: clamp(2.3rem, 7.6vw, 4.4rem);
+    line-height: 1.05;
+    letter-spacing: 0;
+    margin: 0;
+    color: var(--paper);
+  }
+
+  h1.title .warm-half { color: var(--warm-bright); }
+  h1.title .cool-half { color: var(--cool-bright); }
+
+  h1.title .addr {
+    display: block;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.32em;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 0.55rem;
+  }
+
+  .seam-rule {
+    width: 240px;
+    max-width: 60%;
+    height: 6px;
+    margin: 1.5rem auto 1.2rem;
+    background: linear-gradient(90deg, var(--warm) 0%, var(--warm-bright) 46%, var(--gold) 50%, var(--cool-bright) 54%, var(--cool) 100%);
+    clip-path: polygon(0% 40%, 8% 0%, 16% 40%, 24% 0%, 32% 40%, 40% 0%, 48% 40%, 56% 0%, 64% 40%, 72% 0%, 80% 40%, 88% 0%, 96% 40%, 100% 0%, 100% 100%, 0% 100%);
+  }
+
+  .tagline {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 500;
+    font-size: 0.76rem;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--paper-2);
+    margin: 0 0 2.4rem;
+  }
+
+  .dek {
+    max-width: 580px;
+    margin: 0 auto 2.6rem;
+    font-size: 1.06rem;
+    color: var(--paper-2);
+  }
+
+  .dek em { color: var(--gold); font-style: italic; }
+
+  /* ---------- Player ---------- */
+  .player {
+    max-width: 480px;
+    margin: 0 auto;
+    background: var(--seam-bg-2);
+    border: 1px solid var(--ink-soft);
+    border-radius: 6px;
+    padding: 1.1rem 1.2rem 1.3rem;
+    text-align: left;
+  }
+
+  .player-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.66rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--paper-2);
+    margin-bottom: 0.7rem;
+  }
+
+  .player-label .rec { color: var(--gold); }
+
+  audio {
+    width: 100%;
+    height: 40px;
+    filter: invert(0.87) grayscale(1) contrast(1.1) sepia(0.2) hue-rotate(160deg) saturate(1.4);
+    border-radius: 6px;
+  }
+
+  .player-foot {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.63rem;
+    color: var(--ink-soft);
+    margin-top: 0.65rem;
+    letter-spacing: 0.03em;
+  }
+
+  /* ---------- Sticky mini-nav ---------- */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: rgba(23, 24, 26, 0.94);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--ink-soft);
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+  }
+  .nav::-webkit-scrollbar { display: none; }
+
+  .nav-inner {
+    display: flex;
+    gap: 0.4rem;
+    padding: 0.7rem 1.2rem;
+    max-width: var(--max-w);
+    margin: 0 auto;
+  }
+
+  .nav-link {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--paper-2);
+    padding: 0.4rem 0.7rem;
+    border: 1px solid var(--ink-soft);
+    border-radius: 3px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+  .nav-link:hover { border-color: var(--gold); color: var(--gold); }
+  .nav-numeral { color: var(--gold); font-weight: 600; }
+
+  /* ---------- Verses ---------- */
+  main {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 3.2rem 1.4rem 5rem;
+  }
+
+  .verse { margin-bottom: 4rem; scroll-margin-top: 4.2rem; }
+  .verse:last-child { margin-bottom: 0; }
+
+  .verse-head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.9rem;
+    margin-bottom: 1.6rem;
+  }
+
+  .verse-numeral {
+    font-family: 'Old Standard TT', serif;
+    font-weight: 700;
+    font-size: 1.9rem;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .verse-head h2 {
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--paper);
+    margin: 0;
+    white-space: nowrap;
+  }
+
+  .verse-rule {
+    flex: 1;
+    height: 1px;
+    background: var(--ink-soft);
+  }
+
+  .legend {
+    display: flex;
+    gap: 1.4rem;
+    justify-content: center;
+    margin: -1rem 0 2.6rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--paper-2);
+  }
+  .legend span { display: inline-flex; align-items: center; gap: 0.4rem; }
+  .legend .dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+  .legend .dot.warm { background: var(--warm-bright); }
+  .legend .dot.cool { background: var(--cool-bright); }
+  .legend .dot.seam { background: linear-gradient(90deg, var(--warm-bright), var(--cool-bright)); }
+
+  .cards { display: flex; flex-direction: column; gap: 1.1rem; }
+
+  .card {
+    display: flex;
+    gap: 0.9rem;
+    background: var(--seam-bg-2);
+    border: 1px solid var(--ink-soft);
+    border-left: 4px solid var(--gold);
+    border-radius: 4px;
+    padding: 1.15rem 1.25rem;
+    transition: background 0.2s ease;
+  }
+
+  .card.warm { border-left-color: var(--warm-bright); }
+  .card.cool { border-left-color: var(--cool-bright); }
+  .card.seam {
+    border-left: 4px solid transparent;
+    border-image: linear-gradient(180deg, var(--warm-bright), var(--cool-bright)) 1;
+  }
+
+  .card:hover { background: var(--seam-bg-3); }
+
+  .card-index {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--ink-soft);
+    padding-top: 0.15rem;
+    flex-shrink: 0;
+  }
+
+  .lyric {
+    font-family: 'Old Standard TT', Georgia, serif;
+    font-weight: 700;
+    font-style: italic;
+    font-size: 1.1rem;
+    line-height: 1.42;
+    color: var(--paper);
+    margin: 0 0 0.75rem;
+  }
+
+  .source {
+    background: var(--paper);
+    color: var(--ink);
+    border-radius: 3px;
+    padding: 0.7rem 0.85rem 0.75rem;
+  }
+
+  .tag {
+    display: inline-block;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.64rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink);
+    background: var(--paper-2);
+    border: 1px solid var(--gold);
+    border-radius: 3px;
+    padding: 0.15rem 0.45rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .card.warm .tag { border-color: var(--warm); }
+  .card.cool .tag { border-color: var(--cool); }
+
+  .citation {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.76rem;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  /* ---------- Footer ---------- */
+  footer {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 1.4rem 4rem;
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  footer a { color: var(--gold); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  @media (max-width: 520px) {
+    .card { flex-direction: column; gap: 0.4rem; }
+    .verse-head h2 { font-size: 0.76rem; letter-spacing: 0.12em; }
+    .legend { flex-direction: column; align-items: center; gap: 0.5rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <svg class="facade" viewBox="0 0 900 220" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+    <line x1="20" y1="204" x2="880" y2="204" stroke="#c9a15c" stroke-width="1" opacity="0.4"/>
+    <!-- left half: ornate Victorian Astor Place Building, arches and foliated masks -->
+    <g stroke="#c76d4c" stroke-width="1.5" fill="none" opacity="0.55">
+      <path d="M60,204 V90 A25,25 0 0 1 110,90 V204"/>
+      <path d="M120,204 V90 A25,25 0 0 1 170,90 V204"/>
+      <path d="M180,204 V90 A25,25 0 0 1 230,90 V204"/>
+      <path d="M290,204 V90 A25,25 0 0 1 340,90 V204"/>
+      <circle cx="85" cy="78" r="6"/>
+      <circle cx="145" cy="78" r="6"/>
+      <circle cx="205" cy="78" r="6"/>
+      <circle cx="315" cy="78" r="6"/>
+    </g>
+    <!-- right half: stark geometric Sinclair Building brackets -->
+    <g stroke="#7d97ab" stroke-width="1.5" fill="none" opacity="0.55">
+      <line x1="560" y1="204" x2="560" y2="60"/>
+      <line x1="620" y1="204" x2="620" y2="60"/>
+      <line x1="680" y1="204" x2="680" y2="60"/>
+      <line x1="740" y1="204" x2="740" y2="60"/>
+      <line x1="800" y1="204" x2="800" y2="60"/>
+      <line x1="840" y1="204" x2="840" y2="60"/>
+      <polygon points="555,60 590,60 572,40"/>
+      <polygon points="615,60 650,60 632,40"/>
+      <polygon points="675,60 710,60 692,40"/>
+      <polygon points="735,60 770,60 752,40"/>
+      <polygon points="795,60 830,60 812,40"/>
+    </g>
+    <!-- the seam itself: a jagged joint down the center -->
+    <path d="M450,10 L440,45 L460,80 L438,115 L462,150 L440,185 L450,204" stroke="#c9a15c" stroke-width="2.5" fill="none" opacity="0.85"/>
+    <text x="450" y="222" text-anchor="middle" font-family="Oswald, sans-serif" font-size="11" letter-spacing="2" fill="#c9a15c" opacity="0.0">SEAM</text>
+  </svg>
+
+  <div class="hero-inner">
+    <p class="eyebrow">Outernet Music <span>&middot;</span> Cooper Union</p>
+    <h1 class="title"><span class="addr">752 Broadway</span><span class="warm-half">Corner Lot, Eighth and Broadway</span><br><span class="cool-half">(The Potter Seam)</span></h1>
+    <div class="seam-rule"></div>
+    <p class="tagline">Inspired by boom bap jazz fusion hip&#8209;hop</p>
+    <p class="dek">Every line traces one address where <em>two buildings became one number</em> &mdash; Orlando Potter&rsquo;s ornate 1881 Astor Place Building, its cast-iron Neo-Grec base and terra-cotta masks, fused at the property line with William Gompert&rsquo;s stark white-brick 1908 Sinclair Building next door. Sourced line by line below.</p>
+
+    <div class="player">
+      <div class="player-label"><span class="rec">&#9679; Track</span><span>04:15</span></div>
+      <audio controls preload="metadata" src="752-broadway-corner-lot-eighth-and-broadway-the-potter-seam.mp3">
+        Your browser does not support the audio element. <a href="752-broadway-corner-lot-eighth-and-broadway-the-potter-seam.mp3">Download the track</a>.
+      </audio>
+      <div class="player-foot"><span>752 Broadway, NY</span><span>The Potter Seam</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="nav">
+  <div class="nav-inner">
+          <a href="#verse-1" class="nav-link"><span class="nav-numeral">I</span>Verse 1</a>
+          <a href="#verse-2" class="nav-link"><span class="nav-numeral">II</span>Verse 2</a>
+          <a href="#bridge" class="nav-link"><span class="nav-numeral">III</span>Bridge</a>
+  </div>
+</nav>
+
+<main>
+
+    <p class="legend"><span><span class="dot warm"></span>Astor Place Building, 1881</span><span><span class="dot cool"></span>Sinclair Building, 1908</span><span><span class="dot seam"></span>The seam itself</span></p>
+
+    <section class="verse" id="verse-1">
+      <div class="verse-head">
+        <span class="verse-numeral">I</span>
+        <h2>Verse 1</h2>
+        <span class="verse-rule"></span>
+      </div>
+      <div class="cards">
+
+        <article class="card warm">
+          <div class="card-index">01</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Seven-eighty-two, the Astor Place Building stands on stone, eighteen-eighty-one, Starkweather laid the bone&rdquo;</p>
+            <div class="source">
+              <span class="tag">Astor Place Building</span>
+              <p class="citation">"(21) Astor Place Building. (One Astor Place). 750 Broadway. 1881 STARKWEATHER &amp; GIBBS. The Astor Place Building was originally designed as a hotel and boarding house." Hennessy. (2020) Walking Broadway, p. 83.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card warm">
+          <div class="card-index">02</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Orlando Potter's money, cast-iron at the floor, Neo-Grec in the base where the pilaster held the door&rdquo;</p>
+            <div class="source">
+              <span class="tag">One Astor Place</span>
+              <p class="citation">"The building was commissioned by prominent politician and developer Orlando Potter... The first floor is cast iron enriched by neo-Grec details." Hennessy. (2020) Walking Broadway, p. 83.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card warm">
+          <div class="card-index">03</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;James L. Jackson's ironworks, trademarks in the pier, raised letters through the paint, crisp lettering still here&rdquo;</p>
+            <div class="source">
+              <span class="tag">Astor Place Building (One Astor Place)</span>
+              <p class="citation">"Iron trademarks of James L. Jackson, Iron Works, N.Y., are found at the base of several of the large square iron-clad pliers on both sides of the building. The many years of accumulated paint do not obscure the crisp raised letters." Gayle &amp; Gillon. (1974) Cast Iron Architecture, p. 159.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card warm">
+          <div class="card-index">04</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Shift the material up &mdash; red brick, terra-cotta brown, every floor its own face, corbelled masks looking down&rdquo;</p>
+            <div class="source">
+              <span class="tag">Astor Place Building</span>
+              <p class="citation">"Above, the material shifts to red brick with brown terra-cotta trim. Each floor has its own personality... enlivened by an imaginative variety of heads, capitals, corbels, and decorative panels." Hennessy. (2020) Walking Broadway, p. 83.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card warm">
+          <div class="card-index">05</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Six kinds of keystone heads, foliated panel skin, deep-set fenestration where the segmental light falls in&rdquo;</p>
+            <div class="source">
+              <span class="tag">Astor Place Building</span>
+              <p class="citation">"In the terra-cotta keystones one can make out at least six different kinds of faces and masks." Gayle &amp; Gillon. (1974) Cast Iron Architecture, p. 159.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card warm">
+          <div class="card-index">06</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Robust and chunky Victorian, sculptural in the seam, a hotel that never opened &mdash; clothing lofts, a broken dream&rdquo;</p>
+            <div class="source">
+              <span class="tag">One Astor Place</span>
+              <p class="citation">"This chunky, robust, Victorian red-brick fantasy is a total delight. Countless fine embellishments, like keystone masks and foliated panels, give it sculptural depth." Dunlap. (1990) On Broadway, p. 102.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card cool">
+          <div class="card-index">07</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Twelve stories to the north, white brick against the gray, the Sinclair Building rises &mdash; nineteen-oh-eight, Gompert's day. Giant geometric brackets crown a cornice line so high&rdquo;</p>
+            <div class="source">
+              <span class="tag">Sinclair Building</span>
+              <p class="citation">"SINCLAIR BUILDING, No. 752-54 1908, by William H. Gompert. [12 stories] Giant, geometric cornice brackets dominate this white-brick facade. Site of Sinclair House hotel." Dunlap. (1990) On Broadway, p. 102.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="verse" id="verse-2">
+      <div class="verse-head">
+        <span class="verse-numeral">II</span>
+        <h2>Verse 2</h2>
+        <span class="verse-rule"></span>
+      </div>
+      <div class="cards">
+
+        <article class="card warm">
+          <div class="card-index">08</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Drop it to the bottom &mdash; eighteen thirty-two the frame, east side of Broadway built up wholly, before the tower came&rdquo;</p>
+            <div class="source">
+              <span class="tag">One Astor Place</span>
+              <p class="citation">"In 1832 the east side of Broadway, from Astor Place to Eighth Street, was wholly built up." De Leeuw. (1910) Both Sides of Broadway, p. 21.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card cool">
+          <div class="card-index">09</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Fifty-three the Perris map reads brick and stone and store, first-class dwellings, coped roofs, framed extensions on the floor&rdquo;</p>
+            <div class="source">
+              <span class="tag">Sinclair Ho.</span>
+              <p class="citation">"In the 1853 Perris Maps, on 752 Broadway, there is reference to 11 structures; Brick or Stone dwellings first class (slate or metal roof &amp; coped) with Store under... Brick or Stone dwellings first class (slate or metal roof &amp; coped) with Framed Extension." Perris. 1853 Perris Maps, p. 61.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card cool">
+          <div class="card-index">10</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Then the Sinclair House rose, corner of the Eighth &mdash; famous for American cookery, Ashman keeping late. Artemus Ward lodged there editing his page&rdquo;</p>
+            <div class="source">
+              <span class="tag">Sinclair House</span>
+              <p class="citation">"The Sinclair House, at the corner of Eighth Street, was famous for its American cookery... Mr. Ashman of the Sinclair... Artemus Ward lived at the Sinclair during his stay in New York as editor of 'Vanity Fair.'" Brown. (1924) Valentine's Manual 1924, p. 157.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card cool">
+          <div class="card-index">11</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;the American plan, 'Sinclair, seven-fifty-four' &mdash; a landlord of old-school man&rdquo;</p>
+            <div class="source">
+              <span class="tag">Sinclair</span>
+              <p class="citation">"American Plan...Sinclair, 754 Broadway." Appleton. (1879) Appleton's Dictionary of New York, p. 108.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card cool">
+          <div class="card-index">12</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Robinson's atlas, eighteen-eighty-five, five brick structures penned, 'Sinclair House' written plain before the century's end&rdquo;</p>
+            <div class="source">
+              <span class="tag">Sinclair House</span>
+              <p class="citation">"In the 1885 Robinson Atlas, on 752 Broadway, there is written 'Sinclair House' as well as reference to 5 Structures; Brick building, Brick building, Brick building, Brick building, Brick building." Robinson. 1885 Robinson Atlas, p. 12.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card warm">
+          <div class="card-index">13</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;The hotel dream from Potter's block never held the guests it sought &mdash; converted into manufacture... By eighteen-eighty-three it fell to loft and clothing trade&rdquo;</p>
+            <div class="source">
+              <span class="tag">Astor Place Building</span>
+              <p class="citation">"Potter and Starkweather also collaborated on the seven-story Astor Place Building (1881-83)... Originally intended as a mixed-use building combining hotel and mercantile facilities, it was instead occupied by clothing manufacturers." Stern. (1999) New York 1880, p. 418.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="verse" id="bridge">
+      <div class="verse-head">
+        <span class="verse-numeral">III</span>
+        <h2>Bridge</h2>
+        <span class="verse-rule"></span>
+      </div>
+      <div class="cards">
+
+        <article class="card cool">
+          <div class="card-index">14</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;The Sinclair Ho. of eighteen-ninety-seven, four structures in the plot&rdquo;</p>
+            <div class="source">
+              <span class="tag">Sinclair Ho.</span>
+              <p class="citation">"In the 1897 Bromleys Atlas, on 752 Broadway, there is written 'Sinclair Ho.' as well as reference to 4 Structures; 7 Story Brick building, Brick building, Brick building, Brick building." Bromley. 1897 Bromleys Atlas, p. 16.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card seam">
+          <div class="card-index">15</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Steel construction, fireproof, the frame no longer wood &mdash; one number, two buildings, the seam where the old blood stood&rdquo;</p>
+            <div class="source">
+              <span class="tag">Astor Pl. Bldg.</span>
+              <p class="citation">"In the 1916 Atlas of the Borough of Manhattan, on 752 Broadway, there is written 'Astor Pl. Bldg., Sinclair Bldg.'... 12 Story Brick Building with Store and Elevators and Fire proof building (steel construction) and 1 Story Brick Extension." G W Bromley &amp; Co. 1916 Atlas of the Borough of Manhattan, p. 34.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card cool">
+          <div class="card-index">16</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Nineteen forty-two the Manhattan Savings Bank moves through the door... seven-fifty-four the corner... till fifty-one it leaves, Madison Avenue instead&rdquo;</p>
+            <div class="source">
+              <span class="tag">Manhattan Savings Bank</span>
+              <p class="citation">"Savings bank formed in 1942 by the merger of three banks... After the merger the new bank set up headquarters at 754 Broadway, which moved in 1951 to 385 Madison Avenue." Jackson. (2010) The Encyclopedia of New York, p. 793.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+</main>
+
+<footer>
+  <p>Outernet Music &mdash; Cooper Union Series &mdash; <a href="https://github.com/Willhoward89/Outernet-Music" target="_blank" rel="noopener">github.com/Willhoward89/Outernet&#8209;Music</a></p>
+</footer>
+
+</body>
+</html>
