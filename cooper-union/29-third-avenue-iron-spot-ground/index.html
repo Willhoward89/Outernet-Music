@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>29 Third Avenue &mdash; Iron-Spot Ground</title>
+<meta name="description" content="An annotated track tracing 29 Third Avenue from an 1815 empty lot through wood-frame tenements, Wundling's Hotel, and the 1992 Neo-Brutalist Cooper Union dormitory clad in iron-spot brick &mdash; every line sourced.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,900;1,9..144,500;1,9..144,600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --concrete: #26241f;
+    --concrete-2: #322f29;
+    --concrete-3: #3e3a33;
+    --grid-line: rgba(230, 225, 210, 0.07);
+    --ironspot: #5c3438;
+    --ironspot-bright: #a85a4f;
+    --ironspot-dim: #3d2426;
+    --blueprint: #7fb8c0;
+    --blueprint-dim: #4c7278;
+    --draft: #e9e2d0;
+    --draft-2: #ddd3ba;
+    --ink: #24211b;
+    --ink-soft: #5a5142;
+    --max-w: 800px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--concrete);
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 34px 34px;
+    color: var(--draft);
+    font-family: 'Fraunces', Georgia, serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; }
+
+  ::selection { background: var(--ironspot-bright); color: var(--draft); }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative;
+    padding: 5.5rem 1.5rem 3.5rem;
+    text-align: center;
+    overflow: hidden;
+    background: linear-gradient(180deg, var(--concrete-2) 0%, var(--concrete) 78%);
+    border-bottom: 2px solid var(--ironspot);
+  }
+
+  .facade {
+    position: absolute;
+    left: 50%;
+    bottom: -4px;
+    transform: translateX(-50%);
+    width: min(960px, 130%);
+    opacity: 0.6;
+    z-index: 0;
+  }
+
+  .hero-inner { position: relative; z-index: 1; }
+
+  .eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--blueprint);
+    margin: 0 0 1.1rem;
+  }
+
+  .eyebrow span { color: var(--ink-soft); }
+
+  h1.title {
+    font-family: 'Fraunces', serif;
+    font-optical-sizing: auto;
+    font-weight: 900;
+    font-style: normal;
+    font-size: clamp(2.4rem, 8vw, 4.6rem);
+    line-height: 0.98;
+    letter-spacing: -0.01em;
+    margin: 0;
+    color: var(--draft);
+  }
+
+  h1.title .addr {
+    display: block;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.34em;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ironspot-bright);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .facet-rule {
+    width: 240px;
+    max-width: 60%;
+    height: 10px;
+    margin: 1.5rem auto 1.2rem;
+    background:
+      linear-gradient(115deg, transparent 45%, var(--blueprint) 45%, var(--blueprint) 55%, transparent 55%),
+      linear-gradient(90deg, var(--ironspot-bright), var(--ironspot));
+    background-size: 16px 100%, 100% 3px;
+    background-position: center, center bottom;
+    background-repeat: repeat-x, no-repeat;
+  }
+
+  .tagline {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.76rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--draft-2);
+    margin: 0 0 2.4rem;
+  }
+
+  .dek {
+    max-width: 580px;
+    margin: 0 auto 2.6rem;
+    font-size: 1.02rem;
+    color: var(--draft-2);
+  }
+
+  .dek em { color: var(--blueprint); font-style: italic; }
+
+  /* ---------- Player ---------- */
+  .player {
+    max-width: 480px;
+    margin: 0 auto;
+    background: var(--concrete-3);
+    border: 1px solid var(--ink-soft);
+    border-radius: 0;
+    padding: 1.1rem 1.2rem 1.3rem;
+    text-align: left;
+    position: relative;
+  }
+
+  .player::before,
+  .player::after {
+    content: "";
+    position: absolute;
+    width: 9px;
+    height: 9px;
+    border: 1px solid var(--blueprint);
+  }
+  .player::before { top: -1px; left: -1px; border-right: none; border-bottom: none; }
+  .player::after { bottom: -1px; right: -1px; border-left: none; border-top: none; }
+
+  .player-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.66rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--draft-2);
+    margin-bottom: 0.7rem;
+  }
+
+  .player-label .rec { color: var(--ironspot-bright); }
+
+  audio {
+    width: 100%;
+    height: 40px;
+    filter: invert(0.9) grayscale(1) contrast(1.1) sepia(0.15) hue-rotate(150deg) saturate(1.6);
+    border-radius: 0;
+  }
+
+  .player-foot {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.64rem;
+    color: var(--ink-soft);
+    margin-top: 0.65rem;
+    letter-spacing: 0.03em;
+  }
+
+  /* ---------- Sticky mini-nav ---------- */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: rgba(38, 36, 31, 0.94);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--ironspot);
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+  }
+  .nav::-webkit-scrollbar { display: none; }
+
+  .nav-inner {
+    display: flex;
+    gap: 0.3rem;
+    padding: 0.7rem 1.2rem;
+    max-width: var(--max-w);
+    margin: 0 auto;
+  }
+
+  .nav-link {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--draft-2);
+    padding: 0.4rem 0.65rem;
+    border: 1px solid var(--ink-soft);
+    border-radius: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+  }
+  .nav-link:hover { border-color: var(--blueprint); color: var(--blueprint); background: rgba(127,184,192,0.08); }
+  .nav-numeral { color: var(--ironspot-bright); font-weight: 700; }
+
+  /* ---------- Verses ---------- */
+  main {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 3.2rem 1.4rem 5rem;
+  }
+
+  .verse { margin-bottom: 4rem; scroll-margin-top: 4.2rem; }
+  .verse:last-child { margin-bottom: 0; }
+
+  .verse-head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.9rem;
+    margin-bottom: 1.6rem;
+  }
+
+  .verse-numeral {
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: var(--blueprint);
+    line-height: 1;
+    border: 1px solid var(--blueprint-dim);
+    padding: 0.15rem 0.5rem;
+  }
+
+  .verse-head h2 {
+    font-family: 'Fraunces', serif;
+    font-optical-sizing: auto;
+    font-style: italic;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    font-size: 1.3rem;
+    color: var(--draft);
+    margin: 0;
+    white-space: nowrap;
+  }
+
+  .verse-rule {
+    flex: 1;
+    height: 1px;
+    background: repeating-linear-gradient(90deg, var(--ink-soft) 0 6px, transparent 6px 12px);
+  }
+
+  .cards { display: flex; flex-direction: column; gap: 1.1rem; }
+
+  .card {
+    position: relative;
+    display: flex;
+    gap: 0.9rem;
+    background: var(--concrete-3);
+    border: 1px solid var(--ink-soft);
+    border-left: 4px solid var(--ironspot);
+    border-radius: 0;
+    padding: 1.15rem 1.25rem;
+    transition: border-left-color 0.2s ease, background 0.2s ease;
+  }
+
+  .card::after {
+    content: "";
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 7px;
+    height: 7px;
+    border-top: 1px solid var(--blueprint-dim);
+    border-right: 1px solid var(--blueprint-dim);
+    opacity: 0.7;
+  }
+
+  .card:hover {
+    border-left-color: var(--ironspot-bright);
+    background: #454037;
+  }
+
+  .card-index {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--blueprint-dim);
+    padding-top: 0.15rem;
+    flex-shrink: 0;
+  }
+
+  .card-index::before { content: "SHEET "; }
+
+  .lyric {
+    font-family: 'Fraunces', serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: italic;
+    font-size: 1.08rem;
+    line-height: 1.42;
+    color: var(--draft);
+    margin: 0 0 0.75rem;
+  }
+
+  .source {
+    background: var(--draft);
+    color: var(--ink);
+    border-radius: 0;
+    padding: 0.7rem 0.85rem 0.75rem;
+    border-left: 2px solid var(--ironspot);
+  }
+
+  .tag {
+    display: inline-block;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ironspot-dim);
+    background: var(--draft-2);
+    border: 1px solid var(--ironspot);
+    border-radius: 0;
+    padding: 0.15rem 0.45rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .citation {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.76rem;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  /* ---------- Footer ---------- */
+  footer {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 1.4rem 4rem;
+    text-align: center;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  footer a { color: var(--blueprint); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  @media (max-width: 520px) {
+    .card { flex-direction: column; gap: 0.4rem; }
+    .verse-head h2 { font-size: 1.05rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <svg class="facade" viewBox="0 0 900 240" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+    <!-- blueprint grid baseline -->
+    <line x1="20" y1="220" x2="880" y2="220" stroke="#7fb8c0" stroke-width="1.5" opacity="0.45"/>
+    <!-- faceted polygonal tower, overlapping grids -->
+    <polygon points="330,220 330,70 410,30 470,60 470,220" fill="none" stroke="#a85a4f" stroke-width="2" opacity="0.55"/>
+    <polygon points="470,220 470,60 540,40 590,90 590,220" fill="none" stroke="#7fb8c0" stroke-width="2" opacity="0.45"/>
+    <polygon points="410,30 470,60 540,40" fill="none" stroke="#a85a4f" stroke-width="2" opacity="0.6"/>
+    <!-- neighborhood scale strips left -->
+    <g stroke="#7fb8c0" stroke-width="1.5" opacity="0.3" fill="none">
+      <line x1="60" y1="220" x2="60" y2="140"/>
+      <line x1="60" y1="140" x2="150" y2="140"/>
+      <line x1="150" y1="140" x2="150" y2="220"/>
+      <line x1="180" y1="220" x2="180" y2="120"/>
+      <line x1="180" y1="120" x2="280" y2="120"/>
+      <line x1="280" y1="120" x2="280" y2="220"/>
+    </g>
+    <!-- right strip -->
+    <g stroke="#a85a4f" stroke-width="1.5" opacity="0.3" fill="none">
+      <line x1="630" y1="220" x2="630" y2="150"/>
+      <line x1="630" y1="150" x2="720" y2="150"/>
+      <line x1="720" y1="150" x2="720" y2="220"/>
+      <line x1="750" y1="220" x2="750" y2="130"/>
+      <line x1="750" y1="130" x2="840" y2="130"/>
+      <line x1="840" y1="130" x2="840" y2="220"/>
+    </g>
+    <!-- triangle marker: school, dorm, Tom Thumb -->
+    <g stroke="#7fb8c0" stroke-width="1" opacity="0.5" stroke-dasharray="4 4">
+      <polygon points="440,200 505,200 470,150" fill="none"/>
+    </g>
+    <circle cx="440" cy="200" r="2.5" fill="#7fb8c0" opacity="0.8"/>
+    <circle cx="505" cy="200" r="2.5" fill="#7fb8c0" opacity="0.8"/>
+    <circle cx="470" cy="150" r="2.5" fill="#7fb8c0" opacity="0.8"/>
+    <text x="450" y="24" text-anchor="middle" font-family="Space Mono, monospace" font-size="12" letter-spacing="2" fill="#a85a4f" opacity="0.75">SHEET A-29</text>
+  </svg>
+
+  <div class="hero-inner">
+    <p class="eyebrow">Outernet Music <span>&middot;</span> Cooper Union</p>
+    <h1 class="title"><span class="addr">29 Third Avenue</span>Iron&#8209;Spot Ground</h1>
+    <div class="facet-rule"></div>
+    <p class="tagline">Inspired by old&#8209;school hip&#8209;hop</p>
+    <p class="dek">Every line traces one triangular lot through <em>177 years</em> &mdash; an empty parcel in the 1815 Blue Book, wood-frame tenements and Wundling&rsquo;s Hotel, and the 1992 Neo&#8209;Brutalist Cooper Union dormitory clad in dark iron&#8209;spot brick. Sourced line by line below.</p>
+
+    <div class="player">
+      <div class="player-label"><span class="rec">&#9679; Track</span><span>04:45</span></div>
+      <audio controls preload="metadata" src="29-third-avenue-iron-spot-ground.mp3">
+        Your browser does not support the audio element. <a href="29-third-avenue-iron-spot-ground.mp3">Download the track</a>.
+      </audio>
+      <div class="player-foot"><span>29 Third Avenue, NY</span><span>Iron-Spot Ground</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="nav">
+  <div class="nav-inner">
+          <a href="#verse-1" class="nav-link"><span class="nav-numeral">I</span>Verse 1</a>
+          <a href="#chorus" class="nav-link"><span class="nav-numeral">II</span>Chorus</a>
+          <a href="#verse-2" class="nav-link"><span class="nav-numeral">III</span>Verse 2</a>
+          <a href="#bridge" class="nav-link"><span class="nav-numeral">IV</span>Bridge</a>
+          <a href="#outro" class="nav-link"><span class="nav-numeral">V</span>Outro</a>
+  </div>
+</nav>
+
+<main>
+
+    <section class="verse" id="verse-1">
+      <div class="verse-head">
+        <span class="verse-numeral">I</span>
+        <h2>Verse 1</h2>
+        <span class="verse-rule"></span>
+      </div>
+      <div class="cards">
+
+        <article class="card">
+          <div class="card-index">01</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;poured in reinforced concrete, the year of ninety-two, the dream / they picked was Neo-Brutalist, a clunky, chosen frame, / dark purplish-brown iron-spot brick-clad, forty-eight apartments, same / one hundred 93 students racked above the retail floor&rdquo;</p>
+            <div class="source">
+              <span class="tag">Cooper Union Residence Hall (Undergraduate Dormitory)</span>
+              <p class="citation">"The selection of Ohlhausen's clunky, Neo-Brutalist proposal" and "As realized in 1992, the building was somewhat toned down and far less aggressive, a fifteen-story, dark purplish brown iron-spot brick-clad reinforced-concrete structure housing 193 students in forty-eight apartments above retail spaces." Stern. (2006) New York 2000, p. 368.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">02</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;a slim faceted polygonal tower &mdash; low-key, crisp, and more / than the critics gave it credit, brutal, banal, so they swore, / but the trustee called it rational, spartan, Peter Cooper's core&rdquo;</p>
+            <div class="source">
+              <span class="tag">Cooper Union Residence Hall (Undergraduate Dormitory)</span>
+              <p class="citation">"The slim, faceted, polygonal tower is low-key&mdash;even bland&mdash;yet at the same time crisply detailed and tailored." and "terrible architecture: brutal in design, banal in program" and "a good New York vernacular, rationalist building, with a well-built, spartan character in the spirit of Peter Cooper." Stern. (2006) New York 2000, p. 368.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">03</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Fifteen stories overlapping grids, the square and rectangle massing, / three intersecting structures where the narrow strips keep passing / neighborhood scale to the wider high-rise contemporary street wall&rdquo;</p>
+            <div class="source">
+              <span class="tag">Cooper Union Residence Hall (Undergraduate Dormitory)</span>
+              <p class="citation">"Overlapping grids dictated the building's square and rectangular massing. In reality three separate intersecting structures... narrow strips retain the character of the neighborhood while the wider street wall of the high-rise tower looks more contemporary." Sirefman. (2001) New York A Guide to Recent Architecture, p. 89.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">04</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;a triangle drawn tight between the school, the dorm, Tom Thumb, and all&rdquo;</p>
+            <div class="source">
+              <span class="tag">Cooper Union Residence Hall (Undergraduate Dormitory)</span>
+              <p class="citation">"The location creates a triangle between the school, the dorm and a statue of Tom Thumb." Sirefman. (2001) New York A Guide to Recent Architecture, p. 89.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">05</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;the base that matches Alumni Hall's own roofline just across &mdash; / then leaps&rdquo;</p>
+            <div class="source">
+              <span class="tag">Undergraduate Dormitory, N.Y.U. / New York University Residence Hall (Alumni Hall)</span>
+              <p class="citation">"Note that the base of the N.Y.U. building matches the roofline of its neighbors, then leaps up 16 stories to its roof that is surmounted by what appears to be a blimp hangar." Wolfe. (2003) New York 15 Walking Tours, p. 144.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="verse" id="chorus">
+      <div class="verse-head">
+        <span class="verse-numeral">II</span>
+        <h2>Chorus</h2>
+        <span class="verse-rule"></span>
+      </div>
+      <div class="cards">
+
+        <article class="card">
+          <div class="card-index">06</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;southeast corner, Stuyvesant Street&rdquo;</p>
+            <div class="source">
+              <span class="tag">Cooper Union Residence Hall (Undergraduate Dormitory)</span>
+              <p class="citation">"embarked on the construction of its first-ever dormitory, to be located on a triangular site at 29 Third Avenue, southeast corner of Stuyvesant Street." Stern. (2006) New York 2000, p. 368.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">07</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;the bouwerie the Dutch designed. / Governor Peter Stuyvesant's farm &mdash; the grid laid over garden ground&rdquo;</p>
+            <div class="source">
+              <span class="tag">Undergraduate Dormitory, N.Y.U. / New York University Residence Hall (Alumni Hall)</span>
+              <p class="citation">"Stuyvesant Street was originally designed to be the entrance to Governor Peter Stuyvesant's farm... 'by restoring a patch of greenery to what was in the 17th century part of Stuyvesant's bouwerie, or farm.'" Wolfe. (2003) New York 15 Walking Tours, p. 144.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="verse" id="verse-2">
+      <div class="verse-head">
+        <span class="verse-numeral">III</span>
+        <h2>Verse 2</h2>
+        <span class="verse-rule"></span>
+      </div>
+      <div class="cards">
+
+        <article class="card">
+          <div class="card-index">08</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Drop to eighteen-fifteen &mdash; the Blue Book page reads zero, bare, / no structure on the lot&rdquo;</p>
+            <div class="source">
+              <span class="tag">1815 Blue Book</span>
+              <p class="citation">"In the 1815 Blue Book, on 29 Third Avenue, there is reference to 0 structures." Sackersdorff. 1815 Blue Book, p. 4.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">09</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;By eighteen-fifty-three the Perris maps count four in place: / three brick or stone dwellings second class, slate roof, not coped, with stores at base, / and a framed dwelling with the stores beneath&rdquo;</p>
+            <div class="source">
+              <span class="tag">1853 Perris Maps</span>
+              <p class="citation">"In the 1853 Perris Maps, on 29 Third Avenue, there is reference to 4 structures; a Brick or stone dwelling second class (slate or metal roof not coped) with stores under, a Brick or stone dwelling second class (slate or metal roof not coped) with stores under, a Brick or stone dwelling second class (slate or metal roof not coped) with stores under, a framed dwelling with stores under." Perris. 1853 Perris Maps, p. 49.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">10</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Then eighteen-sixty-seven, Dripps: back to zero, back to bare&rdquo;</p>
+            <div class="source">
+              <span class="tag">1867 Dripps Plan</span>
+              <p class="citation">"In the 1867 Dripps Plan, on 29 Third Avenue, there is reference to 0 structures." Dripps. 1867 Dripps Plan, p. 7.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">11</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;By eighteen-eighty-five, the Robinson counts eight &mdash; seven wood, one brick&rdquo;</p>
+            <div class="source">
+              <span class="tag">1885 Robinson Atlas</span>
+              <p class="citation">"In the 1885 Robinson Atlas, on 29 Third Avenue, there is reference to 8 structures; a Wood building, a Wood building, a Wood building, a Wood building, a Wood building, a Wood building, a Wood building, a Brick building." Robinson. 1885 Robinson Atlas, p. 11.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">12</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Eighteen-ninety-seven, Bromley: ten &mdash; the wood, the brick and basement, / two-and-a-half-story wood with brick fronts standing at their placement&rdquo;</p>
+            <div class="source">
+              <span class="tag">1897 Bromleys Atlas</span>
+              <p class="citation">"In the 1897 Bromleys Atlas, on 29 Third Avenue, there is reference to 10 structures; a wood building, a 2 story wood building with basement... a 2.5 story wood building with brick front, a 2.5 story wood building with brick front, a 2.5 story wood building with brick front, a 2.5 story wood building with brick front." Bromley. 1897 Bromleys Atlas, p. 16.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">13</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Nineteen-sixteen names but one &mdash; two-story frame with brick rear&rdquo;</p>
+            <div class="source">
+              <span class="tag">1916 Atlas of the Borough of Manhattan</span>
+              <p class="citation">"In the 1916 Atlas of the Borough of Manhattan, on 29 Third Avenue, there is reference to 1 Structure; a 2 story frame building with brick rear." G W Bromley &amp; Co. 1916 Atlas of the Borough of Manhattan, p. 41.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">14</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;and the New England Hotel, Wundling's, held their trade near here&rdquo;</p>
+            <div class="source">
+              <span class="tag">New England Hotel / Wundling's Hotel</span>
+              <p class="citation">"the New England Hotel at 39 Third Avenue." Roth. (1996) Infamous Manhattan, p. 204. and "Wundling's Hotel 39 Third Avenue." Gilfoyle. (1992) City of Eros, p. 401.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">15</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Nineteen-twenty raised the low brick-front &mdash; thirty and fifty-five, / two-story store, brick, stone, or concrete&rdquo;</p>
+            <div class="source">
+              <span class="tag">1930 Land Book of the Borough of Manhattan / 1955 Manhattan Land Book</span>
+              <p class="citation">"In the 1930 Land Book of the Borough of Manhattan, on 29 Third Avenue, there is reference to 1 Structure; a 2 story Building with Store." Bromley. 1930 Land Book of the Borough of Manhattan, p. 40. and "In the 1955 Manhattan Land Book, on 29 Third Avenue, there is reference to 1 structures; 2 Story Brick or Stone or Concrete building with Store." Bromley. 1955 Manhattan Land Book, p. 30.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="verse" id="bridge">
+      <div class="verse-head">
+        <span class="verse-numeral">IV</span>
+        <h2>Bridge</h2>
+        <span class="verse-rule"></span>
+      </div>
+      <div class="cards">
+
+        <article class="card">
+          <div class="card-index">16</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Nineteen-eighty-nine &mdash; the two-story store relieved of load, / the college canvassed twenty alumni, chose the clunky mode&rdquo;</p>
+            <div class="source">
+              <span class="tag">Cooper Union Residence Hall (Undergraduate Dormitory)</span>
+              <p class="citation">"In 1989 Cooper Union... embarked on the construction of its first-ever dormitory... Cooper canvassed twenty alumni and faculty members... The selection of Ohlhausen's clunky, Neo-Brutalist proposal." Stern. (2006) New York 2000, p. 368.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">17</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;seven hundred signed against it &mdash; mediocre, no merit, they cried&rdquo;</p>
+            <div class="source">
+              <span class="tag">Cooper Union Residence Hall (Undergraduate Dormitory)</span>
+              <p class="citation">"700 of whom signed a petition that dismissed the design as 'a simplistic, developer-style building of mediocre quality and no architectural merit.'" Stern. (2006) New York 2000, p. 368.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">18</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Three finalists, three sons of the school, each with a drafting hand, / a year and a half of debate before the trustees made their stand&rdquo;</p>
+            <div class="source">
+              <span class="tag">Cooper Union Residence Hall (Undergraduate Dormitory)</span>
+              <p class="citation">"The three finalists were all Cooper Union graduates: Peter Eisenman, Diane Lewis and Rolf Olhausen. A year and a half of debate ensued before Prentice &amp; Chan, Olhausen was given the commission." Sirefman. (2001) New York A Guide to Recent Architecture, p. 89.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">19</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Concrete cast, the tower rose, the party walls set into grid&rdquo;</p>
+            <div class="source">
+              <span class="tag">St. Mark's Bookshop</span>
+              <p class="citation">"concrete 'fish bone' structural elements conceived of as a sieve... set into the grid of the party walls of the surrounding buildings." Stern. (2006) New York 2000, p. 368.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">20</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;and the bookshop moved into the odd space that it hid, / St. Mark's, a former German shooting club, the service desk dead-center laid&rdquo;</p>
+            <div class="source">
+              <span class="tag">St. Mark's Bookshop</span>
+              <p class="citation">"the bookshop moved to its current more spacious location, a former German shooting club." Holmes. (2004) 100 New Yorker, p. 82. and "Don Zivkovic located the service desk in the center from which the staff could survey the aisles of books." Stern. (2006) New York 2000, p. 1141.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">21</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;the ducts like writhing intestines overhead where the panopticon was made&rdquo;</p>
+            <div class="source">
+              <span class="tag">St. Mark's Bookshop</span>
+              <p class="citation">"the contrast of the static shelving with the writhing, intestine-like shapes of the ductwork overhead... suggesting the Panopticon-inspired arrangements." Stern. (2006) New York 2000, p. 1141.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="verse" id="outro">
+      <div class="verse-head">
+        <span class="verse-numeral">V</span>
+        <h2>Outro</h2>
+        <span class="verse-rule"></span>
+      </div>
+      <div class="cards">
+
+        <article class="card">
+          <div class="card-index">22</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Sunrise Mart above the shelves, the elevator's hello call&rdquo;</p>
+            <div class="source">
+              <span class="tag">Saint Alp's Tea House</span>
+              <p class="citation">"Sunrise Mart 29 3rd Avenue 2nd floor (at 9th St)... the cashiers at this Japanese supermarket over St Mark's Bookstore will shout out a hello the moment the elevator doors open." Halliday. (2011) Zinester's Guide to NYC, p. 90.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">23</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Birdbath, Panya, Sharaku, the trade beneath it all&rdquo;</p>
+            <div class="source">
+              <span class="tag">Birdbath</span>
+              <p class="citation">"35 THIRD AVENUE NEW YORK, NY 10003." Meisel. (2013) New York Sweets, p. 17.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">24</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Birdbath, Panya, Sharaku, the trade beneath it all&rdquo;</p>
+            <div class="source">
+              <span class="tag">Panya</span>
+              <p class="citation">"Panya 10 Stuyvesant... This Japanese bakery looks like a convenience store with Zen monastery pretensions." Halliday. (2011) Zinester's Guide to NYC, p. 46.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">25</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Birdbath, Panya, Sharaku, the trade beneath it all&rdquo;</p>
+            <div class="source">
+              <span class="tag">Sharaku</span>
+              <p class="citation">"Sharaku, 14 Stuyvesant Street corner of Ninth Street and Third Avenue... attracts East Village students and artists." Leeds. (1995) Ethnic New York Second Edition, p. 461.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+</main>
+
+<footer>
+  <p>Outernet Music &mdash; Cooper Union Series &mdash; <a href="https://github.com/Willhoward89/Outernet-Music" target="_blank" rel="noopener">github.com/Willhoward89/Outernet&#8209;Music</a></p>
+</footer>
+
+</body>
+</html>
