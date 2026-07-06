@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>60 East 9th Street &mdash; Always The Same Lot</title>
+<meta name="description" content="An annotated boom bap jazz-fusion track tracing 60 East 9th Street from Lillian Russell's Gay Nineties apartment through F.A.O. Schwarz's first Toy Bazaar, the 1951 Ninth Street Show that launched Abstract Expressionism, and H.I. Feldman's 1954 Hamilton &mdash; every line sourced.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Crimson+Pro:ital,wght@0,500;0,600;1,500;1,600&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --studio: #191510;
+    --studio-2: #221c15;
+    --studio-3: #2b241a;
+    --ochre: #c99a3f;
+    --ochre-bright: #e8ba68;
+    --teal: #3c6e6a;
+    --teal-bright: #6aa39d;
+    --splat: #100d0a;
+    --canvas: #ece2ca;
+    --canvas-2: #ddcda3;
+    --ink: #221c12;
+    --ink-soft: #574d36;
+    --max-w: 780px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--studio);
+    color: var(--canvas);
+    font-family: 'Crimson Pro', Georgia, serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; }
+
+  ::selection { background: var(--ochre); color: var(--ink); }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative;
+    padding: 5.5rem 1.5rem 3.5rem;
+    text-align: center;
+    overflow: hidden;
+    background: radial-gradient(ellipse at 30% 20%, rgba(60,110,106,0.25) 0%, var(--studio) 55%),
+                radial-gradient(ellipse at 75% 80%, rgba(201,154,63,0.16) 0%, transparent 55%);
+    border-bottom: 1px solid var(--ink-soft);
+  }
+
+  .facade {
+    position: absolute;
+    left: 50%;
+    bottom: -4px;
+    transform: translateX(-50%);
+    width: min(980px, 135%);
+    opacity: 0.85;
+    z-index: 0;
+  }
+
+  .hero-inner { position: relative; z-index: 1; }
+
+  .eyebrow {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--teal-bright);
+    margin: 0 0 1.1rem;
+  }
+
+  .eyebrow span { color: var(--ink-soft); }
+
+  h1.title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: 400;
+    font-size: clamp(2.7rem, 9vw, 5.2rem);
+    line-height: 0.92;
+    letter-spacing: 0.02em;
+    margin: 0;
+    color: var(--canvas);
+    text-transform: uppercase;
+  }
+
+  h1.title .addr {
+    display: block;
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.32em;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ochre-bright);
+    font-weight: 700;
+    margin-bottom: 0.45rem;
+  }
+
+  .brush-rule {
+    width: 230px;
+    max-width: 60%;
+    height: 14px;
+    margin: 1.3rem auto 1.2rem;
+    background-image:
+      radial-gradient(ellipse at 10% 50%, var(--ochre-bright) 0%, transparent 60%),
+      radial-gradient(ellipse at 40% 40%, var(--teal-bright) 0%, transparent 55%),
+      radial-gradient(ellipse at 70% 60%, var(--ochre) 0%, transparent 55%),
+      radial-gradient(ellipse at 95% 45%, var(--teal) 0%, transparent 60%);
+    opacity: 0.85;
+  }
+
+  .tagline {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.76rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--canvas-2);
+    margin: 0 0 2.4rem;
+  }
+
+  .dek {
+    max-width: 580px;
+    margin: 0 auto 2.6rem;
+    font-size: 1.05rem;
+    color: var(--canvas-2);
+  }
+
+  .dek em { color: var(--teal-bright); font-style: italic; }
+
+  /* ---------- Player ---------- */
+  .player {
+    max-width: 480px;
+    margin: 0 auto;
+    background: var(--studio-2);
+    border: 1px solid var(--ink-soft);
+    border-radius: 4px;
+    padding: 1.1rem 1.2rem 1.3rem;
+    text-align: left;
+  }
+
+  .player-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.66rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--canvas-2);
+    margin-bottom: 0.7rem;
+  }
+
+  .player-label .rec { color: var(--ochre-bright); }
+
+  audio {
+    width: 100%;
+    height: 40px;
+    filter: invert(0.87) grayscale(1) contrast(1.1) sepia(0.25) hue-rotate(130deg) saturate(1.8);
+    border-radius: 6px;
+  }
+
+  .player-foot {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.63rem;
+    color: var(--ink-soft);
+    margin-top: 0.65rem;
+    letter-spacing: 0.03em;
+  }
+
+  /* ---------- Sticky mini-nav ---------- */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: rgba(25, 21, 16, 0.94);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--ink-soft);
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+  }
+  .nav::-webkit-scrollbar { display: none; }
+
+  .nav-inner {
+    display: flex;
+    gap: 0.4rem;
+    padding: 0.7rem 1.2rem;
+    max-width: var(--max-w);
+    margin: 0 auto;
+  }
+
+  .nav-link {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--canvas-2);
+    padding: 0.4rem 0.7rem;
+    border: 1px solid var(--ink-soft);
+    border-radius: 3px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+  .nav-link:hover { border-color: var(--teal-bright); color: var(--teal-bright); }
+  .nav-numeral { color: var(--ochre-bright); font-weight: 700; }
+
+  /* ---------- Verses ---------- */
+  main {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 3.2rem 1.4rem 5rem;
+  }
+
+  .verse { margin-bottom: 4rem; scroll-margin-top: 4.2rem; }
+  .verse:last-child { margin-bottom: 0; }
+
+  .verse-head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.9rem;
+    margin-bottom: 1.6rem;
+  }
+
+  .verse-numeral {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    color: var(--teal-bright);
+    line-height: 1;
+  }
+
+  .verse-head h2 {
+    font-family: 'Courier Prime', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--canvas);
+    margin: 0;
+    white-space: nowrap;
+  }
+
+  .verse-rule {
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(90deg, var(--ochre) 0%, transparent 8%, var(--ink-soft) 8%, var(--ink-soft) 92%, var(--teal) 92%);
+    opacity: 0.6;
+  }
+
+  .cards { display: flex; flex-direction: column; gap: 1.15rem; }
+
+  .card {
+    position: relative;
+    display: flex;
+    gap: 0.9rem;
+    background: var(--studio-2);
+    border: 1px solid var(--ink-soft);
+    border-radius: 3px 14px 3px 14px;
+    padding: 1.15rem 1.25rem;
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+
+  .card::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 10%;
+    bottom: 10%;
+    width: 4px;
+    border-radius: 4px;
+    background: linear-gradient(180deg, var(--ochre-bright), var(--teal));
+  }
+
+  .card:hover {
+    border-color: var(--teal-bright);
+    background: var(--studio-3);
+  }
+
+  .card-index {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.7rem;
+    color: var(--ochre-bright);
+    padding-top: 0.15rem;
+    padding-left: 0.4rem;
+    flex-shrink: 0;
+  }
+
+  .lyric {
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-weight: 600;
+    font-style: italic;
+    font-size: 1.12rem;
+    line-height: 1.42;
+    color: var(--canvas);
+    margin: 0 0 0.75rem;
+  }
+
+  .source {
+    background: var(--canvas);
+    color: var(--ink);
+    border-radius: 3px;
+    padding: 0.7rem 0.85rem 0.75rem;
+    border-left: 2px solid var(--teal);
+  }
+
+  .tag {
+    display: inline-block;
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink);
+    background: var(--canvas-2);
+    border: 1px solid var(--ochre);
+    border-radius: 3px;
+    padding: 0.15rem 0.45rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .citation {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.76rem;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  /* ---------- Footer ---------- */
+  footer {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 1.4rem 4rem;
+    text-align: center;
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  footer a { color: var(--ochre-bright); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  @media (max-width: 520px) {
+    .card { flex-direction: column; gap: 0.4rem; }
+    .verse-head h2 { font-size: 0.74rem; letter-spacing: 0.1em; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <svg class="facade" viewBox="0 0 900 220" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+    <!-- studio floor line -->
+    <line x1="20" y1="205" x2="880" y2="205" stroke="#574d36" stroke-width="1" opacity="0.4"/>
+    <!-- abstract expressionist drips and splatters, referencing the Ninth Street Show -->
+    <g opacity="0.7">
+      <path d="M120,40 C110,90 140,120 100,205" stroke="#c99a3f" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <path d="M170,25 C185,80 150,130 190,205" stroke="#3c6e6a" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <circle cx="120" cy="38" r="6" fill="#c99a3f"/>
+      <circle cx="170" cy="24" r="5" fill="#3c6e6a"/>
+      <circle cx="95" cy="60" r="2.5" fill="#e8ba68"/>
+      <circle cx="205" cy="55" r="2" fill="#6aa39d"/>
+
+      <path d="M700,30 C715,90 680,110 720,205" stroke="#e8ba68" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <path d="M760,45 C745,95 780,135 750,205" stroke="#6aa39d" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <circle cx="700" cy="28" r="5.5" fill="#e8ba68"/>
+      <circle cx="760" cy="43" r="5" fill="#6aa39d"/>
+      <circle cx="680" cy="70" r="2" fill="#c99a3f"/>
+      <circle cx="790" cy="90" r="2.5" fill="#3c6e6a"/>
+
+      <path d="M430,15 C450,70 400,100 440,150 C460,175 420,190 445,205" stroke="#c99a3f" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.5"/>
+    </g>
+    <!-- a canvas carried, referencing artists carrying work on their backs -->
+    <g stroke="#e8ba68" stroke-width="1.5" fill="none" opacity="0.4">
+      <rect x="405" y="120" width="90" height="70" rx="2"/>
+      <line x1="405" y1="140" x2="495" y2="140"/>
+      <line x1="450" y1="120" x2="450" y2="190"/>
+    </g>
+    <text x="450" y="200" text-anchor="middle" font-family="Courier Prime, monospace" font-size="11" letter-spacing="2" fill="#e8ba68" opacity="0.55">60</text>
+  </svg>
+
+  <div class="hero-inner">
+    <p class="eyebrow">Outernet Music <span>&middot;</span> Cooper Union</p>
+    <h1 class="title"><span class="addr">60 East 9th Street</span>Always The Same Lot</h1>
+    <div class="brush-rule"></div>
+    <p class="tagline">Inspired by boom bap jazz fusion hip&#8209;hop</p>
+    <p class="dek">Every line traces one lot through <em>a century of trade and paint</em> &mdash; Lillian Russell&rsquo;s Gay Nineties apartment, F.A.O. Schwarz&rsquo;s first Toy Bazaar, the 1951 Ninth Street Show that helped launch Abstract Expressionism, and H.I. Feldman&rsquo;s 1954 Hamilton apartments. Sourced line by line below.</p>
+
+    <div class="player">
+      <div class="player-label"><span class="rec">&#9679; Track</span><span>05:44</span></div>
+      <audio controls preload="metadata" src="60-east-9th-street-always-the-same-lot.mp3">
+        Your browser does not support the audio element. <a href="60-east-9th-street-always-the-same-lot.mp3">Download the track</a>.
+      </audio>
+      <div class="player-foot"><span>60 East 9th Street, NY</span><span>Always The Same Lot</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="nav">
+  <div class="nav-inner">
+          <a href="#verse-1" class="nav-link"><span class="nav-numeral">I</span>Verse 1</a>
+          <a href="#chorus" class="nav-link"><span class="nav-numeral">II</span>Chorus</a>
+          <a href="#verse-2" class="nav-link"><span class="nav-numeral">III</span>Verse 2</a>
+          <a href="#bridge" class="nav-link"><span class="nav-numeral">IV</span>Bridge</a>
+  </div>
+</nav>
+
+<main>
+
+    <section class="verse" id="verse-1">
+      <div class="verse-head">
+        <span class="verse-numeral">I</span>
+        <h2>Verse 1</h2>
+        <span class="verse-rule"></span>
+      </div>
+      <div class="cards">
+
+        <article class="card">
+          <div class="card-index">01</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;The Hamilton, nineteen-fifty, H.I. Feldman signed the name&rdquo;</p>
+            <div class="source">
+              <span class="tag">The Hamilton (No. 757)</span>
+              <p class="citation">"8th STREET: W. THE HAMILTON, No. 757 1950, by H.I. Feldman. [6 stories] This drab modern structure wraps around a large court." Dunlap. (1990) On Broadway, p. 102.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">02</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Six stories wrapping round a court, red brick against the Village grain&rdquo;</p>
+            <div class="source">
+              <span class="tag">Hamilton H. I. Feldman (The Hamilton)</span>
+              <p class="citation">"Feldman used red brick on the low-rise buildings at each end of the block, suggesting an effort to respond to the Village context." Stern. (1995) New York 1960, p. 223.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">03</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Two-thirty-five feet on Eighth and Ninth, one-eighty-eight on Broadway's face&rdquo;</p>
+            <div class="source">
+              <span class="tag">Hamilton H. I. Feldman (The Hamilton)</span>
+              <p class="citation">"60 East Ninth Street, a six-story building housing 216 families, with 235 feet of frontage on both Eighth and Ninth streets and 188 feet on the west blockfront of Broadway." Stern. (1995) New York 1960, p. 223.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">04</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Cast in nineteen-fifty-two, complete by fifty-four&rdquo;</p>
+            <div class="source">
+              <span class="tag">Hamilton H. I. Feldman (The Hamilton)</span>
+              <p class="citation">"Construction did not begin until December 1952, when work commenced on 60 East Ninth Street... By October 1954 it was complete." Stern. (1995) New York 1960, p. 223.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">05</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;where Lillian Russell's cozy rooms received Jim Brady at the door&rdquo;</p>
+            <div class="source">
+              <span class="tag">Lillian Russell (residence)</span>
+              <p class="citation">"The famous 'golden girl' of the Gay Nineties... lived in a cozy and luxurious apartment on this site at the turn of the century. Here she was often picked up by the flamboyant playboy Diamond Jim Brady in a Hansom cab." Plumb. (1989) The Streets Where They Lived, p. 150.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">06</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;her building gone, renumbered now, the modern slab&rdquo;</p>
+            <div class="source">
+              <span class="tag">Lillian Russell (residence)</span>
+              <p class="citation">"Russell's apartment building was replaced by this modern apartment building called the Hamilton (renumbered 60 East 9th Street)." Plumb. (1989) The Streets Where They Lived, p. 150.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="verse" id="chorus">
+      <div class="verse-head">
+        <span class="verse-numeral">II</span>
+        <h2>Chorus</h2>
+        <span class="verse-rule"></span>
+      </div>
+      <div class="cards">
+
+        <article class="card">
+          <div class="card-index">07</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;between Eighth and Ninth, on Broadway, University alone&rdquo;</p>
+            <div class="source">
+              <span class="tag">Hamilton H. I. Feldman (The Hamilton)</span>
+              <p class="citation">"Bounded by Eighth and Ninth streets, Broadway and University Place, the new development would replace a diverse collection of forty buildings." Stern. (1995) New York 1960, p. 223.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="verse" id="verse-2">
+      <div class="verse-head">
+        <span class="verse-numeral">III</span>
+        <h2>Verse 2</h2>
+        <span class="verse-rule"></span>
+      </div>
+      <div class="cards">
+
+        <article class="card">
+          <div class="card-index">08</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;the Albion Hotel at 769, Broadway understood&rdquo;</p>
+            <div class="source">
+              <span class="tag">Albion Hotel</span>
+              <p class="citation">"In 1852, Albion Hotel occupied No. 769 Broadway." De Leeuw. (1910) Both Sides of Broadway, p. 23.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">09</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;American Hotel, the Carter Building, first-class brick or stone&rdquo;</p>
+            <div class="source">
+              <span class="tag">American Hotel (Carter Building)</span>
+              <p class="citation">"Mr. Daniell has taken over the Carter Building (formerly the American Hotel) along with the two less important buildings next to it." Black. (1973) Old New York in Early Photographs, p. 102.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">10</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Perris mapped it fifty-three, coped roofs and metal, dwellings grown&rdquo;</p>
+            <div class="source">
+              <span class="tag">1853 Perris Maps</span>
+              <p class="citation">"In the 1853 Perris Maps, on 60 East 9th Street, there is reference to 15 structures; Brick or Stone dwellings first class (slate or metal roof &amp; coped)." Perris. 1853 Perris Maps, p. 61.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">11</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;By 'sixty-five John Daniell traded silks and lace and ribbon fine&rdquo;</p>
+            <div class="source">
+              <span class="tag">Dry Goods Daniels &amp; Sons / John Daniell &amp; Son / John Daniell &amp; Sons, Haberdashers</span>
+              <p class="citation">"John Daniell was at 735 Broadway in 1865 and John Daniell &amp; Sons is at 765 now, just opposite Wanamaker... they still pay special attention to silks, laces, embroidery and ribbons." Brown. (1921) Valentine's Manual 1921, p. 108.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">12</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Robinson's atlas, eighty-five &mdash; Fancy Goods, the laundry stamped&rdquo;</p>
+            <div class="source">
+              <span class="tag">1885 Robinsons Atlas</span>
+              <p class="citation">"In the 1885 Robinsons Atlas, on 60 East 9th Street, there is written 'Daniell &amp; Son, John Daniell &amp; Son FANCY GOODS, TROY CITY LAUNDRY'." Robinson. 1885 Robinsons Atlas, p. 12.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">13</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Troy City Laundry, Daniell &amp; Son, fifteen brick structures cramped&rdquo;</p>
+            <div class="source">
+              <span class="tag">Troy City Laundry</span>
+              <p class="citation">"'Daniell &amp; Son, John Daniell &amp; Son FANCY GOODS, TROY CITY LAUNDRY' as well as reference to 15 Structures." Robinson. 1885 Robinsons Atlas, p. 12.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">14</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Then Schwarz in eighteen-seventy opened up his small Bazaar&rdquo;</p>
+            <div class="source">
+              <span class="tag">F. A. O. Schwarz / Schwarz Toy Bazaar / F.A.O. Schwarz "The Home of Toys"</span>
+              <p class="citation">"Frederick August Otto Schwarz, an immigrant from Westphalia who moved to New York City in 1870 to open the Schwarz Toy Bazaar at 765 Broadway." Jackson. (2010) The Encyclopedia of New York, p. 428.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">15</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;765 Broadway, the Home of Toys, opposite Stewart's store&rdquo;</p>
+            <div class="source">
+              <span class="tag">F. A. O. Schwarz / Schwarz Toy Bazaar / F.A.O. Schwarz "The Home of Toys"</span>
+              <p class="citation">"The first F. A. O. Schwarz shop was opened in 1870 at 765 Broadway, opposite A. T. Stewart's." Brown. (1924) Fifth Avenue Old and New, p. 186.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">16</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Lyrique Hall in fifty-nine held Church's Heart of the Andes framed&rdquo;</p>
+            <div class="source">
+              <span class="tag">Lyrique Hall</span>
+              <p class="citation">"Lyrique Hall; 1859. 765 Broadway. Housed various shows, including single-picture exhibition of Frederic E. Church's 'Heart of the Andes'." Voorsanger &amp; Howat. (2000) Art and the Empire City New York 1825-1861, p. 71.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="verse" id="bridge">
+      <div class="verse-head">
+        <span class="verse-numeral">IV</span>
+        <h2>Bridge</h2>
+        <span class="verse-rule"></span>
+      </div>
+      <div class="cards">
+
+        <article class="card">
+          <div class="card-index">17</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;forty buildings, one diverse collection, taking one last breath&rdquo;</p>
+            <div class="source">
+              <span class="tag">The Hamilton (No. 757)</span>
+              <p class="citation">"the new development would replace a diverse collection of forty buildings with a landscaped platform containing shops and a parking garage." Stern. (1995) New York 1960, p. 223.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">18</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Bearing walls relieved of load, the Egan lofts come down&rdquo;</p>
+            <div class="source">
+              <span class="tag">Lofts, Lofts, Egan Bldg (Egan Building)</span>
+              <p class="citation">"In the 1916 Atlas of the Borough of Manhattan, on 60 East 9th Street, there is written 'LOFTS, LOFTS, EGAN BLDG'." G W Bromley &amp; Co. 1916 Atlas of the Borough of Manhattan, p. 41.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">19</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Ninth Street Show, nineteen-fifty-one, before they cleared the ground&rdquo;</p>
+            <div class="source">
+              <span class="tag">Ninth Street Show (60 East 9th Street exhibition)</span>
+              <p class="citation">"The 'Ninth Street Show,' which began on May 21, 1951, was the public's early exposure to this emotional nonfigurative movement." Bunyan. (1990) All Around the Town, p. 150.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">20</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Ninety local artists carried canvas on their backs&rdquo;</p>
+            <div class="source">
+              <span class="tag">Ninth Street Show (60 East 9th Street exhibition)</span>
+              <p class="citation">"a 1951 exhibition at 60 East 9th Street in which ninty local artists selected work of their own to be displayed for three weeks, most of them carrying their contributions on their own shoulders from their studios nearby." Richard Kostelanetz. (2003) SoHo The Rise and Fall of an Artists Colony, p. 58.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">21</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Castelli marked the photographs&rdquo;</p>
+            <div class="source">
+              <span class="tag">Ninth Street Show (60 East 9th Street exhibition)</span>
+              <p class="citation">"There Castelli marked the back of a photograph with the names of the artists whose work was pictured." Richard Kostelanetz. (2003) SoHo The Rise and Fall of an Artists Colony, p. 58.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">22</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Fifty-five the land book only reads a Car. Ramp on the site&rdquo;</p>
+            <div class="source">
+              <span class="tag">Car. Ramp</span>
+              <p class="citation">"In the 1955 Manhattan Land Book, on 60 East 9th Street, there is written 'CAR. RAMP' as well as reference to 9 Structures; 1 Story Brick or Stone or Concrete building with Store." Bromley. 1955 Manhattan Land Book, p. 30.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+</main>
+
+<footer>
+  <p>Outernet Music &mdash; Cooper Union Series &mdash; <a href="https://github.com/Willhoward89/Outernet-Music" target="_blank" rel="noopener">github.com/Willhoward89/Outernet&#8209;Music</a></p>
+</footer>
+
+</body>
+</html>
