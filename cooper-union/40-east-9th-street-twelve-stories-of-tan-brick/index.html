@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>40 East 9th Street &mdash; Twelve Stories of Tan Brick</title>
+<meta name="description" content="An annotated jazz-fusion boom bap track tracing 40 East 9th Street from an 1853 row of first-class dwellings through Agnes de Mille's Rodeo, Joseph Papp's Public Theater years, and H.I. Feldman's 1959 tan-brick tower on a raised garden terrace &mdash; every line sourced.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=EB+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=PT+Mono&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --stage: #17130f;
+    --stage-2: #201a14;
+    --stage-3: #2a2219;
+    --tan: #b8935f;
+    --tan-bright: #d9b483;
+    --tan-dim: #6e5636;
+    --curtain: #6b1f2a;
+    --curtain-bright: #a53c48;
+    --spotlight: #e8c874;
+    --paper: #ede3cb;
+    --paper-2: #ddc9a0;
+    --ink: #241d14;
+    --ink-soft: #5a4f38;
+    --max-w: 780px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--stage);
+    color: var(--paper);
+    font-family: 'EB Garamond', Georgia, serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; }
+
+  ::selection { background: var(--curtain-bright); color: var(--paper); }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative;
+    padding: 5.5rem 1.5rem 3.5rem;
+    text-align: center;
+    overflow: hidden;
+    background: radial-gradient(ellipse at 50% 8%, rgba(232,200,116,0.16) 0%, var(--stage) 55%);
+    border-bottom: 1px solid var(--tan-dim);
+  }
+
+  .facade {
+    position: absolute;
+    left: 50%;
+    bottom: -4px;
+    transform: translateX(-50%);
+    width: min(960px, 130%);
+    opacity: 0.75;
+    z-index: 0;
+  }
+
+  .hero-inner { position: relative; z-index: 1; }
+
+  .eyebrow {
+    font-family: 'PT Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--spotlight);
+    margin: 0 0 1.1rem;
+  }
+
+  .eyebrow span { color: var(--ink-soft); }
+
+  h1.title {
+    font-family: 'Marcellus', serif;
+    font-weight: 400;
+    font-size: clamp(2.4rem, 7.6vw, 4.6rem);
+    line-height: 1.02;
+    letter-spacing: 0.02em;
+    margin: 0;
+    color: var(--paper);
+  }
+
+  h1.title .addr {
+    display: block;
+    font-family: 'PT Mono', monospace;
+    font-size: 0.34em;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--tan-bright);
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+  }
+
+  .curtain-rule {
+    width: 240px;
+    max-width: 60%;
+    height: 4px;
+    margin: 1.5rem auto 1.2rem;
+    background: linear-gradient(90deg, transparent, var(--curtain-bright) 20%, var(--spotlight) 50%, var(--curtain-bright) 80%, transparent);
+    border-radius: 2px;
+  }
+
+  .tagline {
+    font-family: 'PT Mono', monospace;
+    font-size: 0.76rem;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--paper-2);
+    margin: 0 0 2.4rem;
+  }
+
+  .dek {
+    max-width: 580px;
+    margin: 0 auto 2.6rem;
+    font-size: 1.08rem;
+    color: var(--paper-2);
+  }
+
+  .dek em { color: var(--curtain-bright); font-style: italic; }
+
+  /* ---------- Player ---------- */
+  .player {
+    max-width: 480px;
+    margin: 0 auto;
+    background: var(--stage-2);
+    border: 1px solid var(--tan-dim);
+    border-radius: 10px;
+    padding: 1.1rem 1.2rem 1.3rem;
+    text-align: left;
+  }
+
+  .player-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: 'PT Mono', monospace;
+    font-size: 0.66rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--paper-2);
+    margin-bottom: 0.7rem;
+  }
+
+  .player-label .rec { color: var(--curtain-bright); }
+
+  audio {
+    width: 100%;
+    height: 40px;
+    filter: invert(0.88) grayscale(1) contrast(1.1) sepia(0.3) hue-rotate(15deg) saturate(1.8);
+    border-radius: 6px;
+  }
+
+  .player-foot {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'PT Mono', monospace;
+    font-size: 0.63rem;
+    color: var(--ink-soft);
+    margin-top: 0.65rem;
+    letter-spacing: 0.03em;
+  }
+
+  /* ---------- Sticky mini-nav ---------- */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: rgba(23, 19, 15, 0.94);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--tan-dim);
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+  }
+  .nav::-webkit-scrollbar { display: none; }
+
+  .nav-inner {
+    display: flex;
+    gap: 0.4rem;
+    padding: 0.7rem 1.2rem;
+    max-width: var(--max-w);
+    margin: 0 auto;
+  }
+
+  .nav-link {
+    font-family: 'PT Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--paper-2);
+    padding: 0.4rem 0.7rem;
+    border: 1px solid var(--tan-dim);
+    border-radius: 3px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+  .nav-link:hover { border-color: var(--curtain-bright); color: var(--curtain-bright); }
+  .nav-numeral { color: var(--tan-bright); font-weight: 600; }
+
+  /* ---------- Verses ---------- */
+  main {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 3.2rem 1.4rem 5rem;
+  }
+
+  .verse { margin-bottom: 4rem; scroll-margin-top: 4.2rem; }
+  .verse:last-child { margin-bottom: 0; }
+
+  .verse-head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.9rem;
+    margin-bottom: 1.6rem;
+  }
+
+  .verse-numeral {
+    font-family: 'Marcellus', serif;
+    font-size: 1.9rem;
+    color: var(--tan);
+    line-height: 1;
+  }
+
+  .verse-head h2 {
+    font-family: 'PT Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 0.88rem;
+    font-weight: 400;
+    color: var(--paper);
+    margin: 0;
+    white-space: nowrap;
+  }
+
+  .verse-rule {
+    flex: 1;
+    height: 1px;
+    background: var(--tan-dim);
+  }
+
+  .cards { display: flex; flex-direction: column; gap: 1.1rem; }
+
+  .card {
+    display: flex;
+    gap: 0.9rem;
+    background: var(--stage-2);
+    border: 1px solid var(--tan-dim);
+    border-top: 2px solid var(--spotlight);
+    border-radius: 5px;
+    padding: 1.15rem 1.25rem;
+    transition: border-top-color 0.2s ease, background 0.2s ease;
+  }
+
+  .card:hover {
+    border-top-color: var(--curtain-bright);
+    background: var(--stage-3);
+  }
+
+  .card-index {
+    font-family: 'PT Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--tan-dim);
+    padding-top: 0.15rem;
+    flex-shrink: 0;
+  }
+
+  .lyric {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-weight: 600;
+    font-style: italic;
+    font-size: 1.18rem;
+    line-height: 1.42;
+    color: var(--paper);
+    margin: 0 0 0.75rem;
+  }
+
+  .source {
+    background: var(--paper);
+    color: var(--ink);
+    border-radius: 4px;
+    padding: 0.7rem 0.85rem 0.75rem;
+    border-left: 2px solid var(--curtain);
+  }
+
+  .tag {
+    display: inline-block;
+    font-family: 'PT Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink);
+    background: var(--paper-2);
+    border: 1px solid var(--tan);
+    border-radius: 3px;
+    padding: 0.15rem 0.45rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .citation {
+    font-family: 'PT Mono', monospace;
+    font-size: 0.78rem;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  /* ---------- Footer ---------- */
+  footer {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 1.4rem 4rem;
+    text-align: center;
+    font-family: 'PT Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  footer a { color: var(--tan-bright); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  @media (max-width: 520px) {
+    .card { flex-direction: column; gap: 0.4rem; }
+    .verse-head h2 { font-size: 0.76rem; letter-spacing: 0.12em; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <svg class="facade" viewBox="0 0 900 220" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+    <!-- stage floor -->
+    <line x1="20" y1="204" x2="880" y2="204" stroke="#6e5636" stroke-width="1.5" opacity="0.5"/>
+    <!-- footlights -->
+    <g fill="#e8c874" opacity="0.7">
+      <circle cx="60" cy="204" r="3"/><circle cx="105" cy="204" r="3"/><circle cx="150" cy="204" r="3"/>
+      <circle cx="195" cy="204" r="3"/><circle cx="240" cy="204" r="3"/>
+      <circle cx="660" cy="204" r="3"/><circle cx="705" cy="204" r="3"/><circle cx="750" cy="204" r="3"/>
+      <circle cx="795" cy="204" r="3"/><circle cx="840" cy="204" r="3"/>
+    </g>
+    <!-- proscenium / drawn curtains -->
+    <g stroke="#a53c48" stroke-width="2" fill="none" opacity="0.55">
+      <path d="M40,20 Q120,60 90,204"/>
+      <path d="M40,20 Q40,110 60,204"/>
+      <path d="M860,20 Q780,60 810,204"/>
+      <path d="M860,20 Q860,110 840,204"/>
+    </g>
+    <!-- swag folds -->
+    <g stroke="#a53c48" stroke-width="1" fill="none" opacity="0.35">
+      <path d="M50,30 Q75,70 65,120"/>
+      <path d="M850,30 Q825,70 835,120"/>
+    </g>
+    <!-- twelve-story tan brick tower, set back on a raised garden terrace, rising through the curtain opening -->
+    <g stroke="#d9b483" stroke-width="1.5" fill="none" opacity="0.55">
+      <rect x="380" y="20" width="140" height="184"/>
+      <line x1="380" y1="44" x2="520" y2="44"/>
+      <line x1="380" y1="68" x2="520" y2="68"/>
+      <line x1="380" y1="92" x2="520" y2="92"/>
+      <line x1="380" y1="116" x2="520" y2="116"/>
+      <line x1="380" y1="140" x2="520" y2="140"/>
+      <line x1="380" y1="164" x2="520" y2="164"/>
+      <!-- raised garden terrace steps -->
+      <line x1="360" y1="204" x2="540" y2="204"/>
+      <line x1="368" y1="196" x2="532" y2="196"/>
+      <line x1="376" y1="188" x2="524" y2="188"/>
+    </g>
+    <text x="450" y="14" text-anchor="middle" font-family="PT Mono, monospace" font-size="11" letter-spacing="2" fill="#e8c874" opacity="0.75">TWELVE STORIES</text>
+  </svg>
+
+  <div class="hero-inner">
+    <p class="eyebrow">Outernet Music <span>&middot;</span> Cooper Union</p>
+    <h1 class="title"><span class="addr">40 East 9th Street</span>Twelve Stories of Tan Brick</h1>
+    <div class="curtain-rule"></div>
+    <p class="tagline">Inspired by jazz fusion boom bap hip&#8209;hop</p>
+    <p class="dek">Every line traces one tower through <em>a century of the same block</em> &mdash; 1850s row houses, Agnes de Mille choreographing Rodeo across the street, Joseph Papp founding the Public Theater from its upper floors, and H.I. Feldman's 1959 tan&#8209;brick tower rising off a raised garden terrace. Sourced line by line below.</p>
+
+    <div class="player">
+      <div class="player-label"><span class="rec">&#9679; Track</span><span>06:40</span></div>
+      <audio controls preload="metadata" src="40-east-9th-street-twelve-stories-of-tan-brick.mp3">
+        Your browser does not support the audio element. <a href="40-east-9th-street-twelve-stories-of-tan-brick.mp3">Download the track</a>.
+      </audio>
+      <div class="player-foot"><span>40 East 9th Street, NY</span><span>Twelve Stories of Tan Brick</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="nav">
+  <div class="nav-inner">
+          <a href="#verse-1" class="nav-link"><span class="nav-numeral">I</span>Verse 1</a>
+          <a href="#chorus" class="nav-link"><span class="nav-numeral">II</span>Chorus</a>
+          <a href="#verse-2" class="nav-link"><span class="nav-numeral">III</span>Verse 2</a>
+          <a href="#bridge" class="nav-link"><span class="nav-numeral">IV</span>Bridge</a>
+  </div>
+</nav>
+
+<main>
+
+    <section class="verse" id="verse-1">
+      <div class="verse-head">
+        <span class="verse-numeral">I</span>
+        <h2>Verse 1</h2>
+        <span class="verse-rule"></span>
+      </div>
+      <div class="cards">
+
+        <article class="card">
+          <div class="card-index">01</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Forty East Ninth Street &mdash; read it plain, nineteen fifty-nine&rdquo;</p>
+            <div class="source">
+              <span class="tag">40 East 9th Street</span>
+              <p class="citation">"Was built in 1959." Unknown Author. "Oasis Map," p. 1.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">02</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;a twelve-story shaft rising off a raised garden line, / H.I. Feldman drew it, set it back from the curb's face&rdquo;</p>
+            <div class="source">
+              <span class="tag">40 East Ninth Street</span>
+              <p class="citation">"40 East Ninth Street, a twelve-story building to rise in the center of the block from a raised garden terrace... the architect clad in a light-colored tan brick and set back from the street in the center of the block." Stern. (1995) New York 1960, p. 223.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">03</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Feldman split the palette, made the massing condescend / to the Village context &mdash; red brick offset the higher mass, / but the center wears tan&rdquo;</p>
+            <div class="source">
+              <span class="tag">40 East Ninth Street</span>
+              <p class="citation">"Feldman used red brick on the low-rise buildings at each end of the block, suggesting an effort to respond to the Village context and offset the mass of the higher building, which the architect clad in a light-colored tan brick." Stern. (1995) New York 1960, p. 223.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">04</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Joseph Papp lived inside it &mdash; nineteen seventy-three to ninety-one, / the Public Theater's founder in the tower Feldman spun&rdquo;</p>
+            <div class="source">
+              <span class="tag">40 East 9th Street</span>
+              <p class="citation">"Joseph Papp... 40 East 9th Street, Manhattan The dynamic founder and impresario of the New York Shakespeare Festival/Public Theater... he created The Public Theater... and lived here from 1973 to 1991." Spielvogel. (2016) The Landmarks of New York, p. 855.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">05</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Thirteen stories some folks counted, long aluminum canopy&rdquo;</p>
+            <div class="source">
+              <span class="tag">40 East Ninth Street</span>
+              <p class="citation">"now replaced by the 13-story apartment building with the long, aluminum canopy." William H. Honan. (1959) Greenwich Village Guide, p. 66.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="verse" id="chorus">
+      <div class="verse-head">
+        <span class="verse-numeral">II</span>
+        <h2>Chorus</h2>
+        <span class="verse-rule"></span>
+      </div>
+      <div class="cards">
+
+        <article class="card">
+          <div class="card-index">06</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;runs between University Place and Broadway, cutting through&rdquo;</p>
+            <div class="source">
+              <span class="tag">40 East Ninth Street</span>
+              <p class="citation">"Bounded by Eighth and Ninth streets, Broadway and University Place." Stern. (1995) New York 1960, p. 223.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="verse" id="verse-2">
+      <div class="verse-head">
+        <span class="verse-numeral">III</span>
+        <h2>Verse 2</h2>
+        <span class="verse-rule"></span>
+      </div>
+      <div class="cards">
+
+        <article class="card">
+          <div class="card-index">07</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Drop me to eighteen fifty-three, Perris drew the deep, / seven structures on this lot, dwellings first-class steep &mdash; / brick or stone, slate roof and coped, framed extensions grown, / skylights lighting the top floor only&rdquo;</p>
+            <div class="source">
+              <span class="tag">40 East 9th Street</span>
+              <p class="citation">"In the 1853 Perris Maps, on 40 East 9th Street, there is reference to 7 structures; Brick or Stone dwellings first class (slate or metal roof &amp; coped) with Framed Extension and skylights lighting the top floor only." Perris. 1853 Perris Maps, p. 61.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">08</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;By eighteen sixty-seven Dripps just called them Building, plain, / fifteen of them lined the block&rdquo;</p>
+            <div class="source">
+              <span class="tag">40 East 9th Street</span>
+              <p class="citation">"In the 1867 Dripps Plan, on 40 East 9th Street, there is reference to 15 structures; Building, Building, Building..." Dripps. 1867 Dripps Plan, p. 7.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">09</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Eighteen eighty-five Robinson counted sixteen frames of brick, / one lone stone among them&rdquo;</p>
+            <div class="source">
+              <span class="tag">40 East 9th Street</span>
+              <p class="citation">"In the 1885 Robinsons Atlas, on 40 East 9th Street, there is reference to 16 structures; Brick building... Stone building." Robinson. 1885 Robinsons Atlas, p. 12.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">10</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Then eighteen ninety-seven Bromley &mdash; fifteen structures set, / three-story, four-story brick with basements, some with wood-front yet&rdquo;</p>
+            <div class="source">
+              <span class="tag">40 East 9th Street</span>
+              <p class="citation">"In the 1897 Bromleys Atlas, on 40 East 9th Street, there is reference to 15 structures; 3 Story Brick building with Basement and Wood front..." Bromley. 1897 Bromleys Atlas, p. 16.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">11</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Nineteen sixteen... LOFTS, LOFTS, LOFTS in capitals, seventeen structures here, / six-story brick with store and elevator, saloon below, / fireproof steel construction where the seven-story rose&rdquo;</p>
+            <div class="source">
+              <span class="tag">40 East 9th Street</span>
+              <p class="citation">"In the 1916 Atlas of the Borough of Manhattan, on 40 East 9th Street, there is written 'LOFTS, LOFTS, LOFTS' as well as reference to 17 Structures; ... 6 Story Brick building with Store and Elevator... 4 Story Brick building with Basement and Saloon... 7 Story Brick building with Store and Elevator and Fire proof building (steel construction)." G W Bromley &amp; Co. 1916 Atlas of the Borough of Manhattan, p. 41.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">12</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;nineteen thirty, the Land Book stamped it clear &mdash; / LOFTS, LOFTS, LOFTS in capitals, seventeen structures here&rdquo;</p>
+            <div class="source">
+              <span class="tag">40 East 9th Street</span>
+              <p class="citation">"In the 1930 Land Book of the Borough of Manhattan, on 40 East 9th Street, there is written 'LOFTS, LOFTS, LOFTS' as well as reference to 17 Structures." Bromley. 1930 Land Book of the Borough of Manhattan, p. 40.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">13</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Agnes de Mille worked across the street, forty-two's the door, / Rodeo in nineteen forty-two, Oklahoma choreographed a year more&rdquo;</p>
+            <div class="source">
+              <span class="tag">42 East 9th Street</span>
+              <p class="citation">"Agnes de Mille... lived across the street from Powell at 42 East 9th Street A modern apartment complex numbers 40 East 9th has long since replaced the old building... it was here that she creates her ground-breaking ballet called Rodei in 1942 and planned the choreograph for the musical Oklahoma! a year later." Plumb. (2006) Notable New York Chopped Text, p. 164.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">14</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Then nineteen fifty-five the Land Book read the frames going down, / thirteen structures, half of them just Frame across the ground&rdquo;</p>
+            <div class="source">
+              <span class="tag">40 East 9th Street</span>
+              <p class="citation">"In the 1955 Manhattan Land Book, on 40 East 9th Street, there is reference to 13 structures; Frame building, Frame building..." Bromley. 1955 Manhattan Land Book, p. 30.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="verse" id="bridge">
+      <div class="verse-head">
+        <span class="verse-numeral">IV</span>
+        <h2>Bridge</h2>
+        <span class="verse-rule"></span>
+      </div>
+      <div class="cards">
+
+        <article class="card">
+          <div class="card-index">15</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;September nineteen-fifty &mdash; the announcement drops the block, / Harry Landes' syndicate came to clear the diverse stock. / Forty buildings relieved of load, a landscaped platform planned... Construction held till December nineteen fifty-two, / sixty East Ninth first, two-sixteen families running through. / By October fifty-four the site for forty stood cleared bare &mdash; / a twelve-story to rise in the center from a raised garden square&rdquo;</p>
+            <div class="source">
+              <span class="tag">40 East Ninth Street</span>
+              <p class="citation">"In early September 1950 plans were announced for the redevelopment of an entire block... the new development would replace a diverse collection of forty buildings with a landscaped platform... The developers, a syndicate headed by Harry Landes... Construction did not begin until December 1952, when work commenced on 60 East Ninth Street, a six-story building housing 216 families... By October 1954... the site for 40 East Ninth Street, a twelve-story building to rise in the center of the block from a raised garden terrace, ready to be cleared." Stern. (1995) New York 1960, p. 223.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">16</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;a modern apartment complex, numbers forty, long since / replaced the old building where de Mille had crossed the fence&rdquo;</p>
+            <div class="source">
+              <span class="tag">42 East 9th Street</span>
+              <p class="citation">"A modern apartment complex numbers 40 East 9th has long since replaced the old building." Plumb. (2006) Notable New York Chopped Text, p. 164.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+</main>
+
+<footer>
+  <p>Outernet Music &mdash; Cooper Union Series &mdash; <a href="https://github.com/Willhoward89/Outernet-Music" target="_blank" rel="noopener">github.com/Willhoward89/Outernet&#8209;Music</a></p>
+</footer>
+
+</body>
+</html>
