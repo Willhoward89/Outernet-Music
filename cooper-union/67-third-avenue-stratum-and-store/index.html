@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>67 Third Avenue &mdash; Stratum &amp; Store</title>
+<meta name="description" content="An annotated proto rap / jazz hop track tracing 67 Third Avenue through geological strata &mdash; Governor Stuyvesant's Dutch mansion and pear tree, Bowery Village, Carlo Tresca's anarchist newspaper Il Martello, and NYU's 1987 gray-brick dormitory &mdash; every line sourced.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500;600;700&family=Source+Serif+4:ital,wght@0,500;0,600;1,500;1,600&family=Martian+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --soil-deep: #241c14;
+    --soil-mid: #2e2419;
+    --soil-mid-2: #382c1e;
+    --brick-era: #6b3a28;
+    --brick-bright: #9c5a3f;
+    --modern-gray: #4a4f54;
+    --modern-bright: #7a828a;
+    --survey: #b8a06a;
+    --survey-bright: #d9c48c;
+    --moss: #6b7a52;
+    --moss-bright: #96a874;
+    --paper: #ece4d0;
+    --paper-2: #ddd0a8;
+    --ink: #241d15;
+    --ink-soft: #554e3a;
+    --max-w: 780px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--soil-deep);
+    color: var(--paper);
+    font-family: 'Source Serif 4', Georgia, serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; }
+
+  ::selection { background: var(--survey-bright); color: var(--ink); }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative;
+    padding: 5.5rem 1.5rem 3.5rem;
+    text-align: center;
+    overflow: hidden;
+    background: linear-gradient(180deg, var(--modern-gray) 0%, var(--brick-era) 45%, var(--soil-mid) 75%, var(--soil-deep) 100%);
+    border-bottom: 1px solid var(--survey);
+  }
+
+  .facade {
+    position: absolute;
+    left: 50%;
+    bottom: -4px;
+    transform: translateX(-50%);
+    width: min(920px, 130%);
+    opacity: 0.85;
+    z-index: 0;
+  }
+
+  .hero-inner { position: relative; z-index: 1; }
+
+  .eyebrow {
+    font-family: 'Martian Mono', monospace;
+    font-size: 0.66rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--survey-bright);
+    margin: 0 0 1.1rem;
+  }
+
+  .eyebrow span { color: var(--paper-2); }
+
+  h1.title {
+    font-family: 'Zilla Slab', serif;
+    font-weight: 700;
+    font-size: clamp(2.3rem, 7.6vw, 4.4rem);
+    line-height: 1.05;
+    letter-spacing: 0;
+    margin: 0;
+    color: var(--paper);
+  }
+
+  h1.title .addr {
+    display: block;
+    font-family: 'Martian Mono', monospace;
+    font-size: 0.3em;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--survey-bright);
+    font-weight: 400;
+    margin-bottom: 0.55rem;
+  }
+
+  .strata-rule {
+    width: 240px;
+    max-width: 60%;
+    height: 10px;
+    margin: 1.5rem auto 1.2rem;
+    background: linear-gradient(90deg, var(--modern-bright) 0 20%, var(--brick-bright) 20% 45%, var(--soil-mid-2) 45% 70%, var(--moss-bright) 70% 100%);
+    opacity: 0.9;
+    border-radius: 1px;
+  }
+
+  .tagline {
+    font-family: 'Martian Mono', monospace;
+    font-size: 0.74rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--paper-2);
+    margin: 0 0 2.4rem;
+  }
+
+  .dek {
+    max-width: 580px;
+    margin: 0 auto 2.6rem;
+    font-size: 1.05rem;
+    color: var(--paper-2);
+  }
+
+  .dek em { color: var(--moss-bright); font-style: italic; }
+
+  /* ---------- Player ---------- */
+  .player {
+    max-width: 480px;
+    margin: 0 auto;
+    background: rgba(20, 16, 11, 0.55);
+    border: 1px solid var(--survey);
+    border-radius: 5px;
+    padding: 1.1rem 1.2rem 1.3rem;
+    text-align: left;
+  }
+
+  .player-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: 'Martian Mono', monospace;
+    font-size: 0.64rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--paper-2);
+    margin-bottom: 0.7rem;
+  }
+
+  .player-label .rec { color: var(--survey-bright); }
+
+  audio {
+    width: 100%;
+    height: 40px;
+    filter: invert(0.87) grayscale(1) contrast(1.1) sepia(0.2) hue-rotate(20deg) saturate(1.3);
+    border-radius: 6px;
+  }
+
+  .player-foot {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Martian Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--paper-2);
+    margin-top: 0.65rem;
+    letter-spacing: 0.03em;
+  }
+
+  /* ---------- Sticky mini-nav ---------- */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: rgba(36, 28, 20, 0.94);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--survey);
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+  }
+  .nav::-webkit-scrollbar { display: none; }
+
+  .nav-inner {
+    display: flex;
+    gap: 0.4rem;
+    padding: 0.7rem 1.2rem;
+    max-width: var(--max-w);
+    margin: 0 auto;
+  }
+
+  .nav-link {
+    font-family: 'Martian Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--paper-2);
+    padding: 0.4rem 0.7rem;
+    border: 1px solid var(--ink-soft);
+    border-radius: 2px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+  .nav-link:hover { border-color: var(--survey-bright); color: var(--survey-bright); }
+  .nav-numeral { color: var(--survey-bright); font-weight: 600; }
+
+  /* ---------- Verses ---------- */
+  main {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 3.2rem 1.4rem 5rem;
+  }
+
+  .verse { margin-bottom: 4rem; scroll-margin-top: 4.2rem; }
+  .verse:last-child { margin-bottom: 0; }
+
+  .verse-head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.9rem;
+    margin-bottom: 1.6rem;
+  }
+
+  .verse-numeral {
+    font-family: 'Zilla Slab', serif;
+    font-weight: 700;
+    font-size: 1.8rem;
+    color: var(--survey);
+    line-height: 1;
+  }
+
+  .verse-head h2 {
+    font-family: 'Martian Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 0.84rem;
+    font-weight: 400;
+    color: var(--paper);
+    margin: 0;
+    white-space: nowrap;
+  }
+
+  .verse-rule {
+    flex: 1;
+    height: 1px;
+    background: var(--ink-soft);
+  }
+
+  .cards { display: flex; flex-direction: column; gap: 1.1rem; }
+
+  .card {
+    display: flex;
+    gap: 0.9rem;
+    background: var(--soil-mid);
+    border: 1px solid var(--ink-soft);
+    border-left: 6px solid var(--survey);
+    border-radius: 2px;
+    padding: 1.15rem 1.25rem;
+    transition: border-left-color 0.2s ease, background 0.2s ease;
+  }
+
+  .card:hover {
+    border-left-color: var(--moss-bright);
+    background: var(--soil-mid-2);
+  }
+
+  .card-index {
+    font-family: 'Martian Mono', monospace;
+    font-size: 0.66rem;
+    color: var(--survey);
+    padding-top: 0.15rem;
+    flex-shrink: 0;
+  }
+
+  .card-index::before { content: "DEPTH "; opacity: 0.6; }
+
+  .lyric {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-weight: 600;
+    font-style: italic;
+    font-size: 1.08rem;
+    line-height: 1.44;
+    color: var(--paper);
+    margin: 0 0 0.75rem;
+  }
+
+  .source {
+    background: var(--paper);
+    color: var(--ink);
+    border-radius: 2px;
+    padding: 0.7rem 0.85rem 0.75rem;
+    border-left: 2px solid var(--brick-era);
+  }
+
+  .tag {
+    display: inline-block;
+    font-family: 'Martian Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--ink);
+    background: var(--paper-2);
+    border: 1px solid var(--survey);
+    border-radius: 2px;
+    padding: 0.15rem 0.45rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .citation {
+    font-family: 'Martian Mono', monospace;
+    font-size: 0.74rem;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  /* ---------- Footer ---------- */
+  footer {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 1.4rem 4rem;
+    text-align: center;
+    font-family: 'Martian Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  footer a { color: var(--survey-bright); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  @media (max-width: 520px) {
+    .card { flex-direction: column; gap: 0.4rem; }
+    .verse-head h2 { font-size: 0.72rem; letter-spacing: 0.1em; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <svg class="facade" viewBox="0 0 900 220" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+    <!-- vertical core sample cylinder, center -->
+    <g stroke="#d9c48c" stroke-width="1.5" fill="none" opacity="0.75">
+      <rect x="415" y="6" width="70" height="200" rx="6"/>
+    </g>
+    <!-- strata bands inside core, top (modern) to bottom (deepest/Dutch) -->
+    <g opacity="0.85">
+      <rect x="418" y="9" width="64" height="42" fill="#7a828a"/>
+      <rect x="418" y="51" width="64" height="46" fill="#9c5a3f"/>
+      <rect x="418" y="97" width="64" height="44" fill="#6b3a28"/>
+      <rect x="418" y="141" width="64" height="34" fill="#382c1e"/>
+      <rect x="418" y="175" width="64" height="28" fill="#96a874"/>
+    </g>
+    <!-- survey tick marks and depth labels -->
+    <g stroke="#b8a06a" stroke-width="1" opacity="0.6">
+      <line x1="405" y1="30" x2="415" y2="30"/>
+      <line x1="405" y1="74" x2="415" y2="74"/>
+      <line x1="405" y1="119" x2="415" y2="119"/>
+      <line x1="405" y1="158" x2="415" y2="158"/>
+      <line x1="405" y1="190" x2="415" y2="190"/>
+      <line x1="485" y1="30" x2="495" y2="30"/>
+      <line x1="485" y1="74" x2="495" y2="74"/>
+      <line x1="485" y1="119" x2="495" y2="119"/>
+      <line x1="485" y1="158" x2="495" y2="158"/>
+      <line x1="485" y1="190" x2="495" y2="190"/>
+    </g>
+    <text x="393" y="34" text-anchor="end" font-family="Martian Mono, monospace" font-size="9" fill="#d9c48c" opacity="0.75">1987</text>
+    <text x="393" y="78" text-anchor="end" font-family="Martian Mono, monospace" font-size="9" fill="#d9c48c" opacity="0.75">1897</text>
+    <text x="393" y="123" text-anchor="end" font-family="Martian Mono, monospace" font-size="9" fill="#d9c48c" opacity="0.75">1853</text>
+    <text x="393" y="162" text-anchor="end" font-family="Martian Mono, monospace" font-size="9" fill="#d9c48c" opacity="0.75">village</text>
+    <text x="393" y="194" text-anchor="end" font-family="Martian Mono, monospace" font-size="9" fill="#d9c48c" opacity="0.75">c.1660</text>
+    <!-- pear tree silhouette at the deepest stratum -->
+    <g stroke="#96a874" stroke-width="1.3" fill="none" opacity="0.8">
+      <line x1="450" y1="203" x2="450" y2="188"/>
+      <circle cx="443" cy="182" r="6"/>
+      <circle cx="457" cy="182" r="6"/>
+      <circle cx="450" cy="176" r="6"/>
+    </g>
+    <text x="450" y="14" text-anchor="middle" font-family="Martian Mono, monospace" font-size="10" letter-spacing="2" fill="#d9c48c" opacity="0.7">CORE 67</text>
+  </svg>
+
+  <div class="hero-inner">
+    <p class="eyebrow">Outernet Music <span>&middot;</span> Cooper Union</p>
+    <h1 class="title"><span class="addr">67 Third Avenue</span>Stratum &amp; Store</h1>
+    <div class="strata-rule"></div>
+    <p class="tagline">Inspired by proto rap / jazz hop</p>
+    <p class="dek">Every line drills down through <em>three centuries of ground</em> &mdash; Governor Stuyvesant&rsquo;s Dutch mansion and its two-hundred-year-old pear tree, the stone huts of Bowery Village, Carlo Tresca&rsquo;s anarchist paper Il Martello, and NYU&rsquo;s 1987 gray-brick dormitory laid over it all. Sourced line by line below, depth by depth.</p>
+
+    <div class="player">
+      <div class="player-label"><span class="rec">&#9679; Track</span><span>06:38</span></div>
+      <audio controls preload="metadata" src="67-third-avenue-stratum-and-store.mp3">
+        Your browser does not support the audio element. <a href="67-third-avenue-stratum-and-store.mp3">Download the track</a>.
+      </audio>
+      <div class="player-foot"><span>67 Third Avenue, NY</span><span>Stratum &amp; Store</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="nav">
+  <div class="nav-inner">
+          <a href="#verse-1" class="nav-link"><span class="nav-numeral">I</span>Verse 1</a>
+          <a href="#chorus" class="nav-link"><span class="nav-numeral">II</span>Chorus</a>
+          <a href="#verse-2" class="nav-link"><span class="nav-numeral">III</span>Verse 2</a>
+          <a href="#bridge" class="nav-link"><span class="nav-numeral">IV</span>Bridge</a>
+  </div>
+</nav>
+
+<main>
+
+    <section class="verse" id="verse-1">
+      <div class="verse-head">
+        <span class="verse-numeral">I</span>
+        <h2>Verse 1</h2>
+        <span class="verse-rule"></span>
+      </div>
+      <div class="cards">
+
+        <article class="card">
+          <div class="card-index">01</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Between East Eleventh and East Twelfth the footprint lay, Voorsanger and Mills Associates drew it that way&rdquo;</p>
+            <div class="source">
+              <span class="tag">Undergraduate Dormitory, N.Y.U.</span>
+              <p class="citation">"a second NYU dormitory two blocks further up the avenue at 77 Third Avenue, between East Eleventh and East Twelfth Streets." Stern. (2006) New York 2000, p. 361.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">02</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Three connected fourteen-story towers on a low base rise, straining to simulate the town-house height in adjoining eyes&rdquo;</p>
+            <div class="source">
+              <span class="tag">Undergraduate Dormitory, N.Y.U.</span>
+              <p class="citation">"Three connected 14-story towers astride a low base that supposedly strives to simulate the height of adjoining town houses." AIA. (1988) AIA Edition 3, p. 168.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">03</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Gray brick composition &mdash; the desire to fit in is there, but somehow it don't quite achieve the goal it aimed to share&rdquo;</p>
+            <div class="source">
+              <span class="tag">Undergraduate Dormitory, N.Y.U.</span>
+              <p class="citation">"The desire to fit in is there, but somehow the gray brick composition doesn't quite achieve the goal." AIA. (1988) AIA Edition 3, p. 168.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">04</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Three towers astride a six-story base that failed to bear the side-street town-house scale, but less strident than its neighbor's glare&rdquo;</p>
+            <div class="source">
+              <span class="tag">Undergraduate Dormitory, N.Y.U.</span>
+              <p class="citation">"three connected fourteen-story towers set atop a six-story base that failed in its effort to carry forward the side-street townhouse scale but, with gray brick rather than multicolored walls, was at Ieast less strident than its predecessor." Stern. (2006) New York 2000, p. 361.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">05</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Gray brick rather than multicolored walls to soften the frame, carrying forward the townhouse rhythm &mdash; but not quite the same&rdquo;</p>
+            <div class="source">
+              <span class="tag">Undergraduate Dormitory, N.Y.U.</span>
+              <p class="citation">"with gray brick rather than multicolored walls, was at Ieast less strident than its predecessor." Stern. (2006) New York 2000, p. 361.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">06</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Two below-grade floors, hallways zanily shaped and wide, auditorium, computer, study, game rooms tucked inside&rdquo;</p>
+            <div class="source">
+              <span class="tag">Undergraduate Dormitory, N.Y.U.</span>
+              <p class="citation">"Two below-grade floors, with elaborately and somewhat zanily shaped hallways, provided space for an auditorium as well as computer, study, and game rooms for students." Stern. (2006) New York 2000, p. 361.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">07</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;A vaguely classical colonnade wraps a second-floor court &mdash; a hidden asset, Voorsanger and Mills, this dorm they wrought&rdquo;</p>
+            <div class="source">
+              <span class="tag">Undergraduate Dormitory, N.Y.U.</span>
+              <p class="citation">"A vaguely classical colonnade carried the building around a second-floor courtyard that was a hidden asset." Stern. (2006) New York 2000, p. 361.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">08</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;A year behind the predecessor two blocks down the avenue, this one gray and quieter, less strident to the view&rdquo;</p>
+            <div class="source">
+              <span class="tag">Undergraduate Dormitory, N.Y.U.</span>
+              <p class="citation">"A year later Voorsanger &amp; Mills followed with a second NYU dormitory two blocks further up the avenue at 77 Third Avenue." Stern. (2006) New York 2000, p. 361.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">09</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Roofline meets the sky, and still one seam I can't explain: gray brick that carries older stone beneath, an unnamed vein&rdquo;</p>
+            <div class="source">
+              <span class="tag">Undergraduate Dormitory, N.Y.U.</span>
+              <p class="citation">"Was built in 1988." Unknown Author. Oasis Map, p. 1.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="verse" id="chorus">
+      <div class="verse-head">
+        <span class="verse-numeral">II</span>
+        <h2>Chorus</h2>
+        <span class="verse-rule"></span>
+      </div>
+      <div class="cards">
+
+        <article class="card">
+          <div class="card-index">10</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Sixty-seven Third Avenue, the ground don't move &mdash; Stuyvesant Alley cut the block, one fixed groove&rdquo;</p>
+            <div class="source">
+              <span class="tag">Stuyvesant Alley</span>
+              <p class="citation">"In the 1916 Atlas of the Borough of Manhattan, on 67 Third Avenue, there is written 'Stuyvesant Alley'." G W Bromley &amp; Co. 1916 Atlas of the Borough of Manhattan, p. 41.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">11</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;East of Third, 'twixt Eleventh and Twelfth it lay&rdquo;</p>
+            <div class="source">
+              <span class="tag">Governor Stuyvesant's mansion</span>
+              <p class="citation">"Signs seem to point to its having been on a knoll just east of the present Third Avenue, somewhere about Eleventh or Twelfth Street." Harlow. (1931) The Old Bowery Days, p. 14.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="verse" id="verse-2">
+      <div class="verse-head">
+        <span class="verse-numeral">III</span>
+        <h2>Verse 2</h2>
+        <span class="verse-rule"></span>
+      </div>
+      <div class="cards">
+
+        <article class="card">
+          <div class="card-index">12</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Drop to the deepest layer &mdash; Governor Stuyvesant's mansion stood, square and heavy, upper story projecting a shallow hood&rdquo;</p>
+            <div class="source">
+              <span class="tag">Governor Stuyvesant's mansion</span>
+              <p class="citation">"He built a substantial and inexpressibly ugly mansion on it... for it was square and heavy, with the upper story projecting slightly in front to form a shallow portico." Harlow. (1931) The Old Bowery Days, p. 14.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">13</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Brick or stone or wood, long debated, no one could tell, on a knoll just east of Third, near Eleventh or Twelfth it fell&rdquo;</p>
+            <div class="source">
+              <span class="tag">Governor Stuyvesant's mansion</span>
+              <p class="citation">"Whether the main body of the house was of brick or stone or wood has long been a matter of debate, as has also its exact location. Signs seem to point to its having been on a knoll just east of the present Third Avenue, somewhere about Eleventh or Twelfth Street." Harlow. (1931) The Old Bowery Days, p. 14.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">14</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Dutch fashion flower beds in formal pattern out in front, an orchard to the south, a pear tree bearing the brunt&rdquo;</p>
+            <div class="source">
+              <span class="tag">Governor Stuyvesant's mansion</span>
+              <p class="citation">"The ground in front of it was very pleasantly laid out in Dutch fashion with flower beds in formal patterns. That an orchard adjoined it on the south is proven by the fact that one of the pear trees survived until well along in the nineteenth century." Harlow. (1931) The Old Bowery Days, p. 14.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">15</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;that famous slip from Holland, planted sixteen-sixty near, stood near two hundred years, till eighteen-sixty-seven's gale severe&rdquo;</p>
+            <div class="source">
+              <span class="tag">Stuyvesant's Bouwerie</span>
+              <p class="citation">"Near here he planted his famous pear tree from a slip brought home on his last visit to Holland. This stood for nearly two hundred years and bore fruit until February, 1867, when it was blown down in a fierce gale." Callender. (1929) Yesterday in Little Old New York, p. 56.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">16</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Blown down in a fierce February gale, the last bough gone, the Bouwerie on Twelfth Street, hundred fifty feet from Third at dawn&rdquo;</p>
+            <div class="source">
+              <span class="tag">Stuyvesant's Bouwerie</span>
+              <p class="citation">"delighting in the extensive gardens which he maintained at his Bouwerie situated on 12th Street, about 150 feet east of Third Avenue... when it was blown down in a fierce gale." Callender. (1929) Yesterday in Little Old New York, p. 56.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">17</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Bowery Village grew &mdash; blacksmith, wagon shop, general store, a tavern as the center, slaves in stone huts by the door&rdquo;</p>
+            <div class="source">
+              <span class="tag">Bowery Village</span>
+              <p class="citation">"Of course, there must be a blacksmith and wagon shop, a general store, and then a tavern as a sort of community center. Thus began the Bowery Village... these were housed in small buildings, mostly of stone, grouped about the master's mansion." Harlow. (1931) The Old Bowery Days, p. 14.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">18</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Small buildings mostly stone, grouped close about the master's ground, the uneasiness still prevailing, savages all around&rdquo;</p>
+            <div class="source">
+              <span class="tag">Bowery Village</span>
+              <p class="citation">"these were housed in small buildings, mostly of stone, grouped about the master's mansion; rather closely, too, because of the uneasiness still prevailing as to the intentions of the pesky savages." Harlow. (1931) The Old Bowery Days, p. 14.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">19</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Blue Book eighteen-fifteen: zero structures on the plot&rdquo;</p>
+            <div class="source">
+              <span class="tag">1815 Blue Book</span>
+              <p class="citation">"In the 1815 Blue Book, on 67 Third Avenue, there is reference to 0 structures." Sackersdorff. 1815 Blue Book, p. 4.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">20</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;then Perris eighteen-fifty-three counts eighteen on the lot &mdash; first-class brick and stone dwellings, stores under, roof not coped, framed dwelling with stores under, first-class stores that sloped&rdquo;</p>
+            <div class="source">
+              <span class="tag">1853 Perris Maps</span>
+              <p class="citation">"In the 1853 Perris Maps, on 67 Third Avenue, there is reference to 18 structures; a Brick or stone dwelling second class (slate or metal roof not coped) with stores under... a framed dwelling with stores under, a brick or stone store first class." Perris. 1853 Perris Maps, p. 49.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">21</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Holy Name of Jesus church at seventy-seven, eighteen fifty-one it groped&rdquo;</p>
+            <div class="source">
+              <span class="tag">Roman Catholic Church of the Holy Name of Jesus</span>
+              <p class="citation">"Roman Catholic Ch. Of the Holy Name of Jesus. 77 Third Av." Wilson. (1851) Great Metropolis, p. 109.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">22</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Saint Francis Xavier's college, dwelling-house, May first, forty-eight, after the fire destroyed the old one, took the new quarters straight&rdquo;</p>
+            <div class="source">
+              <span class="tag">The College of St. Francis Xavier</span>
+              <p class="citation">"The College of St Francis Xavier... is destroyed by fire. On May 1, the college took new quarters in a dwelling-house, No. 77 Third Ave., between 11th and 12th Sts." Stokes. (1926) The Iconography of Manhattan Island Volume Five, p. 1808.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">23</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Dr. Shew's Water-Cure nearby, at Twelfth and University Place&rdquo;</p>
+            <div class="source">
+              <span class="tag">Dr. Shew's New-York Water-Cure Institution</span>
+              <p class="citation">"Dr. Shew's New-York Water-Cure Institution, corner of Twelfth Street and University Place." Wilson. (1851) Great Metropolis, p. 172.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">24</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Robinson eighteen-eighty-five: eighteen structures fill the space &mdash; brick building after brick building, then a brick and stable stone&rdquo;</p>
+            <div class="source">
+              <span class="tag">1885 Robinson Atlas</span>
+              <p class="citation">"In the 1885 Robinson Atlas, on 67 Third Avenue, there is written 'Stuyveant Alley' as well as reference to 18 Structures; a Brick building... a Brick stable... a Stone building." Robinson. 1885 Robinson Atlas, p. 11.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">25</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Bromley ninety-seven: twelve structures, four-story brick full-grown, then it all came down, the mansion long since overthrown&rdquo;</p>
+            <div class="source">
+              <span class="tag">1897 Bromleys Atlas</span>
+              <p class="citation">"In the 1897 Bromleys Atlas, on 67 Third Avenue, there is reference to 12 structures; a 4 story brick building... a 4 story brick stable with basement." Bromley. 1897 Bromleys Atlas, p. 16.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="verse" id="bridge">
+      <div class="verse-head">
+        <span class="verse-numeral">IV</span>
+        <h2>Bridge</h2>
+        <span class="verse-rule"></span>
+      </div>
+      <div class="cards">
+
+        <article class="card">
+          <div class="card-index">26</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Eighteen sixty-seven, Dripps Plan reads zero on the ground &mdash; orphaned foundation waiting, not a structure to be found&rdquo;</p>
+            <div class="source">
+              <span class="tag">1867 Dripps Plan</span>
+              <p class="citation">"In the 1867 Dripps Plan, on 67 Third Avenue, there is reference to 0 structures." Dripps. 1867 Dripps Plan, p. 7.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">27</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Then Il Martello, Tresca's Hammer, two-oh-eight East Twelfth Street ran, shut down nineteen twenty-three, six months in jail for the Sanger plan&rdquo;</p>
+            <div class="source">
+              <span class="tag">Il Martello ('the Hammer') &mdash; Carlo Tresca's newspaper</span>
+              <p class="citation">"This was the site of famous anarchist Carlo Tresca's newspaper, Il Martello... His newspaper was shut down in 1923 because of a Margaret Sanger ad for birth control; he served six months in jail for this 'crime.'" Kayton. (1999) Radical Walking Tours of New York City, p. 79.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">28</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Fled from Italy in nineteen-oh-four, faced libel to the bone, fought the fascists, mafia, capital &mdash; he stood there alone&rdquo;</p>
+            <div class="source">
+              <span class="tag">Il Martello ('the Hammer') &mdash; Carlo Tresca's newspaper</span>
+              <p class="citation">"Carlo fled to this country from Italy in 1904, where he constantly faced libel charges... An outspoken opponent of the Soviet Union, the mafia, and capitalism." Kayton. (1999) Radical Walking Tours of New York City, p. 79.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">29</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Gunned down forty-three &mdash; the presses stopped, the type went cold, the Black Shirts vowing streets, the antifascist's story told&rdquo;</p>
+            <div class="source">
+              <span class="tag">Il Martello ('the Hammer') &mdash; Carlo Tresca's newspaper</span>
+              <p class="citation">"The 'Black Shirts,' as they were called, went on to initiate several attacks on innocent civilians... One of the group's main enemies was newspaper publisher Carlo Tresca, an antifascist activist who ran the Italian-language newspaper II Martella ('the Hammer') from 208 East Twelfth Street." Ferrara. (2009) A Guide to Gangsters, p. 183.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">30</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;nineteen thirty counts seventeen&rdquo;</p>
+            <div class="source">
+              <span class="tag">1930 Land Book of the Borough of Manhattan</span>
+              <p class="citation">"In the 1930 Land Book of the Borough of Manhattan, on 67 Third Avenue, there is written 'Stuyvesant Alley' as well as reference to 17 Structures." Bromley. 1930 Land Book of the Borough of Manhattan, p. 40.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">31</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;fifty-five counts twenty-three all told, four-story brick or stone or concrete, elevator, store, and stable stone&rdquo;</p>
+            <div class="source">
+              <span class="tag">1955 Manhattan Land Book</span>
+              <p class="citation">"In the 1955 Manhattan Land Book, on 67 Third Avenue... reference to 23 structures: 3 Story Brick or Stone or Concrete Stable with Elevator... 4 Story Brick or Stone or Concrete building with Store." Bromley. 1955 Manhattan Land Book, p. 30.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">32</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;then all lintels removed, eighty-seven the dorm rose alone, gray brick over buried Dutch soil, the pear tree gone from view&rdquo;</p>
+            <div class="source">
+              <span class="tag">Undergraduate Dormitory, N.Y.U.</span>
+              <p class="citation">"Undergraduate Dormitory, N. Y.U., 77 Third Ave... 1987. Voorsanger &amp; Mills Assocs." AIA. (1988) AIA Edition 3, p. 168.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+</main>
+
+<footer>
+  <p>Outernet Music &mdash; Cooper Union Series &mdash; <a href="https://github.com/Willhoward89/Outernet-Music" target="_blank" rel="noopener">github.com/Willhoward89/Outernet&#8209;Music</a></p>
+</footer>
+
+</body>
+</html>
