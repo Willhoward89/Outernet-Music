@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>29 East 4th Street &mdash; Always As Papa Wanted It</title>
+<meta name="description" content="An annotated protorap/jazz-hop track tracing 29 East 4th Street, the Old Merchant's House, from Joseph Brewster's 1832 speculative row through the Tredwell family's sealed parlors, secret rooms, and Gertrude's ninety-three years in one room &mdash; every line sourced.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Prata&family=Spectral:ital,wght@0,500;0,600;1,500;1,600&family=Overpass+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --parlor: #171310;
+    --parlor-2: #201a15;
+    --parlor-3: #29221b;
+    --mahogany: #6b2f28;
+    --mahogany-bright: #9c4a3d;
+    --damask: #7a2430;
+    --damask-bright: #b1495a;
+    --candle: #d9a856;
+    --candle-dim: #7a5c2e;
+    --paper: #ede6d2;
+    --paper-2: #ddd0ab;
+    --ink: #241d15;
+    --ink-soft: #574f3c;
+    --max-w: 780px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--parlor);
+    color: var(--paper);
+    font-family: 'Spectral', Georgia, serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; }
+
+  ::selection { background: var(--damask-bright); color: var(--paper); }
+
+  /* ---------- Dust ---------- */
+  .grain {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.05;
+    z-index: 50;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative;
+    padding: 5.5rem 1.5rem 3.5rem;
+    text-align: center;
+    overflow: hidden;
+    background: radial-gradient(ellipse at 50% 0%, rgba(217,168,86,0.14) 0%, var(--parlor) 55%);
+    border-bottom: 1px solid var(--candle-dim);
+  }
+
+  .facade {
+    position: absolute;
+    left: 50%;
+    bottom: -4px;
+    transform: translateX(-50%);
+    width: min(920px, 130%);
+    opacity: 0.75;
+    z-index: 0;
+  }
+
+  .hero-inner { position: relative; z-index: 1; }
+
+  .eyebrow {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--candle);
+    margin: 0 0 1.1rem;
+  }
+
+  .eyebrow span { color: var(--ink-soft); }
+
+  h1.title {
+    font-family: 'Prata', serif;
+    font-weight: 400;
+    font-size: clamp(2.3rem, 7.4vw, 4.3rem);
+    line-height: 1.08;
+    letter-spacing: 0;
+    margin: 0;
+    color: var(--paper);
+  }
+
+  h1.title .addr {
+    display: block;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.32em;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--damask-bright);
+    font-weight: 400;
+    margin-bottom: 0.55rem;
+  }
+
+  .fanlight-rule {
+    width: 90px;
+    height: 45px;
+    margin: 1.6rem auto 1.3rem;
+    border: 1.5px solid var(--candle);
+    border-bottom: none;
+    border-radius: 90px 90px 0 0;
+    opacity: 0.85;
+    position: relative;
+  }
+  .fanlight-rule::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-conic-gradient(from -90deg at 50% 100%, transparent 0deg 18deg, rgba(217,168,86,0.5) 18deg 19.5deg);
+    border-radius: 90px 90px 0 0;
+  }
+
+  .tagline {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.76rem;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--paper-2);
+    margin: 0 0 2.4rem;
+  }
+
+  .dek {
+    max-width: 580px;
+    margin: 0 auto 2.6rem;
+    font-size: 1.05rem;
+    color: var(--paper-2);
+  }
+
+  .dek em { color: var(--damask-bright); font-style: italic; }
+
+  /* ---------- Player ---------- */
+  .player {
+    max-width: 480px;
+    margin: 0 auto;
+    background: var(--parlor-2);
+    border: 1px solid var(--candle-dim);
+    border-radius: 4px;
+    padding: 1.1rem 1.2rem 1.3rem;
+    text-align: left;
+  }
+
+  .player-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.66rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--paper-2);
+    margin-bottom: 0.7rem;
+  }
+
+  .player-label .rec { color: var(--damask-bright); }
+
+  audio {
+    width: 100%;
+    height: 40px;
+    filter: invert(0.87) grayscale(1) contrast(1.1) sepia(0.3) hue-rotate(320deg) saturate(1.6);
+    border-radius: 6px;
+  }
+
+  .player-foot {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.63rem;
+    color: var(--ink-soft);
+    margin-top: 0.65rem;
+    letter-spacing: 0.03em;
+  }
+
+  /* ---------- Sticky mini-nav ---------- */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: rgba(23, 19, 16, 0.94);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--candle-dim);
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+  }
+  .nav::-webkit-scrollbar { display: none; }
+
+  .nav-inner {
+    display: flex;
+    gap: 0.4rem;
+    padding: 0.7rem 1.2rem;
+    max-width: var(--max-w);
+    margin: 0 auto;
+  }
+
+  .nav-link {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--paper-2);
+    padding: 0.4rem 0.7rem;
+    border: 1px solid var(--candle-dim);
+    border-radius: 3px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+  .nav-link:hover { border-color: var(--damask-bright); color: var(--damask-bright); }
+  .nav-numeral { color: var(--candle); font-weight: 600; }
+
+  /* ---------- Verses ---------- */
+  main {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 3.2rem 1.4rem 5rem;
+  }
+
+  .verse { margin-bottom: 4rem; scroll-margin-top: 4.2rem; }
+  .verse:last-child { margin-bottom: 0; }
+
+  .verse-head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.9rem;
+    margin-bottom: 1.6rem;
+  }
+
+  .verse-numeral {
+    font-family: 'Prata', serif;
+    font-size: 1.8rem;
+    color: var(--candle);
+    line-height: 1;
+  }
+
+  .verse-head h2 {
+    font-family: 'Overpass Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 0.88rem;
+    font-weight: 400;
+    color: var(--paper);
+    margin: 0;
+    white-space: nowrap;
+  }
+
+  .verse-rule {
+    flex: 1;
+    height: 1px;
+    background: var(--candle-dim);
+  }
+
+  .cards { display: flex; flex-direction: column; gap: 1.1rem; }
+
+  .card {
+    display: flex;
+    gap: 0.9rem;
+    background: var(--parlor-2);
+    border: 1px solid var(--candle-dim);
+    border-left: 3px solid var(--damask);
+    border-radius: 3px 10px 10px 3px;
+    padding: 1.15rem 1.25rem;
+    transition: border-left-color 0.2s ease, background 0.2s ease;
+  }
+
+  .card:hover {
+    border-left-color: var(--damask-bright);
+    background: var(--parlor-3);
+  }
+
+  .card-index {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--candle-dim);
+    padding-top: 0.15rem;
+    flex-shrink: 0;
+  }
+
+  .lyric {
+    font-family: 'Spectral', Georgia, serif;
+    font-weight: 600;
+    font-style: italic;
+    font-size: 1.08rem;
+    line-height: 1.44;
+    color: var(--paper);
+    margin: 0 0 0.75rem;
+  }
+
+  .source {
+    background: var(--paper);
+    color: var(--ink);
+    border-radius: 3px;
+    padding: 0.7rem 0.85rem 0.75rem;
+    border-left: 2px solid var(--mahogany);
+  }
+
+  .tag {
+    display: inline-block;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink);
+    background: var(--paper-2);
+    border: 1px solid var(--damask);
+    border-radius: 3px;
+    padding: 0.15rem 0.45rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .citation {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.76rem;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  /* ---------- Footer ---------- */
+  footer {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 1.4rem 4rem;
+    text-align: center;
+    font-family: 'Overpass Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  footer a { color: var(--candle); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  @media (max-width: 520px) {
+    .card { flex-direction: column; gap: 0.4rem; }
+    .verse-head h2 { font-size: 0.76rem; letter-spacing: 0.12em; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+<div class="grain"></div>
+
+<header class="hero">
+  <svg class="facade" viewBox="0 0 900 220" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+    <line x1="20" y1="204" x2="880" y2="204" stroke="#7a5c2e" stroke-width="1" opacity="0.4"/>
+    <!-- shuttered, felt-sealed windows either side -->
+    <g stroke="#7a5c2e" stroke-width="1.3" fill="#201a15" opacity="0.7">
+      <rect x="60" y="70" width="70" height="100"/>
+      <rect x="150" y="70" width="70" height="100"/>
+      <rect x="680" y="70" width="70" height="100"/>
+      <rect x="770" y="70" width="70" height="100"/>
+      <line x1="95" y1="70" x2="95" y2="170"/>
+      <line x1="185" y1="70" x2="185" y2="170"/>
+      <line x1="715" y1="70" x2="715" y2="170"/>
+      <line x1="805" y1="70" x2="805" y2="170"/>
+      <line x1="60" y1="120" x2="130" y2="120"/>
+      <line x1="150" y1="120" x2="220" y2="120"/>
+      <line x1="680" y1="120" x2="750" y2="120"/>
+      <line x1="770" y1="120" x2="840" y2="120"/>
+    </g>
+    <!-- central Federal fanlight doorway with Ionic columns in antis -->
+    <g stroke="#d9a856" stroke-width="1.8" fill="none" opacity="0.75">
+      <line x1="380" y1="204" x2="380" y2="120"/>
+      <line x1="520" y1="204" x2="520" y2="120"/>
+      <path d="M380,120 A70,55 0 0 1 520,120"/>
+      <path d="M400,120 A50,40 0 0 1 500,120"/>
+      <line x1="450" y1="65" x2="450" y2="120"/>
+      <line x1="415" y1="72" x2="450" y2="120"/>
+      <line x1="485" y1="72" x2="450" y2="120"/>
+      <rect x="410" y="150" width="80" height="54"/>
+    </g>
+    <!-- the dummy door: a faint secondary outline beside the true door -->
+    <g stroke="#b1495a" stroke-width="1" fill="none" opacity="0.35" stroke-dasharray="3 4">
+      <rect x="330" y="150" width="34" height="54"/>
+    </g>
+    <text x="450" y="26" text-anchor="middle" font-family="Overpass Mono, monospace" font-size="10" letter-spacing="2" fill="#d9a856" opacity="0.6">29 EAST 4TH</text>
+  </svg>
+
+  <div class="hero-inner">
+    <p class="eyebrow">Outernet Music <span>&middot;</span> Cooper Union</p>
+    <h1 class="title"><span class="addr">29 East 4th Street</span>Always As Papa Wanted It</h1>
+    <div class="fanlight-rule"></div>
+    <p class="tagline">Inspired by protorap / jazz hop</p>
+    <p class="dek">Every line traces one sealed house through <em>a century of the same rooms</em> &mdash; Joseph Brewster&rsquo;s 1832 speculative row, Seabury Tredwell&rsquo;s parlors with their secret chambers and dummy door, and Gertrude, who died in 1933 in the same canopied bed where she was born ninety-three years before. Sourced line by line below.</p>
+
+    <div class="player">
+      <div class="player-label"><span class="rec">&#9679; Track</span><span>06:09</span></div>
+      <audio controls preload="metadata" src="29-east-4th-street-always-as-papa-wanted-it.mp3">
+        Your browser does not support the audio element. <a href="29-east-4th-street-always-as-papa-wanted-it.mp3">Download the track</a>.
+      </audio>
+      <div class="player-foot"><span>29 East 4th Street, NY</span><span>Always As Papa Wanted It</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="nav">
+  <div class="nav-inner">
+          <a href="#verse-1" class="nav-link"><span class="nav-numeral">I</span>Verse 1</a>
+          <a href="#chorus" class="nav-link"><span class="nav-numeral">II</span>Chorus</a>
+          <a href="#verse-2" class="nav-link"><span class="nav-numeral">III</span>Verse 2</a>
+          <a href="#bridge" class="nav-link"><span class="nav-numeral">IV</span>Bridge</a>
+  </div>
+</nav>
+
+<main>
+
+    <section class="verse" id="verse-1">
+      <div class="verse-head">
+        <span class="verse-numeral">I</span>
+        <h2>Verse 1</h2>
+        <span class="verse-rule"></span>
+      </div>
+      <div class="cards">
+
+        <article class="card">
+          <div class="card-index">01</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Twenty-nine East Fourth, the Old Merchant's House still standing&rdquo;</p>
+            <div class="source">
+              <span class="tag">Old Merchant's House</span>
+              <p class="citation">"(162) Old Merchant's House, also known as the Seabury Tredwell House, 29 East 4th Street (1831-32), designated 1965, interior 1981." Postal &amp; Dolkart, (2009) Guide to New York City Landmarks, p. 63.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">02</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Flemish bond brickwork, eighteen-thirty-two, no landing&rdquo;</p>
+            <div class="source">
+              <span class="tag">Old Merchant's House</span>
+              <p class="citation">"The exterior is basically Federal in design, distinguished by its Flemish bond brickwork, marble entrance enframement with a Gibbs surround, sloping roof punctuated by dormers, and delicate railings (restored)." Postal &amp; Dolkart, (2009) Guide to New York City Landmarks, p. 63.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">03</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;three-and-a-half stories, red brick, slate roof commanding&rdquo;</p>
+            <div class="source">
+              <span class="tag">Old Merchant's House (Seabury Tredwell House)</span>
+              <p class="citation">"New York. Old Merchant's House (Seabury Tredwell House), 29 E. 4th St., 1832. Brick, 3 1/2 stories, rectangular, gabled roof, 2 gabled dormers with end returns and round arched windows, modillion cornice." Gille, (1982) Encyclopedia of NY, p. 456.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">04</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Steep pitch punctured by two gabled dormers with returns&rdquo;</p>
+            <div class="source">
+              <span class="tag">Old Merchant's House (Seabury Tredwell House)</span>
+              <p class="citation">"2 gabled dormers with end returns and round arched windows, modillion cornice; off-center entrance with lonic columns in antis, rusticated surround, fanlight, and archivolt with keystone." Gille, (1982) Encyclopedia of NY, p. 456.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">05</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Ionic columns in antis, fluted, marking the floor&rdquo;</p>
+            <div class="source">
+              <span class="tag">Old Merchant's House (Seabury Tredwell House)</span>
+              <p class="citation">"off-center entrance with lonic columns in antis, rusticated surround, fanlight, and archivolt with keystone. Federal with Greek Revival elements." Gille, (1982) Encyclopedia of NY, p. 456.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">06</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Rusticated Gibbs surround, a fanlight and keystone&rdquo;</p>
+            <div class="source">
+              <span class="tag">Old Merchant's House</span>
+              <p class="citation">"distinguished by its Flemish bond brickwork, marble entrance enframement with a Gibbs surround." Postal &amp; Dolkart, (2009) Guide to New York City Landmarks, p. 63.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">07</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Ionic column screen dividing parlors like a throne&rdquo;</p>
+            <div class="source">
+              <span class="tag">Old Merchant's House</span>
+              <p class="citation">"The interior, on the other hand, contains stylish Greek forms, notably the Ionic column screen that separates the front and rear parlors on the main floor." Postal &amp; Dolkart, (2009) Guide to New York City Landmarks, p. 63.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">08</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Fourteen-foot ceilings, egg-and-dart in the plaster&rdquo;</p>
+            <div class="source">
+              <span class="tag">Old Merchant's House, Formerly the Seabury-Tredwell House</span>
+              <p class="citation">"highly decorative plasterwork, such as a rosette in the entranceway and cornice with egg-and-dart moldings. The front and rear parlors are identical, with 14-foot ceilings, eight-panel mahogany doors." Spielvogel, (2016) The Landmarks of New York, p. 133.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">09</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;high-relief leaf disaster of beauty, off-white woodwork, ashlar sham marble master&rdquo;</p>
+            <div class="source">
+              <span class="tag">Old Merchant's House, Formerly the Seabury-Tredwell House</span>
+              <p class="citation">"the mahogany stairways are partially carved with acanthus leaves in high relief, and the woodwork here, as elsewhere in the house, is painted off-white... its simulated Siena marble walls." Spielvogel, (2016) The Landmarks of New York, p. 133.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">10</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Two heavy wooden doors, one real and one a lie &mdash; a dummy that opens on blank brick, the wall's confession dry&rdquo;</p>
+            <div class="source">
+              <span class="tag">Merchant's House Museum</span>
+              <p class="citation">"the parlor was built with two heavy wooden doors-one to use, and a dummy that opens onto a blank brick wall, revealing the structure of the walls." Kahn, (2002) City Secrets New York City, p. 125.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">11</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Secret chambers on both sides, so cleverly concealed a careful watcher misses them, sliding panels sealed, storing finery and wealth, a purpose unrevealed&rdquo;</p>
+            <div class="source">
+              <span class="tag">Merchant Prince</span>
+              <p class="citation">"Secret chambers, in the best mystery story tradition, were built in on both sides of the two parlors and are so cleverly camouflaged that even a careful observer would never know they existed. These secret rooms are large enough to accommodate several people but why they were built or how they were used is not known." Dunshee, (1952) As You Pass By, p. 219.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">12</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;a domed cistern-top the facade can't account for &mdash; four thousand gallons&rdquo;</p>
+            <div class="source">
+              <span class="tag">Merchant's House Museum</span>
+              <p class="citation">"Outside the kitchen was the garden, which held the four-thousand-gallon cistern that fed water into the kitchen and provided water for washing upstairs as well." Appelbaum &amp; Halpern, (2013) Not the Met, p. 96.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="verse" id="chorus">
+      <div class="verse-head">
+        <span class="verse-numeral">II</span>
+        <h2>Chorus</h2>
+        <span class="verse-rule"></span>
+      </div>
+      <div class="cards">
+
+        <article class="card">
+          <div class="card-index">13</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;between Bowery and Lafayette&rdquo;</p>
+            <div class="source">
+              <span class="tag">Old Merchant's House</span>
+              <p class="citation">"I G 9 &bull; Old Merchant's House. 29 East 4th Street, between Lafayette Street and the Bowery, attributed to Minard Lafever, 1832." Goldberger, (1979) The City Observed, p. 67.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">14</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Fashionable quarter turned to garages and debt&rdquo;</p>
+            <div class="source">
+              <span class="tag">Merchant's House Museum</span>
+              <p class="citation">"Now the Tredwell House is surrounded by lofts and garages." Delaney &amp; Lockwood, (1984) Greenwich Village, p. 95.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">15</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;NoHo, Manhattan, the same soil, the same square&rdquo;</p>
+            <div class="source">
+              <span class="tag">Merchant's House Museum</span>
+              <p class="citation">"Merchant's House Museum. 29 E 4th St, NoHo, 10003." Block, (2023) New York Block by Block, p. 112.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="verse" id="verse-2">
+      <div class="verse-head">
+        <span class="verse-numeral">III</span>
+        <h2>Verse 2</h2>
+        <span class="verse-rule"></span>
+      </div>
+      <div class="cards">
+
+        <article class="card">
+          <div class="card-index">16</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Roll it back to eighteen-thirty-two, Joseph Brewster laid one in a row of six identical dwellings he made&rdquo;</p>
+            <div class="source">
+              <span class="tag">Old Merchant's House</span>
+              <p class="citation">"The Old Merchant's House was built on speculation by Joseph Brewster as part of a row of six identical dwellings." Postal &amp; Dolkart, (2009) Guide to New York City Landmarks, p. 63.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">17</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Mayflower Brewster blood, speculation-built and paid&rdquo;</p>
+            <div class="source">
+              <span class="tag">Old Merchant's House</span>
+              <p class="citation">"Joseph Brewster, a descendane of Elder William Brewster of the Plymouth Colony, built it on what was originally part of the old Elbert Herring farm." Dunshee, (1952) As You Pass By, p. 219.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">18</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;the Elbert Herring farm the ground before the trade&rdquo;</p>
+            <div class="source">
+              <span class="tag">Old Merchant's House</span>
+              <p class="citation">"built it on what was originally part of the old Elbert Herring farm." Dunshee, (1952) As You Pass By, p. 219.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">19</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;pleasure gardens breathing where the Vauxhall used to talk&rdquo;</p>
+            <div class="source">
+              <span class="tag">Merchant's House Museum</span>
+              <p class="citation">"There is a charming little garden in back, which now looks out on brick walls and barbed wire, but once backed onto the Vauxhall Pleasure Garden." Kahn, (2002) City Secrets New York City, p. 125.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">20</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;backed onto the garden &mdash; bluestone path around the walk&rdquo;</p>
+            <div class="source">
+              <span class="tag">Merchant's House</span>
+              <p class="citation">"Many lovely shrubs and plants were recent plantings, although the bluestone path around the garden is original." Appelbaum &amp; Halpern, (2013) Not the Met, p. 96.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">21</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Then eighteen-thirty-five, Seabury Tredwell turned the lock, eighteen thousand dollars, hardware merchant on the climb&rdquo;</p>
+            <div class="source">
+              <span class="tag">Old Merchant's House</span>
+              <p class="citation">"New York City Ghost Stories tells us the House was bought in 1835 for $18,000 by Seabury Tredwell, a merchant on the way up." Lanigan-Schmidt, (2003) Ghosts of New York City, p. 99.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">22</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;five daughters, two sons, and Gertrude born in 'forty's time&rdquo;</p>
+            <div class="source">
+              <span class="tag">Old Merchant's House</span>
+              <p class="citation">"including five daughters and two sons. Five years later, his last daughter, Gertrude, was born." Kahn, (2002) City Secrets New York City, p. 125.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">23</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;second-floor front bedroom, canopied four-poster prime, ninety-three years in that same bed, she died in 'thirty-three's chime&rdquo;</p>
+            <div class="source">
+              <span class="tag">Merchant Prince</span>
+              <p class="citation">"She made her appearance in 1840 in the luxuriously canopied four-poster mahogany bed in the second floor front bedroom and died ninety-three years later in the same bed, in the same room." Dunshee, (1952) As You Pass By, p. 219.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">24</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;No closets in the walls &mdash; a room was taxed as room, so trunks held gloves and parasols, the bonnets and the plume, Chantilly lace and paisley shawls stored inside the gloom&rdquo;</p>
+            <div class="source">
+              <span class="tag">Merchant's House Museum</span>
+              <p class="citation">"there are no closets. Houses were taxed according to the number of rooms, and closets counted as rooms... In the house are trunks full of clothes, gowns, gloves, hats, Chantilly lace, paisley shawls." Kahn, (2002) City Secrets New York City, p. 125.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">25</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Down the basement kitchen where the beehive oven runs, brick fireplace and Dutch oven, hand pump the cistern funds&rdquo;</p>
+            <div class="source">
+              <span class="tag">Merchant's House</span>
+              <p class="citation">"There, one can see the original cast-iron stove, the baking niche in a beehive oven, a pump for water, and a well-used wooden table." Appelbaum &amp; Halpern, (2013) Not the Met, p. 96.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">26</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;the pie safe legs corroded in glasses set for one &mdash; vermin off the baked goods, and the little round tub done for bathing by the sink&rdquo;</p>
+            <div class="source">
+              <span class="tag">Merchant's House Museum</span>
+              <p class="citation">"Next to it stands the little round tub the family used for bathing. The legs on the pie safe are corroded where they were stood in glasses of water to keep vermin from the baked goods." Kahn, (2002) City Secrets New York City, p. 125.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">27</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Morning-glory gas jets spun around the mirror's edge, twin flames beside the one who did her hair in danger &mdash; Mrs. Tredwell, redecoration begun in the eighteen-sixties, six daughters to marry, only two ever won&rdquo;</p>
+            <div class="source">
+              <span class="tag">Merchant's House Museum</span>
+              <p class="citation">"Mrs. Tredwell's mirror is lit by gas jets shaped to look like morning glories twining around the edge... Mrs. Tredwell redecorated in the 1860's to show the family's prosperity-she was trying to marry off six daughters. (Only two ever married.)" Kahn, (2002) City Secrets New York City, p. 125.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">28</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Kept it as Papa wanted it, shutters sealed from the light, felt stuffed in the windows, felt against the cold and night&rdquo;</p>
+            <div class="source">
+              <span class="tag">Merchant's House</span>
+              <p class="citation">"The windows were kept shuttered. Even minuscule bits of light were hidden with felt or other cloth to prevent light and cold from penetrating their inner sanctum." Lanigan-Schmidt, (2003) Ghosts of New York City, p. 99.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">29</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;the row of six torn down around it, out of sight, Brewster's twins all vanished, only this one left to fight&rdquo;</p>
+            <div class="source">
+              <span class="tag">Old Merchant's House</span>
+              <p class="citation">"This three-story brick town house completed in 1832 was one in a row of six. Joseph Brewster built the houses and lived in No. 29 until it was sold to Seabury Tredwell in 1835." McDarrah &amp; McDarrah, (1990) Museums in New York, p. 309.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="verse" id="bridge">
+      <div class="verse-head">
+        <span class="verse-numeral">IV</span>
+        <h2>Bridge</h2>
+        <span class="verse-rule"></span>
+      </div>
+      <div class="cards">
+
+        <article class="card">
+          <div class="card-index">30</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Nineteen-seventy-two &mdash; the roof leaking rain, plaster ceilings ready to crumble at a touch, the strain&rdquo;</p>
+            <div class="source">
+              <span class="tag">Seabury Treadwell House</span>
+              <p class="citation">"'slowly disintegrating on a casually grubby street . . . its original furnishings, unspoiled by later decorating vanities, ready to crumble at a touch.'" Stern, (1995) New York 1960, p. 1092.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">31</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;disintegrating slow on a grubby street of stain&rdquo;</p>
+            <div class="source">
+              <span class="tag">Seabury Treadwell House</span>
+              <p class="citation">"as Ada Louise Huxtable observed in 1972, 'slowly disintegrating on a casually grubby street.'" Stern, (1995) New York 1960, p. 1092.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">32</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Joseph Roberto relieved the bearing walls of their grief, seventy-four the interior landmarked past belief, seventy-nine restored&rdquo;</p>
+            <div class="source">
+              <span class="tag">Seabury Treadwell House</span>
+              <p class="citation">"Funds raised from a variety of public and private sources were used to conduct a much-needed structural renovation in 1972, supervised by New York University architect Joseph Roberto... The inside of the house... was designated a landmark in 1974 and underwent a restoration, also supervised by Roberto and completed in 1979." Stern, (1995) New York 1960, p. 1092.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">33</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;reproduction moquette relief, the French carpet Pompeii-patterned, mosaic underneath&rdquo;</p>
+            <div class="source">
+              <span class="tag">Old Merchant's House, Formerly the Seabury-Tredwell House</span>
+              <p class="citation">"carpeted from wall to wall with a reproduction French moquette carpet, whose pattern imitated the mosaic floors discovered at Pompeii and Herculaneum." Spielvogel, (2016) The Landmarks of New York, p. 133.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">34</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;red damask bed curtains too decayed to display &mdash; but bolts of the original still in the attic lay&rdquo;</p>
+            <div class="source">
+              <span class="tag">Merchant's House Museum</span>
+              <p class="citation">"After Gertrude's death, the magnificent red damask bed curtains were found to be too decayed to salvage, but there was no need to try a modern recreation; bolts of the original fabric were still stored in the attic." Kahn, (2002) City Secrets New York City, p. 125.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">35</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;and two-thousand-fourteen, the Commission gave the say to an eight-story hotel rising next door in the fray &mdash; excavation pressing on the party wall's gray, the fastidious survivor bracing for the sway&rdquo;</p>
+            <div class="source">
+              <span class="tag">Old Merchant's House, Formerly the Seabury-Tredwell House</span>
+              <p class="citation">"In April 2014, the Landmarks Preservation Commission approved the proposed construction of an eight-story hotel adjacent to the Museum, which is now working to ensure that the fastidiously preserved building will not be affected by excavation and construction on the adjacent site." Spielvogel, (2016) The Landmarks of New York, p. 133.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+</main>
+
+<footer>
+  <p>Outernet Music &mdash; Cooper Union Series &mdash; <a href="https://github.com/Willhoward89/Outernet-Music" target="_blank" rel="noopener">github.com/Willhoward89/Outernet&#8209;Music</a></p>
+</footer>
+
+</body>
+</html>
