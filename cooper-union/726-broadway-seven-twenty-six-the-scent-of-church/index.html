@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>726 Broadway &mdash; Seven-Twenty-Six (The Scent of Church)</title>
+<meta name="description" content="An annotated proto-rap jazz poetry track tracing 726 Broadway through the Unitarian Church of the Messiah, its rebirth as the Broadway Athenaeum and a string of Gilded Age theaters, a faux London street tourist attraction, an athletic club, and John Wanamaker's warehouse &mdash; every line sourced.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Newsreader:ital,wght@0,500;0,600;1,500;1,600&family=Azeret+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --nave: #1a1620;
+    --nave-2: #221c29;
+    --nave-3: #2b2433;
+    --incense: #cf8f3f;
+    --incense-bright: #e8b567;
+    --incense-dim: #7a5626;
+    --stained: #6b4a8a;
+    --stained-bright: #a07ecb;
+    --ghost: #8a8496;
+    --paper: #ece5d7;
+    --paper-2: #ddd0b6;
+    --ink: #221d16;
+    --ink-soft: #565040;
+    --max-w: 780px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--nave);
+    color: var(--paper);
+    font-family: 'Newsreader', Georgia, serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; }
+
+  ::selection { background: var(--stained-bright); color: var(--nave); }
+
+  /* ---------- Incense haze ---------- */
+  .grain {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.06;
+    z-index: 50;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative;
+    padding: 5.5rem 1.5rem 3.5rem;
+    text-align: center;
+    overflow: hidden;
+    background: radial-gradient(ellipse at 50% 15%, rgba(107,74,138,0.28) 0%, var(--nave) 62%);
+    border-bottom: 1px solid var(--incense-dim);
+  }
+
+  .facade {
+    position: absolute;
+    left: 50%;
+    bottom: -4px;
+    transform: translateX(-50%);
+    width: min(960px, 130%);
+    opacity: 0.7;
+    z-index: 0;
+  }
+
+  .hero-inner { position: relative; z-index: 1; }
+
+  .eyebrow {
+    font-family: 'Azeret Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--incense-bright);
+    margin: 0 0 1.1rem;
+  }
+
+  .eyebrow span { color: var(--ink-soft); }
+
+  h1.title {
+    font-family: 'Cinzel', serif;
+    font-weight: 600;
+    font-size: clamp(2.3rem, 7.6vw, 4.4rem);
+    line-height: 1.08;
+    letter-spacing: 0.01em;
+    margin: 0;
+    color: var(--paper);
+  }
+
+  h1.title .addr {
+    display: block;
+    font-family: 'Azeret Mono', monospace;
+    font-size: 0.32em;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--stained-bright);
+    font-weight: 400;
+    margin-bottom: 0.55rem;
+  }
+
+  .rose-rule {
+    width: 46px;
+    height: 46px;
+    margin: 1.5rem auto 1.2rem;
+    border: 1.5px solid var(--incense);
+    border-radius: 50%;
+    position: relative;
+    opacity: 0.85;
+  }
+  .rose-rule::before, .rose-rule::after {
+    content: "";
+    position: absolute;
+    inset: 8px;
+    border: 1px solid var(--stained-bright);
+    border-radius: 50%;
+  }
+  .rose-rule::after { inset: 16px; border-color: var(--incense-bright); }
+
+  .tagline {
+    font-family: 'Azeret Mono', monospace;
+    font-size: 0.76rem;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--paper-2);
+    margin: 0 0 2.4rem;
+  }
+
+  .dek {
+    max-width: 580px;
+    margin: 0 auto 2.6rem;
+    font-size: 1.06rem;
+    color: var(--paper-2);
+  }
+
+  .dek em { color: var(--stained-bright); font-style: italic; }
+
+  /* ---------- Player ---------- */
+  .player {
+    max-width: 480px;
+    margin: 0 auto;
+    background: var(--nave-2);
+    border: 1px solid var(--incense-dim);
+    border-radius: 6px;
+    padding: 1.1rem 1.2rem 1.3rem;
+    text-align: left;
+  }
+
+  .player-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: 'Azeret Mono', monospace;
+    font-size: 0.66rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--paper-2);
+    margin-bottom: 0.7rem;
+  }
+
+  .player-label .rec { color: var(--stained-bright); }
+
+  audio {
+    width: 100%;
+    height: 40px;
+    filter: invert(0.87) grayscale(1) contrast(1.1) sepia(0.25) hue-rotate(220deg) saturate(1.7);
+    border-radius: 6px;
+  }
+
+  .player-foot {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Azeret Mono', monospace;
+    font-size: 0.63rem;
+    color: var(--ink-soft);
+    margin-top: 0.65rem;
+    letter-spacing: 0.03em;
+  }
+
+  /* ---------- Sticky mini-nav ---------- */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: rgba(26, 22, 32, 0.94);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--incense-dim);
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+  }
+  .nav::-webkit-scrollbar { display: none; }
+
+  .nav-inner {
+    display: flex;
+    gap: 0.4rem;
+    padding: 0.7rem 1.2rem;
+    max-width: var(--max-w);
+    margin: 0 auto;
+  }
+
+  .nav-link {
+    font-family: 'Azeret Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--paper-2);
+    padding: 0.4rem 0.7rem;
+    border: 1px solid var(--incense-dim);
+    border-radius: 3px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+  .nav-link:hover { border-color: var(--stained-bright); color: var(--stained-bright); }
+  .nav-numeral { color: var(--incense-bright); font-weight: 600; }
+
+  /* ---------- Verses ---------- */
+  main {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 3.2rem 1.4rem 5rem;
+  }
+
+  .verse { margin-bottom: 4rem; scroll-margin-top: 4.2rem; }
+  .verse:last-child { margin-bottom: 0; }
+
+  .verse-head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.9rem;
+    margin-bottom: 1.6rem;
+  }
+
+  .verse-numeral {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 1.7rem;
+    color: var(--incense);
+    line-height: 1;
+  }
+
+  .verse-head h2 {
+    font-family: 'Azeret Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 0.88rem;
+    font-weight: 400;
+    color: var(--paper);
+    margin: 0;
+    white-space: nowrap;
+  }
+
+  .verse-rule {
+    flex: 1;
+    height: 1px;
+    background: var(--incense-dim);
+  }
+
+  .cards { display: flex; flex-direction: column; gap: 1.1rem; }
+
+  .card {
+    display: flex;
+    gap: 0.9rem;
+    background: var(--nave-2);
+    border: 1px solid var(--incense-dim);
+    border-radius: 3px 3px 14px 14px / 3px 3px 22px 22px;
+    padding: 1.15rem 1.25rem;
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+
+  .card:hover {
+    border-color: var(--stained-bright);
+    background: var(--nave-3);
+  }
+
+  .card-index {
+    font-family: 'Azeret Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--incense-dim);
+    padding-top: 0.15rem;
+    flex-shrink: 0;
+  }
+
+  .lyric {
+    font-family: 'Newsreader', Georgia, serif;
+    font-weight: 600;
+    font-style: italic;
+    font-size: 1.1rem;
+    line-height: 1.44;
+    color: var(--paper);
+    margin: 0 0 0.75rem;
+  }
+
+  .source {
+    background: var(--paper);
+    color: var(--ink);
+    border-radius: 3px;
+    padding: 0.7rem 0.85rem 0.75rem;
+    border-left: 2px solid var(--stained);
+  }
+
+  .tag {
+    display: inline-block;
+    font-family: 'Azeret Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink);
+    background: var(--paper-2);
+    border: 1px solid var(--incense);
+    border-radius: 3px;
+    padding: 0.15rem 0.45rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .citation {
+    font-family: 'Azeret Mono', monospace;
+    font-size: 0.76rem;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  /* ---------- Footer ---------- */
+  footer {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 1.4rem 4rem;
+    text-align: center;
+    font-family: 'Azeret Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  footer a { color: var(--incense-bright); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  @media (max-width: 520px) {
+    .card { flex-direction: column; gap: 0.4rem; }
+    .verse-head h2 { font-size: 0.76rem; letter-spacing: 0.12em; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+<div class="grain"></div>
+
+<header class="hero">
+  <svg class="facade" viewBox="0 0 900 220" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+    <line x1="20" y1="204" x2="880" y2="204" stroke="#7a5626" stroke-width="1" opacity="0.4"/>
+    <!-- ghost layer 1: Gothic church pointed arch and rose window -->
+    <g stroke="#a07ecb" stroke-width="1.5" fill="none" opacity="0.4">
+      <path d="M340,204 V90 Q450,10 560,90 V204"/>
+      <circle cx="450" cy="60" r="26"/>
+      <path d="M450,34 V86 M424,60 H476 M433,42 L467,78 M467,42 L433,78"/>
+    </g>
+    <!-- ghost layer 2: theater proscenium overlaid -->
+    <g stroke="#e8b567" stroke-width="1.5" fill="none" opacity="0.4">
+      <path d="M280,204 V50 H620 V204"/>
+      <path d="M280,50 Q450,20 620,50"/>
+    </g>
+    <!-- ghost layer 3: Tudor gatehouse crenellations (Old London Street / Bishop's Gate) -->
+    <g stroke="#8a8496" stroke-width="1.5" fill="none" opacity="0.45">
+      <path d="M240,204 V150 h20 v-16 h20 v16 h20 v-16 h20 v16 h20 v-16 h20 v16 h20 v54"/>
+      <path d="M660,204 V150 h20 v-16 h20 v16 h20 v-16 h20 v16 h20 v-16 h20 v16 h20 v54"/>
+      <rect x="270" y="170" width="14" height="34"/>
+      <rect x="616" y="170" width="14" height="34"/>
+    </g>
+    <!-- incense wisps -->
+    <g stroke="#cf8f3f" stroke-width="1.5" fill="none" opacity="0.5" stroke-linecap="round">
+      <path d="M450,90 Q460,70 448,55 Q438,40 452,20"/>
+    </g>
+    <text x="450" y="12" text-anchor="middle" font-family="Azeret Mono, monospace" font-size="10" letter-spacing="2" fill="#e8b567" opacity="0.6">726</text>
+  </svg>
+
+  <div class="hero-inner">
+    <p class="eyebrow">Outernet Music <span>&middot;</span> Cooper Union</p>
+    <h1 class="title"><span class="addr">726 Broadway</span>Seven&#8209;Twenty&#8209;Six<br>(The Scent of Church)</h1>
+    <div class="rose-rule"></div>
+    <p class="tagline">Inspired by proto rap jazz poetry</p>
+    <p class="dek">Every line traces one lot through <em>a century of disguises</em> &mdash; the Unitarian Church of the Messiah, reborn as the Broadway Athenaeum and a string of gaslit theaters, burned in 1884, rebuilt as a faux London street with a Bishop&rsquo;s Gate facade, then a gymnasium, then Wanamaker&rsquo;s warehouse. &ldquo;The scent of church lingers about it still.&rdquo; Sourced line by line below.</p>
+
+    <div class="player">
+      <div class="player-label"><span class="rec">&#9679; Track</span><span>07:19</span></div>
+      <audio controls preload="metadata" src="726-broadway-seven-twenty-six-the-scent-of-church.mp3">
+        Your browser does not support the audio element. <a href="726-broadway-seven-twenty-six-the-scent-of-church.mp3">Download the track</a>.
+      </audio>
+      <div class="player-foot"><span>726 Broadway, NY</span><span>The Scent of Church</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="nav">
+  <div class="nav-inner">
+          <a href="#verse-1" class="nav-link"><span class="nav-numeral">I</span>Verse 1</a>
+          <a href="#chorus" class="nav-link"><span class="nav-numeral">II</span>Chorus</a>
+          <a href="#verse-2" class="nav-link"><span class="nav-numeral">III</span>Verse 2</a>
+          <a href="#bridge" class="nav-link"><span class="nav-numeral">IV</span>Bridge</a>
+          <a href="#outro" class="nav-link"><span class="nav-numeral">V</span>Outro</a>
+  </div>
+</nav>
+
+<main>
+
+    <section class="verse" id="verse-1">
+      <div class="verse-head">
+        <span class="verse-numeral">I</span>
+        <h2>Verse 1</h2>
+        <span class="verse-rule"></span>
+      </div>
+      <div class="cards">
+
+        <article class="card">
+          <div class="card-index">01</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;seven stories of brick on a fireproofed steel-framed plan&rdquo;</p>
+            <div class="source">
+              <span class="tag">John Wanamaker Warehouse and Garage</span>
+              <p class="citation">"In the 1930 Land Book of the Borough of Manhattan, on 726 Broadway, there is written 'John Wanamaker Warehouse and Garage' as well as reference to 1 Structure; 7 Story Brick Building with Basement and Elevators and Fire proof building (steel construction) and 1 Story Brick Extension." Bromley. (1930) Land Book of the Borough of Manhattan, p. 28.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">02</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;the John Wanamaker Warehouse and Garage on the lot&rdquo;</p>
+            <div class="source">
+              <span class="tag">John Wanamaker Warehouse and Garage</span>
+              <p class="citation">"In the 1955 Manhattan Land Book, on 726 Broadway, there is written 'John Wanamaker Warehouse and Garage' as well as reference to 1 Structure; 7 story brick building with a basement and elevators and fireproof building (steel construction)." Bromley. (1955) Manhattan Land Book, p. 23.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">03</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Big horizontal windows, William Steele &amp; Sons drew the line&rdquo;</p>
+            <div class="source">
+              <span class="tag">John Wanamaker Warehouse and Garage</span>
+              <p class="citation">"JOHN WANAMAKER WAREHOUSE AND GARAGE, No. 726-30 1916, by William Steele &amp; Sons; enlarged. (10 stories) This industrial design, with its big, horizontal windows, is proof that old buildings can be just as heedless of context as recent ones." Dunlap. (1990) On Broadway, p. 101.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">04</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;'just as heedless of context as recent ones,' they wrote&rdquo;</p>
+            <div class="source">
+              <span class="tag">John Wanamaker Warehouse and Garage</span>
+              <p class="citation">"This industrial design, with its big, horizontal windows, is proof that old buildings can be just as heedless of context as recent ones." Dunlap. (1990) On Broadway, p. 101.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">05</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;The Wiz sold electronics off the ground floor, good-value shelf&rdquo;</p>
+            <div class="source">
+              <span class="tag">The Wiz</span>
+              <p class="citation">"Electronics (good values): The Wiz (726 Broadway and other locations)" Frank. (1980) Where to Find It, Buy It, Eat It In New York, p. 361.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">06</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;then the NYU Bookstore stacked the textbooks by itself&rdquo;</p>
+            <div class="source">
+              <span class="tag">New York University Bookstore</span>
+              <p class="citation">"Independent, General Book Stores: Manhattan:&hellip;.New York University Bookstore: 726 Broadway at Waverly Place, East Village. bookstores.nyu.edu. General books, textbooks, and gifts." Egan. (2018) Pop Culture New York City, p. 124.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">07</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Scholastic on the upper floors, a water-tank redesign, eighty-three the conference room set high above the crowd&rdquo;</p>
+            <div class="source">
+              <span class="tag">Scholastic offices</span>
+              <p class="citation">"Scholastic offices 730 Broadway between East Fourth Street and Astor Place. Hardy Holzman Pfeiffer Associates. 1983. Water tank conference room. Kaufman. H3" Stern. (2006) New York 2000, p. 332.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="verse" id="chorus">
+      <div class="verse-head">
+        <span class="verse-numeral">II</span>
+        <h2>Chorus</h2>
+        <span class="verse-rule"></span>
+      </div>
+      <div class="cards">
+
+        <article class="card">
+          <div class="card-index">08</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;opposite Waverly, where the church and the stage meet&rdquo;</p>
+            <div class="source">
+              <span class="tag">Broadway Athenaeum</span>
+              <p class="citation">"The Broadway Athenaeum (1865), located at 728-730 Broadway, opposite Waverly Place, was probably the city's first postwar playhouse and certainly one of its most unusual." Stern. (1999) New York 1880, p. 663.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">09</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;'the scent of church lingers about it' like it always did&rdquo;</p>
+            <div class="source">
+              <span class="tag">The Old London Gate</span>
+              <p class="citation">"You may paint, you may fresco the place as you will / But the scent of church lingers about it still." Dunlap. (2004) From Abyssinian to Zion, p. 48.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="verse" id="verse-2">
+      <div class="verse-head">
+        <span class="verse-numeral">III</span>
+        <h2>Verse 2</h2>
+        <span class="verse-rule"></span>
+      </div>
+      <div class="cards">
+
+        <article class="card">
+          <div class="card-index">10</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Drop to eighteen-thirty, La Grange marble and stone &mdash; the Colonnade Hotel stood, an entrance all its own&rdquo;</p>
+            <div class="source">
+              <span class="tag">Colonnade Hotel</span>
+              <p class="citation">"Site of Old London Street, 1887; Unitarian Church of the Messiah... Colonnade Hotel, 1830-33 (an entrance to La Grange Terrace on Lafayette Street)." Dunlap. (1990) On Broadway, p. 101.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">11</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Sing Sing quarried Westchester marble, cut and set the frame, Corinthian and coped where La Grange Terrace came&rdquo;</p>
+            <div class="source">
+              <span class="tag">Colonnade Hotel</span>
+              <p class="citation">"It seems that the convicts at Sing Sing not only quarried the Westchester marble for the buildings, but they cut and prepared it as well... the two-story Corinthian colonnade evokes the classical grandeur of Greece's golden era." Hemp. (1975) New York Enclaves, p. 28.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">12</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;the fifty-three Perris map read the mortar clear: Unitarian Church, Presbyterian Church both were here, brick and stone dwellings, first class, slate and metal crowned, coped along the roofline, second-class the framed extension found&rdquo;</p>
+            <div class="source">
+              <span class="tag">Presbyterian Church</span>
+              <p class="citation">"In the 1853 Perris Maps, on 726 Broadway, there is written 'Unitarian Church, Presbyterian Church' as well as reference to 10 Structures; Brick or Stone dwellings first class (slate or metal roof &amp; coped)... Brick or stone dwellings second class (slate or metal roof not coped) with Framed Extension." Perris. (1853) Perris Maps, p. 61.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">13</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Erected thirty-nine, the house of prayer went up: Unitarian Church of the Messiah filled the cup&rdquo;</p>
+            <div class="source">
+              <span class="tag">Unitarian Church of the Messiah</span>
+              <p class="citation">"Unitarian Church of the Messiah (second site). 543-3 Site: 728-730 Broadway. Erected 1839 (Greenleaf's Hist. of the Churches, 376; cf. Liber Deeds, CCCLXXXV: 152); sold 1864." Stokes. (1918) The Iconography of Manhattan Island Volume Three, p. 937.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">14</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;'Even in some future age this pulpit may be a stage' &mdash; Oakey Hall's prophecy set in the mortar's age&rdquo;</p>
+            <div class="source">
+              <span class="tag">Broadway Athenaeum</span>
+              <p class="citation">"a young student, A. Oakey Hall, later mayor during the heyday of Boss Tweed, had recited a prophetic couplet when the building was still a church: 'Even in some future age / This pulpit may be a stage.'" Stern. (1999) New York 1880, p. 663.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">15</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Sold in sixty-four, and A. T. Stewart bought the shell, J. H. Hackett cut the tower down, the Athenaeum fell&rdquo;</p>
+            <div class="source">
+              <span class="tag">Broadway Athenaeum</span>
+              <p class="citation">"In 1865 the department store entrepreneur Alexander T. Stewart, working with the architect J. H. Hackett, converted the former Unitarian Church of the Messiah (1838) into a theater... The tower of the church was removed in 1869." Stern. (1999) New York 1880, p. 663.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">16</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;the sixty-seven Dripps plan marked the N.Y. Theatre frame&rdquo;</p>
+            <div class="source">
+              <span class="tag">New York Theatre (N.Y. Theatre)</span>
+              <p class="citation">"In the 1867 Dripps Plan, on 726 Broadway, there is written 'N.Y. Theatre' as well as reference to 9 Structures; Building, Building, Building, Building, Building, Building, Building, Building, Building." Dripps. (1867) Dripps Plan, p. 7.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">17</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Worrell Sisters staged the gaslight rescue on the track, Under the Gaslight &mdash; the cliff-hanger never looked back&rdquo;</p>
+            <div class="source">
+              <span class="tag">Worrell Sisters' Theatre</span>
+              <p class="citation">"In 1867 at the Worrell Sisters' Theatre, 728 Broadway at Waverly Place, a play by Augustin Daly called 'Under the Gaslight' left audiences breathless... gave the impression of a train speeding across the stage seconds after the rescue of someone who had been tied to the track." Miller. (1990) Greenwich Village and how it got that way, p. 104.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">18</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Daly's Broadway Theatre, seventy-four on the line&rdquo;</p>
+            <div class="source">
+              <span class="tag">Daly's Broadway Theatre</span>
+              <p class="citation">"PLACES OF AMUSEMENT. ... Daly's Broadway Theatre--728 Broadway." Demarest. (1874) Guide to New York and Vicinity, p. 21.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">19</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Globe and Nixon's Amphitheatre came, Daly's Fifth Avenue, then Fox's Broadway sign... Bryant's Opera, National, Heller's Wonder Theatre's line&rdquo;</p>
+            <div class="source">
+              <span class="tag">Harrigan &amp; Hart's New Theatre Comique</span>
+              <p class="citation">"Globe Theatre 1870; Nixon's Amphitheatre 1871; Daly's Fifth Ave. Theatre 1873; Fox's Broadway Theatre 1874; later in that year the Globe again; Bryant's Opera House; the National Theatre 1875; Globe 1878; New Theatre Comique (Harrigan &amp; Hart) 1881." Stokes. (1918) The Iconography of Manhattan Island Volume Three, p. 984.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">20</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Heller's Wonder Theatre's line&rdquo;</p>
+            <div class="source">
+              <span class="tag">Heller's Wonder Theatre</span>
+              <p class="citation">"Robert Heller, magician, humorist, and musician, opens the former Globe Theatre at 728-30 Broadway, calling it 'Heller's Wonder Theatre.'" Stokes. (1926) The Iconography of Manhattan Island Volume Five, p. 1965.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">21</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;mansard and crocket, street-level arcade&rdquo;</p>
+            <div class="source">
+              <span class="tag">New York Theatre (N.Y. Theatre)</span>
+              <p class="citation">"a steep mansard and crocketed roof and a street-level arcade were added, virtually obscuring the theater's ecclesiastical origins." Stern. (1999) New York 1880, p. 663.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">22</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Harrigan &amp; Hart's New Theatre Comique the last remade&rdquo;</p>
+            <div class="source">
+              <span class="tag">Harrigan &amp; Hart's New Theatre Comique</span>
+              <p class="citation">"New Theatre Comique (Harrigan &amp; Hart) 1881; destroyed by fire 1884." Stokes. (1918) The Iconography of Manhattan Island Volume Three, p. 984.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="verse" id="bridge">
+      <div class="verse-head">
+        <span class="verse-numeral">IV</span>
+        <h2>Bridge</h2>
+        <span class="verse-rule"></span>
+      </div>
+      <div class="cards">
+
+        <article class="card">
+          <div class="card-index">23</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;December twenty-third, eighteen-eighty-four &mdash; the flame, the Theatre Comique burned to the ground&rdquo;</p>
+            <div class="source">
+              <span class="tag">Theatre Comique</span>
+              <p class="citation">"The house was destroyed by fire December 23, 1884, and the ground remained idle for a long time." Jenkins. (1911) The Greatest Street in the World, p. 217.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">24</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Ground remained idle, orphaned foundation stone, till 'Ye Olde London Streets' rose eighteen-eighty-seven&rdquo;</p>
+            <div class="source">
+              <span class="tag">Old London Street</span>
+              <p class="citation">"the ground remained idle for a long time; then it became the Old London Street, February 26, 1887." Jenkins. (1911) The Greatest Street in the World, p. 217.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">25</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Bishop's Gate fa&ccedil;ade, narrow archer's slits for light, Milton, Defoe, Bunyan's model houses filling sight&rdquo;</p>
+            <div class="source">
+              <span class="tag">The Old London Gate</span>
+              <p class="citation">"a building whose front should be a perfect facsimile of the famous 'Bishop's Gate,' in London... among the many curiosities, were large sized models of ancient houses in England, such as the houses of Milton, Defoe, Bunyan... The long narrow slits in the wall, which served for windows." Harper. (1900) Early New York Houses, p. 130.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">26</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Then a gymnasium, the Broadway Athletic Club fight... straw hats in the summer night&rdquo;</p>
+            <div class="source">
+              <span class="tag">Broadway Athletic Club (gymnasium)</span>
+              <p class="citation">"The Broadway Athletic Club was located in a gymnasium at No. 728 Broadway, on the east side of the street, opposite Waverly Place... the number of straw hats in evidence suggest that the match was in the late spring or summer." Byron. (1985) New York Life at the Turn of the Century, p. 126.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">27</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Bunnell's Museum, straw hats in the summer night &mdash; demolished nineteen-oh-two, the lots lay bare&rdquo;</p>
+            <div class="source">
+              <span class="tag">Bunnell's Museum</span>
+              <p class="citation">"later Bunnell's Museum, &amp;c.; demolished 1902." Stokes. (1918) The Iconography of Manhattan Island Volume Three, p. 984.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">28</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Millrose Athletic's outdoor track, frame buildings in the air&rdquo;</p>
+            <div class="source">
+              <span class="tag">Millrose Athletic Association (outdoor track)</span>
+              <p class="citation">"In the 1916 Atlas of the Borough of Manhattan, on 726 Broadway, there is written 'Millrose Athletic Assn. (outdoor track)' as well as reference to 2 Structures; 1 Story frame building, 1 Story frame building." G W Bromley &amp; Co. (1916) Atlas of the Borough of Manhattan, p. 34.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="verse" id="outro">
+      <div class="verse-head">
+        <span class="verse-numeral">V</span>
+        <h2>Outro</h2>
+        <span class="verse-rule"></span>
+      </div>
+      <div class="cards">
+
+        <article class="card">
+          <div class="card-index">29</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;the Church of the Messiah to The Colonnade's name, ninety-seven Bromley read the eighteen-story game&rdquo;</p>
+            <div class="source">
+              <span class="tag">The Colonnade</span>
+              <p class="citation">"In the 1897 Bromleys Atlas, on 726 Broadway, there is written 'The Colonade' as well as reference to 12 Structures; 4 Story Brick building with Basement... 3 Story Brick building with Basement and Stone front." Bromley. (1897) Bromleys Atlas, p. 16.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">30</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;'the scent of church lingers about it' still&rdquo;</p>
+            <div class="source">
+              <span class="tag">The Old London Gate</span>
+              <p class="citation">"You may paint, you may fresco the place as you will / But the scent of church lingers about it still." Dunlap. (2004) From Abyssinian to Zion, p. 48.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+</main>
+
+<footer>
+  <p>Outernet Music &mdash; Cooper Union Series &mdash; <a href="https://github.com/Willhoward89/Outernet-Music" target="_blank" rel="noopener">github.com/Willhoward89/Outernet&#8209;Music</a></p>
+</footer>
+
+</body>
+</html>
