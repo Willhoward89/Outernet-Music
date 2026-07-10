@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>35 Cooper Square &mdash; Strata on the Bowery Edge</title>
+<meta name="description" content="An annotated track tracing 35 Cooper Square from the 1853 Perris maps through a vacant Bowery lot, a raunchy 1969 theater, Arthur Russell's 1976 cello shows, a college bar, and today's Middle Eastern bakery &mdash; every line sourced.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --iron: #17181a;
+    --iron-2: #1f2124;
+    --iron-3: #26282c;
+    --steel: #3a3d42;
+    --steel-light: #6b6f76;
+    --ember: #b8481e;
+    --ember-bright: #e8863a;
+    --ember-dim: #7a3116;
+    --paper: #e9e1cd;
+    --paper-2: #ddd3b8;
+    --ink: #2a251d;
+    --ink-soft: #5c5443;
+    --max-w: 780px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--iron);
+    color: var(--paper);
+    font-family: 'Lora', Georgia, serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; }
+
+  ::selection { background: var(--ember); color: var(--paper); }
+
+  /* ---------- Texture ---------- */
+  .grain {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.05;
+    z-index: 50;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative;
+    padding: 5.5rem 1.5rem 3.5rem;
+    text-align: center;
+    overflow: hidden;
+    background: radial-gradient(ellipse at 50% 120%, var(--ember-dim) 0%, var(--iron) 62%);
+    border-bottom: 1px solid var(--steel);
+  }
+
+  .facade {
+    position: absolute;
+    left: 50%;
+    bottom: -6px;
+    transform: translateX(-50%);
+    width: min(920px, 130%);
+    opacity: 0.55;
+    z-index: 0;
+  }
+
+  .hero-inner { position: relative; z-index: 1; }
+
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ember-bright);
+    margin: 0 0 1.1rem;
+  }
+
+  .eyebrow span { color: var(--steel-light); }
+
+  h1.title {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2.4rem, 8vw, 4.6rem);
+    line-height: 0.95;
+    letter-spacing: 0.01em;
+    margin: 0;
+    color: var(--paper);
+    text-transform: uppercase;
+  }
+
+  h1.title .addr { display: block; font-size: 0.42em; letter-spacing: 0.12em; color: var(--steel-light); font-weight: 700; margin-bottom: 0.3rem; }
+
+  .flame-rule {
+    width: 220px;
+    max-width: 60%;
+    height: 4px;
+    margin: 1.4rem auto 1.2rem;
+    background: linear-gradient(90deg, transparent, var(--ember) 15%, var(--ember-bright) 50%, var(--ember) 85%, transparent);
+    border-radius: 2px;
+  }
+
+  .tagline {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--paper-2);
+    margin: 0 0 2.4rem;
+  }
+
+  .dek {
+    max-width: 560px;
+    margin: 0 auto 2.6rem;
+    font-size: 1.02rem;
+    color: var(--paper-2);
+  }
+
+  .dek em { color: var(--ember-bright); font-style: normal; }
+
+  /* ---------- Player ---------- */
+  .player {
+    max-width: 480px;
+    margin: 0 auto;
+    background: var(--iron-2);
+    border: 1px solid var(--steel);
+    border-radius: 10px;
+    padding: 1.1rem 1.2rem 1.3rem;
+    text-align: left;
+  }
+
+  .player-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--steel-light);
+    margin-bottom: 0.7rem;
+  }
+
+  .player-label .rec {
+    color: var(--ember-bright);
+  }
+
+  audio {
+    width: 100%;
+    height: 40px;
+    filter: invert(0.86) grayscale(1) contrast(1.15) sepia(0.3) hue-rotate(-10deg) saturate(2.4);
+    border-radius: 6px;
+  }
+
+  .player-foot {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.66rem;
+    color: var(--steel-light);
+    margin-top: 0.65rem;
+    letter-spacing: 0.04em;
+  }
+
+  /* ---------- Sticky mini-nav ---------- */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: rgba(23, 24, 26, 0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--steel);
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+  }
+  .nav::-webkit-scrollbar { display: none; }
+
+  .nav-inner {
+    display: flex;
+    gap: 0.4rem;
+    padding: 0.7rem 1.2rem;
+    max-width: var(--max-w);
+    margin: 0 auto;
+  }
+
+  .nav-link {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--paper-2);
+    padding: 0.4rem 0.7rem;
+    border: 1px solid var(--steel);
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+  .nav-link:hover { border-color: var(--ember); color: var(--ember-bright); }
+  .nav-numeral { color: var(--ember); font-weight: 600; }
+
+  /* ---------- Verses ---------- */
+  main {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 3.2rem 1.4rem 5rem;
+  }
+
+  .verse { margin-bottom: 4rem; scroll-margin-top: 4.2rem; }
+  .verse:last-child { margin-bottom: 0; }
+
+  .verse-head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.9rem;
+    margin-bottom: 1.6rem;
+  }
+
+  .verse-numeral {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 700;
+    font-size: 1.9rem;
+    color: var(--ember);
+    line-height: 1;
+  }
+
+  .verse-head h2 {
+    font-family: 'IBM Plex Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: var(--paper);
+    margin: 0;
+    white-space: nowrap;
+  }
+
+  .verse-rule {
+    flex: 1;
+    height: 1px;
+    background: var(--steel);
+  }
+
+  .cards { display: flex; flex-direction: column; gap: 1.1rem; }
+
+  .card {
+    display: flex;
+    gap: 0.9rem;
+    background: var(--iron-2);
+    border: 1px solid var(--steel);
+    border-left: 3px solid var(--ember);
+    border-radius: 4px;
+    padding: 1.1rem 1.2rem;
+    transition: border-left-color 0.2s ease, background 0.2s ease;
+  }
+
+  .card:hover {
+    border-left-color: var(--ember-bright);
+    background: var(--iron-3);
+  }
+
+  .card-index {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--steel-light);
+    padding-top: 0.15rem;
+    flex-shrink: 0;
+  }
+
+  .lyric {
+    font-family: 'Lora', Georgia, serif;
+    font-weight: 600;
+    font-style: italic;
+    font-size: 1.08rem;
+    line-height: 1.4;
+    color: var(--paper);
+    margin: 0 0 0.75rem;
+  }
+
+  .source {
+    background: var(--paper);
+    color: var(--ink);
+    border-radius: 3px;
+    padding: 0.7rem 0.85rem 0.75rem;
+  }
+
+  .tag {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ember-dim);
+    background: var(--paper-2);
+    border: 1px solid var(--ember-dim);
+    border-radius: 3px;
+    padding: 0.15rem 0.45rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .citation {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  /* ---------- Footer ---------- */
+  footer {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 1.4rem 4rem;
+    text-align: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--steel-light);
+  }
+
+  footer a { color: var(--ember-bright); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  @media (max-width: 520px) {
+    .card { flex-direction: column; gap: 0.4rem; }
+    .verse-head h2 { font-size: 0.78rem; letter-spacing: 0.12em; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+<div class="grain"></div>
+
+<header class="hero">
+  <svg class="facade" viewBox="0 0 900 220" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+    <!-- geological strata: stacked bands of history -->
+    <g stroke="#e8863a" stroke-width="1.6" opacity="0.4" fill="none">
+      <line x1="20" y1="45" x2="880" y2="45"/>
+      <line x1="20" y1="82" x2="880" y2="82"/>
+      <line x1="20" y1="119" x2="880" y2="119"/>
+      <line x1="20" y1="156" x2="880" y2="156"/>
+      <line x1="20" y1="193" x2="880" y2="193"/>
+    </g>
+    <!-- bagel / babka ring, present-day bakery layer -->
+    <g stroke="#e8863a" stroke-width="1.8" opacity="0.55" fill="none">
+      <circle cx="450" cy="25" r="11"/>
+      <circle cx="450" cy="25" r="4"/>
+    </g>
+    <!-- martini glass, Cooper 35 bar layer -->
+    <g stroke="#e8863a" stroke-width="1.8" opacity="0.5" fill="none">
+      <path d="M420,60 L450,60 L436,72 L436,80"/>
+      <line x1="426" y1="80" x2="446" y2="80"/>
+    </g>
+    <!-- cello scroll, Sobossek's / Arthur Russell layer -->
+    <g stroke="#b8481e" stroke-width="1.8" opacity="0.5" fill="none">
+      <path d="M448,100 q-4,-14 4,-18 q9,-4 6,10 q-2,10 -10,8"/>
+      <line x1="452" y1="100" x2="452" y2="135"/>
+      <ellipse cx="452" cy="137" rx="10" ry="4"/>
+    </g>
+    <!-- theater mask, Cooper Square Arts Theatre layer -->
+    <g stroke="#e8863a" stroke-width="1.6" opacity="0.45" fill="none">
+      <ellipse cx="450" cy="172" rx="16" ry="11"/>
+      <path d="M440,168 q4,6 4,9 M460,168 q-4,6 -4,9"/>
+    </g>
+    <!-- brick coursing, the pre-1916 structures at bedrock -->
+    <g stroke="#e8863a" stroke-width="1.4" opacity="0.35" fill="none">
+      <line x1="20" y1="206" x2="880" y2="206"/>
+      <line x1="60" y1="193" x2="60" y2="206"/>
+      <line x1="120" y1="193" x2="120" y2="206"/>
+      <line x1="180" y1="193" x2="180" y2="206"/>
+      <line x1="720" y1="193" x2="720" y2="206"/>
+      <line x1="780" y1="193" x2="780" y2="206"/>
+      <line x1="840" y1="193" x2="840" y2="206"/>
+    </g>
+    <text x="450" y="215" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" letter-spacing="2" fill="#e8863a" opacity="0.55">1853</text>
+  </svg>
+
+  <div class="hero-inner">
+    <p class="eyebrow">Outernet Music <span>&middot;</span> Cooper Union</p>
+    <h1 class="title"><span class="addr">35 Cooper Square</span>Strata on the Bowery Edge</h1>
+    <div class="flame-rule"></div>
+    <p class="tagline">Inspired by proto rap / jazz&#8209;hop</p>
+    <p class="dek">Every line traces one lot through <em>over 170 years</em> &mdash; brick dwellings on the 1853 Perris maps, a vacant Bowery parcel by 1867, a raunchy 1969 theater run, Arthur Russell&rsquo;s free cello shows at Sobossek&rsquo;s in 1976, a college bar called Koop, and the Middle Eastern bakery serving babka there today. Sourced line by line below.</p>
+
+    <div class="player">
+      <div class="player-label"><span class="rec">&#9679; Track</span><span>05:20</span></div>
+      <audio controls preload="metadata" src="35-cooper-square-strata-on-the-bowery-edge.mp3">
+        Your browser does not support the audio element. <a href="35-cooper-square-strata-on-the-bowery-edge.mp3">Download the track</a>.
+      </audio>
+      <div class="player-foot"><span>35 Cooper Square, NY</span><span>Strata on the Bowery Edge</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="nav">
+  <div class="nav-inner">
+          <a href="#verse-1" class="nav-link"><span class="nav-numeral">I</span>Verse 1</a>
+          <a href="#verse-2" class="nav-link"><span class="nav-numeral">II</span>Verse 2</a>
+          <a href="#bridge" class="nav-link"><span class="nav-numeral">III</span>Bridge</a>
+          <a href="#outro" class="nav-link"><span class="nav-numeral">IV</span>Outro</a>
+  </div>
+</nav>
+
+<main>
+
+    <section class="verse" id="verse-1">
+      <div class="verse-head">
+        <span class="verse-numeral">I</span>
+        <h2>Verse 1</h2>
+        <span class="verse-rule"></span>
+      </div>
+      <div class="cards">
+        
+        <article class="card">
+          <div class="card-index">01</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Present tense, ground floor — Librae Bakery holds the lease&rdquo;</p>
+            <div class="source">
+              <span class="tag">Librae Bakery</span>
+              <p class="citation">"Librae Bakery, 35 Cooper Sq, NoHo, 10003, Airy bakery with a great selection of Middle Eastern inspired pastries." [Block. (2023) New York Block by Block, p. 17.]</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">02</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;babka in the case, the pistachio croissant proof&rdquo;</p>
+            <div class="source">
+              <span class="tag">Librae Bakery</span>
+              <p class="citation">"Middle Eastern inspired baked goods with babka. tahini chocolate cookies, beautiful rose pistachio croissants and much more." [Block. (2023) New York Block by Block, p. 66.]</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">03</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;The Jerusalem bagel, the rose-pistachio fold&rdquo;</p>
+            <div class="source">
+              <span class="tag">Librae Bakery</span>
+              <p class="citation">"Try the babka, pistachio croissant and Jerusalem bagel." [Block. (2023) New York Block by Block, p. 17.]</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">04</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;it was built in 2014, that's the cornerstone I read&rdquo;</p>
+            <div class="source">
+              <span class="tag">Oasis Map</span>
+              <p class="citation">"Was built in 2014." [Unknown Author. Oasis Map, p. 1.]</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">05</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;where the patio ran, the free edamame days&rdquo;</p>
+            <div class="source">
+              <span class="tag">Cooper 35</span>
+              <p class="citation">"This is basically a college spot with an outside patio that has $4 drinks and free edamame every day but Friday and Saturday." [Stuart. (2008) You are Young, Broke, and Beautiful, p. 103.]</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">06</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;that college spot classy, the four-dollar-drink haze / Cooper 35 at the corner of Third Ave&rdquo;</p>
+            <div class="source">
+              <span class="tag">Cooper 35</span>
+              <p class="citation">"Cooper 35, 35 Cooper Square @ 3rd Ave. This is basically a college spot... The inside is pretty nice, almost bordering on classy." [Stuart. (2008) You are Young, Broke, and Beautiful, p. 103.]</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">07</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;cheap bar food inside, the outside patio wide, Friday and Saturday the free plate denied&rdquo;</p>
+            <div class="source">
+              <span class="tag">Cooper 35</span>
+              <p class="citation">"an outside patio that has $4 drinks and free edamame every day but Friday and Saturday... I think their bar food is pretty cheap too." [Stuart. (2008) You are Young, Broke, and Beautiful, p. 103.]</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">08</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Koop for the regulars, the nickname the block gave&rdquo;</p>
+            <div class="source">
+              <span class="tag">Koop</span>
+              <p class="citation">"Koop" [Murphy. (2023) Murph Guide Closed Bars, p. 13.]</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="verse" id="verse-2">
+      <div class="verse-head">
+        <span class="verse-numeral">II</span>
+        <h2>Verse 2</h2>
+        <span class="verse-rule"></span>
+      </div>
+      <div class="cards">
+        
+        <article class="card">
+          <div class="card-index">09</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Drop to the deepest — eighteen-fifty-three on the Perris page&rdquo;</p>
+            <div class="source">
+              <span class="tag">35 Cooper Square</span>
+              <p class="citation">"In the 1853 Perris Maps, on 35 Cooper Square, there is reference to 3 structures; a Brick or stone dwelling second class (slate or metal roof not coped) with stores under, a Brick or stone dwelling second class (slate or metal roof not coped) with stores under, a brick or stone dwelling fourth class (shingle roof) with stores under." [Perris. 1853 Perris Maps, p. 48.]</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">10</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;brick-or-stone dwelling, second class, slate roof not coped / stores under the sills&rdquo;</p>
+            <div class="source">
+              <span class="tag">35 Cooper Square</span>
+              <p class="citation">"a Brick or stone dwelling second class (slate or metal roof not coped) with stores under." [Perris. 1853 Perris Maps, p. 48.]</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">11</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;a second-class twin standing shoulder to the first, then a fourth-class neighbor with the shingle roof, worst&rdquo;</p>
+            <div class="source">
+              <span class="tag">35 Cooper Square</span>
+              <p class="citation">"a brick or stone dwelling fourth class (shingle roof) with stores under." [Perris. 1853 Perris Maps, p. 48.]</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">12</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Then eighteen-sixty-seven, Dripps drew the plot — zero structures standing, a vacant Bowery lot&rdquo;</p>
+            <div class="source">
+              <span class="tag">35 Cooper Square</span>
+              <p class="citation">"In the 1867 Dripps Plan, on 35 Cooper Square, there is reference to 0 structures." [Dripps. 1867 Dripps Plan, p. 7.]</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">13</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;By eighteen-eighty-five Robinson counts three again, two brick, one stone&rdquo;</p>
+            <div class="source">
+              <span class="tag">35 Cooper Square</span>
+              <p class="citation">"In the 1885 Robinson Atlas, on 35 Cooper Square, there is reference to 3 structures; a Brick Building, a Brick Building, a Stone building." [Robinson. 1885 Robinson Atlas, p. 11.]</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">14</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;and ninety-seven Bromley reads the stone-front rise: a two-and-a-half brick, then two five-story highs, each with a stone front lifting off the ground&rdquo;</p>
+            <div class="source">
+              <span class="tag">35 Cooper Square</span>
+              <p class="citation">"In the 1897 Bromleys Atlas, on 35 Cooper Square, there is reference to 3 structures; a 2.5 story brick building, a 5 story brick building with stone front, a 5 story brick building with stone front." [Bromley. 1897 Bromleys Atlas, p. 16.]</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="verse" id="bridge">
+      <div class="verse-head">
+        <span class="verse-numeral">III</span>
+        <h2>Bridge</h2>
+        <span class="verse-rule"></span>
+      </div>
+      <div class="cards">
+        
+        <article class="card">
+          <div class="card-index">15</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Nineteen-sixteen — the Atlas wrote 'Hotel' plain, two-and-a-half brick with a store, then a saloon in the frame, a five-story brick where the drinkers would lean&rdquo;</p>
+            <div class="source">
+              <span class="tag">35 Cooper Square</span>
+              <p class="citation">"In the 1916 Atlas of the Borough of Manhattan, on 35 Cooper Square, there is written 'Hotel' as well as reference to 3 Structures; a 2.5 story brick building with store, a 5 story brick building with store, a 5 story brick building with saloon." [G W Bromley &amp; Co. 1916 Atlas of the Borough of Manhattan, p. 34.]</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">16</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;nineteen-thirty three five-story stores in a row, each with a shopfront in the ground-floor glow&rdquo;</p>
+            <div class="source">
+              <span class="tag">35 Cooper Square</span>
+              <p class="citation">"In the 1930 Land Book of the Borough of Manhattan, on 35 Cooper Square, there is reference to 3 structures; a 5 story Building with Store, a 5 story Building with Store, a 5 story Building with Store." [Bromley. 1930 Land Book of the Borough of Manhattan, p. 33.]</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">17</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;nineteen-fifty-five the count swelled up to five — one story, two story, the extension alive, a one-story brick and a five-story tall, concrete-or-stone, the whole lot in thrall&rdquo;</p>
+            <div class="source">
+              <span class="tag">35 Cooper Square</span>
+              <p class="citation">"In the 1955 Manhattan Land Book, on 35 Cooper Square, there is reference to 5 structures; 2.5 Story Brick or Stone or Concrete building with Store, 2 Story Brick or Stone or Concrete building, 1 Story Brick or Stone or Concrete building, 5 Story Brick or Stone or Concrete building with Store and 1 Story Brick or Stone or Concrete Extension, 5 Story Brick or Stone or Concrete building with Store." [Bromley. 1955 Manhattan Land Book, p. 23.]</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">18</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;sixty-nine, the Cooper Square Arts Theatre there, Louis Abolafia and the fifth smash week, two plays running racy, the nudity oblique, curtain eight-forty-five, reservations to ring&rdquo;</p>
+            <div class="source">
+              <span class="tag">Cooper Square Arts Theatre</span>
+              <p class="citation">"LOUIS ABOLAFIA Proudly Presents, 5th SMASH WEEK TWO PLAYS... At Cooper Square Arts Theatre 35 Cooper Square... CURTAIN 8:45 P.M." [Unknown Author. (1969) The East Village Other, p. 17.]</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">19</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;seventy-six Sobossek's Supper Club swing, Arthur Russell on the cello, free shows in the room — experimental composer in the low-lit gloom&rdquo;</p>
+            <div class="source">
+              <span class="tag">Sobossek's Supper Club</span>
+              <p class="citation">"SOBOSSEK'S SUPER CLUB 35 Cooper Sq. Located just off the Bowery, Sobossek's Supper Club hosted a series of free shows by cellist, singer, and experimental composer Arthur Russell in 1976." [Katz &amp; Kott. (2018) Rock and Roll Explorer Guide to New York, p. 153.]</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">20</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;two-thousand-fourteen pressed the strata to ground&rdquo;</p>
+            <div class="source">
+              <span class="tag">Oasis Map</span>
+              <p class="citation">"Was built in 2014." [Unknown Author. Oasis Map, p. 1.]</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="verse" id="outro">
+      <div class="verse-head">
+        <span class="verse-numeral">IV</span>
+        <h2>Outro</h2>
+        <span class="verse-rule"></span>
+      </div>
+      <div class="cards">
+        
+        <article class="card">
+          <div class="card-index">21</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Cooper 35, Koop, the patio's shade&rdquo;</p>
+            <div class="source">
+              <span class="tag">Cooper 35 Asian Pub</span>
+              <p class="citation">"Cooper 35 Asian Pub" [Murphy. (2023) Murph Guide Closed Bars, p. 13.]</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">22</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Librae in the base where the babka holds sway&rdquo;</p>
+            <div class="source">
+              <span class="tag">Librae Bakery</span>
+              <p class="citation">"Librae Bakery, 35 Cooper Sq, 10003, Middle Eastern inspired baked goods with babka." [Block. (2023) New York Block by Block, p. 66.]</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+</main>
+
+<footer>
+  <p>Outernet Music &mdash; Cooper Union Series &mdash; <a href="https://github.com/Willhoward89/Outernet-Music" target="_blank" rel="noopener">github.com/Willhoward89/Outernet&#8209;Music</a></p>
+</footer>
+
+</body>
+</html>
