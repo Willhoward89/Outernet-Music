@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>32 Cooper Square &mdash; Thirty-Two Cooper Square (Paresis Blues)</title>
+<meta name="description" content="An annotated track tracing 32 Cooper Square from Paresis Hall, the Bowery's notorious 1890s venue and home to the Cercle Hermaphroditis, through the six-story Barth &amp; Son building raised over it in 1904 &mdash; every line sourced.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --iron: #17181a;
+    --iron-2: #1f2124;
+    --iron-3: #26282c;
+    --steel: #3a3d42;
+    --steel-light: #6b6f76;
+    --ember: #b8481e;
+    --ember-bright: #e8863a;
+    --ember-dim: #7a3116;
+    --paper: #e9e1cd;
+    --paper-2: #ddd3b8;
+    --ink: #2a251d;
+    --ink-soft: #5c5443;
+    --max-w: 780px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--iron);
+    color: var(--paper);
+    font-family: 'Lora', Georgia, serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; }
+
+  ::selection { background: var(--ember); color: var(--paper); }
+
+  /* ---------- Texture ---------- */
+  .grain {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.05;
+    z-index: 50;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative;
+    padding: 5.5rem 1.5rem 3.5rem;
+    text-align: center;
+    overflow: hidden;
+    background: radial-gradient(ellipse at 50% 120%, var(--ember-dim) 0%, var(--iron) 62%);
+    border-bottom: 1px solid var(--steel);
+  }
+
+  .facade {
+    position: absolute;
+    left: 50%;
+    bottom: -6px;
+    transform: translateX(-50%);
+    width: min(920px, 130%);
+    opacity: 0.55;
+    z-index: 0;
+  }
+
+  .hero-inner { position: relative; z-index: 1; }
+
+  /* ---------- Site photo ---------- */
+  .site-photo {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 2.4rem 1.4rem 0;
+  }
+
+  .site-photo figure { margin: 0; }
+
+  .site-photo img {
+    width: 100%;
+    display: block;
+    border-radius: 6px;
+    border: 1px solid var(--steel);
+    filter: grayscale(0.2) sepia(0.22) contrast(1.06) saturate(0.95);
+  }
+
+  .site-photo figcaption {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--steel-light);
+    padding: 0.7rem 0.1rem 0;
+  }
+
+  .site-photo figcaption .cap-ember { color: var(--ember-bright); }
+
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ember-bright);
+    margin: 0 0 1.1rem;
+  }
+
+  .eyebrow span { color: var(--steel-light); }
+
+  h1.title {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2rem, 7vw, 4rem);
+    line-height: 0.98;
+    letter-spacing: 0.01em;
+    margin: 0;
+    color: var(--paper);
+    text-transform: uppercase;
+  }
+
+  h1.title .addr { display: block; font-size: 0.42em; letter-spacing: 0.12em; color: var(--steel-light); font-weight: 700; margin-bottom: 0.3rem; }
+
+  .flame-rule {
+    width: 220px;
+    max-width: 60%;
+    height: 4px;
+    margin: 1.4rem auto 1.2rem;
+    background: linear-gradient(90deg, transparent, var(--ember) 15%, var(--ember-bright) 50%, var(--ember) 85%, transparent);
+    border-radius: 2px;
+  }
+
+  .tagline {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--paper-2);
+    margin: 0 0 2.4rem;
+  }
+
+  .dek {
+    max-width: 560px;
+    margin: 0 auto 2.6rem;
+    font-size: 1.02rem;
+    color: var(--paper-2);
+  }
+
+  .dek em { color: var(--ember-bright); font-style: normal; }
+
+  /* ---------- Player ---------- */
+  .player {
+    max-width: 480px;
+    margin: 0 auto;
+    background: var(--iron-2);
+    border: 1px solid var(--steel);
+    border-radius: 10px;
+    padding: 1.1rem 1.2rem 1.3rem;
+    text-align: left;
+  }
+
+  .player-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--steel-light);
+    margin-bottom: 0.7rem;
+  }
+
+  .player-label .rec {
+    color: var(--ember-bright);
+  }
+
+  audio {
+    width: 100%;
+    height: 40px;
+    filter: invert(0.86) grayscale(1) contrast(1.15) sepia(0.3) hue-rotate(-10deg) saturate(2.4);
+    border-radius: 6px;
+  }
+
+  .player-foot {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.66rem;
+    color: var(--steel-light);
+    margin-top: 0.65rem;
+    letter-spacing: 0.04em;
+  }
+
+  /* ---------- Sticky mini-nav ---------- */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: rgba(23, 24, 26, 0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--steel);
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+  }
+  .nav::-webkit-scrollbar { display: none; }
+
+  .nav-inner {
+    display: flex;
+    gap: 0.4rem;
+    padding: 0.7rem 1.2rem;
+    max-width: var(--max-w);
+    margin: 0 auto;
+  }
+
+  .nav-link {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--paper-2);
+    padding: 0.4rem 0.7rem;
+    border: 1px solid var(--steel);
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+  .nav-link:hover { border-color: var(--ember); color: var(--ember-bright); }
+  .nav-numeral { color: var(--ember); font-weight: 600; }
+
+  /* ---------- Verses ---------- */
+  main {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 3.2rem 1.4rem 5rem;
+  }
+
+  .verse { margin-bottom: 4rem; scroll-margin-top: 4.2rem; }
+  .verse:last-child { margin-bottom: 0; }
+
+  .verse-head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.9rem;
+    margin-bottom: 1.6rem;
+  }
+
+  .verse-numeral {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 700;
+    font-size: 1.9rem;
+    color: var(--ember);
+    line-height: 1;
+  }
+
+  .verse-head h2 {
+    font-family: 'IBM Plex Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: var(--paper);
+    margin: 0;
+    white-space: nowrap;
+  }
+
+  .verse-rule {
+    flex: 1;
+    height: 1px;
+    background: var(--steel);
+  }
+
+  .cards { display: flex; flex-direction: column; gap: 1.1rem; }
+
+  .card {
+    display: flex;
+    gap: 0.9rem;
+    background: var(--iron-2);
+    border: 1px solid var(--steel);
+    border-left: 3px solid var(--ember);
+    border-radius: 4px;
+    padding: 1.1rem 1.2rem;
+    transition: border-left-color 0.2s ease, background 0.2s ease;
+  }
+
+  .card:hover {
+    border-left-color: var(--ember-bright);
+    background: var(--iron-3);
+  }
+
+  .card-index {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--steel-light);
+    padding-top: 0.15rem;
+    flex-shrink: 0;
+  }
+
+  .lyric {
+    font-family: 'Lora', Georgia, serif;
+    font-weight: 600;
+    font-style: italic;
+    font-size: 1.08rem;
+    line-height: 1.4;
+    color: var(--paper);
+    margin: 0 0 0.75rem;
+  }
+
+  .source {
+    background: var(--paper);
+    color: var(--ink);
+    border-radius: 3px;
+    padding: 0.7rem 0.85rem 0.75rem;
+  }
+
+  .tag {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ember-dim);
+    background: var(--paper-2);
+    border: 1px solid var(--ember-dim);
+    border-radius: 3px;
+    padding: 0.15rem 0.45rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .citation {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  /* ---------- Footer ---------- */
+  footer {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 1.4rem 4rem;
+    text-align: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--steel-light);
+  }
+
+  footer a { color: var(--ember-bright); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  @media (max-width: 520px) {
+    .card { flex-direction: column; gap: 0.4rem; }
+    .verse-head h2 { font-size: 0.78rem; letter-spacing: 0.12em; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+<div class="grain"></div>
+
+<header class="hero">
+  <svg class="facade" viewBox="0 0 900 220" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+    <!-- the standing six-story Barth & Son facade, dentiled cornice -->
+    <g stroke="#e8863a" stroke-width="2" opacity="0.5" fill="none">
+      <rect x="330" y="26" width="240" height="180"/>
+      <line x1="330" y1="50" x2="570" y2="50"/>
+      <line x1="330" y1="76" x2="570" y2="76"/>
+      <line x1="330" y1="102" x2="570" y2="102"/>
+      <line x1="330" y1="128" x2="570" y2="128"/>
+      <line x1="330" y1="154" x2="570" y2="154"/>
+    </g>
+    <g stroke="#e8863a" stroke-width="1.2" opacity="0.4">
+      <line x1="330" y1="18" x2="570" y2="18"/>
+      <line x1="336" y1="18" x2="336" y2="26"/>
+      <line x1="350" y1="18" x2="350" y2="26"/>
+      <line x1="364" y1="18" x2="364" y2="26"/>
+      <line x1="378" y1="18" x2="378" y2="26"/>
+      <line x1="392" y1="18" x2="392" y2="26"/>
+      <line x1="406" y1="18" x2="406" y2="26"/>
+      <line x1="420" y1="18" x2="420" y2="26"/>
+      <line x1="434" y1="18" x2="434" y2="26"/>
+      <line x1="448" y1="18" x2="448" y2="26"/>
+      <line x1="462" y1="18" x2="462" y2="26"/>
+      <line x1="476" y1="18" x2="476" y2="26"/>
+      <line x1="490" y1="18" x2="490" y2="26"/>
+      <line x1="504" y1="18" x2="504" y2="26"/>
+      <line x1="518" y1="18" x2="518" y2="26"/>
+      <line x1="532" y1="18" x2="532" y2="26"/>
+      <line x1="546" y1="18" x2="546" y2="26"/>
+      <line x1="560" y1="18" x2="560" y2="26"/>
+    </g>
+    <!-- the ghosted seam: the buried three-story hall, dashed, fainter -->
+    <g stroke="#b8481e" stroke-width="1.6" opacity="0.4" stroke-dasharray="4 4" fill="none">
+      <rect x="330" y="128" width="240" height="78"/>
+      <text x="576" y="132" font-family="IBM Plex Mono, monospace" font-size="8" fill="#b8481e" opacity="0.6">seam</text>
+    </g>
+    <!-- arched door pediments at grade -->
+    <g stroke="#e8863a" stroke-width="1.6" opacity="0.45" fill="none">
+      <path d="M355,206 L355,182 Q365,168 375,182 L375,206"/>
+      <path d="M525,206 L525,182 Q535,168 545,182 L545,206"/>
+    </g>
+    <text x="450" y="14" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" letter-spacing="2" fill="#e8863a" opacity="0.6">1904</text>
+    <line x1="20" y1="206" x2="880" y2="206" stroke="#e8863a" stroke-width="1.3" opacity="0.3"/>
+  </svg>
+
+  <div class="hero-inner">
+    <p class="eyebrow">Outernet Music <span>&middot;</span> Cooper Union</p>
+    <h1 class="title"><span class="addr">32 Cooper Square</span>Thirty&#8209;Two Cooper Square (Paresis Blues)</h1>
+    <div class="flame-rule"></div>
+    <p class="dek">Every line traces one address through <em>over 170 years</em> &mdash; Paresis Hall, the Bowery&rsquo;s notorious 1890s venue and home to the Cercle Hermaphroditis, one of the country&rsquo;s earliest transgender advocacy groups, raided by police before the six&#8209;story Barth &amp; Son building rose over it in 1904, burying a seam the survey still can&rsquo;t explain. Sourced line by line below.</p>
+
+    <div class="player">
+      <div class="player-label"><span class="rec">&#9679; Track</span><span>04:33</span></div>
+      <audio controls preload="metadata" src="32-cooper-square-thirty-two-cooper-square-paresis-blues.mp3">
+        Your browser does not support the audio element. <a href="32-cooper-square-thirty-two-cooper-square-paresis-blues.mp3">Download the track</a>.
+      </audio>
+      <div class="player-foot"><span>32 Cooper Square, NY</span><span>Paresis Blues</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="site-photo">
+  <figure>
+    <img src="32-cooper-square-building-photo.jpg" alt="32 Cooper Square today, photographed from the street">
+    <figcaption><span>Cooper Square, present day</span><span class="cap-ember">32 Cooper Square, six stories, 1904</span></figcaption>
+  </figure>
+</div>
+
+<nav class="nav">
+  <div class="nav-inner">
+          <a href="#verse-1" class="nav-link"><span class="nav-numeral">I</span>Verse 1</a>
+          <a href="#chorus-(all-four-repetitions)" class="nav-link"><span class="nav-numeral">II</span>Chorus (all four repetitions)</a>
+          <a href="#verse-2" class="nav-link"><span class="nav-numeral">III</span>Verse 2</a>
+          <a href="#bridge" class="nav-link"><span class="nav-numeral">IV</span>Bridge</a>
+  </div>
+</nav>
+
+<main>
+
+    <section class="verse" id="verse-1">
+      <div class="verse-head">
+        <span class="verse-numeral">I</span>
+        <h2>Verse 1</h2>
+        <span class="verse-rule"></span>
+      </div>
+      <div class="cards">
+        
+        <article class="card">
+          <div class="card-index">01</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Start at the footing where the sidewalk meets the stone —<br>thirty-two Cooper Square, six stories brick, alone,<br>built in nineteen-oh-four, that's the cornerstone I set&rdquo;</p>
+            <div class="source">
+              <span class="tag">Landmarks Preservation Commission</span>
+              <p class="citation">"Was built in 1904." [Unknown Author. "Landmarks Preservation Commission," p. 1.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">02</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;every line I run from that, no line I run forget.<br>Load-bearing masonry, a store cut in the base,<br>a one-story brick extension bolted to the rear of the place&rdquo;</p>
+            <div class="source">
+              <span class="tag">Barth &amp; Son</span>
+              <p class="citation">"In the 1916 Atlas of the Borough of Manhattan, on 32 Cooper Square, there is written 'Barth &amp; Son' as well as reference to 1 Structure; 6 Story Brick building with Store and 1 Story Brick Extension." [G W Bromley &amp; Co. "1916 Atlas of the Borough of Manhattan," p. 34.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">03</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;'Barth &amp; Son' stamped in the atlas ink of 'sixteen&rdquo;</p>
+            <div class="source">
+              <span class="tag">Barth &amp; Son</span>
+              <p class="citation">"In the 1916 Atlas of the Borough of Manhattan, on 32 Cooper Square, there is written 'Barth &amp; Son'..." [G W Bromley &amp; Co. "1916 Atlas of the Borough of Manhattan," p. 34.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">04</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;same six-story brick, same store, in the 'thirty land-book scene&rdquo;</p>
+            <div class="source">
+              <span class="tag">Barth &amp; Son</span>
+              <p class="citation">"In the 1930 Land Book of the Borough of Manhattan, on 32 Cooper Square, there is written 'Barth &amp; Son' as well as reference to 1 Structure; 6 Story Brick building with Store and 1 Story Brick Extension." [Bromley. "1930 Land Book of the Borough of Manhattan," p. 28.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">05</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;One structure on the lot, the record keeps it terse,<br>a store beneath the dwelling floors, extension in the verse&rdquo;</p>
+            <div class="source">
+              <span class="tag">Barth &amp; Son</span>
+              <p class="citation">"1 Structure; 6 Story Brick building with Store and 1 Story Brick Extension." [Bromley. "1930 Land Book of the Borough of Manhattan," p. 28.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">06</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Fenestration marching flat, no reveal, no frill,<br>a working elevation, mercantile and still —<br>and up at the parapet a seam the survey can't explain,<br>where a three-story past got buried under six of brick and rain&rdquo;</p>
+            <div class="source">
+              <span class="tag">Barth &amp; Son</span>
+              <p class="citation">"In the 1897 Bromleys Atlas, on 32 Cooper Square, there is reference to 1 Structure; 3 Story Brick building." [Bromley. "1897 Bromleys Atlas," p. 16.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="verse" id="chorus-(all-four-repetitions)">
+      <div class="verse-head">
+        <span class="verse-numeral">II</span>
+        <h2>Chorus (all four repetitions)</h2>
+        <span class="verse-rule"></span>
+      </div>
+      <div class="cards">
+        
+        <article class="card">
+          <div class="card-index">07</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Same lot. Same ground. Same number on the door —<br>thirty-two Cooper Square, the Bowery at the core.<br>Whatever they raised, whatever came down,<br>the coordinates hold when the walls hit the ground.<br>Before the brick, after the brick, the parcel stays the same —<br>the street remembers the address long after it forgets the name&rdquo;</p>
+            <div class="source">
+              <span class="tag">Barth &amp; Son</span>
+              <p class="citation">"This part of the Bowery (today 32 Cooper Square)..." [Millar. "(2023) New York Offbeat Walks," p. 156.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="verse" id="verse-2">
+      <div class="verse-head">
+        <span class="verse-numeral">III</span>
+        <h2>Verse 2</h2>
+        <span class="verse-rule"></span>
+      </div>
+      <div class="cards">
+        
+        <article class="card">
+          <div class="card-index">08</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Drop to the deepest stratum, eighteen-fifty-three,<br>first-class brick-or-stone with a coped and metal-roofed decree,<br>a dwelling with a store beneath, extension in the back,<br>a Perris-mapped foundation laid down flat on the track&rdquo;</p>
+            <div class="source">
+              <span class="tag">Barth &amp; Son</span>
+              <p class="citation">"In the 1853 Perris Maps, on 32 Cooper Square, there is reference to 1 Structure; Brick or Stone dwellings first class (slate or metal roof &amp; coped) with store under and Brick or Stone Extension." [Perris. "1853 Perris Maps," p. 60.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">09</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;By 'sixty-seven Dripps just calls it one plain building's mass&rdquo;</p>
+            <div class="source">
+              <span class="tag">Barth &amp; Son</span>
+              <p class="citation">"In the 1867 Dripps Plan, on 32 Cooper Square, there is reference to 1 Structure; Building." [Dripps. "1867 Dripps Plan," p. 7.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">10</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;by 'eighty-five two structures — one brick, one wood — on the pass&rdquo;</p>
+            <div class="source">
+              <span class="tag">Barth &amp; Son</span>
+              <p class="citation">"In the 1885 Robinson Atlas, on 32 Cooper Square, there is reference to 2 structures; Brick building, Wood building." [Robinson. "1885 Robinson Atlas," p. 12.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">11</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Then eighteen-ninety-seven, three-story brick alone&rdquo;</p>
+            <div class="source">
+              <span class="tag">Barth &amp; Son</span>
+              <p class="citation">"In the 1897 Bromleys Atlas, on 32 Cooper Square, there is reference to 1 Structure; 3 Story Brick building." [Bromley. "1897 Bromleys Atlas," p. 16.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">12</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Columbia Hall breathing in that low-slung Bowery stone&rdquo;</p>
+            <div class="source">
+              <span class="tag">Columbia Hall</span>
+              <p class="citation">"This part of the Bowery (today 32 Cooper Square) was once home to Columbia Hall, a gay nightspot and male brothel in the 1890s." [Millar. "(2023) New York Offbeat Walks," p. 156.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">13</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;'Paresis Hall' the cognoscenti named it, plain and cold&rdquo;</p>
+            <div class="source">
+              <span class="tag">Paresis Hall</span>
+              <p class="citation">"Columbia Hall at 392 Bowery (better known to the cognoscenti as Paresis Hall, in honor of the medical term for syphilitic insanity)..." [Long. "(2009) The Forbidden Apple," p. 23.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">14</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;'after the medical term for syphilitic insanity,' so it's told&rdquo;</p>
+            <div class="source">
+              <span class="tag">Paresis Hall</span>
+              <p class="citation">"in honor of the medical term for syphilitic insanity." [Long. "(2009) The Forbidden Apple," p. 23.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">15</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;The Bowery gave entertainment for unconventional taste,<br>male prostitutes as open as the female in that place&rdquo;</p>
+            <div class="source">
+              <span class="tag">Paresis Hall</span>
+              <p class="citation">"Only the Bowery provided entertainment for more unconventional tastes: male prostitutes could be found as easily as female, and relatively openly for the Victorian age." [Long. "(2009) The Forbidden Apple," p. 23.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">16</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Owned by a gangster tied to the Five Points crew&rdquo;</p>
+            <div class="source">
+              <span class="tag">Columbia Hall</span>
+              <p class="citation">"a gay nightspot and male brothel in the 1890s that was owned by a gangster connected to the infamous Five Points Gang." [Millar. "(2023) New York Offbeat Walks," p. 156.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">17</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;a gay nightspot, a male brothel, the 'nineties bringing through&rdquo;</p>
+            <div class="source">
+              <span class="tag">Columbia Hall</span>
+              <p class="citation">"was once home to Columbia Hall, a gay nightspot and male brothel in the 1890s." [Millar. "(2023) New York Offbeat Walks," p. 156.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">18</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;the Cercle Hermaphroditis in the room above the bar&rdquo;</p>
+            <div class="source">
+              <span class="tag">Cercle Hermaphroditis</span>
+              <p class="citation">"used by Cercle Hermaphrodites—described today as the first transgender advocacy group in the country." [Millar. "(2023) New York Offbeat Walks," p. 156.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">19</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;'to unite for defense against the world's bitter persecution' — that's who they are&rdquo;</p>
+            <div class="source">
+              <span class="tag">Cercle Hermaphroditis</span>
+              <p class="citation">"formed 'to unite for defense against the world's bitter persecution.'" [Millar. "(2023) New York Offbeat Walks," p. 156.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">20</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;They rented up the stairs to store the clothes and change to drag&rdquo;</p>
+            <div class="source">
+              <span class="tag">Cercle Hermaphroditis</span>
+              <p class="citation">"which rented the room above the saloon as a place where its members could store their clothes and change into drag before spending the evening downstairs." [DeVillo. "(2019) The Bowery," p. 138.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">21</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;commuters from the mainstream chasing secret evenings off the mag&rdquo;</p>
+            <div class="source">
+              <span class="tag">Cercle Hermaphroditis</span>
+              <p class="citation">"Many of these men were from mainstream neighborhoods and occupations who commuted to the Bowery to pursue their secret hobby." [DeVillo. "(2019) The Bowery," p. 138.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">22</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;'a place where fancy gentlemen go,' the eighteen-ninety-nine report&rdquo;</p>
+            <div class="source">
+              <span class="tag">Paresis Hall</span>
+              <p class="citation">"A report in 1899 recorded a visit by city vice investigators: 'That is a place where fancy gentlemen go...'" [Long. "(2009) The Forbidden Apple," p. 23.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">23</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;city and state politicians present, taking in the sport&rdquo;</p>
+            <div class="source">
+              <span class="tag">Paresis Hall</span>
+              <p class="citation">"The inspectors also noted numerous city and state politicians present, taking in the sights." [Long. "(2009) The Forbidden Apple," p. 23.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">24</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;'Most of them are painted and powdered,' the inspector would swear&rdquo;</p>
+            <div class="source">
+              <span class="tag">Paresis Hall</span>
+              <p class="citation">"well, they act effeminately; most of them are painted and powdered." [Long. "(2009) The Forbidden Apple," p. 23.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">25</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;'a well-known resort for male prostitutes; a reputation far and wide' in the air&rdquo;</p>
+            <div class="source">
+              <span class="tag">Paresis Hall</span>
+              <p class="citation">"That is a well-known resort for male prostitutes; a place having a reputation far and wide, to the best of my knowledge." [Long. "(2009) The Forbidden Apple," p. 23.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">26</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;'Jennie June' wrote of the preachers thundering 'Sodom!' in the pews&rdquo;</p>
+            <div class="source">
+              <span class="tag">Paresis Hall</span>
+              <p class="citation">"'Jennie June,' wrote in his autobiography of 'preachers in New York pulpits of the decade would thunder Philippics against the 'Hall,' referring to it in bated breath as 'Sodom!'" [Long. "(2009) The Forbidden Apple," p. 23.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">27</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;'congenital goody-goodies,' he called them, in his news&rdquo;</p>
+            <div class="source">
+              <span class="tag">Paresis Hall</span>
+              <p class="citation">"the 'Hall's' distinctive clientele were congenital goody-goodies, incapable (by disposition) of ever inflicting the least detriment on a single soul." [Long. "(2009) The Forbidden Apple," p. 23.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">28</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;till the 'not-care-a-damn' politicians had to stage the raid on cue&rdquo;</p>
+            <div class="source">
+              <span class="tag">Paresis Hall</span>
+              <p class="citation">"the 'not-care-a-damn' politicians who ruled little old New York had finally to stage a spectacular raid." [Long. "(2009) The Forbidden Apple," p. 23.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">29</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;three-story hall, 'bitterly hated,' scattered off the floor&rdquo;</p>
+            <div class="source">
+              <span class="tag">Paresis Hall</span>
+              <p class="citation">"the 'Hall's' distinctive clientele were bitterly hated, and finally scattered by police." [Long. "(2009) The Forbidden Apple," p. 23.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">30</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;held on the ledger till the wreckers came before nineteen-oh-four&rdquo;</p>
+            <div class="source">
+              <span class="tag">Landmarks Preservation Commission</span>
+              <p class="citation">"Was built in 1904." [Unknown Author. "Landmarks Preservation Commission," p. 1.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="verse" id="bridge">
+      <div class="verse-head">
+        <span class="verse-numeral">IV</span>
+        <h2>Bridge</h2>
+        <span class="verse-rule"></span>
+      </div>
+      <div class="cards">
+        
+        <article class="card">
+          <div class="card-index">31</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Nineteen-oh-four — the rupture, plain, no grief allowed&rdquo;</p>
+            <div class="source">
+              <span class="tag">Landmarks Preservation Commission</span>
+              <p class="citation">"Was built in 1904." [Unknown Author. "Landmarks Preservation Commission," p. 1.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">32</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;the three-story brick relieved of load, its lintels pulled and bowed,<br>the party wall confessing where the old hall used to end,<br>foundation orphaned under six new floors it can't defend&rdquo;</p>
+            <div class="source">
+              <span class="tag">Barth &amp; Son</span>
+              <p class="citation">"In the 1897 Bromleys Atlas, on 32 Cooper Square, there is reference to 1 Structure; 3 Story Brick building." [Bromley. "1897 Bromleys Atlas," p. 16.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">33</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Where a wooden second structure stood in 'eighty-five it's gone&rdquo;</p>
+            <div class="source">
+              <span class="tag">Barth &amp; Son</span>
+              <p class="citation">"In the 1885 Robinson Atlas, on 32 Cooper Square, there is reference to 2 structures; Brick building, Wood building." [Robinson. "1885 Robinson Atlas," p. 12.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">34</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;where the Cercle stored their dresses now the mercantile lives on&rdquo;</p>
+            <div class="source">
+              <span class="tag">Cercle Hermaphroditis</span>
+              <p class="citation">"which rented the room above the saloon as a place where its members could store their clothes and change into drag." [DeVillo. "(2019) The Bowery," p. 138.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">35</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;'Barth &amp; Son,' a store, an extension, brick on brick relaid&rdquo;</p>
+            <div class="source">
+              <span class="tag">Barth &amp; Son</span>
+              <p class="citation">"In the 1916 Atlas of the Borough of Manhattan, on 32 Cooper Square, there is written 'Barth &amp; Son' as well as reference to 1 Structure; 6 Story Brick building with Store and 1 Story Brick Extension." [G W Bromley &amp; Co. "1916 Atlas of the Borough of Manhattan," p. 34.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">36</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;still standing in the 'fifty-five land-book, six stories and a trade&rdquo;</p>
+            <div class="source">
+              <span class="tag">Barth &amp; Son</span>
+              <p class="citation">"In the 1955 Manhattan Land Book, on 32 Cooper Square, there is reference to 1 Structure; 6 story brick building with stores and a 1 story brick extension." [Bromley. "1955 Manhattan Land Book," p. 23.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">37</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;the raid, the wreck, the pour, the deed, no marker and no name,<br>just the seam up at the roofline where two centuries hold the frame&rdquo;</p>
+            <div class="source">
+              <span class="tag">Landmarks Preservation Commission</span>
+              <p class="citation">"Was built in 1904." [Unknown Author. "Landmarks Preservation Commission," p. 1.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+</main>
+
+<footer>
+  <p>Outernet Music &mdash; Cooper Union Series &mdash; <a href="https://github.com/Willhoward89/Outernet-Music" target="_blank" rel="noopener">github.com/Willhoward89/Outernet&#8209;Music</a></p>
+</footer>
+
+</body>
+</html>
