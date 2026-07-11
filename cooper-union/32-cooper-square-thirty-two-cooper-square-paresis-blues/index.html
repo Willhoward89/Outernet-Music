@@ -58,52 +58,48 @@
     padding: 5.5rem 1.5rem 3.5rem;
     text-align: center;
     overflow: hidden;
-    background: radial-gradient(ellipse at 50% 120%, var(--ember-dim) 0%, var(--iron) 62%);
+    background: radial-gradient(ellipse at 50% 120%, rgba(184,72,30,0.35) 0%, rgba(23,24,26,0.05) 62%);
     border-bottom: 1px solid var(--steel);
   }
 
-  .facade {
-    position: absolute;
-    left: 50%;
-    bottom: -6px;
-    transform: translateX(-50%);
-    width: min(920px, 130%);
-    opacity: 0.55;
-    z-index: 0;
+  .bg-photo {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    background-image: url('32-cooper-square-building-photo.jpg');
+    background-size: cover;
+    background-position: center 15%;
+    background-repeat: no-repeat;
+    filter: grayscale(0.1) sepia(0.15) contrast(1.02) brightness(0.85);
+  }
+
+  .bg-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(180deg, rgba(23,24,26,0.2) 0%, rgba(23,24,26,0.5) 25%, rgba(23,24,26,0.78) 55%, var(--iron) 100%);
   }
 
   .hero-inner { position: relative; z-index: 1; }
 
-  /* ---------- Site photo ---------- */
-  .site-photo {
+  .photo-credit {
+    position: relative;
+    z-index: 1;
     max-width: var(--max-w);
     margin: 0 auto;
-    padding: 2.4rem 1.4rem 0;
+    padding: 0 1.4rem;
+    text-align: right;
   }
 
-  .site-photo figure { margin: 0; }
-
-  .site-photo img {
-    width: 100%;
-    display: block;
-    border-radius: 6px;
-    border: 1px solid var(--steel);
-    filter: grayscale(0.2) sepia(0.22) contrast(1.06) saturate(0.95);
-  }
-
-  .site-photo figcaption {
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
+  .photo-credit span {
+    display: inline-block;
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.68rem;
+    font-size: 0.64rem;
     letter-spacing: 0.06em;
     text-transform: uppercase;
     color: var(--steel-light);
-    padding: 0.7rem 0.1rem 0;
+    padding-top: 0.6rem;
   }
-
-  .site-photo figcaption .cap-ember { color: var(--ember-bright); }
 
   .eyebrow {
     font-family: 'IBM Plex Mono', monospace;
@@ -112,6 +108,7 @@
     text-transform: uppercase;
     color: var(--ember-bright);
     margin: 0 0 1.1rem;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.85);
   }
 
   .eyebrow span { color: var(--steel-light); }
@@ -125,6 +122,7 @@
     margin: 0;
     color: var(--paper);
     text-transform: uppercase;
+    text-shadow: 0 3px 16px rgba(0,0,0,0.9);
   }
 
   h1.title .addr { display: block; font-size: 0.42em; letter-spacing: 0.12em; color: var(--steel-light); font-weight: 700; margin-bottom: 0.3rem; }
@@ -145,6 +143,7 @@
     text-transform: uppercase;
     color: var(--paper-2);
     margin: 0 0 2.4rem;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.85);
   }
 
   .dek {
@@ -152,6 +151,7 @@
     margin: 0 auto 2.6rem;
     font-size: 1.02rem;
     color: var(--paper-2);
+    text-shadow: 0 2px 10px rgba(0,0,0,0.85);
   }
 
   .dek em { color: var(--ember-bright); font-style: normal; }
@@ -375,52 +375,10 @@
 </head>
 <body>
 <div class="grain"></div>
+<div class="bg-photo"></div>
+<div class="bg-overlay"></div>
 
 <header class="hero">
-  <svg class="facade" viewBox="0 0 900 220" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
-    <!-- the standing six-story Barth & Son facade, dentiled cornice -->
-    <g stroke="#e8863a" stroke-width="2" opacity="0.5" fill="none">
-      <rect x="330" y="26" width="240" height="180"/>
-      <line x1="330" y1="50" x2="570" y2="50"/>
-      <line x1="330" y1="76" x2="570" y2="76"/>
-      <line x1="330" y1="102" x2="570" y2="102"/>
-      <line x1="330" y1="128" x2="570" y2="128"/>
-      <line x1="330" y1="154" x2="570" y2="154"/>
-    </g>
-    <g stroke="#e8863a" stroke-width="1.2" opacity="0.4">
-      <line x1="330" y1="18" x2="570" y2="18"/>
-      <line x1="336" y1="18" x2="336" y2="26"/>
-      <line x1="350" y1="18" x2="350" y2="26"/>
-      <line x1="364" y1="18" x2="364" y2="26"/>
-      <line x1="378" y1="18" x2="378" y2="26"/>
-      <line x1="392" y1="18" x2="392" y2="26"/>
-      <line x1="406" y1="18" x2="406" y2="26"/>
-      <line x1="420" y1="18" x2="420" y2="26"/>
-      <line x1="434" y1="18" x2="434" y2="26"/>
-      <line x1="448" y1="18" x2="448" y2="26"/>
-      <line x1="462" y1="18" x2="462" y2="26"/>
-      <line x1="476" y1="18" x2="476" y2="26"/>
-      <line x1="490" y1="18" x2="490" y2="26"/>
-      <line x1="504" y1="18" x2="504" y2="26"/>
-      <line x1="518" y1="18" x2="518" y2="26"/>
-      <line x1="532" y1="18" x2="532" y2="26"/>
-      <line x1="546" y1="18" x2="546" y2="26"/>
-      <line x1="560" y1="18" x2="560" y2="26"/>
-    </g>
-    <!-- the ghosted seam: the buried three-story hall, dashed, fainter -->
-    <g stroke="#b8481e" stroke-width="1.6" opacity="0.4" stroke-dasharray="4 4" fill="none">
-      <rect x="330" y="128" width="240" height="78"/>
-      <text x="576" y="132" font-family="IBM Plex Mono, monospace" font-size="8" fill="#b8481e" opacity="0.6">seam</text>
-    </g>
-    <!-- arched door pediments at grade -->
-    <g stroke="#e8863a" stroke-width="1.6" opacity="0.45" fill="none">
-      <path d="M355,206 L355,182 Q365,168 375,182 L375,206"/>
-      <path d="M525,206 L525,182 Q535,168 545,182 L545,206"/>
-    </g>
-    <text x="450" y="14" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" letter-spacing="2" fill="#e8863a" opacity="0.6">1904</text>
-    <line x1="20" y1="206" x2="880" y2="206" stroke="#e8863a" stroke-width="1.3" opacity="0.3"/>
-  </svg>
-
   <div class="hero-inner">
     <p class="eyebrow">Outernet Music <span>&middot;</span> Cooper Union</p>
     <h1 class="title"><span class="addr">32 Cooper Square</span>Thirty&#8209;Two Cooper Square (Paresis Blues)</h1>
@@ -437,12 +395,7 @@
   </div>
 </header>
 
-<div class="site-photo">
-  <figure>
-    <img src="32-cooper-square-building-photo.jpg" alt="32 Cooper Square today, photographed from the street">
-    <figcaption><span>Cooper Square, present day</span><span class="cap-ember">32 Cooper Square, six stories, 1904</span></figcaption>
-  </figure>
-</div>
+<p class="photo-credit"><span>Photo: 32 Cooper Square, present day</span></p>
 
 <nav class="nav">
   <div class="nav-inner">
