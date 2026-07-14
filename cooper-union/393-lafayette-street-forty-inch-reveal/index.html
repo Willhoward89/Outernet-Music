@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>393 Lafayette Street &mdash; Forty-Inch Reveal</title>
+<meta name="description" content="An annotated track tracing the DeVinne Press Building at 393 Lafayette Street &mdash; Babb, Cook & Willard's 1885 load-bearing brick masterwork, where Theodore Low De Vinne printed Scribner's and The Century, landmarked in 1966 &mdash; every line sourced.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --iron: #17181a;
+    --iron-2: #1f2124;
+    --iron-3: #26282c;
+    --steel: #3a3d42;
+    --steel-light: #6b6f76;
+    --ember: #b8481e;
+    --ember-bright: #e8863a;
+    --ember-dim: #7a3116;
+    --paper: #e9e1cd;
+    --paper-2: #ddd3b8;
+    --ink: #2a251d;
+    --ink-soft: #5c5443;
+    --max-w: 780px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--iron);
+    color: var(--paper);
+    font-family: 'Lora', Georgia, serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; }
+
+  ::selection { background: var(--ember); color: var(--paper); }
+
+  /* ---------- Texture ---------- */
+  .grain {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.05;
+    z-index: 50;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative;
+    padding: 5.5rem 1.5rem 3.5rem;
+    text-align: center;
+    overflow: hidden;
+    background: radial-gradient(ellipse at 50% 120%, rgba(184,72,30,0.35) 0%, rgba(23,24,26,0.05) 62%);
+    border-bottom: 1px solid var(--steel);
+  }
+
+  .bg-photo {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    background-image: url('393-lafayette-street-building-photo.jpg');
+    background-size: cover;
+    background-position: center 15%;
+    background-repeat: no-repeat;
+    filter: grayscale(0.1) sepia(0.15) contrast(1.02) brightness(0.85);
+  }
+
+  .bg-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(180deg, rgba(23,24,26,0.2) 0%, rgba(23,24,26,0.5) 25%, rgba(23,24,26,0.78) 55%, var(--iron) 100%);
+  }
+
+  .hero-inner { position: relative; z-index: 1; }
+
+  .photo-credit {
+    position: relative;
+    z-index: 1;
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 1.4rem;
+    text-align: right;
+  }
+
+  .photo-credit span {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.64rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--steel-light);
+    padding-top: 0.6rem;
+  }
+
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ember-bright);
+    margin: 0 0 1.1rem;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.85);
+  }
+
+  .eyebrow span { color: var(--steel-light); }
+
+  h1.title {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2.4rem, 8vw, 4.6rem);
+    line-height: 0.95;
+    letter-spacing: 0.01em;
+    margin: 0;
+    color: var(--paper);
+    text-transform: uppercase;
+    text-shadow: 0 3px 16px rgba(0,0,0,0.9);
+  }
+
+  h1.title .addr { display: block; font-size: 0.42em; letter-spacing: 0.12em; color: var(--steel-light); font-weight: 700; margin-bottom: 0.3rem; }
+
+  .flame-rule {
+    width: 220px;
+    max-width: 60%;
+    height: 4px;
+    margin: 1.4rem auto 1.2rem;
+    background: linear-gradient(90deg, transparent, var(--ember) 15%, var(--ember-bright) 50%, var(--ember) 85%, transparent);
+    border-radius: 2px;
+  }
+
+  .tagline {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--paper-2);
+    margin: 0 0 2.4rem;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.85);
+  }
+
+  .dek {
+    max-width: 560px;
+    margin: 0 auto 2.6rem;
+    font-size: 1.02rem;
+    color: var(--paper-2);
+    text-shadow: 0 2px 10px rgba(0,0,0,0.85);
+  }
+
+  .dek em { color: var(--ember-bright); font-style: normal; }
+
+  /* ---------- Player ---------- */
+  .player {
+    max-width: 480px;
+    margin: 0 auto;
+    background: var(--iron-2);
+    border: 1px solid var(--steel);
+    border-radius: 10px;
+    padding: 1.1rem 1.2rem 1.3rem;
+    text-align: left;
+  }
+
+  .player-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--steel-light);
+    margin-bottom: 0.7rem;
+  }
+
+  .player-label .rec {
+    color: var(--ember-bright);
+  }
+
+  audio {
+    width: 100%;
+    height: 40px;
+    filter: invert(0.86) grayscale(1) contrast(1.15) sepia(0.3) hue-rotate(-10deg) saturate(2.4);
+    border-radius: 6px;
+  }
+
+  .player-foot {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.66rem;
+    color: var(--steel-light);
+    margin-top: 0.65rem;
+    letter-spacing: 0.04em;
+  }
+
+  /* ---------- Sticky mini-nav ---------- */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: rgba(23, 24, 26, 0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--steel);
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+  }
+  .nav::-webkit-scrollbar { display: none; }
+
+  .nav-inner {
+    display: flex;
+    gap: 0.4rem;
+    padding: 0.7rem 1.2rem;
+    max-width: var(--max-w);
+    margin: 0 auto;
+  }
+
+  .nav-link {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--paper-2);
+    padding: 0.4rem 0.7rem;
+    border: 1px solid var(--steel);
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+  .nav-link:hover { border-color: var(--ember); color: var(--ember-bright); }
+  .nav-numeral { color: var(--ember); font-weight: 600; }
+
+  /* ---------- Verses ---------- */
+  main {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 3.2rem 1.4rem 5rem;
+  }
+
+  .verse { margin-bottom: 4rem; scroll-margin-top: 4.2rem; }
+  .verse:last-child { margin-bottom: 0; }
+
+  .verse-head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.9rem;
+    margin-bottom: 1.6rem;
+  }
+
+  .verse-numeral {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 700;
+    font-size: 1.9rem;
+    color: var(--ember);
+    line-height: 1;
+  }
+
+  .verse-head h2 {
+    font-family: 'IBM Plex Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: var(--paper);
+    margin: 0;
+    white-space: nowrap;
+  }
+
+  .verse-rule {
+    flex: 1;
+    height: 1px;
+    background: var(--steel);
+  }
+
+  .cards { display: flex; flex-direction: column; gap: 1.1rem; }
+
+  .card {
+    display: flex;
+    gap: 0.9rem;
+    background: var(--iron-2);
+    border: 1px solid var(--steel);
+    border-left: 3px solid var(--ember);
+    border-radius: 4px;
+    padding: 1.1rem 1.2rem;
+    transition: border-left-color 0.2s ease, background 0.2s ease;
+  }
+
+  .card:hover {
+    border-left-color: var(--ember-bright);
+    background: var(--iron-3);
+  }
+
+  .card-index {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--steel-light);
+    padding-top: 0.15rem;
+    flex-shrink: 0;
+  }
+
+  .lyric {
+    font-family: 'Lora', Georgia, serif;
+    font-weight: 600;
+    font-style: italic;
+    font-size: 1.08rem;
+    line-height: 1.4;
+    color: var(--paper);
+    margin: 0 0 0.75rem;
+  }
+
+  .source {
+    background: var(--paper);
+    color: var(--ink);
+    border-radius: 3px;
+    padding: 0.7rem 0.85rem 0.75rem;
+  }
+
+  .tag {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ember-dim);
+    background: var(--paper-2);
+    border: 1px solid var(--ember-dim);
+    border-radius: 3px;
+    padding: 0.15rem 0.45rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .citation {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  /* ---------- Footer ---------- */
+  footer {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 1.4rem 4rem;
+    text-align: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--steel-light);
+  }
+
+  footer a { color: var(--ember-bright); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  @media (max-width: 520px) {
+    .card { flex-direction: column; gap: 0.4rem; }
+    .verse-head h2 { font-size: 0.78rem; letter-spacing: 0.12em; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+<div class="grain"></div>
+<div class="bg-photo"></div>
+<div class="bg-overlay"></div>
+
+<header class="hero">
+
+  <div class="hero-inner">
+    <p class="eyebrow">Outernet Music <span>&middot;</span> Cooper Union</p>
+    <h1 class="title"><span class="addr">393 Lafayette Street</span>Forty&#8209;Inch Reveal</h1>
+    <div class="flame-rule"></div>
+    <p class="dek">Every line traces one printing house through <em>140 years</em> &mdash; the DeVinne Press Building, Babb, Cook &amp; Willard&rsquo;s 1885 masterwork of load&#8209;bearing brick with walls three feet thick and forty&#8209;inch window reveals, where Theodore Low De Vinne printed <em>Scribner&rsquo;s</em> and <em>The Century</em> on his own presses, landmarked in 1966 and standing at Lafayette and East 4th today. Sourced line by line below.</p>
+
+    <div class="player">
+      <div class="player-label"><span class="rec">&#9679; Track</span><span>05:41</span></div>
+      <audio controls preload="metadata" src="393-lafayette-street-forty-inch-reveal.mp3">
+        Your browser does not support the audio element. <a href="393-lafayette-street-forty-inch-reveal.mp3">Download the track</a>.
+      </audio>
+      <div class="player-foot"><span>393 Lafayette Street, NY</span><span>Forty&#8209;Inch Reveal</span></div>
+    </div>
+  </div>
+</header>
+
+<p class="photo-credit"><span>Photo: the DeVinne Press Building, present day</span></p>
+
+<nav class="nav">
+  <div class="nav-inner">
+          <a href="#verse-1" class="nav-link"><span class="nav-numeral">I</span>Verse 1</a>
+          <a href="#chorus" class="nav-link"><span class="nav-numeral">II</span>Chorus</a>
+          <a href="#verse-2" class="nav-link"><span class="nav-numeral">III</span>Verse 2</a>
+          <a href="#bridge" class="nav-link"><span class="nav-numeral">IV</span>Bridge</a>
+  </div>
+</nav>
+
+<main>
+
+    <section class="verse" id="verse-1">
+      <div class="verse-head">
+        <span class="verse-numeral">I</span>
+        <h2>Verse 1</h2>
+        <span class="verse-rule"></span>
+      </div>
+      <div class="cards">
+        
+        <article class="card">
+          <div class="card-index">01</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Forty-inch-deep reveals show you the load, the walls run three feet thick&rdquo;</p>
+            <div class="source">
+              <span class="tag">DeVinne Press Building</span>
+              <p class="citation">"The 40-inch-deep reveals on Lafayette Street show the depth of the load-bearing walls of this massive structure in the style of the Romanesque Utilitarian." [Tauranac. (1979) Essential New York, p. 61.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">02</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;no steel skeleton to lean on, so the masonry does the lifting solid&rdquo;</p>
+            <div class="source">
+              <span class="tag">DeVinne Press Building</span>
+              <p class="citation">"Because the brick walls carry the load of this building without the help of a steel frame, they are over three feet thick at the ground floor." [Greene. (2001) New York for New Yorkers, p. 35.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">03</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Babb, Cook &amp; Willard drew it, Romanesque Utilitarian in its mode&rdquo;</p>
+            <div class="source">
+              <span class="tag">DeVinne Press Building</span>
+              <p class="citation">"The architects, Babb. Cook, &amp; Willard, designed this "Romanesque Utilitarian" structure in 1885." [Wolfe. (2003) New York 15 Walking Tours, p. 134.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">04</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;a magnificent pile, less-is-more, the honest weight of what it holds&rdquo;</p>
+            <div class="source">
+              <span class="tag">399 Lafayette Street</span>
+              <p class="citation">"A powerful brick building in the utilitarian manner of late 19th Century industrial buildings... Certainly, here is a sample of "less is more."" [White &amp; Willensky. (1968) AIA Edition 1, p. 74.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">05</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Roman brickwork worthy of the Forum, Basilica of Constantine&rdquo;</p>
+            <div class="source">
+              <span class="tag">DeVinne Press Building</span>
+              <p class="citation">"Roman brickwork worthy of the Roman Forum's Basilica of Constantine." [AIA. (1988) AIA Edition 3, p. 154.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">06</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;finest specimen the bricklayer's craft would ever leave behind&rdquo;</p>
+            <div class="source">
+              <span class="tag">Devinne Press Building</span>
+              <p class="citation">"As fine a specimen of the bricklayer's craft as you are ever likely to see." [Morrone. (1994) Architectural Guidebook, p. 92.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">07</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Bold and deep-incised the arches, segmental and round-arched frames&rdquo;</p>
+            <div class="source">
+              <span class="tag">De Vinne Press Building</span>
+              <p class="citation">"the buildings elevations display interesting contrasts of round-and segmental-arched windows." [Spielvogel. (2016) The Landmarks of New York, p. 316.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">08</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;a trio of three-story arches, sixteen feet wide, near fifty in the same&rdquo;</p>
+            <div class="source">
+              <span class="tag">393-399 Lafayette Street</span>
+              <p class="citation">"the three-story arches on Lafayette Street are 16 feet wide and almost 50 feet high." [Tauranac. (1979) Essential New York, p. 61.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">09</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Basses in a chorus to the sopranos of the windows set&rdquo;</p>
+            <div class="source">
+              <span class="tag">393-399 Lafayette Street</span>
+              <p class="citation">"act as the basses in a chorus to the sopranos of the windows." [Tauranac. (1979) Essential New York, p. 61.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">10</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;some flush against the facade, some deeply recessed, the calculation kept&rdquo;</p>
+            <div class="source">
+              <span class="tag">De Vinne Press Building</span>
+              <p class="citation">"Some of the windows are flush with the facade, others are deeply recessed. The size and placement of these openings has been flawlessly calculated to produce a finely balanced overall composition." [Hennessy. (2020) Walking Broadway, p. 80.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">11</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Taut and smooth and elegant, the effect where seldom brick was used so fine&rdquo;</p>
+            <div class="source">
+              <span class="tag">De Vinne Press Building</span>
+              <p class="citation">"The De Vinne Press Building is massive with thick load-bearing walls, yet the effect is taut, smooth, and elegant. Seldom has brick been employed with greater finesse." [Hennessy. (2020) Walking Broadway, p. 80.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">12</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;brick quoins accent the softly rounded corner where the two walls align&rdquo;</p>
+            <div class="source">
+              <span class="tag">De Vinne Press Building</span>
+              <p class="citation">"At the corner, brick quoins accent the softly rounded transition from one facade to the other." [Hennessy. (2020) Walking Broadway, p. 80.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">13</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Low-pitched roof facing Lafayette flattens to the running cornice run&rdquo;</p>
+            <div class="source">
+              <span class="tag">De Vinne Press Building</span>
+              <p class="citation">"notice how the slightly pitched roof facing Lafayette Street flattens at the corner to make the shift to the running cornice along East Fourth Street." [Hennessy. (2020) Walking Broadway, p. 80.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">14</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;sophisticated fenestration, subtle terra-cotta, delicate but done&rdquo;</p>
+            <div class="source">
+              <span class="tag">De Vinne Press Building</span>
+              <p class="citation">"a masterpiece of 19th-century commercial architecture, with a sophisticated fenestration pattern and subtle terra-cotta detail." [Postal &amp; Dolkart. (2009) Guide to New York City Landmarks, p. 63.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">15</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Understated main portal, latticed wrought-iron gate below&rdquo;</p>
+            <div class="source">
+              <span class="tag">De Vinne Press Building</span>
+              <p class="citation">"don't miss the understated main portal with its fine latticed wrougnt iron gate and pierced terra-cotta frame." [Hennessy. (2020) Walking Broadway, p. 80.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">16</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;pierced terra-cotta frame, no sculpture — just the strength it means to show&rdquo;</p>
+            <div class="source">
+              <span class="tag">De Vinne Press Building</span>
+              <p class="citation">"its facade discloses its role—there is no decoration, no delicate stonework, no sculpture, just an honest expression of strength." [Tauranac. (1979) Essential New York, p. 61.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">17</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Attic story, arcaded openings, a pedimented gable crown&rdquo;</p>
+            <div class="source">
+              <span class="tag">De Vinne Press Building</span>
+              <p class="citation">"the attic story of regular arcaded openings culminating in a subtly pedimented gable facing Lafayette Place that gathered the elements of the design into a striking unity." [Stern. (1999) New York 1880, p. 483.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">18</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;the old establishment name holds ground&rdquo;</p>
+            <div class="source">
+              <span class="tag">De Vinne Press Building</span>
+              <p class="citation">"The name of the old establishment is still visible on the upper facade." [Wolfe. (2003) New York 15 Walking Tours, p. 134.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="verse" id="chorus">
+      <div class="verse-head">
+        <span class="verse-numeral">II</span>
+        <h2>Chorus</h2>
+        <span class="verse-rule"></span>
+      </div>
+      <div class="cards">
+        
+        <article class="card">
+          <div class="card-index">19</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;northeast corner, Fourth Street line, Lafayette holding all of it&rdquo;</p>
+            <div class="source">
+              <span class="tag">393-399 Lafayette Street</span>
+              <p class="citation">"393-399 Lafayette Street (L) . . . 1885... Northeast corner of Fourth Street." [Tauranac. (1979) Essential New York, p. 61.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="verse" id="verse-2">
+      <div class="verse-head">
+        <span class="verse-numeral">III</span>
+        <h2>Verse 2</h2>
+        <span class="verse-rule"></span>
+      </div>
+      <div class="cards">
+        
+        <article class="card">
+          <div class="card-index">20</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;two first-class brick or stone dwellings, slate and coped, extensions, yes&rdquo;</p>
+            <div class="source">
+              <span class="tag">393 Lafayette Street</span>
+              <p class="citation">"In the 1853 Perris Maps, on 393 Lafayette Street, there is reference to 2 structures; Brick or Stone dwellings first class (slate or metal roof &amp; coped) with Brick or Stone Extension, Brick or Stone dwellings first class (slate or metal roof &amp; coped) with Brick or Stone Extension." [Perris. 1853 Perris Maps, p. 60.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">21</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Colonnade Row and the Astors down the way, the old New York they'd known&rdquo;</p>
+            <div class="source">
+              <span class="tag">De Vinne Press</span>
+              <p class="citation">"the long line of Corinthian pillars beyond it mark Colonnade Row, the early home of the Astors and other great families of old New York." [Ingersoll. (1907) Rand McNally's Handy Guide to NYC, p. 91.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">22</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;just Building, Building, Building, Building — the dwellings holding their domain&rdquo;</p>
+            <div class="source">
+              <span class="tag">393 Lafayette Street</span>
+              <p class="citation">"In the 1867 Dripps Plan, on 393 Lafayette Street, there is reference to 4 structures; Building, Building, Building, Building." [Dripps. 1867 Dripps Plan, p. 7.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">23</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Then eighteen eighty-five the Robinson wrote "Printing Ho." on the sheet&rdquo;</p>
+            <div class="source">
+              <span class="tag">Printing Ho.</span>
+              <p class="citation">"In the 1885 Robinson Atlas, on 393 Lafayette Street, there is written 'Printing Ho.' as well as reference to 1 Structure; Brick building." [Robinson. 1885 Robinson Atlas, p. 12.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">24</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Theodore Low De Vinne, born Christmas Day of twenty-eight, took the street&rdquo;</p>
+            <div class="source">
+              <span class="tag">De Vinne Press building</span>
+              <p class="citation">"De Vinne was born Christmas Day 1828, and his career was a fine gift to bibliophiles." [Mondlin &amp; Meador. (2003) Book Row, p. 383.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">25</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Master printer, Grolier founder, the Practice of Typography his own&rdquo;</p>
+            <div class="source">
+              <span class="tag">De Vinne Press building</span>
+              <p class="citation">"He was also an authority on the history of printing and typography and the author of important works related to these subjects, including 'The Invention of Printing' (1876) and 'The Practice of Typography'... De Vinne was a founding member of the Grolier Club." [Mondlin &amp; Meador. (2003) Book Row, p. 383.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">26</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;two-hundred-thousand-dollar edifice, the city's fifth most costly stone&rdquo;</p>
+            <div class="source">
+              <span class="tag">DeVinne Press Building</span>
+              <p class="citation">"This $200,000 edifice, the city's fifth most expensive building erected in 1885. was built by the great printer Theodore DeVinne." [Tauranac. (1979) Essential New York, p. 61.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">27</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Scribner's, St. Nicholas, and Century, the Book of Common Prayer, Century Dictionary rolling — the presses roaring in the air&rdquo;</p>
+            <div class="source">
+              <span class="tag">De Vinne Press building</span>
+              <p class="citation">"he directed production of many important works including the 'Century Dictionary' and 'The Book of Common Prayer'. Among the business's serial publications were 'St. Nicholas', 'Century Magazine', and 'Scribner's Monthly'." [Mondlin &amp; Meador. (2003) Book Row, p. 383.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">28</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Theo. L. Devinne &amp; Co., the firm's name written for its time&rdquo;</p>
+            <div class="source">
+              <span class="tag">Theo. L. Devinne &amp; Co.</span>
+              <p class="citation">"In the 1916 Atlas of the Borough of Manhattan, on 393 Lafayette Street, there is written 'Theo. L. Devinne &amp; Co.' as well as reference to 1 Structure; 7 Story Brick building with Elevator." [G W Bromley &amp; Co. 1916 Atlas of the Borough of Manhattan, p. 34.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">29</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Eighteen ninety, ninety-two, the matching addition came in kind&rdquo;</p>
+            <div class="source">
+              <span class="tag">Astor Wine &amp; Spirits</span>
+              <p class="citation">"Astor Wine &amp; Spirits, formerly De Vinne Press Building, 1885-86; addition, 1890-92." [Spielvogel. (2016) The Landmarks of New York, p. 316.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">30</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Eighteen ninety-seven Bromley, seven-story brick recorded plain&rdquo;</p>
+            <div class="source">
+              <span class="tag">393 Lafayette Street</span>
+              <p class="citation">"In the 1897 Bromleys Atlas, on 393 Lafayette Street, there is reference to 1 Structure; 7 Story Brick building." [Bromley. 1897 Bromleys Atlas, p. 16.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">31</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;nineteen-sixteen atlas, elevator running, same address, same name&rdquo;</p>
+            <div class="source">
+              <span class="tag">393 Lafayette Street</span>
+              <p class="citation">"In the 1916 Atlas of the Borough of Manhattan, on 393 Lafayette Street, there is written 'Theo. L. Devinne &amp; Co.' as well as reference to 1 Structure; 7 Story Brick building with Elevator." [G W Bromley &amp; Co. 1916 Atlas of the Borough of Manhattan, p. 34.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="verse" id="bridge">
+      <div class="verse-head">
+        <span class="verse-numeral">IV</span>
+        <h2>Bridge</h2>
+        <span class="verse-rule"></span>
+      </div>
+      <div class="cards">
+        
+        <article class="card">
+          <div class="card-index">32</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Nineteen thirty, "The Fair Banks" written on the land book fresh, seven-story brick reclassified, steel construction, fireproof flesh&rdquo;</p>
+            <div class="source">
+              <span class="tag">The Fair Banks</span>
+              <p class="citation">"In the 1930 Land Book of the Borough of Manhattan, on 393 Lafayette Street, there is written 'The Fair Banks' as well as reference to 1 Structure; 7 Story Brick building with Fire proof building (steel construction)." [Bromley. 1930 Land Book of the Borough of Manhattan, p. 28.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">33</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Nineteen thirty-eight the Walter Peck Paper Corporation takes the deed&rdquo;</p>
+            <div class="source">
+              <span class="tag">Walter Peck Paper Corporation</span>
+              <p class="citation">"In 1938, the Walter Peck Paper Corporation bought the building." [Spielvogel. (2016) The Landmarks of New York, p. 316.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">34</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;nineteen fifty-five the land book still recording fireproof steel and need&rdquo;</p>
+            <div class="source">
+              <span class="tag">393 Lafayette Street</span>
+              <p class="citation">"In the 1955 Manhattan Land Book, on 393 Lafayette Street, there is reference to 1 Structure; 7 Story Brick or Stone or Concrete building with Fire proof building (steel construction)." [Bromley. 1955 Manhattan Land Book, p. 23.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">35</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Nineteen sixty-six the Landmarks designation lands to hold it fast&rdquo;</p>
+            <div class="source">
+              <span class="tag">De Vinne Press Building</span>
+              <p class="citation">"De Vinne Press Building 393-399 Lafayette Street (Babb, Cook &amp; Willard, 1885-86; addition, 1890-92), designated 1966." [Postal &amp; Dolkart. (2009) Guide to New York City Landmarks, p. 63.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">36</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;built in eighteen eighty-six they wrote — the pile preserved against the past&rdquo;</p>
+            <div class="source">
+              <span class="tag">Landmarks Preservation Commission</span>
+              <p class="citation">"Was built in 1886." [Unknown Author. Landmarks Preservation Commission, p. 1.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">37</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Nineteen eighty-two Ed Fisher buys the pile, leasing floors to tenants in&rdquo;</p>
+            <div class="source">
+              <span class="tag">Astor Wines &amp; Spirits</span>
+              <p class="citation">"In 1982, Edwin Fisher, the founder of Astor Wines &amp; Spirits, purchased the building and started leasing office space to tenants." [Spielvogel. (2016) The Landmarks of New York, p. 316.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">38</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Antiquarian Traders, statuary and columns, Art &amp; Industrial begin&rdquo;</p>
+            <div class="source">
+              <span class="tag">Antiquarian Traders</span>
+              <p class="citation">"Large selection of architectural elements, statuary, columns, urns, stained glass and lighting fixtures." [Lown &amp; Lown. (1997) All New York, p. 52.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">39</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Art &amp; Industrial begin&rdquo;</p>
+            <div class="source">
+              <span class="tag">Art &amp; Industrial Design Shop</span>
+              <p class="citation">"Art &amp; Industrial Design Shop (399 Lafayette St, 212/477-0116): 1940s, 1950s, and 1960s items." [Frank. (1980) Where to Find It, Buy It, Eat It In New York, p. 375.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">40</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Then two-thousand-six the Astor Wines &amp; Spirits fills the lower floor&rdquo;</p>
+            <div class="source">
+              <span class="tag">Astor Wines &amp; Spirits</span>
+              <p class="citation">"Astor Wines &amp; Spirits has operated from the lower floors since 2006." [Spielvogel. (2016) The Landmarks of New York, p. 316.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">41</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Astor Center, wine library, the tasting kitchen behind the door&rdquo;</p>
+            <div class="source">
+              <span class="tag">Astor Center</span>
+              <p class="citation">"Astor Center is a wine education and event rental space at the corner of Lafayette and Fourth Streets." [Smith. (2015) Savoring Gotham, p. 19.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">42</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Astor Liquors was the name before, the Village anti-elitist grain&rdquo;</p>
+            <div class="source">
+              <span class="tag">Astor Liquors</span>
+              <p class="citation">"eventually purchased Astor Liquors... Astor's focus on non-mass-produced offerings was a natural fit with the eclectic, anti-elitist spirit of its Greenwich Village neighbors." [Smith. (2015) Savoring Gotham, p. 19.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+</main>
+
+<footer>
+  <p>Outernet Music &mdash; Cooper Union Series &mdash; <a href="https://github.com/Willhoward89/Outernet-Music" target="_blank" rel="noopener">github.com/Willhoward89/Outernet&#8209;Music</a></p>
+</footer>
+
+</body>
+</html>
