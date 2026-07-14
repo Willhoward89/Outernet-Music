@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>6 Taras Shevchenko Place &mdash; Onion Domes Over Hall Place</title>
+<meta name="description" content="An annotated track tracing 6 Taras Shevchenko Place from an 1853 coal yard through stables and a garage to Apollinaire Osadca's 1977 polychrome St. George's Ukrainian Catholic Church, anchor of Little Ukraine &mdash; every line sourced.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --iron: #17181a;
+    --iron-2: #1f2124;
+    --iron-3: #26282c;
+    --steel: #3a3d42;
+    --steel-light: #6b6f76;
+    --ember: #b8481e;
+    --ember-bright: #e8863a;
+    --ember-dim: #7a3116;
+    --paper: #e9e1cd;
+    --paper-2: #ddd3b8;
+    --ink: #2a251d;
+    --ink-soft: #5c5443;
+    --max-w: 780px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--iron);
+    color: var(--paper);
+    font-family: 'Lora', Georgia, serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; }
+
+  ::selection { background: var(--ember); color: var(--paper); }
+
+  /* ---------- Texture ---------- */
+  .grain {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.05;
+    z-index: 50;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative;
+    padding: 5.5rem 1.5rem 3.5rem;
+    text-align: center;
+    overflow: hidden;
+    background: radial-gradient(ellipse at 50% 120%, rgba(184,72,30,0.35) 0%, rgba(23,24,26,0.05) 62%);
+    border-bottom: 1px solid var(--steel);
+  }
+
+  .bg-photo {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    background-image: url('6-taras-shevchenko-place-building-photo.jpg');
+    background-size: cover;
+    background-position: center 15%;
+    background-repeat: no-repeat;
+    filter: grayscale(0.1) sepia(0.15) contrast(1.02) brightness(0.85);
+  }
+
+  .bg-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(180deg, rgba(23,24,26,0.2) 0%, rgba(23,24,26,0.5) 25%, rgba(23,24,26,0.78) 55%, var(--iron) 100%);
+  }
+
+  .hero-inner { position: relative; z-index: 1; }
+
+  .photo-credit {
+    position: relative;
+    z-index: 1;
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 1.4rem;
+    text-align: right;
+  }
+
+  .photo-credit span {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.64rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--steel-light);
+    padding-top: 0.6rem;
+  }
+
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ember-bright);
+    margin: 0 0 1.1rem;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.85);
+  }
+
+  .eyebrow span { color: var(--steel-light); }
+
+  h1.title {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2.4rem, 8vw, 4.6rem);
+    line-height: 0.95;
+    letter-spacing: 0.01em;
+    margin: 0;
+    color: var(--paper);
+    text-transform: uppercase;
+    text-shadow: 0 3px 16px rgba(0,0,0,0.9);
+  }
+
+  h1.title .addr { display: block; font-size: 0.42em; letter-spacing: 0.12em; color: var(--steel-light); font-weight: 700; margin-bottom: 0.3rem; }
+
+  .flame-rule {
+    width: 220px;
+    max-width: 60%;
+    height: 4px;
+    margin: 1.4rem auto 1.2rem;
+    background: linear-gradient(90deg, transparent, var(--ember) 15%, var(--ember-bright) 50%, var(--ember) 85%, transparent);
+    border-radius: 2px;
+  }
+
+  .tagline {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--paper-2);
+    margin: 0 0 2.4rem;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.85);
+  }
+
+  .dek {
+    max-width: 560px;
+    margin: 0 auto 2.6rem;
+    font-size: 1.02rem;
+    color: var(--paper-2);
+    text-shadow: 0 2px 10px rgba(0,0,0,0.85);
+  }
+
+  .dek em { color: var(--ember-bright); font-style: normal; }
+
+  /* ---------- Player ---------- */
+  .player {
+    max-width: 480px;
+    margin: 0 auto;
+    background: var(--iron-2);
+    border: 1px solid var(--steel);
+    border-radius: 10px;
+    padding: 1.1rem 1.2rem 1.3rem;
+    text-align: left;
+  }
+
+  .player-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--steel-light);
+    margin-bottom: 0.7rem;
+  }
+
+  .player-label .rec {
+    color: var(--ember-bright);
+  }
+
+  audio {
+    width: 100%;
+    height: 40px;
+    filter: invert(0.86) grayscale(1) contrast(1.15) sepia(0.3) hue-rotate(-10deg) saturate(2.4);
+    border-radius: 6px;
+  }
+
+  .player-foot {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.66rem;
+    color: var(--steel-light);
+    margin-top: 0.65rem;
+    letter-spacing: 0.04em;
+  }
+
+  /* ---------- Sticky mini-nav ---------- */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: rgba(23, 24, 26, 0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--steel);
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+  }
+  .nav::-webkit-scrollbar { display: none; }
+
+  .nav-inner {
+    display: flex;
+    gap: 0.4rem;
+    padding: 0.7rem 1.2rem;
+    max-width: var(--max-w);
+    margin: 0 auto;
+  }
+
+  .nav-link {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--paper-2);
+    padding: 0.4rem 0.7rem;
+    border: 1px solid var(--steel);
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+  .nav-link:hover { border-color: var(--ember); color: var(--ember-bright); }
+  .nav-numeral { color: var(--ember); font-weight: 600; }
+
+  /* ---------- Verses ---------- */
+  main {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 3.2rem 1.4rem 5rem;
+  }
+
+  .verse { margin-bottom: 4rem; scroll-margin-top: 4.2rem; }
+  .verse:last-child { margin-bottom: 0; }
+
+  .verse-head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.9rem;
+    margin-bottom: 1.6rem;
+  }
+
+  .verse-numeral {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 700;
+    font-size: 1.9rem;
+    color: var(--ember);
+    line-height: 1;
+  }
+
+  .verse-head h2 {
+    font-family: 'IBM Plex Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: var(--paper);
+    margin: 0;
+    white-space: nowrap;
+  }
+
+  .verse-rule {
+    flex: 1;
+    height: 1px;
+    background: var(--steel);
+  }
+
+  .cards { display: flex; flex-direction: column; gap: 1.1rem; }
+
+  .card {
+    display: flex;
+    gap: 0.9rem;
+    background: var(--iron-2);
+    border: 1px solid var(--steel);
+    border-left: 3px solid var(--ember);
+    border-radius: 4px;
+    padding: 1.1rem 1.2rem;
+    transition: border-left-color 0.2s ease, background 0.2s ease;
+  }
+
+  .card:hover {
+    border-left-color: var(--ember-bright);
+    background: var(--iron-3);
+  }
+
+  .card-index {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--steel-light);
+    padding-top: 0.15rem;
+    flex-shrink: 0;
+  }
+
+  .lyric {
+    font-family: 'Lora', Georgia, serif;
+    font-weight: 600;
+    font-style: italic;
+    font-size: 1.08rem;
+    line-height: 1.4;
+    color: var(--paper);
+    margin: 0 0 0.75rem;
+  }
+
+  .source {
+    background: var(--paper);
+    color: var(--ink);
+    border-radius: 3px;
+    padding: 0.7rem 0.85rem 0.75rem;
+  }
+
+  .tag {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ember-dim);
+    background: var(--paper-2);
+    border: 1px solid var(--ember-dim);
+    border-radius: 3px;
+    padding: 0.15rem 0.45rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .citation {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  /* ---------- Footer ---------- */
+  footer {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 1.4rem 4rem;
+    text-align: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--steel-light);
+  }
+
+  footer a { color: var(--ember-bright); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  @media (max-width: 520px) {
+    .card { flex-direction: column; gap: 0.4rem; }
+    .verse-head h2 { font-size: 0.78rem; letter-spacing: 0.12em; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+<div class="grain"></div>
+<div class="bg-photo"></div>
+<div class="bg-overlay"></div>
+
+<header class="hero">
+
+  <div class="hero-inner">
+    <p class="eyebrow">Outernet Music <span>&middot;</span> Cooper Union</p>
+    <h1 class="title"><span class="addr">6 Taras Shevchenko Place</span>Onion Domes Over Hall Place</h1>
+    <div class="flame-rule"></div>
+    <p class="dek">Every line traces one lot through <em>170 years</em> &mdash; a coal yard on the 1853 Perris maps, wiped clean by 1867, filled with brick stables and lofts through 1916, reduced to one word &mdash; &ldquo;Garage&rdquo; &mdash; in the 1930 land book, then transformed in 1977 into Apollinaire Osadca&rsquo;s polychrome, high&#8209;domed St. George&rsquo;s Ukrainian Catholic Church, the granite anchor of Little Ukraine, replacing the Greek Revival temple with onion domes that once stood around the corner on Hall Place. Sourced line by line below.</p>
+
+    <div class="player">
+      <div class="player-label"><span class="rec">&#9679; Track</span><span>05:06</span></div>
+      <audio controls preload="metadata" src="6-taras-shevchenko-place-onion-domes-over-hall-place.mp3">
+        Your browser does not support the audio element. <a href="6-taras-shevchenko-place-onion-domes-over-hall-place.mp3">Download the track</a>.
+      </audio>
+      <div class="player-foot"><span>6 Taras Shevchenko Place, NY</span><span>Onion Domes Over Hall Place</span></div>
+    </div>
+  </div>
+</header>
+
+<p class="photo-credit"><span>Photo: 41 Cooper Square, at Taras Shevchenko Place</span></p>
+
+<nav class="nav">
+  <div class="nav-inner">
+          <a href="#verse-1" class="nav-link"><span class="nav-numeral">I</span>Verse 1</a>
+          <a href="#verse-2" class="nav-link"><span class="nav-numeral">II</span>Verse 2</a>
+          <a href="#bridge" class="nav-link"><span class="nav-numeral">III</span>Bridge</a>
+  </div>
+</nav>
+
+<main>
+
+    <section class="verse" id="verse-1">
+      <div class="verse-head">
+        <span class="verse-numeral">I</span>
+        <h2>Verse 1</h2>
+        <span class="verse-rule"></span>
+      </div>
+      <div class="cards">
+        
+        <article class="card">
+          <div class="card-index">01</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;St. George's Ukrainian Catholic Church, the story that I hold — nineteen-seventy-seven, Osadca signed the stone&rdquo;</p>
+            <div class="source">
+              <span class="tag">St. George's Ukrainian Catholic Church</span>
+              <p class="citation">"[E 21c.] St. George's Ukrainian Catholic Church, 16-20 E. 7th St., SE cor. Taras Shevchenko Place. 1977. Apollinaire Osadca." AIA. (1988) AIA Edition 3, p. 164.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">02</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Domed and polychromed, Atlantic City on Seventh, a symbol of the wealth, the parish reaching heaven&rdquo;</p>
+            <div class="source">
+              <span class="tag">St. George's Ukrainian Catholic Church</span>
+              <p class="citation">"A domed polychromed symbol of the parish's wealth and burgeoning membership: Atlantic City on 7th Street." AIA. (1988) AIA Edition 3, p. 164.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">03</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;high central dome, granite catching morning light, sixteen-twenty East Seventh where the mosaics ignite&rdquo;</p>
+            <div class="source">
+              <span class="tag">St. George Ukrainian Catholic Church</span>
+              <p class="citation">"St. George Ukrainian Catholic Church 16-20 East 7th Street... This Byzantine-style Roman Catholic church is a polychrome granite building with a high central dome." Swacker. (2019) Out From Midtown, p. 91.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">04</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Interior dome, stained glass burning through the nave, rich mosaic surface — the Old Country they crave&rdquo;</p>
+            <div class="source">
+              <span class="tag">St. George's Ukrainian Catholic Church</span>
+              <p class="citation">"This Byzantine Rite traditional design by Apollinaire Osadca replaced a smaller building. An interior dome, rich mosaics, and stained-glass windows are special delights." Cook. (2001) Sacred Havens, p. 57.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">05</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Sixteen hundred faithful in the East Village pressed, Little Ukraine anchored, granite at its chest&rdquo;</p>
+            <div class="source">
+              <span class="tag">St. George's Ukrainian Catholic Church</span>
+              <p class="citation">"This is a glistening reminder of the Old Country for the more than 1,600 Ukrainians who live in this part of the East Village." Harris. (2002) One Thousand New York Buildings, p. 93.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">06</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;a glistening reminder in the strata of the town&rdquo;</p>
+            <div class="source">
+              <span class="tag">St. George's Ukrainian Catholic Church</span>
+              <p class="citation">"This is a glistening reminder of the Old Country." Harris. (2002) One Thousand New York Buildings, p. 93.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">07</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;the church cannot explain the ghost beneath its footing&rdquo;</p>
+            <div class="source">
+              <span class="tag">St. George Ukrainian Catholic Church</span>
+              <p class="citation">"Turn right up Taras Shevchenko Place. It is named for one of the greatest figures in Ukrainian literature who lived from 1814 to 1861." Millar. (2023) New York Offbeat Walks, p. 157.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="verse" id="verse-2">
+      <div class="verse-head">
+        <span class="verse-numeral">II</span>
+        <h2>Verse 2</h2>
+        <span class="verse-rule"></span>
+      </div>
+      <div class="cards">
+        
+        <article class="card">
+          <div class="card-index">08</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Drop to eighteen-fifty-three, the Perris ink still wet, a Coal Yard on the lot, dark heaps and soot and debt. Six structures on the ground: a framed dwelling stood, a brick or stone dwelling second class... slate or metal roof not coped... a framed store first class... a dwelling with the stores beneath, and one that ran first class, slate and metal, roof well coped&rdquo;</p>
+            <div class="source">
+              <span class="tag">St. George's Ruthenian Greek Church</span>
+              <p class="citation">"In the 1853 Perris Maps, on 6 Taras Shevchenko Place, there is written 'Coal Yard' as well as reference to 6 Structures; a framed dwelling, a brick or stone dwelling second class (slate or metal roof not coped), a brick or stone dwelling second class (slate or metal roof not coped), a framed brick or stone store first class, a brick or stone dwelling second class (slate or metal roof not coped) with stores under, a brick or stone dwelling first class (slate or metal roof &amp; coped)." Perris. 1853 Perris Maps, p. 49.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">09</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Then eighteen-sixty-seven — the Dripps Plan reads it plain, zero structures on the lot, the ground wiped clean again&rdquo;</p>
+            <div class="source">
+              <span class="tag">St. George's Ruthenian Greek Church</span>
+              <p class="citation">"In the 1867 Dripps Plan, on 6 Taras Shevchenko Place, there is reference to 0 structures." Dripps. 1867 Dripps Plan, p. 7.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">10</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Then eighteen-eighty-five, four brick buildings rising, keeping the lot alive&rdquo;</p>
+            <div class="source">
+              <span class="tag">St. George's Ruthenian Greek Church</span>
+              <p class="citation">"In the 1885 Robinson Atlas, on 6 Taras Shevchenko Place, there is reference to 4 structures; a Brick building, a Brick building, a Brick building, a Brick building." Robinson. 1885 Robinson Atlas, p. 11.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">11</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;and eighteen-ninety-seven, Bromley's careful hand: a four-story brick stable, three-story where they stand, a brick building beside it&rdquo;</p>
+            <div class="source">
+              <span class="tag">St. George's Ruthenian Greek Church</span>
+              <p class="citation">"In the 1897 Bromleys Atlas, on 6 Taras Shevchenko Place, there is reference to 3 structures; a 4 story brick stable, a 3 story brick building, a brick building." Bromley. 1897 Bromleys Atlas, p. 16.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">12</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Nineteen-sixteen the Atlas: four-story brick with stable, elevator running, six-story brick as able, three-story brick and basement&rdquo;</p>
+            <div class="source">
+              <span class="tag">St. George's Ruthenian Greek Church</span>
+              <p class="citation">"In the 1916 Atlas of the Borough of Manhattan, on 6 Taras Shevchenko Place, there is reference to 3 structures; a 4 story brick building with stable and elevator, a 6 story brick building and basement, a 3 story brick building and basement." G W Bromley &amp; Co. 1916 Atlas of the Borough of Manhattan, p. 34.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">13</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;and by nineteen-thirty read it, the Land Book showed the code: one word written — 'Garage'&rdquo;</p>
+            <div class="source">
+              <span class="tag">St. George's Ruthenian Greek Church</span>
+              <p class="citation">"In the 1930 Land Book of the Borough of Manhattan, on 6 Taras Shevchenko Place, there is written 'Garage' as well as reference to 3 Structures; a 4 story Building, a 6 story Building &amp; Basement, a 3 story Building &amp; Basement." Bromley. 1930 Land Book of the Borough of Manhattan, p. 33.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">14</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;nineteen-fifty-five the same, you see. Four-story brick or stone or concrete, elevator inside, six-story brick and basement... three-story with the basement&rdquo;</p>
+            <div class="source">
+              <span class="tag">St. George's Ruthenian Greek Church</span>
+              <p class="citation">"In the 1955 Manhattan Land Book, on 6 Taras Shevchenko Place, there is written 'Garage' as well as reference to 3 structures: 4 Story Brick or Stone or Concrete building with Elevator, 6 Story Brick or Stone or Concrete building with Basement, 3 Story Brick or Stone or Concrete building with Basement." Bromley. 1955 Manhattan Land Book, p. 23.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="verse" id="bridge">
+      <div class="verse-head">
+        <span class="verse-numeral">III</span>
+        <h2>Bridge</h2>
+        <span class="verse-rule"></span>
+      </div>
+      <div class="cards">
+        
+        <article class="card">
+          <div class="card-index">15</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;St. George's Ruthenian Greek Church, the thing they had to take and put down... It replaced the real thing — now the real thing's a lot, a parking lot at twenty-four to twenty-eight&rdquo;</p>
+            <div class="source">
+              <span class="tag">St. George's Ruthenian Greek Church</span>
+              <p class="citation">"It replaced the real thing —the humbler Greek Revival style St. George's Ruthenian Greek Church, now a parking lot at Nos, 24-28." AIA. (1988) AIA Edition 3, p. 164.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">16</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Greek Revival, stolid, stately temple stone, two marbleized Doric columns in antis, standing alone, onion domes at either side of the pediment, absurd and not unpleasant — Byzantine murals overheard&rdquo;</p>
+            <div class="source">
+              <span class="tag">St. George's Ukrainian Church</span>
+              <p class="citation">"St. George's Ukrainian Church is a stately, stolid temple with two marbleized Doric columns in antis, of the most popular type of the 1830s. It has added the extraordinary but not unpleasant embellishment of onion domes at either side of the pediment and decorated the interior with overwhelming Byzantine murals." Huxtable. (1964) Classic New York, p. 83.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-index">17</div>
+          <div class="card-body">
+            <p class="lyric">&ldquo;Around the corner Hall Place, back of the old armory, where a knocked-out man was dragged and dropped for the police to see — the cellar door&rdquo;</p>
+            <div class="source">
+              <span class="tag">St. George's Ruthenian Greek Church</span>
+              <p class="citation">"the bootblack would drag the victim out the side entrance and park him on a cellar door in Hall Place, back of the 69th Regiment Armory where the policeman on the beat would find him." Captain Willemse. (1931) Behind the Green Lights, p. 22.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+</main>
+
+<footer>
+  <p>Outernet Music &mdash; Cooper Union Series &mdash; <a href="https://github.com/Willhoward89/Outernet-Music" target="_blank" rel="noopener">github.com/Willhoward89/Outernet&#8209;Music</a></p>
+</footer>
+
+</body>
+</html>
