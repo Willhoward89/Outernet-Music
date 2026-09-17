@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Granite — Italics Highlighted</title>
+<style>
+
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; margin: 0; padding: 40px 24px 64px;
+         background:#f8f5e7; color:#1a1a1a; font-family: Georgia, "Times New Roman", serif; font-size:17px; line-height:1.7; }
+  .layout { display: flex; align-items: flex-start; gap: 30px; max-width: 1580px; margin: 0 auto; }
+  .chartcol { flex: 0 0 320px; width: 320px; position: sticky; top: 28px; align-self: flex-start;
+              max-height: calc(100vh - 56px); overflow-y: auto; padding: 0 4px 0 18px;
+              border-left: 1px solid #e2ddc8; background: rgba(248,245,231,.92);
+              font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  .cc-head { position: sticky; top: 0; background: #f8f5e7; padding-bottom: 8px; margin-bottom: 4px;
+             border-bottom: 1px solid #e2ddc8; z-index: 2; }
+  .cc-title { display: block; font-size: 11px; font-weight: 600; letter-spacing: .05em;
+              text-transform: uppercase; color: #888; }
+  .cc-sub { display: block; font-size: 10.5px; color: #aaa; margin-top: 3px; line-height: 1.35; }
+  .cc-sec { font-size: 10.5px; font-weight: 600; letter-spacing: .03em; text-transform: uppercase;
+            color: #999; margin: 16px 0 6px; }
+  .ce { display: flex; gap: 7px; align-items: baseline; padding: 6px 0; border-bottom: 1px solid #ebe6d6; }
+  .ce-n { flex: 0 0 22px; text-align: right; font-size: 10px; color: #bbb; text-decoration: none; }
+  .ce-n:hover { color: #3b6ea5; }
+  .ce .sw { flex: 0 0 9px; width: 9px; height: 9px; transform: translateY(1px); }
+  .ce-b { min-width: 0; }
+  .ce-q { font-size: 11.5px; line-height: 1.4; color: #333; }
+  .ce-s { font-size: 10.5px; line-height: 1.4; color: #999; margin-top: 2px; }
+  .ce { border-left: 2px solid transparent; padding-left: 6px; transition: background .18s ease, border-color .18s ease; }
+  .ce.active { background: rgba(255,255,255,.75); border-left-color: #3b6ea5; }
+  .ce.active .ce-n { color: #3b6ea5; font-weight: 600; }
+  .ce.active .ce-q { color: #111; }
+  mark.reading { box-shadow: 0 0 0 2px rgba(59,110,165,.55); border-radius: 3px; }
+  .chartcol.on-left { border-left: none; border-right: 1px solid #e2ddc8; padding: 0 18px 0 4px; }
+  .rail.on-right { padding: 0 4px 0 4px; }
+  .chartcol::-webkit-scrollbar { width: 7px; }
+  .chartcol::-webkit-scrollbar-thumb { background: #dcdcdc; border-radius: 4px; }
+  .chart-print { display: none; }
+  @media (max-width: 1360px) {
+    .chartcol { position: static; width: 100%; flex: none; max-height: none; border-left: none;
+                border-top: 1px solid #ececec; padding: 18px 0 0; margin-top: 26px; }
+    .layout { flex-wrap: wrap; }
+    .chartcol .ce { max-width: 820px; }
+  }
+  .wrap { flex: 1 1 auto; min-width: 0; max-width: 820px; }
+  .rail { flex: 0 0 262px; width: 262px; position: sticky; top: 28px; align-self: flex-start;
+          max-height: calc(100vh - 56px); overflow-y: auto; padding-right: 4px;
+          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  .rail-title { font-size: 11px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase;
+                color: #888; margin: 0 0 10px; }
+  figure.view { margin: 0 0 16px; cursor: zoom-in; }
+  figure.view img { display: block; width: 100%; border: 1px solid #e0e0e0; border-radius: 4px; }
+  figure.view:hover img { border-color: #9c9c9c; }
+  figure.view figcaption { margin-top: 5px; font-size: 11px; line-height: 1.42; color: #8a8a8a; }
+  figure.view figcaption b { display: block; font-weight: 600; color: #444; }
+  .rail-foot { font-size: 10.5px; color: #aaa; margin: 2px 0 0; }
+  .rail::-webkit-scrollbar { width: 7px; }
+  .rail::-webkit-scrollbar-thumb { background: #dcdcdc; border-radius: 4px; }
+  @media (max-width: 1080px) {
+    .layout { flex-direction: column; gap: 18px; }
+    .rail { position: static; width: 100%; flex: none; max-height: none; display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 14px; }
+    .rail-title, .rail-foot { grid-column: 1 / -1; }
+  }
+  /* full-bleed lightbox */
+  .lightbox { position: fixed; inset: 0; z-index: 60; background: rgba(16,14,13,.93);
+              display: flex; flex-direction: column; opacity: 0; transition: opacity .18s ease; }
+  body.lb-open .lightbox { opacity: 1; }
+  .lightbox[hidden] { display: none !important; }
+  .lb-head { display: flex; align-items: center; gap: 12px; padding: 12px 16px; color: #eee;
+             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 13px; }
+  .lb-head .lb-t { flex: 1; }
+  .lb-btn { border: 1px solid rgba(255,255,255,.28); background: rgba(255,255,255,.08); color: #eee;
+            border-radius: 5px; cursor: pointer; font-size: 13px; line-height: 1; padding: 7px 10px; }
+  .lb-btn:hover { background: rgba(255,255,255,.18); }
+  .lb-body { flex: 1; overflow: auto; display: flex; align-items: center; justify-content: center; padding: 0 16px 18px; }
+  .lb-body img { max-width: 100%; max-height: 100%; object-fit: contain; cursor: zoom-in; }
+  .lb-body.zoom { align-items: flex-start; justify-content: flex-start; }
+  .lb-body.zoom img { max-width: none; max-height: none; width: 220%; cursor: zoom-out; }
+  h1 { font-size: 26px; line-height: 1.25; margin: 0 0 6px; font-weight: 700;
+       letter-spacing: -.012em; color:#1d1a12; }
+  .sub { font-family: Georgia, serif; font-style: italic; font-size: 15px; color: #555; margin: 0 0 8px; }
+  h2 { font-size: 15px; font-weight: 700; letter-spacing: .085em; text-transform: uppercase;
+       color: #6d5a33; margin: 52px 0 16px; padding-bottom: 7px; position: relative;
+       border-bottom: 1px solid #e3dcc6; }
+  h2::after { content: ""; position: absolute; left: 0; bottom: -1px; width: 58px; height: 2px;
+              background: #b39445; }
+  .wrap > h2:first-of-type { margin-top: 34px; }
+  h3 { font-size: 16px; margin: 30px 0 10px; }
+  p { margin: 0 0 20px; }
+  hr { border: none; border-top: 1px solid #e2ddc8; margin: 34px 0 28px; }
+  .note { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 13px; color:#666;
+          margin: 0 0 28px; padding-bottom: 20px; border-bottom: 1px solid #e2ddc8; }
+  .note2 { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 13px; color:#666; margin: 0 0 18px; }
+  mark { color: inherit; font-style: italic; padding: 1px 2px; border-radius: 2px;
+         box-decoration-break: clone; -webkit-box-decoration-break: clone; background:#e4e4e4; }
+  a.srclink { text-decoration: none; color: inherit; cursor: zoom-in; }
+  a.srclink:hover mark { outline: 2px solid rgba(0,0,0,.35); outline-offset: 1px; }
+  .tablewrap { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+          font-size: 13.5px; line-height: 1.55; }
+  th, td { text-align: left; vertical-align: top; padding: 9px 12px; border-bottom: 1px solid #ebe6d6; }
+  thead th { background:#efece0; border-bottom: 1px solid #ddd8c6; font-weight: 600; }
+  td.num, th.num { width: 34px; color:#888; text-align: right; padding-right: 6px; }
+  td.quote { width: 56%; }
+  td.src { color:#444; }
+  tbody tr:nth-child(even) { background:rgba(255,255,255,.45); }
+  h3.csec { font-size: 14px; margin: 26px 0 8px; color:#333;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  .nosrc { color:#999; font-style: italic; }
+  a.pglink, .pglink { font-size: 11px; color:#3b6ea5; text-decoration: none; white-space: nowrap; }
+  .backlinks a { display:inline-block; margin: 0 3px; color:#3b6ea5; text-decoration:none; }
+  .legend { margin: 0 0 30px; padding: 16px 18px; border: 1px solid #e2ddc8; border-radius: 6px; background:rgba(255,253,244,.82);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  .legend-title { font-size: 12px; font-weight: 600; letter-spacing:.04em; text-transform: uppercase; color:#777; margin-bottom: 10px; }
+  .legend-title .lk { text-transform: none; letter-spacing: 0; font-weight: 400; color:#999; }
+  .legend ul { list-style:none; margin:0; padding:0; display:grid; grid-template-columns: repeat(auto-fill, minmax(290px,1fr)); gap: 5px 20px; }
+  .legend li { display:flex; align-items:baseline; gap:8px; font-size:12.5px; line-height:1.45; }
+  .sw { display:inline-block; width:13px; height:13px; border-radius:3px; flex:0 0 13px;
+        border:1px solid rgba(0,0,0,.14); transform: translateY(2px); }
+  td.src .sw { margin-right: 6px; }
+  .ct { color:#999; } .has { color:#3b6ea5; }
+  .pg { color:#8a8272; white-space: nowrap; }
+  section.audio { margin: 0 0 30px; padding: 14px 18px 16px; border: 1px solid #e2ddc8; border-radius: 6px;
+                  background: rgba(255,253,244,.82); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  .audio-label { font-size: 12px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase;
+                 color: #777; margin-bottom: 10px; }
+  .audio-meta { font-weight: 400; letter-spacing: 0; text-transform: none; color: #aaa; margin-left: 4px; }
+  section.audio audio { width: 100%; display: block; }
+  .audio-fallback { display: none; font-size: 12.5px; color: #666; margin: 0; }
+  section.srcsec { margin: 0 0 34px; }
+  h3.scanhead { font-size: 14.5px; margin: 26px 0 6px;
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  figure.scan { margin: 8px 0 0; }
+  figure.scan img { width: 100%; border: 1px solid #ddd; border-radius: 4px; }
+
+  mark.s1, .sw.s1 { background: #fc7ec3; }
+  mark.s2, .sw.s2 { background: #fc7e7e; }
+  mark.s3, .sw.s3 { background: #e27efc; }
+  mark.s4, .sw.s4 { background: #ebebd6; }
+  mark.s5, .sw.s5 { background: #8dbac8; }
+  mark.s6, .sw.s6 { background: #faa338; }
+  mark.s7, .sw.s7 { background: #d4a5d4; }
+  mark.s8, .sw.s8 { background: #a3cc66; }
+  mark.s9, .sw.s9 { background: #fcdc7e; }
+  mark.s10, .sw.s10 { background: #38f0fa; }
+  mark.s11, .sw.s11 { background: #38fab6; }
+  mark.s12, .sw.s12 { background: #a1a1fd; }
+  mark.s13, .sw.s13 { background: #faf038; }
+  mark.s14, .sw.s14 { background: #c3fb5b; }
+  mark.s15, .sw.s15 { background: #eeb2af; }
+  mark.s16, .sw.s16 { background: #75bd99; }
+  mark.s17, .sw.s17 { background: #68ee68; }
+  mark.s18, .sw.s18 { background: #38b6fa; }
+  mark.s19, .sw.s19 { background: #a8f5b0; }
+  mark.s20, .sw.s20 { background: #cc9966; }
+  mark.s21, .sw.s21 { background: #bfc88d; }
+  mark.s0, .sw.s0 { background: #e4e4e4; }
+
+  body::after { content: ""; position: fixed; left: 0; right: 0; bottom: 0; height: 62vh; z-index: -1; pointer-events: none; opacity: .5; background: url(assets/media/skyline.jpg) bottom center / 100% auto no-repeat; -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 42%, #000 100%); mask-image: linear-gradient(to bottom, transparent 0%, #000 42%, #000 100%); }
+
+
+  .sp-backdrop { position: fixed; inset: 0; background: rgba(20,20,20,.28); opacity: 0; transition: opacity .18s ease; z-index: 40; }
+  body.sp-open .sp-backdrop { opacity: 1; }
+  .scanpanel { position: fixed; top:0; right:0; height:100%; width: min(46vw, 620px); background:#fffdf4;
+               border-left: 1px solid #ddd; box-shadow: -8px 0 26px rgba(0,0,0,.13); transform: translateX(101%);
+               transition: transform .22s ease; z-index: 41; display:flex; flex-direction:column;
+               font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  body.sp-open .scanpanel { transform: translateX(0); }
+  .scanpanel[hidden], .sp-backdrop[hidden] { display: none !important; }
+  .sp-head { display:flex; align-items:flex-start; gap:10px; padding:14px 16px; border-bottom:1px solid #eee; }
+  .sp-title { font-size:13px; line-height:1.4; color:#222; flex:1; }
+  .sp-title .sp-q { display:block; color:#777; font-size:11.5px; margin-top:3px; }
+  .sp-btn { border:1px solid #ddd; background:#fafafa; border-radius:5px; cursor:pointer; font-size:13px;
+            line-height:1; padding:6px 9px; color:#444; }
+  .sp-btn:hover { background:#f0f0f0; }
+  .sp-body { flex:1; overflow:auto; padding:12px; background:#efece0; }
+  .sp-body img { display:block; width:100%; border:1px solid #ddd; background:#fff; cursor: zoom-in; }
+  .sp-body.zoom img { width:200%; max-width:none; cursor: zoom-out; }
+  @media (max-width: 820px) { .scanpanel { width:100%; } }
+  @media (max-width: 700px) { body { padding: 16px 10px 40px; } .wrap { padding: 24px 18px 32px; } }
+  @page { size: Letter; margin: 0.75in 0.7in; }
+  @media print {
+    body { padding:0; font-size:11.5pt; line-height:1.55; background:#fff; }
+    body::before { display: none; }
+    .wrap { max-width:none; background:none; padding:0; border-radius:0; box-shadow:none; }
+    .layout { display: block; }
+    .rail { position: static; width: 100%; max-height: none; overflow: visible; display: grid;
+            grid-template-columns: 1fr 1fr; gap: 12px; margin: 0 0 18px; }
+    .rail-title { grid-column: 1 / -1; } .rail-foot { display: none; }
+    figure.view { break-inside: avoid; }
+    .lightbox, .chartcol { display: none !important; }
+    .chart-print { display: block; }
+    h1 { font-size:17pt; } h2 { font-size:10.5pt; letter-spacing:.08em; break-after: avoid; } h3 { font-size:12pt; break-after: avoid; }
+    h2#citations, h2.srcpage { break-before: page; }
+    p { orphans:3; widows:3; }
+    table { font-size:8.6pt; line-height:1.4; } th,td { padding:5px 7px; }
+    thead { display: table-header-group; } tr { break-inside: avoid; }
+    .tablewrap { overflow: visible; }
+    .legend { break-inside: avoid; padding:10px 12px; margin-bottom:20px; }
+    .legend ul { grid-template-columns: 1fr 1fr; gap:3px 16px; } .legend li { font-size:8.4pt; }
+    .sw { width:10px; height:10px; flex:0 0 10px; }
+    section.srcsec { break-inside: avoid; break-before: page; }
+    figure.scan { break-inside: avoid; }
+    a.srclink, a.pglink, .backlinks a { color: inherit; }
+    .scanpanel, .sp-backdrop { display:none !important; }
+    section.audio audio { display: none; }
+    .audio-fallback { display: block; }
+    section.audio { break-inside: avoid; }
+  }
+
+</style>
+</head>
+<body>
+<div class="layout">
+
+<div class="wrap">
+
+<h1>Granite</h1>
+<p class="sub">Bedrock of a Square: Granite as the Enduring Signature of Union Square</p>
+<p class="note">Every previously italicized phrase is highlighted and colour-coded by source. Where the source page is on file, clicking the highlight opens the scan.</p>
+
+<div class="legend"><div class="legend-title">Colour key — one colour per source <span class="lk">· sources with a page scan are marked ⌕</span></div><ul>
+<li><span class="sw s1"></span><span class="lg">AIA, <em>AIA Edition 3</em>, 1988 <span class="pg">p.&nbsp;186</span> <span class="ct">(1)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s2"></span><span class="lg">Spielvogel, <em>The Landmarks of New York</em>, 2016 <span class="pg">pp.&nbsp;346, 470, 515</span> <span class="ct">(3)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s3"></span><span class="lg">Wolfe, <em>New York 15 Walking Tours</em>, 2003 <span class="pg">pp.&nbsp;250, 251</span> <span class="ct">(2)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s4"></span><span class="lg">Postal &amp; Dolkart, <em>Guide to New York City Landmarks</em>, 2009 <span class="pg">pp.&nbsp;76, 85</span> <span class="ct">(2)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s5"></span><span class="lg">LPC, <em>Union Square</em>, 1890 <span class="pg">p.&nbsp;1</span> <span class="ct">(1)</span></span></li>
+<li><span class="sw s6"></span><span class="lg">JG, <em>Union Square</em>, 1897 <span class="pg">p.&nbsp;1</span> <span class="ct">(2)</span></span></li>
+<li><span class="sw s7"></span><span class="lg">Richmond, <em>New York Institutions 1609-1872</em>, 1872 <span class="pg">p.&nbsp;211</span> <span class="ct">(2)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s8"></span><span class="lg">JG, <em>Union Square</em>, 1912 <span class="pg">p.&nbsp;1</span> <span class="ct">(2)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s9"></span><span class="lg">JG, <em>Union Square</em>, 1989 <span class="pg">p.&nbsp;1</span> <span class="ct">(1)</span></span></li>
+<li><span class="sw s10"></span><span class="lg">JG, <em>Union Square</em>, 1959 <span class="pg">p.&nbsp;1</span> <span class="ct">(2)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s11"></span><span class="lg">LPC, <em>Union Square</em>, 1903 <span class="pg">p.&nbsp;1</span> <span class="ct">(3)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s12"></span><span class="lg">Hennessy, <em>Walking Broadway</em>, 2020 <span class="pg">p.&nbsp;97</span> <span class="ct">(1)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s13"></span><span class="lg">AIA, <em>Union Square</em>, 1907 <span class="pg">p.&nbsp;1</span> <span class="ct">(4)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s14"></span><span class="lg">JG, <em>Union Square</em>, 1916 <span class="pg">p.&nbsp;1</span> <span class="ct">(1)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s15"></span><span class="lg">JG, <em>Union Square</em>, 1904 <span class="pg">p.&nbsp;1</span> <span class="ct">(1)</span></span></li>
+<li><span class="sw s16"></span><span class="lg">Dolkart, <em>Gramercy</em>, 1996 <span class="pg">pp.&nbsp;78, 88</span> <span class="ct">(2)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s17"></span><span class="lg">AIA, <em>Union Square</em>, 1987 <span class="pg">p.&nbsp;1</span> <span class="ct">(2)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s18"></span><span class="lg">Gayle &amp; Cohen, <em>Manhattans Outdoor Sculptures</em>, 1988 <span class="pg">pp.&nbsp;91, 93, 94, 95, 96, 97</span> <span class="ct">(7)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s19"></span><span class="lg">Nelson &amp; Sons, <em>Nelsons Guide to the City of New York</em>, 1858 <span class="pg">p.&nbsp;39</span> <span class="ct">(1)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s20"></span><span class="lg">Sharp, <em>New York City Public Sculpture</em>, 1974 <span class="pg">p.&nbsp;28</span> <span class="ct">(2)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s21"></span><span class="lg">Cook, <em>Sacred Havens</em>, 2001 <span class="pg">p.&nbsp;42</span> <span class="ct">(1)</span> <span class="has">⌕</span></span></li>
+</ul></div>
+
+<section class="audio"><div class="audio-label">Audio &mdash; Union Square Granite | Brick Cake <span class="audio-meta">5 min 26 s</span></div><audio controls preload="none" src="assets/media/union-square-granite.mp3"></audio><p class="audio-fallback">Audio track &mdash; playable in the HTML version of this document.</p></section>
+
+<p>Union Square matured into a district where stone spoke a language of permanence, and granite emerged as its unifying signature—surfacing in bulkheads, columns, surrounds, and monumental pedestals alike.</p>
+
+<p>At the northern gateway stands the Lincoln Building at 1 Union Square West, an early skyscraper beheld as <a class="srclink" href="#src-aia-aia-edition-3-1988-p-186" data-scan="aia-aia-edition-3-1988-p-186" title="See the source page — AIA, AIA Edition 3, 1988, p. 186"><mark id="hl-1" class="s1" title="AIA, AIA Edition 3, 1988, p. 186">(Romanesque Revival granite crowned with a cornice of 40 little windows with interstitial paired columns)</mark></a>. Its fabric was <a class="srclink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-346" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-346" title="See the source page — Spielvogel, The Landmarks of New York, 2016, p. 346"><mark id="hl-2" class="s2" title="Spielvogel, The Landmarks of New York, 2016, p. 346">(Sheathed in Indiana limestone, granite, and brick, the building is ornamented with exceptional details)</mark></a>, and elsewhere it was <a class="srclink" href="#src-wolfe-new-york-15-walking-tours-2003-p-251" data-scan="wolfe-new-york-15-walking-tours-2003-p-251" title="See the source page — Wolfe, New York 15 Walking Tours, 2003, p. 251"><mark id="hl-3" class="s3" title="Wolfe, New York 15 Walking Tours, 2003, p. 251">(Faced with gray granite, limestone, and brick and decorated with terra cotta)</mark></a>. A further account records <a class="srclink" href="#src-postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76" data-scan="postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76" title="See the source page — Postal &amp; Dolkart, Guide to New York City Landmarks, 2009, p. 76"><mark id="hl-4" class="s4" title="Postal &amp; Dolkart, Guide to New York City Landmarks, 2009, p. 76">(The budding, faced in limestone, granite, redbrick, and terra cotta)</mark></a>, while its footing preserved the plainest testament—<mark id="hl-5" class="s5" title="LPC, Union Square, 1890, p. 1">(Granite Bulkheads)</mark>.</p>
+
+<p>Southward, at 5 Union Square, stone persisted in both structure and ornament, its record preserving <mark id="hl-6" class="s6" title="JG, Union Square, 1897, p. 1">(Granite Bulkheads)</mark> and, framing its threshold, <mark id="hl-7" class="s6" title="JG, Union Square, 1897, p. 1">(Granite Ionic Columns)</mark>.</p>
+
+<p>At the southwestern corner rose the Lincoln Monument, at 15 Union Square West, where <a class="srclink" href="#src-richmond-new-york-institutions-1609-1872-1872-p-211" data-scan="richmond-new-york-institutions-1609-1872-1872-p-211" title="See the source page — Richmond, New York Institutions 1609-1872, 1872, p. 211"><mark id="hl-8" class="s7" title="Richmond, New York Institutions 1609-1872, 1872, p. 211">(The pedestal consists of three Dix Island granite stones, which weigh in all over forty tons, and is twenty-four feet high)</mark></a>.</p>
+
+<p>Along the western flank, 17 Union Square West presented <a class="srclink" href="#src-jg-union-square-1912-p-1" data-scan="jg-union-square-1912-p-1" title="See the source page — JG, Union Square, 1912, p. 1"><mark id="hl-9" class="s8" title="JG, Union Square, 1912, p. 1">(Granite Bulkheads)</mark></a> and a <a class="srclink" href="#src-jg-union-square-1912-p-1" data-scan="jg-union-square-1912-p-1" title="See the source page — JG, Union Square, 1912, p. 1"><mark id="hl-10" class="s8" title="JG, Union Square, 1912, p. 1">(Granite Surround)</mark></a>; 21 Union Square West carried the inheritance into its foundation as <mark id="hl-11" class="s9" title="JG, Union Square, 1989, p. 1">(Granite Bulkheads)</mark>; and 29 Union Square West named granite among its base materials—<a class="srclink" href="#src-jg-union-square-1959-p-1" data-scan="jg-union-square-1959-p-1" title="See the source page — JG, Union Square, 1959, p. 1"><mark id="hl-12" class="s10" title="JG, Union Square, 1959, p. 1">(Painted Brick, Granite)</mark></a>—and again at its entrance as a <a class="srclink" href="#src-jg-union-square-1959-p-1" data-scan="jg-union-square-1959-p-1" title="See the source page — JG, Union Square, 1959, p. 1"><mark id="hl-13" class="s10" title="JG, Union Square, 1959, p. 1">(Granite Surround)</mark></a>.</p>
+
+<p>The western row&#x27;s most eloquent expression belongs to the Bank of the Metropolis at 31 Union Square West, whose record enumerates <a class="srclink" href="#src-lpc-union-square-1903-p-1" data-scan="lpc-union-square-1903-p-1" title="See the source page — LPC, Union Square, 1903, p. 1"><mark id="hl-14" class="s11" title="LPC, Union Square, 1903, p. 1">(Granite Bulkheads)</mark></a>, <a class="srclink" href="#src-lpc-union-square-1903-p-1" data-scan="lpc-union-square-1903-p-1" title="See the source page — LPC, Union Square, 1903, p. 1"><mark id="hl-15" class="s11" title="LPC, Union Square, 1903, p. 1">(Polished Granite Columns)</mark></a>, and <a class="srclink" href="#src-lpc-union-square-1903-p-1" data-scan="lpc-union-square-1903-p-1" title="See the source page — LPC, Union Square, 1903, p. 1"><mark id="hl-16" class="s11" title="LPC, Union Square, 1903, p. 1">(Granite Ionic Columns)</mark></a>. It earned admiration for a design <a class="srclink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-470" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-470" title="See the source page — Spielvogel, The Landmarks of New York, 2016, p. 470"><mark id="hl-17" class="s2" title="Spielvogel, The Landmarks of New York, 2016, p. 470">(enhanced by classical elements traditionally associated with American bank architecture—most notably, a bowed two-story portico with monumental polished-granite columns, lions&#x27; heads, consoles, and foliated spandrels)</mark></a>, and equal praise as <a class="srclink" href="#src-hennessy-walking-broadway-2020-p-97" data-scan="hennessy-walking-broadway-2020-p-97" title="See the source page — Hennessy, Walking Broadway, 2020, p. 97"><mark id="hl-18" class="s12" title="Hennessy, Walking Broadway, 2020, p. 97">(a welcoming two-story bowed portico supported by a pair of gray granite Ionic columns facing Union Square)</mark></a>.</p>
+
+<p>The eastern edge answered with the Classical-Revival bank at 20 Union Square East, a temple wrought in stone whose record lists <a class="srclink" href="#src-aia-union-square-1907-p-1" data-scan="aia-union-square-1907-p-1" title="See the source page — AIA, Union Square, 1907, p. 1"><mark id="hl-19" class="s13" title="AIA, Union Square, 1907, p. 1">(Troy Granite)</mark></a> as base, <a class="srclink" href="#src-aia-union-square-1907-p-1" data-scan="aia-union-square-1907-p-1" title="See the source page — AIA, Union Square, 1907, p. 1"><mark id="hl-20" class="s13" title="AIA, Union Square, 1907, p. 1">(Troy Granite)</mark></a> as façade, <a class="srclink" href="#src-aia-union-square-1907-p-1" data-scan="aia-union-square-1907-p-1" title="See the source page — AIA, Union Square, 1907, p. 1"><mark id="hl-21" class="s13" title="AIA, Union Square, 1907, p. 1">(Granite Steps)</mark></a>, and a <a class="srclink" href="#src-aia-union-square-1907-p-1" data-scan="aia-union-square-1907-p-1" title="See the source page — AIA, Union Square, 1907, p. 1"><mark id="hl-22" class="s13" title="AIA, Union Square, 1907, p. 1">(Granite Surround)</mark></a>. It was hailed as <a class="srclink" href="#src-postal-dolkart-guide-to-new-york-city-landmarks-2009-p-85" data-scan="postal-dolkart-guide-to-new-york-city-landmarks-2009-p-85" title="See the source page — Postal &amp; Dolkart, Guide to New York City Landmarks, 2009, p. 85"><mark id="hl-23" class="s4" title="Postal &amp; Dolkart, Guide to New York City Landmarks, 2009, p. 85">(The bold academic classicism of this white granite bank building with its Corinthian temple front reveals the design aesthetic of Henry Bacon)</mark></a>, confirmed where <a class="srclink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-515" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-515" title="See the source page — Spielvogel, The Landmarks of New York, 2016, p. 515"><mark id="hl-24" class="s2" title="Spielvogel, The Landmarks of New York, 2016, p. 515">(Ihe Union Square Bank is a flat-roofed building covered in Troy white granite)</mark></a>, and distilled in the remark that <a class="srclink" href="#src-wolfe-new-york-15-walking-tours-2003-p-250" data-scan="wolfe-new-york-15-walking-tours-2003-p-250" title="See the source page — Wolfe, New York 15 Walking Tours, 2003, p. 250"><mark id="hl-25" class="s3" title="Wolfe, New York 15 Walking Tours, 2003, p. 250">(the white granite-front structure boasts a facade of bold Corinthian columns)</mark></a>.</p>
+
+<p>Granite endured, too, in the eastern neighbors—<a class="srclink" href="#src-jg-union-square-1916-p-1" data-scan="jg-union-square-1916-p-1" title="See the source page — JG, Union Square, 1916, p. 1"><mark id="hl-26" class="s14" title="JG, Union Square, 1916, p. 1">(Granite Bulkheads)</mark></a> at 24 Union Square East and <mark id="hl-27" class="s15" title="JG, Union Square, 1904, p. 1">(Granite Bulkheads)</mark> again at 32 Union Square East. At 44 Union Square East, the Former Tammany Hall <a class="srclink" href="#src-dolkart-gramercy-1996-p-78" data-scan="dolkart-gramercy-1996-p-78" title="See the source page — Dolkart, Gramercy, 1996, p. 78"><mark id="hl-28" class="s16" title="Dolkart, Gramercy, 1996, p. 78">(was to be a Colonial Revival structure built of red Harvard brick with granite trim (limestone was later substituted))</mark></a>, while at 1 Irving Place a later building named <a class="srclink" href="#src-aia-union-square-1987-p-1" data-scan="aia-union-square-1987-p-1" title="See the source page — AIA, Union Square, 1987, p. 1"><mark id="hl-29" class="s17" title="AIA, Union Square, 1987, p. 1">(Brick, Granite)</mark></a> among its base materials and set a <a class="srclink" href="#src-aia-union-square-1987-p-1" data-scan="aia-union-square-1987-p-1" title="See the source page — AIA, Union Square, 1987, p. 1"><mark id="hl-30" class="s17" title="AIA, Union Square, 1987, p. 1">(Granite Surround)</mark></a> at its entrance. Along East 15th Street, the Swannanoa affirmed that <a class="srclink" href="#src-dolkart-gramercy-1996-p-88" data-scan="dolkart-gramercy-1996-p-88" title="See the source page — Dolkart, Gramercy, 1996, p. 88"><mark id="hl-31" class="s16" title="Dolkart, Gramercy, 1996, p. 88">(Its most imposing feature is the two-story base with granite pilasters and projecting portico supported by four granite columns)</mark></a>.</p>
+
+<p>The square itself endures as an open-air gallery of monuments raised upon granite. The Marquis de Lafayette ascends from a <a class="srclink" href="#src-gayle-cohen-manhattans-outdoor-sculptures-1988-p-97" data-scan="gayle-cohen-manhattans-outdoor-sculptures-1988-p-97" title="See the source page — Gayle &amp; Cohen, Manhattans Outdoor Sculptures, 1988, p. 97"><mark id="hl-32" class="s18" title="Gayle &amp; Cohen, Manhattans Outdoor Sculptures, 1988, p. 97">(granite pedestal)</mark></a>; the Equestrian Statue of Washington <a class="srclink" href="#src-nelson-sons-nelsons-guide-to-the-city-of-new-york-1858-p-39" data-scan="nelson-sons-nelsons-guide-to-the-city-of-new-york-1858-p-39" title="See the source page — Nelson &amp; Sons, Nelsons Guide to the City of New York, 1858, p. 39"><mark id="hl-33" class="s19" title="Nelson &amp; Sons, Nelsons Guide to the City of New York, 1858, p. 39">(is of bronze, and is raised upon a granite pedestal of plain device)</mark></a>, its form set upon a base of <a class="srclink" href="#src-gayle-cohen-manhattans-outdoor-sculptures-1988-p-91" data-scan="gayle-cohen-manhattans-outdoor-sculptures-1988-p-91" title="See the source page — Gayle &amp; Cohen, Manhattans Outdoor Sculptures, 1988, p. 91"><mark id="hl-34" class="s18" title="Gayle &amp; Cohen, Manhattans Outdoor Sculptures, 1988, p. 91">(14 feet high; granite pedestal)</mark></a>, recorded as a <a class="srclink" href="#src-sharp-new-york-city-public-sculpture-1974-p-28" data-scan="sharp-new-york-city-public-sculpture-1974-p-28" title="See the source page — Sharp, New York City Public Sculpture, 1974, p. 28"><mark id="hl-35" class="s20" title="Sharp, New York City Public Sculpture, 1974, p. 28">(Bronze statue, granite base)</mark></a>, and remembered where <a class="srclink" href="#src-sharp-new-york-city-public-sculpture-1974-p-28" data-scan="sharp-new-york-city-public-sculpture-1974-p-28" title="See the source page — Sharp, New York City Public Sculpture, 1974, p. 28"><mark id="hl-36" class="s20" title="Sharp, New York City Public Sculpture, 1974, p. 28">(The finished statue was mounted on a fourteen-foot granite pedestal designed by the noted New York architect Richard Upjohn (1802 -1878))</mark></a>. Mohandas Gandhi rests upon a <a class="srclink" href="#src-gayle-cohen-manhattans-outdoor-sculptures-1988-p-93" data-scan="gayle-cohen-manhattans-outdoor-sculptures-1988-p-93" title="See the source page — Gayle &amp; Cohen, Manhattans Outdoor Sculptures, 1988, p. 93"><mark id="hl-37" class="s18" title="Gayle &amp; Cohen, Manhattans Outdoor Sculptures, 1988, p. 93">(granite pedestal)</mark></a>, further related where <a class="srclink" href="#src-cook-sacred-havens-2001-p-42" data-scan="cook-sacred-havens-2001-p-42" title="See the source page — Cook, Sacred Havens, 2001, p. 42"><mark id="hl-38" class="s21" title="Cook, Sacred Havens, 2001, p. 42">(The life-sized bronze statue rests on a granite base which together measures 14 feet in height)</mark></a>. The Union Square Drinking Fountain incorporated a <a class="srclink" href="#src-gayle-cohen-manhattans-outdoor-sculptures-1988-p-94" data-scan="gayle-cohen-manhattans-outdoor-sculptures-1988-p-94" title="See the source page — Gayle &amp; Cohen, Manhattans Outdoor Sculptures, 1988, p. 94"><mark id="hl-39" class="s18" title="Gayle &amp; Cohen, Manhattans Outdoor Sculptures, 1988, p. 94">(pink granite pedestal)</mark></a>, its ornament described where <a class="srclink" href="#src-gayle-cohen-manhattans-outdoor-sculptures-1988-p-94" data-scan="gayle-cohen-manhattans-outdoor-sculptures-1988-p-94" title="See the source page — Gayle &amp; Cohen, Manhattans Outdoor Sculptures, 1988, p. 94"><mark id="hl-40" class="s18" title="Gayle &amp; Cohen, Manhattans Outdoor Sculptures, 1988, p. 94">(The concept of benign nature underlies the decorative motifs of birds, fruit, flowers, and four lizards embellishing the octagonal pink granite pedestal)</mark></a>. Abraham Lincoln stands upon a <a class="srclink" href="#src-gayle-cohen-manhattans-outdoor-sculptures-1988-p-96" data-scan="gayle-cohen-manhattans-outdoor-sculptures-1988-p-96" title="See the source page — Gayle &amp; Cohen, Manhattans Outdoor Sculptures, 1988, p. 96"><mark id="hl-41" class="s18" title="Gayle &amp; Cohen, Manhattans Outdoor Sculptures, 1988, p. 96">(granite pedestal)</mark></a> of <a class="srclink" href="#src-richmond-new-york-institutions-1609-1872-1872-p-211" data-scan="richmond-new-york-institutions-1609-1872-1872-p-211" title="See the source page — Richmond, New York Institutions 1609-1872, 1872, p. 211"><mark id="hl-42" class="s7" title="Richmond, New York Institutions 1609-1872, 1872, p. 211">(three Dix Island granite stones, which weigh in all over forty tons)</mark></a>, and at the heart of the square rises the Charles F. Murphy Memorial Flagpole, anchored by a <a class="srclink" href="#src-gayle-cohen-manhattans-outdoor-sculptures-1988-p-95" data-scan="gayle-cohen-manhattans-outdoor-sculptures-1988-p-95" title="See the source page — Gayle &amp; Cohen, Manhattans Outdoor Sculptures, 1988, p. 95"><mark id="hl-43" class="s18" title="Gayle &amp; Cohen, Manhattans Outdoor Sculptures, 1988, p. 95">(Granite flagpole base, 36 feet in diameter)</mark></a>.</p>
+
+<section class="chart-print"><h2 id="citations">Citation Chart</h2>
+<p class="note2">Every highlighted quote, in order of appearance, correlated to its underlying source. The swatch matches the highlight colour in the text.</p>
+<div class="tablewrap">
+<h3 class="csec"></h3>
+<table><thead><tr><th class="num">#</th><th>Verbatim Quote (abbreviated)</th><th>Source (Author, Title, Year, Page)</th></tr></thead><tbody>
+<tr><td class="num">1</td><td class="quote">&ldquo;Romanesque Revival granite crowned with a cornice of 40 little windows with interstitial paired columns&rdquo;</td><td class="src"><span class="sw s1"></span>AIA, <em>AIA Edition 3</em>, 1988, p. 186&nbsp;<a class="pglink" href="#src-aia-aia-edition-3-1988-p-186" data-scan="aia-aia-edition-3-1988-p-186">[page scan]</a></td></tr>
+<tr><td class="num">2</td><td class="quote">&ldquo;Sheathed in Indiana limestone, granite, and brick, the building is ornamented with exceptional details&rdquo;</td><td class="src"><span class="sw s2"></span>Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 346&nbsp;<a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-346" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-346">[page scan]</a></td></tr>
+<tr><td class="num">3</td><td class="quote">&ldquo;Faced with gray granite, limestone, and brick and decorated with terra cotta&rdquo;</td><td class="src"><span class="sw s3"></span>Wolfe, <em>New York 15 Walking Tours</em>, 2003, p. 251&nbsp;<a class="pglink" href="#src-wolfe-new-york-15-walking-tours-2003-p-251" data-scan="wolfe-new-york-15-walking-tours-2003-p-251">[page scan]</a></td></tr>
+<tr><td class="num">4</td><td class="quote">&ldquo;The budding, faced in limestone, granite, redbrick, and terra cotta&rdquo;</td><td class="src"><span class="sw s4"></span>Postal &amp; Dolkart, <em>Guide to New York City Landmarks</em>, 2009, p. 76&nbsp;<a class="pglink" href="#src-postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76" data-scan="postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76">[page scan]</a></td></tr>
+<tr><td class="num">5</td><td class="quote">&ldquo;Granite Bulkheads&rdquo;</td><td class="src"><span class="sw s5"></span>LPC, <em>Union Square</em>, 1890, p. 1</td></tr>
+<tr><td class="num">6</td><td class="quote">&ldquo;Granite Bulkheads&rdquo;</td><td class="src"><span class="sw s6"></span>JG, <em>Union Square</em>, 1897, p. 1</td></tr>
+<tr><td class="num">7</td><td class="quote">&ldquo;Granite Ionic Columns&rdquo;</td><td class="src"><span class="sw s6"></span>JG, <em>Union Square</em>, 1897, p. 1</td></tr>
+<tr><td class="num">8</td><td class="quote">&ldquo;The pedestal consists of three Dix Island granite stones, which weigh in all over forty tons, and is twenty-four feet high&rdquo;</td><td class="src"><span class="sw s7"></span>Richmond, <em>New York Institutions 1609-1872</em>, 1872, p. 211&nbsp;<a class="pglink" href="#src-richmond-new-york-institutions-1609-1872-1872-p-211" data-scan="richmond-new-york-institutions-1609-1872-1872-p-211">[page scan]</a></td></tr>
+<tr><td class="num">9</td><td class="quote">&ldquo;Granite Bulkheads&rdquo;</td><td class="src"><span class="sw s8"></span>JG, <em>Union Square</em>, 1912, p. 1&nbsp;<a class="pglink" href="#src-jg-union-square-1912-p-1" data-scan="jg-union-square-1912-p-1">[page scan]</a></td></tr>
+<tr><td class="num">10</td><td class="quote">&ldquo;Granite Surround&rdquo;</td><td class="src"><span class="sw s8"></span>JG, <em>Union Square</em>, 1912, p. 1&nbsp;<a class="pglink" href="#src-jg-union-square-1912-p-1" data-scan="jg-union-square-1912-p-1">[page scan]</a></td></tr>
+<tr><td class="num">11</td><td class="quote">&ldquo;Granite Bulkheads&rdquo;</td><td class="src"><span class="sw s9"></span>JG, <em>Union Square</em>, 1989, p. 1</td></tr>
+<tr><td class="num">12</td><td class="quote">&ldquo;Painted Brick, Granite&rdquo;</td><td class="src"><span class="sw s10"></span>JG, <em>Union Square</em>, 1959, p. 1&nbsp;<a class="pglink" href="#src-jg-union-square-1959-p-1" data-scan="jg-union-square-1959-p-1">[page scan]</a></td></tr>
+<tr><td class="num">13</td><td class="quote">&ldquo;Granite Surround&rdquo;</td><td class="src"><span class="sw s10"></span>JG, <em>Union Square</em>, 1959, p. 1&nbsp;<a class="pglink" href="#src-jg-union-square-1959-p-1" data-scan="jg-union-square-1959-p-1">[page scan]</a></td></tr>
+<tr><td class="num">14</td><td class="quote">&ldquo;Granite Bulkheads&rdquo;</td><td class="src"><span class="sw s11"></span>LPC, <em>Union Square</em>, 1903, p. 1&nbsp;<a class="pglink" href="#src-lpc-union-square-1903-p-1" data-scan="lpc-union-square-1903-p-1">[page scan]</a></td></tr>
+<tr><td class="num">15</td><td class="quote">&ldquo;Polished Granite Columns&rdquo;</td><td class="src"><span class="sw s11"></span>LPC, <em>Union Square</em>, 1903, p. 1&nbsp;<a class="pglink" href="#src-lpc-union-square-1903-p-1" data-scan="lpc-union-square-1903-p-1">[page scan]</a></td></tr>
+<tr><td class="num">16</td><td class="quote">&ldquo;Granite Ionic Columns&rdquo;</td><td class="src"><span class="sw s11"></span>LPC, <em>Union Square</em>, 1903, p. 1&nbsp;<a class="pglink" href="#src-lpc-union-square-1903-p-1" data-scan="lpc-union-square-1903-p-1">[page scan]</a></td></tr>
+<tr><td class="num">17</td><td class="quote">&ldquo;enhanced by classical elements traditionally associated with American bank architecture—most notably, a bowed two-story portico with monumental polished-granite columns,…&rdquo;</td><td class="src"><span class="sw s2"></span>Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 470&nbsp;<a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-470" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-470">[page scan]</a></td></tr>
+<tr><td class="num">18</td><td class="quote">&ldquo;a welcoming two-story bowed portico supported by a pair of gray granite Ionic columns facing Union Square&rdquo;</td><td class="src"><span class="sw s12"></span>Hennessy, <em>Walking Broadway</em>, 2020, p. 97&nbsp;<a class="pglink" href="#src-hennessy-walking-broadway-2020-p-97" data-scan="hennessy-walking-broadway-2020-p-97">[page scan]</a></td></tr>
+<tr><td class="num">19</td><td class="quote">&ldquo;Troy Granite&rdquo;</td><td class="src"><span class="sw s13"></span>AIA, <em>Union Square</em>, 1907, p. 1&nbsp;<a class="pglink" href="#src-aia-union-square-1907-p-1" data-scan="aia-union-square-1907-p-1">[page scan]</a></td></tr>
+<tr><td class="num">20</td><td class="quote">&ldquo;Troy Granite&rdquo;</td><td class="src"><span class="sw s13"></span>AIA, <em>Union Square</em>, 1907, p. 1&nbsp;<a class="pglink" href="#src-aia-union-square-1907-p-1" data-scan="aia-union-square-1907-p-1">[page scan]</a></td></tr>
+<tr><td class="num">21</td><td class="quote">&ldquo;Granite Steps&rdquo;</td><td class="src"><span class="sw s13"></span>AIA, <em>Union Square</em>, 1907, p. 1&nbsp;<a class="pglink" href="#src-aia-union-square-1907-p-1" data-scan="aia-union-square-1907-p-1">[page scan]</a></td></tr>
+<tr><td class="num">22</td><td class="quote">&ldquo;Granite Surround&rdquo;</td><td class="src"><span class="sw s13"></span>AIA, <em>Union Square</em>, 1907, p. 1&nbsp;<a class="pglink" href="#src-aia-union-square-1907-p-1" data-scan="aia-union-square-1907-p-1">[page scan]</a></td></tr>
+<tr><td class="num">23</td><td class="quote">&ldquo;The bold academic classicism of this white granite bank building with its Corinthian temple front reveals the design aesthetic of Henry Bacon&rdquo;</td><td class="src"><span class="sw s4"></span>Postal &amp; Dolkart, <em>Guide to New York City Landmarks</em>, 2009, p. 85&nbsp;<a class="pglink" href="#src-postal-dolkart-guide-to-new-york-city-landmarks-2009-p-85" data-scan="postal-dolkart-guide-to-new-york-city-landmarks-2009-p-85">[page scan]</a></td></tr>
+<tr><td class="num">24</td><td class="quote">&ldquo;Ihe Union Square Bank is a flat-roofed building covered in Troy white granite&rdquo;</td><td class="src"><span class="sw s2"></span>Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 515&nbsp;<a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-515" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-515">[page scan]</a></td></tr>
+<tr><td class="num">25</td><td class="quote">&ldquo;the white granite-front structure boasts a facade of bold Corinthian columns&rdquo;</td><td class="src"><span class="sw s3"></span>Wolfe, <em>New York 15 Walking Tours</em>, 2003, p. 250&nbsp;<a class="pglink" href="#src-wolfe-new-york-15-walking-tours-2003-p-250" data-scan="wolfe-new-york-15-walking-tours-2003-p-250">[page scan]</a></td></tr>
+<tr><td class="num">26</td><td class="quote">&ldquo;Granite Bulkheads&rdquo;</td><td class="src"><span class="sw s14"></span>JG, <em>Union Square</em>, 1916, p. 1&nbsp;<a class="pglink" href="#src-jg-union-square-1916-p-1" data-scan="jg-union-square-1916-p-1">[page scan]</a></td></tr>
+<tr><td class="num">27</td><td class="quote">&ldquo;Granite Bulkheads&rdquo;</td><td class="src"><span class="sw s15"></span>JG, <em>Union Square</em>, 1904, p. 1</td></tr>
+<tr><td class="num">28</td><td class="quote">&ldquo;was to be a Colonial Revival structure built of red Harvard brick with granite trim (limestone was later substituted)&rdquo;</td><td class="src"><span class="sw s16"></span>Dolkart, <em>Gramercy</em>, 1996, p. 78&nbsp;<a class="pglink" href="#src-dolkart-gramercy-1996-p-78" data-scan="dolkart-gramercy-1996-p-78">[page scan]</a></td></tr>
+<tr><td class="num">29</td><td class="quote">&ldquo;Brick, Granite&rdquo;</td><td class="src"><span class="sw s17"></span>AIA, <em>Union Square</em>, 1987, p. 1&nbsp;<a class="pglink" href="#src-aia-union-square-1987-p-1" data-scan="aia-union-square-1987-p-1">[page scan]</a></td></tr>
+<tr><td class="num">30</td><td class="quote">&ldquo;Granite Surround&rdquo;</td><td class="src"><span class="sw s17"></span>AIA, <em>Union Square</em>, 1987, p. 1&nbsp;<a class="pglink" href="#src-aia-union-square-1987-p-1" data-scan="aia-union-square-1987-p-1">[page scan]</a></td></tr>
+<tr><td class="num">31</td><td class="quote">&ldquo;Its most imposing feature is the two-story base with granite pilasters and projecting portico supported by four granite columns&rdquo;</td><td class="src"><span class="sw s16"></span>Dolkart, <em>Gramercy</em>, 1996, p. 88&nbsp;<a class="pglink" href="#src-dolkart-gramercy-1996-p-88" data-scan="dolkart-gramercy-1996-p-88">[page scan]</a></td></tr>
+<tr><td class="num">32</td><td class="quote">&ldquo;granite pedestal&rdquo;</td><td class="src"><span class="sw s18"></span>Gayle &amp; Cohen, <em>Manhattans Outdoor Sculptures</em>, 1988, p. 97&nbsp;<a class="pglink" href="#src-gayle-cohen-manhattans-outdoor-sculptures-1988-p-97" data-scan="gayle-cohen-manhattans-outdoor-sculptures-1988-p-97">[page scan]</a></td></tr>
+<tr><td class="num">33</td><td class="quote">&ldquo;is of bronze, and is raised upon a granite pedestal of plain device&rdquo;</td><td class="src"><span class="sw s19"></span>Nelson &amp; Sons, <em>Nelsons Guide to the City of New York</em>, 1858, p. 39&nbsp;<a class="pglink" href="#src-nelson-sons-nelsons-guide-to-the-city-of-new-york-1858-p-39" data-scan="nelson-sons-nelsons-guide-to-the-city-of-new-york-1858-p-39">[page scan]</a></td></tr>
+<tr><td class="num">34</td><td class="quote">&ldquo;14 feet high; granite pedestal&rdquo;</td><td class="src"><span class="sw s18"></span>Gayle &amp; Cohen, <em>Manhattans Outdoor Sculptures</em>, 1988, p. 91&nbsp;<a class="pglink" href="#src-gayle-cohen-manhattans-outdoor-sculptures-1988-p-91" data-scan="gayle-cohen-manhattans-outdoor-sculptures-1988-p-91">[page scan]</a></td></tr>
+<tr><td class="num">35</td><td class="quote">&ldquo;Bronze statue, granite base&rdquo;</td><td class="src"><span class="sw s20"></span>Sharp, <em>New York City Public Sculpture</em>, 1974, p. 28&nbsp;<a class="pglink" href="#src-sharp-new-york-city-public-sculpture-1974-p-28" data-scan="sharp-new-york-city-public-sculpture-1974-p-28">[page scan]</a></td></tr>
+<tr><td class="num">36</td><td class="quote">&ldquo;The finished statue was mounted on a fourteen-foot granite pedestal designed by the noted New York architect Richard Upjohn (1802 -1878)&rdquo;</td><td class="src"><span class="sw s20"></span>Sharp, <em>New York City Public Sculpture</em>, 1974, p. 28&nbsp;<a class="pglink" href="#src-sharp-new-york-city-public-sculpture-1974-p-28" data-scan="sharp-new-york-city-public-sculpture-1974-p-28">[page scan]</a></td></tr>
+<tr><td class="num">37</td><td class="quote">&ldquo;granite pedestal&rdquo;</td><td class="src"><span class="sw s18"></span>Gayle &amp; Cohen, <em>Manhattans Outdoor Sculptures</em>, 1988, p. 93&nbsp;<a class="pglink" href="#src-gayle-cohen-manhattans-outdoor-sculptures-1988-p-93" data-scan="gayle-cohen-manhattans-outdoor-sculptures-1988-p-93">[page scan]</a></td></tr>
+<tr><td class="num">38</td><td class="quote">&ldquo;The life-sized bronze statue rests on a granite base which together measures 14 feet in height&rdquo;</td><td class="src"><span class="sw s21"></span>Cook, <em>Sacred Havens</em>, 2001, p. 42&nbsp;<a class="pglink" href="#src-cook-sacred-havens-2001-p-42" data-scan="cook-sacred-havens-2001-p-42">[page scan]</a></td></tr>
+<tr><td class="num">39</td><td class="quote">&ldquo;pink granite pedestal&rdquo;</td><td class="src"><span class="sw s18"></span>Gayle &amp; Cohen, <em>Manhattans Outdoor Sculptures</em>, 1988, p. 94&nbsp;<a class="pglink" href="#src-gayle-cohen-manhattans-outdoor-sculptures-1988-p-94" data-scan="gayle-cohen-manhattans-outdoor-sculptures-1988-p-94">[page scan]</a></td></tr>
+<tr><td class="num">40</td><td class="quote">&ldquo;The concept of benign nature underlies the decorative motifs of birds, fruit, flowers, and four lizards embellishing the octagonal pink granite pedestal&rdquo;</td><td class="src"><span class="sw s18"></span>Gayle &amp; Cohen, <em>Manhattans Outdoor Sculptures</em>, 1988, p. 94&nbsp;<a class="pglink" href="#src-gayle-cohen-manhattans-outdoor-sculptures-1988-p-94" data-scan="gayle-cohen-manhattans-outdoor-sculptures-1988-p-94">[page scan]</a></td></tr>
+<tr><td class="num">41</td><td class="quote">&ldquo;granite pedestal&rdquo;</td><td class="src"><span class="sw s18"></span>Gayle &amp; Cohen, <em>Manhattans Outdoor Sculptures</em>, 1988, p. 96&nbsp;<a class="pglink" href="#src-gayle-cohen-manhattans-outdoor-sculptures-1988-p-96" data-scan="gayle-cohen-manhattans-outdoor-sculptures-1988-p-96">[page scan]</a></td></tr>
+<tr><td class="num">42</td><td class="quote">&ldquo;three Dix Island granite stones, which weigh in all over forty tons&rdquo;</td><td class="src"><span class="sw s7"></span>Richmond, <em>New York Institutions 1609-1872</em>, 1872, p. 211&nbsp;<a class="pglink" href="#src-richmond-new-york-institutions-1609-1872-1872-p-211" data-scan="richmond-new-york-institutions-1609-1872-1872-p-211">[page scan]</a></td></tr>
+<tr><td class="num">43</td><td class="quote">&ldquo;Granite flagpole base, 36 feet in diameter&rdquo;</td><td class="src"><span class="sw s18"></span>Gayle &amp; Cohen, <em>Manhattans Outdoor Sculptures</em>, 1988, p. 95&nbsp;<a class="pglink" href="#src-gayle-cohen-manhattans-outdoor-sculptures-1988-p-95" data-scan="gayle-cohen-manhattans-outdoor-sculptures-1988-p-95">[page scan]</a></td></tr>
+</tbody></table></div></section>
+
+<h2 class="srcpage" id="sources">Source Pages</h2>
+<p class="note2">27 scanned pages, one per cited source page. Each lists the highlighted quotes drawn from it.</p>
+<section class="srcsec"><h3 class="scanhead"><span id="src-aia-aia-edition-3-1988-p-186"></span>AIA, <em>AIA Edition 3</em>, 1988, p. 186</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-1">1</a></span></p>
+<figure class="scan"><img id="scan-aia-aia-edition-3-1988-p-186" src="assets/scans/aia-aia-edition-3-1988-p-186.jpg" alt="AIA, AIA Edition 3, 1988, p. 186"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-spielvogel-the-landmarks-of-new-york-2016-p-346"></span>Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 346</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-2">2</a></span></p>
+<figure class="scan"><img id="scan-spielvogel-the-landmarks-of-new-york-2016-p-346" src="assets/scans/spielvogel-the-landmarks-of-new-york-2016-p-346.jpg" alt="Spielvogel, The Landmarks of New York, 2016, p. 346"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-wolfe-new-york-15-walking-tours-2003-p-251"></span>Wolfe, <em>New York 15 Walking Tours</em>, 2003, p. 251</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-3">3</a></span></p>
+<figure class="scan"><img id="scan-wolfe-new-york-15-walking-tours-2003-p-251" src="assets/scans/wolfe-new-york-15-walking-tours-2003-p-251.jpg" alt="Wolfe, New York 15 Walking Tours, 2003, p. 251"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76"></span>Postal &amp; Dolkart, <em>Guide to New York City Landmarks</em>, 2009, p. 76</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-4">4</a></span></p>
+<figure class="scan"><img id="scan-postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76" src="assets/scans/postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76.jpg" alt="Postal &amp; Dolkart, Guide to New York City Landmarks, 2009, p. 76"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-richmond-new-york-institutions-1609-1872-1872-p-211"></span>Richmond, <em>New York Institutions 1609-1872</em>, 1872, p. 211</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-8">8</a> <a href="#hl-42">42</a></span></p>
+<figure class="scan"><img id="scan-richmond-new-york-institutions-1609-1872-1872-p-211" src="assets/scans/richmond-new-york-institutions-1609-1872-1872-p-211.jpg" alt="Richmond, New York Institutions 1609-1872, 1872, p. 211"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-jg-union-square-1912-p-1"></span>JG, <em>Union Square</em>, 1912, p. 1</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-9">9</a> <a href="#hl-10">10</a></span></p>
+<figure class="scan"><img id="scan-jg-union-square-1912-p-1" src="assets/scans/jg-union-square-1912-p-1.jpg" alt="JG, Union Square, 1912, p. 1"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-jg-union-square-1959-p-1"></span>JG, <em>Union Square</em>, 1959, p. 1</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-12">12</a> <a href="#hl-13">13</a></span></p>
+<figure class="scan"><img id="scan-jg-union-square-1959-p-1" src="assets/scans/jg-union-square-1959-p-1.jpg" alt="JG, Union Square, 1959, p. 1"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-lpc-union-square-1903-p-1"></span>LPC, <em>Union Square</em>, 1903, p. 1</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-14">14</a> <a href="#hl-15">15</a> <a href="#hl-16">16</a></span></p>
+<figure class="scan"><img id="scan-lpc-union-square-1903-p-1" src="assets/scans/lpc-union-square-1903-p-1.jpg" alt="LPC, Union Square, 1903, p. 1"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-spielvogel-the-landmarks-of-new-york-2016-p-470"></span>Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 470</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-17">17</a></span></p>
+<figure class="scan"><img id="scan-spielvogel-the-landmarks-of-new-york-2016-p-470" src="assets/scans/spielvogel-the-landmarks-of-new-york-2016-p-470.jpg" alt="Spielvogel, The Landmarks of New York, 2016, p. 470"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-hennessy-walking-broadway-2020-p-97"></span>Hennessy, <em>Walking Broadway</em>, 2020, p. 97</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-18">18</a></span></p>
+<figure class="scan"><img id="scan-hennessy-walking-broadway-2020-p-97" src="assets/scans/hennessy-walking-broadway-2020-p-97.jpg" alt="Hennessy, Walking Broadway, 2020, p. 97"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-aia-union-square-1907-p-1"></span>AIA, <em>Union Square</em>, 1907, p. 1</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-19">19</a> <a href="#hl-20">20</a> <a href="#hl-21">21</a> <a href="#hl-22">22</a></span></p>
+<figure class="scan"><img id="scan-aia-union-square-1907-p-1" src="assets/scans/aia-union-square-1907-p-1.jpg" alt="AIA, Union Square, 1907, p. 1"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-postal-dolkart-guide-to-new-york-city-landmarks-2009-p-85"></span>Postal &amp; Dolkart, <em>Guide to New York City Landmarks</em>, 2009, p. 85</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-23">23</a></span></p>
+<figure class="scan"><img id="scan-postal-dolkart-guide-to-new-york-city-landmarks-2009-p-85" src="assets/scans/postal-dolkart-guide-to-new-york-city-landmarks-2009-p-85.jpg" alt="Postal &amp; Dolkart, Guide to New York City Landmarks, 2009, p. 85"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-spielvogel-the-landmarks-of-new-york-2016-p-515"></span>Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 515</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-24">24</a></span></p>
+<figure class="scan"><img id="scan-spielvogel-the-landmarks-of-new-york-2016-p-515" src="assets/scans/spielvogel-the-landmarks-of-new-york-2016-p-515.jpg" alt="Spielvogel, The Landmarks of New York, 2016, p. 515"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-wolfe-new-york-15-walking-tours-2003-p-250"></span>Wolfe, <em>New York 15 Walking Tours</em>, 2003, p. 250</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-25">25</a></span></p>
+<figure class="scan"><img id="scan-wolfe-new-york-15-walking-tours-2003-p-250" src="assets/scans/wolfe-new-york-15-walking-tours-2003-p-250.jpg" alt="Wolfe, New York 15 Walking Tours, 2003, p. 250"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-jg-union-square-1916-p-1"></span>JG, <em>Union Square</em>, 1916, p. 1</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-26">26</a></span></p>
+<figure class="scan"><img id="scan-jg-union-square-1916-p-1" src="assets/scans/jg-union-square-1916-p-1.jpg" alt="JG, Union Square, 1916, p. 1"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-dolkart-gramercy-1996-p-78"></span>Dolkart, <em>Gramercy</em>, 1996, p. 78</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-28">28</a></span></p>
+<figure class="scan"><img id="scan-dolkart-gramercy-1996-p-78" src="assets/scans/dolkart-gramercy-1996-p-78.jpg" alt="Dolkart, Gramercy, 1996, p. 78"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-aia-union-square-1987-p-1"></span>AIA, <em>Union Square</em>, 1987, p. 1</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-29">29</a> <a href="#hl-30">30</a></span></p>
+<figure class="scan"><img id="scan-aia-union-square-1987-p-1" src="assets/scans/aia-union-square-1987-p-1.jpg" alt="AIA, Union Square, 1987, p. 1"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-dolkart-gramercy-1996-p-88"></span>Dolkart, <em>Gramercy</em>, 1996, p. 88</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-31">31</a></span></p>
+<figure class="scan"><img id="scan-dolkart-gramercy-1996-p-88" src="assets/scans/dolkart-gramercy-1996-p-88.jpg" alt="Dolkart, Gramercy, 1996, p. 88"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-gayle-cohen-manhattans-outdoor-sculptures-1988-p-97"></span>Gayle &amp; Cohen, <em>Manhattans Outdoor Sculptures</em>, 1988, p. 97</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-32">32</a></span></p>
+<figure class="scan"><img id="scan-gayle-cohen-manhattans-outdoor-sculptures-1988-p-97" src="assets/scans/gayle-cohen-manhattans-outdoor-sculptures-1988-p-97.jpg" alt="Gayle &amp; Cohen, Manhattans Outdoor Sculptures, 1988, p. 97"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-nelson-sons-nelsons-guide-to-the-city-of-new-york-1858-p-39"></span>Nelson &amp; Sons, <em>Nelsons Guide to the City of New York</em>, 1858, p. 39</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-33">33</a></span></p>
+<figure class="scan"><img id="scan-nelson-sons-nelsons-guide-to-the-city-of-new-york-1858-p-39" src="assets/scans/nelson-sons-nelsons-guide-to-the-city-of-new-york-1858-p-39.jpg" alt="Nelson &amp; Sons, Nelsons Guide to the City of New York, 1858, p. 39"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-gayle-cohen-manhattans-outdoor-sculptures-1988-p-91"></span>Gayle &amp; Cohen, <em>Manhattans Outdoor Sculptures</em>, 1988, p. 91</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-34">34</a></span></p>
+<figure class="scan"><img id="scan-gayle-cohen-manhattans-outdoor-sculptures-1988-p-91" src="assets/scans/gayle-cohen-manhattans-outdoor-sculptures-1988-p-91.jpg" alt="Gayle &amp; Cohen, Manhattans Outdoor Sculptures, 1988, p. 91"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-sharp-new-york-city-public-sculpture-1974-p-28"></span>Sharp, <em>New York City Public Sculpture</em>, 1974, p. 28</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-35">35</a> <a href="#hl-36">36</a></span></p>
+<figure class="scan"><img id="scan-sharp-new-york-city-public-sculpture-1974-p-28" src="assets/scans/sharp-new-york-city-public-sculpture-1974-p-28.jpg" alt="Sharp, New York City Public Sculpture, 1974, p. 28"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-gayle-cohen-manhattans-outdoor-sculptures-1988-p-93"></span>Gayle &amp; Cohen, <em>Manhattans Outdoor Sculptures</em>, 1988, p. 93</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-37">37</a></span></p>
+<figure class="scan"><img id="scan-gayle-cohen-manhattans-outdoor-sculptures-1988-p-93" src="assets/scans/gayle-cohen-manhattans-outdoor-sculptures-1988-p-93.jpg" alt="Gayle &amp; Cohen, Manhattans Outdoor Sculptures, 1988, p. 93"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-cook-sacred-havens-2001-p-42"></span>Cook, <em>Sacred Havens</em>, 2001, p. 42</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-38">38</a></span></p>
+<figure class="scan"><img id="scan-cook-sacred-havens-2001-p-42" src="assets/scans/cook-sacred-havens-2001-p-42.jpg" alt="Cook, Sacred Havens, 2001, p. 42"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-gayle-cohen-manhattans-outdoor-sculptures-1988-p-94"></span>Gayle &amp; Cohen, <em>Manhattans Outdoor Sculptures</em>, 1988, p. 94</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-39">39</a> <a href="#hl-40">40</a></span></p>
+<figure class="scan"><img id="scan-gayle-cohen-manhattans-outdoor-sculptures-1988-p-94" src="assets/scans/gayle-cohen-manhattans-outdoor-sculptures-1988-p-94.jpg" alt="Gayle &amp; Cohen, Manhattans Outdoor Sculptures, 1988, p. 94"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-gayle-cohen-manhattans-outdoor-sculptures-1988-p-96"></span>Gayle &amp; Cohen, <em>Manhattans Outdoor Sculptures</em>, 1988, p. 96</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-41">41</a></span></p>
+<figure class="scan"><img id="scan-gayle-cohen-manhattans-outdoor-sculptures-1988-p-96" src="assets/scans/gayle-cohen-manhattans-outdoor-sculptures-1988-p-96.jpg" alt="Gayle &amp; Cohen, Manhattans Outdoor Sculptures, 1988, p. 96"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-gayle-cohen-manhattans-outdoor-sculptures-1988-p-95"></span>Gayle &amp; Cohen, <em>Manhattans Outdoor Sculptures</em>, 1988, p. 95</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-43">43</a></span></p>
+<figure class="scan"><img id="scan-gayle-cohen-manhattans-outdoor-sculptures-1988-p-95" src="assets/scans/gayle-cohen-manhattans-outdoor-sculptures-1988-p-95.jpg" alt="Gayle &amp; Cohen, Manhattans Outdoor Sculptures, 1988, p. 95"></figure></section>
+</div>
+<aside class="chartcol" id="chartcol" aria-label="Citation chart">
+<div class="cc-head"><span class="cc-title">Citation chart</span><span class="cc-sub">43 quotes &middot; click a number to jump to it in the text, or <i>scan</i> to open the source page</span></div>
+<div class="cc-sec"></div>
+<div class="ce"><a class="ce-n" href="#hl-1">1</a><span class="sw s1"></span><div class="ce-b"><div class="ce-q">&ldquo;Romanesque Revival granite crowned with a cornice of 40 little windows with interstitial…&rdquo;</div><div class="ce-s">AIA, <em>AIA Edition 3</em>, 1988, p. 186 <a class="pglink" href="#src-aia-aia-edition-3-1988-p-186" data-scan="aia-aia-edition-3-1988-p-186">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-2">2</a><span class="sw s2"></span><div class="ce-b"><div class="ce-q">&ldquo;Sheathed in Indiana limestone, granite, and brick, the building is ornamented with…&rdquo;</div><div class="ce-s">Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 346 <a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-346" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-346">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-3">3</a><span class="sw s3"></span><div class="ce-b"><div class="ce-q">&ldquo;Faced with gray granite, limestone, and brick and decorated with terra cotta&rdquo;</div><div class="ce-s">Wolfe, <em>New York 15 Walking Tours</em>, 2003, p. 251 <a class="pglink" href="#src-wolfe-new-york-15-walking-tours-2003-p-251" data-scan="wolfe-new-york-15-walking-tours-2003-p-251">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-4">4</a><span class="sw s4"></span><div class="ce-b"><div class="ce-q">&ldquo;The budding, faced in limestone, granite, redbrick, and terra cotta&rdquo;</div><div class="ce-s">Postal &amp; Dolkart, <em>Guide to New York City Landmarks</em>, 2009, p. 76 <a class="pglink" href="#src-postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76" data-scan="postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-5">5</a><span class="sw s5"></span><div class="ce-b"><div class="ce-q">&ldquo;Granite Bulkheads&rdquo;</div><div class="ce-s">LPC, <em>Union Square</em>, 1890, p. 1</div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-6">6</a><span class="sw s6"></span><div class="ce-b"><div class="ce-q">&ldquo;Granite Bulkheads&rdquo;</div><div class="ce-s">JG, <em>Union Square</em>, 1897, p. 1</div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-7">7</a><span class="sw s6"></span><div class="ce-b"><div class="ce-q">&ldquo;Granite Ionic Columns&rdquo;</div><div class="ce-s">JG, <em>Union Square</em>, 1897, p. 1</div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-8">8</a><span class="sw s7"></span><div class="ce-b"><div class="ce-q">&ldquo;The pedestal consists of three Dix Island granite stones, which weigh in all over forty…&rdquo;</div><div class="ce-s">Richmond, <em>New York Institutions 1609-1872</em>, 1872, p. 211 <a class="pglink" href="#src-richmond-new-york-institutions-1609-1872-1872-p-211" data-scan="richmond-new-york-institutions-1609-1872-1872-p-211">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-9">9</a><span class="sw s8"></span><div class="ce-b"><div class="ce-q">&ldquo;Granite Bulkheads&rdquo;</div><div class="ce-s">JG, <em>Union Square</em>, 1912, p. 1 <a class="pglink" href="#src-jg-union-square-1912-p-1" data-scan="jg-union-square-1912-p-1">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-10">10</a><span class="sw s8"></span><div class="ce-b"><div class="ce-q">&ldquo;Granite Surround&rdquo;</div><div class="ce-s">JG, <em>Union Square</em>, 1912, p. 1 <a class="pglink" href="#src-jg-union-square-1912-p-1" data-scan="jg-union-square-1912-p-1">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-11">11</a><span class="sw s9"></span><div class="ce-b"><div class="ce-q">&ldquo;Granite Bulkheads&rdquo;</div><div class="ce-s">JG, <em>Union Square</em>, 1989, p. 1</div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-12">12</a><span class="sw s10"></span><div class="ce-b"><div class="ce-q">&ldquo;Painted Brick, Granite&rdquo;</div><div class="ce-s">JG, <em>Union Square</em>, 1959, p. 1 <a class="pglink" href="#src-jg-union-square-1959-p-1" data-scan="jg-union-square-1959-p-1">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-13">13</a><span class="sw s10"></span><div class="ce-b"><div class="ce-q">&ldquo;Granite Surround&rdquo;</div><div class="ce-s">JG, <em>Union Square</em>, 1959, p. 1 <a class="pglink" href="#src-jg-union-square-1959-p-1" data-scan="jg-union-square-1959-p-1">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-14">14</a><span class="sw s11"></span><div class="ce-b"><div class="ce-q">&ldquo;Granite Bulkheads&rdquo;</div><div class="ce-s">LPC, <em>Union Square</em>, 1903, p. 1 <a class="pglink" href="#src-lpc-union-square-1903-p-1" data-scan="lpc-union-square-1903-p-1">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-15">15</a><span class="sw s11"></span><div class="ce-b"><div class="ce-q">&ldquo;Polished Granite Columns&rdquo;</div><div class="ce-s">LPC, <em>Union Square</em>, 1903, p. 1 <a class="pglink" href="#src-lpc-union-square-1903-p-1" data-scan="lpc-union-square-1903-p-1">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-16">16</a><span class="sw s11"></span><div class="ce-b"><div class="ce-q">&ldquo;Granite Ionic Columns&rdquo;</div><div class="ce-s">LPC, <em>Union Square</em>, 1903, p. 1 <a class="pglink" href="#src-lpc-union-square-1903-p-1" data-scan="lpc-union-square-1903-p-1">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-17">17</a><span class="sw s2"></span><div class="ce-b"><div class="ce-q">&ldquo;enhanced by classical elements traditionally associated with American bank…&rdquo;</div><div class="ce-s">Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 470 <a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-470" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-470">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-18">18</a><span class="sw s12"></span><div class="ce-b"><div class="ce-q">&ldquo;a welcoming two-story bowed portico supported by a pair of gray granite Ionic columns…&rdquo;</div><div class="ce-s">Hennessy, <em>Walking Broadway</em>, 2020, p. 97 <a class="pglink" href="#src-hennessy-walking-broadway-2020-p-97" data-scan="hennessy-walking-broadway-2020-p-97">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-19">19</a><span class="sw s13"></span><div class="ce-b"><div class="ce-q">&ldquo;Troy Granite&rdquo;</div><div class="ce-s">AIA, <em>Union Square</em>, 1907, p. 1 <a class="pglink" href="#src-aia-union-square-1907-p-1" data-scan="aia-union-square-1907-p-1">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-20">20</a><span class="sw s13"></span><div class="ce-b"><div class="ce-q">&ldquo;Troy Granite&rdquo;</div><div class="ce-s">AIA, <em>Union Square</em>, 1907, p. 1 <a class="pglink" href="#src-aia-union-square-1907-p-1" data-scan="aia-union-square-1907-p-1">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-21">21</a><span class="sw s13"></span><div class="ce-b"><div class="ce-q">&ldquo;Granite Steps&rdquo;</div><div class="ce-s">AIA, <em>Union Square</em>, 1907, p. 1 <a class="pglink" href="#src-aia-union-square-1907-p-1" data-scan="aia-union-square-1907-p-1">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-22">22</a><span class="sw s13"></span><div class="ce-b"><div class="ce-q">&ldquo;Granite Surround&rdquo;</div><div class="ce-s">AIA, <em>Union Square</em>, 1907, p. 1 <a class="pglink" href="#src-aia-union-square-1907-p-1" data-scan="aia-union-square-1907-p-1">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-23">23</a><span class="sw s4"></span><div class="ce-b"><div class="ce-q">&ldquo;The bold academic classicism of this white granite bank building with its Corinthian temple…&rdquo;</div><div class="ce-s">Postal &amp; Dolkart, <em>Guide to New York City Landmarks</em>, 2009, p. 85 <a class="pglink" href="#src-postal-dolkart-guide-to-new-york-city-landmarks-2009-p-85" data-scan="postal-dolkart-guide-to-new-york-city-landmarks-2009-p-85">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-24">24</a><span class="sw s2"></span><div class="ce-b"><div class="ce-q">&ldquo;Ihe Union Square Bank is a flat-roofed building covered in Troy white granite&rdquo;</div><div class="ce-s">Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 515 <a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-515" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-515">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-25">25</a><span class="sw s3"></span><div class="ce-b"><div class="ce-q">&ldquo;the white granite-front structure boasts a facade of bold Corinthian columns&rdquo;</div><div class="ce-s">Wolfe, <em>New York 15 Walking Tours</em>, 2003, p. 250 <a class="pglink" href="#src-wolfe-new-york-15-walking-tours-2003-p-250" data-scan="wolfe-new-york-15-walking-tours-2003-p-250">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-26">26</a><span class="sw s14"></span><div class="ce-b"><div class="ce-q">&ldquo;Granite Bulkheads&rdquo;</div><div class="ce-s">JG, <em>Union Square</em>, 1916, p. 1 <a class="pglink" href="#src-jg-union-square-1916-p-1" data-scan="jg-union-square-1916-p-1">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-27">27</a><span class="sw s15"></span><div class="ce-b"><div class="ce-q">&ldquo;Granite Bulkheads&rdquo;</div><div class="ce-s">JG, <em>Union Square</em>, 1904, p. 1</div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-28">28</a><span class="sw s16"></span><div class="ce-b"><div class="ce-q">&ldquo;was to be a Colonial Revival structure built of red Harvard brick with granite trim…&rdquo;</div><div class="ce-s">Dolkart, <em>Gramercy</em>, 1996, p. 78 <a class="pglink" href="#src-dolkart-gramercy-1996-p-78" data-scan="dolkart-gramercy-1996-p-78">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-29">29</a><span class="sw s17"></span><div class="ce-b"><div class="ce-q">&ldquo;Brick, Granite&rdquo;</div><div class="ce-s">AIA, <em>Union Square</em>, 1987, p. 1 <a class="pglink" href="#src-aia-union-square-1987-p-1" data-scan="aia-union-square-1987-p-1">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-30">30</a><span class="sw s17"></span><div class="ce-b"><div class="ce-q">&ldquo;Granite Surround&rdquo;</div><div class="ce-s">AIA, <em>Union Square</em>, 1987, p. 1 <a class="pglink" href="#src-aia-union-square-1987-p-1" data-scan="aia-union-square-1987-p-1">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-31">31</a><span class="sw s16"></span><div class="ce-b"><div class="ce-q">&ldquo;Its most imposing feature is the two-story base with granite pilasters and projecting…&rdquo;</div><div class="ce-s">Dolkart, <em>Gramercy</em>, 1996, p. 88 <a class="pglink" href="#src-dolkart-gramercy-1996-p-88" data-scan="dolkart-gramercy-1996-p-88">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-32">32</a><span class="sw s18"></span><div class="ce-b"><div class="ce-q">&ldquo;granite pedestal&rdquo;</div><div class="ce-s">Gayle &amp; Cohen, <em>Manhattans Outdoor Sculptures</em>, 1988, p. 97 <a class="pglink" href="#src-gayle-cohen-manhattans-outdoor-sculptures-1988-p-97" data-scan="gayle-cohen-manhattans-outdoor-sculptures-1988-p-97">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-33">33</a><span class="sw s19"></span><div class="ce-b"><div class="ce-q">&ldquo;is of bronze, and is raised upon a granite pedestal of plain device&rdquo;</div><div class="ce-s">Nelson &amp; Sons, <em>Nelsons Guide to the City of New York</em>, 1858, p. 39 <a class="pglink" href="#src-nelson-sons-nelsons-guide-to-the-city-of-new-york-1858-p-39" data-scan="nelson-sons-nelsons-guide-to-the-city-of-new-york-1858-p-39">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-34">34</a><span class="sw s18"></span><div class="ce-b"><div class="ce-q">&ldquo;14 feet high; granite pedestal&rdquo;</div><div class="ce-s">Gayle &amp; Cohen, <em>Manhattans Outdoor Sculptures</em>, 1988, p. 91 <a class="pglink" href="#src-gayle-cohen-manhattans-outdoor-sculptures-1988-p-91" data-scan="gayle-cohen-manhattans-outdoor-sculptures-1988-p-91">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-35">35</a><span class="sw s20"></span><div class="ce-b"><div class="ce-q">&ldquo;Bronze statue, granite base&rdquo;</div><div class="ce-s">Sharp, <em>New York City Public Sculpture</em>, 1974, p. 28 <a class="pglink" href="#src-sharp-new-york-city-public-sculpture-1974-p-28" data-scan="sharp-new-york-city-public-sculpture-1974-p-28">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-36">36</a><span class="sw s20"></span><div class="ce-b"><div class="ce-q">&ldquo;The finished statue was mounted on a fourteen-foot granite pedestal designed by the noted…&rdquo;</div><div class="ce-s">Sharp, <em>New York City Public Sculpture</em>, 1974, p. 28 <a class="pglink" href="#src-sharp-new-york-city-public-sculpture-1974-p-28" data-scan="sharp-new-york-city-public-sculpture-1974-p-28">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-37">37</a><span class="sw s18"></span><div class="ce-b"><div class="ce-q">&ldquo;granite pedestal&rdquo;</div><div class="ce-s">Gayle &amp; Cohen, <em>Manhattans Outdoor Sculptures</em>, 1988, p. 93 <a class="pglink" href="#src-gayle-cohen-manhattans-outdoor-sculptures-1988-p-93" data-scan="gayle-cohen-manhattans-outdoor-sculptures-1988-p-93">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-38">38</a><span class="sw s21"></span><div class="ce-b"><div class="ce-q">&ldquo;The life-sized bronze statue rests on a granite base which together measures 14 feet in…&rdquo;</div><div class="ce-s">Cook, <em>Sacred Havens</em>, 2001, p. 42 <a class="pglink" href="#src-cook-sacred-havens-2001-p-42" data-scan="cook-sacred-havens-2001-p-42">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-39">39</a><span class="sw s18"></span><div class="ce-b"><div class="ce-q">&ldquo;pink granite pedestal&rdquo;</div><div class="ce-s">Gayle &amp; Cohen, <em>Manhattans Outdoor Sculptures</em>, 1988, p. 94 <a class="pglink" href="#src-gayle-cohen-manhattans-outdoor-sculptures-1988-p-94" data-scan="gayle-cohen-manhattans-outdoor-sculptures-1988-p-94">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-40">40</a><span class="sw s18"></span><div class="ce-b"><div class="ce-q">&ldquo;The concept of benign nature underlies the decorative motifs of birds, fruit, flowers, and…&rdquo;</div><div class="ce-s">Gayle &amp; Cohen, <em>Manhattans Outdoor Sculptures</em>, 1988, p. 94 <a class="pglink" href="#src-gayle-cohen-manhattans-outdoor-sculptures-1988-p-94" data-scan="gayle-cohen-manhattans-outdoor-sculptures-1988-p-94">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-41">41</a><span class="sw s18"></span><div class="ce-b"><div class="ce-q">&ldquo;granite pedestal&rdquo;</div><div class="ce-s">Gayle &amp; Cohen, <em>Manhattans Outdoor Sculptures</em>, 1988, p. 96 <a class="pglink" href="#src-gayle-cohen-manhattans-outdoor-sculptures-1988-p-96" data-scan="gayle-cohen-manhattans-outdoor-sculptures-1988-p-96">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-42">42</a><span class="sw s7"></span><div class="ce-b"><div class="ce-q">&ldquo;three Dix Island granite stones, which weigh in all over forty tons&rdquo;</div><div class="ce-s">Richmond, <em>New York Institutions 1609-1872</em>, 1872, p. 211 <a class="pglink" href="#src-richmond-new-york-institutions-1609-1872-1872-p-211" data-scan="richmond-new-york-institutions-1609-1872-1872-p-211">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-43">43</a><span class="sw s18"></span><div class="ce-b"><div class="ce-q">&ldquo;Granite flagpole base, 36 feet in diameter&rdquo;</div><div class="ce-s">Gayle &amp; Cohen, <em>Manhattans Outdoor Sculptures</em>, 1988, p. 95 <a class="pglink" href="#src-gayle-cohen-manhattans-outdoor-sculptures-1988-p-95" data-scan="gayle-cohen-manhattans-outdoor-sculptures-1988-p-95">scan</a></div></div></div>
+</aside>
+</div>
+<div class="lightbox" hidden><div class="lb-head"><span class="lb-t"></span><button class="lb-btn lb-zoom" type="button">Zoom</button><button class="lb-btn lb-close" type="button">Close &times;</button></div><div class="lb-body"><img alt="Enlarged view"></div></div>
+
+<div class="sp-backdrop" hidden></div>
+<aside class="scanpanel" hidden aria-label="Source page">
+  <div class="sp-head">
+    <div class="sp-title"><span class="sp-cite"></span><span class="sp-q"></span></div>
+    <button class="sp-btn sp-zoom" type="button">Zoom</button>
+    <button class="sp-btn sp-close" type="button" aria-label="Close">&times;</button>
+  </div>
+  <div class="sp-body"><img alt="Source page scan"></div>
+</aside>
+<script>
+(function () {
+  var panel = document.querySelector('.scanpanel'),
+      back  = document.querySelector('.sp-backdrop'),
+      bodyEl= panel.querySelector('.sp-body'),
+      img   = panel.querySelector('.sp-body img'),
+      citeEl= panel.querySelector('.sp-cite'),
+      qEl   = panel.querySelector('.sp-q');
+  function open(slug, label, num) {
+    var full = document.getElementById('scan-' + slug);
+    if (!full) return;
+    if (img.getAttribute('src') !== full.src) img.src = full.src;
+    bodyEl.classList.remove('zoom'); bodyEl.scrollTop = 0;
+    citeEl.innerHTML = label;
+    qEl.textContent = num ? 'Highlighted quote no. ' + num : '';
+    panel.hidden = false; back.hidden = false;
+    requestAnimationFrame(function () { document.body.classList.add('sp-open'); });
+  }
+  function close() {
+    document.body.classList.remove('sp-open');
+    setTimeout(function () { panel.hidden = true; back.hidden = true; }, 220);
+  }
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest) return;
+    var a = e.target.closest('a.srclink, a.pglink');
+    if (a && a.dataset.scan) {
+      e.preventDefault();
+      var head = document.getElementById('src-' + a.dataset.scan),
+          label = head ? head.parentNode.innerHTML.replace(/<span id="src-[^"]*"><\/span>/, '') : '',
+          mk = a.querySelector('mark'), num = '';
+      if (mk && mk.id) num = mk.id.replace('hl-', '');
+      else {
+        var tr = a.closest('tr'), ce = a.closest('.ce');
+        if (tr) num = tr.querySelector('td.num').textContent.trim();
+        else if (ce) num = ce.querySelector('.ce-n').textContent.trim();
+      }
+      open(a.dataset.scan, label, num);
+      return;
+    }
+    if (e.target.closest('.sp-close') || e.target.closest('.sp-backdrop')) close();
+    else if (e.target.closest('.sp-zoom') || e.target === img) bodyEl.classList.toggle('zoom');
+  });
+  var lb = document.querySelector('.lightbox'), lbBody = lb.querySelector('.lb-body'),
+      lbImg = lb.querySelector('.lb-body img'), lbT = lb.querySelector('.lb-t');
+  function lbOpen(slug, label) {
+    var full = document.getElementById('view-' + slug);
+    if (!full) return;
+    if (lbImg.getAttribute('src') !== full.src) lbImg.src = full.src;
+    lbT.innerHTML = label || '';
+    lb.hidden = false;
+    requestAnimationFrame(function () { document.body.classList.add('lb-open'); });
+  }
+  function lbClose() {
+    document.body.classList.remove('lb-open');
+    lbBody.classList.remove('zoom');
+    setTimeout(function () { lb.hidden = true; }, 200);
+  }
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest) return;
+    if (e.target.closest('.lb-close')) { lbClose(); return; }
+    if (e.target.closest('.lb-zoom') || e.target.closest('.lb-body img')) { lbBody.classList.toggle('zoom'); return; }
+    if (e.target.closest('.lightbox') && !e.target.closest('.lb-head')) { lbClose(); return; }
+    if (e.target.closest('.lb-body')) lbClose();
+  });
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest) return;
+    var v = e.target.closest('figure.view');
+    if (v) {
+      var cap = v.querySelector('figcaption b');
+      lbOpen(v.dataset.view, cap ? cap.innerHTML : '');
+    }
+  });
+  // ---- citation column tracks the text ----
+  var col = document.getElementById('chartcol');
+  if (col) {
+    var entryFor = {};
+    Array.prototype.forEach.call(col.querySelectorAll('.ce'), function (ce) {
+      entryFor[ce.querySelector('.ce-n').textContent.trim()] = ce;
+    });
+    var marks = Array.prototype.slice.call(document.querySelectorAll('.wrap mark[id^="hl-"]'));
+    var current = null, touched = 0, selfUntil = 0, hoverNum = null;
+
+    col.addEventListener('scroll', function () {
+      if (Date.now() > selfUntil) touched = Date.now();   // a real scroll by the reader
+    }, { passive: true });
+
+    function activate(num, force) {
+      if (num === current && !force) return;
+      var ce = entryFor[num];
+      if (num !== current) {
+        current = num;
+        Array.prototype.forEach.call(col.querySelectorAll('.ce.active'), function (e) { e.classList.remove('active'); });
+        Array.prototype.forEach.call(document.querySelectorAll('mark.reading'), function (m) { m.classList.remove('reading'); });
+        if (ce) {
+          ce.classList.add('active');
+          var mk = document.getElementById('hl-' + num);
+          if (mk) mk.classList.add('reading');
+        }
+      }
+      if (!ce) return;
+      if (getComputedStyle(col).position !== 'sticky') return;   // stacked layout: don't hijack scrolling
+      if (!force && Date.now() - touched < 2000) return;         // reader is browsing the column
+      var top = ce.offsetTop - col.clientHeight * 0.38;
+      selfUntil = Date.now() + 900;                      // our own smooth scroll, not the reader's
+      col.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+    }
+
+    // ---- pointing at a highlight sends the column straight to its citation ----
+    var textcol = document.querySelector('.wrap');
+    if (textcol) {
+      textcol.addEventListener('mouseover', function (e) {
+        var m = e.target.closest ? e.target.closest('mark[id^="hl-"]') : null;
+        if (!m) return;
+        var n = m.id.replace('hl-', '');
+        if (n === hoverNum) return;        // bubbling from inside the same mark
+        hoverNum = n;
+        activate(n, true);                 // deliberate aim beats the scroll guard
+      });
+      textcol.addEventListener('mouseout', function (e) {
+        var m = e.target.closest ? e.target.closest('mark[id^="hl-"]') : null;
+        if (!m) return;
+        if (e.relatedTarget && m.contains(e.relatedTarget)) return;   // still inside the same mark
+        hoverNum = null;
+      });
+    }
+
+    function pick() {
+      if (hoverNum) return;               // the cursor is aiming; don't argue with it
+      var best = null, bestTop = Infinity, fallback = null, fallbackTop = -Infinity;
+      for (var i = 0; i < marks.length; i++) {
+        var r = marks[i].getBoundingClientRect();
+        if (r.bottom < 0 || r.top > window.innerHeight) continue;
+        if (r.top >= 0 && r.top < bestTop) { best = marks[i]; bestTop = r.top; }
+        else if (r.top < 0 && r.top > fallbackTop) { fallback = marks[i]; fallbackTop = r.top; }
+      }
+      var m = best || fallback;
+      if (m) activate(m.id.replace('hl-', ''));
+    }
+
+    var ticking = false;
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () { ticking = false; pick(); });
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    pick();
+  }
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { close(); if (!lb.hidden) lbClose(); }
+  });
+})();
+</script>
+
+</body>
+</html>
