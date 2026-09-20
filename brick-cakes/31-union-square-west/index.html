@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>31 Union Square West — Italics Highlighted</title>
+<style>
+
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; margin: 0; padding: 40px 24px 64px;
+         background:#f8f5e7; color:#1a1a1a; font-family: Georgia, "Times New Roman", serif; font-size:17px; line-height:1.7; }
+  .layout { display: flex; align-items: flex-start; gap: 30px; max-width: 1580px; margin: 0 auto; }
+  .chartcol { flex: 0 0 320px; width: 320px; position: sticky; top: 28px; align-self: flex-start;
+              max-height: calc(100vh - 56px); overflow-y: auto; padding: 0 4px 0 18px;
+              border-left: 1px solid #e2ddc8; background: rgba(248,245,231,.92);
+              font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  .cc-head { position: sticky; top: 0; background: #f8f5e7; padding-bottom: 8px; margin-bottom: 4px;
+             border-bottom: 1px solid #e2ddc8; z-index: 2; }
+  .cc-title { display: block; font-size: 11px; font-weight: 600; letter-spacing: .05em;
+              text-transform: uppercase; color: #888; }
+  .cc-sub { display: block; font-size: 10.5px; color: #aaa; margin-top: 3px; line-height: 1.35; }
+  .cc-sec { font-size: 10.5px; font-weight: 600; letter-spacing: .03em; text-transform: uppercase;
+            color: #999; margin: 16px 0 6px; }
+  .ce { display: flex; gap: 7px; align-items: baseline; padding: 6px 0; border-bottom: 1px solid #ebe6d6; }
+  .ce-n { flex: 0 0 22px; text-align: right; font-size: 10px; color: #bbb; text-decoration: none; }
+  .ce-n:hover { color: #3b6ea5; }
+  .ce .sw { flex: 0 0 9px; width: 9px; height: 9px; transform: translateY(1px); }
+  .ce-b { min-width: 0; }
+  .ce-q { font-size: 11.5px; line-height: 1.4; color: #333; }
+  .ce-s { font-size: 10.5px; line-height: 1.4; color: #999; margin-top: 2px; }
+  .ce { border-left: 2px solid transparent; padding-left: 6px; transition: background .18s ease, border-color .18s ease; }
+  .ce.active { background: rgba(255,255,255,.75); border-left-color: #3b6ea5; }
+  .ce.active .ce-n { color: #3b6ea5; font-weight: 600; }
+  .ce.active .ce-q { color: #111; }
+  mark.reading { box-shadow: 0 0 0 2px rgba(59,110,165,.55); border-radius: 3px; }
+  .chartcol.on-left { border-left: none; border-right: 1px solid #e2ddc8; padding: 0 18px 0 4px; }
+  .rail.on-right { padding: 0 4px 0 4px; }
+  .chartcol::-webkit-scrollbar { width: 7px; }
+  .chartcol::-webkit-scrollbar-thumb { background: #dcdcdc; border-radius: 4px; }
+  .chart-print { display: none; }
+  @media (max-width: 1360px) {
+    .chartcol { position: static; width: 100%; flex: none; max-height: none; border-left: none;
+                border-top: 1px solid #ececec; padding: 18px 0 0; margin-top: 26px; }
+    .layout { flex-wrap: wrap; }
+    .chartcol .ce { max-width: 820px; }
+  }
+  .wrap { flex: 1 1 auto; min-width: 0; max-width: 820px; }
+  .rail { flex: 0 0 262px; width: 262px; position: sticky; top: 28px; align-self: flex-start;
+          max-height: calc(100vh - 56px); overflow-y: auto; padding-right: 4px;
+          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  .rail-title { font-size: 11px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase;
+                color: #888; margin: 0 0 10px; }
+  figure.view { margin: 0 0 16px; cursor: zoom-in; }
+  figure.view img { display: block; width: 100%; border: 1px solid #e0e0e0; border-radius: 4px; }
+  figure.view:hover img { border-color: #9c9c9c; }
+  figure.view figcaption { margin-top: 5px; font-size: 11px; line-height: 1.42; color: #8a8a8a; }
+  figure.view figcaption b { display: block; font-weight: 600; color: #444; }
+  .rail-foot { font-size: 10.5px; color: #aaa; margin: 2px 0 0; }
+  .rail::-webkit-scrollbar { width: 7px; }
+  .rail::-webkit-scrollbar-thumb { background: #dcdcdc; border-radius: 4px; }
+  @media (max-width: 1080px) {
+    .layout { flex-direction: column; gap: 18px; }
+    .rail { position: static; width: 100%; flex: none; max-height: none; display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 14px; }
+    .rail-title, .rail-foot { grid-column: 1 / -1; }
+  }
+  /* full-bleed lightbox */
+  .lightbox { position: fixed; inset: 0; z-index: 60; background: rgba(16,14,13,.93);
+              display: flex; flex-direction: column; opacity: 0; transition: opacity .18s ease; }
+  body.lb-open .lightbox { opacity: 1; }
+  .lightbox[hidden] { display: none !important; }
+  .lb-head { display: flex; align-items: center; gap: 12px; padding: 12px 16px; color: #eee;
+             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 13px; }
+  .lb-head .lb-t { flex: 1; }
+  .lb-btn { border: 1px solid rgba(255,255,255,.28); background: rgba(255,255,255,.08); color: #eee;
+            border-radius: 5px; cursor: pointer; font-size: 13px; line-height: 1; padding: 7px 10px; }
+  .lb-btn:hover { background: rgba(255,255,255,.18); }
+  .lb-body { flex: 1; overflow: auto; display: flex; align-items: center; justify-content: center; padding: 0 16px 18px; }
+  .lb-body img { max-width: 100%; max-height: 100%; object-fit: contain; cursor: zoom-in; }
+  .lb-body.zoom { align-items: flex-start; justify-content: flex-start; }
+  .lb-body.zoom img { max-width: none; max-height: none; width: 220%; cursor: zoom-out; }
+  h1 { font-size: 26px; line-height: 1.25; margin: 0 0 6px; font-weight: 700;
+       letter-spacing: -.012em; color:#1d1a12; }
+  .sub { font-family: Georgia, serif; font-style: italic; font-size: 15px; color: #555; margin: 0 0 8px; }
+  h2 { font-size: 15px; font-weight: 700; letter-spacing: .085em; text-transform: uppercase;
+       color: #6d5a33; margin: 52px 0 16px; padding-bottom: 7px; position: relative;
+       border-bottom: 1px solid #e3dcc6; }
+  h2::after { content: ""; position: absolute; left: 0; bottom: -1px; width: 58px; height: 2px;
+              background: #b39445; }
+  .wrap > h2:first-of-type { margin-top: 34px; }
+  h3 { font-size: 16px; margin: 30px 0 10px; }
+  p { margin: 0 0 20px; }
+  hr { border: none; border-top: 1px solid #e2ddc8; margin: 34px 0 28px; }
+  .note { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 13px; color:#666;
+          margin: 0 0 28px; padding-bottom: 20px; border-bottom: 1px solid #e2ddc8; }
+  .note2 { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 13px; color:#666; margin: 0 0 18px; }
+  mark { color: inherit; font-style: italic; padding: 1px 2px; border-radius: 2px;
+         box-decoration-break: clone; -webkit-box-decoration-break: clone; background:#e4e4e4; }
+  a.srclink { text-decoration: none; color: inherit; cursor: zoom-in; }
+  a.srclink:hover mark { outline: 2px solid rgba(0,0,0,.35); outline-offset: 1px; }
+  .tablewrap { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+          font-size: 13.5px; line-height: 1.55; }
+  th, td { text-align: left; vertical-align: top; padding: 9px 12px; border-bottom: 1px solid #ebe6d6; }
+  thead th { background:#efece0; border-bottom: 1px solid #ddd8c6; font-weight: 600; }
+  td.num, th.num { width: 34px; color:#888; text-align: right; padding-right: 6px; }
+  td.quote { width: 56%; }
+  td.src { color:#444; }
+  tbody tr:nth-child(even) { background:rgba(255,255,255,.45); }
+  h3.csec { font-size: 14px; margin: 26px 0 8px; color:#333;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  .nosrc { color:#999; font-style: italic; }
+  a.pglink, .pglink { font-size: 11px; color:#3b6ea5; text-decoration: none; white-space: nowrap; }
+  .backlinks a { display:inline-block; margin: 0 3px; color:#3b6ea5; text-decoration:none; }
+  .legend { margin: 0 0 30px; padding: 16px 18px; border: 1px solid #e2ddc8; border-radius: 6px; background:rgba(255,253,244,.82);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  .legend-title { font-size: 12px; font-weight: 600; letter-spacing:.04em; text-transform: uppercase; color:#777; margin-bottom: 10px; }
+  .legend-title .lk { text-transform: none; letter-spacing: 0; font-weight: 400; color:#999; }
+  .legend ul { list-style:none; margin:0; padding:0; display:grid; grid-template-columns: repeat(auto-fill, minmax(290px,1fr)); gap: 5px 20px; }
+  .legend li { display:flex; align-items:baseline; gap:8px; font-size:12.5px; line-height:1.45; }
+  .sw { display:inline-block; width:13px; height:13px; border-radius:3px; flex:0 0 13px;
+        border:1px solid rgba(0,0,0,.14); transform: translateY(2px); }
+  td.src .sw { margin-right: 6px; }
+  .ct { color:#999; } .has { color:#3b6ea5; }
+  .pg { color:#8a8272; white-space: nowrap; }
+  section.audio { margin: 0 0 30px; padding: 14px 18px 16px; border: 1px solid #e2ddc8; border-radius: 6px;
+                  background: rgba(255,253,244,.82); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  .audio-label { font-size: 12px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase;
+                 color: #777; margin-bottom: 10px; }
+  .audio-meta { font-weight: 400; letter-spacing: 0; text-transform: none; color: #aaa; margin-left: 4px; }
+  section.audio audio { width: 100%; display: block; }
+  .audio-fallback { display: none; font-size: 12.5px; color: #666; margin: 0; }
+  section.srcsec { margin: 0 0 34px; }
+  h3.scanhead { font-size: 14.5px; margin: 26px 0 6px;
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  figure.scan { margin: 8px 0 0; }
+  figure.scan img { width: 100%; border: 1px solid #ddd; border-radius: 4px; }
+
+  mark.s1, .sw.s1 { background: #cc9966; }
+  mark.s2, .sw.s2 { background: #a3cc66; }
+  mark.s3, .sw.s3 { background: #fc7ec3; }
+  mark.s4, .sw.s4 { background: #8dbac8; }
+  mark.s5, .sw.s5 { background: #fcdc7e; }
+  mark.s6, .sw.s6 { background: #a1a1fd; }
+  mark.s7, .sw.s7 { background: #c3fb5b; }
+  mark.s8, .sw.s8 { background: #eeb2af; }
+  mark.s9, .sw.s9 { background: #fc7e7e; }
+  mark.s10, .sw.s10 { background: #a8f5b0; }
+  mark.s11, .sw.s11 { background: #38b6fa; }
+  mark.s12, .sw.s12 { background: #ebebd6; }
+  mark.s13, .sw.s13 { background: #bfc88d; }
+  mark.s14, .sw.s14 { background: #38fab6; }
+  mark.s15, .sw.s15 { background: #fac938; }
+  mark.s16, .sw.s16 { background: #38f0fa; }
+  mark.s17, .sw.s17 { background: #fb8b5b; }
+  mark.s18, .sw.s18 { background: #e0d6eb; }
+  mark.s19, .sw.s19 { background: #75bd99; }
+  mark.s20, .sw.s20 { background: #a8f5e2; }
+  mark.s21, .sw.s21 { background: #a8bff5; }
+  mark.s22, .sw.s22 { background: #d792e8; }
+  mark.s23, .sw.s23 { background: #66cc70; }
+  mark.s24, .sw.s24 { background: #d5db57; }
+  mark.s25, .sw.s25 { background: #fdd3a1; }
+  mark.s26, .sw.s26 { background: #38fadd; }
+  mark.s27, .sw.s27 { background: #e27efc; }
+  mark.s28, .sw.s28 { background: #faf038; }
+  mark.s29, .sw.s29 { background: #38d3fa; }
+  mark.s30, .sw.s30 { background: #faa338; }
+  mark.s31, .sw.s31 { background: #68ee68; }
+  mark.s32, .sw.s32 { background: #d4a5d4; }
+  mark.s33, .sw.s33 { background: #fda1c1; }
+  mark.s34, .sw.s34 { background: #c3f2fd; }
+  mark.s0, .sw.s0 { background: #e4e4e4; }
+
+  body::after { content: ""; position: fixed; left: 0; right: 0; bottom: 0; height: 62vh; z-index: -1; pointer-events: none; opacity: .5; background: url(assets/media/skyline.jpg) bottom center / 100% auto no-repeat; -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 42%, #000 100%); mask-image: linear-gradient(to bottom, transparent 0%, #000 42%, #000 100%); }
+
+
+  .sp-backdrop { position: fixed; inset: 0; background: rgba(20,20,20,.28); opacity: 0; transition: opacity .18s ease; z-index: 40; }
+  body.sp-open .sp-backdrop { opacity: 1; }
+  .scanpanel { position: fixed; top:0; right:0; height:100%; width: min(46vw, 620px); background:#fffdf4;
+               border-left: 1px solid #ddd; box-shadow: -8px 0 26px rgba(0,0,0,.13); transform: translateX(101%);
+               transition: transform .22s ease; z-index: 41; display:flex; flex-direction:column;
+               font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  body.sp-open .scanpanel { transform: translateX(0); }
+  .scanpanel[hidden], .sp-backdrop[hidden] { display: none !important; }
+  .sp-head { display:flex; align-items:flex-start; gap:10px; padding:14px 16px; border-bottom:1px solid #eee; }
+  .sp-title { font-size:13px; line-height:1.4; color:#222; flex:1; }
+  .sp-title .sp-q { display:block; color:#777; font-size:11.5px; margin-top:3px; }
+  .sp-btn { border:1px solid #ddd; background:#fafafa; border-radius:5px; cursor:pointer; font-size:13px;
+            line-height:1; padding:6px 9px; color:#444; }
+  .sp-btn:hover { background:#f0f0f0; }
+  .sp-body { flex:1; overflow:auto; padding:12px; background:#efece0; }
+  .sp-body img { display:block; width:100%; border:1px solid #ddd; background:#fff; cursor: zoom-in; }
+  .sp-body.zoom img { width:200%; max-width:none; cursor: zoom-out; }
+  @media (max-width: 820px) { .scanpanel { width:100%; } }
+  @media (max-width: 700px) { body { padding: 16px 10px 40px; } .wrap { padding: 24px 18px 32px; } }
+  @page { size: Letter; margin: 0.75in 0.7in; }
+  @media print {
+    body { padding:0; font-size:11.5pt; line-height:1.55; background:#fff; }
+    body::before { display: none; }
+    .wrap { max-width:none; background:none; padding:0; border-radius:0; box-shadow:none; }
+    .layout { display: block; }
+    .rail { position: static; width: 100%; max-height: none; overflow: visible; display: grid;
+            grid-template-columns: 1fr 1fr; gap: 12px; margin: 0 0 18px; }
+    .rail-title { grid-column: 1 / -1; } .rail-foot { display: none; }
+    figure.view { break-inside: avoid; }
+    .lightbox, .chartcol { display: none !important; }
+    .chart-print { display: block; }
+    h1 { font-size:17pt; } h2 { font-size:10.5pt; letter-spacing:.08em; break-after: avoid; } h3 { font-size:12pt; break-after: avoid; }
+    h2#citations, h2.srcpage { break-before: page; }
+    p { orphans:3; widows:3; }
+    table { font-size:8.6pt; line-height:1.4; } th,td { padding:5px 7px; }
+    thead { display: table-header-group; } tr { break-inside: avoid; }
+    .tablewrap { overflow: visible; }
+    .legend { break-inside: avoid; padding:10px 12px; margin-bottom:20px; }
+    .legend ul { grid-template-columns: 1fr 1fr; gap:3px 16px; } .legend li { font-size:8.4pt; }
+    .sw { width:10px; height:10px; flex:0 0 10px; }
+    section.srcsec { break-inside: avoid; break-before: page; }
+    figure.scan { break-inside: avoid; }
+    a.srclink, a.pglink, .backlinks a { color: inherit; }
+    .scanpanel, .sp-backdrop { display:none !important; }
+    section.audio audio { display: none; }
+    .audio-fallback { display: block; }
+    section.audio { break-inside: avoid; }
+  }
+
+</style>
+</head>
+<body>
+<div class="layout">
+<aside class="chartcol on-left" id="chartcol" aria-label="Citation chart">
+<div class="cc-head"><span class="cc-title">Citation chart</span><span class="cc-sub">69 quotes &middot; click a number to jump to it in the text, or <i>scan</i> to open the source page</span></div>
+<div class="cc-sec"></div>
+<div class="ce"><a class="ce-n" href="#hl-1">1</a><span class="sw s1"></span><div class="ce-b"><div class="ce-q">&ldquo;In the 1815 Blue Book, on 31 Union Square West, there is reference to 0 structures.&rdquo;</div><div class="ce-s">Sackersdorff, <em>1815 Blue Book</em>, p. 3 <a class="pglink" href="#src-sackersdorff-1815-blue-book-p-3" data-scan="sackersdorff-1815-blue-book-p-3">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-2">2</a><span class="sw s2"></span><div class="ce-b"><div class="ce-q">&ldquo;Long before an axe cut into the first elderly tree on the future Washington Square,…&rdquo;</div><div class="ce-s">Simon, <em>Fifth Avenue A Very Social History</em>, 1978, p. 36 <a class="pglink" href="#src-simon-fifth-avenue-a-very-social-history-1978-p-36" data-scan="simon-fifth-avenue-a-very-social-history-1978-p-36">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-3">3</a><span class="sw s2"></span><div class="ce-b"><div class="ce-q">&ldquo;The small eighteenth-century shops of Cherry Street and Catherine Street that had swelled…&rdquo;</div><div class="ce-s">Simon, <em>Fifth Avenue A Very Social History</em>, 1978, p. 36 <a class="pglink" href="#src-simon-fifth-avenue-a-very-social-history-1978-p-36" data-scan="simon-fifth-avenue-a-very-social-history-1978-p-36">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-4">4</a><span class="sw s3"></span><div class="ce-b"><div class="ce-q">&ldquo;In the 1853 Perris Maps, on 31 Union Square West, there is reference to 3 structures; Brick…&rdquo;</div><div class="ce-s">Perris, <em>1853 Perris Maps</em>, p. 53 <a class="pglink" href="#src-perris-1853-perris-maps-p-53" data-scan="perris-1853-perris-maps-p-53">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-5">5</a><span class="sw s4"></span><div class="ce-b"><div class="ce-q">&ldquo;In the 1867 Dripps Plan, on 31 Union Square West, there is reference to 2 structures;…&rdquo;</div><div class="ce-s">Dripps, <em>1867 Dripps Plan</em>, p. 7 <a class="pglink" href="#src-dripps-1867-dripps-plan-p-7" data-scan="dripps-1867-dripps-plan-p-7">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-6">6</a><span class="sw s5"></span><div class="ce-b"><div class="ce-q">&ldquo;BOGART &amp; CUYLER / John Bogart, John Y. Cuyler / 1874, 31 Union Sq.&rdquo;</div><div class="ce-s">Francis, <em>Architects in Practice New York City</em>, 1979, p. 17 <a class="pglink" href="#src-francis-architects-in-practice-new-york-city-1979-p-17" data-scan="francis-architects-in-practice-new-york-city-1979-p-17">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-7">7</a><span class="sw s6"></span><div class="ce-b"><div class="ce-q">&ldquo;In the 1885 Robinsons Atlas, on 31 Union Square West, there is written &#x27;White Manfg.Co.&#x27; as…&rdquo;</div><div class="ce-s">Robinson, <em>1885 Robinsons Atlas</em>, p. 15 <a class="pglink" href="#src-robinson-1885-robinsons-atlas-p-15" data-scan="robinson-1885-robinsons-atlas-p-15">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-8">8</a><span class="sw s7"></span><div class="ce-b"><div class="ce-q">&ldquo;In the 1897 Bromleys Atlas, on 31 Union Square West, there is reference to 1 Structure; 4…&rdquo;</div><div class="ce-s">Bromley, <em>1897 Bromleys Atlas</em>, p. 19 <a class="pglink" href="#src-bromley-1897-bromleys-atlas-p-19" data-scan="bromley-1897-bromleys-atlas-p-19">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-9">9</a><span class="sw s8"></span><div class="ce-b"><div class="ce-q">&ldquo;The photograph above, of a cabby and his hansom, was taken in Union Square, at Broadway and…&rdquo;</div><div class="ce-s">Kouwenhoven, <em>The Columbia Historical Portrait of New York</em>, 1953, p. 428 <a class="pglink" href="#src-kouwenhoven-the-columbia-historical-portrait-of-new-york-1953-p-428" data-scan="kouwenhoven-the-columbia-historical-portrait-of-new-york-1953-p-428">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-10">10</a><span class="sw s9"></span><div class="ce-b"><div class="ce-q">&ldquo;The Bank of the Metropolis is a flourishing outgrowth of the movement of business to the…&rdquo;</div><div class="ce-s">King, <em>King&#x27;s Handbook of New York City</em>, 1892, p. 689 <a class="pglink" href="#src-king-king-s-handbook-of-new-york-city-1892-p-689" data-scan="king-king-s-handbook-of-new-york-city-1892-p-689">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-11">11</a><span class="sw s9"></span><div class="ce-b"><div class="ce-q">&ldquo;The bank was organized in 1871, and commenced operations in June of that year. The first…&rdquo;</div><div class="ce-s">King, <em>King&#x27;s Handbook of New York City</em>, 1892, p. 689 <a class="pglink" href="#src-king-king-s-handbook-of-new-york-city-1892-p-689" data-scan="king-king-s-handbook-of-new-york-city-1892-p-689">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-12">12</a><span class="sw s9"></span><div class="ce-b"><div class="ce-q">&ldquo;Robert Schell, the President, who has held the position steadily for twenty years, was…&rdquo;</div><div class="ce-s">King, <em>King&#x27;s Handbook of New York City</em>, 1892, p. 689 <a class="pglink" href="#src-king-king-s-handbook-of-new-york-city-1892-p-689" data-scan="king-king-s-handbook-of-new-york-city-1892-p-689">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-13">13</a><span class="sw s9"></span><div class="ce-b"><div class="ce-q">&ldquo;They are Charles L. Tiffany, of Tiffany &amp; Company; Hon. Samuel Sloan, President of the…&rdquo;</div><div class="ce-s">King, <em>King&#x27;s Handbook of New York City</em>, 1892, p. 689 <a class="pglink" href="#src-king-king-s-handbook-of-new-york-city-1892-p-689" data-scan="king-king-s-handbook-of-new-york-city-1892-p-689">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-14">14</a><span class="sw s9"></span><div class="ce-b"><div class="ce-q">&ldquo;The bank has a deposit line of nearly $7,000,000; and a surplus of $700,000 has been…&rdquo;</div><div class="ce-s">King, <em>King&#x27;s Handbook of New York City</em>, 1892, p. 689 <a class="pglink" href="#src-king-king-s-handbook-of-new-york-city-1892-p-689" data-scan="king-king-s-handbook-of-new-york-city-1892-p-689">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-15">15</a><span class="sw s10"></span><div class="ce-b"><div class="ce-q">&ldquo;Bank of the Metropolis, 31 Union Square.&rdquo;</div><div class="ce-s">Demarest, <em>Guide to New York and Vicinity</em>, 1874, p. 9 <a class="pglink" href="#src-demarest-guide-to-new-york-and-vicinity-1874-p-9" data-scan="demarest-guide-to-new-york-and-vicinity-1874-p-9">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-16">16</a><span class="sw s11"></span><div class="ce-b"><div class="ce-q">&ldquo;Founded in 1871, the Bank of the Metropolis was formed to serve the needs of the businesses…&rdquo;</div><div class="ce-s">Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 470 <a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-470" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-470">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-17">17</a><span class="sw s12"></span><div class="ce-b"><div class="ce-q">&ldquo;No. 31, the former Bank of the Metropolis (Bruce Price, 1902), is a fine example of the…&rdquo;</div><div class="ce-s">Wolfe, <em>New York 15 Walking Tours</em>, 2003, p. 252 <a class="pglink" href="#src-wolfe-new-york-15-walking-tours-2003-p-252" data-scan="wolfe-new-york-15-walking-tours-2003-p-252">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-18">18</a><span class="sw s13"></span><div class="ce-b"><div class="ce-q">&ldquo;An early and unwitting sliver building, this neo-Renaissance slab now houses a restaurant…&rdquo;</div><div class="ce-s">AIA, <em>AIA Edition 3</em>, 1988, p. 186 <a class="pglink" href="#src-aia-aia-edition-3-1988-p-186" data-scan="aia-aia-edition-3-1988-p-186">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-19">19</a><span class="sw s14"></span><div class="ce-b"><div class="ce-q">&ldquo;The sixteen story skyscraper, designed by Bruce Price In 1901, was symbolic of the tall…&rdquo;</div><div class="ce-s">Boyer, <em>Manhattan Manners</em>, 1985, p. 228 <a class="pglink" href="#src-boyer-manhattan-manners-1985-p-228" data-scan="boyer-manhattan-manners-1985-p-228">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-20">20</a><span class="sw s14"></span><div class="ce-b"><div class="ce-q">&ldquo;The Union Building, a Moorish Venetian structure designed by Alfred Zucker In 1891.&rdquo;</div><div class="ce-s">Boyer, <em>Manhattan Manners</em>, 1985, p. 228 <a class="pglink" href="#src-boyer-manhattan-manners-1985-p-228" data-scan="boyer-manhattan-manners-1985-p-228">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-21">21</a><span class="sw s14"></span><div class="ce-b"><div class="ce-q">&ldquo;More than a dozen ladies&#x27; tailoring establishments could he found in the 1900 business…&rdquo;</div><div class="ce-s">Boyer, <em>Manhattan Manners</em>, 1985, p. 228 <a class="pglink" href="#src-boyer-manhattan-manners-1985-p-228" data-scan="boyer-manhattan-manners-1985-p-228">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-22">22</a><span class="sw s14"></span><div class="ce-b"><div class="ce-q">&ldquo;The following year. Bruce Price designed the sixteen-story office tower for the Bank of the…&rdquo;</div><div class="ce-s">Boyer, <em>Manhattan Manners</em>, 1985, p. 228 <a class="pglink" href="#src-boyer-manhattan-manners-1985-p-228" data-scan="boyer-manhattan-manners-1985-p-228">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-23">23</a><span class="sw s14"></span><div class="ce-b"><div class="ce-q">&ldquo;The side streets near ladies Mile were also invaded by lofty buildings used to house the…&rdquo;</div><div class="ce-s">Boyer, <em>Manhattan Manners</em>, 1985, p. 228 <a class="pglink" href="#src-boyer-manhattan-manners-1985-p-228" data-scan="boyer-manhattan-manners-1985-p-228">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-24">24</a><span class="sw s15"></span><div class="ce-b"><div class="ce-q">&ldquo;What doomed the format, besides changing tastes, was the arrival of skyscrapers, which put…&rdquo;</div><div class="ce-s">Antoniou &amp; Heller, <em>Decoding Manhattan</em>, 2021, p. 116 <a class="pglink" href="#src-antoniou-heller-decoding-manhattan-2021-p-116" data-scan="antoniou-heller-decoding-manhattan-2021-p-116">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-25">25</a><span class="sw s16"></span><div class="ce-b"><div class="ce-q">&ldquo;This narrow old bank is one of the city&#x27;s more appealing smaller towers, a lovely eclectic…&rdquo;</div><div class="ce-s">Goldberger, <em>The City Observed</em>, 1979, p. 93 <a class="pglink" href="#src-goldberger-the-city-observed-1979-p-93" data-scan="goldberger-the-city-observed-1979-p-93">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-26">26</a><span class="sw s16"></span><div class="ce-b"><div class="ce-q">&ldquo;The Bank of metropolis now 31 Union Square West and 33 Union Square West.&rdquo;</div><div class="ce-s">Goldberger, <em>The City Observed</em>, 1979, p. 93 <a class="pglink" href="#src-goldberger-the-city-observed-1979-p-93" data-scan="goldberger-the-city-observed-1979-p-93">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-27">27</a><span class="sw s17"></span><div class="ce-b"><div class="ce-q">&ldquo;Its Union Square front is extremely narrow Between an Ionic portico and a heavy cornice is…&rdquo;</div><div class="ce-s">Morrone, <em>Architectural Guidebook</em>, 1994, p. 116 <a class="pglink" href="#src-morrone-architectural-guidebook-1994-p-116" data-scan="morrone-architectural-guidebook-1994-p-116">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-28">28</a><span class="sw s18"></span><div class="ce-b"><div class="ce-q">&ldquo;MIDDLE EAT SIDE 3. Union Square West, Nos 31-41.&rdquo;</div><div class="ce-s">Abbott, <em>Changing New York</em>, 1997, p. 232 <a class="pglink" href="#src-abbott-changing-new-york-1997-p-232" data-scan="abbott-changing-new-york-1997-p-232">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-29">29</a><span class="sw s11"></span><div class="ce-b"><div class="ce-q">&ldquo;Occupying a commanding corner location, the building superbly demonstrates Bruce Prices…&rdquo;</div><div class="ce-s">Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 470 <a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-470" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-470">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-30">30</a><span class="sw s11"></span><div class="ce-b"><div class="ce-q">&ldquo;The site demanded a long, thin building, and Price&#x27;s vision related the skyscraper to a…&rdquo;</div><div class="ce-s">Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 470 <a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-470" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-470">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-31">31</a><span class="sw s11"></span><div class="ce-b"><div class="ce-q">&ldquo;Price, an influential architect of skyscrapers, once remarked that &quot;their aerial aspect…&rdquo;</div><div class="ce-s">Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 470 <a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-470" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-470">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-32">32</a><span class="sw s11"></span><div class="ce-b"><div class="ce-q">&ldquo;His neo-Classical vocabulary fuses well here with the dictates of skyscraper construction…&rdquo;</div><div class="ce-s">Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 470 <a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-470" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-470">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-33">33</a><span class="sw s19"></span><div class="ce-b"><div class="ce-q">&ldquo;Price was an important early skyscraper designer with a particular interest in adapting the…&rdquo;</div><div class="ce-s">Postal &amp; Dolkart, <em>Guide to New York City Landmarks</em>, 2009, p. 76 <a class="pglink" href="#src-postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76" data-scan="postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-34">34</a><span class="sw s20"></span><div class="ce-b"><div class="ce-q">&ldquo;neo-Renaissance, Base Color Coral Reef - 195 185 154, Façade Color Pearl White - 238 235…&rdquo;</div><div class="ce-s">LPC, <em>Union Square</em>, 1903, p. 1 <a class="pglink" href="#src-lpc-union-square-1903-p-1" data-scan="lpc-union-square-1903-p-1">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-35">35</a><span class="sw s21"></span><div class="ce-b"><div class="ce-q">&ldquo;In the 1916 Atlas of the Borough of Manhattan, on 31 Union Square West, there is written…&rdquo;</div><div class="ce-s">G W Bromley &amp; Co, <em>1916 Atlas of the Borough of Manhattan</em>, p. 54 <a class="pglink" href="#src-g-w-bromley-co-1916-atlas-of-the-borough-of-manhattan-p-54" data-scan="g-w-bromley-co-1916-atlas-of-the-borough-of-manhattan-p-54">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-36">36</a><span class="sw s22"></span><div class="ce-b"><div class="ce-q">&ldquo;In the 1930 Land Book of the Borough of Manhattan, on 31 Union Square West, there is…&rdquo;</div><div class="ce-s">Bromley, <em>1930 Land Book of the Borough of Manhattan</em>, p. 53</div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-37">37</a><span class="sw s11"></span><div class="ce-b"><div class="ce-q">&ldquo;The bank was absorbed by the Bank of the Manhattan Company in 1918; the resulting entity…&rdquo;</div><div class="ce-s">Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 470 <a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-470" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-470">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-38">38</a><span class="sw s12"></span><div class="ce-b"><div class="ce-q">&ldquo;The bank, founded in 1871, served local businesses until 1918, when it merged with the Bank…&rdquo;</div><div class="ce-s">Wolfe, <em>New York 15 Walking Tours</em>, 2003, p. 252 <a class="pglink" href="#src-wolfe-new-york-15-walking-tours-2003-p-252" data-scan="wolfe-new-york-15-walking-tours-2003-p-252">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-39">39</a><span class="sw s19"></span><div class="ce-b"><div class="ce-q">&ldquo;The Bank of the Metropolis, founded m 1871 to serve the needs of businesses in the Union…&rdquo;</div><div class="ce-s">Postal &amp; Dolkart, <em>Guide to New York City Landmarks</em>, 2009, p. 76 <a class="pglink" href="#src-postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76" data-scan="postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-40">40</a><span class="sw s23"></span><div class="ce-b"><div class="ce-q">&ldquo;STATE BANKS. Bk. of Metropolis, 31 Union sq.&rdquo;</div><div class="ce-s">Howe, <em>New York Shopping Guide</em>, 1915, p. 19 <a class="pglink" href="#src-howe-new-york-shopping-guide-1915-p-19" data-scan="howe-new-york-shopping-guide-1915-p-19">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-41">41</a><span class="sw s24"></span><div class="ce-b"><div class="ce-q">&ldquo;STATE BANKS. Manhattan Co., 40 Wall, 31 Union sq., 333 Madison av.&rdquo;</div><div class="ce-s">Howe, <em>New York Shopping Guide</em> 1924, 1924, p. 17 <a class="pglink" href="#src-howe-new-york-shopping-guide-1924-1924-p-17" data-scan="howe-new-york-shopping-guide-1924-1924-p-17">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-42">42</a><span class="sw s25"></span><div class="ce-b"><div class="ce-q">&ldquo;Address: care Bank Manhattan Co., 31 Union Sq., New York 3, N.Y.&rdquo;</div><div class="ce-s">Marquis, <em>Who&#x27;s Who in the East Second Edition</em>, 1948, p. 972</div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-43">43</a><span class="sw s26"></span><div class="ce-b"><div class="ce-q">&ldquo;In the 1955 Manhattan Land Book, on 31 Union Square West, there is written &#x27;Chase Manhattan…&rdquo;</div><div class="ce-s">Bromley, <em>1955 Manhattan Land Book</em>, p. 43 <a class="pglink" href="#src-bromley-1955-manhattan-land-book-p-43" data-scan="bromley-1955-manhattan-land-book-p-43">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-44">44</a><span class="sw s27"></span><div class="ce-b"><div class="ce-q">&ldquo;In June 1930, the Klein estate was reportedly in negotiations with five developers seeking…&rdquo;</div><div class="ce-s">Stern, <em>New York 2000</em>, 2006, p. 377 <a class="pglink" href="#src-stern-new-york-2000-2006-p-377" data-scan="stern-new-york-2000-2006-p-377">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-45">45</a><span class="sw s27"></span><div class="ce-b"><div class="ce-q">&ldquo;To realize the Zeckendorf plan, the site needed to be rezoned, a move that was rigorously…&rdquo;</div><div class="ce-s">Stern, <em>New York 2000</em>, 2006, p. 377 <a class="pglink" href="#src-stern-new-york-2000-2006-p-377" data-scan="stern-new-york-2000-2006-p-377">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-46">46</a><span class="sw s27"></span><div class="ce-b"><div class="ce-q">&ldquo;Both the district and the Zeckendorf proposal for a twenty-six-story project were approved…&rdquo;</div><div class="ce-s">Stern, <em>New York 2000</em>, 2006, p. 377 <a class="pglink" href="#src-stern-new-york-2000-2006-p-377" data-scan="stern-new-york-2000-2006-p-377">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-47">47</a><span class="sw s27"></span><div class="ce-b"><div class="ce-q">&ldquo;Concerns about the fate of historic buildings on other sites around the square led to the…&rdquo;</div><div class="ce-s">Stern, <em>New York 2000</em>, 2006, p. 377 <a class="pglink" href="#src-stern-new-york-2000-2006-p-377" data-scan="stern-new-york-2000-2006-p-377">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-48">48</a><span class="sw s11"></span><div class="ce-b"><div class="ce-q">&ldquo;(FORMER) BANK OF THE METROPOLIS 1902-03; 1979 CONVERSION 31 UNION SQUARE WEST (ALSO KNOWN…&rdquo;</div><div class="ce-s">Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 470 <a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-470" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-470">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-49">49</a><span class="sw s11"></span><div class="ce-b"><div class="ce-q">&ldquo;Today the former banking floor is a restaurant, Blue Water Grill, and many of the upper…&rdquo;</div><div class="ce-s">Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 470 <a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-470" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-470">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-50">50</a><span class="sw s12"></span><div class="ce-b"><div class="ce-q">&ldquo;A restaurant occupies the main floor with residences above.&rdquo;</div><div class="ce-s">Wolfe, <em>New York 15 Walking Tours</em>, 2003, p. 252 <a class="pglink" href="#src-wolfe-new-york-15-walking-tours-2003-p-252" data-scan="wolfe-new-york-15-walking-tours-2003-p-252">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-51">51</a><span class="sw s28"></span><div class="ce-b"><div class="ce-q">&ldquo;Blue Water Grill (31 Union Square W)&rdquo;</div><div class="ce-s">Frank, <em>Where to Find It Buy It Eat It In New York</em>, 1980, p. 77</div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-52">52</a><span class="sw s28"></span><div class="ce-b"><div class="ce-q">&ldquo;Blue Water Grill (31 Union Square W): Seafood, Sunday…95&rdquo;</div><div class="ce-s">Frank, <em>Where to Find It Buy It Eat It In New York</em>, 1980, p. 25 <a class="pglink" href="#src-frank-where-to-find-it-buy-it-eat-it-in-new-york-1980-p-25" data-scan="frank-where-to-find-it-buy-it-eat-it-in-new-york-1980-p-25">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-53">53</a><span class="sw s29"></span><div class="ce-b"><div class="ce-q">&ldquo;WHERE TO HEAR METROPOLIS, 31 Union Sq W, 675-0851&rdquo;</div><div class="ce-s">Village Voice, <em>Village Voice January 31st 1995</em>, 1995, p. 1 <a class="pglink" href="#src-village-voice-village-voice-january-31st-1995-1995-p-1" data-scan="village-voice-village-voice-january-31st-1995-1995-p-1">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-54">54</a><span class="sw s30"></span><div class="ce-b"><div class="ce-q">&ldquo;Metropolis&rdquo;</div><div class="ce-s">Murphy, <em>Murph Guide Closed Bars</em>, 2023, p. 13 <a class="pglink" href="#src-murphy-murph-guide-closed-bars-2023-p-13" data-scan="murphy-murph-guide-closed-bars-2023-p-13">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-55">55</a><span class="sw s30"></span><div class="ce-b"><div class="ce-q">&ldquo;Blue Water Grill&rdquo;</div><div class="ce-s">Murphy, <em>Murph Guide Closed Bars</em>, 2023, p. 13 <a class="pglink" href="#src-murphy-murph-guide-closed-bars-2023-p-13" data-scan="murphy-murph-guide-closed-bars-2023-p-13">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-56">56</a><span class="sw s31"></span><div class="ce-b"><div class="ce-q">&ldquo;Brownie&#x27;s became a destination for health fanatics, vegetarians, Factory associates, and…&rdquo;</div><div class="ce-s">Kiedrowski, <em>Andy Warhols New York</em>, 2011, p. 101 <a class="pglink" href="#src-kiedrowski-andy-warhols-new-york-2011-p-101" data-scan="kiedrowski-andy-warhols-new-york-2011-p-101">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-57">57</a><span class="sw s31"></span><div class="ce-b"><div class="ce-q">&ldquo;Danny Meyer&#x27;s Union Square Cafe now occupies the Brownie&#x27;s address.&rdquo;</div><div class="ce-s">Kiedrowski, <em>Andy Warhols New York</em>, 2011, p. 101 <a class="pglink" href="#src-kiedrowski-andy-warhols-new-york-2011-p-101" data-scan="kiedrowski-andy-warhols-new-york-2011-p-101">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-58">58</a><span class="sw s32"></span><div class="ce-b"><div class="ce-q">&ldquo;Union Square Cafe became one of the final transforming presences in the neighborhood when…&rdquo;</div><div class="ce-s">Forlie, <em>The New York City Almanac</em>, 1994, p. 389 <a class="pglink" href="#src-forlie-the-new-york-city-almanac-1994-p-389" data-scan="forlie-the-new-york-city-almanac-1994-p-389">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-59">59</a><span class="sw s32"></span><div class="ce-b"><div class="ce-q">&ldquo;Danny Meyer&#x27;s restaurant is broken into four precincts in two halves: half one, as you…&rdquo;</div><div class="ce-s">Forlie, <em>The New York City Almanac</em>, 1994, p. 389 <a class="pglink" href="#src-forlie-the-new-york-city-almanac-1994-p-389" data-scan="forlie-the-new-york-city-almanac-1994-p-389">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-60">60</a><span class="sw s30"></span><div class="ce-b"><div class="ce-q">&ldquo;Union Square Café&rdquo;</div><div class="ce-s">Murphy, <em>Murph Guide Closed Bars</em>, 2023, p. 11 <a class="pglink" href="#src-murphy-murph-guide-closed-bars-2023-p-11" data-scan="murphy-murph-guide-closed-bars-2023-p-11">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-61">61</a><span class="sw s33"></span><div class="ce-b"><div class="ce-q">&ldquo;Publishing lunch crowd. Noisy, high-ceilinged rooms. Expensive.&rdquo;</div><div class="ce-s">Dale, <em>Mystery Reader&#x27;s Walking Guide New York</em>, 1993, p. 79 <a class="pglink" href="#src-dale-mystery-reader-s-walking-guide-new-york-1993-p-79" data-scan="dale-mystery-reader-s-walking-guide-new-york-1993-p-79">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-62">62</a><span class="sw s34"></span><div class="ce-b"><div class="ce-q">&ldquo;Union Square Café 21 E. 16th St. btwn Fifth Ave. &amp; Union Sq. W. 212.243.4020 L; N. R; 4.…&rdquo;</div><div class="ce-s">Ozersky, <em>Meat Me in Manhattan</em>, 2004, p. 194 <a class="pglink" href="#src-ozersky-meat-me-in-manhattan-2004-p-194" data-scan="ozersky-meat-me-in-manhattan-2004-p-194">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-63">63</a><span class="sw s32"></span><div class="ce-b"><div class="ce-q">&ldquo;Union Square Cafe*, 21 E. 16th St. (Fifth Ave./Union Sq. W.), 243-4020, $E; Contemporary.&rdquo;</div><div class="ce-s">Forlie, <em>The New York City Almanac</em>, 1994, p. 336</div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-64">64</a><span class="sw s28"></span><div class="ce-b"><div class="ce-q">&ldquo;Potatoes, mashed&rdquo;</div><div class="ce-s">Frank, <em>Where to Find It Buy It Eat It In New York</em>, 1980, p. 40 <a class="pglink" href="#src-frank-where-to-find-it-buy-it-eat-it-in-new-york-1980-p-40" data-scan="frank-where-to-find-it-buy-it-eat-it-in-new-york-1980-p-40">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-65">65</a><span class="sw s28"></span><div class="ce-b"><div class="ce-q">&ldquo;Pie, key lime&rdquo;</div><div class="ce-s">Frank, <em>Where to Find It Buy It Eat It In New York</em>, 1980, p. 39 <a class="pglink" href="#src-frank-where-to-find-it-buy-it-eat-it-in-new-york-1980-p-39" data-scan="frank-where-to-find-it-buy-it-eat-it-in-new-york-1980-p-39">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-66">66</a><span class="sw s28"></span><div class="ce-b"><div class="ce-q">&ldquo;Fish, tuna steak&rdquo;</div><div class="ce-s">Frank, <em>Where to Find It Buy It Eat It In New York</em>, 1980, p. 35 <a class="pglink" href="#src-frank-where-to-find-it-buy-it-eat-it-in-new-york-1980-p-35" data-scan="frank-where-to-find-it-buy-it-eat-it-in-new-york-1980-p-35">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-67">67</a><span class="sw s28"></span><div class="ce-b"><div class="ce-q">&ldquo;Soup, black bean&rdquo;</div><div class="ce-s">Frank, <em>Where to Find It Buy It Eat It In New York</em>, 1980, p. 42 <a class="pglink" href="#src-frank-where-to-find-it-buy-it-eat-it-in-new-york-1980-p-42" data-scan="frank-where-to-find-it-buy-it-eat-it-in-new-york-1980-p-42">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-68">68</a><span class="sw s28"></span><div class="ce-b"><div class="ce-q">&ldquo;Game&rdquo;</div><div class="ce-s">Frank, <em>Where to Find It Buy It Eat It In New York</em>, 1980, p. 62 <a class="pglink" href="#src-frank-where-to-find-it-buy-it-eat-it-in-new-york-1980-p-62" data-scan="frank-where-to-find-it-buy-it-eat-it-in-new-york-1980-p-62">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-69">69</a><span class="sw s28"></span><div class="ce-b"><div class="ce-q">&ldquo;Union Square Cafe (21 E 16th St)&rdquo;</div><div class="ce-s">Frank, <em>Where to Find It Buy It Eat It In New York</em>, 1980, p. 85 <a class="pglink" href="#src-frank-where-to-find-it-buy-it-eat-it-in-new-york-1980-p-85" data-scan="frank-where-to-find-it-buy-it-eat-it-in-new-york-1980-p-85">scan</a></div></div></div>
+</aside>
+<div class="wrap">
+
+<h1>31 Union Square West</h1>
+<p class="sub">The Bank of the Metropolis</p>
+<p class="note">Every previously italicized phrase is highlighted and colour-coded by source. Where the source page is on file, clicking the highlight opens the scan.</p>
+
+<div class="legend"><div class="legend-title">Colour key — one colour per source <span class="lk">· sources with a page scan are marked ⌕</span></div><ul>
+<li><span class="sw s1"></span><span class="lg">Sackersdorff, <em>1815 Blue Book</em> <span class="pg">p.&nbsp;3</span> <span class="ct">(1)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s2"></span><span class="lg">Simon, <em>Fifth Avenue A Very Social History</em>, 1978 <span class="pg">p.&nbsp;36</span> <span class="ct">(2)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s3"></span><span class="lg">Perris, <em>1853 Perris Maps</em> <span class="pg">p.&nbsp;53</span> <span class="ct">(1)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s4"></span><span class="lg">Dripps, <em>1867 Dripps Plan</em> <span class="pg">p.&nbsp;7</span> <span class="ct">(1)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s5"></span><span class="lg">Francis, <em>Architects in Practice New York City</em>, 1979 <span class="pg">p.&nbsp;17</span> <span class="ct">(1)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s6"></span><span class="lg">Robinson, <em>1885 Robinsons Atlas</em> <span class="pg">p.&nbsp;15</span> <span class="ct">(1)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s7"></span><span class="lg">Bromley, <em>1897 Bromleys Atlas</em> <span class="pg">p.&nbsp;19</span> <span class="ct">(1)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s8"></span><span class="lg">Kouwenhoven, <em>The Columbia Historical Portrait of New York</em>, 1953 <span class="pg">p.&nbsp;428</span> <span class="ct">(1)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s9"></span><span class="lg">King, <em>King&#x27;s Handbook of New York City</em>, 1892 <span class="pg">p.&nbsp;689</span> <span class="ct">(5)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s10"></span><span class="lg">Demarest, <em>Guide to New York and Vicinity</em>, 1874 <span class="pg">p.&nbsp;9</span> <span class="ct">(1)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s11"></span><span class="lg">Spielvogel, <em>The Landmarks of New York</em>, 2016 <span class="pg">p.&nbsp;470</span> <span class="ct">(8)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s12"></span><span class="lg">Wolfe, <em>New York 15 Walking Tours</em>, 2003 <span class="pg">p.&nbsp;252</span> <span class="ct">(3)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s13"></span><span class="lg">AIA, <em>AIA Edition 3</em>, 1988 <span class="pg">p.&nbsp;186</span> <span class="ct">(1)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s14"></span><span class="lg">Boyer, <em>Manhattan Manners</em>, 1985 <span class="pg">p.&nbsp;228</span> <span class="ct">(5)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s15"></span><span class="lg">Antoniou &amp; Heller, <em>Decoding Manhattan</em>, 2021 <span class="pg">p.&nbsp;116</span> <span class="ct">(1)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s16"></span><span class="lg">Goldberger, <em>The City Observed</em>, 1979 <span class="pg">p.&nbsp;93</span> <span class="ct">(2)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s17"></span><span class="lg">Morrone, <em>Architectural Guidebook</em>, 1994 <span class="pg">p.&nbsp;116</span> <span class="ct">(1)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s18"></span><span class="lg">Abbott, <em>Changing New York</em>, 1997 <span class="pg">p.&nbsp;232</span> <span class="ct">(1)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s19"></span><span class="lg">Postal &amp; Dolkart, <em>Guide to New York City Landmarks</em>, 2009 <span class="pg">p.&nbsp;76</span> <span class="ct">(2)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s20"></span><span class="lg">LPC, <em>Union Square</em>, 1903 <span class="pg">p.&nbsp;1</span> <span class="ct">(1)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s21"></span><span class="lg">G W Bromley &amp; Co, <em>1916 Atlas of the Borough of Manhattan</em> <span class="pg">p.&nbsp;54</span> <span class="ct">(1)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s22"></span><span class="lg">Bromley, <em>1930 Land Book of the Borough of Manhattan</em> <span class="pg">p.&nbsp;53</span> <span class="ct">(1)</span></span></li>
+<li><span class="sw s23"></span><span class="lg">Howe, <em>New York Shopping Guide</em>, 1915 <span class="pg">p.&nbsp;19</span> <span class="ct">(1)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s24"></span><span class="lg">Howe, <em>New York Shopping Guide</em> 1924, 1924 <span class="pg">p.&nbsp;17</span> <span class="ct">(1)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s25"></span><span class="lg">Marquis, <em>Who&#x27;s Who in the East Second Edition</em>, 1948 <span class="pg">p.&nbsp;972</span> <span class="ct">(1)</span></span></li>
+<li><span class="sw s26"></span><span class="lg">Bromley, <em>1955 Manhattan Land Book</em> <span class="pg">p.&nbsp;43</span> <span class="ct">(1)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s27"></span><span class="lg">Stern, <em>New York 2000</em>, 2006 <span class="pg">p.&nbsp;377</span> <span class="ct">(4)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s28"></span><span class="lg">Frank, <em>Where to Find It Buy It Eat It In New York</em>, 1980 <span class="pg">pp.&nbsp;25, 35, 39, 40, 42, 62, 77, 85</span> <span class="ct">(8)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s29"></span><span class="lg">Village Voice, <em>Village Voice January 31st 1995</em>, 1995 <span class="pg">p.&nbsp;1</span> <span class="ct">(1)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s30"></span><span class="lg">Murphy, <em>Murph Guide Closed Bars</em>, 2023 <span class="pg">pp.&nbsp;11, 13</span> <span class="ct">(3)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s31"></span><span class="lg">Kiedrowski, <em>Andy Warhols New York</em>, 2011 <span class="pg">p.&nbsp;101</span> <span class="ct">(2)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s32"></span><span class="lg">Forlie, <em>The New York City Almanac</em>, 1994 <span class="pg">pp.&nbsp;336, 389</span> <span class="ct">(3)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s33"></span><span class="lg">Dale, <em>Mystery Reader&#x27;s Walking Guide New York</em>, 1993 <span class="pg">p.&nbsp;79</span> <span class="ct">(1)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s34"></span><span class="lg">Ozersky, <em>Meat Me in Manhattan</em>, 2004 <span class="pg">p.&nbsp;194</span> <span class="ct">(1)</span> <span class="has">⌕</span></span></li>
+</ul></div>
+
+<section class="audio"><div class="audio-label">Audio &mdash; 31 Union Square West | Brick Cake <span class="audio-meta">18 min 42 s</span></div><audio controls preload="none" src="assets/media/31-union-square-west.mp3"></audio><p class="audio-fallback">Audio track &mdash; playable in the HTML version of this document.</p></section>
+
+<h2>I. The Land Before the Building</h2>
+
+<p>In the beginning the plot was empty. <a class="srclink" href="#src-sackersdorff-1815-blue-book-p-3" data-scan="sackersdorff-1815-blue-book-p-3" title="See the source page — Sackersdorff, 1815 Blue Book, p. 3"><mark id="hl-1" class="s1" title="Sackersdorff, 1815 Blue Book, p. 3">(In the 1815 Blue Book, on 31 Union Square West, there is reference to 0 structures.)</mark></a></p>
+
+<p>The larger district around it had already caught the eye of the shrewd. <a class="srclink" href="#src-simon-fifth-avenue-a-very-social-history-1978-p-36" data-scan="simon-fifth-avenue-a-very-social-history-1978-p-36" title="See the source page — Simon, Fifth Avenue A Very Social History, 1978, p. 36"><mark id="hl-2" class="s2" title="Simon, Fifth Avenue A Very Social History, 1978, p. 36">(Long before an axe cut into the first elderly tree on the future Washington Square, well-informed real estate speculators—Astors, Goelets and Schermerhorns in the lead—had bought property to the north. The block between Sixteenth and Seventeenth streets, from Union Square to Fifth Avenue sold for $197,000 in 1836, the lots that fronted on Fifth Avenue were valued at $57,000 each. Union Place had been, early in the nineteenth century, an exclusive suburb for the country villas of Goelets and Roosevelts whose town houses stood near the tip of the island. Their park was surrounded by a massive iron fence which lasted until 1870, when the Place became the Square, already part of the flourishing theater center that had forced out the country houses.)</mark></a></p>
+
+<p>The character of the surrounding streets was shifting fast. <a class="srclink" href="#src-simon-fifth-avenue-a-very-social-history-1978-p-36" data-scan="simon-fifth-avenue-a-very-social-history-1978-p-36" title="See the source page — Simon, Fifth Avenue A Very Social History, 1978, p. 36"><mark id="hl-3" class="s2" title="Simon, Fifth Avenue A Very Social History, 1978, p. 36">(The small eighteenth-century shops of Cherry Street and Catherine Street that had swelled and moved to larger and more fashionable quarters on Broadway were now beginning to ring this upper square. Tiffany moved its five hundred craftsmen and sales people into a new iron building at Fifteenth and Broadway — &quot;hideous,&quot; some thought the style, which was tolerated by others because it found use for the excess iron and ironworkers left unemployed at the close of the Civil War—and Brentano&#x27;s very literary emporium came to rest for a while at 33 Union Square.)</mark></a></p>
+
+<p>By mid-century the lot had filled with fine masonry. <a class="srclink" href="#src-perris-1853-perris-maps-p-53" data-scan="perris-1853-perris-maps-p-53" title="See the source page — Perris, 1853 Perris Maps, p. 53"><mark id="hl-4" class="s3" title="Perris, 1853 Perris Maps, p. 53">(In the 1853 Perris Maps, on 31 Union Square West, there is reference to 3 structures; Brick or Stone dwellings first class (slate or metal roof &amp; coped) with Brick or Stone Extension, Brick or Stone Store first class, Brick or Stone dwellings first class (slate or metal roof &amp; coped) with Framed Extension and skylights lighting the top floor only.)</mark></a> A little more than a decade later the tally shrank, for <a class="srclink" href="#src-dripps-1867-dripps-plan-p-7" data-scan="dripps-1867-dripps-plan-p-7" title="See the source page — Dripps, 1867 Dripps Plan, p. 7"><mark id="hl-5" class="s4" title="Dripps, 1867 Dripps Plan, p. 7">(In the 1867 Dripps Plan, on 31 Union Square West, there is reference to 2 structures; Building, Building.)</mark></a></p>
+
+<h2>II. Early Occupants</h2>
+
+<p>The address quietly hosted businesses. An architectural partnership resided there: <a class="srclink" href="#src-francis-architects-in-practice-new-york-city-1979-p-17" data-scan="francis-architects-in-practice-new-york-city-1979-p-17" title="See the source page — Francis, Architects in Practice New York City, 1979, p. 17"><mark id="hl-6" class="s5" title="Francis, Architects in Practice New York City, 1979, p. 17">(BOGART &amp; CUYLER / John Bogart, John Y. Cuyler / 1874, 31 Union Sq.)</mark></a> Later the site bore a manufacturer&#x27;s name, as <a class="srclink" href="#src-robinson-1885-robinsons-atlas-p-15" data-scan="robinson-1885-robinsons-atlas-p-15" title="See the source page — Robinson, 1885 Robinsons Atlas, p. 15"><mark id="hl-7" class="s6" title="Robinson, 1885 Robinsons Atlas, p. 15">(In the 1885 Robinsons Atlas, on 31 Union Square West, there is written &#x27;White Manfg.Co.&#x27; as well as reference to 2 Structures; Brick building, Brick building.)</mark></a> By the end of the century a modest structure stood, since <a class="srclink" href="#src-bromley-1897-bromleys-atlas-p-19" data-scan="bromley-1897-bromleys-atlas-p-19" title="See the source page — Bromley, 1897 Bromleys Atlas, p. 19"><mark id="hl-8" class="s7" title="Bromley, 1897 Bromleys Atlas, p. 19">(In the 1897 Bromleys Atlas, on 31 Union Square West, there is reference to 1 Structure; 4 Story Brick building.)</mark></a></p>
+
+<p>The moment itself was captured by a camera nearby: <a class="srclink" href="#src-kouwenhoven-the-columbia-historical-portrait-of-new-york-1953-p-428" data-scan="kouwenhoven-the-columbia-historical-portrait-of-new-york-1953-p-428" title="See the source page — Kouwenhoven, The Columbia Historical Portrait of New York, 1953, p. 428"><mark id="hl-9" class="s8" title="Kouwenhoven, The Columbia Historical Portrait of New York, 1953, p. 428">(The photograph above, of a cabby and his hansom, was taken in Union Square, at Broadway and Sixteenth Street, in 1896.)</mark></a></p>
+
+<h2>III. The Bank and Its Founders</h2>
+
+<p>The institution destined to define the address had deep local roots. <a class="srclink" href="#src-king-king-s-handbook-of-new-york-city-1892-p-689" data-scan="king-king-s-handbook-of-new-york-city-1892-p-689" title="See the source page — King, King&#x27;s Handbook of New York City, 1892, p. 689"><mark id="hl-10" class="s9" title="King, King&#x27;s Handbook of New York City, 1892, p. 689">(The Bank of the Metropolis is a flourishing outgrowth of the movement of business to the up-town section of New York. Union Square, where its banking house is established, was thirty years ago a fashionable residence-district. To-day it is surrounded by some of the largest retail business houses in New York, and important manufacturing and wholesale industries are plentiful in the neighborhood.)</mark></a></p>
+
+<p>It began with modest men and modest quarters: <a class="srclink" href="#src-king-king-s-handbook-of-new-york-city-1892-p-689" data-scan="king-king-s-handbook-of-new-york-city-1892-p-689" title="See the source page — King, King&#x27;s Handbook of New York City, 1892, p. 689"><mark id="hl-11" class="s9" title="King, King&#x27;s Handbook of New York City, 1892, p. 689">(The bank was organized in 1871, and commenced operations in June of that year. The first President was W. A. Kissam (who died in the same year), and the original place of business was 31 Union Square. A removal to 17 Union Square followed six years later, and in 1888 the bank took the more commodious quarters at 29 Union Square, which it now occupies.)</mark></a></p>
+
+<p>Its leadership was distinguished: <a class="srclink" href="#src-king-king-s-handbook-of-new-york-city-1892-p-689" data-scan="king-king-s-handbook-of-new-york-city-1892-p-689" title="See the source page — King, King&#x27;s Handbook of New York City, 1892, p. 689"><mark id="hl-12" class="s9" title="King, King&#x27;s Handbook of New York City, 1892, p. 689">(Robert Schell, the President, who has held the position steadily for twenty years, was formerly a well-known jewelry merchant in Maiden Lane. William B. Isham, the Vice-President (since 1885), was prominent in the leather trade ; and the Cashier, Theodore Rogers, has occupied the same position since the formation of the bank.)</mark></a> Its board glittered with names of consequence: <a class="srclink" href="#src-king-king-s-handbook-of-new-york-city-1892-p-689" data-scan="king-king-s-handbook-of-new-york-city-1892-p-689" title="See the source page — King, King&#x27;s Handbook of New York City, 1892, p. 689"><mark id="hl-13" class="s9" title="King, King&#x27;s Handbook of New York City, 1892, p. 689">(They are Charles L. Tiffany, of Tiffany &amp; Company; Hon. Samuel Sloan, President of the Delaware, Lackawanna &amp; Western Railroad; Robert Schell, the President; Joseph Park, of Park &amp; Tilford; William Steinway, of Steinway &amp; Sons; William B. Isham, capitalist; W. D. Sloane, of W. &amp; J. Sloane; and Hicks Arnold, of Arnold, Constable &amp; Company.)</mark></a></p>
+
+<p>Its finances were robust, for <a class="srclink" href="#src-king-king-s-handbook-of-new-york-city-1892-p-689" data-scan="king-king-s-handbook-of-new-york-city-1892-p-689" title="See the source page — King, King&#x27;s Handbook of New York City, 1892, p. 689"><mark id="hl-14" class="s9" title="King, King&#x27;s Handbook of New York City, 1892, p. 689">(The bank has a deposit line of nearly $7,000,000; and a surplus of $700,000 has been accumulated on the capital of $300,000. The shares of the Bank of the Metropolis have a market value of over $400 each.)</mark></a> In the directories of the era it appeared simply as <a class="srclink" href="#src-demarest-guide-to-new-york-and-vicinity-1874-p-9" data-scan="demarest-guide-to-new-york-and-vicinity-1874-p-9" title="See the source page — Demarest, Guide to New York and Vicinity, 1874, p. 9"><mark id="hl-15" class="s10" title="Demarest, Guide to New York and Vicinity, 1874, p. 9">(Bank of the Metropolis, 31 Union Square.)</mark></a> The building&#x27;s very foundation was rooted in commerce: <a class="srclink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-470" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-470" title="See the source page — Spielvogel, The Landmarks of New York, 2016, p. 470"><mark id="hl-16" class="s11" title="Spielvogel, The Landmarks of New York, 2016, p. 470">(Founded in 1871, the Bank of the Metropolis was formed to serve the needs of the businesses located around Union Square. In order to attract the business of leading publishers, jewelers, and other merchants, the board of directors included such powerful neighborhood businessmen as Louis Comfort Tiffany and Charles Scribner.)</mark></a></p>
+
+<h2>IV. The Skyscraper Rises</h2>
+
+<p>Then came the architect and the tower. <a class="srclink" href="#src-wolfe-new-york-15-walking-tours-2003-p-252" data-scan="wolfe-new-york-15-walking-tours-2003-p-252" title="See the source page — Wolfe, New York 15 Walking Tours, 2003, p. 252"><mark id="hl-17" class="s12" title="Wolfe, New York 15 Walking Tours, 2003, p. 252">(No. 31, the former Bank of the Metropolis (Bruce Price, 1902), is a fine example of the architect&#x27;s favored Renaissance Revival style. Although the building&#x27;s front features polished marble columns, the entire structure is, in effect, columnar or tripartite in form, with a base, shaft, and capital represented by its three stone sections.)</mark></a> It was <a class="srclink" href="#src-aia-aia-edition-3-1988-p-186" data-scan="aia-aia-edition-3-1988-p-186" title="See the source page — AIA, AIA Edition 3, 1988, p. 186"><mark id="hl-18" class="s13" title="AIA, AIA Edition 3, 1988, p. 186">(An early and unwitting sliver building, this neo-Renaissance slab now houses a restaurant in its original banking rooms, a place for SUPERMAN&#x27;S lunch)</mark></a>.</p>
+
+<p>The skyscraper announced a changing district: <a class="srclink" href="#src-boyer-manhattan-manners-1985-p-228" data-scan="boyer-manhattan-manners-1985-p-228" title="See the source page — Boyer, Manhattan Manners, 1985, p. 228"><mark id="hl-19" class="s14" title="Boyer, Manhattan Manners, 1985, p. 228">(The sixteen story skyscraper, designed by Bruce Price In 1901, was symbolic of the tall structures invading ladies Mile In the early twentieth century and hastening the retreat of the fashionable shopping district up Fifth Avenue above Thirty-fourth Street.)</mark></a> Beside it stood a neighbor, <a class="srclink" href="#src-boyer-manhattan-manners-1985-p-228" data-scan="boyer-manhattan-manners-1985-p-228" title="See the source page — Boyer, Manhattan Manners, 1985, p. 228"><mark id="hl-20" class="s14" title="Boyer, Manhattan Manners, 1985, p. 228">(The Union Building, a Moorish Venetian structure designed by Alfred Zucker In 1891.)</mark></a></p>
+
+<p>The neighborhood it entered was already crowded with the garment trade: <a class="srclink" href="#src-boyer-manhattan-manners-1985-p-228" data-scan="boyer-manhattan-manners-1985-p-228" title="See the source page — Boyer, Manhattan Manners, 1985, p. 228"><mark id="hl-21" class="s14" title="Boyer, Manhattan Manners, 1985, p. 228">(More than a dozen ladies&#x27; tailoring establishments could he found in the 1900 business directories of New York, in close proximity to the new Waldorf Astoria Hotel.)</mark></a> The tower&#x27;s upper reaches teemed with trades, for <a class="srclink" href="#src-boyer-manhattan-manners-1985-p-228" data-scan="boyer-manhattan-manners-1985-p-228" title="See the source page — Boyer, Manhattan Manners, 1985, p. 228"><mark id="hl-22" class="s14" title="Boyer, Manhattan Manners, 1985, p. 228">(The following year. Bruce Price designed the sixteen-story office tower for the Bank of the Metropolis on the northwest corner of Sixteenth Street and Union Square West. Here, loo. The upper floors were rented to at least three shirtwaist-makers, three different ladies and children&#x27;s undergarment manufacturers, in addition to six different architectural offices.)</mark></a> And the surrounding streets followed suit: <a class="srclink" href="#src-boyer-manhattan-manners-1985-p-228" data-scan="boyer-manhattan-manners-1985-p-228" title="See the source page — Boyer, Manhattan Manners, 1985, p. 228"><mark id="hl-23" class="s14" title="Boyer, Manhattan Manners, 1985, p. 228">(The side streets near ladies Mile were also invaded by lofty buildings used to house the expanding garment industry that now reached as far north as Thirty-Sixth Street. Ten and twelve-story loft buildings, sometimes as narrow as one city lot, were erected by the hundreds, flooding the fashionable shopping district with thousands of sweatshop workers who had little extra money to purchase the goods in the fancy shop windows along Ladies Mile, but lent the area an unsavory quality.)</mark></a></p>
+
+<p>The tower itself embodied a great change in the cityscape, for <a class="srclink" href="#src-antoniou-heller-decoding-manhattan-2021-p-116" data-scan="antoniou-heller-decoding-manhattan-2021-p-116" title="See the source page — Antoniou &amp; Heller, Decoding Manhattan, 2021, p. 116"><mark id="hl-24" class="s15" title="Antoniou &amp; Heller, Decoding Manhattan, 2021, p. 116">(What doomed the format, besides changing tastes, was the arrival of skyscrapers, which put an end once and for all to a city of roughly uniform building heights.)</mark></a></p>
+
+<h2>V. The Critics Weigh In</h2>
+
+<p>Critics admired its composition. <a class="srclink" href="#src-goldberger-the-city-observed-1979-p-93" data-scan="goldberger-the-city-observed-1979-p-93" title="See the source page — Goldberger, The City Observed, 1979, p. 93"><mark id="hl-25" class="s16" title="Goldberger, The City Observed, 1979, p. 93">(This narrow old bank is one of the city&#x27;s more appealing smaller towers, a lovely eclectic creation. There is a wonderful, gently bowed Ionic portico at the bottom, a slender, almost Sleek shaft, and an enormous, elaborate cornice. It feels like a building Louis Sullivan would have designed had he been a Beaux-Arts architect; some of the ornament even seems a watered down version of Sullivan&#x27;s, although the overall aesthetic is clearly a more classical and academic one. Price never quite found a style and never did a truly great building, but he was a deft, intuitive maker of compositions, and this is one of his best works.)</mark></a> That same account paired the address with its neighbor, noting <a class="srclink" href="#src-goldberger-the-city-observed-1979-p-93" data-scan="goldberger-the-city-observed-1979-p-93" title="See the source page — Goldberger, The City Observed, 1979, p. 93"><mark id="hl-26" class="s16" title="Goldberger, The City Observed, 1979, p. 93">(The Bank of metropolis now 31 Union Square West and 33 Union Square West.)</mark></a></p>
+
+<p>Another judged that <a class="srclink" href="#src-morrone-architectural-guidebook-1994-p-116" data-scan="morrone-architectural-guidebook-1994-p-116" title="See the source page — Morrone, Architectural Guidebook, 1994, p. 116"><mark id="hl-27" class="s17" title="Morrone, Architectural Guidebook, 1994, p. 116">(Its Union Square front is extremely narrow Between an Ionic portico and a heavy cornice is a sleek, tastefully ornamented shaft; as with other Price buildings, it is a forerunner of the stripped classicism later practiced by such architects as Paul Philippe Cret.)</mark></a> In photographic surveys it was placed within its block as <a class="srclink" href="#src-abbott-changing-new-york-1997-p-232" data-scan="abbott-changing-new-york-1997-p-232" title="See the source page — Abbott, Changing New York, 1997, p. 232"><mark id="hl-28" class="s18" title="Abbott, Changing New York, 1997, p. 232">(MIDDLE EAT SIDE 3. Union Square West, Nos 31-41.)</mark></a></p>
+
+<h2>VI. The Architecture in Detail</h2>
+
+<p>The building spoke a rich classical language. <a class="srclink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-470" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-470" title="See the source page — Spielvogel, The Landmarks of New York, 2016, p. 470"><mark id="hl-29" class="s11" title="Spielvogel, The Landmarks of New York, 2016, p. 470">(Occupying a commanding corner location, the building superbly demonstrates Bruce Prices ability to use the requirements of function, the dictates of site, and a classical vocabulary to create a skyscraper that emanates authority. The neo-Renaissance limestone rower is enhanced by classical elements traditionally associated with American bank architecture—most notably, a bowed two-story portico with monumental polished-granite columns, lions&#x27; heads, consoles, and foliated spandrels.)</mark></a></p>
+
+<p>The design logic followed the column itself. <a class="srclink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-470" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-470" title="See the source page — Spielvogel, The Landmarks of New York, 2016, p. 470"><mark id="hl-30" class="s11" title="Spielvogel, The Landmarks of New York, 2016, p. 470">(The site demanded a long, thin building, and Price&#x27;s vision related the skyscraper to a classical column. The tripartite scheme—a rusticated base, a nine-story midsection, and a capital topped by a prominent copper cornice—is a commanding visual, rather than functional, solution to organizing a tall structure.)</mark></a> The architect had a philosophy: <a class="srclink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-470" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-470" title="See the source page — Spielvogel, The Landmarks of New York, 2016, p. 470"><mark id="hl-31" class="s11" title="Spielvogel, The Landmarks of New York, 2016, p. 470">(Price, an influential architect of skyscrapers, once remarked that &quot;their aerial aspect [is] of more value to the city as a whole than the distorted partial values that, as a rule, are all we can obtain from the street.&quot;)</mark></a> And so <a class="srclink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-470" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-470" title="See the source page — Spielvogel, The Landmarks of New York, 2016, p. 470"><mark id="hl-32" class="s11" title="Spielvogel, The Landmarks of New York, 2016, p. 470">(His neo-Classical vocabulary fuses well here with the dictates of skyscraper construction to create a distinctly modern, urban building.)</mark></a></p>
+
+<p>Landmark scholarship echoed this reading: <a class="srclink" href="#src-postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76" data-scan="postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76" title="See the source page — Postal &amp; Dolkart, Guide to New York City Landmarks, 2009, p. 76"><mark id="hl-33" class="s19" title="Postal &amp; Dolkart, Guide to New York City Landmarks, 2009, p. 76">(Price was an important early skyscraper designer with a particular interest in adapting the tripartite form of the column Io tad buildings. This neo-Renaissance limestone faced example is clearly massed in Price&#x27;s preferred base-shaft-capital manner.)</mark></a></p>
+
+<p>The most granular catalogue of the façade reads: <a class="srclink" href="#src-lpc-union-square-1903-p-1" data-scan="lpc-union-square-1903-p-1" title="See the source page — LPC, Union Square, 1903, p. 1"><mark id="hl-34" class="s20" title="LPC, Union Square, 1903, p. 1">(neo-Renaissance, Base Color Coral Reef - 195 185 154, Façade Color Pearl White - 238 235 218, Base Material Rusticated Limestone, Granite Bulkheads, Polished Granite Columns, Façade Material Limestone, Entrance Description 3-Bays, 2-Story Bowed Portico, Granite Ionic Columns, Lions&#x27; Heads, Console Brackets, Foliated Spandrels, Broken Pediment, Lion-head Waterspouts, Frieze, Window Detail Square-headed, Stone Surround (3), Foliated Spandrels: Acanthus/ Roundel Centers (Rest), Open-mouthed Lions (10), Brickwork Style Rusticated Pilasters, Round Headed Arches, Smooth Faced Pilasters, Swags, Egg &amp; Dart Echinus, Tripartite Typology, Roofline Description Scrolled Consoles, Wave/ &#x27;Running Dog&#x27;, Projecting Bandcourse, Palmettes, Copper Cornice, Dentils, Modillions.)</mark></a></p>
+
+<h2>VII. The Building on the Maps</h2>
+
+<p>The atlases tracked the finished tower. <a class="srclink" href="#src-g-w-bromley-co-1916-atlas-of-the-borough-of-manhattan-p-54" data-scan="g-w-bromley-co-1916-atlas-of-the-borough-of-manhattan-p-54" title="See the source page — G W Bromley &amp; Co, 1916 Atlas of the Borough of Manhattan, p. 54"><mark id="hl-35" class="s21" title="G W Bromley &amp; Co, 1916 Atlas of the Borough of Manhattan, p. 54">(In the 1916 Atlas of the Borough of Manhattan, on 31 Union Square West, there is written &#x27;Bank of the Metropolis&#x27; as well as reference to 2 Structures; 16 Story Brick building with Store and Elevators and Fire proof building (steel construction) and 1 Story Brick Extension.)</mark></a> A later record noted a taller count: <mark id="hl-36" class="s22" title="Bromley, 1930 Land Book of the Borough of Manhattan, p. 53">(In the 1930 Land Book of the Borough of Manhattan, on 31 Union Square West, there is written &#x27;Bank of the Metropolis&#x27; as well as reference to 2 Structures; 17 Story Brick building with Elevators and Fire proof building (steel construction).)</mark></p>
+
+<h2>VIII. Mergers and New Names</h2>
+
+<p>The bank did not remain independent. <a class="srclink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-470" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-470" title="See the source page — Spielvogel, The Landmarks of New York, 2016, p. 470"><mark id="hl-37" class="s11" title="Spielvogel, The Landmarks of New York, 2016, p. 470">(The bank was absorbed by the Bank of the Manhattan Company in 1918; the resulting entity merged with Chase in 1955 to become the Chase Manhattan Bank, now JP Morgan Chase &amp; Co.)</mark></a> Concisely put elsewhere: <a class="srclink" href="#src-wolfe-new-york-15-walking-tours-2003-p-252" data-scan="wolfe-new-york-15-walking-tours-2003-p-252" title="See the source page — Wolfe, New York 15 Walking Tours, 2003, p. 252"><mark id="hl-38" class="s12" title="Wolfe, New York 15 Walking Tours, 2003, p. 252">(The bank, founded in 1871, served local businesses until 1918, when it merged with the Bank of the Manhattan Company (now J. P. Morgan Chase).)</mark></a> And again: <a class="srclink" href="#src-postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76" data-scan="postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76" title="See the source page — Postal &amp; Dolkart, Guide to New York City Landmarks, 2009, p. 76"><mark id="hl-39" class="s19" title="Postal &amp; Dolkart, Guide to New York City Landmarks, 2009, p. 76">(The Bank of the Metropolis, founded m 1871 to serve the needs of businesses in the Union Square area, maintained its offices on the square until 1918. when it was absorbed by the Bank of Manhattan.)</mark></a></p>
+
+<p>The successor&#x27;s name appeared in directories: <a class="srclink" href="#src-howe-new-york-shopping-guide-1915-p-19" data-scan="howe-new-york-shopping-guide-1915-p-19" title="See the source page — Howe, New York Shopping Guide, 1915, p. 19"><mark id="hl-40" class="s23" title="Howe, New York Shopping Guide, 1915, p. 19">(STATE BANKS. Bk. of Metropolis, 31 Union sq.)</mark></a> and later <a class="srclink" href="#src-howe-new-york-shopping-guide-1924-1924-p-17" data-scan="howe-new-york-shopping-guide-1924-1924-p-17" title="See the source page — Howe, New York Shopping Guide 1924, 1924, p. 17"><mark id="hl-41" class="s24" title="Howe, New York Shopping Guide 1924, 1924, p. 17">(STATE BANKS. Manhattan Co., 40 Wall, 31 Union sq., 333 Madison av.)</mark></a> A portrait painter even gave it as her mailing point: <mark id="hl-42" class="s25" title="Marquis, Who&#x27;s Who in the East Second Edition, 1948, p. 972">(Address: care Bank Manhattan Co., 31 Union Sq., New York 3, N.Y.)</mark> The maps confirmed the change of ownership, as <a class="srclink" href="#src-bromley-1955-manhattan-land-book-p-43" data-scan="bromley-1955-manhattan-land-book-p-43" title="See the source page — Bromley, 1955 Manhattan Land Book, p. 43"><mark id="hl-43" class="s26" title="Bromley, 1955 Manhattan Land Book, p. 43">(In the 1955 Manhattan Land Book, on 31 Union Square West, there is written &#x27;Chase Manhattan Sank&#x27; as well as reference to 1 Structure; 16 Story Brick or Stone or Concrete building with Store and Elevators and Fire proof building (steel construction).)</mark></a></p>
+
+<h2>IX. Redevelopment Pressures and Landmark Status</h2>
+
+<p>The surrounding block faced the developer&#x27;s eye. <a class="srclink" href="#src-stern-new-york-2000-2006-p-377" data-scan="stern-new-york-2000-2006-p-377" title="See the source page — Stern, New York 2000, 2006, p. 377"><mark id="hl-44" class="s27" title="Stern, New York 2000, 2006, p. 377">(In June 1930, the Klein estate was reportedly in negotiations with five developers seeking to purchase the site and its buildings. But it was not until 1983, when William Zeckendorf Jr., son of the legendary developer of the 1950s and 1960s who had died in 1976, acquired a two-year option on the site, that progress began to be made. Zeckendorf retained Davis, Brody &amp; Associates to develop plans for the block&#x27;s redevelopment as a cluster of four superscaled apartment towers set atop a seven-story base.)</mark></a></p>
+
+<p>The plans stirred resistance. <a class="srclink" href="#src-stern-new-york-2000-2006-p-377" data-scan="stern-new-york-2000-2006-p-377" title="See the source page — Stern, New York 2000, 2006, p. 377"><mark id="hl-45" class="s27" title="Stern, New York 2000, 2006, p. 377">(To realize the Zeckendorf plan, the site needed to be rezoned, a move that was rigorously opposed by the Union Square Community Coalition, a group largely made up of newer residents who had moved into lofts and apartments and feared the impact of real estate speculation on their rented homes.)</mark></a> In the end, <a class="srclink" href="#src-stern-new-york-2000-2006-p-377" data-scan="stern-new-york-2000-2006-p-377" title="See the source page — Stern, New York 2000, 2006, p. 377"><mark id="hl-46" class="s27" title="Stern, New York 2000, 2006, p. 377">(Both the district and the Zeckendorf proposal for a twenty-six-story project were approved by the City Planning Commission in November 1984 and by the Board of Estimate in January 1985.)</mark></a></p>
+
+<p>Out of this ferment came protection. <a class="srclink" href="#src-stern-new-york-2000-2006-p-377" data-scan="stern-new-york-2000-2006-p-377" title="See the source page — Stern, New York 2000, 2006, p. 377"><mark id="hl-47" class="s27" title="Stern, New York 2000, 2006, p. 377">(Concerns about the fate of historic buildings on other sites around the square led to the designation as landmarks of the Lincoln Building (R. H. Robertson, 1890), 1-3 Union Square West; the Bank of the Metropolis (Bruce Price, 1903), 31 Union Square West; the Century Building (William Schickel, 1881), 33 East Seventeenth Street; the Everett Building (Starrett &amp; Van Vleck, 1908), 45 East Seventeenth Street; and the Germania Life Insurance Company Building (D&#x27;Oench &amp;. Yost, 1911), later the Guardian Life Building, 50 Union Square East.)</mark></a></p>
+
+<p>The official record states it plainly: <a class="srclink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-470" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-470" title="See the source page — Spielvogel, The Landmarks of New York, 2016, p. 470"><mark id="hl-48" class="s11" title="Spielvogel, The Landmarks of New York, 2016, p. 470">((FORMER) BANK OF THE METROPOLIS 1902-03; 1979 CONVERSION 31 UNION SQUARE WEST (ALSO KNOWN AS 19-23 EAST 16TH STREET), MANHATTAN ARCHITECT: BRUCE PRICE DESIGNATED: JULY 12, 1988.)</mark></a></p>
+
+<h2>X. A New Life</h2>
+
+<p>The tower was reborn for modern use. <a class="srclink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-470" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-470" title="See the source page — Spielvogel, The Landmarks of New York, 2016, p. 470"><mark id="hl-49" class="s11" title="Spielvogel, The Landmarks of New York, 2016, p. 470">(Today the former banking floor is a restaurant, Blue Water Grill, and many of the upper floors were converted to apartments in 1979.)</mark></a> As one guide summarized, <a class="srclink" href="#src-wolfe-new-york-15-walking-tours-2003-p-252" data-scan="wolfe-new-york-15-walking-tours-2003-p-252" title="See the source page — Wolfe, New York 15 Walking Tours, 2003, p. 252"><mark id="hl-50" class="s12" title="Wolfe, New York 15 Walking Tours, 2003, p. 252">(A restaurant occupies the main floor with residences above.)</mark></a> The restaurant appears in listings simply as <mark id="hl-51" class="s28" title="Frank, Where to Find It Buy It Eat It In New York, 1980, p. 77">(Blue Water Grill (31 Union Square W))</mark> and among seafood destinations as <a class="srclink" href="#src-frank-where-to-find-it-buy-it-eat-it-in-new-york-1980-p-25" data-scan="frank-where-to-find-it-buy-it-eat-it-in-new-york-1980-p-25" title="See the source page — Frank, Where to Find It Buy It Eat It In New York, 1980, p. 25"><mark id="hl-52" class="s28" title="Frank, Where to Find It Buy It Eat It In New York, 1980, p. 25">(Blue Water Grill (31 Union Square W): Seafood, Sunday…95)</mark></a>. A music venue also lived there, listed under <a class="srclink" href="#src-village-voice-village-voice-january-31st-1995-1995-p-1" data-scan="village-voice-village-voice-january-31st-1995-1995-p-1" title="See the source page — Village Voice, Village Voice January 31st 1995, 1995, p. 1"><mark id="hl-53" class="s29" title="Village Voice, Village Voice January 31st 1995, 1995, p. 1">(WHERE TO HEAR METROPOLIS, 31 Union Sq W, 675-0851)</mark></a>, and later remembered among the closed establishments simply as <a class="srclink" href="#src-murphy-murph-guide-closed-bars-2023-p-13" data-scan="murphy-murph-guide-closed-bars-2023-p-13" title="See the source page — Murphy, Murph Guide Closed Bars, 2023, p. 13"><mark id="hl-54" class="s30" title="Murphy, Murph Guide Closed Bars, 2023, p. 13">(Metropolis)</mark></a> and <a class="srclink" href="#src-murphy-murph-guide-closed-bars-2023-p-13" data-scan="murphy-murph-guide-closed-bars-2023-p-13" title="See the source page — Murphy, Murph Guide Closed Bars, 2023, p. 13"><mark id="hl-55" class="s30" title="Murphy, Murph Guide Closed Bars, 2023, p. 13">(Blue Water Grill)</mark></a>.</p>
+
+<h2>XI. The Neighboring Table — 21 East 16th Street</h2>
+
+<p>Across the way, the address of 21 East 16th Street told a parallel food story. Once it was a vegetarian haunt, where <a class="srclink" href="#src-kiedrowski-andy-warhols-new-york-2011-p-101" data-scan="kiedrowski-andy-warhols-new-york-2011-p-101" title="See the source page — Kiedrowski, Andy Warhols New York, 2011, p. 101"><mark id="hl-56" class="s31" title="Kiedrowski, Andy Warhols New York, 2011, p. 101">(Brownie&#x27;s became a destination for health fanatics, vegetarians, Factory associates, and Warhol after his shooting in 1968 when his doctor told him to keep an eye on his diet.)</mark></a> In time, <a class="srclink" href="#src-kiedrowski-andy-warhols-new-york-2011-p-101" data-scan="kiedrowski-andy-warhols-new-york-2011-p-101" title="See the source page — Kiedrowski, Andy Warhols New York, 2011, p. 101"><mark id="hl-57" class="s31" title="Kiedrowski, Andy Warhols New York, 2011, p. 101">(Danny Meyer&#x27;s Union Square Cafe now occupies the Brownie&#x27;s address.)</mark></a></p>
+
+<p>The café itself was a landmark of dining: <a class="srclink" href="#src-forlie-the-new-york-city-almanac-1994-p-389" data-scan="forlie-the-new-york-city-almanac-1994-p-389" title="See the source page — Forlie, The New York City Almanac, 1994, p. 389"><mark id="hl-58" class="s32" title="Forlie, The New York City Almanac, 1994, p. 389">(Union Square Cafe became one of the final transforming presences in the neighborhood when it opened in 1985, a natural extension of a revamped park and a tremendously successful greenmarket.)</mark></a> Its layout was distinctive: <a class="srclink" href="#src-forlie-the-new-york-city-almanac-1994-p-389" data-scan="forlie-the-new-york-city-almanac-1994-p-389" title="See the source page — Forlie, The New York City Almanac, 1994, p. 389"><mark id="hl-59" class="s32" title="Forlie, The New York City Almanac, 1994, p. 389">(Danny Meyer&#x27;s restaurant is broken into four precincts in two halves: half one, as you enter, includes the long dining bar (featuring oyster and wine specials, and the full menu), and two dining areas beyond (an airy room with tall walls, and a railing balcony); half two, on the west, is the large sunken dining room with a cherry floor and dark green wainscoting. Chef Michael Romano gives the primarily American menu lots of Italian and French touches.)</mark></a></p>
+
+<p>It was found among the closed bars as <a class="srclink" href="#src-murphy-murph-guide-closed-bars-2023-p-11" data-scan="murphy-murph-guide-closed-bars-2023-p-11" title="See the source page — Murphy, Murph Guide Closed Bars, 2023, p. 11"><mark id="hl-60" class="s30" title="Murphy, Murph Guide Closed Bars, 2023, p. 11">(Union Square Café)</mark></a> and celebrated for its <a class="srclink" href="#src-dale-mystery-reader-s-walking-guide-new-york-1993-p-79" data-scan="dale-mystery-reader-s-walking-guide-new-york-1993-p-79" title="See the source page — Dale, Mystery Reader&#x27;s Walking Guide New York, 1993, p. 79"><mark id="hl-61" class="s33" title="Dale, Mystery Reader&#x27;s Walking Guide New York, 1993, p. 79">(Publishing lunch crowd. Noisy, high-ceilinged rooms. Expensive.)</mark></a> Its coordinates were recorded as <a class="srclink" href="#src-ozersky-meat-me-in-manhattan-2004-p-194" data-scan="ozersky-meat-me-in-manhattan-2004-p-194" title="See the source page — Ozersky, Meat Me in Manhattan, 2004, p. 194"><mark id="hl-62" class="s34" title="Ozersky, Meat Me in Manhattan, 2004, p. 194">(Union Square Café 21 E. 16th St. btwn Fifth Ave. &amp; Union Sq. W. 212.243.4020 L; N. R; 4. 5.6 at 14th St. -Union Sq.)</mark></a> and as <mark id="hl-63" class="s32" title="Forlie, The New York City Almanac, 1994, p. 336">(Union Square Cafe*, 21 E. 16th St. (Fifth Ave./Union Sq. W.), 243-4020, $E; Contemporary.)</mark> Its dishes lingered in guidebooks — <a class="srclink" href="#src-frank-where-to-find-it-buy-it-eat-it-in-new-york-1980-p-40" data-scan="frank-where-to-find-it-buy-it-eat-it-in-new-york-1980-p-40" title="See the source page — Frank, Where to Find It Buy It Eat It In New York, 1980, p. 40"><mark id="hl-64" class="s28" title="Frank, Where to Find It Buy It Eat It In New York, 1980, p. 40">(Potatoes, mashed)</mark></a>, <a class="srclink" href="#src-frank-where-to-find-it-buy-it-eat-it-in-new-york-1980-p-39" data-scan="frank-where-to-find-it-buy-it-eat-it-in-new-york-1980-p-39" title="See the source page — Frank, Where to Find It Buy It Eat It In New York, 1980, p. 39"><mark id="hl-65" class="s28" title="Frank, Where to Find It Buy It Eat It In New York, 1980, p. 39">(Pie, key lime)</mark></a>, <a class="srclink" href="#src-frank-where-to-find-it-buy-it-eat-it-in-new-york-1980-p-35" data-scan="frank-where-to-find-it-buy-it-eat-it-in-new-york-1980-p-35" title="See the source page — Frank, Where to Find It Buy It Eat It In New York, 1980, p. 35"><mark id="hl-66" class="s28" title="Frank, Where to Find It Buy It Eat It In New York, 1980, p. 35">(Fish, tuna steak)</mark></a>, <a class="srclink" href="#src-frank-where-to-find-it-buy-it-eat-it-in-new-york-1980-p-42" data-scan="frank-where-to-find-it-buy-it-eat-it-in-new-york-1980-p-42" title="See the source page — Frank, Where to Find It Buy It Eat It In New York, 1980, p. 42"><mark id="hl-67" class="s28" title="Frank, Where to Find It Buy It Eat It In New York, 1980, p. 42">(Soup, black bean)</mark></a>, and <a class="srclink" href="#src-frank-where-to-find-it-buy-it-eat-it-in-new-york-1980-p-62" data-scan="frank-where-to-find-it-buy-it-eat-it-in-new-york-1980-p-62" title="See the source page — Frank, Where to Find It Buy It Eat It In New York, 1980, p. 62"><mark id="hl-68" class="s28" title="Frank, Where to Find It Buy It Eat It In New York, 1980, p. 62">(Game)</mark></a> — each paired with <a class="srclink" href="#src-frank-where-to-find-it-buy-it-eat-it-in-new-york-1980-p-85" data-scan="frank-where-to-find-it-buy-it-eat-it-in-new-york-1980-p-85" title="See the source page — Frank, Where to Find It Buy It Eat It In New York, 1980, p. 85"><mark id="hl-69" class="s28" title="Frank, Where to Find It Buy It Eat It In New York, 1980, p. 85">(Union Square Cafe (21 E 16th St))</mark></a>.</p>
+
+<section class="chart-print"><h2 id="citations">Citation Chart</h2>
+<p class="note2">Every highlighted quote, in order of appearance, correlated to its underlying source. The swatch matches the highlight colour in the text.</p>
+<div class="tablewrap">
+<h3 class="csec"></h3>
+<table><thead><tr><th class="num">#</th><th>Verbatim Quote (abbreviated)</th><th>Source (Author, Title, Year, Page)</th></tr></thead><tbody>
+<tr><td class="num">1</td><td class="quote">&ldquo;In the 1815 Blue Book, on 31 Union Square West, there is reference to 0 structures.&rdquo;</td><td class="src"><span class="sw s1"></span>Sackersdorff, <em>1815 Blue Book</em>, p. 3&nbsp;<a class="pglink" href="#src-sackersdorff-1815-blue-book-p-3" data-scan="sackersdorff-1815-blue-book-p-3">[page scan]</a></td></tr>
+<tr><td class="num">2</td><td class="quote">&ldquo;Long before an axe cut into the first elderly tree on the future Washington Square, well-informed real estate speculators—Astors, Goelets and Schermerhorns in the…&rdquo;</td><td class="src"><span class="sw s2"></span>Simon, <em>Fifth Avenue A Very Social History</em>, 1978, p. 36&nbsp;<a class="pglink" href="#src-simon-fifth-avenue-a-very-social-history-1978-p-36" data-scan="simon-fifth-avenue-a-very-social-history-1978-p-36">[page scan]</a></td></tr>
+<tr><td class="num">3</td><td class="quote">&ldquo;The small eighteenth-century shops of Cherry Street and Catherine Street that had swelled and moved to larger and more fashionable quarters on Broadway were now…&rdquo;</td><td class="src"><span class="sw s2"></span>Simon, <em>Fifth Avenue A Very Social History</em>, 1978, p. 36&nbsp;<a class="pglink" href="#src-simon-fifth-avenue-a-very-social-history-1978-p-36" data-scan="simon-fifth-avenue-a-very-social-history-1978-p-36">[page scan]</a></td></tr>
+<tr><td class="num">4</td><td class="quote">&ldquo;In the 1853 Perris Maps, on 31 Union Square West, there is reference to 3 structures; Brick or Stone dwellings first class (slate or metal roof &amp; coped) with Brick or…&rdquo;</td><td class="src"><span class="sw s3"></span>Perris, <em>1853 Perris Maps</em>, p. 53&nbsp;<a class="pglink" href="#src-perris-1853-perris-maps-p-53" data-scan="perris-1853-perris-maps-p-53">[page scan]</a></td></tr>
+<tr><td class="num">5</td><td class="quote">&ldquo;In the 1867 Dripps Plan, on 31 Union Square West, there is reference to 2 structures; Building, Building.&rdquo;</td><td class="src"><span class="sw s4"></span>Dripps, <em>1867 Dripps Plan</em>, p. 7&nbsp;<a class="pglink" href="#src-dripps-1867-dripps-plan-p-7" data-scan="dripps-1867-dripps-plan-p-7">[page scan]</a></td></tr>
+<tr><td class="num">6</td><td class="quote">&ldquo;BOGART &amp; CUYLER / John Bogart, John Y. Cuyler / 1874, 31 Union Sq.&rdquo;</td><td class="src"><span class="sw s5"></span>Francis, <em>Architects in Practice New York City</em>, 1979, p. 17&nbsp;<a class="pglink" href="#src-francis-architects-in-practice-new-york-city-1979-p-17" data-scan="francis-architects-in-practice-new-york-city-1979-p-17">[page scan]</a></td></tr>
+<tr><td class="num">7</td><td class="quote">&ldquo;In the 1885 Robinsons Atlas, on 31 Union Square West, there is written &#x27;White Manfg.Co.&#x27; as well as reference to 2 Structures; Brick building, Brick building.&rdquo;</td><td class="src"><span class="sw s6"></span>Robinson, <em>1885 Robinsons Atlas</em>, p. 15&nbsp;<a class="pglink" href="#src-robinson-1885-robinsons-atlas-p-15" data-scan="robinson-1885-robinsons-atlas-p-15">[page scan]</a></td></tr>
+<tr><td class="num">8</td><td class="quote">&ldquo;In the 1897 Bromleys Atlas, on 31 Union Square West, there is reference to 1 Structure; 4 Story Brick building.&rdquo;</td><td class="src"><span class="sw s7"></span>Bromley, <em>1897 Bromleys Atlas</em>, p. 19&nbsp;<a class="pglink" href="#src-bromley-1897-bromleys-atlas-p-19" data-scan="bromley-1897-bromleys-atlas-p-19">[page scan]</a></td></tr>
+<tr><td class="num">9</td><td class="quote">&ldquo;The photograph above, of a cabby and his hansom, was taken in Union Square, at Broadway and Sixteenth Street, in 1896.&rdquo;</td><td class="src"><span class="sw s8"></span>Kouwenhoven, <em>The Columbia Historical Portrait of New York</em>, 1953, p. 428&nbsp;<a class="pglink" href="#src-kouwenhoven-the-columbia-historical-portrait-of-new-york-1953-p-428" data-scan="kouwenhoven-the-columbia-historical-portrait-of-new-york-1953-p-428">[page scan]</a></td></tr>
+<tr><td class="num">10</td><td class="quote">&ldquo;The Bank of the Metropolis is a flourishing outgrowth of the movement of business to the up-town section of New York. Union Square, where its banking house is…&rdquo;</td><td class="src"><span class="sw s9"></span>King, <em>King&#x27;s Handbook of New York City</em>, 1892, p. 689&nbsp;<a class="pglink" href="#src-king-king-s-handbook-of-new-york-city-1892-p-689" data-scan="king-king-s-handbook-of-new-york-city-1892-p-689">[page scan]</a></td></tr>
+<tr><td class="num">11</td><td class="quote">&ldquo;The bank was organized in 1871, and commenced operations in June of that year. The first President was W. A. Kissam (who died in the same year), and the original place…&rdquo;</td><td class="src"><span class="sw s9"></span>King, <em>King&#x27;s Handbook of New York City</em>, 1892, p. 689&nbsp;<a class="pglink" href="#src-king-king-s-handbook-of-new-york-city-1892-p-689" data-scan="king-king-s-handbook-of-new-york-city-1892-p-689">[page scan]</a></td></tr>
+<tr><td class="num">12</td><td class="quote">&ldquo;Robert Schell, the President, who has held the position steadily for twenty years, was formerly a well-known jewelry merchant in Maiden Lane. William B. Isham, the…&rdquo;</td><td class="src"><span class="sw s9"></span>King, <em>King&#x27;s Handbook of New York City</em>, 1892, p. 689&nbsp;<a class="pglink" href="#src-king-king-s-handbook-of-new-york-city-1892-p-689" data-scan="king-king-s-handbook-of-new-york-city-1892-p-689">[page scan]</a></td></tr>
+<tr><td class="num">13</td><td class="quote">&ldquo;They are Charles L. Tiffany, of Tiffany &amp; Company; Hon. Samuel Sloan, President of the Delaware, Lackawanna &amp; Western Railroad; Robert Schell, the President; Joseph…&rdquo;</td><td class="src"><span class="sw s9"></span>King, <em>King&#x27;s Handbook of New York City</em>, 1892, p. 689&nbsp;<a class="pglink" href="#src-king-king-s-handbook-of-new-york-city-1892-p-689" data-scan="king-king-s-handbook-of-new-york-city-1892-p-689">[page scan]</a></td></tr>
+<tr><td class="num">14</td><td class="quote">&ldquo;The bank has a deposit line of nearly $7,000,000; and a surplus of $700,000 has been accumulated on the capital of $300,000. The shares of the Bank of the Metropolis…&rdquo;</td><td class="src"><span class="sw s9"></span>King, <em>King&#x27;s Handbook of New York City</em>, 1892, p. 689&nbsp;<a class="pglink" href="#src-king-king-s-handbook-of-new-york-city-1892-p-689" data-scan="king-king-s-handbook-of-new-york-city-1892-p-689">[page scan]</a></td></tr>
+<tr><td class="num">15</td><td class="quote">&ldquo;Bank of the Metropolis, 31 Union Square.&rdquo;</td><td class="src"><span class="sw s10"></span>Demarest, <em>Guide to New York and Vicinity</em>, 1874, p. 9&nbsp;<a class="pglink" href="#src-demarest-guide-to-new-york-and-vicinity-1874-p-9" data-scan="demarest-guide-to-new-york-and-vicinity-1874-p-9">[page scan]</a></td></tr>
+<tr><td class="num">16</td><td class="quote">&ldquo;Founded in 1871, the Bank of the Metropolis was formed to serve the needs of the businesses located around Union Square. In order to attract the business of leading…&rdquo;</td><td class="src"><span class="sw s11"></span>Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 470&nbsp;<a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-470" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-470">[page scan]</a></td></tr>
+<tr><td class="num">17</td><td class="quote">&ldquo;No. 31, the former Bank of the Metropolis (Bruce Price, 1902), is a fine example of the architect&#x27;s favored Renaissance Revival style. Although the building&#x27;s front…&rdquo;</td><td class="src"><span class="sw s12"></span>Wolfe, <em>New York 15 Walking Tours</em>, 2003, p. 252&nbsp;<a class="pglink" href="#src-wolfe-new-york-15-walking-tours-2003-p-252" data-scan="wolfe-new-york-15-walking-tours-2003-p-252">[page scan]</a></td></tr>
+<tr><td class="num">18</td><td class="quote">&ldquo;An early and unwitting sliver building, this neo-Renaissance slab now houses a restaurant in its original banking rooms, a place for SUPERMAN&#x27;S lunch&rdquo;</td><td class="src"><span class="sw s13"></span>AIA, <em>AIA Edition 3</em>, 1988, p. 186&nbsp;<a class="pglink" href="#src-aia-aia-edition-3-1988-p-186" data-scan="aia-aia-edition-3-1988-p-186">[page scan]</a></td></tr>
+<tr><td class="num">19</td><td class="quote">&ldquo;The sixteen story skyscraper, designed by Bruce Price In 1901, was symbolic of the tall structures invading ladies Mile In the early twentieth century and hastening the…&rdquo;</td><td class="src"><span class="sw s14"></span>Boyer, <em>Manhattan Manners</em>, 1985, p. 228&nbsp;<a class="pglink" href="#src-boyer-manhattan-manners-1985-p-228" data-scan="boyer-manhattan-manners-1985-p-228">[page scan]</a></td></tr>
+<tr><td class="num">20</td><td class="quote">&ldquo;The Union Building, a Moorish Venetian structure designed by Alfred Zucker In 1891.&rdquo;</td><td class="src"><span class="sw s14"></span>Boyer, <em>Manhattan Manners</em>, 1985, p. 228&nbsp;<a class="pglink" href="#src-boyer-manhattan-manners-1985-p-228" data-scan="boyer-manhattan-manners-1985-p-228">[page scan]</a></td></tr>
+<tr><td class="num">21</td><td class="quote">&ldquo;More than a dozen ladies&#x27; tailoring establishments could he found in the 1900 business directories of New York, in close proximity to the new Waldorf Astoria Hotel.&rdquo;</td><td class="src"><span class="sw s14"></span>Boyer, <em>Manhattan Manners</em>, 1985, p. 228&nbsp;<a class="pglink" href="#src-boyer-manhattan-manners-1985-p-228" data-scan="boyer-manhattan-manners-1985-p-228">[page scan]</a></td></tr>
+<tr><td class="num">22</td><td class="quote">&ldquo;The following year. Bruce Price designed the sixteen-story office tower for the Bank of the Metropolis on the northwest corner of Sixteenth Street and Union Square West.…&rdquo;</td><td class="src"><span class="sw s14"></span>Boyer, <em>Manhattan Manners</em>, 1985, p. 228&nbsp;<a class="pglink" href="#src-boyer-manhattan-manners-1985-p-228" data-scan="boyer-manhattan-manners-1985-p-228">[page scan]</a></td></tr>
+<tr><td class="num">23</td><td class="quote">&ldquo;The side streets near ladies Mile were also invaded by lofty buildings used to house the expanding garment industry that now reached as far north as Thirty-Sixth Street.…&rdquo;</td><td class="src"><span class="sw s14"></span>Boyer, <em>Manhattan Manners</em>, 1985, p. 228&nbsp;<a class="pglink" href="#src-boyer-manhattan-manners-1985-p-228" data-scan="boyer-manhattan-manners-1985-p-228">[page scan]</a></td></tr>
+<tr><td class="num">24</td><td class="quote">&ldquo;What doomed the format, besides changing tastes, was the arrival of skyscrapers, which put an end once and for all to a city of roughly uniform building heights.&rdquo;</td><td class="src"><span class="sw s15"></span>Antoniou &amp; Heller, <em>Decoding Manhattan</em>, 2021, p. 116&nbsp;<a class="pglink" href="#src-antoniou-heller-decoding-manhattan-2021-p-116" data-scan="antoniou-heller-decoding-manhattan-2021-p-116">[page scan]</a></td></tr>
+<tr><td class="num">25</td><td class="quote">&ldquo;This narrow old bank is one of the city&#x27;s more appealing smaller towers, a lovely eclectic creation. There is a wonderful, gently bowed Ionic portico at the bottom, a…&rdquo;</td><td class="src"><span class="sw s16"></span>Goldberger, <em>The City Observed</em>, 1979, p. 93&nbsp;<a class="pglink" href="#src-goldberger-the-city-observed-1979-p-93" data-scan="goldberger-the-city-observed-1979-p-93">[page scan]</a></td></tr>
+<tr><td class="num">26</td><td class="quote">&ldquo;The Bank of metropolis now 31 Union Square West and 33 Union Square West.&rdquo;</td><td class="src"><span class="sw s16"></span>Goldberger, <em>The City Observed</em>, 1979, p. 93&nbsp;<a class="pglink" href="#src-goldberger-the-city-observed-1979-p-93" data-scan="goldberger-the-city-observed-1979-p-93">[page scan]</a></td></tr>
+<tr><td class="num">27</td><td class="quote">&ldquo;Its Union Square front is extremely narrow Between an Ionic portico and a heavy cornice is a sleek, tastefully ornamented shaft; as with other Price buildings, it is a…&rdquo;</td><td class="src"><span class="sw s17"></span>Morrone, <em>Architectural Guidebook</em>, 1994, p. 116&nbsp;<a class="pglink" href="#src-morrone-architectural-guidebook-1994-p-116" data-scan="morrone-architectural-guidebook-1994-p-116">[page scan]</a></td></tr>
+<tr><td class="num">28</td><td class="quote">&ldquo;MIDDLE EAT SIDE 3. Union Square West, Nos 31-41.&rdquo;</td><td class="src"><span class="sw s18"></span>Abbott, <em>Changing New York</em>, 1997, p. 232&nbsp;<a class="pglink" href="#src-abbott-changing-new-york-1997-p-232" data-scan="abbott-changing-new-york-1997-p-232">[page scan]</a></td></tr>
+<tr><td class="num">29</td><td class="quote">&ldquo;Occupying a commanding corner location, the building superbly demonstrates Bruce Prices ability to use the requirements of function, the dictates of site, and a…&rdquo;</td><td class="src"><span class="sw s11"></span>Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 470&nbsp;<a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-470" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-470">[page scan]</a></td></tr>
+<tr><td class="num">30</td><td class="quote">&ldquo;The site demanded a long, thin building, and Price&#x27;s vision related the skyscraper to a classical column. The tripartite scheme—a rusticated base, a nine-story…&rdquo;</td><td class="src"><span class="sw s11"></span>Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 470&nbsp;<a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-470" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-470">[page scan]</a></td></tr>
+<tr><td class="num">31</td><td class="quote">&ldquo;Price, an influential architect of skyscrapers, once remarked that &quot;their aerial aspect [is] of more value to the city as a whole than the distorted partial values that,…&rdquo;</td><td class="src"><span class="sw s11"></span>Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 470&nbsp;<a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-470" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-470">[page scan]</a></td></tr>
+<tr><td class="num">32</td><td class="quote">&ldquo;His neo-Classical vocabulary fuses well here with the dictates of skyscraper construction to create a distinctly modern, urban building.&rdquo;</td><td class="src"><span class="sw s11"></span>Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 470&nbsp;<a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-470" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-470">[page scan]</a></td></tr>
+<tr><td class="num">33</td><td class="quote">&ldquo;Price was an important early skyscraper designer with a particular interest in adapting the tripartite form of the column Io tad buildings. This neo-Renaissance…&rdquo;</td><td class="src"><span class="sw s19"></span>Postal &amp; Dolkart, <em>Guide to New York City Landmarks</em>, 2009, p. 76&nbsp;<a class="pglink" href="#src-postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76" data-scan="postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76">[page scan]</a></td></tr>
+<tr><td class="num">34</td><td class="quote">&ldquo;neo-Renaissance, Base Color Coral Reef - 195 185 154, Façade Color Pearl White - 238 235 218, Base Material Rusticated Limestone, Granite Bulkheads, Polished Granite…&rdquo;</td><td class="src"><span class="sw s20"></span>LPC, <em>Union Square</em>, 1903, p. 1&nbsp;<a class="pglink" href="#src-lpc-union-square-1903-p-1" data-scan="lpc-union-square-1903-p-1">[page scan]</a></td></tr>
+<tr><td class="num">35</td><td class="quote">&ldquo;In the 1916 Atlas of the Borough of Manhattan, on 31 Union Square West, there is written &#x27;Bank of the Metropolis&#x27; as well as reference to 2 Structures; 16 Story Brick…&rdquo;</td><td class="src"><span class="sw s21"></span>G W Bromley &amp; Co, <em>1916 Atlas of the Borough of Manhattan</em>, p. 54&nbsp;<a class="pglink" href="#src-g-w-bromley-co-1916-atlas-of-the-borough-of-manhattan-p-54" data-scan="g-w-bromley-co-1916-atlas-of-the-borough-of-manhattan-p-54">[page scan]</a></td></tr>
+<tr><td class="num">36</td><td class="quote">&ldquo;In the 1930 Land Book of the Borough of Manhattan, on 31 Union Square West, there is written &#x27;Bank of the Metropolis&#x27; as well as reference to 2 Structures; 17 Story…&rdquo;</td><td class="src"><span class="sw s22"></span>Bromley, <em>1930 Land Book of the Borough of Manhattan</em>, p. 53</td></tr>
+<tr><td class="num">37</td><td class="quote">&ldquo;The bank was absorbed by the Bank of the Manhattan Company in 1918; the resulting entity merged with Chase in 1955 to become the Chase Manhattan Bank, now JP Morgan…&rdquo;</td><td class="src"><span class="sw s11"></span>Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 470&nbsp;<a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-470" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-470">[page scan]</a></td></tr>
+<tr><td class="num">38</td><td class="quote">&ldquo;The bank, founded in 1871, served local businesses until 1918, when it merged with the Bank of the Manhattan Company (now J. P. Morgan Chase).&rdquo;</td><td class="src"><span class="sw s12"></span>Wolfe, <em>New York 15 Walking Tours</em>, 2003, p. 252&nbsp;<a class="pglink" href="#src-wolfe-new-york-15-walking-tours-2003-p-252" data-scan="wolfe-new-york-15-walking-tours-2003-p-252">[page scan]</a></td></tr>
+<tr><td class="num">39</td><td class="quote">&ldquo;The Bank of the Metropolis, founded m 1871 to serve the needs of businesses in the Union Square area, maintained its offices on the square until 1918. when it was…&rdquo;</td><td class="src"><span class="sw s19"></span>Postal &amp; Dolkart, <em>Guide to New York City Landmarks</em>, 2009, p. 76&nbsp;<a class="pglink" href="#src-postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76" data-scan="postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76">[page scan]</a></td></tr>
+<tr><td class="num">40</td><td class="quote">&ldquo;STATE BANKS. Bk. of Metropolis, 31 Union sq.&rdquo;</td><td class="src"><span class="sw s23"></span>Howe, <em>New York Shopping Guide</em>, 1915, p. 19&nbsp;<a class="pglink" href="#src-howe-new-york-shopping-guide-1915-p-19" data-scan="howe-new-york-shopping-guide-1915-p-19">[page scan]</a></td></tr>
+<tr><td class="num">41</td><td class="quote">&ldquo;STATE BANKS. Manhattan Co., 40 Wall, 31 Union sq., 333 Madison av.&rdquo;</td><td class="src"><span class="sw s24"></span>Howe, <em>New York Shopping Guide</em> 1924, 1924, p. 17&nbsp;<a class="pglink" href="#src-howe-new-york-shopping-guide-1924-1924-p-17" data-scan="howe-new-york-shopping-guide-1924-1924-p-17">[page scan]</a></td></tr>
+<tr><td class="num">42</td><td class="quote">&ldquo;Address: care Bank Manhattan Co., 31 Union Sq., New York 3, N.Y.&rdquo;</td><td class="src"><span class="sw s25"></span>Marquis, <em>Who&#x27;s Who in the East Second Edition</em>, 1948, p. 972</td></tr>
+<tr><td class="num">43</td><td class="quote">&ldquo;In the 1955 Manhattan Land Book, on 31 Union Square West, there is written &#x27;Chase Manhattan Sank&#x27; as well as reference to 1 Structure; 16 Story Brick or Stone or…&rdquo;</td><td class="src"><span class="sw s26"></span>Bromley, <em>1955 Manhattan Land Book</em>, p. 43&nbsp;<a class="pglink" href="#src-bromley-1955-manhattan-land-book-p-43" data-scan="bromley-1955-manhattan-land-book-p-43">[page scan]</a></td></tr>
+<tr><td class="num">44</td><td class="quote">&ldquo;In June 1930, the Klein estate was reportedly in negotiations with five developers seeking to purchase the site and its buildings. But it was not until 1983, when…&rdquo;</td><td class="src"><span class="sw s27"></span>Stern, <em>New York 2000</em>, 2006, p. 377&nbsp;<a class="pglink" href="#src-stern-new-york-2000-2006-p-377" data-scan="stern-new-york-2000-2006-p-377">[page scan]</a></td></tr>
+<tr><td class="num">45</td><td class="quote">&ldquo;To realize the Zeckendorf plan, the site needed to be rezoned, a move that was rigorously opposed by the Union Square Community Coalition, a group largely made up of…&rdquo;</td><td class="src"><span class="sw s27"></span>Stern, <em>New York 2000</em>, 2006, p. 377&nbsp;<a class="pglink" href="#src-stern-new-york-2000-2006-p-377" data-scan="stern-new-york-2000-2006-p-377">[page scan]</a></td></tr>
+<tr><td class="num">46</td><td class="quote">&ldquo;Both the district and the Zeckendorf proposal for a twenty-six-story project were approved by the City Planning Commission in November 1984 and by the Board of Estimate…&rdquo;</td><td class="src"><span class="sw s27"></span>Stern, <em>New York 2000</em>, 2006, p. 377&nbsp;<a class="pglink" href="#src-stern-new-york-2000-2006-p-377" data-scan="stern-new-york-2000-2006-p-377">[page scan]</a></td></tr>
+<tr><td class="num">47</td><td class="quote">&ldquo;Concerns about the fate of historic buildings on other sites around the square led to the designation as landmarks of the Lincoln Building (R. H. Robertson, 1890), 1-3…&rdquo;</td><td class="src"><span class="sw s27"></span>Stern, <em>New York 2000</em>, 2006, p. 377&nbsp;<a class="pglink" href="#src-stern-new-york-2000-2006-p-377" data-scan="stern-new-york-2000-2006-p-377">[page scan]</a></td></tr>
+<tr><td class="num">48</td><td class="quote">&ldquo;(FORMER) BANK OF THE METROPOLIS 1902-03; 1979 CONVERSION 31 UNION SQUARE WEST (ALSO KNOWN AS 19-23 EAST 16TH STREET), MANHATTAN ARCHITECT: BRUCE PRICE DESIGNATED: JULY…&rdquo;</td><td class="src"><span class="sw s11"></span>Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 470&nbsp;<a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-470" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-470">[page scan]</a></td></tr>
+<tr><td class="num">49</td><td class="quote">&ldquo;Today the former banking floor is a restaurant, Blue Water Grill, and many of the upper floors were converted to apartments in 1979.&rdquo;</td><td class="src"><span class="sw s11"></span>Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 470&nbsp;<a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-470" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-470">[page scan]</a></td></tr>
+<tr><td class="num">50</td><td class="quote">&ldquo;A restaurant occupies the main floor with residences above.&rdquo;</td><td class="src"><span class="sw s12"></span>Wolfe, <em>New York 15 Walking Tours</em>, 2003, p. 252&nbsp;<a class="pglink" href="#src-wolfe-new-york-15-walking-tours-2003-p-252" data-scan="wolfe-new-york-15-walking-tours-2003-p-252">[page scan]</a></td></tr>
+<tr><td class="num">51</td><td class="quote">&ldquo;Blue Water Grill (31 Union Square W)&rdquo;</td><td class="src"><span class="sw s28"></span>Frank, <em>Where to Find It Buy It Eat It In New York</em>, 1980, p. 77</td></tr>
+<tr><td class="num">52</td><td class="quote">&ldquo;Blue Water Grill (31 Union Square W): Seafood, Sunday…95&rdquo;</td><td class="src"><span class="sw s28"></span>Frank, <em>Where to Find It Buy It Eat It In New York</em>, 1980, p. 25&nbsp;<a class="pglink" href="#src-frank-where-to-find-it-buy-it-eat-it-in-new-york-1980-p-25" data-scan="frank-where-to-find-it-buy-it-eat-it-in-new-york-1980-p-25">[page scan]</a></td></tr>
+<tr><td class="num">53</td><td class="quote">&ldquo;WHERE TO HEAR METROPOLIS, 31 Union Sq W, 675-0851&rdquo;</td><td class="src"><span class="sw s29"></span>Village Voice, <em>Village Voice January 31st 1995</em>, 1995, p. 1&nbsp;<a class="pglink" href="#src-village-voice-village-voice-january-31st-1995-1995-p-1" data-scan="village-voice-village-voice-january-31st-1995-1995-p-1">[page scan]</a></td></tr>
+<tr><td class="num">54</td><td class="quote">&ldquo;Metropolis&rdquo;</td><td class="src"><span class="sw s30"></span>Murphy, <em>Murph Guide Closed Bars</em>, 2023, p. 13&nbsp;<a class="pglink" href="#src-murphy-murph-guide-closed-bars-2023-p-13" data-scan="murphy-murph-guide-closed-bars-2023-p-13">[page scan]</a></td></tr>
+<tr><td class="num">55</td><td class="quote">&ldquo;Blue Water Grill&rdquo;</td><td class="src"><span class="sw s30"></span>Murphy, <em>Murph Guide Closed Bars</em>, 2023, p. 13&nbsp;<a class="pglink" href="#src-murphy-murph-guide-closed-bars-2023-p-13" data-scan="murphy-murph-guide-closed-bars-2023-p-13">[page scan]</a></td></tr>
+<tr><td class="num">56</td><td class="quote">&ldquo;Brownie&#x27;s became a destination for health fanatics, vegetarians, Factory associates, and Warhol after his shooting in 1968 when his doctor told him to keep an eye on his…&rdquo;</td><td class="src"><span class="sw s31"></span>Kiedrowski, <em>Andy Warhols New York</em>, 2011, p. 101&nbsp;<a class="pglink" href="#src-kiedrowski-andy-warhols-new-york-2011-p-101" data-scan="kiedrowski-andy-warhols-new-york-2011-p-101">[page scan]</a></td></tr>
+<tr><td class="num">57</td><td class="quote">&ldquo;Danny Meyer&#x27;s Union Square Cafe now occupies the Brownie&#x27;s address.&rdquo;</td><td class="src"><span class="sw s31"></span>Kiedrowski, <em>Andy Warhols New York</em>, 2011, p. 101&nbsp;<a class="pglink" href="#src-kiedrowski-andy-warhols-new-york-2011-p-101" data-scan="kiedrowski-andy-warhols-new-york-2011-p-101">[page scan]</a></td></tr>
+<tr><td class="num">58</td><td class="quote">&ldquo;Union Square Cafe became one of the final transforming presences in the neighborhood when it opened in 1985, a natural extension of a revamped park and a tremendously…&rdquo;</td><td class="src"><span class="sw s32"></span>Forlie, <em>The New York City Almanac</em>, 1994, p. 389&nbsp;<a class="pglink" href="#src-forlie-the-new-york-city-almanac-1994-p-389" data-scan="forlie-the-new-york-city-almanac-1994-p-389">[page scan]</a></td></tr>
+<tr><td class="num">59</td><td class="quote">&ldquo;Danny Meyer&#x27;s restaurant is broken into four precincts in two halves: half one, as you enter, includes the long dining bar (featuring oyster and wine specials, and the…&rdquo;</td><td class="src"><span class="sw s32"></span>Forlie, <em>The New York City Almanac</em>, 1994, p. 389&nbsp;<a class="pglink" href="#src-forlie-the-new-york-city-almanac-1994-p-389" data-scan="forlie-the-new-york-city-almanac-1994-p-389">[page scan]</a></td></tr>
+<tr><td class="num">60</td><td class="quote">&ldquo;Union Square Café&rdquo;</td><td class="src"><span class="sw s30"></span>Murphy, <em>Murph Guide Closed Bars</em>, 2023, p. 11&nbsp;<a class="pglink" href="#src-murphy-murph-guide-closed-bars-2023-p-11" data-scan="murphy-murph-guide-closed-bars-2023-p-11">[page scan]</a></td></tr>
+<tr><td class="num">61</td><td class="quote">&ldquo;Publishing lunch crowd. Noisy, high-ceilinged rooms. Expensive.&rdquo;</td><td class="src"><span class="sw s33"></span>Dale, <em>Mystery Reader&#x27;s Walking Guide New York</em>, 1993, p. 79&nbsp;<a class="pglink" href="#src-dale-mystery-reader-s-walking-guide-new-york-1993-p-79" data-scan="dale-mystery-reader-s-walking-guide-new-york-1993-p-79">[page scan]</a></td></tr>
+<tr><td class="num">62</td><td class="quote">&ldquo;Union Square Café 21 E. 16th St. btwn Fifth Ave. &amp; Union Sq. W. 212.243.4020 L; N. R; 4. 5.6 at 14th St. -Union Sq.&rdquo;</td><td class="src"><span class="sw s34"></span>Ozersky, <em>Meat Me in Manhattan</em>, 2004, p. 194&nbsp;<a class="pglink" href="#src-ozersky-meat-me-in-manhattan-2004-p-194" data-scan="ozersky-meat-me-in-manhattan-2004-p-194">[page scan]</a></td></tr>
+<tr><td class="num">63</td><td class="quote">&ldquo;Union Square Cafe*, 21 E. 16th St. (Fifth Ave./Union Sq. W.), 243-4020, $E; Contemporary.&rdquo;</td><td class="src"><span class="sw s32"></span>Forlie, <em>The New York City Almanac</em>, 1994, p. 336</td></tr>
+<tr><td class="num">64</td><td class="quote">&ldquo;Potatoes, mashed&rdquo;</td><td class="src"><span class="sw s28"></span>Frank, <em>Where to Find It Buy It Eat It In New York</em>, 1980, p. 40&nbsp;<a class="pglink" href="#src-frank-where-to-find-it-buy-it-eat-it-in-new-york-1980-p-40" data-scan="frank-where-to-find-it-buy-it-eat-it-in-new-york-1980-p-40">[page scan]</a></td></tr>
+<tr><td class="num">65</td><td class="quote">&ldquo;Pie, key lime&rdquo;</td><td class="src"><span class="sw s28"></span>Frank, <em>Where to Find It Buy It Eat It In New York</em>, 1980, p. 39&nbsp;<a class="pglink" href="#src-frank-where-to-find-it-buy-it-eat-it-in-new-york-1980-p-39" data-scan="frank-where-to-find-it-buy-it-eat-it-in-new-york-1980-p-39">[page scan]</a></td></tr>
+<tr><td class="num">66</td><td class="quote">&ldquo;Fish, tuna steak&rdquo;</td><td class="src"><span class="sw s28"></span>Frank, <em>Where to Find It Buy It Eat It In New York</em>, 1980, p. 35&nbsp;<a class="pglink" href="#src-frank-where-to-find-it-buy-it-eat-it-in-new-york-1980-p-35" data-scan="frank-where-to-find-it-buy-it-eat-it-in-new-york-1980-p-35">[page scan]</a></td></tr>
+<tr><td class="num">67</td><td class="quote">&ldquo;Soup, black bean&rdquo;</td><td class="src"><span class="sw s28"></span>Frank, <em>Where to Find It Buy It Eat It In New York</em>, 1980, p. 42&nbsp;<a class="pglink" href="#src-frank-where-to-find-it-buy-it-eat-it-in-new-york-1980-p-42" data-scan="frank-where-to-find-it-buy-it-eat-it-in-new-york-1980-p-42">[page scan]</a></td></tr>
+<tr><td class="num">68</td><td class="quote">&ldquo;Game&rdquo;</td><td class="src"><span class="sw s28"></span>Frank, <em>Where to Find It Buy It Eat It In New York</em>, 1980, p. 62&nbsp;<a class="pglink" href="#src-frank-where-to-find-it-buy-it-eat-it-in-new-york-1980-p-62" data-scan="frank-where-to-find-it-buy-it-eat-it-in-new-york-1980-p-62">[page scan]</a></td></tr>
+<tr><td class="num">69</td><td class="quote">&ldquo;Union Square Cafe (21 E 16th St)&rdquo;</td><td class="src"><span class="sw s28"></span>Frank, <em>Where to Find It Buy It Eat It In New York</em>, 1980, p. 85&nbsp;<a class="pglink" href="#src-frank-where-to-find-it-buy-it-eat-it-in-new-york-1980-p-85" data-scan="frank-where-to-find-it-buy-it-eat-it-in-new-york-1980-p-85">[page scan]</a></td></tr>
+</tbody></table></div></section>
+
+<h2 class="srcpage" id="sources">Source Pages</h2>
+<p class="note2">39 scanned pages, one per cited source page. Each lists the highlighted quotes drawn from it.</p>
+<section class="srcsec"><h3 class="scanhead"><span id="src-sackersdorff-1815-blue-book-p-3"></span>Sackersdorff, <em>1815 Blue Book</em>, p. 3</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-1">1</a></span></p>
+<figure class="scan"><img id="scan-sackersdorff-1815-blue-book-p-3" src="assets/scans/sackersdorff-1815-blue-book-p-3.jpg" alt="Sackersdorff, 1815 Blue Book, p. 3"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-simon-fifth-avenue-a-very-social-history-1978-p-36"></span>Simon, <em>Fifth Avenue A Very Social History</em>, 1978, p. 36</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-2">2</a> <a href="#hl-3">3</a></span></p>
+<figure class="scan"><img id="scan-simon-fifth-avenue-a-very-social-history-1978-p-36" src="assets/scans/simon-fifth-avenue-a-very-social-history-1978-p-36.jpg" alt="Simon, Fifth Avenue A Very Social History, 1978, p. 36"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-perris-1853-perris-maps-p-53"></span>Perris, <em>1853 Perris Maps</em>, p. 53</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-4">4</a></span></p>
+<figure class="scan"><img id="scan-perris-1853-perris-maps-p-53" src="assets/scans/perris-1853-perris-maps-p-53.jpg" alt="Perris, 1853 Perris Maps, p. 53"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-dripps-1867-dripps-plan-p-7"></span>Dripps, <em>1867 Dripps Plan</em>, p. 7</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-5">5</a></span></p>
+<figure class="scan"><img id="scan-dripps-1867-dripps-plan-p-7" src="assets/scans/dripps-1867-dripps-plan-p-7.jpg" alt="Dripps, 1867 Dripps Plan, p. 7"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-francis-architects-in-practice-new-york-city-1979-p-17"></span>Francis, <em>Architects in Practice New York City</em>, 1979, p. 17</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-6">6</a></span></p>
+<figure class="scan"><img id="scan-francis-architects-in-practice-new-york-city-1979-p-17" src="assets/scans/francis-architects-in-practice-new-york-city-1979-p-17.jpg" alt="Francis, Architects in Practice New York City, 1979, p. 17"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-robinson-1885-robinsons-atlas-p-15"></span>Robinson, <em>1885 Robinsons Atlas</em>, p. 15</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-7">7</a></span></p>
+<figure class="scan"><img id="scan-robinson-1885-robinsons-atlas-p-15" src="assets/scans/robinson-1885-robinsons-atlas-p-15.jpg" alt="Robinson, 1885 Robinsons Atlas, p. 15"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-bromley-1897-bromleys-atlas-p-19"></span>Bromley, <em>1897 Bromleys Atlas</em>, p. 19</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-8">8</a></span></p>
+<figure class="scan"><img id="scan-bromley-1897-bromleys-atlas-p-19" src="assets/scans/bromley-1897-bromleys-atlas-p-19.jpg" alt="Bromley, 1897 Bromleys Atlas, p. 19"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-kouwenhoven-the-columbia-historical-portrait-of-new-york-1953-p-428"></span>Kouwenhoven, <em>The Columbia Historical Portrait of New York</em>, 1953, p. 428</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-9">9</a></span></p>
+<figure class="scan"><img id="scan-kouwenhoven-the-columbia-historical-portrait-of-new-york-1953-p-428" src="assets/scans/kouwenhoven-the-columbia-historical-portrait-of-new-york-1953-p-428.jpg" alt="Kouwenhoven, The Columbia Historical Portrait of New York, 1953, p. 428"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-king-king-s-handbook-of-new-york-city-1892-p-689"></span>King, <em>King&#x27;s Handbook of New York City</em>, 1892, p. 689</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-10">10</a> <a href="#hl-11">11</a> <a href="#hl-12">12</a> <a href="#hl-13">13</a> <a href="#hl-14">14</a></span></p>
+<figure class="scan"><img id="scan-king-king-s-handbook-of-new-york-city-1892-p-689" src="assets/scans/king-king-s-handbook-of-new-york-city-1892-p-689.jpg" alt="King, King&#x27;s Handbook of New York City, 1892, p. 689"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-demarest-guide-to-new-york-and-vicinity-1874-p-9"></span>Demarest, <em>Guide to New York and Vicinity</em>, 1874, p. 9</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-15">15</a></span></p>
+<figure class="scan"><img id="scan-demarest-guide-to-new-york-and-vicinity-1874-p-9" src="assets/scans/demarest-guide-to-new-york-and-vicinity-1874-p-9.jpg" alt="Demarest, Guide to New York and Vicinity, 1874, p. 9"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-spielvogel-the-landmarks-of-new-york-2016-p-470"></span>Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 470</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-16">16</a> <a href="#hl-29">29</a> <a href="#hl-30">30</a> <a href="#hl-31">31</a> <a href="#hl-32">32</a> <a href="#hl-37">37</a> <a href="#hl-48">48</a> <a href="#hl-49">49</a></span></p>
+<figure class="scan"><img id="scan-spielvogel-the-landmarks-of-new-york-2016-p-470" src="assets/scans/spielvogel-the-landmarks-of-new-york-2016-p-470.jpg" alt="Spielvogel, The Landmarks of New York, 2016, p. 470"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-wolfe-new-york-15-walking-tours-2003-p-252"></span>Wolfe, <em>New York 15 Walking Tours</em>, 2003, p. 252</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-17">17</a> <a href="#hl-38">38</a> <a href="#hl-50">50</a></span></p>
+<figure class="scan"><img id="scan-wolfe-new-york-15-walking-tours-2003-p-252" src="assets/scans/wolfe-new-york-15-walking-tours-2003-p-252.jpg" alt="Wolfe, New York 15 Walking Tours, 2003, p. 252"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-aia-aia-edition-3-1988-p-186"></span>AIA, <em>AIA Edition 3</em>, 1988, p. 186</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-18">18</a></span></p>
+<figure class="scan"><img id="scan-aia-aia-edition-3-1988-p-186" src="assets/scans/aia-aia-edition-3-1988-p-186.jpg" alt="AIA, AIA Edition 3, 1988, p. 186"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-boyer-manhattan-manners-1985-p-228"></span>Boyer, <em>Manhattan Manners</em>, 1985, p. 228</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-19">19</a> <a href="#hl-20">20</a> <a href="#hl-21">21</a> <a href="#hl-22">22</a> <a href="#hl-23">23</a></span></p>
+<figure class="scan"><img id="scan-boyer-manhattan-manners-1985-p-228" src="assets/scans/boyer-manhattan-manners-1985-p-228.jpg" alt="Boyer, Manhattan Manners, 1985, p. 228"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-antoniou-heller-decoding-manhattan-2021-p-116"></span>Antoniou &amp; Heller, <em>Decoding Manhattan</em>, 2021, p. 116</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-24">24</a></span></p>
+<figure class="scan"><img id="scan-antoniou-heller-decoding-manhattan-2021-p-116" src="assets/scans/antoniou-heller-decoding-manhattan-2021-p-116.jpg" alt="Antoniou &amp; Heller, Decoding Manhattan, 2021, p. 116"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-goldberger-the-city-observed-1979-p-93"></span>Goldberger, <em>The City Observed</em>, 1979, p. 93</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-25">25</a> <a href="#hl-26">26</a></span></p>
+<figure class="scan"><img id="scan-goldberger-the-city-observed-1979-p-93" src="assets/scans/goldberger-the-city-observed-1979-p-93.jpg" alt="Goldberger, The City Observed, 1979, p. 93"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-morrone-architectural-guidebook-1994-p-116"></span>Morrone, <em>Architectural Guidebook</em>, 1994, p. 116</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-27">27</a></span></p>
+<figure class="scan"><img id="scan-morrone-architectural-guidebook-1994-p-116" src="assets/scans/morrone-architectural-guidebook-1994-p-116.jpg" alt="Morrone, Architectural Guidebook, 1994, p. 116"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-abbott-changing-new-york-1997-p-232"></span>Abbott, <em>Changing New York</em>, 1997, p. 232</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-28">28</a></span></p>
+<figure class="scan"><img id="scan-abbott-changing-new-york-1997-p-232" src="assets/scans/abbott-changing-new-york-1997-p-232.jpg" alt="Abbott, Changing New York, 1997, p. 232"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76"></span>Postal &amp; Dolkart, <em>Guide to New York City Landmarks</em>, 2009, p. 76</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-33">33</a> <a href="#hl-39">39</a></span></p>
+<figure class="scan"><img id="scan-postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76" src="assets/scans/postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76.jpg" alt="Postal &amp; Dolkart, Guide to New York City Landmarks, 2009, p. 76"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-lpc-union-square-1903-p-1"></span>LPC, <em>Union Square</em>, 1903, p. 1</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-34">34</a></span></p>
+<figure class="scan"><img id="scan-lpc-union-square-1903-p-1" src="assets/scans/lpc-union-square-1903-p-1.jpg" alt="LPC, Union Square, 1903, p. 1"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-g-w-bromley-co-1916-atlas-of-the-borough-of-manhattan-p-54"></span>G W Bromley &amp; Co, <em>1916 Atlas of the Borough of Manhattan</em>, p. 54</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-35">35</a></span></p>
+<figure class="scan"><img id="scan-g-w-bromley-co-1916-atlas-of-the-borough-of-manhattan-p-54" src="assets/scans/g-w-bromley-co-1916-atlas-of-the-borough-of-manhattan-p-54.jpg" alt="G W Bromley &amp; Co, 1916 Atlas of the Borough of Manhattan, p. 54"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-howe-new-york-shopping-guide-1915-p-19"></span>Howe, <em>New York Shopping Guide</em>, 1915, p. 19</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-40">40</a></span></p>
+<figure class="scan"><img id="scan-howe-new-york-shopping-guide-1915-p-19" src="assets/scans/howe-new-york-shopping-guide-1915-p-19.jpg" alt="Howe, New York Shopping Guide, 1915, p. 19"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-howe-new-york-shopping-guide-1924-1924-p-17"></span>Howe, <em>New York Shopping Guide</em> 1924, 1924, p. 17</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-41">41</a></span></p>
+<figure class="scan"><img id="scan-howe-new-york-shopping-guide-1924-1924-p-17" src="assets/scans/howe-new-york-shopping-guide-1924-1924-p-17.jpg" alt="Howe, New York Shopping Guide 1924, 1924, p. 17"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-bromley-1955-manhattan-land-book-p-43"></span>Bromley, <em>1955 Manhattan Land Book</em>, p. 43</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-43">43</a></span></p>
+<figure class="scan"><img id="scan-bromley-1955-manhattan-land-book-p-43" src="assets/scans/bromley-1955-manhattan-land-book-p-43.jpg" alt="Bromley, 1955 Manhattan Land Book, p. 43"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-stern-new-york-2000-2006-p-377"></span>Stern, <em>New York 2000</em>, 2006, p. 377</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-44">44</a> <a href="#hl-45">45</a> <a href="#hl-46">46</a> <a href="#hl-47">47</a></span></p>
+<figure class="scan"><img id="scan-stern-new-york-2000-2006-p-377" src="assets/scans/stern-new-york-2000-2006-p-377.jpg" alt="Stern, New York 2000, 2006, p. 377"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-frank-where-to-find-it-buy-it-eat-it-in-new-york-1980-p-25"></span>Frank, <em>Where to Find It Buy It Eat It In New York</em>, 1980, p. 25</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-52">52</a></span></p>
+<figure class="scan"><img id="scan-frank-where-to-find-it-buy-it-eat-it-in-new-york-1980-p-25" src="assets/scans/frank-where-to-find-it-buy-it-eat-it-in-new-york-1980-p-25.jpg" alt="Frank, Where to Find It Buy It Eat It In New York, 1980, p. 25"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-village-voice-village-voice-january-31st-1995-1995-p-1"></span>Village Voice, <em>Village Voice January 31st 1995</em>, 1995, p. 1</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-53">53</a></span></p>
+<figure class="scan"><img id="scan-village-voice-village-voice-january-31st-1995-1995-p-1" src="assets/scans/village-voice-village-voice-january-31st-1995-1995-p-1.jpg" alt="Village Voice, Village Voice January 31st 1995, 1995, p. 1"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-murphy-murph-guide-closed-bars-2023-p-13"></span>Murphy, <em>Murph Guide Closed Bars</em>, 2023, p. 13</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-54">54</a> <a href="#hl-55">55</a></span></p>
+<figure class="scan"><img id="scan-murphy-murph-guide-closed-bars-2023-p-13" src="assets/scans/murphy-murph-guide-closed-bars-2023-p-13.jpg" alt="Murphy, Murph Guide Closed Bars, 2023, p. 13"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-kiedrowski-andy-warhols-new-york-2011-p-101"></span>Kiedrowski, <em>Andy Warhols New York</em>, 2011, p. 101</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-56">56</a> <a href="#hl-57">57</a></span></p>
+<figure class="scan"><img id="scan-kiedrowski-andy-warhols-new-york-2011-p-101" src="assets/scans/kiedrowski-andy-warhols-new-york-2011-p-101.jpg" alt="Kiedrowski, Andy Warhols New York, 2011, p. 101"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-forlie-the-new-york-city-almanac-1994-p-389"></span>Forlie, <em>The New York City Almanac</em>, 1994, p. 389</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-58">58</a> <a href="#hl-59">59</a></span></p>
+<figure class="scan"><img id="scan-forlie-the-new-york-city-almanac-1994-p-389" src="assets/scans/forlie-the-new-york-city-almanac-1994-p-389.jpg" alt="Forlie, The New York City Almanac, 1994, p. 389"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-murphy-murph-guide-closed-bars-2023-p-11"></span>Murphy, <em>Murph Guide Closed Bars</em>, 2023, p. 11</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-60">60</a></span></p>
+<figure class="scan"><img id="scan-murphy-murph-guide-closed-bars-2023-p-11" src="assets/scans/murphy-murph-guide-closed-bars-2023-p-11.jpg" alt="Murphy, Murph Guide Closed Bars, 2023, p. 11"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-dale-mystery-reader-s-walking-guide-new-york-1993-p-79"></span>Dale, <em>Mystery Reader&#x27;s Walking Guide New York</em>, 1993, p. 79</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-61">61</a></span></p>
+<figure class="scan"><img id="scan-dale-mystery-reader-s-walking-guide-new-york-1993-p-79" src="assets/scans/dale-mystery-reader-s-walking-guide-new-york-1993-p-79.jpg" alt="Dale, Mystery Reader&#x27;s Walking Guide New York, 1993, p. 79"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-ozersky-meat-me-in-manhattan-2004-p-194"></span>Ozersky, <em>Meat Me in Manhattan</em>, 2004, p. 194</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-62">62</a></span></p>
+<figure class="scan"><img id="scan-ozersky-meat-me-in-manhattan-2004-p-194" src="assets/scans/ozersky-meat-me-in-manhattan-2004-p-194.jpg" alt="Ozersky, Meat Me in Manhattan, 2004, p. 194"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-frank-where-to-find-it-buy-it-eat-it-in-new-york-1980-p-40"></span>Frank, <em>Where to Find It Buy It Eat It In New York</em>, 1980, p. 40</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-64">64</a></span></p>
+<figure class="scan"><img id="scan-frank-where-to-find-it-buy-it-eat-it-in-new-york-1980-p-40" src="assets/scans/frank-where-to-find-it-buy-it-eat-it-in-new-york-1980-p-40.jpg" alt="Frank, Where to Find It Buy It Eat It In New York, 1980, p. 40"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-frank-where-to-find-it-buy-it-eat-it-in-new-york-1980-p-39"></span>Frank, <em>Where to Find It Buy It Eat It In New York</em>, 1980, p. 39</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-65">65</a></span></p>
+<figure class="scan"><img id="scan-frank-where-to-find-it-buy-it-eat-it-in-new-york-1980-p-39" src="assets/scans/frank-where-to-find-it-buy-it-eat-it-in-new-york-1980-p-39.jpg" alt="Frank, Where to Find It Buy It Eat It In New York, 1980, p. 39"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-frank-where-to-find-it-buy-it-eat-it-in-new-york-1980-p-35"></span>Frank, <em>Where to Find It Buy It Eat It In New York</em>, 1980, p. 35</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-66">66</a></span></p>
+<figure class="scan"><img id="scan-frank-where-to-find-it-buy-it-eat-it-in-new-york-1980-p-35" src="assets/scans/frank-where-to-find-it-buy-it-eat-it-in-new-york-1980-p-35.jpg" alt="Frank, Where to Find It Buy It Eat It In New York, 1980, p. 35"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-frank-where-to-find-it-buy-it-eat-it-in-new-york-1980-p-42"></span>Frank, <em>Where to Find It Buy It Eat It In New York</em>, 1980, p. 42</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-67">67</a></span></p>
+<figure class="scan"><img id="scan-frank-where-to-find-it-buy-it-eat-it-in-new-york-1980-p-42" src="assets/scans/frank-where-to-find-it-buy-it-eat-it-in-new-york-1980-p-42.jpg" alt="Frank, Where to Find It Buy It Eat It In New York, 1980, p. 42"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-frank-where-to-find-it-buy-it-eat-it-in-new-york-1980-p-62"></span>Frank, <em>Where to Find It Buy It Eat It In New York</em>, 1980, p. 62</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-68">68</a></span></p>
+<figure class="scan"><img id="scan-frank-where-to-find-it-buy-it-eat-it-in-new-york-1980-p-62" src="assets/scans/frank-where-to-find-it-buy-it-eat-it-in-new-york-1980-p-62.jpg" alt="Frank, Where to Find It Buy It Eat It In New York, 1980, p. 62"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-frank-where-to-find-it-buy-it-eat-it-in-new-york-1980-p-85"></span>Frank, <em>Where to Find It Buy It Eat It In New York</em>, 1980, p. 85</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-69">69</a></span></p>
+<figure class="scan"><img id="scan-frank-where-to-find-it-buy-it-eat-it-in-new-york-1980-p-85" src="assets/scans/frank-where-to-find-it-buy-it-eat-it-in-new-york-1980-p-85.jpg" alt="Frank, Where to Find It Buy It Eat It In New York, 1980, p. 85"></figure></section>
+</div>
+
+</div>
+<div class="lightbox" hidden><div class="lb-head"><span class="lb-t"></span><button class="lb-btn lb-zoom" type="button">Zoom</button><button class="lb-btn lb-close" type="button">Close &times;</button></div><div class="lb-body"><img alt="Enlarged view"></div></div>
+
+<div class="sp-backdrop" hidden></div>
+<aside class="scanpanel" hidden aria-label="Source page">
+  <div class="sp-head">
+    <div class="sp-title"><span class="sp-cite"></span><span class="sp-q"></span></div>
+    <button class="sp-btn sp-zoom" type="button">Zoom</button>
+    <button class="sp-btn sp-close" type="button" aria-label="Close">&times;</button>
+  </div>
+  <div class="sp-body"><img alt="Source page scan"></div>
+</aside>
+<script>
+(function () {
+  var panel = document.querySelector('.scanpanel'),
+      back  = document.querySelector('.sp-backdrop'),
+      bodyEl= panel.querySelector('.sp-body'),
+      img   = panel.querySelector('.sp-body img'),
+      citeEl= panel.querySelector('.sp-cite'),
+      qEl   = panel.querySelector('.sp-q');
+  function open(slug, label, num) {
+    var full = document.getElementById('scan-' + slug);
+    if (!full) return;
+    if (img.getAttribute('src') !== full.src) img.src = full.src;
+    bodyEl.classList.remove('zoom'); bodyEl.scrollTop = 0;
+    citeEl.innerHTML = label;
+    qEl.textContent = num ? 'Highlighted quote no. ' + num : '';
+    panel.hidden = false; back.hidden = false;
+    requestAnimationFrame(function () { document.body.classList.add('sp-open'); });
+  }
+  function close() {
+    document.body.classList.remove('sp-open');
+    setTimeout(function () { panel.hidden = true; back.hidden = true; }, 220);
+  }
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest) return;
+    var a = e.target.closest('a.srclink, a.pglink');
+    if (a && a.dataset.scan) {
+      e.preventDefault();
+      var head = document.getElementById('src-' + a.dataset.scan),
+          label = head ? head.parentNode.innerHTML.replace(/<span id="src-[^"]*"><\/span>/, '') : '',
+          mk = a.querySelector('mark'), num = '';
+      if (mk && mk.id) num = mk.id.replace('hl-', '');
+      else {
+        var tr = a.closest('tr'), ce = a.closest('.ce');
+        if (tr) num = tr.querySelector('td.num').textContent.trim();
+        else if (ce) num = ce.querySelector('.ce-n').textContent.trim();
+      }
+      open(a.dataset.scan, label, num);
+      return;
+    }
+    if (e.target.closest('.sp-close') || e.target.closest('.sp-backdrop')) close();
+    else if (e.target.closest('.sp-zoom') || e.target === img) bodyEl.classList.toggle('zoom');
+  });
+  var lb = document.querySelector('.lightbox'), lbBody = lb.querySelector('.lb-body'),
+      lbImg = lb.querySelector('.lb-body img'), lbT = lb.querySelector('.lb-t');
+  function lbOpen(slug, label) {
+    var full = document.getElementById('view-' + slug);
+    if (!full) return;
+    if (lbImg.getAttribute('src') !== full.src) lbImg.src = full.src;
+    lbT.innerHTML = label || '';
+    lb.hidden = false;
+    requestAnimationFrame(function () { document.body.classList.add('lb-open'); });
+  }
+  function lbClose() {
+    document.body.classList.remove('lb-open');
+    lbBody.classList.remove('zoom');
+    setTimeout(function () { lb.hidden = true; }, 200);
+  }
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest) return;
+    if (e.target.closest('.lb-close')) { lbClose(); return; }
+    if (e.target.closest('.lb-zoom') || e.target.closest('.lb-body img')) { lbBody.classList.toggle('zoom'); return; }
+    if (e.target.closest('.lightbox') && !e.target.closest('.lb-head')) { lbClose(); return; }
+    if (e.target.closest('.lb-body')) lbClose();
+  });
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest) return;
+    var v = e.target.closest('figure.view');
+    if (v) {
+      var cap = v.querySelector('figcaption b');
+      lbOpen(v.dataset.view, cap ? cap.innerHTML : '');
+    }
+  });
+  // ---- citation column tracks the text ----
+  var col = document.getElementById('chartcol');
+  if (col) {
+    var entryFor = {};
+    Array.prototype.forEach.call(col.querySelectorAll('.ce'), function (ce) {
+      entryFor[ce.querySelector('.ce-n').textContent.trim()] = ce;
+    });
+    var marks = Array.prototype.slice.call(document.querySelectorAll('.wrap mark[id^="hl-"]'));
+    var current = null, touched = 0, selfUntil = 0, hoverNum = null;
+
+    col.addEventListener('scroll', function () {
+      if (Date.now() > selfUntil) touched = Date.now();   // a real scroll by the reader
+    }, { passive: true });
+
+    function activate(num, force) {
+      if (num === current && !force) return;
+      var ce = entryFor[num];
+      if (num !== current) {
+        current = num;
+        Array.prototype.forEach.call(col.querySelectorAll('.ce.active'), function (e) { e.classList.remove('active'); });
+        Array.prototype.forEach.call(document.querySelectorAll('mark.reading'), function (m) { m.classList.remove('reading'); });
+        if (ce) {
+          ce.classList.add('active');
+          var mk = document.getElementById('hl-' + num);
+          if (mk) mk.classList.add('reading');
+        }
+      }
+      if (!ce) return;
+      if (getComputedStyle(col).position !== 'sticky') return;   // stacked layout: don't hijack scrolling
+      if (!force && Date.now() - touched < 2000) return;         // reader is browsing the column
+      var top = ce.offsetTop - col.clientHeight * 0.38;
+      selfUntil = Date.now() + 900;                      // our own smooth scroll, not the reader's
+      col.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+    }
+
+    // ---- pointing at a highlight sends the column straight to its citation ----
+    var textcol = document.querySelector('.wrap');
+    if (textcol) {
+      textcol.addEventListener('mouseover', function (e) {
+        var m = e.target.closest ? e.target.closest('mark[id^="hl-"]') : null;
+        if (!m) return;
+        var n = m.id.replace('hl-', '');
+        if (n === hoverNum) return;        // bubbling from inside the same mark
+        hoverNum = n;
+        activate(n, true);                 // deliberate aim beats the scroll guard
+      });
+      textcol.addEventListener('mouseout', function (e) {
+        var m = e.target.closest ? e.target.closest('mark[id^="hl-"]') : null;
+        if (!m) return;
+        if (e.relatedTarget && m.contains(e.relatedTarget)) return;   // still inside the same mark
+        hoverNum = null;
+      });
+    }
+
+    function pick() {
+      if (hoverNum) return;               // the cursor is aiming; don't argue with it
+      var best = null, bestTop = Infinity, fallback = null, fallbackTop = -Infinity;
+      for (var i = 0; i < marks.length; i++) {
+        var r = marks[i].getBoundingClientRect();
+        if (r.bottom < 0 || r.top > window.innerHeight) continue;
+        if (r.top >= 0 && r.top < bestTop) { best = marks[i]; bestTop = r.top; }
+        else if (r.top < 0 && r.top > fallbackTop) { fallback = marks[i]; fallbackTop = r.top; }
+      }
+      var m = best || fallback;
+      if (m) activate(m.id.replace('hl-', ''));
+    }
+
+    var ticking = false;
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () { ticking = false; pick(); });
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    pick();
+  }
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { close(); if (!lb.hidden) lbClose(); }
+  });
+})();
+</script>
+
+</body>
+</html>
