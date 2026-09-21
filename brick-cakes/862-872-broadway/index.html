@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>862–872 Broadway and 30 East 18th Street — Italics Highlighted</title>
+<style>
+
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; margin: 0; padding: 40px 24px 64px;
+         background:#f8f5e7; color:#1a1a1a; font-family: Georgia, "Times New Roman", serif; font-size:17px; line-height:1.7; }
+  .layout { display: flex; align-items: flex-start; gap: 30px; max-width: 1580px; margin: 0 auto; }
+  .chartcol { flex: 0 0 320px; width: 320px; position: sticky; top: 28px; align-self: flex-start;
+              max-height: calc(100vh - 56px); overflow-y: auto; padding: 0 4px 0 18px;
+              border-left: 1px solid #e2ddc8; background: rgba(248,245,231,.92);
+              font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  .cc-head { position: sticky; top: 0; background: #f8f5e7; padding-bottom: 8px; margin-bottom: 4px;
+             border-bottom: 1px solid #e2ddc8; z-index: 2; }
+  .cc-title { display: block; font-size: 11px; font-weight: 600; letter-spacing: .05em;
+              text-transform: uppercase; color: #888; }
+  .cc-sub { display: block; font-size: 10.5px; color: #aaa; margin-top: 3px; line-height: 1.35; }
+  .cc-sec { font-size: 10.5px; font-weight: 600; letter-spacing: .03em; text-transform: uppercase;
+            color: #999; margin: 16px 0 6px; }
+  .ce { display: flex; gap: 7px; align-items: baseline; padding: 6px 0; border-bottom: 1px solid #ebe6d6; }
+  .ce-n { flex: 0 0 22px; text-align: right; font-size: 10px; color: #bbb; text-decoration: none; }
+  .ce-n:hover { color: #3b6ea5; }
+  .ce .sw { flex: 0 0 9px; width: 9px; height: 9px; transform: translateY(1px); }
+  .ce-b { min-width: 0; }
+  .ce-q { font-size: 11.5px; line-height: 1.4; color: #333; }
+  .ce-s { font-size: 10.5px; line-height: 1.4; color: #999; margin-top: 2px; }
+  .ce { border-left: 2px solid transparent; padding-left: 6px; transition: background .18s ease, border-color .18s ease; }
+  .ce.active { background: rgba(255,255,255,.75); border-left-color: #3b6ea5; }
+  .ce.active .ce-n { color: #3b6ea5; font-weight: 600; }
+  .ce.active .ce-q { color: #111; }
+  mark.reading { box-shadow: 0 0 0 2px rgba(59,110,165,.55); border-radius: 3px; }
+  .chartcol.on-left { border-left: none; border-right: 1px solid #e2ddc8; padding: 0 18px 0 4px; }
+  .rail.on-right { padding: 0 4px 0 4px; }
+  .chartcol::-webkit-scrollbar { width: 7px; }
+  .chartcol::-webkit-scrollbar-thumb { background: #dcdcdc; border-radius: 4px; }
+  .chart-print { display: none; }
+  @media (max-width: 1360px) {
+    .chartcol { position: static; width: 100%; flex: none; max-height: none; border-left: none;
+                border-top: 1px solid #ececec; padding: 18px 0 0; margin-top: 26px; }
+    .layout { flex-wrap: wrap; }
+    .chartcol .ce { max-width: 820px; }
+  }
+  .wrap { flex: 1 1 auto; min-width: 0; max-width: 820px; }
+  .rail { flex: 0 0 262px; width: 262px; position: sticky; top: 28px; align-self: flex-start;
+          max-height: calc(100vh - 56px); overflow-y: auto; padding-right: 4px;
+          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  .rail-title { font-size: 11px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase;
+                color: #888; margin: 0 0 10px; }
+  figure.view { margin: 0 0 16px; cursor: zoom-in; }
+  figure.view img { display: block; width: 100%; border: 1px solid #e0e0e0; border-radius: 4px; }
+  figure.view:hover img { border-color: #9c9c9c; }
+  figure.view figcaption { margin-top: 5px; font-size: 11px; line-height: 1.42; color: #8a8a8a; }
+  figure.view figcaption b { display: block; font-weight: 600; color: #444; }
+  .rail-foot { font-size: 10.5px; color: #aaa; margin: 2px 0 0; }
+  .rail::-webkit-scrollbar { width: 7px; }
+  .rail::-webkit-scrollbar-thumb { background: #dcdcdc; border-radius: 4px; }
+  @media (max-width: 1080px) {
+    .layout { flex-direction: column; gap: 18px; }
+    .rail { position: static; width: 100%; flex: none; max-height: none; display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 14px; }
+    .rail-title, .rail-foot { grid-column: 1 / -1; }
+  }
+  /* full-bleed lightbox */
+  .lightbox { position: fixed; inset: 0; z-index: 60; background: rgba(16,14,13,.93);
+              display: flex; flex-direction: column; opacity: 0; transition: opacity .18s ease; }
+  body.lb-open .lightbox { opacity: 1; }
+  .lightbox[hidden] { display: none !important; }
+  .lb-head { display: flex; align-items: center; gap: 12px; padding: 12px 16px; color: #eee;
+             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 13px; }
+  .lb-head .lb-t { flex: 1; }
+  .lb-btn { border: 1px solid rgba(255,255,255,.28); background: rgba(255,255,255,.08); color: #eee;
+            border-radius: 5px; cursor: pointer; font-size: 13px; line-height: 1; padding: 7px 10px; }
+  .lb-btn:hover { background: rgba(255,255,255,.18); }
+  .lb-body { flex: 1; overflow: auto; display: flex; align-items: center; justify-content: center; padding: 0 16px 18px; }
+  .lb-body img { max-width: 100%; max-height: 100%; object-fit: contain; cursor: zoom-in; }
+  .lb-body.zoom { align-items: flex-start; justify-content: flex-start; }
+  .lb-body.zoom img { max-width: none; max-height: none; width: 220%; cursor: zoom-out; }
+  h1 { font-size: 26px; line-height: 1.25; margin: 0 0 6px; font-weight: 700;
+       letter-spacing: -.012em; color:#1d1a12; }
+  .sub { font-family: Georgia, serif; font-style: italic; font-size: 15px; color: #555; margin: 0 0 8px; }
+  h2 { font-size: 15px; font-weight: 700; letter-spacing: .085em; text-transform: uppercase;
+       color: #6d5a33; margin: 52px 0 16px; padding-bottom: 7px; position: relative;
+       border-bottom: 1px solid #e3dcc6; }
+  h2::after { content: ""; position: absolute; left: 0; bottom: -1px; width: 58px; height: 2px;
+              background: #b39445; }
+  .wrap > h2:first-of-type { margin-top: 34px; }
+  h3 { font-size: 16px; margin: 30px 0 10px; }
+  p { margin: 0 0 20px; }
+  hr { border: none; border-top: 1px solid #e2ddc8; margin: 34px 0 28px; }
+  .note { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 13px; color:#666;
+          margin: 0 0 28px; padding-bottom: 20px; border-bottom: 1px solid #e2ddc8; }
+  .note2 { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 13px; color:#666; margin: 0 0 18px; }
+  mark { color: inherit; font-style: italic; padding: 1px 2px; border-radius: 2px;
+         box-decoration-break: clone; -webkit-box-decoration-break: clone; background:#e4e4e4; }
+  a.srclink { text-decoration: none; color: inherit; cursor: zoom-in; }
+  a.srclink:hover mark { outline: 2px solid rgba(0,0,0,.35); outline-offset: 1px; }
+  .tablewrap { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+          font-size: 13.5px; line-height: 1.55; }
+  th, td { text-align: left; vertical-align: top; padding: 9px 12px; border-bottom: 1px solid #ebe6d6; }
+  thead th { background:#efece0; border-bottom: 1px solid #ddd8c6; font-weight: 600; }
+  td.num, th.num { width: 34px; color:#888; text-align: right; padding-right: 6px; }
+  td.quote { width: 56%; }
+  td.src { color:#444; }
+  tbody tr:nth-child(even) { background:rgba(255,255,255,.45); }
+  h3.csec { font-size: 14px; margin: 26px 0 8px; color:#333;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  .nosrc { color:#999; font-style: italic; }
+  a.pglink, .pglink { font-size: 11px; color:#3b6ea5; text-decoration: none; white-space: nowrap; }
+  .backlinks a { display:inline-block; margin: 0 3px; color:#3b6ea5; text-decoration:none; }
+  .legend { margin: 0 0 30px; padding: 16px 18px; border: 1px solid #e2ddc8; border-radius: 6px; background:rgba(255,253,244,.82);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  .legend-title { font-size: 12px; font-weight: 600; letter-spacing:.04em; text-transform: uppercase; color:#777; margin-bottom: 10px; }
+  .legend-title .lk { text-transform: none; letter-spacing: 0; font-weight: 400; color:#999; }
+  .legend ul { list-style:none; margin:0; padding:0; display:grid; grid-template-columns: repeat(auto-fill, minmax(290px,1fr)); gap: 5px 20px; }
+  .legend li { display:flex; align-items:baseline; gap:8px; font-size:12.5px; line-height:1.45; }
+  .sw { display:inline-block; width:13px; height:13px; border-radius:3px; flex:0 0 13px;
+        border:1px solid rgba(0,0,0,.14); transform: translateY(2px); }
+  td.src .sw { margin-right: 6px; }
+  .ct { color:#999; } .has { color:#3b6ea5; }
+  .pg { color:#8a8272; white-space: nowrap; }
+  section.audio { margin: 0 0 30px; padding: 14px 18px 16px; border: 1px solid #e2ddc8; border-radius: 6px;
+                  background: rgba(255,253,244,.82); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  .audio-label { font-size: 12px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase;
+                 color: #777; margin-bottom: 10px; }
+  .audio-meta { font-weight: 400; letter-spacing: 0; text-transform: none; color: #aaa; margin-left: 4px; }
+  section.audio audio { width: 100%; display: block; }
+  .audio-fallback { display: none; font-size: 12.5px; color: #666; margin: 0; }
+  section.srcsec { margin: 0 0 34px; }
+  h3.scanhead { font-size: 14.5px; margin: 26px 0 6px;
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  figure.scan { margin: 8px 0 0; }
+  figure.scan img { width: 100%; border: 1px solid #ddd; border-radius: 4px; }
+
+  mark.s1, .sw.s1 { background: #38f0fa; }
+  mark.s2, .sw.s2 { background: #faa338; }
+  mark.s3, .sw.s3 { background: #38b6fa; }
+  mark.s4, .sw.s4 { background: #faf038; }
+  mark.s5, .sw.s5 { background: #75bd99; }
+  mark.s6, .sw.s6 { background: #a3cc66; }
+  mark.s7, .sw.s7 { background: #fc7e7e; }
+  mark.s8, .sw.s8 { background: #d4a5d4; }
+  mark.s9, .sw.s9 { background: #38fab6; }
+  mark.s10, .sw.s10 { background: #e27efc; }
+  mark.s11, .sw.s11 { background: #ebebd6; }
+  mark.s12, .sw.s12 { background: #68ee68; }
+  mark.s13, .sw.s13 { background: #cc9966; }
+  mark.s0, .sw.s0 { background: #e4e4e4; }
+
+  body::after { content: ""; position: fixed; left: 0; right: 0; bottom: 0; height: 62vh; z-index: -1; pointer-events: none; opacity: .5; background: url(assets/media/skyline.jpg) bottom center / 100% auto no-repeat; -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 42%, #000 100%); mask-image: linear-gradient(to bottom, transparent 0%, #000 42%, #000 100%); }
+
+
+  .sp-backdrop { position: fixed; inset: 0; background: rgba(20,20,20,.28); opacity: 0; transition: opacity .18s ease; z-index: 40; }
+  body.sp-open .sp-backdrop { opacity: 1; }
+  .scanpanel { position: fixed; top:0; right:0; height:100%; width: min(46vw, 620px); background:#fffdf4;
+               border-left: 1px solid #ddd; box-shadow: -8px 0 26px rgba(0,0,0,.13); transform: translateX(101%);
+               transition: transform .22s ease; z-index: 41; display:flex; flex-direction:column;
+               font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  body.sp-open .scanpanel { transform: translateX(0); }
+  .scanpanel[hidden], .sp-backdrop[hidden] { display: none !important; }
+  .sp-head { display:flex; align-items:flex-start; gap:10px; padding:14px 16px; border-bottom:1px solid #eee; }
+  .sp-title { font-size:13px; line-height:1.4; color:#222; flex:1; }
+  .sp-title .sp-q { display:block; color:#777; font-size:11.5px; margin-top:3px; }
+  .sp-btn { border:1px solid #ddd; background:#fafafa; border-radius:5px; cursor:pointer; font-size:13px;
+            line-height:1; padding:6px 9px; color:#444; }
+  .sp-btn:hover { background:#f0f0f0; }
+  .sp-body { flex:1; overflow:auto; padding:12px; background:#efece0; }
+  .sp-body img { display:block; width:100%; border:1px solid #ddd; background:#fff; cursor: zoom-in; }
+  .sp-body.zoom img { width:200%; max-width:none; cursor: zoom-out; }
+  @media (max-width: 820px) { .scanpanel { width:100%; } }
+  @media (max-width: 700px) { body { padding: 16px 10px 40px; } .wrap { padding: 24px 18px 32px; } }
+  @page { size: Letter; margin: 0.75in 0.7in; }
+  @media print {
+    body { padding:0; font-size:11.5pt; line-height:1.55; background:#fff; }
+    body::before { display: none; }
+    .wrap { max-width:none; background:none; padding:0; border-radius:0; box-shadow:none; }
+    .layout { display: block; }
+    .rail { position: static; width: 100%; max-height: none; overflow: visible; display: grid;
+            grid-template-columns: 1fr 1fr; gap: 12px; margin: 0 0 18px; }
+    .rail-title { grid-column: 1 / -1; } .rail-foot { display: none; }
+    figure.view { break-inside: avoid; }
+    .lightbox, .chartcol { display: none !important; }
+    .chart-print { display: block; }
+    h1 { font-size:17pt; } h2 { font-size:10.5pt; letter-spacing:.08em; break-after: avoid; } h3 { font-size:12pt; break-after: avoid; }
+    h2#citations, h2.srcpage { break-before: page; }
+    p { orphans:3; widows:3; }
+    table { font-size:8.6pt; line-height:1.4; } th,td { padding:5px 7px; }
+    thead { display: table-header-group; } tr { break-inside: avoid; }
+    .tablewrap { overflow: visible; }
+    .legend { break-inside: avoid; padding:10px 12px; margin-bottom:20px; }
+    .legend ul { grid-template-columns: 1fr 1fr; gap:3px 16px; } .legend li { font-size:8.4pt; }
+    .sw { width:10px; height:10px; flex:0 0 10px; }
+    section.srcsec { break-inside: avoid; break-before: page; }
+    figure.scan { break-inside: avoid; }
+    a.srclink, a.pglink, .backlinks a { color: inherit; }
+    .scanpanel, .sp-backdrop { display:none !important; }
+    section.audio audio { display: none; }
+    .audio-fallback { display: block; }
+    section.audio { break-inside: avoid; }
+  }
+
+</style>
+</head>
+<body>
+<div class="layout">
+<aside class="chartcol on-left" id="chartcol" aria-label="Citation chart">
+<div class="cc-head"><span class="cc-title">Citation chart</span><span class="cc-sub">54 quotes &middot; click a number to jump to it in the text, or <i>scan</i> to open the source page</span></div>
+<div class="cc-sec"></div>
+<div class="ce"><a class="ce-n" href="#hl-1">1</a><span class="sw s1"></span><div class="ce-b"><div class="ce-q">&ldquo;&quot;In the 1815 Blue Book, on 30 East 18th Street, there is reference to 0 structures.&quot;&rdquo;</div><div class="ce-s">Sackersdorff, <em>1815 Blue Book</em>, p. 3 <a class="pglink" href="#src-sackersdorff-1815-blue-book-p-3" data-scan="sackersdorff-1815-blue-book-p-3">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-2">2</a><span class="sw s2"></span><div class="ce-b"><div class="ce-q">&ldquo;&quot;ROW HOUSE, No. 862 1847-48; remodeled 1921, by John B. Snook &amp; Sons. [4 stories] It is…&rdquo;</div><div class="ce-s">Dunlap, <em>On Broadway</em>, 1990, p. 114 <a class="pglink" href="#src-dunlap-on-broadway-1990-p-114" data-scan="dunlap-on-broadway-1990-p-114">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-3">3</a><span class="sw s2"></span><div class="ce-b"><div class="ce-q">&ldquo;&quot;ROW HOUSE, No. 864 1847-48 (4 stories) Mostly stripped of original architectural fabric,…&rdquo;</div><div class="ce-s">Dunlap, <em>On Broadway</em>, 1990, p. 115 <a class="pglink" href="#src-dunlap-on-broadway-1990-p-115" data-scan="dunlap-on-broadway-1990-p-115">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-4">4</a><span class="sw s3"></span><div class="ce-b"><div class="ce-q">&ldquo;&quot;In the 1853 Perris Maps, on 862 Broadway, there is reference to 1 Structure; Brick or…&rdquo;</div><div class="ce-s">Perris, <em>1853 Perris Maps</em>, p. 56 <a class="pglink" href="#src-perris-1853-perris-maps-p-56" data-scan="perris-1853-perris-maps-p-56">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-5">5</a><span class="sw s3"></span><div class="ce-b"><div class="ce-q">&ldquo;&quot;In the 1853 Perris Maps, on 864 Broadway, there is reference to 1 Structure; Brick or…&rdquo;</div><div class="ce-s">Perris, <em>1853 Perris Maps</em>, p. 56 <a class="pglink" href="#src-perris-1853-perris-maps-p-56" data-scan="perris-1853-perris-maps-p-56">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-6">6</a><span class="sw s3"></span><div class="ce-b"><div class="ce-q">&ldquo;&quot;In the 1853 Perris Maps, on 866 Broadway, there is reference to 1 Structure; Brick or…&rdquo;</div><div class="ce-s">Perris, <em>1853 Perris Maps</em>, p. 56 <a class="pglink" href="#src-perris-1853-perris-maps-p-56" data-scan="perris-1853-perris-maps-p-56">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-7">7</a><span class="sw s3"></span><div class="ce-b"><div class="ce-q">&ldquo;&quot;In the 1853 Perris Maps, on 868 Broadway, there is reference to 1 Structure; Brick or…&rdquo;</div><div class="ce-s">Perris, <em>1853 Perris Maps</em>, p. 56 <a class="pglink" href="#src-perris-1853-perris-maps-p-56" data-scan="perris-1853-perris-maps-p-56">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-8">8</a><span class="sw s3"></span><div class="ce-b"><div class="ce-q">&ldquo;&quot;In the 1853 Perris Maps, on 870 Broadway, there is reference to 1 Structure; Brick or…&rdquo;</div><div class="ce-s">Perris, <em>1853 Perris Maps</em>, p. 56 <a class="pglink" href="#src-perris-1853-perris-maps-p-56" data-scan="perris-1853-perris-maps-p-56">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-9">9</a><span class="sw s3"></span><div class="ce-b"><div class="ce-q">&ldquo;&quot;In the 1853 Perris Maps, on 872 Broadway, there is reference to 1 Structure; Brick or…&rdquo;</div><div class="ce-s">Perris, <em>1853 Perris Maps</em>, p. 56 <a class="pglink" href="#src-perris-1853-perris-maps-p-56" data-scan="perris-1853-perris-maps-p-56">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-10">10</a><span class="sw s3"></span><div class="ce-b"><div class="ce-q">&ldquo;&quot;In the 1853 Perris Maps, on 30 East 18th Street, there is reference to 0 Structures.&quot;&rdquo;</div><div class="ce-s">Perris, <em>1853 Perris Maps</em>, p. 56 <a class="pglink" href="#src-perris-1853-perris-maps-p-56" data-scan="perris-1853-perris-maps-p-56">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-11">11</a><span class="sw s4"></span><div class="ce-b"><div class="ce-q">&ldquo;&quot;In the 1867 Dripps Plan, on 862 Broadway, there is reference to 1 Structure; Building,&quot;&rdquo;</div><div class="ce-s">Dripps, <em>1867 Dripps Plan</em>, p. 7 <a class="pglink" href="#src-dripps-1867-dripps-plan-p-7" data-scan="dripps-1867-dripps-plan-p-7">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-12">12</a><span class="sw s4"></span><div class="ce-b"><div class="ce-q">&ldquo;&quot;In the 1867 Dripps Plan, on 864 Broadway, there is reference to 1 Structure; Building,&quot;&rdquo;</div><div class="ce-s">Dripps, <em>1867 Dripps Plan</em>, p. 7 <a class="pglink" href="#src-dripps-1867-dripps-plan-p-7" data-scan="dripps-1867-dripps-plan-p-7">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-13">13</a><span class="sw s4"></span><div class="ce-b"><div class="ce-q">&ldquo;&quot;In the 1867 Dripps Plan, on 866 Broadway, there is reference to 1 Structure; Building,&quot;&rdquo;</div><div class="ce-s">Dripps, <em>1867 Dripps Plan</em>, p. 7 <a class="pglink" href="#src-dripps-1867-dripps-plan-p-7" data-scan="dripps-1867-dripps-plan-p-7">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-14">14</a><span class="sw s4"></span><div class="ce-b"><div class="ce-q">&ldquo;&quot;In the 1867 Dripps Plan, on 868 Broadway, there is reference to 1 Structure; Building.&quot;&rdquo;</div><div class="ce-s">Dripps, <em>1867 Dripps Plan</em>, p. 7 <a class="pglink" href="#src-dripps-1867-dripps-plan-p-7" data-scan="dripps-1867-dripps-plan-p-7">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-15">15</a><span class="sw s4"></span><div class="ce-b"><div class="ce-q">&ldquo;&quot;In the 1867 Dripps Plan, on 870 Broadway, there is reference to 2 structures; Building,…&rdquo;</div><div class="ce-s">Dripps, <em>1867 Dripps Plan</em>, p. 7 <a class="pglink" href="#src-dripps-1867-dripps-plan-p-7" data-scan="dripps-1867-dripps-plan-p-7">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-16">16</a><span class="sw s4"></span><div class="ce-b"><div class="ce-q">&ldquo;&quot;In the 1867 Dripps Plan, on 872 Broadway, there is reference to 3 structures; Building,…&rdquo;</div><div class="ce-s">Dripps, <em>1867 Dripps Plan</em>, p. 7 <a class="pglink" href="#src-dripps-1867-dripps-plan-p-7" data-scan="dripps-1867-dripps-plan-p-7">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-17">17</a><span class="sw s4"></span><div class="ce-b"><div class="ce-q">&ldquo;&quot;In the 1867 Dripps Plan, on 30 East 18th Street, there is reference to 1 Structure;…&rdquo;</div><div class="ce-s">Dripps, <em>1867 Dripps Plan</em>, p. 7 <a class="pglink" href="#src-dripps-1867-dripps-plan-p-7" data-scan="dripps-1867-dripps-plan-p-7">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-18">18</a><span class="sw s5"></span><div class="ce-b"><div class="ce-q">&ldquo;&quot;Shopping Directory. Staten Island Dyeing Establishment, 870 Broadway and 610 Sixth av.&quot;&rdquo;</div><div class="ce-s">Putnam&#x27;s Sons, <em>Ladies Guide and City Directory</em>, 1885, p. 116 <a class="pglink" href="#src-putnam-s-sons-ladies-guide-and-city-directory-1885-p-116" data-scan="putnam-s-sons-ladies-guide-and-city-directory-1885-p-116">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-19">19</a><span class="sw s6"></span><div class="ce-b"><div class="ce-q">&ldquo;&quot;In the 1885 Robinsons Atlas, on 866 Broadway, there is reference to 1 Structure; Brick…&rdquo;</div><div class="ce-s">Robinson, <em>1885 Robinsons Atlas</em>, p. 15 <a class="pglink" href="#src-robinson-1885-robinsons-atlas-p-15" data-scan="robinson-1885-robinsons-atlas-p-15">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-20">20</a><span class="sw s6"></span><div class="ce-b"><div class="ce-q">&ldquo;&quot;In the 1885 Robinsons Atlas, on 30 East 18th Street, there is reference to 1 Structure;…&rdquo;</div><div class="ce-s">Robinson, <em>1885 Robinsons Atlas</em>, p. 15 <a class="pglink" href="#src-robinson-1885-robinsons-atlas-p-15" data-scan="robinson-1885-robinsons-atlas-p-15">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-21">21</a><span class="sw s7"></span><div class="ce-b"><div class="ce-q">&ldquo;&quot;In the 1897 Bromleys Atlas, on 862 Broadway, there is reference to 1 Structure; 4 Story…&rdquo;</div><div class="ce-s">Bromley, <em>1897 Bromleys Atlas</em>, p. 19 <a class="pglink" href="#src-bromley-1897-bromleys-atlas-p-19" data-scan="bromley-1897-bromleys-atlas-p-19">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-22">22</a><span class="sw s7"></span><div class="ce-b"><div class="ce-q">&ldquo;&quot;In the 1897 Bromleys Atlas, on 864 Broadway, there is reference to 1 Structure; 4 Story…&rdquo;</div><div class="ce-s">Bromley, <em>1897 Bromleys Atlas</em>, p. 19 <a class="pglink" href="#src-bromley-1897-bromleys-atlas-p-19" data-scan="bromley-1897-bromleys-atlas-p-19">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-23">23</a><span class="sw s7"></span><div class="ce-b"><div class="ce-q">&ldquo;&quot;In the 1897 Bromleys Atlas, on 866 Broadway, there is reference to 1 Structure; 4 Story…&rdquo;</div><div class="ce-s">Bromley, <em>1897 Bromleys Atlas</em>, p. 19 <a class="pglink" href="#src-bromley-1897-bromleys-atlas-p-19" data-scan="bromley-1897-bromleys-atlas-p-19">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-24">24</a><span class="sw s7"></span><div class="ce-b"><div class="ce-q">&ldquo;&quot;In the 1897 Bromleys Atlas, on 868 Broadway, there is reference to 1 Structure; 4 Story…&rdquo;</div><div class="ce-s">Bromley, <em>1897 Bromleys Atlas</em>, p. 19 <a class="pglink" href="#src-bromley-1897-bromleys-atlas-p-19" data-scan="bromley-1897-bromleys-atlas-p-19">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-25">25</a><span class="sw s7"></span><div class="ce-b"><div class="ce-q">&ldquo;&quot;In the 1897 Bromleys Atlas, on 870 Broadway, there is reference to 1 Structure; 4 Story…&rdquo;</div><div class="ce-s">Bromley, <em>1897 Bromleys Atlas</em>, p. 19 <a class="pglink" href="#src-bromley-1897-bromleys-atlas-p-19" data-scan="bromley-1897-bromleys-atlas-p-19">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-26">26</a><span class="sw s7"></span><div class="ce-b"><div class="ce-q">&ldquo;&quot;In the 1897 Bromleys Atlas, on 872 Broadway, there is reference to 1 Structure; 4 Story…&rdquo;</div><div class="ce-s">Bromley, <em>1897 Bromleys Atlas</em>, p. 19 <a class="pglink" href="#src-bromley-1897-bromleys-atlas-p-19" data-scan="bromley-1897-bromleys-atlas-p-19">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-27">27</a><span class="sw s7"></span><div class="ce-b"><div class="ce-q">&ldquo;&quot;In the 1897 Bromleys Atlas, on 30 East 18th Street, there is reference to 1 Structure;…&rdquo;</div><div class="ce-s">Bromley, <em>1897 Bromleys Atlas</em>, p. 19 <a class="pglink" href="#src-bromley-1897-bromleys-atlas-p-19" data-scan="bromley-1897-bromleys-atlas-p-19">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-28">28</a><span class="sw s8"></span><div class="ce-b"><div class="ce-q">&ldquo;&quot;In 1901, a new stone facade with large show windows was constructed at No. 872.&quot;&rdquo;</div><div class="ce-s">LPC, <em>Ladies Mile Historic District Designation Report</em></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-29">29</a><span class="sw s8"></span><div class="ce-b"><div class="ce-q">&ldquo;&quot;870 Broadway received its early-20th commercial style facade as the result of a 1915…&rdquo;</div><div class="ce-s">LPC, <em>Ladies Mile Historic District Designation Report</em></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-30">30</a><span class="sw s9"></span><div class="ce-b"><div class="ce-q">&ldquo;&quot;In the 1916 Atlas of the Borough of Manhattan, on 862 Broadway, there is reference to 1…&rdquo;</div><div class="ce-s">G W Bromley &amp; Co, <em>1916 Atlas of the Borough of Manhattan</em>, p. 55 <a class="pglink" href="#src-g-w-bromley-co-1916-atlas-of-the-borough-of-manhattan-p-55" data-scan="g-w-bromley-co-1916-atlas-of-the-borough-of-manhattan-p-55">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-31">31</a><span class="sw s9"></span><div class="ce-b"><div class="ce-q">&ldquo;&quot;In the 1916 Atlas of the Borough of Manhattan, on 864 Broadway, there is reference to 1…&rdquo;</div><div class="ce-s">G W Bromley &amp; Co, <em>1916 Atlas of the Borough of Manhattan</em>, p. 55 <a class="pglink" href="#src-g-w-bromley-co-1916-atlas-of-the-borough-of-manhattan-p-55" data-scan="g-w-bromley-co-1916-atlas-of-the-borough-of-manhattan-p-55">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-32">32</a><span class="sw s9"></span><div class="ce-b"><div class="ce-q">&ldquo;&quot;In the 1916 Atlas of the Borough of Manhattan, on 866 Broadway, there is reference to 1…&rdquo;</div><div class="ce-s">G W Bromley &amp; Co, <em>1916 Atlas of the Borough of Manhattan</em>, p. 55 <a class="pglink" href="#src-g-w-bromley-co-1916-atlas-of-the-borough-of-manhattan-p-55" data-scan="g-w-bromley-co-1916-atlas-of-the-borough-of-manhattan-p-55">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-33">33</a><span class="sw s9"></span><div class="ce-b"><div class="ce-q">&ldquo;&quot;In the 1916 Atlas of the Borough of Manhattan, on 868 Broadway, there is reference to 1…&rdquo;</div><div class="ce-s">G W Bromley &amp; Co, <em>1916 Atlas of the Borough of Manhattan</em>, p. 55 <a class="pglink" href="#src-g-w-bromley-co-1916-atlas-of-the-borough-of-manhattan-p-55" data-scan="g-w-bromley-co-1916-atlas-of-the-borough-of-manhattan-p-55">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-34">34</a><span class="sw s9"></span><div class="ce-b"><div class="ce-q">&ldquo;&quot;In the 1916 Atlas of the Borough of Manhattan, on 870 Broadway, there is reference to 1…&rdquo;</div><div class="ce-s">G W Bromley &amp; Co, <em>1916 Atlas of the Borough of Manhattan</em>, p. 55 <a class="pglink" href="#src-g-w-bromley-co-1916-atlas-of-the-borough-of-manhattan-p-55" data-scan="g-w-bromley-co-1916-atlas-of-the-borough-of-manhattan-p-55">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-35">35</a><span class="sw s9"></span><div class="ce-b"><div class="ce-q">&ldquo;&quot;In the 1916 Atlas of the Borough of Manhattan, on 872 Broadway, there is reference to 1…&rdquo;</div><div class="ce-s">G W Bromley &amp; Co, <em>1916 Atlas of the Borough of Manhattan</em>, p. 55 <a class="pglink" href="#src-g-w-bromley-co-1916-atlas-of-the-borough-of-manhattan-p-55" data-scan="g-w-bromley-co-1916-atlas-of-the-borough-of-manhattan-p-55">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-36">36</a><span class="sw s9"></span><div class="ce-b"><div class="ce-q">&ldquo;&quot;In the 1916 Atlas of the Borough of Manhattan, on 30 East 18th Street, there is reference…&rdquo;</div><div class="ce-s">G W Bromley &amp; Co, <em>1916 Atlas of the Borough of Manhattan</em>, p. 55 <a class="pglink" href="#src-g-w-bromley-co-1916-atlas-of-the-borough-of-manhattan-p-55" data-scan="g-w-bromley-co-1916-atlas-of-the-borough-of-manhattan-p-55">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-37">37</a><span class="sw s8"></span><div class="ce-b"><div class="ce-q">&ldquo;&quot;A ground-story storefront was installed during a 1921 alteration&quot;&rdquo;</div><div class="ce-s">LPC, <em>Ladies Mile Historic District Designation Report</em></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-38">38</a><span class="sw s2"></span><div class="ce-b"><div class="ce-q">&ldquo;&quot;remodeled 1921, by John B. Snook &amp; Sons.&quot;&rdquo;</div><div class="ce-s">Dunlap, <em>On Broadway</em>, 1990, p. 114 <a class="pglink" href="#src-dunlap-on-broadway-1990-p-114" data-scan="dunlap-on-broadway-1990-p-114">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-39">39</a><span class="sw s10"></span><div class="ce-b"><div class="ce-q">&ldquo;&quot;In the 1930 Land Book of the Borough of Manhattan, on 862 Broadway, there is reference to…&rdquo;</div><div class="ce-s">Bromley, <em>1930 Land Book of the Borough of Manhattan</em>, p. 54 <a class="pglink" href="#src-bromley-1930-land-book-of-the-borough-of-manhattan-p-54" data-scan="bromley-1930-land-book-of-the-borough-of-manhattan-p-54">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-40">40</a><span class="sw s10"></span><div class="ce-b"><div class="ce-q">&ldquo;&quot;In the 1930 Land Book of the Borough of Manhattan, on 864 Broadway, there is reference to…&rdquo;</div><div class="ce-s">Bromley, <em>1930 Land Book of the Borough of Manhattan</em>, p. 54 <a class="pglink" href="#src-bromley-1930-land-book-of-the-borough-of-manhattan-p-54" data-scan="bromley-1930-land-book-of-the-borough-of-manhattan-p-54">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-41">41</a><span class="sw s10"></span><div class="ce-b"><div class="ce-q">&ldquo;&quot;In the 1930 Land Book of the Borough of Manhattan, on 866 Broadway, there is reference to…&rdquo;</div><div class="ce-s">Bromley, <em>1930 Land Book of the Borough of Manhattan</em>, p. 54 <a class="pglink" href="#src-bromley-1930-land-book-of-the-borough-of-manhattan-p-54" data-scan="bromley-1930-land-book-of-the-borough-of-manhattan-p-54">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-42">42</a><span class="sw s10"></span><div class="ce-b"><div class="ce-q">&ldquo;&quot;In the 1930 Land Book of the Borough of Manhattan, on 868 Broadway, there is reference to…&rdquo;</div><div class="ce-s">Bromley, <em>1930 Land Book of the Borough of Manhattan</em>, p. 54 <a class="pglink" href="#src-bromley-1930-land-book-of-the-borough-of-manhattan-p-54" data-scan="bromley-1930-land-book-of-the-borough-of-manhattan-p-54">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-43">43</a><span class="sw s10"></span><div class="ce-b"><div class="ce-q">&ldquo;&quot;In the 1930 Land Book of the Borough of Manhattan, on 870 Broadway, there is reference to…&rdquo;</div><div class="ce-s">Bromley, <em>1930 Land Book of the Borough of Manhattan</em>, p. 54 <a class="pglink" href="#src-bromley-1930-land-book-of-the-borough-of-manhattan-p-54" data-scan="bromley-1930-land-book-of-the-borough-of-manhattan-p-54">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-44">44</a><span class="sw s10"></span><div class="ce-b"><div class="ce-q">&ldquo;&quot;In the 1930 Land Book of the Borough of Manhattan, on 872 Broadway, there is reference to…&rdquo;</div><div class="ce-s">Bromley, <em>1930 Land Book of the Borough of Manhattan</em>, p. 54 <a class="pglink" href="#src-bromley-1930-land-book-of-the-borough-of-manhattan-p-54" data-scan="bromley-1930-land-book-of-the-borough-of-manhattan-p-54">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-45">45</a><span class="sw s10"></span><div class="ce-b"><div class="ce-q">&ldquo;&quot;In the 1930 Land Book of the Borough of Manhattan, on 30 East 18th Street, there is…&rdquo;</div><div class="ce-s">Bromley, <em>1930 Land Book of the Borough of Manhattan</em>, p. 54 <a class="pglink" href="#src-bromley-1930-land-book-of-the-borough-of-manhattan-p-54" data-scan="bromley-1930-land-book-of-the-borough-of-manhattan-p-54">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-46">46</a><span class="sw s11"></span><div class="ce-b"><div class="ce-q">&ldquo;&quot;In the 1955 Manhattan Land Book, on 862 Broadway, there is reference to 1 Structure; 4…&rdquo;</div><div class="ce-s">Bromley, <em>1955 Manhattan Land Book</em>, p. 44 <a class="pglink" href="#src-bromley-1955-manhattan-land-book-p-44" data-scan="bromley-1955-manhattan-land-book-p-44">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-47">47</a><span class="sw s11"></span><div class="ce-b"><div class="ce-q">&ldquo;&quot;In the 1955 Manhattan Land Book, on 864 Broadway, there is reference to 1 Structure; 4…&rdquo;</div><div class="ce-s">Bromley, <em>1955 Manhattan Land Book</em>, p. 44 <a class="pglink" href="#src-bromley-1955-manhattan-land-book-p-44" data-scan="bromley-1955-manhattan-land-book-p-44">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-48">48</a><span class="sw s11"></span><div class="ce-b"><div class="ce-q">&ldquo;&quot;In the 1955 Manhattan Land Book, on 866 Broadway, there is reference to 1 Structure; 4…&rdquo;</div><div class="ce-s">Bromley, <em>1955 Manhattan Land Book</em>, p. 44 <a class="pglink" href="#src-bromley-1955-manhattan-land-book-p-44" data-scan="bromley-1955-manhattan-land-book-p-44">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-49">49</a><span class="sw s11"></span><div class="ce-b"><div class="ce-q">&ldquo;&quot;In the 1955 Manhattan Land Book, on 868 Broadway, there is reference to 1 Structure; 4…&rdquo;</div><div class="ce-s">Bromley, <em>1955 Manhattan Land Book</em>, p. 44 <a class="pglink" href="#src-bromley-1955-manhattan-land-book-p-44" data-scan="bromley-1955-manhattan-land-book-p-44">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-50">50</a><span class="sw s11"></span><div class="ce-b"><div class="ce-q">&ldquo;&quot;In the 1955 Manhattan Land Book, on 870 Broadway, there is reference to 1 Structure; 4…&rdquo;</div><div class="ce-s">Bromley, <em>1955 Manhattan Land Book</em>, p. 44 <a class="pglink" href="#src-bromley-1955-manhattan-land-book-p-44" data-scan="bromley-1955-manhattan-land-book-p-44">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-51">51</a><span class="sw s11"></span><div class="ce-b"><div class="ce-q">&ldquo;&quot;In the 1955 Manhattan Land Book, on 872 Broadway, there is reference to 1 Structure; 4…&rdquo;</div><div class="ce-s">Bromley, <em>1955 Manhattan Land Book</em>, p. 44 <a class="pglink" href="#src-bromley-1955-manhattan-land-book-p-44" data-scan="bromley-1955-manhattan-land-book-p-44">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-52">52</a><span class="sw s11"></span><div class="ce-b"><div class="ce-q">&ldquo;&quot;In the 1955 Manhattan Land Book, on 30 East 18th Street, there is reference to 1…&rdquo;</div><div class="ce-s">Bromley, <em>1955 Manhattan Land Book</em>, p. 44 <a class="pglink" href="#src-bromley-1955-manhattan-land-book-p-44" data-scan="bromley-1955-manhattan-land-book-p-44">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-53">53</a><span class="sw s12"></span><div class="ce-b"><div class="ce-q">&ldquo;&quot;Express Manna Kitchen 28 E 18th St (btwn Broadway &amp; Park Ave) 212-228-1044…&rdquo;</div><div class="ce-s">Halliday, <em>Zinester&#x27;s Guide to NYC</em>, 2011, p. 42 <a class="pglink" href="#src-halliday-zinester-s-guide-to-nyc-2011-p-42" data-scan="halliday-zinester-s-guide-to-nyc-2011-p-42">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-54">54</a><span class="sw s13"></span><div class="ce-b"><div class="ce-q">&ldquo;&quot;Geox 575 Madison Avenue, at East 57th Street (212) 355-3029 Subway: 4, 5, 6 to 59th…&rdquo;</div><div class="ce-s">Berman &amp; Hederman, <em>New York City With Children</em>, 2014, p. 393 <a class="pglink" href="#src-berman-hederman-new-york-city-with-children-2014-p-393" data-scan="berman-hederman-new-york-city-with-children-2014-p-393">scan</a></div></div></div>
+</aside>
+<div class="wrap">
+
+<h1>862–872 Broadway and 30 East 18th Street</h1>
+<p class="sub">From Terrace to Thoroughfare: The Documentary Life of 862–872 Broadway and 30 East 18th Street, 1815–2014</p>
+<p class="note">Every previously italicized phrase is highlighted and colour-coded by source. Where the source page is on file, clicking the highlight opens the scan.</p>
+
+<div class="legend"><div class="legend-title">Colour key — one colour per source <span class="lk">· sources with a page scan are marked ⌕</span></div><ul>
+<li><span class="sw s1"></span><span class="lg">Sackersdorff, <em>1815 Blue Book</em> <span class="pg">p.&nbsp;3</span> <span class="ct">(1)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s2"></span><span class="lg">Dunlap, <em>On Broadway</em>, 1990 <span class="pg">pp.&nbsp;114, 115</span> <span class="ct">(3)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s3"></span><span class="lg">Perris, <em>1853 Perris Maps</em> <span class="pg">p.&nbsp;56</span> <span class="ct">(7)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s4"></span><span class="lg">Dripps, <em>1867 Dripps Plan</em> <span class="pg">p.&nbsp;7</span> <span class="ct">(7)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s5"></span><span class="lg">Putnam&#x27;s Sons, <em>Ladies Guide and City Directory</em>, 1885 <span class="pg">p.&nbsp;116</span> <span class="ct">(1)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s6"></span><span class="lg">Robinson, <em>1885 Robinsons Atlas</em> <span class="pg">p.&nbsp;15</span> <span class="ct">(2)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s7"></span><span class="lg">Bromley, <em>1897 Bromleys Atlas</em> <span class="pg">p.&nbsp;19</span> <span class="ct">(7)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s8"></span><span class="lg">LPC, <em>Ladies Mile Historic District Designation Report</em> <span class="ct">(3)</span></span></li>
+<li><span class="sw s9"></span><span class="lg">G W Bromley &amp; Co, <em>1916 Atlas of the Borough of Manhattan</em> <span class="pg">p.&nbsp;55</span> <span class="ct">(7)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s10"></span><span class="lg">Bromley, <em>1930 Land Book of the Borough of Manhattan</em> <span class="pg">p.&nbsp;54</span> <span class="ct">(7)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s11"></span><span class="lg">Bromley, <em>1955 Manhattan Land Book</em> <span class="pg">p.&nbsp;44</span> <span class="ct">(7)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s12"></span><span class="lg">Halliday, <em>Zinester&#x27;s Guide to NYC</em>, 2011 <span class="pg">p.&nbsp;42</span> <span class="ct">(1)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s13"></span><span class="lg">Berman &amp; Hederman, <em>New York City With Children</em>, 2014 <span class="pg">p.&nbsp;393</span> <span class="ct">(1)</span> <span class="has">⌕</span></span></li>
+</ul></div>
+
+
+
+<p>The earliest surviving record finds the eastern parcel entirely undeveloped, a quiet expanse awaiting the city&#x27;s northward march. As the register of that era attests, <a class="srclink" href="#src-sackersdorff-1815-blue-book-p-3" data-scan="sackersdorff-1815-blue-book-p-3" title="See the source page — Sackersdorff, 1815 Blue Book, p. 3"><mark id="hl-1" class="s1" title="Sackersdorff, 1815 Blue Book, p. 3">(&quot;In the 1815 Blue Book, on 30 East 18th Street, there is reference to 0 structures.&quot;)</mark></a> For more than three decades thereafter, the land lay in anticipation of the residential terrace that would soon define the block.</p>
+
+<p>That transformation arrived at mid-century, when a distinguished row of dwellings rose along Broadway. The architectural chronicle records their genesis in unambiguous terms: <a class="srclink" href="#src-dunlap-on-broadway-1990-p-114" data-scan="dunlap-on-broadway-1990-p-114" title="See the source page — Dunlap, On Broadway, 1990, p. 114"><mark id="hl-2" class="s2" title="Dunlap, On Broadway, 1990, p. 114">(&quot;ROW HOUSE, No. 862 1847-48; remodeled 1921, by John B. Snook &amp; Sons. [4 stories] It is astonishing that these brick row Houses have survived in any from.&quot;)</mark></a> Its immediate neighbor shared both vintage and pedigree, for the same account observes that <a class="srclink" href="#src-dunlap-on-broadway-1990-p-115" data-scan="dunlap-on-broadway-1990-p-115" title="See the source page — Dunlap, On Broadway, 1990, p. 115"><mark id="hl-3" class="s2" title="Dunlap, On Broadway, 1990, p. 115">(&quot;ROW HOUSE, No. 864 1847-48 (4 stories) Mostly stripped of original architectural fabric, this building still has half-height attic windows.&quot;)</mark></a></p>
+
+<p>By the following decade the fashionable character of these residences was fully apparent in the cartographic record. The mid-century survey catalogues them with meticulous precision, noting that <a class="srclink" href="#src-perris-1853-perris-maps-p-56" data-scan="perris-1853-perris-maps-p-56" title="See the source page — Perris, 1853 Perris Maps, p. 56"><mark id="hl-4" class="s3" title="Perris, 1853 Perris Maps, p. 56">(&quot;In the 1853 Perris Maps, on 862 Broadway, there is reference to 1 Structure; Brick or Stone dwellings first class (slate or metal roof &amp; coped) with Framed Extension.&quot;)</mark></a> The pattern continued along the terrace, as <a class="srclink" href="#src-perris-1853-perris-maps-p-56" data-scan="perris-1853-perris-maps-p-56" title="See the source page — Perris, 1853 Perris Maps, p. 56"><mark id="hl-5" class="s3" title="Perris, 1853 Perris Maps, p. 56">(&quot;In the 1853 Perris Maps, on 864 Broadway, there is reference to 1 Structure; Brick or Stone dwellings first class (slate or metal roof &amp; coped) with Framed Extension.&quot;)</mark></a> One dwelling stood apart in its detailing, however, for <a class="srclink" href="#src-perris-1853-perris-maps-p-56" data-scan="perris-1853-perris-maps-p-56" title="See the source page — Perris, 1853 Perris Maps, p. 56"><mark id="hl-6" class="s3" title="Perris, 1853 Perris Maps, p. 56">(&quot;In the 1853 Perris Maps, on 866 Broadway, there is reference to 1 Structure; Brick or Stone dwellings first class (slate or metal roof &amp; coped) with Brick or Stone Extension and skylights lighting the top floor only.&quot;)</mark></a> The remaining lots conformed to the prevailing type, so that <a class="srclink" href="#src-perris-1853-perris-maps-p-56" data-scan="perris-1853-perris-maps-p-56" title="See the source page — Perris, 1853 Perris Maps, p. 56"><mark id="hl-7" class="s3" title="Perris, 1853 Perris Maps, p. 56">(&quot;In the 1853 Perris Maps, on 868 Broadway, there is reference to 1 Structure; Brick or Stone dwellings first class (slate or metal roof &amp; coped) with Framed Extension,&quot;)</mark></a> and likewise <a class="srclink" href="#src-perris-1853-perris-maps-p-56" data-scan="perris-1853-perris-maps-p-56" title="See the source page — Perris, 1853 Perris Maps, p. 56"><mark id="hl-8" class="s3" title="Perris, 1853 Perris Maps, p. 56">(&quot;In the 1853 Perris Maps, on 870 Broadway, there is reference to 1 Structure; Brick or Stone dwellings first class (slate or metal roof &amp; coped) with Framed Extension,&quot;)</mark></a> and finally <a class="srclink" href="#src-perris-1853-perris-maps-p-56" data-scan="perris-1853-perris-maps-p-56" title="See the source page — Perris, 1853 Perris Maps, p. 56"><mark id="hl-9" class="s3" title="Perris, 1853 Perris Maps, p. 56">(&quot;In the 1853 Perris Maps, on 872 Broadway, there is reference to 1 Structure; Brick or Stone dwellings first class (slate or metal roof &amp; coped) with Framed Extension.&quot;)</mark></a> The eastern parcel, meanwhile, remained conspicuously vacant, for <a class="srclink" href="#src-perris-1853-perris-maps-p-56" data-scan="perris-1853-perris-maps-p-56" title="See the source page — Perris, 1853 Perris Maps, p. 56"><mark id="hl-10" class="s3" title="Perris, 1853 Perris Maps, p. 56">(&quot;In the 1853 Perris Maps, on 30 East 18th Street, there is reference to 0 Structures.&quot;)</mark></a></p>
+
+<p>By the close of the Civil War the block had filled in decisively, and the surveyor of the period reduced each holding to its essential fact. Thus <a class="srclink" href="#src-dripps-1867-dripps-plan-p-7" data-scan="dripps-1867-dripps-plan-p-7" title="See the source page — Dripps, 1867 Dripps Plan, p. 7"><mark id="hl-11" class="s4" title="Dripps, 1867 Dripps Plan, p. 7">(&quot;In the 1867 Dripps Plan, on 862 Broadway, there is reference to 1 Structure; Building,&quot;)</mark></a> just as <a class="srclink" href="#src-dripps-1867-dripps-plan-p-7" data-scan="dripps-1867-dripps-plan-p-7" title="See the source page — Dripps, 1867 Dripps Plan, p. 7"><mark id="hl-12" class="s4" title="Dripps, 1867 Dripps Plan, p. 7">(&quot;In the 1867 Dripps Plan, on 864 Broadway, there is reference to 1 Structure; Building,&quot;)</mark></a> and <a class="srclink" href="#src-dripps-1867-dripps-plan-p-7" data-scan="dripps-1867-dripps-plan-p-7" title="See the source page — Dripps, 1867 Dripps Plan, p. 7"><mark id="hl-13" class="s4" title="Dripps, 1867 Dripps Plan, p. 7">(&quot;In the 1867 Dripps Plan, on 866 Broadway, there is reference to 1 Structure; Building,&quot;)</mark></a> and <a class="srclink" href="#src-dripps-1867-dripps-plan-p-7" data-scan="dripps-1867-dripps-plan-p-7" title="See the source page — Dripps, 1867 Dripps Plan, p. 7"><mark id="hl-14" class="s4" title="Dripps, 1867 Dripps Plan, p. 7">(&quot;In the 1867 Dripps Plan, on 868 Broadway, there is reference to 1 Structure; Building.&quot;)</mark></a> The northern lots proved more densely occupied, for <a class="srclink" href="#src-dripps-1867-dripps-plan-p-7" data-scan="dripps-1867-dripps-plan-p-7" title="See the source page — Dripps, 1867 Dripps Plan, p. 7"><mark id="hl-15" class="s4" title="Dripps, 1867 Dripps Plan, p. 7">(&quot;In the 1867 Dripps Plan, on 870 Broadway, there is reference to 2 structures; Building, Building,&quot;)</mark></a> while <a class="srclink" href="#src-dripps-1867-dripps-plan-p-7" data-scan="dripps-1867-dripps-plan-p-7" title="See the source page — Dripps, 1867 Dripps Plan, p. 7"><mark id="hl-16" class="s4" title="Dripps, 1867 Dripps Plan, p. 7">(&quot;In the 1867 Dripps Plan, on 872 Broadway, there is reference to 3 structures; Building, Building, Building.&quot;)</mark></a> Most tellingly, the once-empty eastern parcel had at last been improved, as <a class="srclink" href="#src-dripps-1867-dripps-plan-p-7" data-scan="dripps-1867-dripps-plan-p-7" title="See the source page — Dripps, 1867 Dripps Plan, p. 7"><mark id="hl-17" class="s4" title="Dripps, 1867 Dripps Plan, p. 7">(&quot;In the 1867 Dripps Plan, on 30 East 18th Street, there is reference to 1 Structure; Building.&quot;)</mark></a></p>
+
+<p>As the district matured into a commercial thoroughfare, the residential dwellings gave way to enterprise. A directory of the age preserves one such establishment in its listing, recording under <a class="srclink" href="#src-putnam-s-sons-ladies-guide-and-city-directory-1885-p-116" data-scan="putnam-s-sons-ladies-guide-and-city-directory-1885-p-116" title="See the source page — Putnam&#x27;s Sons, Ladies Guide and City Directory, 1885, p. 116"><mark id="hl-18" class="s5" title="Putnam&#x27;s Sons, Ladies Guide and City Directory, 1885, p. 116">(&quot;Shopping Directory. Staten Island Dyeing Establishment, 870 Broadway and 610 Sixth av.&quot;)</mark></a> That same year the atlas of the period distilled the material substance of the surviving fabric, noting that <a class="srclink" href="#src-robinson-1885-robinsons-atlas-p-15" data-scan="robinson-1885-robinsons-atlas-p-15" title="See the source page — Robinson, 1885 Robinsons Atlas, p. 15"><mark id="hl-19" class="s6" title="Robinson, 1885 Robinsons Atlas, p. 15">(&quot;In the 1885 Robinsons Atlas, on 866 Broadway, there is reference to 1 Structure; Brick building,&quot;)</mark></a> and correspondingly that <a class="srclink" href="#src-robinson-1885-robinsons-atlas-p-15" data-scan="robinson-1885-robinsons-atlas-p-15" title="See the source page — Robinson, 1885 Robinsons Atlas, p. 15"><mark id="hl-20" class="s6" title="Robinson, 1885 Robinsons Atlas, p. 15">(&quot;In the 1885 Robinsons Atlas, on 30 East 18th Street, there is reference to 1 Structure; Brick building.&quot;)</mark></a></p>
+
+<p>The turn toward the twentieth century brought a fuller accounting of scale and material. The atlas of the late nineties enumerated the row in uniform terms, observing that <a class="srclink" href="#src-bromley-1897-bromleys-atlas-p-19" data-scan="bromley-1897-bromleys-atlas-p-19" title="See the source page — Bromley, 1897 Bromleys Atlas, p. 19"><mark id="hl-21" class="s7" title="Bromley, 1897 Bromleys Atlas, p. 19">(&quot;In the 1897 Bromleys Atlas, on 862 Broadway, there is reference to 1 Structure; 4 Story Brick building,&quot;)</mark></a> and equally that <a class="srclink" href="#src-bromley-1897-bromleys-atlas-p-19" data-scan="bromley-1897-bromleys-atlas-p-19" title="See the source page — Bromley, 1897 Bromleys Atlas, p. 19"><mark id="hl-22" class="s7" title="Bromley, 1897 Bromleys Atlas, p. 19">(&quot;In the 1897 Bromleys Atlas, on 864 Broadway, there is reference to 1 Structure; 4 Story Brick building,&quot;)</mark></a> and <a class="srclink" href="#src-bromley-1897-bromleys-atlas-p-19" data-scan="bromley-1897-bromleys-atlas-p-19" title="See the source page — Bromley, 1897 Bromleys Atlas, p. 19"><mark id="hl-23" class="s7" title="Bromley, 1897 Bromleys Atlas, p. 19">(&quot;In the 1897 Bromleys Atlas, on 866 Broadway, there is reference to 1 Structure; 4 Story Brick building,&quot;)</mark></a> and <a class="srclink" href="#src-bromley-1897-bromleys-atlas-p-19" data-scan="bromley-1897-bromleys-atlas-p-19" title="See the source page — Bromley, 1897 Bromleys Atlas, p. 19"><mark id="hl-24" class="s7" title="Bromley, 1897 Bromleys Atlas, p. 19">(&quot;In the 1897 Bromleys Atlas, on 868 Broadway, there is reference to 1 Structure; 4 Story Brick building,&quot;)</mark></a> and <a class="srclink" href="#src-bromley-1897-bromleys-atlas-p-19" data-scan="bromley-1897-bromleys-atlas-p-19" title="See the source page — Bromley, 1897 Bromleys Atlas, p. 19"><mark id="hl-25" class="s7" title="Bromley, 1897 Bromleys Atlas, p. 19">(&quot;In the 1897 Bromleys Atlas, on 870 Broadway, there is reference to 1 Structure; 4 Story Brick building,&quot;)</mark></a> and <a class="srclink" href="#src-bromley-1897-bromleys-atlas-p-19" data-scan="bromley-1897-bromleys-atlas-p-19" title="See the source page — Bromley, 1897 Bromleys Atlas, p. 19"><mark id="hl-26" class="s7" title="Bromley, 1897 Bromleys Atlas, p. 19">(&quot;In the 1897 Bromleys Atlas, on 872 Broadway, there is reference to 1 Structure; 4 Story Brick building.&quot;)</mark></a> The eastern holding likewise entered the record, for <a class="srclink" href="#src-bromley-1897-bromleys-atlas-p-19" data-scan="bromley-1897-bromleys-atlas-p-19" title="See the source page — Bromley, 1897 Bromleys Atlas, p. 19"><mark id="hl-27" class="s7" title="Bromley, 1897 Bromleys Atlas, p. 19">(&quot;In the 1897 Bromleys Atlas, on 30 East 18th Street, there is reference to 1 Structure; Brick building.&quot;)</mark></a></p>
+
+<p>The new century inaugurated an era of ambitious refacing, as the antiquated dwellings were adapted to commercial fashion. The most conspicuous of these transformations occurred at the northernmost address, where, as the designation record relates, <mark id="hl-28" class="s8" title="LPC, Ladies Mile Historic District Designation Report">(&quot;In 1901, a new stone facade with large show windows was constructed at No. 872.&quot;)</mark> A comparable modernization soon followed nearby, for <mark id="hl-29" class="s8" title="LPC, Ladies Mile Historic District Designation Report">(&quot;870 Broadway received its early-20th commercial style facade as the result of a 1915 alteration.&quot;)</mark></p>
+
+<p>By the mid-1910s these alterations were legible in the cartographic record, which now registered ground-floor commerce throughout the block. Thus <a class="srclink" href="#src-g-w-bromley-co-1916-atlas-of-the-borough-of-manhattan-p-55" data-scan="g-w-bromley-co-1916-atlas-of-the-borough-of-manhattan-p-55" title="See the source page — G W Bromley &amp; Co, 1916 Atlas of the Borough of Manhattan, p. 55"><mark id="hl-30" class="s9" title="G W Bromley &amp; Co, 1916 Atlas of the Borough of Manhattan, p. 55">(&quot;In the 1916 Atlas of the Borough of Manhattan, on 862 Broadway, there is reference to 1 Structure; 4 Story Brick building with Store and Brick Extension and 1 Story Brick Extension,&quot;)</mark></a> while <a class="srclink" href="#src-g-w-bromley-co-1916-atlas-of-the-borough-of-manhattan-p-55" data-scan="g-w-bromley-co-1916-atlas-of-the-borough-of-manhattan-p-55" title="See the source page — G W Bromley &amp; Co, 1916 Atlas of the Borough of Manhattan, p. 55"><mark id="hl-31" class="s9" title="G W Bromley &amp; Co, 1916 Atlas of the Borough of Manhattan, p. 55">(&quot;In the 1916 Atlas of the Borough of Manhattan, on 864 Broadway, there is reference to 1 Structure; 4 Story Brick building with Store and 1 Story Brick Extension,&quot;)</mark></a> and <a class="srclink" href="#src-g-w-bromley-co-1916-atlas-of-the-borough-of-manhattan-p-55" data-scan="g-w-bromley-co-1916-atlas-of-the-borough-of-manhattan-p-55" title="See the source page — G W Bromley &amp; Co, 1916 Atlas of the Borough of Manhattan, p. 55"><mark id="hl-32" class="s9" title="G W Bromley &amp; Co, 1916 Atlas of the Borough of Manhattan, p. 55">(&quot;In the 1916 Atlas of the Borough of Manhattan, on 866 Broadway, there is reference to 1 Structure; 4 Story Brick building with Store and 1 Story Brick Extension,&quot;)</mark></a> and <a class="srclink" href="#src-g-w-bromley-co-1916-atlas-of-the-borough-of-manhattan-p-55" data-scan="g-w-bromley-co-1916-atlas-of-the-borough-of-manhattan-p-55" title="See the source page — G W Bromley &amp; Co, 1916 Atlas of the Borough of Manhattan, p. 55"><mark id="hl-33" class="s9" title="G W Bromley &amp; Co, 1916 Atlas of the Borough of Manhattan, p. 55">(&quot;In the 1916 Atlas of the Borough of Manhattan, on 868 Broadway, there is reference to 1 Structure; 4 Story Brick building with Store and 1 Story Brick Extension.&quot;)</mark></a> The recently refaced structures were noted with their distinguishing features, for <a class="srclink" href="#src-g-w-bromley-co-1916-atlas-of-the-borough-of-manhattan-p-55" data-scan="g-w-bromley-co-1916-atlas-of-the-borough-of-manhattan-p-55" title="See the source page — G W Bromley &amp; Co, 1916 Atlas of the Borough of Manhattan, p. 55"><mark id="hl-34" class="s9" title="G W Bromley &amp; Co, 1916 Atlas of the Borough of Manhattan, p. 55">(&quot;In the 1916 Atlas of the Borough of Manhattan, on 870 Broadway, there is reference to 1 Structure; 4 Story Brick building with Store ,&quot;)</mark></a> and <a class="srclink" href="#src-g-w-bromley-co-1916-atlas-of-the-borough-of-manhattan-p-55" data-scan="g-w-bromley-co-1916-atlas-of-the-borough-of-manhattan-p-55" title="See the source page — G W Bromley &amp; Co, 1916 Atlas of the Borough of Manhattan, p. 55"><mark id="hl-35" class="s9" title="G W Bromley &amp; Co, 1916 Atlas of the Borough of Manhattan, p. 55">(&quot;In the 1916 Atlas of the Borough of Manhattan, on 872 Broadway, there is reference to 1 Structure; 4 Story Brick building with Store and Elevators.&quot;)</mark></a> The eastern property, too, had assumed a commercial cast, as <a class="srclink" href="#src-g-w-bromley-co-1916-atlas-of-the-borough-of-manhattan-p-55" data-scan="g-w-bromley-co-1916-atlas-of-the-borough-of-manhattan-p-55" title="See the source page — G W Bromley &amp; Co, 1916 Atlas of the Borough of Manhattan, p. 55"><mark id="hl-36" class="s9" title="G W Bromley &amp; Co, 1916 Atlas of the Borough of Manhattan, p. 55">(&quot;In the 1916 Atlas of the Borough of Manhattan, on 30 East 18th Street, there is reference to 1 Structure; 4 Story Brick Extension with Store.&quot;)</mark></a></p>
+
+<p>The wave of modernization crested at the southernmost dwelling in the early 1920s, where a storefront was inserted beneath the venerable brickwork. As the designation record explains, <mark id="hl-37" class="s8" title="LPC, Ladies Mile Historic District Designation Report">(&quot;A ground-story storefront was installed during a 1921 alteration&quot;)</mark> — a change confirmed by the architectural chronicle&#x27;s own note that the row house at No. 862 had been <a class="srclink" href="#src-dunlap-on-broadway-1990-p-114" data-scan="dunlap-on-broadway-1990-p-114" title="See the source page — Dunlap, On Broadway, 1990, p. 114"><mark id="hl-38" class="s2" title="Dunlap, On Broadway, 1990, p. 114">(&quot;remodeled 1921, by John B. Snook &amp; Sons.&quot;)</mark></a></p>
+
+<p>The land books of the ensuing decade reflected these commercial adaptations in their entirety. Thus <a class="srclink" href="#src-bromley-1930-land-book-of-the-borough-of-manhattan-p-54" data-scan="bromley-1930-land-book-of-the-borough-of-manhattan-p-54" title="See the source page — Bromley, 1930 Land Book of the Borough of Manhattan, p. 54"><mark id="hl-39" class="s10" title="Bromley, 1930 Land Book of the Borough of Manhattan, p. 54">(&quot;In the 1930 Land Book of the Borough of Manhattan, on 862 Broadway, there is reference to 1 Structure; 4 Story Brick building with Store and 1 Story Brick Extension,&quot;)</mark></a> and <a class="srclink" href="#src-bromley-1930-land-book-of-the-borough-of-manhattan-p-54" data-scan="bromley-1930-land-book-of-the-borough-of-manhattan-p-54" title="See the source page — Bromley, 1930 Land Book of the Borough of Manhattan, p. 54"><mark id="hl-40" class="s10" title="Bromley, 1930 Land Book of the Borough of Manhattan, p. 54">(&quot;In the 1930 Land Book of the Borough of Manhattan, on 864 Broadway, there is reference to 1 Structure; 4 Story Brick building with Store and 1 Story Brick Extension,&quot;)</mark></a> and <a class="srclink" href="#src-bromley-1930-land-book-of-the-borough-of-manhattan-p-54" data-scan="bromley-1930-land-book-of-the-borough-of-manhattan-p-54" title="See the source page — Bromley, 1930 Land Book of the Borough of Manhattan, p. 54"><mark id="hl-41" class="s10" title="Bromley, 1930 Land Book of the Borough of Manhattan, p. 54">(&quot;In the 1930 Land Book of the Borough of Manhattan, on 866 Broadway, there is reference to 1 Structure; 4 Story Brick building with Store and 1 Story Brick Extension,&quot;)</mark></a> and <a class="srclink" href="#src-bromley-1930-land-book-of-the-borough-of-manhattan-p-54" data-scan="bromley-1930-land-book-of-the-borough-of-manhattan-p-54" title="See the source page — Bromley, 1930 Land Book of the Borough of Manhattan, p. 54"><mark id="hl-42" class="s10" title="Bromley, 1930 Land Book of the Borough of Manhattan, p. 54">(&quot;In the 1930 Land Book of the Borough of Manhattan, on 868 Broadway, there is reference to 1 Structure; 4 Story Brick building with Store and 1 Story Brick Extension.&quot;)</mark></a> The refaced pair retained their distinctive character, for <a class="srclink" href="#src-bromley-1930-land-book-of-the-borough-of-manhattan-p-54" data-scan="bromley-1930-land-book-of-the-borough-of-manhattan-p-54" title="See the source page — Bromley, 1930 Land Book of the Borough of Manhattan, p. 54"><mark id="hl-43" class="s10" title="Bromley, 1930 Land Book of the Borough of Manhattan, p. 54">(&quot;In the 1930 Land Book of the Borough of Manhattan, on 870 Broadway, there is reference to 1 Structure; 4 Story Brick building with Store,&quot;)</mark></a> and <a class="srclink" href="#src-bromley-1930-land-book-of-the-borough-of-manhattan-p-54" data-scan="bromley-1930-land-book-of-the-borough-of-manhattan-p-54" title="See the source page — Bromley, 1930 Land Book of the Borough of Manhattan, p. 54"><mark id="hl-44" class="s10" title="Bromley, 1930 Land Book of the Borough of Manhattan, p. 54">(&quot;In the 1930 Land Book of the Borough of Manhattan, on 872 Broadway, there is reference to 1 Structure; 4 Story Brick building with Store and Elevators.&quot;)</mark></a> The eastern address likewise conformed, as <a class="srclink" href="#src-bromley-1930-land-book-of-the-borough-of-manhattan-p-54" data-scan="bromley-1930-land-book-of-the-borough-of-manhattan-p-54" title="See the source page — Bromley, 1930 Land Book of the Borough of Manhattan, p. 54"><mark id="hl-45" class="s10" title="Bromley, 1930 Land Book of the Borough of Manhattan, p. 54">(&quot;In the 1930 Land Book of the Borough of Manhattan, on 30 East 18th Street, there is reference to 1 Structure; 4 Story Brick building with Store.&quot;)</mark></a></p>
+
+<p>At mid-century the record was reaffirmed, though now expressed in the broader material vocabulary of the postwar survey. Thus <a class="srclink" href="#src-bromley-1955-manhattan-land-book-p-44" data-scan="bromley-1955-manhattan-land-book-p-44" title="See the source page — Bromley, 1955 Manhattan Land Book, p. 44"><mark id="hl-46" class="s11" title="Bromley, 1955 Manhattan Land Book, p. 44">(&quot;In the 1955 Manhattan Land Book, on 862 Broadway, there is reference to 1 Structure; 4 Story Brick or Stone or Concrete building with Store and Brick or Stone or Concrete Extension and 1 Story Brick or Stone or Concrete Extension,&quot;)</mark></a> and <a class="srclink" href="#src-bromley-1955-manhattan-land-book-p-44" data-scan="bromley-1955-manhattan-land-book-p-44" title="See the source page — Bromley, 1955 Manhattan Land Book, p. 44"><mark id="hl-47" class="s11" title="Bromley, 1955 Manhattan Land Book, p. 44">(&quot;In the 1955 Manhattan Land Book, on 864 Broadway, there is reference to 1 Structure; 4 Story Brick or Stone or Concrete building with Store and 1 Story Brick or Stone or Concrete Extension,&quot;)</mark></a> and <a class="srclink" href="#src-bromley-1955-manhattan-land-book-p-44" data-scan="bromley-1955-manhattan-land-book-p-44" title="See the source page — Bromley, 1955 Manhattan Land Book, p. 44"><mark id="hl-48" class="s11" title="Bromley, 1955 Manhattan Land Book, p. 44">(&quot;In the 1955 Manhattan Land Book, on 866 Broadway, there is reference to 1 Structure; 4 Story Brick or Stone or Concrete building with Store and 1 Story Brick or Stone or Concrete Extension,&quot;)</mark></a> and <a class="srclink" href="#src-bromley-1955-manhattan-land-book-p-44" data-scan="bromley-1955-manhattan-land-book-p-44" title="See the source page — Bromley, 1955 Manhattan Land Book, p. 44"><mark id="hl-49" class="s11" title="Bromley, 1955 Manhattan Land Book, p. 44">(&quot;In the 1955 Manhattan Land Book, on 868 Broadway, there is reference to 1 Structure; 4 Story Brick or Stone or Concrete building with Store and 1 Story Brick or Stone or Concrete Extension.&quot;)</mark></a> The northern dwellings persisted in their now-familiar guise, so that <a class="srclink" href="#src-bromley-1955-manhattan-land-book-p-44" data-scan="bromley-1955-manhattan-land-book-p-44" title="See the source page — Bromley, 1955 Manhattan Land Book, p. 44"><mark id="hl-50" class="s11" title="Bromley, 1955 Manhattan Land Book, p. 44">(&quot;In the 1955 Manhattan Land Book, on 870 Broadway, there is reference to 1 Structure; 4 Story Brick or Stone or Concrete building with Store,&quot;)</mark></a> and <a class="srclink" href="#src-bromley-1955-manhattan-land-book-p-44" data-scan="bromley-1955-manhattan-land-book-p-44" title="See the source page — Bromley, 1955 Manhattan Land Book, p. 44"><mark id="hl-51" class="s11" title="Bromley, 1955 Manhattan Land Book, p. 44">(&quot;In the 1955 Manhattan Land Book, on 872 Broadway, there is reference to 1 Structure; 4 Story Brick or Stone or Concrete building with Store and Elevators.&quot;)</mark></a> The eastern property closed the sequence, for <a class="srclink" href="#src-bromley-1955-manhattan-land-book-p-44" data-scan="bromley-1955-manhattan-land-book-p-44" title="See the source page — Bromley, 1955 Manhattan Land Book, p. 44"><mark id="hl-52" class="s11" title="Bromley, 1955 Manhattan Land Book, p. 44">(&quot;In the 1955 Manhattan Land Book, on 30 East 18th Street, there is reference to 1 Structure; 4 Story Brick or Stone or Concrete building with Store.&quot;)</mark></a></p>
+
+<p>In the fullness of time the commercial life of the block found expression in the popular literature of the city. A guide to its offerings recorded, with unaffected enthusiasm, <a class="srclink" href="#src-halliday-zinester-s-guide-to-nyc-2011-p-42" data-scan="halliday-zinester-s-guide-to-nyc-2011-p-42" title="See the source page — Halliday, Zinester&#x27;s Guide to NYC, 2011, p. 42"><mark id="hl-53" class="s12" title="Halliday, Zinester&#x27;s Guide to NYC, 2011, p. 42">(&quot;Express Manna Kitchen 28 E 18th St (btwn Broadway &amp; Park Ave) 212-228-1044 www.mannakitchen.com (Gramercy Park; 4/5/6/L/N/Q/R to Union Square) Express Manna Kitchen is this fast food Korean place that makes such a good tofu bowl! Eat it! - Dear Drunk Girl.&quot;)</mark></a></p>
+
+<p>The most recent chapter in this long chronicle finds the venerable row house at No. 862 absorbed into the retail geography of a global age. A family guidebook, in describing an Italian purveyor of footwear, noted among its outposts the address in question, observing that <a class="srclink" href="#src-berman-hederman-new-york-city-with-children-2014-p-393" data-scan="berman-hederman-new-york-city-with-children-2014-p-393" title="See the source page — Berman &amp; Hederman, New York City With Children, 2014, p. 393"><mark id="hl-54" class="s13" title="Berman &amp; Hederman, New York City With Children, 2014, p. 393">(&quot;Geox 575 Madison Avenue, at East 57th Street (212) 355-3029 Subway: 4, 5, 6 to 59th Street; N, Q, R to Lexington Avenue- 59th Street; F to Lexington Avenue-63rd Street www.geox.com Monday-Saturday 10am-8pm; Sunday 11am-7pm This Italian shoe brand (&quot;the shoe that breathes&quot;) is the second-best selling brand of sports shoes in Europe, and is distinguished by its design and technology. The perforated outer sole features a waterproof membrane that lets feet breathe, but prevents water from penetrating (science lesson: the membrane&#x27;s micro-pores are larger than water vapor molecules but smaller than water droplets). Breathable, non-slip, flexible, anti-bacterial, and waterproof or water-resistant, they&#x27;re ideal for kids. The full line is carried in this U.S. flagship store. Athletic shoes for boys include styles with soccer ball motifs, a style in neon lime and yellow, a white high-top with zipper closure, and a more subdued suede boating shoe. The girls&#x27; line includes athletic shoes, casual Mary Janes, studded denim high-top sandals, and a silver mesh ballet flat with a shoelace on the toe and neon lime trim. The kids shoes run from $60 to $80. Geox carries Italian sizes 26 through 37/38 (U.S. sizes 9 through 5 ½), and fit toddlers through about age 8. There&#x27;s a smattering of kids apparel in the store, as well as the full range of men&#x27;s and women&#x27;s shoes and apparel. Additional locations: 731 Lexington Avenue (Upper East Side), 862 Broadway (Union Square to Madison Square).&quot;)</mark></a></p>
+
+<p>Thus the record closes, a continuous thread stretching from a vacant lot of 1815 to the cosmopolitan commerce of the twenty-first century.</p>
+
+<section class="chart-print"><h2 id="citations">Citation Chart</h2>
+<p class="note2">Every highlighted quote, in order of appearance, correlated to its underlying source. The swatch matches the highlight colour in the text.</p>
+<div class="tablewrap">
+<h3 class="csec"></h3>
+<table><thead><tr><th class="num">#</th><th>Verbatim Quote (abbreviated)</th><th>Source (Author, Title, Year, Page)</th></tr></thead><tbody>
+<tr><td class="num">1</td><td class="quote">&ldquo;&quot;In the 1815 Blue Book, on 30 East 18th Street, there is reference to 0 structures.&quot;&rdquo;</td><td class="src"><span class="sw s1"></span>Sackersdorff, <em>1815 Blue Book</em>, p. 3&nbsp;<a class="pglink" href="#src-sackersdorff-1815-blue-book-p-3" data-scan="sackersdorff-1815-blue-book-p-3">[page scan]</a></td></tr>
+<tr><td class="num">2</td><td class="quote">&ldquo;&quot;ROW HOUSE, No. 862 1847-48; remodeled 1921, by John B. Snook &amp; Sons. [4 stories] It is astonishing that these brick row Houses have survived in any from.&quot;&rdquo;</td><td class="src"><span class="sw s2"></span>Dunlap, <em>On Broadway</em>, 1990, p. 114&nbsp;<a class="pglink" href="#src-dunlap-on-broadway-1990-p-114" data-scan="dunlap-on-broadway-1990-p-114">[page scan]</a></td></tr>
+<tr><td class="num">3</td><td class="quote">&ldquo;&quot;ROW HOUSE, No. 864 1847-48 (4 stories) Mostly stripped of original architectural fabric, this building still has half-height attic windows.&quot;&rdquo;</td><td class="src"><span class="sw s2"></span>Dunlap, <em>On Broadway</em>, 1990, p. 115&nbsp;<a class="pglink" href="#src-dunlap-on-broadway-1990-p-115" data-scan="dunlap-on-broadway-1990-p-115">[page scan]</a></td></tr>
+<tr><td class="num">4</td><td class="quote">&ldquo;&quot;In the 1853 Perris Maps, on 862 Broadway, there is reference to 1 Structure; Brick or Stone dwellings first class (slate or metal roof &amp; coped) with Framed Extension.&quot;&rdquo;</td><td class="src"><span class="sw s3"></span>Perris, <em>1853 Perris Maps</em>, p. 56&nbsp;<a class="pglink" href="#src-perris-1853-perris-maps-p-56" data-scan="perris-1853-perris-maps-p-56">[page scan]</a></td></tr>
+<tr><td class="num">5</td><td class="quote">&ldquo;&quot;In the 1853 Perris Maps, on 864 Broadway, there is reference to 1 Structure; Brick or Stone dwellings first class (slate or metal roof &amp; coped) with Framed Extension.&quot;&rdquo;</td><td class="src"><span class="sw s3"></span>Perris, <em>1853 Perris Maps</em>, p. 56&nbsp;<a class="pglink" href="#src-perris-1853-perris-maps-p-56" data-scan="perris-1853-perris-maps-p-56">[page scan]</a></td></tr>
+<tr><td class="num">6</td><td class="quote">&ldquo;&quot;In the 1853 Perris Maps, on 866 Broadway, there is reference to 1 Structure; Brick or Stone dwellings first class (slate or metal roof &amp; coped) with Brick or Stone…&rdquo;</td><td class="src"><span class="sw s3"></span>Perris, <em>1853 Perris Maps</em>, p. 56&nbsp;<a class="pglink" href="#src-perris-1853-perris-maps-p-56" data-scan="perris-1853-perris-maps-p-56">[page scan]</a></td></tr>
+<tr><td class="num">7</td><td class="quote">&ldquo;&quot;In the 1853 Perris Maps, on 868 Broadway, there is reference to 1 Structure; Brick or Stone dwellings first class (slate or metal roof &amp; coped) with Framed Extension,&quot;&rdquo;</td><td class="src"><span class="sw s3"></span>Perris, <em>1853 Perris Maps</em>, p. 56&nbsp;<a class="pglink" href="#src-perris-1853-perris-maps-p-56" data-scan="perris-1853-perris-maps-p-56">[page scan]</a></td></tr>
+<tr><td class="num">8</td><td class="quote">&ldquo;&quot;In the 1853 Perris Maps, on 870 Broadway, there is reference to 1 Structure; Brick or Stone dwellings first class (slate or metal roof &amp; coped) with Framed Extension,&quot;&rdquo;</td><td class="src"><span class="sw s3"></span>Perris, <em>1853 Perris Maps</em>, p. 56&nbsp;<a class="pglink" href="#src-perris-1853-perris-maps-p-56" data-scan="perris-1853-perris-maps-p-56">[page scan]</a></td></tr>
+<tr><td class="num">9</td><td class="quote">&ldquo;&quot;In the 1853 Perris Maps, on 872 Broadway, there is reference to 1 Structure; Brick or Stone dwellings first class (slate or metal roof &amp; coped) with Framed Extension.&quot;&rdquo;</td><td class="src"><span class="sw s3"></span>Perris, <em>1853 Perris Maps</em>, p. 56&nbsp;<a class="pglink" href="#src-perris-1853-perris-maps-p-56" data-scan="perris-1853-perris-maps-p-56">[page scan]</a></td></tr>
+<tr><td class="num">10</td><td class="quote">&ldquo;&quot;In the 1853 Perris Maps, on 30 East 18th Street, there is reference to 0 Structures.&quot;&rdquo;</td><td class="src"><span class="sw s3"></span>Perris, <em>1853 Perris Maps</em>, p. 56&nbsp;<a class="pglink" href="#src-perris-1853-perris-maps-p-56" data-scan="perris-1853-perris-maps-p-56">[page scan]</a></td></tr>
+<tr><td class="num">11</td><td class="quote">&ldquo;&quot;In the 1867 Dripps Plan, on 862 Broadway, there is reference to 1 Structure; Building,&quot;&rdquo;</td><td class="src"><span class="sw s4"></span>Dripps, <em>1867 Dripps Plan</em>, p. 7&nbsp;<a class="pglink" href="#src-dripps-1867-dripps-plan-p-7" data-scan="dripps-1867-dripps-plan-p-7">[page scan]</a></td></tr>
+<tr><td class="num">12</td><td class="quote">&ldquo;&quot;In the 1867 Dripps Plan, on 864 Broadway, there is reference to 1 Structure; Building,&quot;&rdquo;</td><td class="src"><span class="sw s4"></span>Dripps, <em>1867 Dripps Plan</em>, p. 7&nbsp;<a class="pglink" href="#src-dripps-1867-dripps-plan-p-7" data-scan="dripps-1867-dripps-plan-p-7">[page scan]</a></td></tr>
+<tr><td class="num">13</td><td class="quote">&ldquo;&quot;In the 1867 Dripps Plan, on 866 Broadway, there is reference to 1 Structure; Building,&quot;&rdquo;</td><td class="src"><span class="sw s4"></span>Dripps, <em>1867 Dripps Plan</em>, p. 7&nbsp;<a class="pglink" href="#src-dripps-1867-dripps-plan-p-7" data-scan="dripps-1867-dripps-plan-p-7">[page scan]</a></td></tr>
+<tr><td class="num">14</td><td class="quote">&ldquo;&quot;In the 1867 Dripps Plan, on 868 Broadway, there is reference to 1 Structure; Building.&quot;&rdquo;</td><td class="src"><span class="sw s4"></span>Dripps, <em>1867 Dripps Plan</em>, p. 7&nbsp;<a class="pglink" href="#src-dripps-1867-dripps-plan-p-7" data-scan="dripps-1867-dripps-plan-p-7">[page scan]</a></td></tr>
+<tr><td class="num">15</td><td class="quote">&ldquo;&quot;In the 1867 Dripps Plan, on 870 Broadway, there is reference to 2 structures; Building, Building,&quot;&rdquo;</td><td class="src"><span class="sw s4"></span>Dripps, <em>1867 Dripps Plan</em>, p. 7&nbsp;<a class="pglink" href="#src-dripps-1867-dripps-plan-p-7" data-scan="dripps-1867-dripps-plan-p-7">[page scan]</a></td></tr>
+<tr><td class="num">16</td><td class="quote">&ldquo;&quot;In the 1867 Dripps Plan, on 872 Broadway, there is reference to 3 structures; Building, Building, Building.&quot;&rdquo;</td><td class="src"><span class="sw s4"></span>Dripps, <em>1867 Dripps Plan</em>, p. 7&nbsp;<a class="pglink" href="#src-dripps-1867-dripps-plan-p-7" data-scan="dripps-1867-dripps-plan-p-7">[page scan]</a></td></tr>
+<tr><td class="num">17</td><td class="quote">&ldquo;&quot;In the 1867 Dripps Plan, on 30 East 18th Street, there is reference to 1 Structure; Building.&quot;&rdquo;</td><td class="src"><span class="sw s4"></span>Dripps, <em>1867 Dripps Plan</em>, p. 7&nbsp;<a class="pglink" href="#src-dripps-1867-dripps-plan-p-7" data-scan="dripps-1867-dripps-plan-p-7">[page scan]</a></td></tr>
+<tr><td class="num">18</td><td class="quote">&ldquo;&quot;Shopping Directory. Staten Island Dyeing Establishment, 870 Broadway and 610 Sixth av.&quot;&rdquo;</td><td class="src"><span class="sw s5"></span>Putnam&#x27;s Sons, <em>Ladies Guide and City Directory</em>, 1885, p. 116&nbsp;<a class="pglink" href="#src-putnam-s-sons-ladies-guide-and-city-directory-1885-p-116" data-scan="putnam-s-sons-ladies-guide-and-city-directory-1885-p-116">[page scan]</a></td></tr>
+<tr><td class="num">19</td><td class="quote">&ldquo;&quot;In the 1885 Robinsons Atlas, on 866 Broadway, there is reference to 1 Structure; Brick building,&quot;&rdquo;</td><td class="src"><span class="sw s6"></span>Robinson, <em>1885 Robinsons Atlas</em>, p. 15&nbsp;<a class="pglink" href="#src-robinson-1885-robinsons-atlas-p-15" data-scan="robinson-1885-robinsons-atlas-p-15">[page scan]</a></td></tr>
+<tr><td class="num">20</td><td class="quote">&ldquo;&quot;In the 1885 Robinsons Atlas, on 30 East 18th Street, there is reference to 1 Structure; Brick building.&quot;&rdquo;</td><td class="src"><span class="sw s6"></span>Robinson, <em>1885 Robinsons Atlas</em>, p. 15&nbsp;<a class="pglink" href="#src-robinson-1885-robinsons-atlas-p-15" data-scan="robinson-1885-robinsons-atlas-p-15">[page scan]</a></td></tr>
+<tr><td class="num">21</td><td class="quote">&ldquo;&quot;In the 1897 Bromleys Atlas, on 862 Broadway, there is reference to 1 Structure; 4 Story Brick building,&quot;&rdquo;</td><td class="src"><span class="sw s7"></span>Bromley, <em>1897 Bromleys Atlas</em>, p. 19&nbsp;<a class="pglink" href="#src-bromley-1897-bromleys-atlas-p-19" data-scan="bromley-1897-bromleys-atlas-p-19">[page scan]</a></td></tr>
+<tr><td class="num">22</td><td class="quote">&ldquo;&quot;In the 1897 Bromleys Atlas, on 864 Broadway, there is reference to 1 Structure; 4 Story Brick building,&quot;&rdquo;</td><td class="src"><span class="sw s7"></span>Bromley, <em>1897 Bromleys Atlas</em>, p. 19&nbsp;<a class="pglink" href="#src-bromley-1897-bromleys-atlas-p-19" data-scan="bromley-1897-bromleys-atlas-p-19">[page scan]</a></td></tr>
+<tr><td class="num">23</td><td class="quote">&ldquo;&quot;In the 1897 Bromleys Atlas, on 866 Broadway, there is reference to 1 Structure; 4 Story Brick building,&quot;&rdquo;</td><td class="src"><span class="sw s7"></span>Bromley, <em>1897 Bromleys Atlas</em>, p. 19&nbsp;<a class="pglink" href="#src-bromley-1897-bromleys-atlas-p-19" data-scan="bromley-1897-bromleys-atlas-p-19">[page scan]</a></td></tr>
+<tr><td class="num">24</td><td class="quote">&ldquo;&quot;In the 1897 Bromleys Atlas, on 868 Broadway, there is reference to 1 Structure; 4 Story Brick building,&quot;&rdquo;</td><td class="src"><span class="sw s7"></span>Bromley, <em>1897 Bromleys Atlas</em>, p. 19&nbsp;<a class="pglink" href="#src-bromley-1897-bromleys-atlas-p-19" data-scan="bromley-1897-bromleys-atlas-p-19">[page scan]</a></td></tr>
+<tr><td class="num">25</td><td class="quote">&ldquo;&quot;In the 1897 Bromleys Atlas, on 870 Broadway, there is reference to 1 Structure; 4 Story Brick building,&quot;&rdquo;</td><td class="src"><span class="sw s7"></span>Bromley, <em>1897 Bromleys Atlas</em>, p. 19&nbsp;<a class="pglink" href="#src-bromley-1897-bromleys-atlas-p-19" data-scan="bromley-1897-bromleys-atlas-p-19">[page scan]</a></td></tr>
+<tr><td class="num">26</td><td class="quote">&ldquo;&quot;In the 1897 Bromleys Atlas, on 872 Broadway, there is reference to 1 Structure; 4 Story Brick building.&quot;&rdquo;</td><td class="src"><span class="sw s7"></span>Bromley, <em>1897 Bromleys Atlas</em>, p. 19&nbsp;<a class="pglink" href="#src-bromley-1897-bromleys-atlas-p-19" data-scan="bromley-1897-bromleys-atlas-p-19">[page scan]</a></td></tr>
+<tr><td class="num">27</td><td class="quote">&ldquo;&quot;In the 1897 Bromleys Atlas, on 30 East 18th Street, there is reference to 1 Structure; Brick building.&quot;&rdquo;</td><td class="src"><span class="sw s7"></span>Bromley, <em>1897 Bromleys Atlas</em>, p. 19&nbsp;<a class="pglink" href="#src-bromley-1897-bromleys-atlas-p-19" data-scan="bromley-1897-bromleys-atlas-p-19">[page scan]</a></td></tr>
+<tr><td class="num">28</td><td class="quote">&ldquo;&quot;In 1901, a new stone facade with large show windows was constructed at No. 872.&quot;&rdquo;</td><td class="src"><span class="sw s8"></span>LPC, <em>Ladies Mile Historic District Designation Report</em></td></tr>
+<tr><td class="num">29</td><td class="quote">&ldquo;&quot;870 Broadway received its early-20th commercial style facade as the result of a 1915 alteration.&quot;&rdquo;</td><td class="src"><span class="sw s8"></span>LPC, <em>Ladies Mile Historic District Designation Report</em></td></tr>
+<tr><td class="num">30</td><td class="quote">&ldquo;&quot;In the 1916 Atlas of the Borough of Manhattan, on 862 Broadway, there is reference to 1 Structure; 4 Story Brick building with Store and Brick Extension and 1 Story…&rdquo;</td><td class="src"><span class="sw s9"></span>G W Bromley &amp; Co, <em>1916 Atlas of the Borough of Manhattan</em>, p. 55&nbsp;<a class="pglink" href="#src-g-w-bromley-co-1916-atlas-of-the-borough-of-manhattan-p-55" data-scan="g-w-bromley-co-1916-atlas-of-the-borough-of-manhattan-p-55">[page scan]</a></td></tr>
+<tr><td class="num">31</td><td class="quote">&ldquo;&quot;In the 1916 Atlas of the Borough of Manhattan, on 864 Broadway, there is reference to 1 Structure; 4 Story Brick building with Store and 1 Story Brick Extension,&quot;&rdquo;</td><td class="src"><span class="sw s9"></span>G W Bromley &amp; Co, <em>1916 Atlas of the Borough of Manhattan</em>, p. 55&nbsp;<a class="pglink" href="#src-g-w-bromley-co-1916-atlas-of-the-borough-of-manhattan-p-55" data-scan="g-w-bromley-co-1916-atlas-of-the-borough-of-manhattan-p-55">[page scan]</a></td></tr>
+<tr><td class="num">32</td><td class="quote">&ldquo;&quot;In the 1916 Atlas of the Borough of Manhattan, on 866 Broadway, there is reference to 1 Structure; 4 Story Brick building with Store and 1 Story Brick Extension,&quot;&rdquo;</td><td class="src"><span class="sw s9"></span>G W Bromley &amp; Co, <em>1916 Atlas of the Borough of Manhattan</em>, p. 55&nbsp;<a class="pglink" href="#src-g-w-bromley-co-1916-atlas-of-the-borough-of-manhattan-p-55" data-scan="g-w-bromley-co-1916-atlas-of-the-borough-of-manhattan-p-55">[page scan]</a></td></tr>
+<tr><td class="num">33</td><td class="quote">&ldquo;&quot;In the 1916 Atlas of the Borough of Manhattan, on 868 Broadway, there is reference to 1 Structure; 4 Story Brick building with Store and 1 Story Brick Extension.&quot;&rdquo;</td><td class="src"><span class="sw s9"></span>G W Bromley &amp; Co, <em>1916 Atlas of the Borough of Manhattan</em>, p. 55&nbsp;<a class="pglink" href="#src-g-w-bromley-co-1916-atlas-of-the-borough-of-manhattan-p-55" data-scan="g-w-bromley-co-1916-atlas-of-the-borough-of-manhattan-p-55">[page scan]</a></td></tr>
+<tr><td class="num">34</td><td class="quote">&ldquo;&quot;In the 1916 Atlas of the Borough of Manhattan, on 870 Broadway, there is reference to 1 Structure; 4 Story Brick building with Store ,&quot;&rdquo;</td><td class="src"><span class="sw s9"></span>G W Bromley &amp; Co, <em>1916 Atlas of the Borough of Manhattan</em>, p. 55&nbsp;<a class="pglink" href="#src-g-w-bromley-co-1916-atlas-of-the-borough-of-manhattan-p-55" data-scan="g-w-bromley-co-1916-atlas-of-the-borough-of-manhattan-p-55">[page scan]</a></td></tr>
+<tr><td class="num">35</td><td class="quote">&ldquo;&quot;In the 1916 Atlas of the Borough of Manhattan, on 872 Broadway, there is reference to 1 Structure; 4 Story Brick building with Store and Elevators.&quot;&rdquo;</td><td class="src"><span class="sw s9"></span>G W Bromley &amp; Co, <em>1916 Atlas of the Borough of Manhattan</em>, p. 55&nbsp;<a class="pglink" href="#src-g-w-bromley-co-1916-atlas-of-the-borough-of-manhattan-p-55" data-scan="g-w-bromley-co-1916-atlas-of-the-borough-of-manhattan-p-55">[page scan]</a></td></tr>
+<tr><td class="num">36</td><td class="quote">&ldquo;&quot;In the 1916 Atlas of the Borough of Manhattan, on 30 East 18th Street, there is reference to 1 Structure; 4 Story Brick Extension with Store.&quot;&rdquo;</td><td class="src"><span class="sw s9"></span>G W Bromley &amp; Co, <em>1916 Atlas of the Borough of Manhattan</em>, p. 55&nbsp;<a class="pglink" href="#src-g-w-bromley-co-1916-atlas-of-the-borough-of-manhattan-p-55" data-scan="g-w-bromley-co-1916-atlas-of-the-borough-of-manhattan-p-55">[page scan]</a></td></tr>
+<tr><td class="num">37</td><td class="quote">&ldquo;&quot;A ground-story storefront was installed during a 1921 alteration&quot;&rdquo;</td><td class="src"><span class="sw s8"></span>LPC, <em>Ladies Mile Historic District Designation Report</em></td></tr>
+<tr><td class="num">38</td><td class="quote">&ldquo;&quot;remodeled 1921, by John B. Snook &amp; Sons.&quot;&rdquo;</td><td class="src"><span class="sw s2"></span>Dunlap, <em>On Broadway</em>, 1990, p. 114&nbsp;<a class="pglink" href="#src-dunlap-on-broadway-1990-p-114" data-scan="dunlap-on-broadway-1990-p-114">[page scan]</a></td></tr>
+<tr><td class="num">39</td><td class="quote">&ldquo;&quot;In the 1930 Land Book of the Borough of Manhattan, on 862 Broadway, there is reference to 1 Structure; 4 Story Brick building with Store and 1 Story Brick Extension,&quot;&rdquo;</td><td class="src"><span class="sw s10"></span>Bromley, <em>1930 Land Book of the Borough of Manhattan</em>, p. 54&nbsp;<a class="pglink" href="#src-bromley-1930-land-book-of-the-borough-of-manhattan-p-54" data-scan="bromley-1930-land-book-of-the-borough-of-manhattan-p-54">[page scan]</a></td></tr>
+<tr><td class="num">40</td><td class="quote">&ldquo;&quot;In the 1930 Land Book of the Borough of Manhattan, on 864 Broadway, there is reference to 1 Structure; 4 Story Brick building with Store and 1 Story Brick Extension,&quot;&rdquo;</td><td class="src"><span class="sw s10"></span>Bromley, <em>1930 Land Book of the Borough of Manhattan</em>, p. 54&nbsp;<a class="pglink" href="#src-bromley-1930-land-book-of-the-borough-of-manhattan-p-54" data-scan="bromley-1930-land-book-of-the-borough-of-manhattan-p-54">[page scan]</a></td></tr>
+<tr><td class="num">41</td><td class="quote">&ldquo;&quot;In the 1930 Land Book of the Borough of Manhattan, on 866 Broadway, there is reference to 1 Structure; 4 Story Brick building with Store and 1 Story Brick Extension,&quot;&rdquo;</td><td class="src"><span class="sw s10"></span>Bromley, <em>1930 Land Book of the Borough of Manhattan</em>, p. 54&nbsp;<a class="pglink" href="#src-bromley-1930-land-book-of-the-borough-of-manhattan-p-54" data-scan="bromley-1930-land-book-of-the-borough-of-manhattan-p-54">[page scan]</a></td></tr>
+<tr><td class="num">42</td><td class="quote">&ldquo;&quot;In the 1930 Land Book of the Borough of Manhattan, on 868 Broadway, there is reference to 1 Structure; 4 Story Brick building with Store and 1 Story Brick Extension.&quot;&rdquo;</td><td class="src"><span class="sw s10"></span>Bromley, <em>1930 Land Book of the Borough of Manhattan</em>, p. 54&nbsp;<a class="pglink" href="#src-bromley-1930-land-book-of-the-borough-of-manhattan-p-54" data-scan="bromley-1930-land-book-of-the-borough-of-manhattan-p-54">[page scan]</a></td></tr>
+<tr><td class="num">43</td><td class="quote">&ldquo;&quot;In the 1930 Land Book of the Borough of Manhattan, on 870 Broadway, there is reference to 1 Structure; 4 Story Brick building with Store,&quot;&rdquo;</td><td class="src"><span class="sw s10"></span>Bromley, <em>1930 Land Book of the Borough of Manhattan</em>, p. 54&nbsp;<a class="pglink" href="#src-bromley-1930-land-book-of-the-borough-of-manhattan-p-54" data-scan="bromley-1930-land-book-of-the-borough-of-manhattan-p-54">[page scan]</a></td></tr>
+<tr><td class="num">44</td><td class="quote">&ldquo;&quot;In the 1930 Land Book of the Borough of Manhattan, on 872 Broadway, there is reference to 1 Structure; 4 Story Brick building with Store and Elevators.&quot;&rdquo;</td><td class="src"><span class="sw s10"></span>Bromley, <em>1930 Land Book of the Borough of Manhattan</em>, p. 54&nbsp;<a class="pglink" href="#src-bromley-1930-land-book-of-the-borough-of-manhattan-p-54" data-scan="bromley-1930-land-book-of-the-borough-of-manhattan-p-54">[page scan]</a></td></tr>
+<tr><td class="num">45</td><td class="quote">&ldquo;&quot;In the 1930 Land Book of the Borough of Manhattan, on 30 East 18th Street, there is reference to 1 Structure; 4 Story Brick building with Store.&quot;&rdquo;</td><td class="src"><span class="sw s10"></span>Bromley, <em>1930 Land Book of the Borough of Manhattan</em>, p. 54&nbsp;<a class="pglink" href="#src-bromley-1930-land-book-of-the-borough-of-manhattan-p-54" data-scan="bromley-1930-land-book-of-the-borough-of-manhattan-p-54">[page scan]</a></td></tr>
+<tr><td class="num">46</td><td class="quote">&ldquo;&quot;In the 1955 Manhattan Land Book, on 862 Broadway, there is reference to 1 Structure; 4 Story Brick or Stone or Concrete building with Store and Brick or Stone or…&rdquo;</td><td class="src"><span class="sw s11"></span>Bromley, <em>1955 Manhattan Land Book</em>, p. 44&nbsp;<a class="pglink" href="#src-bromley-1955-manhattan-land-book-p-44" data-scan="bromley-1955-manhattan-land-book-p-44">[page scan]</a></td></tr>
+<tr><td class="num">47</td><td class="quote">&ldquo;&quot;In the 1955 Manhattan Land Book, on 864 Broadway, there is reference to 1 Structure; 4 Story Brick or Stone or Concrete building with Store and 1 Story Brick or Stone…&rdquo;</td><td class="src"><span class="sw s11"></span>Bromley, <em>1955 Manhattan Land Book</em>, p. 44&nbsp;<a class="pglink" href="#src-bromley-1955-manhattan-land-book-p-44" data-scan="bromley-1955-manhattan-land-book-p-44">[page scan]</a></td></tr>
+<tr><td class="num">48</td><td class="quote">&ldquo;&quot;In the 1955 Manhattan Land Book, on 866 Broadway, there is reference to 1 Structure; 4 Story Brick or Stone or Concrete building with Store and 1 Story Brick or Stone…&rdquo;</td><td class="src"><span class="sw s11"></span>Bromley, <em>1955 Manhattan Land Book</em>, p. 44&nbsp;<a class="pglink" href="#src-bromley-1955-manhattan-land-book-p-44" data-scan="bromley-1955-manhattan-land-book-p-44">[page scan]</a></td></tr>
+<tr><td class="num">49</td><td class="quote">&ldquo;&quot;In the 1955 Manhattan Land Book, on 868 Broadway, there is reference to 1 Structure; 4 Story Brick or Stone or Concrete building with Store and 1 Story Brick or Stone…&rdquo;</td><td class="src"><span class="sw s11"></span>Bromley, <em>1955 Manhattan Land Book</em>, p. 44&nbsp;<a class="pglink" href="#src-bromley-1955-manhattan-land-book-p-44" data-scan="bromley-1955-manhattan-land-book-p-44">[page scan]</a></td></tr>
+<tr><td class="num">50</td><td class="quote">&ldquo;&quot;In the 1955 Manhattan Land Book, on 870 Broadway, there is reference to 1 Structure; 4 Story Brick or Stone or Concrete building with Store,&quot;&rdquo;</td><td class="src"><span class="sw s11"></span>Bromley, <em>1955 Manhattan Land Book</em>, p. 44&nbsp;<a class="pglink" href="#src-bromley-1955-manhattan-land-book-p-44" data-scan="bromley-1955-manhattan-land-book-p-44">[page scan]</a></td></tr>
+<tr><td class="num">51</td><td class="quote">&ldquo;&quot;In the 1955 Manhattan Land Book, on 872 Broadway, there is reference to 1 Structure; 4 Story Brick or Stone or Concrete building with Store and Elevators.&quot;&rdquo;</td><td class="src"><span class="sw s11"></span>Bromley, <em>1955 Manhattan Land Book</em>, p. 44&nbsp;<a class="pglink" href="#src-bromley-1955-manhattan-land-book-p-44" data-scan="bromley-1955-manhattan-land-book-p-44">[page scan]</a></td></tr>
+<tr><td class="num">52</td><td class="quote">&ldquo;&quot;In the 1955 Manhattan Land Book, on 30 East 18th Street, there is reference to 1 Structure; 4 Story Brick or Stone or Concrete building with Store.&quot;&rdquo;</td><td class="src"><span class="sw s11"></span>Bromley, <em>1955 Manhattan Land Book</em>, p. 44&nbsp;<a class="pglink" href="#src-bromley-1955-manhattan-land-book-p-44" data-scan="bromley-1955-manhattan-land-book-p-44">[page scan]</a></td></tr>
+<tr><td class="num">53</td><td class="quote">&ldquo;&quot;Express Manna Kitchen 28 E 18th St (btwn Broadway &amp; Park Ave) 212-228-1044 www.mannakitchen.com (Gramercy Park; 4/5/6/L/N/Q/R to Union Square) Express Manna Kitchen is…&rdquo;</td><td class="src"><span class="sw s12"></span>Halliday, <em>Zinester&#x27;s Guide to NYC</em>, 2011, p. 42&nbsp;<a class="pglink" href="#src-halliday-zinester-s-guide-to-nyc-2011-p-42" data-scan="halliday-zinester-s-guide-to-nyc-2011-p-42">[page scan]</a></td></tr>
+<tr><td class="num">54</td><td class="quote">&ldquo;&quot;Geox 575 Madison Avenue, at East 57th Street (212) 355-3029 Subway: 4, 5, 6 to 59th Street; N, Q, R to Lexington Avenue- 59th Street; F to Lexington Avenue-63rd Street…&rdquo;</td><td class="src"><span class="sw s13"></span>Berman &amp; Hederman, <em>New York City With Children</em>, 2014, p. 393&nbsp;<a class="pglink" href="#src-berman-hederman-new-york-city-with-children-2014-p-393" data-scan="berman-hederman-new-york-city-with-children-2014-p-393">[page scan]</a></td></tr>
+</tbody></table></div></section>
+
+<h2 class="srcpage" id="sources">Source Pages</h2>
+<p class="note2">13 scanned pages, one per cited source page. Each lists the highlighted quotes drawn from it.</p>
+<section class="srcsec"><h3 class="scanhead"><span id="src-sackersdorff-1815-blue-book-p-3"></span>Sackersdorff, <em>1815 Blue Book</em>, p. 3</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-1">1</a></span></p>
+<figure class="scan"><img id="scan-sackersdorff-1815-blue-book-p-3" src="assets/scans/sackersdorff-1815-blue-book-p-3.jpg" alt="Sackersdorff, 1815 Blue Book, p. 3"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-dunlap-on-broadway-1990-p-114"></span>Dunlap, <em>On Broadway</em>, 1990, p. 114</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-2">2</a> <a href="#hl-38">38</a></span></p>
+<figure class="scan"><img id="scan-dunlap-on-broadway-1990-p-114" src="assets/scans/dunlap-on-broadway-1990-p-114.jpg" alt="Dunlap, On Broadway, 1990, p. 114"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-dunlap-on-broadway-1990-p-115"></span>Dunlap, <em>On Broadway</em>, 1990, p. 115</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-3">3</a></span></p>
+<figure class="scan"><img id="scan-dunlap-on-broadway-1990-p-115" src="assets/scans/dunlap-on-broadway-1990-p-115.jpg" alt="Dunlap, On Broadway, 1990, p. 115"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-perris-1853-perris-maps-p-56"></span>Perris, <em>1853 Perris Maps</em>, p. 56</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-4">4</a> <a href="#hl-5">5</a> <a href="#hl-6">6</a> <a href="#hl-7">7</a> <a href="#hl-8">8</a> <a href="#hl-9">9</a> <a href="#hl-10">10</a></span></p>
+<figure class="scan"><img id="scan-perris-1853-perris-maps-p-56" src="assets/scans/perris-1853-perris-maps-p-56.jpg" alt="Perris, 1853 Perris Maps, p. 56"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-dripps-1867-dripps-plan-p-7"></span>Dripps, <em>1867 Dripps Plan</em>, p. 7</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-11">11</a> <a href="#hl-12">12</a> <a href="#hl-13">13</a> <a href="#hl-14">14</a> <a href="#hl-15">15</a> <a href="#hl-16">16</a> <a href="#hl-17">17</a></span></p>
+<figure class="scan"><img id="scan-dripps-1867-dripps-plan-p-7" src="assets/scans/dripps-1867-dripps-plan-p-7.jpg" alt="Dripps, 1867 Dripps Plan, p. 7"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-putnam-s-sons-ladies-guide-and-city-directory-1885-p-116"></span>Putnam&#x27;s Sons, <em>Ladies Guide and City Directory</em>, 1885, p. 116</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-18">18</a></span></p>
+<figure class="scan"><img id="scan-putnam-s-sons-ladies-guide-and-city-directory-1885-p-116" src="assets/scans/putnam-s-sons-ladies-guide-and-city-directory-1885-p-116.jpg" alt="Putnam&#x27;s Sons, Ladies Guide and City Directory, 1885, p. 116"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-robinson-1885-robinsons-atlas-p-15"></span>Robinson, <em>1885 Robinsons Atlas</em>, p. 15</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-19">19</a> <a href="#hl-20">20</a></span></p>
+<figure class="scan"><img id="scan-robinson-1885-robinsons-atlas-p-15" src="assets/scans/robinson-1885-robinsons-atlas-p-15.jpg" alt="Robinson, 1885 Robinsons Atlas, p. 15"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-bromley-1897-bromleys-atlas-p-19"></span>Bromley, <em>1897 Bromleys Atlas</em>, p. 19</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-21">21</a> <a href="#hl-22">22</a> <a href="#hl-23">23</a> <a href="#hl-24">24</a> <a href="#hl-25">25</a> <a href="#hl-26">26</a> <a href="#hl-27">27</a></span></p>
+<figure class="scan"><img id="scan-bromley-1897-bromleys-atlas-p-19" src="assets/scans/bromley-1897-bromleys-atlas-p-19.jpg" alt="Bromley, 1897 Bromleys Atlas, p. 19"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-g-w-bromley-co-1916-atlas-of-the-borough-of-manhattan-p-55"></span>G W Bromley &amp; Co, <em>1916 Atlas of the Borough of Manhattan</em>, p. 55</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-30">30</a> <a href="#hl-31">31</a> <a href="#hl-32">32</a> <a href="#hl-33">33</a> <a href="#hl-34">34</a> <a href="#hl-35">35</a> <a href="#hl-36">36</a></span></p>
+<figure class="scan"><img id="scan-g-w-bromley-co-1916-atlas-of-the-borough-of-manhattan-p-55" src="assets/scans/g-w-bromley-co-1916-atlas-of-the-borough-of-manhattan-p-55.jpg" alt="G W Bromley &amp; Co, 1916 Atlas of the Borough of Manhattan, p. 55"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-bromley-1930-land-book-of-the-borough-of-manhattan-p-54"></span>Bromley, <em>1930 Land Book of the Borough of Manhattan</em>, p. 54</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-39">39</a> <a href="#hl-40">40</a> <a href="#hl-41">41</a> <a href="#hl-42">42</a> <a href="#hl-43">43</a> <a href="#hl-44">44</a> <a href="#hl-45">45</a></span></p>
+<figure class="scan"><img id="scan-bromley-1930-land-book-of-the-borough-of-manhattan-p-54" src="assets/scans/bromley-1930-land-book-of-the-borough-of-manhattan-p-54.jpg" alt="Bromley, 1930 Land Book of the Borough of Manhattan, p. 54"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-bromley-1955-manhattan-land-book-p-44"></span>Bromley, <em>1955 Manhattan Land Book</em>, p. 44</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-46">46</a> <a href="#hl-47">47</a> <a href="#hl-48">48</a> <a href="#hl-49">49</a> <a href="#hl-50">50</a> <a href="#hl-51">51</a> <a href="#hl-52">52</a></span></p>
+<figure class="scan"><img id="scan-bromley-1955-manhattan-land-book-p-44" src="assets/scans/bromley-1955-manhattan-land-book-p-44.jpg" alt="Bromley, 1955 Manhattan Land Book, p. 44"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-halliday-zinester-s-guide-to-nyc-2011-p-42"></span>Halliday, <em>Zinester&#x27;s Guide to NYC</em>, 2011, p. 42</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-53">53</a></span></p>
+<figure class="scan"><img id="scan-halliday-zinester-s-guide-to-nyc-2011-p-42" src="assets/scans/halliday-zinester-s-guide-to-nyc-2011-p-42.jpg" alt="Halliday, Zinester&#x27;s Guide to NYC, 2011, p. 42"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-berman-hederman-new-york-city-with-children-2014-p-393"></span>Berman &amp; Hederman, <em>New York City With Children</em>, 2014, p. 393</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-54">54</a></span></p>
+<figure class="scan"><img id="scan-berman-hederman-new-york-city-with-children-2014-p-393" src="assets/scans/berman-hederman-new-york-city-with-children-2014-p-393.jpg" alt="Berman &amp; Hederman, New York City With Children, 2014, p. 393"></figure></section>
+</div>
+
+</div>
+<div class="lightbox" hidden><div class="lb-head"><span class="lb-t"></span><button class="lb-btn lb-zoom" type="button">Zoom</button><button class="lb-btn lb-close" type="button">Close &times;</button></div><div class="lb-body"><img alt="Enlarged view"></div></div>
+
+<div class="sp-backdrop" hidden></div>
+<aside class="scanpanel" hidden aria-label="Source page">
+  <div class="sp-head">
+    <div class="sp-title"><span class="sp-cite"></span><span class="sp-q"></span></div>
+    <button class="sp-btn sp-zoom" type="button">Zoom</button>
+    <button class="sp-btn sp-close" type="button" aria-label="Close">&times;</button>
+  </div>
+  <div class="sp-body"><img alt="Source page scan"></div>
+</aside>
+<script>
+(function () {
+  var panel = document.querySelector('.scanpanel'),
+      back  = document.querySelector('.sp-backdrop'),
+      bodyEl= panel.querySelector('.sp-body'),
+      img   = panel.querySelector('.sp-body img'),
+      citeEl= panel.querySelector('.sp-cite'),
+      qEl   = panel.querySelector('.sp-q');
+  function open(slug, label, num) {
+    var full = document.getElementById('scan-' + slug);
+    if (!full) return;
+    if (img.getAttribute('src') !== full.src) img.src = full.src;
+    bodyEl.classList.remove('zoom'); bodyEl.scrollTop = 0;
+    citeEl.innerHTML = label;
+    qEl.textContent = num ? 'Highlighted quote no. ' + num : '';
+    panel.hidden = false; back.hidden = false;
+    requestAnimationFrame(function () { document.body.classList.add('sp-open'); });
+  }
+  function close() {
+    document.body.classList.remove('sp-open');
+    setTimeout(function () { panel.hidden = true; back.hidden = true; }, 220);
+  }
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest) return;
+    var a = e.target.closest('a.srclink, a.pglink');
+    if (a && a.dataset.scan) {
+      e.preventDefault();
+      var head = document.getElementById('src-' + a.dataset.scan),
+          label = head ? head.parentNode.innerHTML.replace(/<span id="src-[^"]*"><\/span>/, '') : '',
+          mk = a.querySelector('mark'), num = '';
+      if (mk && mk.id) num = mk.id.replace('hl-', '');
+      else {
+        var tr = a.closest('tr'), ce = a.closest('.ce');
+        if (tr) num = tr.querySelector('td.num').textContent.trim();
+        else if (ce) num = ce.querySelector('.ce-n').textContent.trim();
+      }
+      open(a.dataset.scan, label, num);
+      return;
+    }
+    if (e.target.closest('.sp-close') || e.target.closest('.sp-backdrop')) close();
+    else if (e.target.closest('.sp-zoom') || e.target === img) bodyEl.classList.toggle('zoom');
+  });
+  var lb = document.querySelector('.lightbox'), lbBody = lb.querySelector('.lb-body'),
+      lbImg = lb.querySelector('.lb-body img'), lbT = lb.querySelector('.lb-t');
+  function lbOpen(slug, label) {
+    var full = document.getElementById('view-' + slug);
+    if (!full) return;
+    if (lbImg.getAttribute('src') !== full.src) lbImg.src = full.src;
+    lbT.innerHTML = label || '';
+    lb.hidden = false;
+    requestAnimationFrame(function () { document.body.classList.add('lb-open'); });
+  }
+  function lbClose() {
+    document.body.classList.remove('lb-open');
+    lbBody.classList.remove('zoom');
+    setTimeout(function () { lb.hidden = true; }, 200);
+  }
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest) return;
+    if (e.target.closest('.lb-close')) { lbClose(); return; }
+    if (e.target.closest('.lb-zoom') || e.target.closest('.lb-body img')) { lbBody.classList.toggle('zoom'); return; }
+    if (e.target.closest('.lightbox') && !e.target.closest('.lb-head')) { lbClose(); return; }
+    if (e.target.closest('.lb-body')) lbClose();
+  });
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest) return;
+    var v = e.target.closest('figure.view');
+    if (v) {
+      var cap = v.querySelector('figcaption b');
+      lbOpen(v.dataset.view, cap ? cap.innerHTML : '');
+    }
+  });
+  // ---- citation column tracks the text ----
+  var col = document.getElementById('chartcol');
+  if (col) {
+    var entryFor = {};
+    Array.prototype.forEach.call(col.querySelectorAll('.ce'), function (ce) {
+      entryFor[ce.querySelector('.ce-n').textContent.trim()] = ce;
+    });
+    var marks = Array.prototype.slice.call(document.querySelectorAll('.wrap mark[id^="hl-"]'));
+    var current = null, touched = 0, selfUntil = 0, hoverNum = null;
+
+    col.addEventListener('scroll', function () {
+      if (Date.now() > selfUntil) touched = Date.now();   // a real scroll by the reader
+    }, { passive: true });
+
+    function activate(num, force) {
+      if (num === current && !force) return;
+      var ce = entryFor[num];
+      if (num !== current) {
+        current = num;
+        Array.prototype.forEach.call(col.querySelectorAll('.ce.active'), function (e) { e.classList.remove('active'); });
+        Array.prototype.forEach.call(document.querySelectorAll('mark.reading'), function (m) { m.classList.remove('reading'); });
+        if (ce) {
+          ce.classList.add('active');
+          var mk = document.getElementById('hl-' + num);
+          if (mk) mk.classList.add('reading');
+        }
+      }
+      if (!ce) return;
+      if (getComputedStyle(col).position !== 'sticky') return;   // stacked layout: don't hijack scrolling
+      if (!force && Date.now() - touched < 2000) return;         // reader is browsing the column
+      var top = ce.offsetTop - col.clientHeight * 0.38;
+      selfUntil = Date.now() + 900;                      // our own smooth scroll, not the reader's
+      col.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+    }
+
+    // ---- pointing at a highlight sends the column straight to its citation ----
+    var textcol = document.querySelector('.wrap');
+    if (textcol) {
+      textcol.addEventListener('mouseover', function (e) {
+        var m = e.target.closest ? e.target.closest('mark[id^="hl-"]') : null;
+        if (!m) return;
+        var n = m.id.replace('hl-', '');
+        if (n === hoverNum) return;        // bubbling from inside the same mark
+        hoverNum = n;
+        activate(n, true);                 // deliberate aim beats the scroll guard
+      });
+      textcol.addEventListener('mouseout', function (e) {
+        var m = e.target.closest ? e.target.closest('mark[id^="hl-"]') : null;
+        if (!m) return;
+        if (e.relatedTarget && m.contains(e.relatedTarget)) return;   // still inside the same mark
+        hoverNum = null;
+      });
+    }
+
+    function pick() {
+      if (hoverNum) return;               // the cursor is aiming; don't argue with it
+      var best = null, bestTop = Infinity, fallback = null, fallbackTop = -Infinity;
+      for (var i = 0; i < marks.length; i++) {
+        var r = marks[i].getBoundingClientRect();
+        if (r.bottom < 0 || r.top > window.innerHeight) continue;
+        if (r.top >= 0 && r.top < bestTop) { best = marks[i]; bestTop = r.top; }
+        else if (r.top < 0 && r.top > fallbackTop) { fallback = marks[i]; fallbackTop = r.top; }
+      }
+      var m = best || fallback;
+      if (m) activate(m.id.replace('hl-', ''));
+    }
+
+    var ticking = false;
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () { ticking = false; pick(); });
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    pick();
+  }
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { close(); if (!lb.hidden) lbClose(); }
+  });
+})();
+</script>
+
+</body>
+</html>
