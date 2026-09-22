@@ -31,6 +31,7 @@ Because both versions draw on one pool of scans, a page added for either one is 
 | `index.html` | The document, 121 KB. |
 | `assets/scans/` | 13 source-page scans, one per cited page, named by citation. |
 | `assets/media/skyline.jpg` | The line-drawn skyline used as the page ground. |
+| `assets/media/1-3-union-square-west-2.mp3` | The audio track, 14 min 56 s. |
 | `1-3-union-square-west-2.pdf` | Print/offline version, 33 pages, scans included as an appendix. |
 | `.nojekyll` | Stops GitHub Pages' Jekyll build from touching the asset folders. |
 
@@ -75,9 +76,9 @@ Notes for the record:
   different editions of the same sheet, not duplicates: the 1930 shows the Central Mercantile
   Building at block 820 where the 1955 shows J. C. Penney. The citation page numbers, 53 and 43, are
   the volumes' own sequential pages, not the plate numbers.
-- **No audio track yet.** Version 1's 14 min 50 s recording narrates different prose, so the player
-  is omitted rather than filled with the wrong take. Drop `1-3-union-square-west-2.mp3` into
-  `assets/media/` and rebuild to add it.
+- **The audio is this version's own recording**, 14 min 56 s — not version 1's 14 min 50 s take,
+  which narrates the other text. Supplied at 320 kbps stereo and encoded down to the series profile
+  (mono, 32 kHz, 40 kbps) for the web: 35 MB to 4.3 MB, with no metadata carried over.
 
 To replace or add a scan, drop it into `assets/scans/` named exactly as the citation reads and
 rebuild.
