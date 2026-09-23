@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>33 East 17th Street — Italics Highlighted</title>
+<style>
+
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; margin: 0; padding: 40px 24px 64px;
+         background:#f8f5e7; color:#1a1a1a; font-family: Georgia, "Times New Roman", serif; font-size:17px; line-height:1.7; }
+  .layout { display: flex; align-items: flex-start; gap: 30px; max-width: 1580px; margin: 0 auto; }
+  .chartcol { flex: 0 0 320px; width: 320px; position: sticky; top: 28px; align-self: flex-start;
+              max-height: calc(100vh - 56px); overflow-y: auto; padding: 0 4px 0 18px;
+              border-left: 1px solid #e2ddc8; background: rgba(248,245,231,.92);
+              font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  .cc-head { position: sticky; top: 0; background: #f8f5e7; padding-bottom: 8px; margin-bottom: 4px;
+             border-bottom: 1px solid #e2ddc8; z-index: 2; }
+  .cc-title { display: block; font-size: 11px; font-weight: 600; letter-spacing: .05em;
+              text-transform: uppercase; color: #888; }
+  .cc-sub { display: block; font-size: 10.5px; color: #aaa; margin-top: 3px; line-height: 1.35; }
+  .cc-sec { font-size: 10.5px; font-weight: 600; letter-spacing: .03em; text-transform: uppercase;
+            color: #999; margin: 16px 0 6px; }
+  .ce { display: flex; gap: 7px; align-items: baseline; padding: 6px 0; border-bottom: 1px solid #ebe6d6; }
+  .ce-n { flex: 0 0 22px; text-align: right; font-size: 10px; color: #bbb; text-decoration: none; }
+  .ce-n:hover { color: #3b6ea5; }
+  .ce .sw { flex: 0 0 9px; width: 9px; height: 9px; transform: translateY(1px); }
+  .ce-b { min-width: 0; }
+  .ce-q { font-size: 11.5px; line-height: 1.4; color: #333; }
+  .ce-s { font-size: 10.5px; line-height: 1.4; color: #999; margin-top: 2px; }
+  .ce { border-left: 2px solid transparent; padding-left: 6px; transition: background .18s ease, border-color .18s ease; }
+  .ce.active { background: rgba(255,255,255,.75); border-left-color: #3b6ea5; }
+  .ce.active .ce-n { color: #3b6ea5; font-weight: 600; }
+  .ce.active .ce-q { color: #111; }
+  mark.reading { box-shadow: 0 0 0 2px rgba(59,110,165,.55); border-radius: 3px; }
+  .chartcol.on-left { border-left: none; border-right: 1px solid #e2ddc8; padding: 0 18px 0 4px; }
+  .rail.on-right { padding: 0 4px 0 4px; }
+  .chartcol::-webkit-scrollbar { width: 7px; }
+  .chartcol::-webkit-scrollbar-thumb { background: #dcdcdc; border-radius: 4px; }
+  .chart-print { display: none; }
+  @media (max-width: 1360px) {
+    .chartcol { position: static; width: 100%; flex: none; max-height: none; border-left: none;
+                border-top: 1px solid #ececec; padding: 18px 0 0; margin-top: 26px; }
+    .layout { flex-wrap: wrap; }
+    .chartcol .ce { max-width: 820px; }
+  }
+  .wrap { flex: 1 1 auto; min-width: 0; max-width: 820px; }
+  .rail { flex: 0 0 262px; width: 262px; position: sticky; top: 28px; align-self: flex-start;
+          max-height: calc(100vh - 56px); overflow-y: auto; padding-right: 4px;
+          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  .rail-title { font-size: 11px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase;
+                color: #888; margin: 0 0 10px; }
+  figure.view { margin: 0 0 16px; cursor: zoom-in; }
+  figure.view img { display: block; width: 100%; border: 1px solid #e0e0e0; border-radius: 4px; }
+  figure.view:hover img { border-color: #9c9c9c; }
+  figure.view figcaption { margin-top: 5px; font-size: 11px; line-height: 1.42; color: #8a8a8a; }
+  figure.view figcaption b { display: block; font-weight: 600; color: #444; }
+  .rail-foot { font-size: 10.5px; color: #aaa; margin: 2px 0 0; }
+  .rail::-webkit-scrollbar { width: 7px; }
+  .rail::-webkit-scrollbar-thumb { background: #dcdcdc; border-radius: 4px; }
+  @media (max-width: 1080px) {
+    .layout { flex-direction: column; gap: 18px; }
+    .rail { position: static; width: 100%; flex: none; max-height: none; display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 14px; }
+    .rail-title, .rail-foot { grid-column: 1 / -1; }
+  }
+  /* full-bleed lightbox */
+  .lightbox { position: fixed; inset: 0; z-index: 60; background: rgba(16,14,13,.93);
+              display: flex; flex-direction: column; opacity: 0; transition: opacity .18s ease; }
+  body.lb-open .lightbox { opacity: 1; }
+  .lightbox[hidden] { display: none !important; }
+  .lb-head { display: flex; align-items: center; gap: 12px; padding: 12px 16px; color: #eee;
+             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 13px; }
+  .lb-head .lb-t { flex: 1; }
+  .lb-btn { border: 1px solid rgba(255,255,255,.28); background: rgba(255,255,255,.08); color: #eee;
+            border-radius: 5px; cursor: pointer; font-size: 13px; line-height: 1; padding: 7px 10px; }
+  .lb-btn:hover { background: rgba(255,255,255,.18); }
+  .lb-body { flex: 1; overflow: auto; display: flex; align-items: center; justify-content: center; padding: 0 16px 18px; }
+  .lb-body img { max-width: 100%; max-height: 100%; object-fit: contain; cursor: zoom-in; }
+  .lb-body.zoom { align-items: flex-start; justify-content: flex-start; }
+  .lb-body.zoom img { max-width: none; max-height: none; width: 220%; cursor: zoom-out; }
+  h1 { font-size: 26px; line-height: 1.25; margin: 0 0 6px; font-weight: 700;
+       letter-spacing: -.012em; color:#1d1a12; }
+  .sub { font-family: Georgia, serif; font-style: italic; font-size: 15px; color: #555; margin: 0 0 8px; }
+  h2 { font-size: 15px; font-weight: 700; letter-spacing: .085em; text-transform: uppercase;
+       color: #6d5a33; margin: 52px 0 16px; padding-bottom: 7px; position: relative;
+       border-bottom: 1px solid #e3dcc6; }
+  h2::after { content: ""; position: absolute; left: 0; bottom: -1px; width: 58px; height: 2px;
+              background: #b39445; }
+  .wrap > h2:first-of-type { margin-top: 34px; }
+  h3 { font-size: 16px; margin: 30px 0 10px; }
+  p { margin: 0 0 20px; }
+  hr { border: none; border-top: 1px solid #e2ddc8; margin: 34px 0 28px; }
+  .note { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 13px; color:#666;
+          margin: 0 0 28px; padding-bottom: 20px; border-bottom: 1px solid #e2ddc8; }
+  .note2 { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 13px; color:#666; margin: 0 0 18px; }
+  mark { color: inherit; font-style: italic; padding: 1px 2px; border-radius: 2px;
+         box-decoration-break: clone; -webkit-box-decoration-break: clone; background:#e4e4e4; }
+  a.srclink { text-decoration: none; color: inherit; cursor: zoom-in; }
+  a.srclink:hover mark { outline: 2px solid rgba(0,0,0,.35); outline-offset: 1px; }
+  .tablewrap { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+          font-size: 13.5px; line-height: 1.55; }
+  th, td { text-align: left; vertical-align: top; padding: 9px 12px; border-bottom: 1px solid #ebe6d6; }
+  thead th { background:#efece0; border-bottom: 1px solid #ddd8c6; font-weight: 600; }
+  td.num, th.num { width: 34px; color:#888; text-align: right; padding-right: 6px; }
+  td.quote { width: 56%; }
+  td.src { color:#444; }
+  tbody tr:nth-child(even) { background:rgba(255,255,255,.45); }
+  h3.csec { font-size: 14px; margin: 26px 0 8px; color:#333;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  .nosrc { color:#999; font-style: italic; }
+  a.pglink, .pglink { font-size: 11px; color:#3b6ea5; text-decoration: none; white-space: nowrap; }
+  .backlinks a { display:inline-block; margin: 0 3px; color:#3b6ea5; text-decoration:none; }
+  .legend { margin: 0 0 30px; padding: 16px 18px; border: 1px solid #e2ddc8; border-radius: 6px; background:rgba(255,253,244,.82);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  .legend-title { font-size: 12px; font-weight: 600; letter-spacing:.04em; text-transform: uppercase; color:#777; margin-bottom: 10px; }
+  .legend-title .lk { text-transform: none; letter-spacing: 0; font-weight: 400; color:#999; }
+  .legend ul { list-style:none; margin:0; padding:0; display:grid; grid-template-columns: repeat(auto-fill, minmax(290px,1fr)); gap: 5px 20px; }
+  .legend li { display:flex; align-items:baseline; gap:8px; font-size:12.5px; line-height:1.45; }
+  .sw { display:inline-block; width:13px; height:13px; border-radius:3px; flex:0 0 13px;
+        border:1px solid rgba(0,0,0,.14); transform: translateY(2px); }
+  td.src .sw { margin-right: 6px; }
+  .ct { color:#999; } .has { color:#3b6ea5; }
+  .pg { color:#8a8272; white-space: nowrap; }
+  section.audio { margin: 0 0 30px; padding: 14px 18px 16px; border: 1px solid #e2ddc8; border-radius: 6px;
+                  background: rgba(255,253,244,.82); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  .audio-label { font-size: 12px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase;
+                 color: #777; margin-bottom: 10px; }
+  .audio-meta { font-weight: 400; letter-spacing: 0; text-transform: none; color: #aaa; margin-left: 4px; }
+  section.audio audio { width: 100%; display: block; }
+  .audio-fallback { display: none; font-size: 12.5px; color: #666; margin: 0; }
+  section.srcsec { margin: 0 0 34px; }
+  h3.scanhead { font-size: 14.5px; margin: 26px 0 6px;
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  figure.scan { margin: 8px 0 0; }
+  figure.scan img { width: 100%; border: 1px solid #ddd; border-radius: 4px; }
+
+  mark.s1, .sw.s1 { background: #75bd99; }
+  mark.s2, .sw.s2 { background: #faf038; }
+  mark.s3, .sw.s3 { background: #68ee68; }
+  mark.s4, .sw.s4 { background: #e27efc; }
+  mark.s5, .sw.s5 { background: #ebebd6; }
+  mark.s6, .sw.s6 { background: #38b6fa; }
+  mark.s7, .sw.s7 { background: #d4a5d4; }
+  mark.s8, .sw.s8 { background: #faa338; }
+  mark.s9, .sw.s9 { background: #fc7e7e; }
+  mark.s10, .sw.s10 { background: #38fab6; }
+  mark.s11, .sw.s11 { background: #cc9966; }
+  mark.s12, .sw.s12 { background: #a3cc66; }
+  mark.s13, .sw.s13 { background: #fc7ec3; }
+  mark.s14, .sw.s14 { background: #8dbac8; }
+  mark.s15, .sw.s15 { background: #38f0fa; }
+  mark.s0, .sw.s0 { background: #e4e4e4; }
+
+  body::after { content: ""; position: fixed; left: 0; right: 0; bottom: 0; height: 62vh; z-index: -1; pointer-events: none; opacity: .5; background: url(assets/media/skyline.jpg) bottom center / 100% auto no-repeat; -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 42%, #000 100%); mask-image: linear-gradient(to bottom, transparent 0%, #000 42%, #000 100%); }
+
+
+  .sp-backdrop { position: fixed; inset: 0; background: rgba(20,20,20,.28); opacity: 0; transition: opacity .18s ease; z-index: 40; }
+  body.sp-open .sp-backdrop { opacity: 1; }
+  .scanpanel { position: fixed; top:0; right:0; height:100%; width: min(46vw, 620px); background:#fffdf4;
+               border-left: 1px solid #ddd; box-shadow: -8px 0 26px rgba(0,0,0,.13); transform: translateX(101%);
+               transition: transform .22s ease; z-index: 41; display:flex; flex-direction:column;
+               font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  body.sp-open .scanpanel { transform: translateX(0); }
+  .scanpanel[hidden], .sp-backdrop[hidden] { display: none !important; }
+  .sp-head { display:flex; align-items:flex-start; gap:10px; padding:14px 16px; border-bottom:1px solid #eee; }
+  .sp-title { font-size:13px; line-height:1.4; color:#222; flex:1; }
+  .sp-title .sp-q { display:block; color:#777; font-size:11.5px; margin-top:3px; }
+  .sp-btn { border:1px solid #ddd; background:#fafafa; border-radius:5px; cursor:pointer; font-size:13px;
+            line-height:1; padding:6px 9px; color:#444; }
+  .sp-btn:hover { background:#f0f0f0; }
+  .sp-body { flex:1; overflow:auto; padding:12px; background:#efece0; }
+  .sp-body img { display:block; width:100%; border:1px solid #ddd; background:#fff; cursor: zoom-in; }
+  .sp-body.zoom img { width:200%; max-width:none; cursor: zoom-out; }
+  @media (max-width: 820px) { .scanpanel { width:100%; } }
+  @media (max-width: 700px) { body { padding: 16px 10px 40px; } .wrap { padding: 24px 18px 32px; } }
+  @page { size: Letter; margin: 0.75in 0.7in; }
+  @media print {
+    body { padding:0; font-size:11.5pt; line-height:1.55; background:#fff; }
+    body::before { display: none; }
+    .wrap { max-width:none; background:none; padding:0; border-radius:0; box-shadow:none; }
+    .layout { display: block; }
+    .rail { position: static; width: 100%; max-height: none; overflow: visible; display: grid;
+            grid-template-columns: 1fr 1fr; gap: 12px; margin: 0 0 18px; }
+    .rail-title { grid-column: 1 / -1; } .rail-foot { display: none; }
+    figure.view { break-inside: avoid; }
+    .lightbox, .chartcol { display: none !important; }
+    .chart-print { display: block; }
+    h1 { font-size:17pt; } h2 { font-size:10.5pt; letter-spacing:.08em; break-after: avoid; } h3 { font-size:12pt; break-after: avoid; }
+    h2#citations, h2.srcpage { break-before: page; }
+    p { orphans:3; widows:3; }
+    table { font-size:8.6pt; line-height:1.4; } th,td { padding:5px 7px; }
+    thead { display: table-header-group; } tr { break-inside: avoid; }
+    .tablewrap { overflow: visible; }
+    .legend { break-inside: avoid; padding:10px 12px; margin-bottom:20px; }
+    .legend ul { grid-template-columns: 1fr 1fr; gap:3px 16px; } .legend li { font-size:8.4pt; }
+    .sw { width:10px; height:10px; flex:0 0 10px; }
+    section.srcsec { break-inside: avoid; break-before: page; }
+    figure.scan { break-inside: avoid; }
+    a.srclink, a.pglink, .backlinks a { color: inherit; }
+    .scanpanel, .sp-backdrop { display:none !important; }
+    section.audio audio { display: none; }
+    .audio-fallback { display: block; }
+    section.audio { break-inside: avoid; }
+  }
+
+</style>
+</head>
+<body>
+<div class="layout">
+<aside class="chartcol on-left" id="chartcol" aria-label="Citation chart">
+<div class="cc-head"><span class="cc-title">Citation chart</span><span class="cc-sub">87 quotes &middot; click a number to jump to it in the text, or <i>scan</i> to open the source page</span></div>
+<div class="cc-sec">I. Invocation</div>
+<div class="ce"><a class="ce-n" href="#hl-1">1</a><span class="sw s1"></span><div class="ce-b"><div class="ce-q">&ldquo;33 East 17th Street&rdquo;</div><div class="ce-s">Egan, <em>Pop Culture New York City</em>, 2018, p. 124 <a class="pglink" href="#src-egan-pop-culture-new-york-city-2018-p-124" data-scan="egan-pop-culture-new-york-city-2018-p-124">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-2">2</a><span class="sw s2"></span><div class="ce-b"><div class="ce-q">&ldquo;East 18th Street&rdquo;</div><div class="ce-s">Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 291 <a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-291" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-291">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-3">3</a><span class="sw s3"></span><div class="ce-b"><div class="ce-q">&ldquo;Was built in 1881.&rdquo;</div><div class="ce-s">Unknown Author, <em>Landmarks Preservation Commission</em>, p. 1 <a class="pglink" href="#src-unknown-author-landmarks-preservation-commission-p-1" data-scan="unknown-author-landmarks-preservation-commission-p-1">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-4">4</a><span class="sw s4"></span><div class="ce-b"><div class="ce-q">&ldquo;William Schickel&rdquo;</div><div class="ce-s">AIA, <em>AIA Edition 3</em>, 1988, p. 186 <a class="pglink" href="#src-aia-aia-edition-3-1988-p-186" data-scan="aia-aia-edition-3-1988-p-186">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-5">5</a><span class="sw s2"></span><div class="ce-b"><div class="ce-q">&ldquo;BARNES &amp; NOBLE, FORMERLY CENTURY BUILDING&rdquo;</div><div class="ce-s">Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 291 <a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-291" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-291">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-6">6</a><span class="sw s4"></span><div class="ce-b"><div class="ce-q">&ldquo;33 East 17th St., bet. Park Ave. S. and Broadway to W. 18th St.&rdquo;</div><div class="ce-s">AIA, <em>AIA Edition 3</em>, 1988, p. 186 <a class="pglink" href="#src-aia-aia-edition-3-1988-p-186" data-scan="aia-aia-edition-3-1988-p-186">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-7">7</a><span class="sw s5"></span><div class="ce-b"><div class="ce-q">&ldquo;red-brick-and-limestone Queen Anle pile comes straight out of Victorian London&rdquo;</div><div class="ce-s">Morrone, <em>Architectural Guidebook</em>, 1994, p. 116 <a class="pglink" href="#src-morrone-architectural-guidebook-1994-p-116" data-scan="morrone-architectural-guidebook-1994-p-116">scan</a></div></div></div>
+<div class="cc-sec">II. Of Style, and the Ghost of an Age</div>
+<div class="ce"><a class="ce-n" href="#hl-8">8</a><span class="sw s6"></span><div class="ce-b"><div class="ce-q">&ldquo;Queen-Anne, neo-Grec: Secondary Façade 18th Street&rdquo;</div><div class="ce-s">LPC, <em>Union Square</em>, 1881, p. 1 <a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-9">9</a><span class="sw s2"></span><div class="ce-b"><div class="ce-q">&ldquo;distinguished by its picturesque mixture of seventeenth- and eighteenth-century English…&rdquo;</div><div class="ce-s">Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 291 <a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-291" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-291">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-10">10</a><span class="sw s2"></span><div class="ce-b"><div class="ce-q">&ldquo;Although classical details are commonly used (such as the Jacobean doorway), these are…&rdquo;</div><div class="ce-s">Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 291 <a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-291" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-291">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-11">11</a><span class="sw s2"></span><div class="ce-b"><div class="ce-q">&ldquo;Championed by such artists and writers as James McNeill Whistler and Oscar Wilde, the Queen…&rdquo;</div><div class="ce-s">Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 291 <a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-291" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-291">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-12">12</a><span class="sw s2"></span><div class="ce-b"><div class="ce-q">&ldquo;The Century Building is one of the few surviving commercial examples of the Queen Anne…&rdquo;</div><div class="ce-s">Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 291 <a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-291" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-291">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-13">13</a><span class="sw s5"></span><div class="ce-b"><div class="ce-q">&ldquo;one of the few extant major Queen Anne buildings in Manhattan&rdquo;</div><div class="ce-s">Morrone, <em>Architectural Guidebook</em>, 1994, p. 116 <a class="pglink" href="#src-morrone-architectural-guidebook-1994-p-116" data-scan="morrone-architectural-guidebook-1994-p-116">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-14">14</a><span class="sw s7"></span><div class="ce-b"><div class="ce-q">&ldquo;Queen Anne-style commercial buildings are rare in NYC.&rdquo;</div><div class="ce-s">Greene, <em>New York for New Yorkers</em>, 2001, p. 32 <a class="pglink" href="#src-greene-new-york-for-new-yorkers-2001-p-32" data-scan="greene-new-york-for-new-yorkers-2001-p-32">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-15">15</a><span class="sw s8"></span><div class="ce-b"><div class="ce-q">&ldquo;The red brick Century Building is a rare New York example of a Queen Anne- style commercial…&rdquo;</div><div class="ce-s">Postal &amp; Dolkart, <em>Guide to New York City Landmarks</em>, 2009, p. 76 <a class="pglink" href="#src-postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76" data-scan="postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-16">16</a><span class="sw s2"></span><div class="ce-b"><div class="ce-q">&ldquo;William Schickel might have used the Queen Anne style, which was common in domestic…&rdquo;</div><div class="ce-s">Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 291 <a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-291" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-291">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-17">17</a><span class="sw s2"></span><div class="ce-b"><div class="ce-q">&ldquo;The Union Square area was booming in the last quarter of the nineteenth century. Unusual or…&rdquo;</div><div class="ce-s">Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 291 <a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-291" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-291">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-18">18</a><span class="sw s5"></span><div class="ce-b"><div class="ce-q">&ldquo;Gramercy apartments (1883. G. W da Cunha, 8.7) at Gramercy Park&rdquo;</div><div class="ce-s">Morrone, <em>Architectural Guidebook</em>, 1994, p. 116 <a class="pglink" href="#src-morrone-architectural-guidebook-1994-p-116" data-scan="morrone-architectural-guidebook-1994-p-116">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-19">19</a><span class="sw s5"></span><div class="ce-b"><div class="ce-q">&ldquo;former Mercantile Exchange (1884, Thomas R. Jackson, 3.12) in TriBeCa.&rdquo;</div><div class="ce-s">Morrone, <em>Architectural Guidebook</em>, 1994, p. 116 <a class="pglink" href="#src-morrone-architectural-guidebook-1994-p-116" data-scan="morrone-architectural-guidebook-1994-p-116">scan</a></div></div></div>
+<div class="cc-sec">III. The Body of Color</div>
+<div class="ce"><a class="ce-n" href="#hl-20">20</a><span class="sw s9"></span><div class="ce-b"><div class="ce-q">&ldquo;Warm red brick, crisp bluestone trim&rdquo;</div><div class="ce-s">Hennessy, <em>Walking Broadway</em>, 2020, p. 96 <a class="pglink" href="#src-hennessy-walking-broadway-2020-p-96" data-scan="hennessy-walking-broadway-2020-p-96">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-21">21</a><span class="sw s6"></span><div class="ce-b"><div class="ce-q">&ldquo;Façade Color_Brick Red - 196 47 69&rdquo;</div><div class="ce-s">LPC, <em>Union Square</em>, 1881, p. 1 <a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-22">22</a><span class="sw s6"></span><div class="ce-b"><div class="ce-q">&ldquo;Base Color_Crystal - 213 213 213&rdquo;</div><div class="ce-s">LPC, <em>Union Square</em>, 1881, p. 1 <a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-23">23</a><span class="sw s6"></span><div class="ce-b"><div class="ce-q">&ldquo;Running Bond&rdquo;</div><div class="ce-s">LPC, <em>Union Square</em>, 1881, p. 1 <a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-24">24</a><span class="sw s6"></span><div class="ce-b"><div class="ce-q">&ldquo;Wyoming Bluestone&rdquo;</div><div class="ce-s">LPC, <em>Union Square</em>, 1881, p. 1 <a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-25">25</a><span class="sw s4"></span><div class="ce-b"><div class="ce-q">&ldquo;red brick and whitestone charmer&rdquo;</div><div class="ce-s">AIA, <em>AIA Edition 3</em>, 1988, p. 186 <a class="pglink" href="#src-aia-aia-edition-3-1988-p-186" data-scan="aia-aia-edition-3-1988-p-186">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-26">26</a><span class="sw s6"></span><div class="ce-b"><div class="ce-q">&ldquo;Brick, Terra Cotta, Wyoming Bluestone, Iron&rdquo;</div><div class="ce-s">LPC, <em>Union Square</em>, 1881, p. 1 <a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-27">27</a><span class="sw s6"></span><div class="ce-b"><div class="ce-q">&ldquo;Red Brick, Wyoming Bluestone&rdquo;</div><div class="ce-s">LPC, <em>Union Square</em>, 1881, p. 1 <a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-28">28</a><span class="sw s8"></span><div class="ce-b"><div class="ce-q">&ldquo;to house the prestigious Century Publishing Company&rdquo;</div><div class="ce-s">Postal &amp; Dolkart, <em>Guide to New York City Landmarks</em>, 2009, p. 76 <a class="pglink" href="#src-postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76" data-scan="postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-29">29</a><span class="sw s6"></span><div class="ce-b"><div class="ce-q">&ldquo;Rusticated Brick Pilasters&rdquo;</div><div class="ce-s">LPC, <em>Union Square</em>, 1881, p. 1 <a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">scan</a></div></div></div>
+<div class="cc-sec">The Door</div>
+<div class="ce"><a class="ce-n" href="#hl-30">30</a><span class="sw s6"></span><div class="ce-b"><div class="ce-q">&ldquo;3 Bays&rdquo;</div><div class="ce-s">LPC, <em>Union Square</em>, 1881, p. 1 <a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-31">31</a><span class="sw s6"></span><div class="ce-b"><div class="ce-q">&ldquo;Pedimented&rdquo;</div><div class="ce-s">LPC, <em>Union Square</em>, 1881, p. 1 <a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-32">32</a><span class="sw s6"></span><div class="ce-b"><div class="ce-q">&ldquo;Arched&rdquo;</div><div class="ce-s">LPC, <em>Union Square</em>, 1881, p. 1 <a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-33">33</a><span class="sw s6"></span><div class="ce-b"><div class="ce-q">&ldquo;Fanlight&rdquo;</div><div class="ce-s">LPC, <em>Union Square</em>, 1881, p. 1 <a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-34">34</a><span class="sw s6"></span><div class="ce-b"><div class="ce-q">&ldquo;Tuscan Pilasters&rdquo;</div><div class="ce-s">LPC, <em>Union Square</em>, 1881, p. 1 <a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-35">35</a><span class="sw s6"></span><div class="ce-b"><div class="ce-q">&ldquo;Console Bracket Capital&rdquo;</div><div class="ce-s">LPC, <em>Union Square</em>, 1881, p. 1 <a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-36">36</a><span class="sw s6"></span><div class="ce-b"><div class="ce-q">&ldquo;Cast Iron Ornament&rdquo;</div><div class="ce-s">LPC, <em>Union Square</em>, 1881, p. 1 <a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-37">37</a><span class="sw s9"></span><div class="ce-b"><div class="ce-q">&ldquo;crisply carved stone surround the ground floor entrance.&rdquo;</div><div class="ce-s">Hennessy, <em>Walking Broadway</em>, 2020, p. 96 <a class="pglink" href="#src-hennessy-walking-broadway-2020-p-96" data-scan="hennessy-walking-broadway-2020-p-96">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-38">38</a><span class="sw s2"></span><div class="ce-b"><div class="ce-q">&ldquo;Jacobean doorway&rdquo;</div><div class="ce-s">Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 291 <a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-291" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-291">scan</a></div></div></div>
+<div class="cc-sec">The Window That Leans Toward the World</div>
+<div class="ce"><a class="ce-n" href="#hl-39">39</a><span class="sw s6"></span><div class="ce-b"><div class="ce-q">&ldquo;2-story Oriel&rdquo;</div><div class="ce-s">LPC, <em>Union Square</em>, 1881, p. 1 <a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-40">40</a><span class="sw s9"></span><div class="ce-b"><div class="ce-q">&ldquo;two-story oriel window give this Queen Anne style commercial building a welcoming domestic…&rdquo;</div><div class="ce-s">Hennessy, <em>Walking Broadway</em>, 2020, p. 96 <a class="pglink" href="#src-hennessy-walking-broadway-2020-p-96" data-scan="hennessy-walking-broadway-2020-p-96">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-41">41</a><span class="sw s2"></span><div class="ce-b"><div class="ce-q">&ldquo;The tall oriel window, gambrel roof, prominent chimneys, and molded terra cotta ornament…&rdquo;</div><div class="ce-s">Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 291 <a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-291" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-291">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-42">42</a><span class="sw s6"></span><div class="ce-b"><div class="ce-q">&ldquo;Segmental Arch Lintel (3-5)&rdquo;</div><div class="ce-s">LPC, <em>Union Square</em>, 1881, p. 1 <a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-43">43</a><span class="sw s6"></span><div class="ce-b"><div class="ce-q">&ldquo;Stone Keystone&rdquo;</div><div class="ce-s">LPC, <em>Union Square</em>, 1881, p. 1 <a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-44">44</a><span class="sw s6"></span><div class="ce-b"><div class="ce-q">&ldquo;Window Panes: [1/1] (w/ Transom)&rdquo;</div><div class="ce-s">LPC, <em>Union Square</em>, 1881, p. 1 <a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">scan</a></div></div></div>
+<div class="cc-sec">The Carven Feast</div>
+<div class="ce"><a class="ce-n" href="#hl-45">45</a><span class="sw s9"></span><div class="ce-b"><div class="ce-q">&ldquo;Richly detailed terra-cotta panels and crisply carved stone surround the ground floor…&rdquo;</div><div class="ce-s">Hennessy, <em>Walking Broadway</em>, 2020, p. 96 <a class="pglink" href="#src-hennessy-walking-broadway-2020-p-96" data-scan="hennessy-walking-broadway-2020-p-96">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-46">46</a><span class="sw s6"></span><div class="ce-b"><div class="ce-q">&ldquo;Garlands, Shells, Grotesques&rdquo;</div><div class="ce-s">LPC, <em>Union Square</em>, 1881, p. 1 <a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-47">47</a><span class="sw s6"></span><div class="ce-b"><div class="ce-q">&ldquo;Swags&rdquo;</div><div class="ce-s">LPC, <em>Union Square</em>, 1881, p. 1 <a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-48">48</a><span class="sw s6"></span><div class="ce-b"><div class="ce-q">&ldquo;Dentil Course&rdquo;</div><div class="ce-s">LPC, <em>Union Square</em>, 1881, p. 1 <a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-49">49</a><span class="sw s6"></span><div class="ce-b"><div class="ce-q">&ldquo;Egg &amp; Dart Course&rdquo;</div><div class="ce-s">LPC, <em>Union Square</em>, 1881, p. 1 <a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-50">50</a><span class="sw s8"></span><div class="ce-b"><div class="ce-q">&ldquo;characteristic of the finest Queen Anne design in its free use of classical motifs in stone…&rdquo;</div><div class="ce-s">Postal &amp; Dolkart, <em>Guide to New York City Landmarks</em>, 2009, p. 76 <a class="pglink" href="#src-postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76" data-scan="postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-51">51</a><span class="sw s6"></span><div class="ce-b"><div class="ce-q">&ldquo;Sunflower Terra Cotta Finials&rdquo;</div><div class="ce-s">LPC, <em>Union Square</em>, 1881, p. 1 <a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">scan</a></div></div></div>
+<div class="cc-sec">The Crown</div>
+<div class="ce"><a class="ce-n" href="#hl-52">52</a><span class="sw s6"></span><div class="ce-b"><div class="ce-q">&ldquo;Gambrel Roof&rdquo;</div><div class="ce-s">LPC, <em>Union Square</em>, 1881, p. 1 <a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-53">53</a><span class="sw s6"></span><div class="ce-b"><div class="ce-q">&ldquo;2-Story Dormers&rdquo;</div><div class="ce-s">LPC, <em>Union Square</em>, 1881, p. 1 <a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-54">54</a><span class="sw s2"></span><div class="ce-b"><div class="ce-q">&ldquo;prominent chimneys&rdquo;</div><div class="ce-s">Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 291 <a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-291" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-291">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-55">55</a><span class="sw s6"></span><div class="ce-b"><div class="ce-q">&ldquo;Cast Iron Cornice&rdquo;</div><div class="ce-s">LPC, <em>Union Square</em>, 1881, p. 1 <a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-56">56</a><span class="sw s6"></span><div class="ce-b"><div class="ce-q">&ldquo;Dentils&rdquo;</div><div class="ce-s">LPC, <em>Union Square</em>, 1881, p. 1 <a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-57">57</a><span class="sw s6"></span><div class="ce-b"><div class="ce-q">&ldquo;Frieze&rdquo;</div><div class="ce-s">LPC, <em>Union Square</em>, 1881, p. 1 <a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-58">58</a><span class="sw s6"></span><div class="ce-b"><div class="ce-q">&ldquo;Skew Corbels&rdquo;</div><div class="ce-s">LPC, <em>Union Square</em>, 1881, p. 1 <a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-59">59</a><span class="sw s6"></span><div class="ce-b"><div class="ce-q">&ldquo;Balustrade&rdquo;</div><div class="ce-s">LPC, <em>Union Square</em>, 1881, p. 1 <a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-60">60</a><span class="sw s6"></span><div class="ce-b"><div class="ce-q">&ldquo;Sunflower Terra Cotta Finials&rdquo;</div><div class="ce-s">LPC, <em>Union Square</em>, 1881, p. 1 <a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">scan</a></div></div></div>
+<div class="cc-sec">V. The Chambered Heart</div>
+<div class="ce"><a class="ce-n" href="#hl-61">61</a><span class="sw s10"></span><div class="ce-b"><div class="ce-q">&ldquo;high ceilings and such architectural features as Corinthian capped cast-iron columns and…&rdquo;</div><div class="ce-s">Stern, <em>New York 2000</em>, 2006, p. 1140 <a class="pglink" href="#src-stern-new-york-2000-2006-p-1140" data-scan="stern-new-york-2000-2006-p-1140">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-62">62</a><span class="sw s10"></span><div class="ce-b"><div class="ce-q">&ldquo;featured a college library-like study hall with rows of tables overlooking Broadway…&rdquo;</div><div class="ce-s">Stern, <em>New York 2000</em>, 2006, p. 1140 <a class="pglink" href="#src-stern-new-york-2000-2006-p-1140" data-scan="stern-new-york-2000-2006-p-1140">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-63">63</a><span class="sw s11"></span><div class="ce-b"><div class="ce-q">&ldquo;The labyrinth of banistered corrals provided well-defined spaces for executives and…&rdquo;</div><div class="ce-s">Byron, <em>New York Interiors At the Turn of the Century</em>, 1976, p. 154 <a class="pglink" href="#src-byron-new-york-interiors-at-the-turn-of-the-century-1976-p-154" data-scan="byron-new-york-interiors-at-the-turn-of-the-century-1976-p-154">scan</a></div></div></div>
+<div class="cc-sec">VI. The Long Procession of the Years</div>
+<div class="ce"><a class="ce-n" href="#hl-64">64</a><span class="sw s12"></span><div class="ce-b"><div class="ce-q">&ldquo;developed as a speculative venture by the dry-goods company Arnold Constable&rdquo;</div><div class="ce-s">Stern, <em>New York 1880</em>, 1999, p. 442 <a class="pglink" href="#src-stern-new-york-1880-1999-p-442" data-scan="stern-new-york-1880-1999-p-442">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-65">65</a><span class="sw s9"></span><div class="ce-b"><div class="ce-q">&ldquo;The Century Building was commissioned as a speculative undertaking by the Arnold and…&rdquo;</div><div class="ce-s">Hennessy, <em>Walking Broadway</em>, 2020, p. 96 <a class="pglink" href="#src-hennessy-walking-broadway-2020-p-96" data-scan="hennessy-walking-broadway-2020-p-96">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-66">66</a><span class="sw s2"></span><div class="ce-b"><div class="ce-q">&ldquo;The building takes its name from the Century Company, publishers of The Century Magazine…&rdquo;</div><div class="ce-s">Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 291 <a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-291" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-291">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-67">67</a><span class="sw s4"></span><div class="ce-b"><div class="ce-q">&ldquo;the popular Century magazine (for grown-ups) and St. Nicholas (for boys and girls)&rdquo;</div><div class="ce-s">AIA, <em>AIA Edition 3</em>, 1988, p. 186 <a class="pglink" href="#src-aia-aia-edition-3-1988-p-186" data-scan="aia-aia-edition-3-1988-p-186">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-68">68</a><span class="sw s2"></span><div class="ce-b"><div class="ce-q">&ldquo;The Century was a noted literary publication, carrying work by Mark Twain, Henry James,…&rdquo;</div><div class="ce-s">Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 291 <a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-291" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-291">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-69">69</a><span class="sw s7"></span><div class="ce-b"><div class="ce-q">&ldquo;books by Edith Wharton, Mark Twain, and Rudyard Kipling.&rdquo;</div><div class="ce-s">Greene, <em>New York for New Yorkers</em>, 2001, p. 32 <a class="pglink" href="#src-greene-new-york-for-new-yorkers-2001-p-32" data-scan="greene-new-york-for-new-yorkers-2001-p-32">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-70">70</a><span class="sw s13"></span><div class="ce-b"><div class="ce-q">&ldquo;1 Structure; 6 Story Brick building with Store and Elevators&rdquo;</div><div class="ce-s">G W Bromley &amp; Co, <em>1916 Atlas of the Borough of Manhattan</em>, p. 55 <a class="pglink" href="#src-g-w-bromley-co-1916-atlas-of-the-borough-of-manhattan-p-55" data-scan="g-w-bromley-co-1916-atlas-of-the-borough-of-manhattan-p-55">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-71">71</a><span class="sw s7"></span><div class="ce-b"><div class="ce-q">&ldquo;seven-story&rdquo;</div><div class="ce-s">Greene, <em>New York for New Yorkers</em>, 2001, p. 32 <a class="pglink" href="#src-greene-new-york-for-new-yorkers-2001-p-32" data-scan="greene-new-york-for-new-yorkers-2001-p-32">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-72">72</a><span class="sw s14"></span><div class="ce-b"><div class="ce-q">&ldquo;Everett House&rdquo;</div><div class="ce-s">Dripps, <em>1867 Dripps Plan</em>, p. 7 <a class="pglink" href="#src-dripps-1867-dripps-plan-p-7" data-scan="dripps-1867-dripps-plan-p-7">scan</a></div></div></div>
+<div class="cc-sec">VII. The Second Life</div>
+<div class="ce"><a class="ce-n" href="#hl-73">73</a><span class="sw s8"></span><div class="ce-b"><div class="ce-q">&ldquo;After standing vacant for many years, the braiding was converted into a bookstore, and the…&rdquo;</div><div class="ce-s">Postal &amp; Dolkart, <em>Guide to New York City Landmarks</em>, 2009, p. 76 <a class="pglink" href="#src-postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76" data-scan="postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-74">74</a><span class="sw s2"></span><div class="ce-b"><div class="ce-q">&ldquo;DESIGNATED: OCTOBER 7, 1986&rdquo;</div><div class="ce-s">Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 291 <a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-291" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-291">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-75">75</a><span class="sw s10"></span><div class="ce-b"><div class="ce-q">&ldquo;In 1995 Barnes &amp; Noble transformed the 100,000-square-foot Queen Anne-style Century…&rdquo;</div><div class="ce-s">Stern, <em>New York 2000</em>, 2006, p. 1140 <a class="pglink" href="#src-stern-new-york-2000-2006-p-1140" data-scan="stern-new-york-2000-2006-p-1140">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-76">76</a><span class="sw s10"></span><div class="ce-b"><div class="ce-q">&ldquo;Judith Saltzman of Li-Saltzman restored the facade, and fames Cohen was charged with…&rdquo;</div><div class="ce-s">Stern, <em>New York 2000</em>, 2006, p. 1140 <a class="pglink" href="#src-stern-new-york-2000-2006-p-1140" data-scan="stern-new-york-2000-2006-p-1140">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-77">77</a><span class="sw s10"></span><div class="ce-b"><div class="ce-q">&ldquo;effect was impressive, even though it lacked the intimacy and charm of many of the…&rdquo;</div><div class="ce-s">Stern, <em>New York 2000</em>, 2006, p. 1140 <a class="pglink" href="#src-stern-new-york-2000-2006-p-1140" data-scan="stern-new-york-2000-2006-p-1140">scan</a></div></div></div>
+<div class="cc-sec">VIII. Among Its Kindred</div>
+<div class="ce"><a class="ce-n" href="#hl-78">78</a><span class="sw s12"></span><div class="ce-b"><div class="ce-q">&ldquo;showing, from left to right the Parish Building (Detlef Lienau, 1883 – 1884), Century…&rdquo;</div><div class="ce-s">Stern, <em>New York 1880</em>, 1999, p. 440 <a class="pglink" href="#src-stern-new-york-1880-1999-p-440" data-scan="stern-new-york-1880-1999-p-440">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-79">79</a><span class="sw s15"></span><div class="ce-b"><div class="ce-q">&ldquo;across the street on the south corner of 17th Street facing Union Square.&rdquo;</div><div class="ce-s">Goldberger, <em>The City Observed</em>, 1979, p. 91 <a class="pglink" href="#src-goldberger-the-city-observed-1979-p-91" data-scan="goldberger-the-city-observed-1979-p-91">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-80">80</a><span class="sw s10"></span><div class="ce-b"><div class="ce-q">&ldquo;Concerns about the fate of historic buildings on other sites around the square led to the…&rdquo;</div><div class="ce-s">Stern, <em>New York 2000</em>, 2006, p. 377 <a class="pglink" href="#src-stern-new-york-2000-2006-p-377" data-scan="stern-new-york-2000-2006-p-377">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-81">81</a><span class="sw s15"></span><div class="ce-b"><div class="ce-q">&ldquo;the Queen Anne pile might have worked somewhere else, it seems oddly uncomfortable here.…&rdquo;</div><div class="ce-s">Goldberger, <em>The City Observed</em>, 1979, p. 91 <a class="pglink" href="#src-goldberger-the-city-observed-1979-p-91" data-scan="goldberger-the-city-observed-1979-p-91">scan</a></div></div></div>
+<div class="cc-sec">IX. Benediction</div>
+<div class="ce"><a class="ce-n" href="#hl-82">82</a><span class="sw s9"></span><div class="ce-b"><div class="ce-q">&ldquo;Warm red brick, crisp bluestone trim, and a two-story oriel window give this Queen Anne…&rdquo;</div><div class="ce-s">Hennessy, <em>Walking Broadway</em>, 2020, p. 96 <a class="pglink" href="#src-hennessy-walking-broadway-2020-p-96" data-scan="hennessy-walking-broadway-2020-p-96">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-83">83</a><span class="sw s9"></span><div class="ce-b"><div class="ce-q">&ldquo;Richly detailed terra-cotta panels and crisply carved stone&rdquo;</div><div class="ce-s">Hennessy, <em>Walking Broadway</em>, 2020, p. 96 <a class="pglink" href="#src-hennessy-walking-broadway-2020-p-96" data-scan="hennessy-walking-broadway-2020-p-96">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-84">84</a><span class="sw s2"></span><div class="ce-b"><div class="ce-q">&ldquo;one of the few surviving commercial examples of the Queen Anne style in the city&rdquo;</div><div class="ce-s">Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 291 <a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-291" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-291">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-85">85</a><span class="sw s2"></span><div class="ce-b"><div class="ce-q">&ldquo;Li/Saltzman Architects&rdquo;</div><div class="ce-s">Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 291 <a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-291" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-291">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-86">86</a><span class="sw s4"></span><div class="ce-b"><div class="ce-q">&ldquo;red brick and whitestone charmer&rdquo;</div><div class="ce-s">AIA, <em>AIA Edition 3</em>, 1988, p. 186 <a class="pglink" href="#src-aia-aia-edition-3-1988-p-186" data-scan="aia-aia-edition-3-1988-p-186">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-87">87</a><span class="sw s5"></span><div class="ce-b"><div class="ce-q">&ldquo;Queen Anle pile&rdquo;</div><div class="ce-s">Morrone, <em>Architectural Guidebook</em>, 1994, p. 116 <a class="pglink" href="#src-morrone-architectural-guidebook-1994-p-116" data-scan="morrone-architectural-guidebook-1994-p-116">scan</a></div></div></div>
+</aside>
+<div class="wrap">
+
+<h1>33 East 17th Street</h1>
+<p class="sub">The Century Building: An Ode in Brick and Stone — A Poetic Meditation on 33 East 17th Street</p>
+<p class="note">Every previously italicized phrase is highlighted and colour-coded by source. Where the source page is on file, clicking the highlight opens the scan.</p>
+
+<div class="legend"><div class="legend-title">Colour key — one colour per source <span class="lk">· sources with a page scan are marked ⌕</span></div><ul>
+<li><span class="sw s1"></span><span class="lg">Egan, <em>Pop Culture New York City</em>, 2018 <span class="pg">p.&nbsp;124</span> <span class="ct">(1)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s2"></span><span class="lg">Spielvogel, <em>The Landmarks of New York</em>, 2016 <span class="pg">p.&nbsp;291</span> <span class="ct">(16)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s3"></span><span class="lg">Unknown Author, <em>Landmarks Preservation Commission</em> <span class="pg">p.&nbsp;1</span> <span class="ct">(1)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s4"></span><span class="lg">AIA, <em>AIA Edition 3</em>, 1988 <span class="pg">p.&nbsp;186</span> <span class="ct">(5)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s5"></span><span class="lg">Morrone, <em>Architectural Guidebook</em>, 1994 <span class="pg">p.&nbsp;116</span> <span class="ct">(5)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s6"></span><span class="lg">LPC, <em>Union Square</em>, 1881 <span class="pg">p.&nbsp;1</span> <span class="ct">(32)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s7"></span><span class="lg">Greene, <em>New York for New Yorkers</em>, 2001 <span class="pg">p.&nbsp;32</span> <span class="ct">(3)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s8"></span><span class="lg">Postal &amp; Dolkart, <em>Guide to New York City Landmarks</em>, 2009 <span class="pg">p.&nbsp;76</span> <span class="ct">(4)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s9"></span><span class="lg">Hennessy, <em>Walking Broadway</em>, 2020 <span class="pg">p.&nbsp;96</span> <span class="ct">(7)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s10"></span><span class="lg">Stern, <em>New York 2000</em>, 2006 <span class="pg">pp.&nbsp;377, 1140</span> <span class="ct">(6)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s11"></span><span class="lg">Byron, <em>New York Interiors At the Turn of the Century</em>, 1976 <span class="pg">p.&nbsp;154</span> <span class="ct">(1)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s12"></span><span class="lg">Stern, <em>New York 1880</em>, 1999 <span class="pg">pp.&nbsp;440, 442</span> <span class="ct">(2)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s13"></span><span class="lg">G W Bromley &amp; Co, <em>1916 Atlas of the Borough of Manhattan</em> <span class="pg">p.&nbsp;55</span> <span class="ct">(1)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s14"></span><span class="lg">Dripps, <em>1867 Dripps Plan</em> <span class="pg">p.&nbsp;7</span> <span class="ct">(1)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s15"></span><span class="lg">Goldberger, <em>The City Observed</em>, 1979 <span class="pg">p.&nbsp;91</span> <span class="ct">(2)</span> <span class="has">⌕</span></span></li>
+</ul></div>
+
+<section class="audio"><div class="audio-label">Audio &mdash; 33 East 17th Street | Brick Cake (Poetic) <span class="audio-meta">14 min 22 s</span></div><audio controls preload="none" src="assets/media/33-east-17th-street-4.mp3"></audio><p class="audio-fallback">Audio track &mdash; playable in the HTML version of this document.</p></section>
+
+<h2>I. Invocation</h2>
+
+<p>Upon the northern brow of Union Square, where the old city keeps its restless watch, there stands a keeper of forgotten air — a thing of brick, a lantern, and a latch. It fronts the world at <a class="srclink" href="#src-egan-pop-culture-new-york-city-2018-p-124" data-scan="egan-pop-culture-new-york-city-2018-p-124" title="See the source page — Egan, Pop Culture New York City, 2018, p. 124"><mark id="hl-1" class="s1" title="Egan, Pop Culture New York City, 2018, p. 124">(33 East 17th Street)</mark></a>, and turns its shoulders toward <a class="srclink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-291" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-291" title="See the source page — Spielvogel, The Landmarks of New York, 2016, p. 291"><mark id="hl-2" class="s2" title="Spielvogel, The Landmarks of New York, 2016, p. 291">(East 18th Street)</mark></a> behind, a double-hearted stone where two eras meet, one face for pomp, one face content to hide. It <a class="srclink" href="#src-unknown-author-landmarks-preservation-commission-p-1" data-scan="unknown-author-landmarks-preservation-commission-p-1" title="See the source page — Unknown Author, Landmarks Preservation Commission, p. 1"><mark id="hl-3" class="s3" title="Unknown Author, Landmarks Preservation Commission, p. 1">(Was built in 1881.)</mark></a> — that solemn year — by one whose name the mortar still repeats: the hand of <a class="srclink" href="#src-aia-aia-edition-3-1988-p-186" data-scan="aia-aia-edition-3-1988-p-186" title="See the source page — AIA, AIA Edition 3, 1988, p. 186"><mark id="hl-4" class="s4" title="AIA, AIA Edition 3, 1988, p. 186">(William Schickel)</mark></a>, patient, clear, who taught cold masonry to sing in the streets. And though the world would call it, by and by, <a class="srclink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-291" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-291" title="See the source page — Spielvogel, The Landmarks of New York, 2016, p. 291"><mark id="hl-5" class="s2" title="Spielvogel, The Landmarks of New York, 2016, p. 291">(BARNES &amp; NOBLE, FORMERLY CENTURY BUILDING)</mark></a> — still it wears that name the way a widow wears the sky, serene above the rush of thoroughfares. It stands where guides have placed it, plain and true, <a class="srclink" href="#src-aia-aia-edition-3-1988-p-186" data-scan="aia-aia-edition-3-1988-p-186" title="See the source page — AIA, AIA Edition 3, 1988, p. 186"><mark id="hl-6" class="s4" title="AIA, AIA Edition 3, 1988, p. 186">(33 East 17th St., bet. Park Ave. S. and Broadway to W. 18th St.)</mark></a>, and dreamers swear this <a class="srclink" href="#src-morrone-architectural-guidebook-1994-p-116" data-scan="morrone-architectural-guidebook-1994-p-116" title="See the source page — Morrone, Architectural Guidebook, 1994, p. 116"><mark id="hl-7" class="s5" title="Morrone, Architectural Guidebook, 1994, p. 116">(red-brick-and-limestone Queen Anle pile comes straight out of Victorian London)</mark></a>, come to woo.</p>
+
+<h2>II. Of Style, and the Ghost of an Age</h2>
+
+<p>What language does this quiet giant speak? Its tongue is set in record, terse and grand: <a class="srclink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1" title="See the source page — LPC, Union Square, 1881, p. 1"><mark id="hl-8" class="s6" title="LPC, Union Square, 1881, p. 1">(Queen-Anne, neo-Grec: Secondary Façade 18th Street)</mark></a> — the meek back-face and the proud front, hand in hand. It is a mood <a class="srclink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-291" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-291" title="See the source page — Spielvogel, The Landmarks of New York, 2016, p. 291"><mark id="hl-9" class="s2" title="Spielvogel, The Landmarks of New York, 2016, p. 291">(distinguished by its picturesque mixture of seventeenth- and eighteenth-century English motifs)</mark></a>, a marriage of the centuries, gently wed; and though the classic order guards its griefs, <a class="srclink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-291" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-291" title="See the source page — Spielvogel, The Landmarks of New York, 2016, p. 291"><mark id="hl-10" class="s2" title="Spielvogel, The Landmarks of New York, 2016, p. 291">(Although classical details are commonly used (such as the Jacobean doorway), these are combined in an unusual and thoroughly nonclassical way.)</mark></a> It carries in its bones a movement&#x27;s fire, for it was <a class="srclink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-291" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-291" title="See the source page — Spielvogel, The Landmarks of New York, 2016, p. 291"><mark id="hl-11" class="s2" title="Spielvogel, The Landmarks of New York, 2016, p. 291">(Championed by such artists and writers as James McNeill Whistler and Oscar Wilde, the Queen Anne style developed along with the English Aesthetic movement.)</mark></a></p>
+
+<p>Rare bloom! For history is quick to boast: <a class="srclink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-291" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-291" title="See the source page — Spielvogel, The Landmarks of New York, 2016, p. 291"><mark id="hl-12" class="s2" title="Spielvogel, The Landmarks of New York, 2016, p. 291">(The Century Building is one of the few surviving commercial examples of the Queen Anne style in the city)</mark></a> — <a class="srclink" href="#src-morrone-architectural-guidebook-1994-p-116" data-scan="morrone-architectural-guidebook-1994-p-116" title="See the source page — Morrone, Architectural Guidebook, 1994, p. 116"><mark id="hl-13" class="s5" title="Morrone, Architectural Guidebook, 1994, p. 116">(one of the few extant major Queen Anne buildings in Manhattan)</mark></a>, a near-vanished ghost, since <a class="srclink" href="#src-greene-new-york-for-new-yorkers-2001-p-32" data-scan="greene-new-york-for-new-yorkers-2001-p-32" title="See the source page — Greene, New York for New Yorkers, 2001, p. 32"><mark id="hl-14" class="s7" title="Greene, New York for New Yorkers, 2001, p. 32">(Queen Anne-style commercial buildings are rare in NYC.)</mark></a>, more&#x27;s the pity. The scholars nod: <a class="srclink" href="#src-postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76" data-scan="postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76" title="See the source page — Postal &amp; Dolkart, Guide to New York City Landmarks, 2009, p. 76"><mark id="hl-15" class="s8" title="Postal &amp; Dolkart, Guide to New York City Landmarks, 2009, p. 76">(The red brick Century Building is a rare New York example of a Queen Anne- style commercial structure.)</mark></a> And why this daring dress upon a trade? Because <a class="srclink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-291" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-291" title="See the source page — Spielvogel, The Landmarks of New York, 2016, p. 291"><mark id="hl-16" class="s2" title="Spielvogel, The Landmarks of New York, 2016, p. 291">(William Schickel might have used the Queen Anne style, which was common in domestic suburban designs but almost unknown in urban commercial structures, to draw attention to what was essentially a speculative office building.)</mark></a> For <a class="srclink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-291" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-291" title="See the source page — Spielvogel, The Landmarks of New York, 2016, p. 291"><mark id="hl-17" class="s2" title="Spielvogel, The Landmarks of New York, 2016, p. 291">(The Union Square area was booming in the last quarter of the nineteenth century. Unusual or distinctive building design would have been one way of appealing to potential tenants, especially those who thought themselves socially or artistically progressive.)</mark></a> It keeps rare cousins, kin of stone and dawn — the <a class="srclink" href="#src-morrone-architectural-guidebook-1994-p-116" data-scan="morrone-architectural-guidebook-1994-p-116" title="See the source page — Morrone, Architectural Guidebook, 1994, p. 116"><mark id="hl-18" class="s5" title="Morrone, Architectural Guidebook, 1994, p. 116">(Gramercy apartments (1883. G. W da Cunha, 8.7) at Gramercy Park)</mark></a>, and, southward, the <a class="srclink" href="#src-morrone-architectural-guidebook-1994-p-116" data-scan="morrone-architectural-guidebook-1994-p-116" title="See the source page — Morrone, Architectural Guidebook, 1994, p. 116"><mark id="hl-19" class="s5" title="Morrone, Architectural Guidebook, 1994, p. 116">(former Mercantile Exchange (1884, Thomas R. Jackson, 3.12) in TriBeCa.)</mark></a></p>
+
+<h2>III. The Body of Color</h2>
+
+<p>Behold the flesh of it — a painter&#x27;s psalm, a warmth of clay against a cooler grace: it wears its <a class="srclink" href="#src-hennessy-walking-broadway-2020-p-96" data-scan="hennessy-walking-broadway-2020-p-96" title="See the source page — Hennessy, Walking Broadway, 2020, p. 96"><mark id="hl-20" class="s9" title="Hennessy, Walking Broadway, 2020, p. 96">(Warm red brick, crisp bluestone trim)</mark></a>, its calm, the flush and pallor of a living face. The ledgers hold its very hue in trust — <a class="srclink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1" title="See the source page — LPC, Union Square, 1881, p. 1"><mark id="hl-21" class="s6" title="LPC, Union Square, 1881, p. 1">(Façade Color_Brick Red - 196 47 69)</mark></a> — the deep, and, at the foot, a pale and crystal dust: <a class="srclink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1" title="See the source page — LPC, Union Square, 1881, p. 1"><mark id="hl-22" class="s6" title="LPC, Union Square, 1881, p. 1">(Base Color_Crystal - 213 213 213)</mark></a>, the low notes that it keeps. Its courses run in ordered, patient rhyme, a <a class="srclink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1" title="See the source page — LPC, Union Square, 1881, p. 1"><mark id="hl-23" class="s6" title="LPC, Union Square, 1881, p. 1">(Running Bond)</mark></a> of brick on brick on brick, its edges hemmed in <a class="srclink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1" title="See the source page — LPC, Union Square, 1881, p. 1"><mark id="hl-24" class="s6" title="LPC, Union Square, 1881, p. 1">(Wyoming Bluestone)</mark></a>&#x27;s time, and men have called it — tender, half in love — a <a class="srclink" href="#src-aia-aia-edition-3-1988-p-186" data-scan="aia-aia-edition-3-1988-p-186" title="See the source page — AIA, AIA Edition 3, 1988, p. 186"><mark id="hl-25" class="s4" title="AIA, AIA Edition 3, 1988, p. 186">(red brick and whitestone charmer)</mark></a>, warm and quick. The whole is spun of <a class="srclink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1" title="See the source page — LPC, Union Square, 1881, p. 1"><mark id="hl-26" class="s6" title="LPC, Union Square, 1881, p. 1">(Brick, Terra Cotta, Wyoming Bluestone, Iron)</mark></a>, its base of <a class="srclink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1" title="See the source page — LPC, Union Square, 1881, p. 1"><mark id="hl-27" class="s6" title="LPC, Union Square, 1881, p. 1">(Red Brick, Wyoming Bluestone)</mark></a> — earth and air — a fabric raised, the record&#x27;s soft environ, <a class="srclink" href="#src-postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76" data-scan="postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76" title="See the source page — Postal &amp; Dolkart, Guide to New York City Landmarks, 2009, p. 76"><mark id="hl-28" class="s8" title="Postal &amp; Dolkart, Guide to New York City Landmarks, 2009, p. 76">(to house the prestigious Century Publishing Company)</mark></a> there. And on the wall, refusing to lie flat, rise <a class="srclink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1" title="See the source page — LPC, Union Square, 1881, p. 1"><mark id="hl-29" class="s6" title="LPC, Union Square, 1881, p. 1">(Rusticated Brick Pilasters)</mark></a>, proud and tall — the building draws itself up, tips its hat, and stands a little grander for it all.</p>
+
+<h2>IV. The Face, Read Feature by Feature</h2>
+
+<h3>The Door</h3>
+
+<p>The entrance opens like a spoken vow, a <a class="srclink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1" title="See the source page — LPC, Union Square, 1881, p. 1"><mark id="hl-30" class="s6" title="LPC, Union Square, 1881, p. 1">(3 Bays)</mark></a> measure, ceremonious, wide; it is at once both <a class="srclink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1" title="See the source page — LPC, Union Square, 1881, p. 1"><mark id="hl-31" class="s6" title="LPC, Union Square, 1881, p. 1">(Pedimented)</mark></a> and low-<a class="srclink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1" title="See the source page — LPC, Union Square, 1881, p. 1"><mark id="hl-32" class="s6" title="LPC, Union Square, 1881, p. 1">(Arched)</mark></a>, its brow crowned with a <a class="srclink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1" title="See the source page — LPC, Union Square, 1881, p. 1"><mark id="hl-33" class="s6" title="LPC, Union Square, 1881, p. 1">(Fanlight)</mark></a>, letting morning inside. Its <a class="srclink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1" title="See the source page — LPC, Union Square, 1881, p. 1"><mark id="hl-34" class="s6" title="LPC, Union Square, 1881, p. 1">(Tuscan Pilasters)</mark></a> stand like faithful men, and, quaint upon their heads — a whimsy sweet — a <a class="srclink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1" title="See the source page — LPC, Union Square, 1881, p. 1"><mark id="hl-35" class="s6" title="LPC, Union Square, 1881, p. 1">(Console Bracket Capital)</mark></a> blooms again, while <a class="srclink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1" title="See the source page — LPC, Union Square, 1881, p. 1"><mark id="hl-36" class="s6" title="LPC, Union Square, 1881, p. 1">(Cast Iron Ornament)</mark></a> guards the threshold&#x27;s seat. For <a class="srclink" href="#src-hennessy-walking-broadway-2020-p-96" data-scan="hennessy-walking-broadway-2020-p-96" title="See the source page — Hennessy, Walking Broadway, 2020, p. 96"><mark id="hl-37" class="s9" title="Hennessy, Walking Broadway, 2020, p. 96">(crisply carved stone surround the ground floor entrance.)</mark></a>, and through the <a class="srclink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-291" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-291" title="See the source page — Spielvogel, The Landmarks of New York, 2016, p. 291"><mark id="hl-38" class="s2" title="Spielvogel, The Landmarks of New York, 2016, p. 291">(Jacobean doorway)</mark></a> step the years.</p>
+
+<h3>The Window That Leans Toward the World</h3>
+
+<p>Now see the marvel of its middle grace, a <a class="srclink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1" title="See the source page — LPC, Union Square, 1881, p. 1"><mark id="hl-39" class="s6" title="LPC, Union Square, 1881, p. 1">(2-story Oriel)</mark></a> thrust into the light — this is the tender miracle of place, for that <a class="srclink" href="#src-hennessy-walking-broadway-2020-p-96" data-scan="hennessy-walking-broadway-2020-p-96" title="See the source page — Hennessy, Walking Broadway, 2020, p. 96"><mark id="hl-40" class="s9" title="Hennessy, Walking Broadway, 2020, p. 96">(two-story oriel window give this Queen Anne style commercial building a welcoming domestic aspect.)</mark></a>, warm and bright. It is a hallmark, sung in learned tone: <a class="srclink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-291" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-291" title="See the source page — Spielvogel, The Landmarks of New York, 2016, p. 291"><mark id="hl-41" class="s2" title="Spielvogel, The Landmarks of New York, 2016, p. 291">(The tall oriel window, gambrel roof, prominent chimneys, and molded terra cotta ornament are all characteristic of the style.)</mark></a> Above, the panes rise gently, arch on arch, a <a class="srclink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1" title="See the source page — LPC, Union Square, 1881, p. 1"><mark id="hl-42" class="s6" title="LPC, Union Square, 1881, p. 1">(Segmental Arch Lintel (3-5))</mark></a> curved like a bow, each one capped proudly on its upward march by one bright <a class="srclink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1" title="See the source page — LPC, Union Square, 1881, p. 1"><mark id="hl-43" class="s6" title="LPC, Union Square, 1881, p. 1">(Stone Keystone)</mark></a>, holding it just so. And through the glass — a lattice, luminous, thin — the <a class="srclink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1" title="See the source page — LPC, Union Square, 1881, p. 1"><mark id="hl-44" class="s6" title="LPC, Union Square, 1881, p. 1">(Window Panes: [1/1] (w/ Transom))</mark></a> let the daylight in.</p>
+
+<h3>The Carven Feast</h3>
+
+<p>O what a garden blooms upon this height, where clay was coaxed to flower and to face! For <a class="srclink" href="#src-hennessy-walking-broadway-2020-p-96" data-scan="hennessy-walking-broadway-2020-p-96" title="See the source page — Hennessy, Walking Broadway, 2020, p. 96"><mark id="hl-45" class="s9" title="Hennessy, Walking Broadway, 2020, p. 96">(Richly detailed terra-cotta panels and crisply carved stone surround the ground floor entrance, embellish the facade, and reappear in the treatment of the top floor dormers.)</mark></a> Its vocabulary is a wreathèd art — <a class="srclink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1" title="See the source page — LPC, Union Square, 1881, p. 1"><mark id="hl-46" class="s6" title="LPC, Union Square, 1881, p. 1">(Garlands, Shells, Grotesques)</mark></a>, and, hung in fold on fold, the drapèd sweetness of its <a class="srclink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1" title="See the source page — LPC, Union Square, 1881, p. 1"><mark id="hl-47" class="s6" title="LPC, Union Square, 1881, p. 1">(Swags)</mark></a>, apart, disciplined by a <a class="srclink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1" title="See the source page — LPC, Union Square, 1881, p. 1"><mark id="hl-48" class="s6" title="LPC, Union Square, 1881, p. 1">(Dentil Course)</mark></a>&#x27;s ranks of gold, and by an <a class="srclink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1" title="See the source page — LPC, Union Square, 1881, p. 1"><mark id="hl-49" class="s6" title="LPC, Union Square, 1881, p. 1">(Egg &amp; Dart Course)</mark></a>, that ancient rhyme — for it is <a class="srclink" href="#src-postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76" data-scan="postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76" title="See the source page — Postal &amp; Dolkart, Guide to New York City Landmarks, 2009, p. 76"><mark id="hl-50" class="s8" title="Postal &amp; Dolkart, Guide to New York City Landmarks, 2009, p. 76">(characteristic of the finest Queen Anne design in its free use of classical motifs in stone and terracotta and its employment of the style&#x27;s trademark sunflowers.)</mark></a> And highest, brightest, reaching for the sun, the <a class="srclink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1" title="See the source page — LPC, Union Square, 1881, p. 1"><mark id="hl-51" class="s6" title="LPC, Union Square, 1881, p. 1">(Sunflower Terra Cotta Finials)</mark></a>, one by one.</p>
+
+<h3>The Crown</h3>
+
+<p>The roof leans back in a <a class="srclink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1" title="See the source page — LPC, Union Square, 1881, p. 1"><mark id="hl-52" class="s6" title="LPC, Union Square, 1881, p. 1">(Gambrel Roof)</mark></a>&#x27;s embrace, and out of it, like watchmen, boldly climb the <a class="srclink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1" title="See the source page — LPC, Union Square, 1881, p. 1"><mark id="hl-53" class="s6" title="LPC, Union Square, 1881, p. 1">(2-Story Dormers)</mark></a>, keeping their high place, the <a class="srclink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-291" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-291" title="See the source page — Spielvogel, The Landmarks of New York, 2016, p. 291"><mark id="hl-54" class="s2" title="Spielvogel, The Landmarks of New York, 2016, p. 291">(prominent chimneys)</mark></a> measuring the time. A <a class="srclink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1" title="See the source page — LPC, Union Square, 1881, p. 1"><mark id="hl-55" class="s6" title="LPC, Union Square, 1881, p. 1">(Cast Iron Cornice)</mark></a> binds the wall to sky, with <a class="srclink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1" title="See the source page — LPC, Union Square, 1881, p. 1"><mark id="hl-56" class="s6" title="LPC, Union Square, 1881, p. 1">(Dentils)</mark></a>, and a <a class="srclink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1" title="See the source page — LPC, Union Square, 1881, p. 1"><mark id="hl-57" class="s6" title="LPC, Union Square, 1881, p. 1">(Frieze)</mark></a>, and — canted, bold — the <a class="srclink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1" title="See the source page — LPC, Union Square, 1881, p. 1"><mark id="hl-58" class="s6" title="LPC, Union Square, 1881, p. 1">(Skew Corbels)</mark></a> that hold the slope on high, a <a class="srclink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1" title="See the source page — LPC, Union Square, 1881, p. 1"><mark id="hl-59" class="s6" title="LPC, Union Square, 1881, p. 1">(Balustrade)</mark></a> to hem it, fold in fold, and last, forever lifting up their eyes, the <a class="srclink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1" title="See the source page — LPC, Union Square, 1881, p. 1"><mark id="hl-60" class="s6" title="LPC, Union Square, 1881, p. 1">(Sunflower Terra Cotta Finials)</mark></a> greet the skies.</p>
+
+<h2>V. The Chambered Heart</h2>
+
+<p>Within, the building keeps its inward light, its <a class="srclink" href="#src-stern-new-york-2000-2006-p-1140" data-scan="stern-new-york-2000-2006-p-1140" title="See the source page — Stern, New York 2000, 2006, p. 1140"><mark id="hl-61" class="s10" title="Stern, New York 2000, 2006, p. 1140">(high ceilings and such architectural features as Corinthian capped cast-iron columns and consider able original woodwork)</mark></a>; and in its later, gentler, bookish night it <a class="srclink" href="#src-stern-new-york-2000-2006-p-1140" data-scan="stern-new-york-2000-2006-p-1140" title="See the source page — Stern, New York 2000, 2006, p. 1140"><mark id="hl-62" class="s10" title="Stern, New York 2000, 2006, p. 1140">(featured a college library-like study hall with rows of tables overlooking Broadway attracting students and others.)</mark></a> But long before the readers came to browse, another order ruled these solemn floors: <a class="srclink" href="#src-byron-new-york-interiors-at-the-turn-of-the-century-1976-p-154" data-scan="byron-new-york-interiors-at-the-turn-of-the-century-1976-p-154" title="See the source page — Byron, New York Interiors At the Turn of the Century, 1976, p. 154"><mark id="hl-63" class="s11" title="Byron, New York Interiors At the Turn of the Century, 1976, p. 154">(The labyrinth of banistered corrals provided well-defined spaces for executives and employees, and it symbolized a well ordered bureaucracy. The pilastered screen with leaded colored-glass windows further departmentalized the workers. Electricity has been brought down to the desk lamps.)</mark></a></p>
+
+<h2>VI. The Long Procession of the Years</h2>
+
+<p>It rose from dream and daring, coin and hope — <a class="srclink" href="#src-stern-new-york-1880-1999-p-442" data-scan="stern-new-york-1880-1999-p-442" title="See the source page — Stern, New York 1880, 1999, p. 442"><mark id="hl-64" class="s12" title="Stern, New York 1880, 1999, p. 442">(developed as a speculative venture by the dry-goods company Arnold Constable)</mark></a> — for <a class="srclink" href="#src-hennessy-walking-broadway-2020-p-96" data-scan="hennessy-walking-broadway-2020-p-96" title="See the source page — Hennessy, Walking Broadway, 2020, p. 96"><mark id="hl-65" class="s9" title="Hennessy, Walking Broadway, 2020, p. 96">(The Century Building was commissioned as a speculative undertaking by the Arnold and Constable families. In addition to their department store, they were among the largest landholders in late nineteenth-century New York.)</mark></a> It took its name from words, from printed leaf: <a class="srclink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-291" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-291" title="See the source page — Spielvogel, The Landmarks of New York, 2016, p. 291"><mark id="hl-66" class="s2" title="Spielvogel, The Landmarks of New York, 2016, p. 291">(The building takes its name from the Century Company, publishers of The Century Magazine and St. Nicholas Magazine, which had offices there.)</mark></a> There lived <a class="srclink" href="#src-aia-aia-edition-3-1988-p-186" data-scan="aia-aia-edition-3-1988-p-186" title="See the source page — AIA, AIA Edition 3, 1988, p. 186"><mark id="hl-67" class="s4" title="AIA, AIA Edition 3, 1988, p. 186">(the popular Century magazine (for grown-ups) and St. Nicholas (for boys and girls))</mark></a>, and greatness passed its threshold, page on page, for <a class="srclink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-291" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-291" title="See the source page — Spielvogel, The Landmarks of New York, 2016, p. 291"><mark id="hl-68" class="s2" title="Spielvogel, The Landmarks of New York, 2016, p. 291">(The Century was a noted literary publication, carrying work by Mark Twain, Henry James, Walt Whitman, and Herman Melville)</mark></a>, and it held, too, <a class="srclink" href="#src-greene-new-york-for-new-yorkers-2001-p-32" data-scan="greene-new-york-for-new-yorkers-2001-p-32" title="See the source page — Greene, New York for New Yorkers, 2001, p. 32"><mark id="hl-69" class="s7" title="Greene, New York for New Yorkers, 2001, p. 32">(books by Edith Wharton, Mark Twain, and Rudyard Kipling.)</mark></a> The maps recall it, faithful and precise — <a class="srclink" href="#src-g-w-bromley-co-1916-atlas-of-the-borough-of-manhattan-p-55" data-scan="g-w-bromley-co-1916-atlas-of-the-borough-of-manhattan-p-55" title="See the source page — G W Bromley &amp; Co, 1916 Atlas of the Borough of Manhattan, p. 55"><mark id="hl-70" class="s13" title="G W Bromley &amp; Co, 1916 Atlas of the Borough of Manhattan, p. 55">(1 Structure; 6 Story Brick building with Store and Elevators)</mark></a> — plain, and, counting up the dormers toward the ice of winter sky, it climbs a <a class="srclink" href="#src-greene-new-york-for-new-yorkers-2001-p-32" data-scan="greene-new-york-for-new-yorkers-2001-p-32" title="See the source page — Greene, New York for New Yorkers, 2001, p. 32"><mark id="hl-71" class="s7" title="Greene, New York for New Yorkers, 2001, p. 32">(seven-story)</mark></a> reign. Before it stood, another name held sway upon this ground, in eighteen-sixty-seven&#x27;s dark: the vanished <a class="srclink" href="#src-dripps-1867-dripps-plan-p-7" data-scan="dripps-1867-dripps-plan-p-7" title="See the source page — Dripps, 1867 Dripps Plan, p. 7"><mark id="hl-72" class="s14" title="Dripps, 1867 Dripps Plan, p. 7">(Everett House)</mark></a> has slipped away.</p>
+
+<h2>VII. The Second Life</h2>
+
+<p>Then came the silence, and then came the mend: <a class="srclink" href="#src-postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76" data-scan="postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76" title="See the source page — Postal &amp; Dolkart, Guide to New York City Landmarks, 2009, p. 76"><mark id="hl-73" class="s8" title="Postal &amp; Dolkart, Guide to New York City Landmarks, 2009, p. 76">(After standing vacant for many years, the braiding was converted into a bookstore, and the facade received an award-winning restoration.)</mark></a> For it was blessed, and set beyond the end, <a class="srclink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-291" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-291" title="See the source page — Spielvogel, The Landmarks of New York, 2016, p. 291"><mark id="hl-74" class="s2" title="Spielvogel, The Landmarks of New York, 2016, p. 291">(DESIGNATED: OCTOBER 7, 1986)</mark></a> — a nation&#x27;s veneration. And so, in time, the great rebirth occurred: <a class="srclink" href="#src-stern-new-york-2000-2006-p-1140" data-scan="stern-new-york-2000-2006-p-1140" title="See the source page — Stern, New York 2000, 2006, p. 1140"><mark id="hl-75" class="s10" title="Stern, New York 2000, 2006, p. 1140">(In 1995 Barnes &amp; Noble transformed the 100,000-square-foot Queen Anne-style Century Building.)</mark></a> For loving hands returned it, stone and word — <a class="srclink" href="#src-stern-new-york-2000-2006-p-1140" data-scan="stern-new-york-2000-2006-p-1140" title="See the source page — Stern, New York 2000, 2006, p. 1140"><mark id="hl-76" class="s10" title="Stern, New York 2000, 2006, p. 1140">(Judith Saltzman of Li-Saltzman restored the facade, and fames Cohen was charged with maintaining die character of the landmark interiors, which were listed on the National Register.)</mark></a> And yet the poets grieved a subtler cost, that <a class="srclink" href="#src-stern-new-york-2000-2006-p-1140" data-scan="stern-new-york-2000-2006-p-1140" title="See the source page — Stern, New York 2000, 2006, p. 1140"><mark id="hl-77" class="s10" title="Stern, New York 2000, 2006, p. 1140">(effect was impressive, even though it lacked the intimacy and charm of many of the traditional bookstores such as Shakespeare Company and Endicott that the superstores were rapidly driving out of business.)</mark></a></p>
+
+<h2>VIII. Among Its Kindred</h2>
+
+<p>It never stood alone upon its ground, but kept its neighbors close, a stately row, its portrait, once, in company was found — <a class="srclink" href="#src-stern-new-york-1880-1999-p-440" data-scan="stern-new-york-1880-1999-p-440" title="See the source page — Stern, New York 1880, 1999, p. 440"><mark id="hl-78" class="s12" title="Stern, New York 1880, 1999, p. 440">(showing, from left to right the Parish Building (Detlef Lienau, 1883 – 1884), Century Company Building, and Everett house (1854).)</mark></a> It waits, the record says, without a sound, <a class="srclink" href="#src-goldberger-the-city-observed-1979-p-91" data-scan="goldberger-the-city-observed-1979-p-91" title="See the source page — Goldberger, The City Observed, 1979, p. 91"><mark id="hl-79" class="s15" title="Goldberger, The City Observed, 1979, p. 91">(across the street on the south corner of 17th Street facing Union Square.)</mark></a> And when the city moved to save its own, its name was writ among the guarded few: <a class="srclink" href="#src-stern-new-york-2000-2006-p-377" data-scan="stern-new-york-2000-2006-p-377" title="See the source page — Stern, New York 2000, 2006, p. 377"><mark id="hl-80" class="s10" title="Stern, New York 2000, 2006, p. 377">(Concerns about the fate of historic buildings on other sites around the square led to the designation as landmarks of the Lincoln Building (R. H. Robertson, 1890), 1-3 Union Square West; the Bank of the Metropolis (Bruce Price, 1903), 31 Union Square West; the Century Building (William Schickel, 1881), 33 East Seventeenth Street; the Everett Building (Starrett &amp; Van Vleck, 1908), 45 East Seventeenth Street; and the Germania Life Insurance Company Building (D&#x27;Oench &amp;. Yost, 1911), later the Guardian Life Building, 50 Union Square East.)</mark></a></p>
+
+<p>Not all who passed adored it. One would frown — one voice that found it out of key, and swore <a class="srclink" href="#src-goldberger-the-city-observed-1979-p-91" data-scan="goldberger-the-city-observed-1979-p-91" title="See the source page — Goldberger, The City Observed, 1979, p. 91"><mark id="hl-81" class="s15" title="Goldberger, The City Observed, 1979, p. 91">(the Queen Anne pile might have worked somewhere else, it seems oddly uncomfortable here. Union Square can accommodate flamboyant show-offs and it can accommodate derelicts, but not genteel matrons.)</mark></a></p>
+
+<h2>IX. Benediction</h2>
+
+<p>So let it stand, this gentle, gabled thing, whose <a class="srclink" href="#src-hennessy-walking-broadway-2020-p-96" data-scan="hennessy-walking-broadway-2020-p-96" title="See the source page — Hennessy, Walking Broadway, 2020, p. 96"><mark id="hl-82" class="s9" title="Hennessy, Walking Broadway, 2020, p. 96">(Warm red brick, crisp bluestone trim, and a two-story oriel window give this Queen Anne style commercial building a welcoming domestic aspect)</mark></a>, whose <a class="srclink" href="#src-hennessy-walking-broadway-2020-p-96" data-scan="hennessy-walking-broadway-2020-p-96" title="See the source page — Hennessy, Walking Broadway, 2020, p. 96"><mark id="hl-83" class="s9" title="Hennessy, Walking Broadway, 2020, p. 96">(Richly detailed terra-cotta panels and crisply carved stone)</mark></a> still sing long after those who raised them fell to rest. For it endures — the record&#x27;s final word — <a class="srclink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-291" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-291" title="See the source page — Spielvogel, The Landmarks of New York, 2016, p. 291"><mark id="hl-84" class="s2" title="Spielvogel, The Landmarks of New York, 2016, p. 291">(one of the few surviving commercial examples of the Queen Anne style in the city)</mark></a>, and by the hands of <a class="srclink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-291" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-291" title="See the source page — Spielvogel, The Landmarks of New York, 2016, p. 291"><mark id="hl-85" class="s2" title="Spielvogel, The Landmarks of New York, 2016, p. 291">(Li/Saltzman Architects)</mark></a> restored, this <a class="srclink" href="#src-aia-aia-edition-3-1988-p-186" data-scan="aia-aia-edition-3-1988-p-186" title="See the source page — AIA, AIA Edition 3, 1988, p. 186"><mark id="hl-86" class="s4" title="AIA, AIA Edition 3, 1988, p. 186">(red brick and whitestone charmer)</mark></a> keeps its pity and pride together, sunflowers still crowned, this <a class="srclink" href="#src-morrone-architectural-guidebook-1994-p-116" data-scan="morrone-architectural-guidebook-1994-p-116" title="See the source page — Morrone, Architectural Guidebook, 1994, p. 116"><mark id="hl-87" class="s5" title="Morrone, Architectural Guidebook, 1994, p. 116">(Queen Anle pile)</mark></a> upon its patch of ground.</p>
+
+<section class="chart-print"><h2 id="citations">Citation Chart</h2>
+<p class="note2">Every highlighted quote, in order of appearance, correlated to its underlying source. The swatch matches the highlight colour in the text.</p>
+<div class="tablewrap">
+<h3 class="csec">I. Invocation</h3>
+<table><thead><tr><th class="num">#</th><th>Verbatim Quote (abbreviated)</th><th>Source (Author, Title, Year, Page)</th></tr></thead><tbody>
+<tr><td class="num">1</td><td class="quote">&ldquo;33 East 17th Street&rdquo;</td><td class="src"><span class="sw s1"></span>Egan, <em>Pop Culture New York City</em>, 2018, p. 124&nbsp;<a class="pglink" href="#src-egan-pop-culture-new-york-city-2018-p-124" data-scan="egan-pop-culture-new-york-city-2018-p-124">[page scan]</a></td></tr>
+<tr><td class="num">2</td><td class="quote">&ldquo;East 18th Street&rdquo;</td><td class="src"><span class="sw s2"></span>Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 291&nbsp;<a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-291" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-291">[page scan]</a></td></tr>
+<tr><td class="num">3</td><td class="quote">&ldquo;Was built in 1881.&rdquo;</td><td class="src"><span class="sw s3"></span>Unknown Author, <em>Landmarks Preservation Commission</em>, p. 1&nbsp;<a class="pglink" href="#src-unknown-author-landmarks-preservation-commission-p-1" data-scan="unknown-author-landmarks-preservation-commission-p-1">[page scan]</a></td></tr>
+<tr><td class="num">4</td><td class="quote">&ldquo;William Schickel&rdquo;</td><td class="src"><span class="sw s4"></span>AIA, <em>AIA Edition 3</em>, 1988, p. 186&nbsp;<a class="pglink" href="#src-aia-aia-edition-3-1988-p-186" data-scan="aia-aia-edition-3-1988-p-186">[page scan]</a></td></tr>
+<tr><td class="num">5</td><td class="quote">&ldquo;BARNES &amp; NOBLE, FORMERLY CENTURY BUILDING&rdquo;</td><td class="src"><span class="sw s2"></span>Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 291&nbsp;<a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-291" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-291">[page scan]</a></td></tr>
+<tr><td class="num">6</td><td class="quote">&ldquo;33 East 17th St., bet. Park Ave. S. and Broadway to W. 18th St.&rdquo;</td><td class="src"><span class="sw s4"></span>AIA, <em>AIA Edition 3</em>, 1988, p. 186&nbsp;<a class="pglink" href="#src-aia-aia-edition-3-1988-p-186" data-scan="aia-aia-edition-3-1988-p-186">[page scan]</a></td></tr>
+<tr><td class="num">7</td><td class="quote">&ldquo;red-brick-and-limestone Queen Anle pile comes straight out of Victorian London&rdquo;</td><td class="src"><span class="sw s5"></span>Morrone, <em>Architectural Guidebook</em>, 1994, p. 116&nbsp;<a class="pglink" href="#src-morrone-architectural-guidebook-1994-p-116" data-scan="morrone-architectural-guidebook-1994-p-116">[page scan]</a></td></tr>
+</tbody></table>
+<h3 class="csec">II. Of Style, and the Ghost of an Age</h3>
+<table><thead><tr><th class="num">#</th><th>Verbatim Quote (abbreviated)</th><th>Source (Author, Title, Year, Page)</th></tr></thead><tbody>
+<tr><td class="num">8</td><td class="quote">&ldquo;Queen-Anne, neo-Grec: Secondary Façade 18th Street&rdquo;</td><td class="src"><span class="sw s6"></span>LPC, <em>Union Square</em>, 1881, p. 1&nbsp;<a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">[page scan]</a></td></tr>
+<tr><td class="num">9</td><td class="quote">&ldquo;distinguished by its picturesque mixture of seventeenth- and eighteenth-century English motifs&rdquo;</td><td class="src"><span class="sw s2"></span>Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 291&nbsp;<a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-291" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-291">[page scan]</a></td></tr>
+<tr><td class="num">10</td><td class="quote">&ldquo;Although classical details are commonly used (such as the Jacobean doorway), these are combined in an unusual and thoroughly nonclassical way.&rdquo;</td><td class="src"><span class="sw s2"></span>Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 291&nbsp;<a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-291" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-291">[page scan]</a></td></tr>
+<tr><td class="num">11</td><td class="quote">&ldquo;Championed by such artists and writers as James McNeill Whistler and Oscar Wilde, the Queen Anne style developed along with the English Aesthetic movement.&rdquo;</td><td class="src"><span class="sw s2"></span>Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 291&nbsp;<a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-291" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-291">[page scan]</a></td></tr>
+<tr><td class="num">12</td><td class="quote">&ldquo;The Century Building is one of the few surviving commercial examples of the Queen Anne style in the city&rdquo;</td><td class="src"><span class="sw s2"></span>Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 291&nbsp;<a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-291" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-291">[page scan]</a></td></tr>
+<tr><td class="num">13</td><td class="quote">&ldquo;one of the few extant major Queen Anne buildings in Manhattan&rdquo;</td><td class="src"><span class="sw s5"></span>Morrone, <em>Architectural Guidebook</em>, 1994, p. 116&nbsp;<a class="pglink" href="#src-morrone-architectural-guidebook-1994-p-116" data-scan="morrone-architectural-guidebook-1994-p-116">[page scan]</a></td></tr>
+<tr><td class="num">14</td><td class="quote">&ldquo;Queen Anne-style commercial buildings are rare in NYC.&rdquo;</td><td class="src"><span class="sw s7"></span>Greene, <em>New York for New Yorkers</em>, 2001, p. 32&nbsp;<a class="pglink" href="#src-greene-new-york-for-new-yorkers-2001-p-32" data-scan="greene-new-york-for-new-yorkers-2001-p-32">[page scan]</a></td></tr>
+<tr><td class="num">15</td><td class="quote">&ldquo;The red brick Century Building is a rare New York example of a Queen Anne- style commercial structure.&rdquo;</td><td class="src"><span class="sw s8"></span>Postal &amp; Dolkart, <em>Guide to New York City Landmarks</em>, 2009, p. 76&nbsp;<a class="pglink" href="#src-postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76" data-scan="postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76">[page scan]</a></td></tr>
+<tr><td class="num">16</td><td class="quote">&ldquo;William Schickel might have used the Queen Anne style, which was common in domestic suburban designs but almost unknown in urban commercial structures, to draw attention…&rdquo;</td><td class="src"><span class="sw s2"></span>Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 291&nbsp;<a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-291" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-291">[page scan]</a></td></tr>
+<tr><td class="num">17</td><td class="quote">&ldquo;The Union Square area was booming in the last quarter of the nineteenth century. Unusual or distinctive building design would have been one way of appealing to potential…&rdquo;</td><td class="src"><span class="sw s2"></span>Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 291&nbsp;<a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-291" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-291">[page scan]</a></td></tr>
+<tr><td class="num">18</td><td class="quote">&ldquo;Gramercy apartments (1883. G. W da Cunha, 8.7) at Gramercy Park&rdquo;</td><td class="src"><span class="sw s5"></span>Morrone, <em>Architectural Guidebook</em>, 1994, p. 116&nbsp;<a class="pglink" href="#src-morrone-architectural-guidebook-1994-p-116" data-scan="morrone-architectural-guidebook-1994-p-116">[page scan]</a></td></tr>
+<tr><td class="num">19</td><td class="quote">&ldquo;former Mercantile Exchange (1884, Thomas R. Jackson, 3.12) in TriBeCa.&rdquo;</td><td class="src"><span class="sw s5"></span>Morrone, <em>Architectural Guidebook</em>, 1994, p. 116&nbsp;<a class="pglink" href="#src-morrone-architectural-guidebook-1994-p-116" data-scan="morrone-architectural-guidebook-1994-p-116">[page scan]</a></td></tr>
+</tbody></table>
+<h3 class="csec">III. The Body of Color</h3>
+<table><thead><tr><th class="num">#</th><th>Verbatim Quote (abbreviated)</th><th>Source (Author, Title, Year, Page)</th></tr></thead><tbody>
+<tr><td class="num">20</td><td class="quote">&ldquo;Warm red brick, crisp bluestone trim&rdquo;</td><td class="src"><span class="sw s9"></span>Hennessy, <em>Walking Broadway</em>, 2020, p. 96&nbsp;<a class="pglink" href="#src-hennessy-walking-broadway-2020-p-96" data-scan="hennessy-walking-broadway-2020-p-96">[page scan]</a></td></tr>
+<tr><td class="num">21</td><td class="quote">&ldquo;Façade Color_Brick Red - 196 47 69&rdquo;</td><td class="src"><span class="sw s6"></span>LPC, <em>Union Square</em>, 1881, p. 1&nbsp;<a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">[page scan]</a></td></tr>
+<tr><td class="num">22</td><td class="quote">&ldquo;Base Color_Crystal - 213 213 213&rdquo;</td><td class="src"><span class="sw s6"></span>LPC, <em>Union Square</em>, 1881, p. 1&nbsp;<a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">[page scan]</a></td></tr>
+<tr><td class="num">23</td><td class="quote">&ldquo;Running Bond&rdquo;</td><td class="src"><span class="sw s6"></span>LPC, <em>Union Square</em>, 1881, p. 1&nbsp;<a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">[page scan]</a></td></tr>
+<tr><td class="num">24</td><td class="quote">&ldquo;Wyoming Bluestone&rdquo;</td><td class="src"><span class="sw s6"></span>LPC, <em>Union Square</em>, 1881, p. 1&nbsp;<a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">[page scan]</a></td></tr>
+<tr><td class="num">25</td><td class="quote">&ldquo;red brick and whitestone charmer&rdquo;</td><td class="src"><span class="sw s4"></span>AIA, <em>AIA Edition 3</em>, 1988, p. 186&nbsp;<a class="pglink" href="#src-aia-aia-edition-3-1988-p-186" data-scan="aia-aia-edition-3-1988-p-186">[page scan]</a></td></tr>
+<tr><td class="num">26</td><td class="quote">&ldquo;Brick, Terra Cotta, Wyoming Bluestone, Iron&rdquo;</td><td class="src"><span class="sw s6"></span>LPC, <em>Union Square</em>, 1881, p. 1&nbsp;<a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">[page scan]</a></td></tr>
+<tr><td class="num">27</td><td class="quote">&ldquo;Red Brick, Wyoming Bluestone&rdquo;</td><td class="src"><span class="sw s6"></span>LPC, <em>Union Square</em>, 1881, p. 1&nbsp;<a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">[page scan]</a></td></tr>
+<tr><td class="num">28</td><td class="quote">&ldquo;to house the prestigious Century Publishing Company&rdquo;</td><td class="src"><span class="sw s8"></span>Postal &amp; Dolkart, <em>Guide to New York City Landmarks</em>, 2009, p. 76&nbsp;<a class="pglink" href="#src-postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76" data-scan="postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76">[page scan]</a></td></tr>
+<tr><td class="num">29</td><td class="quote">&ldquo;Rusticated Brick Pilasters&rdquo;</td><td class="src"><span class="sw s6"></span>LPC, <em>Union Square</em>, 1881, p. 1&nbsp;<a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">[page scan]</a></td></tr>
+</tbody></table>
+<h3 class="csec">The Door</h3>
+<table><thead><tr><th class="num">#</th><th>Verbatim Quote (abbreviated)</th><th>Source (Author, Title, Year, Page)</th></tr></thead><tbody>
+<tr><td class="num">30</td><td class="quote">&ldquo;3 Bays&rdquo;</td><td class="src"><span class="sw s6"></span>LPC, <em>Union Square</em>, 1881, p. 1&nbsp;<a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">[page scan]</a></td></tr>
+<tr><td class="num">31</td><td class="quote">&ldquo;Pedimented&rdquo;</td><td class="src"><span class="sw s6"></span>LPC, <em>Union Square</em>, 1881, p. 1&nbsp;<a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">[page scan]</a></td></tr>
+<tr><td class="num">32</td><td class="quote">&ldquo;Arched&rdquo;</td><td class="src"><span class="sw s6"></span>LPC, <em>Union Square</em>, 1881, p. 1&nbsp;<a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">[page scan]</a></td></tr>
+<tr><td class="num">33</td><td class="quote">&ldquo;Fanlight&rdquo;</td><td class="src"><span class="sw s6"></span>LPC, <em>Union Square</em>, 1881, p. 1&nbsp;<a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">[page scan]</a></td></tr>
+<tr><td class="num">34</td><td class="quote">&ldquo;Tuscan Pilasters&rdquo;</td><td class="src"><span class="sw s6"></span>LPC, <em>Union Square</em>, 1881, p. 1&nbsp;<a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">[page scan]</a></td></tr>
+<tr><td class="num">35</td><td class="quote">&ldquo;Console Bracket Capital&rdquo;</td><td class="src"><span class="sw s6"></span>LPC, <em>Union Square</em>, 1881, p. 1&nbsp;<a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">[page scan]</a></td></tr>
+<tr><td class="num">36</td><td class="quote">&ldquo;Cast Iron Ornament&rdquo;</td><td class="src"><span class="sw s6"></span>LPC, <em>Union Square</em>, 1881, p. 1&nbsp;<a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">[page scan]</a></td></tr>
+<tr><td class="num">37</td><td class="quote">&ldquo;crisply carved stone surround the ground floor entrance.&rdquo;</td><td class="src"><span class="sw s9"></span>Hennessy, <em>Walking Broadway</em>, 2020, p. 96&nbsp;<a class="pglink" href="#src-hennessy-walking-broadway-2020-p-96" data-scan="hennessy-walking-broadway-2020-p-96">[page scan]</a></td></tr>
+<tr><td class="num">38</td><td class="quote">&ldquo;Jacobean doorway&rdquo;</td><td class="src"><span class="sw s2"></span>Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 291&nbsp;<a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-291" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-291">[page scan]</a></td></tr>
+</tbody></table>
+<h3 class="csec">The Window That Leans Toward the World</h3>
+<table><thead><tr><th class="num">#</th><th>Verbatim Quote (abbreviated)</th><th>Source (Author, Title, Year, Page)</th></tr></thead><tbody>
+<tr><td class="num">39</td><td class="quote">&ldquo;2-story Oriel&rdquo;</td><td class="src"><span class="sw s6"></span>LPC, <em>Union Square</em>, 1881, p. 1&nbsp;<a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">[page scan]</a></td></tr>
+<tr><td class="num">40</td><td class="quote">&ldquo;two-story oriel window give this Queen Anne style commercial building a welcoming domestic aspect.&rdquo;</td><td class="src"><span class="sw s9"></span>Hennessy, <em>Walking Broadway</em>, 2020, p. 96&nbsp;<a class="pglink" href="#src-hennessy-walking-broadway-2020-p-96" data-scan="hennessy-walking-broadway-2020-p-96">[page scan]</a></td></tr>
+<tr><td class="num">41</td><td class="quote">&ldquo;The tall oriel window, gambrel roof, prominent chimneys, and molded terra cotta ornament are all characteristic of the style.&rdquo;</td><td class="src"><span class="sw s2"></span>Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 291&nbsp;<a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-291" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-291">[page scan]</a></td></tr>
+<tr><td class="num">42</td><td class="quote">&ldquo;Segmental Arch Lintel (3-5)&rdquo;</td><td class="src"><span class="sw s6"></span>LPC, <em>Union Square</em>, 1881, p. 1&nbsp;<a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">[page scan]</a></td></tr>
+<tr><td class="num">43</td><td class="quote">&ldquo;Stone Keystone&rdquo;</td><td class="src"><span class="sw s6"></span>LPC, <em>Union Square</em>, 1881, p. 1&nbsp;<a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">[page scan]</a></td></tr>
+<tr><td class="num">44</td><td class="quote">&ldquo;Window Panes: [1/1] (w/ Transom)&rdquo;</td><td class="src"><span class="sw s6"></span>LPC, <em>Union Square</em>, 1881, p. 1&nbsp;<a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">[page scan]</a></td></tr>
+</tbody></table>
+<h3 class="csec">The Carven Feast</h3>
+<table><thead><tr><th class="num">#</th><th>Verbatim Quote (abbreviated)</th><th>Source (Author, Title, Year, Page)</th></tr></thead><tbody>
+<tr><td class="num">45</td><td class="quote">&ldquo;Richly detailed terra-cotta panels and crisply carved stone surround the ground floor entrance, embellish the facade, and reappear in the treatment of the top floor…&rdquo;</td><td class="src"><span class="sw s9"></span>Hennessy, <em>Walking Broadway</em>, 2020, p. 96&nbsp;<a class="pglink" href="#src-hennessy-walking-broadway-2020-p-96" data-scan="hennessy-walking-broadway-2020-p-96">[page scan]</a></td></tr>
+<tr><td class="num">46</td><td class="quote">&ldquo;Garlands, Shells, Grotesques&rdquo;</td><td class="src"><span class="sw s6"></span>LPC, <em>Union Square</em>, 1881, p. 1&nbsp;<a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">[page scan]</a></td></tr>
+<tr><td class="num">47</td><td class="quote">&ldquo;Swags&rdquo;</td><td class="src"><span class="sw s6"></span>LPC, <em>Union Square</em>, 1881, p. 1&nbsp;<a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">[page scan]</a></td></tr>
+<tr><td class="num">48</td><td class="quote">&ldquo;Dentil Course&rdquo;</td><td class="src"><span class="sw s6"></span>LPC, <em>Union Square</em>, 1881, p. 1&nbsp;<a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">[page scan]</a></td></tr>
+<tr><td class="num">49</td><td class="quote">&ldquo;Egg &amp; Dart Course&rdquo;</td><td class="src"><span class="sw s6"></span>LPC, <em>Union Square</em>, 1881, p. 1&nbsp;<a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">[page scan]</a></td></tr>
+<tr><td class="num">50</td><td class="quote">&ldquo;characteristic of the finest Queen Anne design in its free use of classical motifs in stone and terracotta and its employment of the style&#x27;s trademark sunflowers.&rdquo;</td><td class="src"><span class="sw s8"></span>Postal &amp; Dolkart, <em>Guide to New York City Landmarks</em>, 2009, p. 76&nbsp;<a class="pglink" href="#src-postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76" data-scan="postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76">[page scan]</a></td></tr>
+<tr><td class="num">51</td><td class="quote">&ldquo;Sunflower Terra Cotta Finials&rdquo;</td><td class="src"><span class="sw s6"></span>LPC, <em>Union Square</em>, 1881, p. 1&nbsp;<a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">[page scan]</a></td></tr>
+</tbody></table>
+<h3 class="csec">The Crown</h3>
+<table><thead><tr><th class="num">#</th><th>Verbatim Quote (abbreviated)</th><th>Source (Author, Title, Year, Page)</th></tr></thead><tbody>
+<tr><td class="num">52</td><td class="quote">&ldquo;Gambrel Roof&rdquo;</td><td class="src"><span class="sw s6"></span>LPC, <em>Union Square</em>, 1881, p. 1&nbsp;<a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">[page scan]</a></td></tr>
+<tr><td class="num">53</td><td class="quote">&ldquo;2-Story Dormers&rdquo;</td><td class="src"><span class="sw s6"></span>LPC, <em>Union Square</em>, 1881, p. 1&nbsp;<a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">[page scan]</a></td></tr>
+<tr><td class="num">54</td><td class="quote">&ldquo;prominent chimneys&rdquo;</td><td class="src"><span class="sw s2"></span>Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 291&nbsp;<a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-291" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-291">[page scan]</a></td></tr>
+<tr><td class="num">55</td><td class="quote">&ldquo;Cast Iron Cornice&rdquo;</td><td class="src"><span class="sw s6"></span>LPC, <em>Union Square</em>, 1881, p. 1&nbsp;<a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">[page scan]</a></td></tr>
+<tr><td class="num">56</td><td class="quote">&ldquo;Dentils&rdquo;</td><td class="src"><span class="sw s6"></span>LPC, <em>Union Square</em>, 1881, p. 1&nbsp;<a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">[page scan]</a></td></tr>
+<tr><td class="num">57</td><td class="quote">&ldquo;Frieze&rdquo;</td><td class="src"><span class="sw s6"></span>LPC, <em>Union Square</em>, 1881, p. 1&nbsp;<a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">[page scan]</a></td></tr>
+<tr><td class="num">58</td><td class="quote">&ldquo;Skew Corbels&rdquo;</td><td class="src"><span class="sw s6"></span>LPC, <em>Union Square</em>, 1881, p. 1&nbsp;<a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">[page scan]</a></td></tr>
+<tr><td class="num">59</td><td class="quote">&ldquo;Balustrade&rdquo;</td><td class="src"><span class="sw s6"></span>LPC, <em>Union Square</em>, 1881, p. 1&nbsp;<a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">[page scan]</a></td></tr>
+<tr><td class="num">60</td><td class="quote">&ldquo;Sunflower Terra Cotta Finials&rdquo;</td><td class="src"><span class="sw s6"></span>LPC, <em>Union Square</em>, 1881, p. 1&nbsp;<a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">[page scan]</a></td></tr>
+</tbody></table>
+<h3 class="csec">V. The Chambered Heart</h3>
+<table><thead><tr><th class="num">#</th><th>Verbatim Quote (abbreviated)</th><th>Source (Author, Title, Year, Page)</th></tr></thead><tbody>
+<tr><td class="num">61</td><td class="quote">&ldquo;high ceilings and such architectural features as Corinthian capped cast-iron columns and consider able original woodwork&rdquo;</td><td class="src"><span class="sw s10"></span>Stern, <em>New York 2000</em>, 2006, p. 1140&nbsp;<a class="pglink" href="#src-stern-new-york-2000-2006-p-1140" data-scan="stern-new-york-2000-2006-p-1140">[page scan]</a></td></tr>
+<tr><td class="num">62</td><td class="quote">&ldquo;featured a college library-like study hall with rows of tables overlooking Broadway attracting students and others.&rdquo;</td><td class="src"><span class="sw s10"></span>Stern, <em>New York 2000</em>, 2006, p. 1140&nbsp;<a class="pglink" href="#src-stern-new-york-2000-2006-p-1140" data-scan="stern-new-york-2000-2006-p-1140">[page scan]</a></td></tr>
+<tr><td class="num">63</td><td class="quote">&ldquo;The labyrinth of banistered corrals provided well-defined spaces for executives and employees, and it symbolized a well ordered bureaucracy. The pilastered screen with…&rdquo;</td><td class="src"><span class="sw s11"></span>Byron, <em>New York Interiors At the Turn of the Century</em>, 1976, p. 154&nbsp;<a class="pglink" href="#src-byron-new-york-interiors-at-the-turn-of-the-century-1976-p-154" data-scan="byron-new-york-interiors-at-the-turn-of-the-century-1976-p-154">[page scan]</a></td></tr>
+</tbody></table>
+<h3 class="csec">VI. The Long Procession of the Years</h3>
+<table><thead><tr><th class="num">#</th><th>Verbatim Quote (abbreviated)</th><th>Source (Author, Title, Year, Page)</th></tr></thead><tbody>
+<tr><td class="num">64</td><td class="quote">&ldquo;developed as a speculative venture by the dry-goods company Arnold Constable&rdquo;</td><td class="src"><span class="sw s12"></span>Stern, <em>New York 1880</em>, 1999, p. 442&nbsp;<a class="pglink" href="#src-stern-new-york-1880-1999-p-442" data-scan="stern-new-york-1880-1999-p-442">[page scan]</a></td></tr>
+<tr><td class="num">65</td><td class="quote">&ldquo;The Century Building was commissioned as a speculative undertaking by the Arnold and Constable families. In addition to their department store, they were among the…&rdquo;</td><td class="src"><span class="sw s9"></span>Hennessy, <em>Walking Broadway</em>, 2020, p. 96&nbsp;<a class="pglink" href="#src-hennessy-walking-broadway-2020-p-96" data-scan="hennessy-walking-broadway-2020-p-96">[page scan]</a></td></tr>
+<tr><td class="num">66</td><td class="quote">&ldquo;The building takes its name from the Century Company, publishers of The Century Magazine and St. Nicholas Magazine, which had offices there.&rdquo;</td><td class="src"><span class="sw s2"></span>Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 291&nbsp;<a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-291" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-291">[page scan]</a></td></tr>
+<tr><td class="num">67</td><td class="quote">&ldquo;the popular Century magazine (for grown-ups) and St. Nicholas (for boys and girls)&rdquo;</td><td class="src"><span class="sw s4"></span>AIA, <em>AIA Edition 3</em>, 1988, p. 186&nbsp;<a class="pglink" href="#src-aia-aia-edition-3-1988-p-186" data-scan="aia-aia-edition-3-1988-p-186">[page scan]</a></td></tr>
+<tr><td class="num">68</td><td class="quote">&ldquo;The Century was a noted literary publication, carrying work by Mark Twain, Henry James, Walt Whitman, and Herman Melville&rdquo;</td><td class="src"><span class="sw s2"></span>Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 291&nbsp;<a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-291" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-291">[page scan]</a></td></tr>
+<tr><td class="num">69</td><td class="quote">&ldquo;books by Edith Wharton, Mark Twain, and Rudyard Kipling.&rdquo;</td><td class="src"><span class="sw s7"></span>Greene, <em>New York for New Yorkers</em>, 2001, p. 32&nbsp;<a class="pglink" href="#src-greene-new-york-for-new-yorkers-2001-p-32" data-scan="greene-new-york-for-new-yorkers-2001-p-32">[page scan]</a></td></tr>
+<tr><td class="num">70</td><td class="quote">&ldquo;1 Structure; 6 Story Brick building with Store and Elevators&rdquo;</td><td class="src"><span class="sw s13"></span>G W Bromley &amp; Co, <em>1916 Atlas of the Borough of Manhattan</em>, p. 55&nbsp;<a class="pglink" href="#src-g-w-bromley-co-1916-atlas-of-the-borough-of-manhattan-p-55" data-scan="g-w-bromley-co-1916-atlas-of-the-borough-of-manhattan-p-55">[page scan]</a></td></tr>
+<tr><td class="num">71</td><td class="quote">&ldquo;seven-story&rdquo;</td><td class="src"><span class="sw s7"></span>Greene, <em>New York for New Yorkers</em>, 2001, p. 32&nbsp;<a class="pglink" href="#src-greene-new-york-for-new-yorkers-2001-p-32" data-scan="greene-new-york-for-new-yorkers-2001-p-32">[page scan]</a></td></tr>
+<tr><td class="num">72</td><td class="quote">&ldquo;Everett House&rdquo;</td><td class="src"><span class="sw s14"></span>Dripps, <em>1867 Dripps Plan</em>, p. 7&nbsp;<a class="pglink" href="#src-dripps-1867-dripps-plan-p-7" data-scan="dripps-1867-dripps-plan-p-7">[page scan]</a></td></tr>
+</tbody></table>
+<h3 class="csec">VII. The Second Life</h3>
+<table><thead><tr><th class="num">#</th><th>Verbatim Quote (abbreviated)</th><th>Source (Author, Title, Year, Page)</th></tr></thead><tbody>
+<tr><td class="num">73</td><td class="quote">&ldquo;After standing vacant for many years, the braiding was converted into a bookstore, and the facade received an award-winning restoration.&rdquo;</td><td class="src"><span class="sw s8"></span>Postal &amp; Dolkart, <em>Guide to New York City Landmarks</em>, 2009, p. 76&nbsp;<a class="pglink" href="#src-postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76" data-scan="postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76">[page scan]</a></td></tr>
+<tr><td class="num">74</td><td class="quote">&ldquo;DESIGNATED: OCTOBER 7, 1986&rdquo;</td><td class="src"><span class="sw s2"></span>Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 291&nbsp;<a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-291" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-291">[page scan]</a></td></tr>
+<tr><td class="num">75</td><td class="quote">&ldquo;In 1995 Barnes &amp; Noble transformed the 100,000-square-foot Queen Anne-style Century Building.&rdquo;</td><td class="src"><span class="sw s10"></span>Stern, <em>New York 2000</em>, 2006, p. 1140&nbsp;<a class="pglink" href="#src-stern-new-york-2000-2006-p-1140" data-scan="stern-new-york-2000-2006-p-1140">[page scan]</a></td></tr>
+<tr><td class="num">76</td><td class="quote">&ldquo;Judith Saltzman of Li-Saltzman restored the facade, and fames Cohen was charged with maintaining die character of the landmark interiors, which were listed on the…&rdquo;</td><td class="src"><span class="sw s10"></span>Stern, <em>New York 2000</em>, 2006, p. 1140&nbsp;<a class="pglink" href="#src-stern-new-york-2000-2006-p-1140" data-scan="stern-new-york-2000-2006-p-1140">[page scan]</a></td></tr>
+<tr><td class="num">77</td><td class="quote">&ldquo;effect was impressive, even though it lacked the intimacy and charm of many of the traditional bookstores such as Shakespeare Company and Endicott that the superstores…&rdquo;</td><td class="src"><span class="sw s10"></span>Stern, <em>New York 2000</em>, 2006, p. 1140&nbsp;<a class="pglink" href="#src-stern-new-york-2000-2006-p-1140" data-scan="stern-new-york-2000-2006-p-1140">[page scan]</a></td></tr>
+</tbody></table>
+<h3 class="csec">VIII. Among Its Kindred</h3>
+<table><thead><tr><th class="num">#</th><th>Verbatim Quote (abbreviated)</th><th>Source (Author, Title, Year, Page)</th></tr></thead><tbody>
+<tr><td class="num">78</td><td class="quote">&ldquo;showing, from left to right the Parish Building (Detlef Lienau, 1883 – 1884), Century Company Building, and Everett house (1854).&rdquo;</td><td class="src"><span class="sw s12"></span>Stern, <em>New York 1880</em>, 1999, p. 440&nbsp;<a class="pglink" href="#src-stern-new-york-1880-1999-p-440" data-scan="stern-new-york-1880-1999-p-440">[page scan]</a></td></tr>
+<tr><td class="num">79</td><td class="quote">&ldquo;across the street on the south corner of 17th Street facing Union Square.&rdquo;</td><td class="src"><span class="sw s15"></span>Goldberger, <em>The City Observed</em>, 1979, p. 91&nbsp;<a class="pglink" href="#src-goldberger-the-city-observed-1979-p-91" data-scan="goldberger-the-city-observed-1979-p-91">[page scan]</a></td></tr>
+<tr><td class="num">80</td><td class="quote">&ldquo;Concerns about the fate of historic buildings on other sites around the square led to the designation as landmarks of the Lincoln Building (R. H. Robertson, 1890), 1-3…&rdquo;</td><td class="src"><span class="sw s10"></span>Stern, <em>New York 2000</em>, 2006, p. 377&nbsp;<a class="pglink" href="#src-stern-new-york-2000-2006-p-377" data-scan="stern-new-york-2000-2006-p-377">[page scan]</a></td></tr>
+<tr><td class="num">81</td><td class="quote">&ldquo;the Queen Anne pile might have worked somewhere else, it seems oddly uncomfortable here. Union Square can accommodate flamboyant show-offs and it can accommodate…&rdquo;</td><td class="src"><span class="sw s15"></span>Goldberger, <em>The City Observed</em>, 1979, p. 91&nbsp;<a class="pglink" href="#src-goldberger-the-city-observed-1979-p-91" data-scan="goldberger-the-city-observed-1979-p-91">[page scan]</a></td></tr>
+</tbody></table>
+<h3 class="csec">IX. Benediction</h3>
+<table><thead><tr><th class="num">#</th><th>Verbatim Quote (abbreviated)</th><th>Source (Author, Title, Year, Page)</th></tr></thead><tbody>
+<tr><td class="num">82</td><td class="quote">&ldquo;Warm red brick, crisp bluestone trim, and a two-story oriel window give this Queen Anne style commercial building a welcoming domestic aspect&rdquo;</td><td class="src"><span class="sw s9"></span>Hennessy, <em>Walking Broadway</em>, 2020, p. 96&nbsp;<a class="pglink" href="#src-hennessy-walking-broadway-2020-p-96" data-scan="hennessy-walking-broadway-2020-p-96">[page scan]</a></td></tr>
+<tr><td class="num">83</td><td class="quote">&ldquo;Richly detailed terra-cotta panels and crisply carved stone&rdquo;</td><td class="src"><span class="sw s9"></span>Hennessy, <em>Walking Broadway</em>, 2020, p. 96&nbsp;<a class="pglink" href="#src-hennessy-walking-broadway-2020-p-96" data-scan="hennessy-walking-broadway-2020-p-96">[page scan]</a></td></tr>
+<tr><td class="num">84</td><td class="quote">&ldquo;one of the few surviving commercial examples of the Queen Anne style in the city&rdquo;</td><td class="src"><span class="sw s2"></span>Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 291&nbsp;<a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-291" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-291">[page scan]</a></td></tr>
+<tr><td class="num">85</td><td class="quote">&ldquo;Li/Saltzman Architects&rdquo;</td><td class="src"><span class="sw s2"></span>Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 291&nbsp;<a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-291" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-291">[page scan]</a></td></tr>
+<tr><td class="num">86</td><td class="quote">&ldquo;red brick and whitestone charmer&rdquo;</td><td class="src"><span class="sw s4"></span>AIA, <em>AIA Edition 3</em>, 1988, p. 186&nbsp;<a class="pglink" href="#src-aia-aia-edition-3-1988-p-186" data-scan="aia-aia-edition-3-1988-p-186">[page scan]</a></td></tr>
+<tr><td class="num">87</td><td class="quote">&ldquo;Queen Anle pile&rdquo;</td><td class="src"><span class="sw s5"></span>Morrone, <em>Architectural Guidebook</em>, 1994, p. 116&nbsp;<a class="pglink" href="#src-morrone-architectural-guidebook-1994-p-116" data-scan="morrone-architectural-guidebook-1994-p-116">[page scan]</a></td></tr>
+</tbody></table></div></section>
+
+<h2 class="srcpage" id="sources">Source Pages</h2>
+<p class="note2">17 scanned pages, one per cited source page. Each lists the highlighted quotes drawn from it.</p>
+<section class="srcsec"><h3 class="scanhead"><span id="src-egan-pop-culture-new-york-city-2018-p-124"></span>Egan, <em>Pop Culture New York City</em>, 2018, p. 124</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-1">1</a></span></p>
+<figure class="scan"><img id="scan-egan-pop-culture-new-york-city-2018-p-124" src="assets/scans/egan-pop-culture-new-york-city-2018-p-124.jpg" alt="Egan, Pop Culture New York City, 2018, p. 124"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-spielvogel-the-landmarks-of-new-york-2016-p-291"></span>Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 291</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-2">2</a> <a href="#hl-5">5</a> <a href="#hl-9">9</a> <a href="#hl-10">10</a> <a href="#hl-11">11</a> <a href="#hl-12">12</a> <a href="#hl-16">16</a> <a href="#hl-17">17</a> <a href="#hl-38">38</a> <a href="#hl-41">41</a> <a href="#hl-54">54</a> <a href="#hl-66">66</a> <a href="#hl-68">68</a> <a href="#hl-74">74</a> <a href="#hl-84">84</a> <a href="#hl-85">85</a></span></p>
+<figure class="scan"><img id="scan-spielvogel-the-landmarks-of-new-york-2016-p-291" src="assets/scans/spielvogel-the-landmarks-of-new-york-2016-p-291.jpg" alt="Spielvogel, The Landmarks of New York, 2016, p. 291"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-unknown-author-landmarks-preservation-commission-p-1"></span>Unknown Author, <em>Landmarks Preservation Commission</em>, p. 1</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-3">3</a></span> &middot; <i>Citation record supplied in place of the page image.</i></p>
+<figure class="scan"><img id="scan-unknown-author-landmarks-preservation-commission-p-1" src="assets/scans/unknown-author-landmarks-preservation-commission-p-1.jpg" alt="Unknown Author, Landmarks Preservation Commission, p. 1"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-aia-aia-edition-3-1988-p-186"></span>AIA, <em>AIA Edition 3</em>, 1988, p. 186</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-4">4</a> <a href="#hl-6">6</a> <a href="#hl-25">25</a> <a href="#hl-67">67</a> <a href="#hl-86">86</a></span></p>
+<figure class="scan"><img id="scan-aia-aia-edition-3-1988-p-186" src="assets/scans/aia-aia-edition-3-1988-p-186.jpg" alt="AIA, AIA Edition 3, 1988, p. 186"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-morrone-architectural-guidebook-1994-p-116"></span>Morrone, <em>Architectural Guidebook</em>, 1994, p. 116</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-7">7</a> <a href="#hl-13">13</a> <a href="#hl-18">18</a> <a href="#hl-19">19</a> <a href="#hl-87">87</a></span></p>
+<figure class="scan"><img id="scan-morrone-architectural-guidebook-1994-p-116" src="assets/scans/morrone-architectural-guidebook-1994-p-116.jpg" alt="Morrone, Architectural Guidebook, 1994, p. 116"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-lpc-union-square-1881-p-1"></span>LPC, <em>Union Square</em>, 1881, p. 1</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-8">8</a> <a href="#hl-21">21</a> <a href="#hl-22">22</a> <a href="#hl-23">23</a> <a href="#hl-24">24</a> <a href="#hl-26">26</a> <a href="#hl-27">27</a> <a href="#hl-29">29</a> <a href="#hl-30">30</a> <a href="#hl-31">31</a> <a href="#hl-32">32</a> <a href="#hl-33">33</a> <a href="#hl-34">34</a> <a href="#hl-35">35</a> <a href="#hl-36">36</a> <a href="#hl-39">39</a> <a href="#hl-42">42</a> <a href="#hl-43">43</a> <a href="#hl-44">44</a> <a href="#hl-46">46</a> <a href="#hl-47">47</a> <a href="#hl-48">48</a> <a href="#hl-49">49</a> <a href="#hl-51">51</a> <a href="#hl-52">52</a> <a href="#hl-53">53</a> <a href="#hl-55">55</a> <a href="#hl-56">56</a> <a href="#hl-57">57</a> <a href="#hl-58">58</a> <a href="#hl-59">59</a> <a href="#hl-60">60</a></span></p>
+<figure class="scan"><img id="scan-lpc-union-square-1881-p-1" src="assets/scans/lpc-union-square-1881-p-1.jpg" alt="LPC, Union Square, 1881, p. 1"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-greene-new-york-for-new-yorkers-2001-p-32"></span>Greene, <em>New York for New Yorkers</em>, 2001, p. 32</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-14">14</a> <a href="#hl-69">69</a> <a href="#hl-71">71</a></span></p>
+<figure class="scan"><img id="scan-greene-new-york-for-new-yorkers-2001-p-32" src="assets/scans/greene-new-york-for-new-yorkers-2001-p-32.jpg" alt="Greene, New York for New Yorkers, 2001, p. 32"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76"></span>Postal &amp; Dolkart, <em>Guide to New York City Landmarks</em>, 2009, p. 76</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-15">15</a> <a href="#hl-28">28</a> <a href="#hl-50">50</a> <a href="#hl-73">73</a></span></p>
+<figure class="scan"><img id="scan-postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76" src="assets/scans/postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76.jpg" alt="Postal &amp; Dolkart, Guide to New York City Landmarks, 2009, p. 76"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-hennessy-walking-broadway-2020-p-96"></span>Hennessy, <em>Walking Broadway</em>, 2020, p. 96</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-20">20</a> <a href="#hl-37">37</a> <a href="#hl-40">40</a> <a href="#hl-45">45</a> <a href="#hl-65">65</a> <a href="#hl-82">82</a> <a href="#hl-83">83</a></span></p>
+<figure class="scan"><img id="scan-hennessy-walking-broadway-2020-p-96" src="assets/scans/hennessy-walking-broadway-2020-p-96.jpg" alt="Hennessy, Walking Broadway, 2020, p. 96"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-stern-new-york-2000-2006-p-1140"></span>Stern, <em>New York 2000</em>, 2006, p. 1140</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-61">61</a> <a href="#hl-62">62</a> <a href="#hl-75">75</a> <a href="#hl-76">76</a> <a href="#hl-77">77</a></span></p>
+<figure class="scan"><img id="scan-stern-new-york-2000-2006-p-1140" src="assets/scans/stern-new-york-2000-2006-p-1140.jpg" alt="Stern, New York 2000, 2006, p. 1140"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-byron-new-york-interiors-at-the-turn-of-the-century-1976-p-154"></span>Byron, <em>New York Interiors At the Turn of the Century</em>, 1976, p. 154</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-63">63</a></span></p>
+<figure class="scan"><img id="scan-byron-new-york-interiors-at-the-turn-of-the-century-1976-p-154" src="assets/scans/byron-new-york-interiors-at-the-turn-of-the-century-1976-p-154.jpg" alt="Byron, New York Interiors At the Turn of the Century, 1976, p. 154"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-stern-new-york-1880-1999-p-442"></span>Stern, <em>New York 1880</em>, 1999, p. 442</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-64">64</a></span></p>
+<figure class="scan"><img id="scan-stern-new-york-1880-1999-p-442" src="assets/scans/stern-new-york-1880-1999-p-442.jpg" alt="Stern, New York 1880, 1999, p. 442"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-g-w-bromley-co-1916-atlas-of-the-borough-of-manhattan-p-55"></span>G W Bromley &amp; Co, <em>1916 Atlas of the Borough of Manhattan</em>, p. 55</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-70">70</a></span></p>
+<figure class="scan"><img id="scan-g-w-bromley-co-1916-atlas-of-the-borough-of-manhattan-p-55" src="assets/scans/g-w-bromley-co-1916-atlas-of-the-borough-of-manhattan-p-55.jpg" alt="G W Bromley &amp; Co, 1916 Atlas of the Borough of Manhattan, p. 55"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-dripps-1867-dripps-plan-p-7"></span>Dripps, <em>1867 Dripps Plan</em>, p. 7</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-72">72</a></span></p>
+<figure class="scan"><img id="scan-dripps-1867-dripps-plan-p-7" src="assets/scans/dripps-1867-dripps-plan-p-7.jpg" alt="Dripps, 1867 Dripps Plan, p. 7"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-stern-new-york-1880-1999-p-440"></span>Stern, <em>New York 1880</em>, 1999, p. 440</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-78">78</a></span></p>
+<figure class="scan"><img id="scan-stern-new-york-1880-1999-p-440" src="assets/scans/stern-new-york-1880-1999-p-440.jpg" alt="Stern, New York 1880, 1999, p. 440"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-goldberger-the-city-observed-1979-p-91"></span>Goldberger, <em>The City Observed</em>, 1979, p. 91</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-79">79</a> <a href="#hl-81">81</a></span></p>
+<figure class="scan"><img id="scan-goldberger-the-city-observed-1979-p-91" src="assets/scans/goldberger-the-city-observed-1979-p-91.jpg" alt="Goldberger, The City Observed, 1979, p. 91"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-stern-new-york-2000-2006-p-377"></span>Stern, <em>New York 2000</em>, 2006, p. 377</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-80">80</a></span></p>
+<figure class="scan"><img id="scan-stern-new-york-2000-2006-p-377" src="assets/scans/stern-new-york-2000-2006-p-377.jpg" alt="Stern, New York 2000, 2006, p. 377"></figure></section>
+</div>
+
+</div>
+<div class="lightbox" hidden><div class="lb-head"><span class="lb-t"></span><button class="lb-btn lb-zoom" type="button">Zoom</button><button class="lb-btn lb-close" type="button">Close &times;</button></div><div class="lb-body"><img alt="Enlarged view"></div></div>
+
+<div class="sp-backdrop" hidden></div>
+<aside class="scanpanel" hidden aria-label="Source page">
+  <div class="sp-head">
+    <div class="sp-title"><span class="sp-cite"></span><span class="sp-q"></span></div>
+    <button class="sp-btn sp-zoom" type="button">Zoom</button>
+    <button class="sp-btn sp-close" type="button" aria-label="Close">&times;</button>
+  </div>
+  <div class="sp-body"><img alt="Source page scan"></div>
+</aside>
+<script>
+(function () {
+  var panel = document.querySelector('.scanpanel'),
+      back  = document.querySelector('.sp-backdrop'),
+      bodyEl= panel.querySelector('.sp-body'),
+      img   = panel.querySelector('.sp-body img'),
+      citeEl= panel.querySelector('.sp-cite'),
+      qEl   = panel.querySelector('.sp-q');
+  function open(slug, label, num) {
+    var full = document.getElementById('scan-' + slug);
+    if (!full) return;
+    if (img.getAttribute('src') !== full.src) img.src = full.src;
+    bodyEl.classList.remove('zoom'); bodyEl.scrollTop = 0;
+    citeEl.innerHTML = label;
+    qEl.textContent = num ? 'Highlighted quote no. ' + num : '';
+    panel.hidden = false; back.hidden = false;
+    requestAnimationFrame(function () { document.body.classList.add('sp-open'); });
+  }
+  function close() {
+    document.body.classList.remove('sp-open');
+    setTimeout(function () { panel.hidden = true; back.hidden = true; }, 220);
+  }
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest) return;
+    var a = e.target.closest('a.srclink, a.pglink');
+    if (a && a.dataset.scan) {
+      e.preventDefault();
+      var head = document.getElementById('src-' + a.dataset.scan),
+          label = head ? head.parentNode.innerHTML.replace(/<span id="src-[^"]*"><\/span>/, '') : '',
+          mk = a.querySelector('mark'), num = '';
+      if (mk && mk.id) num = mk.id.replace('hl-', '');
+      else {
+        var tr = a.closest('tr'), ce = a.closest('.ce');
+        if (tr) num = tr.querySelector('td.num').textContent.trim();
+        else if (ce) num = ce.querySelector('.ce-n').textContent.trim();
+      }
+      open(a.dataset.scan, label, num);
+      return;
+    }
+    if (e.target.closest('.sp-close') || e.target.closest('.sp-backdrop')) close();
+    else if (e.target.closest('.sp-zoom') || e.target === img) bodyEl.classList.toggle('zoom');
+  });
+  var lb = document.querySelector('.lightbox'), lbBody = lb.querySelector('.lb-body'),
+      lbImg = lb.querySelector('.lb-body img'), lbT = lb.querySelector('.lb-t');
+  function lbOpen(slug, label) {
+    var full = document.getElementById('view-' + slug);
+    if (!full) return;
+    if (lbImg.getAttribute('src') !== full.src) lbImg.src = full.src;
+    lbT.innerHTML = label || '';
+    lb.hidden = false;
+    requestAnimationFrame(function () { document.body.classList.add('lb-open'); });
+  }
+  function lbClose() {
+    document.body.classList.remove('lb-open');
+    lbBody.classList.remove('zoom');
+    setTimeout(function () { lb.hidden = true; }, 200);
+  }
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest) return;
+    if (e.target.closest('.lb-close')) { lbClose(); return; }
+    if (e.target.closest('.lb-zoom') || e.target.closest('.lb-body img')) { lbBody.classList.toggle('zoom'); return; }
+    if (e.target.closest('.lightbox') && !e.target.closest('.lb-head')) { lbClose(); return; }
+    if (e.target.closest('.lb-body')) lbClose();
+  });
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest) return;
+    var v = e.target.closest('figure.view');
+    if (v) {
+      var cap = v.querySelector('figcaption b');
+      lbOpen(v.dataset.view, cap ? cap.innerHTML : '');
+    }
+  });
+  // ---- citation column tracks the text ----
+  var col = document.getElementById('chartcol');
+  if (col) {
+    var entryFor = {};
+    Array.prototype.forEach.call(col.querySelectorAll('.ce'), function (ce) {
+      entryFor[ce.querySelector('.ce-n').textContent.trim()] = ce;
+    });
+    var marks = Array.prototype.slice.call(document.querySelectorAll('.wrap mark[id^="hl-"]'));
+    var current = null, touched = 0, selfUntil = 0, hoverNum = null;
+
+    col.addEventListener('scroll', function () {
+      if (Date.now() > selfUntil) touched = Date.now();   // a real scroll by the reader
+    }, { passive: true });
+
+    function activate(num, force) {
+      if (num === current && !force) return;
+      var ce = entryFor[num];
+      if (num !== current) {
+        current = num;
+        Array.prototype.forEach.call(col.querySelectorAll('.ce.active'), function (e) { e.classList.remove('active'); });
+        Array.prototype.forEach.call(document.querySelectorAll('mark.reading'), function (m) { m.classList.remove('reading'); });
+        if (ce) {
+          ce.classList.add('active');
+          var mk = document.getElementById('hl-' + num);
+          if (mk) mk.classList.add('reading');
+        }
+      }
+      if (!ce) return;
+      if (getComputedStyle(col).position !== 'sticky') return;   // stacked layout: don't hijack scrolling
+      if (!force && Date.now() - touched < 2000) return;         // reader is browsing the column
+      var top = ce.offsetTop - col.clientHeight * 0.38;
+      selfUntil = Date.now() + 900;                      // our own smooth scroll, not the reader's
+      col.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+    }
+
+    // ---- pointing at a highlight sends the column straight to its citation ----
+    var textcol = document.querySelector('.wrap');
+    if (textcol) {
+      textcol.addEventListener('mouseover', function (e) {
+        var m = e.target.closest ? e.target.closest('mark[id^="hl-"]') : null;
+        if (!m) return;
+        var n = m.id.replace('hl-', '');
+        if (n === hoverNum) return;        // bubbling from inside the same mark
+        hoverNum = n;
+        activate(n, true);                 // deliberate aim beats the scroll guard
+      });
+      textcol.addEventListener('mouseout', function (e) {
+        var m = e.target.closest ? e.target.closest('mark[id^="hl-"]') : null;
+        if (!m) return;
+        if (e.relatedTarget && m.contains(e.relatedTarget)) return;   // still inside the same mark
+        hoverNum = null;
+      });
+    }
+
+    function pick() {
+      if (hoverNum) return;               // the cursor is aiming; don't argue with it
+      var best = null, bestTop = Infinity, fallback = null, fallbackTop = -Infinity;
+      for (var i = 0; i < marks.length; i++) {
+        var r = marks[i].getBoundingClientRect();
+        if (r.bottom < 0 || r.top > window.innerHeight) continue;
+        if (r.top >= 0 && r.top < bestTop) { best = marks[i]; bestTop = r.top; }
+        else if (r.top < 0 && r.top > fallbackTop) { fallback = marks[i]; fallbackTop = r.top; }
+      }
+      var m = best || fallback;
+      if (m) activate(m.id.replace('hl-', ''));
+    }
+
+    var ticking = false;
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () { ticking = false; pick(); });
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    pick();
+  }
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { close(); if (!lb.hidden) lbClose(); }
+  });
+})();
+</script>
+
+</body>
+</html>
