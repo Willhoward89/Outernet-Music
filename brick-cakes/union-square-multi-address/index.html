@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Union Square — Italics Highlighted</title>
+<style>
+
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; margin: 0; padding: 40px 24px 64px;
+         background:#f8f5e7; color:#1a1a1a; font-family: Georgia, "Times New Roman", serif; font-size:17px; line-height:1.7; }
+  .layout { display: flex; align-items: flex-start; gap: 30px; max-width: 1580px; margin: 0 auto; }
+  .chartcol { flex: 0 0 320px; width: 320px; position: sticky; top: 28px; align-self: flex-start;
+              max-height: calc(100vh - 56px); overflow-y: auto; padding: 0 4px 0 18px;
+              border-left: 1px solid #e2ddc8; background: rgba(248,245,231,.92);
+              font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  .cc-head { position: sticky; top: 0; background: #f8f5e7; padding-bottom: 8px; margin-bottom: 4px;
+             border-bottom: 1px solid #e2ddc8; z-index: 2; }
+  .cc-title { display: block; font-size: 11px; font-weight: 600; letter-spacing: .05em;
+              text-transform: uppercase; color: #888; }
+  .cc-sub { display: block; font-size: 10.5px; color: #aaa; margin-top: 3px; line-height: 1.35; }
+  .cc-sec { font-size: 10.5px; font-weight: 600; letter-spacing: .03em; text-transform: uppercase;
+            color: #999; margin: 16px 0 6px; }
+  .ce { display: flex; gap: 7px; align-items: baseline; padding: 6px 0; border-bottom: 1px solid #ebe6d6; }
+  .ce-n { flex: 0 0 22px; text-align: right; font-size: 10px; color: #bbb; text-decoration: none; }
+  .ce-n:hover { color: #3b6ea5; }
+  .ce .sw { flex: 0 0 9px; width: 9px; height: 9px; transform: translateY(1px); }
+  .ce-b { min-width: 0; }
+  .ce-q { font-size: 11.5px; line-height: 1.4; color: #333; }
+  .ce-s { font-size: 10.5px; line-height: 1.4; color: #999; margin-top: 2px; }
+  .ce { border-left: 2px solid transparent; padding-left: 6px; transition: background .18s ease, border-color .18s ease; }
+  .ce.active { background: rgba(255,255,255,.75); border-left-color: #3b6ea5; }
+  .ce.active .ce-n { color: #3b6ea5; font-weight: 600; }
+  .ce.active .ce-q { color: #111; }
+  mark.reading { box-shadow: 0 0 0 2px rgba(59,110,165,.55); border-radius: 3px; }
+  .chartcol.on-left { border-left: none; border-right: 1px solid #e2ddc8; padding: 0 18px 0 4px; }
+  .rail.on-right { padding: 0 4px 0 4px; }
+  .chartcol::-webkit-scrollbar { width: 7px; }
+  .chartcol::-webkit-scrollbar-thumb { background: #dcdcdc; border-radius: 4px; }
+  .chart-print { display: none; }
+  @media (max-width: 1360px) {
+    .chartcol { position: static; width: 100%; flex: none; max-height: none; border-left: none;
+                border-top: 1px solid #ececec; padding: 18px 0 0; margin-top: 26px; }
+    .layout { flex-wrap: wrap; }
+    .chartcol .ce { max-width: 820px; }
+  }
+  .wrap { flex: 1 1 auto; min-width: 0; max-width: 820px; }
+  .rail { flex: 0 0 262px; width: 262px; position: sticky; top: 28px; align-self: flex-start;
+          max-height: calc(100vh - 56px); overflow-y: auto; padding-right: 4px;
+          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  .rail-title { font-size: 11px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase;
+                color: #888; margin: 0 0 10px; }
+  figure.view { margin: 0 0 16px; cursor: zoom-in; }
+  figure.view img { display: block; width: 100%; border: 1px solid #e0e0e0; border-radius: 4px; }
+  figure.view:hover img { border-color: #9c9c9c; }
+  figure.view figcaption { margin-top: 5px; font-size: 11px; line-height: 1.42; color: #8a8a8a; }
+  figure.view figcaption b { display: block; font-weight: 600; color: #444; }
+  .rail-foot { font-size: 10.5px; color: #aaa; margin: 2px 0 0; }
+  .rail::-webkit-scrollbar { width: 7px; }
+  .rail::-webkit-scrollbar-thumb { background: #dcdcdc; border-radius: 4px; }
+  @media (max-width: 1080px) {
+    .layout { flex-direction: column; gap: 18px; }
+    .rail { position: static; width: 100%; flex: none; max-height: none; display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 14px; }
+    .rail-title, .rail-foot { grid-column: 1 / -1; }
+  }
+  /* full-bleed lightbox */
+  .lightbox { position: fixed; inset: 0; z-index: 60; background: rgba(16,14,13,.93);
+              display: flex; flex-direction: column; opacity: 0; transition: opacity .18s ease; }
+  body.lb-open .lightbox { opacity: 1; }
+  .lightbox[hidden] { display: none !important; }
+  .lb-head { display: flex; align-items: center; gap: 12px; padding: 12px 16px; color: #eee;
+             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 13px; }
+  .lb-head .lb-t { flex: 1; }
+  .lb-btn { border: 1px solid rgba(255,255,255,.28); background: rgba(255,255,255,.08); color: #eee;
+            border-radius: 5px; cursor: pointer; font-size: 13px; line-height: 1; padding: 7px 10px; }
+  .lb-btn:hover { background: rgba(255,255,255,.18); }
+  .lb-body { flex: 1; overflow: auto; display: flex; align-items: center; justify-content: center; padding: 0 16px 18px; }
+  .lb-body img { max-width: 100%; max-height: 100%; object-fit: contain; cursor: zoom-in; }
+  .lb-body.zoom { align-items: flex-start; justify-content: flex-start; }
+  .lb-body.zoom img { max-width: none; max-height: none; width: 220%; cursor: zoom-out; }
+  h1 { font-size: 26px; line-height: 1.25; margin: 0 0 6px; font-weight: 700;
+       letter-spacing: -.012em; color:#1d1a12; }
+  .sub { font-family: Georgia, serif; font-style: italic; font-size: 15px; color: #555; margin: 0 0 8px; }
+  h2 { font-size: 15px; font-weight: 700; letter-spacing: .085em; text-transform: uppercase;
+       color: #6d5a33; margin: 52px 0 16px; padding-bottom: 7px; position: relative;
+       border-bottom: 1px solid #e3dcc6; }
+  h2::after { content: ""; position: absolute; left: 0; bottom: -1px; width: 58px; height: 2px;
+              background: #b39445; }
+  .wrap > h2:first-of-type { margin-top: 34px; }
+  h3 { font-size: 16px; margin: 30px 0 10px; }
+  p { margin: 0 0 20px; }
+  hr { border: none; border-top: 1px solid #e2ddc8; margin: 34px 0 28px; }
+  .note { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 13px; color:#666;
+          margin: 0 0 28px; padding-bottom: 20px; border-bottom: 1px solid #e2ddc8; }
+  .note2 { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 13px; color:#666; margin: 0 0 18px; }
+  mark { color: inherit; font-style: italic; padding: 1px 2px; border-radius: 2px;
+         box-decoration-break: clone; -webkit-box-decoration-break: clone; background:#e4e4e4; }
+  a.srclink { text-decoration: none; color: inherit; cursor: zoom-in; }
+  a.srclink:hover mark { outline: 2px solid rgba(0,0,0,.35); outline-offset: 1px; }
+  .tablewrap { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+          font-size: 13.5px; line-height: 1.55; }
+  th, td { text-align: left; vertical-align: top; padding: 9px 12px; border-bottom: 1px solid #ebe6d6; }
+  thead th { background:#efece0; border-bottom: 1px solid #ddd8c6; font-weight: 600; }
+  td.num, th.num { width: 34px; color:#888; text-align: right; padding-right: 6px; }
+  td.quote { width: 56%; }
+  td.src { color:#444; }
+  tbody tr:nth-child(even) { background:rgba(255,255,255,.45); }
+  h3.csec { font-size: 14px; margin: 26px 0 8px; color:#333;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  .nosrc { color:#999; font-style: italic; }
+  a.pglink, .pglink { font-size: 11px; color:#3b6ea5; text-decoration: none; white-space: nowrap; }
+  .backlinks a { display:inline-block; margin: 0 3px; color:#3b6ea5; text-decoration:none; }
+  .legend { margin: 0 0 30px; padding: 16px 18px; border: 1px solid #e2ddc8; border-radius: 6px; background:rgba(255,253,244,.82);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  .legend-title { font-size: 12px; font-weight: 600; letter-spacing:.04em; text-transform: uppercase; color:#777; margin-bottom: 10px; }
+  .legend-title .lk { text-transform: none; letter-spacing: 0; font-weight: 400; color:#999; }
+  .legend ul { list-style:none; margin:0; padding:0; display:grid; grid-template-columns: repeat(auto-fill, minmax(290px,1fr)); gap: 5px 20px; }
+  .legend li { display:flex; align-items:baseline; gap:8px; font-size:12.5px; line-height:1.45; }
+  .sw { display:inline-block; width:13px; height:13px; border-radius:3px; flex:0 0 13px;
+        border:1px solid rgba(0,0,0,.14); transform: translateY(2px); }
+  td.src .sw { margin-right: 6px; }
+  .ct { color:#999; } .has { color:#3b6ea5; }
+  .pg { color:#8a8272; white-space: nowrap; }
+  section.audio { margin: 0 0 30px; padding: 14px 18px 16px; border: 1px solid #e2ddc8; border-radius: 6px;
+                  background: rgba(255,253,244,.82); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  .audio-label { font-size: 12px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase;
+                 color: #777; margin-bottom: 10px; }
+  .audio-meta { font-weight: 400; letter-spacing: 0; text-transform: none; color: #aaa; margin-left: 4px; }
+  section.audio audio { width: 100%; display: block; }
+  .audio-fallback { display: none; font-size: 12.5px; color: #666; margin: 0; }
+  section.srcsec { margin: 0 0 34px; }
+  h3.scanhead { font-size: 14.5px; margin: 26px 0 6px;
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  figure.scan { margin: 8px 0 0; }
+  figure.scan img { width: 100%; border: 1px solid #ddd; border-radius: 4px; }
+
+  mark.s1, .sw.s1 { background: #cc9966; }
+  mark.s2, .sw.s2 { background: #eeb2af; }
+  mark.s3, .sw.s3 { background: #a8f5b0; }
+  mark.s4, .sw.s4 { background: #38b6fa; }
+  mark.s5, .sw.s5 { background: #faf038; }
+  mark.s6, .sw.s6 { background: #ebebd6; }
+  mark.s7, .sw.s7 { background: #faa338; }
+  mark.s8, .sw.s8 { background: #d4a5d4; }
+  mark.s9, .sw.s9 { background: #bfc88d; }
+  mark.s10, .sw.s10 { background: #fac938; }
+  mark.s11, .sw.s11 { background: #fb8b5b; }
+  mark.s12, .sw.s12 { background: #a3cc66; }
+  mark.s13, .sw.s13 { background: #fc7e7e; }
+  mark.s14, .sw.s14 { background: #fc7ec3; }
+  mark.s15, .sw.s15 { background: #8dbac8; }
+  mark.s16, .sw.s16 { background: #38f0fa; }
+  mark.s17, .sw.s17 { background: #fcdc7e; }
+  mark.s18, .sw.s18 { background: #e0d6eb; }
+  mark.s19, .sw.s19 { background: #a1a1fd; }
+  mark.s20, .sw.s20 { background: #a8f5e2; }
+  mark.s21, .sw.s21 { background: #75bd99; }
+  mark.s22, .sw.s22 { background: #38fab6; }
+  mark.s23, .sw.s23 { background: #68ee68; }
+  mark.s24, .sw.s24 { background: #a8bff5; }
+  mark.s25, .sw.s25 { background: #e27efc; }
+  mark.s26, .sw.s26 { background: #c3fb5b; }
+  mark.s27, .sw.s27 { background: #d792e8; }
+  mark.s0, .sw.s0 { background: #e4e4e4; }
+
+  body::after { content: ""; position: fixed; left: 0; right: 0; bottom: 0; height: 62vh; z-index: -1; pointer-events: none; opacity: .5; background: url(assets/media/skyline.jpg) bottom center / 100% auto no-repeat; -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 42%, #000 100%); mask-image: linear-gradient(to bottom, transparent 0%, #000 42%, #000 100%); }
+
+
+  .sp-backdrop { position: fixed; inset: 0; background: rgba(20,20,20,.28); opacity: 0; transition: opacity .18s ease; z-index: 40; }
+  body.sp-open .sp-backdrop { opacity: 1; }
+  .scanpanel { position: fixed; top:0; right:0; height:100%; width: min(46vw, 620px); background:#fffdf4;
+               border-left: 1px solid #ddd; box-shadow: -8px 0 26px rgba(0,0,0,.13); transform: translateX(101%);
+               transition: transform .22s ease; z-index: 41; display:flex; flex-direction:column;
+               font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  body.sp-open .scanpanel { transform: translateX(0); }
+  .scanpanel[hidden], .sp-backdrop[hidden] { display: none !important; }
+  .sp-head { display:flex; align-items:flex-start; gap:10px; padding:14px 16px; border-bottom:1px solid #eee; }
+  .sp-title { font-size:13px; line-height:1.4; color:#222; flex:1; }
+  .sp-title .sp-q { display:block; color:#777; font-size:11.5px; margin-top:3px; }
+  .sp-btn { border:1px solid #ddd; background:#fafafa; border-radius:5px; cursor:pointer; font-size:13px;
+            line-height:1; padding:6px 9px; color:#444; }
+  .sp-btn:hover { background:#f0f0f0; }
+  .sp-body { flex:1; overflow:auto; padding:12px; background:#efece0; }
+  .sp-body img { display:block; width:100%; border:1px solid #ddd; background:#fff; cursor: zoom-in; }
+  .sp-body.zoom img { width:200%; max-width:none; cursor: zoom-out; }
+  @media (max-width: 820px) { .scanpanel { width:100%; } }
+  @media (max-width: 700px) { body { padding: 16px 10px 40px; } .wrap { padding: 24px 18px 32px; } }
+  @page { size: Letter; margin: 0.75in 0.7in; }
+  @media print {
+    body { padding:0; font-size:11.5pt; line-height:1.55; background:#fff; }
+    body::before { display: none; }
+    .wrap { max-width:none; background:none; padding:0; border-radius:0; box-shadow:none; }
+    .layout { display: block; }
+    .rail { position: static; width: 100%; max-height: none; overflow: visible; display: grid;
+            grid-template-columns: 1fr 1fr; gap: 12px; margin: 0 0 18px; }
+    .rail-title { grid-column: 1 / -1; } .rail-foot { display: none; }
+    figure.view { break-inside: avoid; }
+    .lightbox, .chartcol { display: none !important; }
+    .chart-print { display: block; }
+    h1 { font-size:17pt; } h2 { font-size:10.5pt; letter-spacing:.08em; break-after: avoid; } h3 { font-size:12pt; break-after: avoid; }
+    h2#citations, h2.srcpage { break-before: page; }
+    p { orphans:3; widows:3; }
+    table { font-size:8.6pt; line-height:1.4; } th,td { padding:5px 7px; }
+    thead { display: table-header-group; } tr { break-inside: avoid; }
+    .tablewrap { overflow: visible; }
+    .legend { break-inside: avoid; padding:10px 12px; margin-bottom:20px; }
+    .legend ul { grid-template-columns: 1fr 1fr; gap:3px 16px; } .legend li { font-size:8.4pt; }
+    .sw { width:10px; height:10px; flex:0 0 10px; }
+    section.srcsec { break-inside: avoid; break-before: page; }
+    figure.scan { break-inside: avoid; }
+    a.srclink, a.pglink, .backlinks a { color: inherit; }
+    .scanpanel, .sp-backdrop { display:none !important; }
+    section.audio audio { display: none; }
+    .audio-fallback { display: block; }
+    section.audio { break-inside: avoid; }
+  }
+
+</style>
+</head>
+<body>
+<div class="layout">
+<aside class="chartcol on-left" id="chartcol" aria-label="Citation chart">
+<div class="cc-head"><span class="cc-title">Citation chart</span><span class="cc-sub">74 quotes &middot; click a number to jump to it in the text, or <i>scan</i> to open the source page</span></div>
+<div class="cc-sec">Genesis: From Alluvial Hillock to Civic Commons</div>
+<div class="ce"><a class="ce-n" href="#hl-1">1</a><span class="sw s1"></span><div class="ce-b"><div class="ce-q">&ldquo;Union Square was originally a sand hill. Had it not been for the sand, Irving Place &amp;…&rdquo;</div><div class="ce-s">Chase, <em>New York The Wonder City</em>, 1932, p. 198 <a class="pglink" href="#src-chase-new-york-the-wonder-city-1932-p-198" data-scan="chase-new-york-the-wonder-city-1932-p-198">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-2">2</a><span class="sw s2"></span><div class="ce-b"><div class="ce-q">&ldquo;Union Square took its name from the fact that it was the spot where the Bowery and…&rdquo;</div><div class="ce-s">Bergman, <em>The Spiritual Traveler New York City</em>, 2001, p. 133 <a class="pglink" href="#src-bergman-the-spiritual-traveler-new-york-city-2001-p-133" data-scan="bergman-the-spiritual-traveler-new-york-city-2001-p-133">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-3">3</a><span class="sw s3"></span><div class="ce-b"><div class="ce-q">&ldquo;The square marks the union of Fourth Avenue and Broadway and was saved from further…&rdquo;</div><div class="ce-s">Holmes, <em>100 New Yorker</em>, 2004, p. 168 <a class="pglink" href="#src-holmes-100-new-yorker-2004-p-168" data-scan="holmes-100-new-yorker-2004-p-168">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-4">4</a><span class="sw s4"></span><div class="ce-b"><div class="ce-q">&ldquo;The land was once part of Elias Brevoort&#x27;s farm, but in 1762 he sold twenty acres lying…&rdquo;</div><div class="ce-s">Lockwood, <em>Manhattan Moves Uptown</em>, 1976, p. 167 <a class="pglink" href="#src-lockwood-manhattan-moves-uptown-1976-p-167" data-scan="lockwood-manhattan-moves-uptown-1976-p-167">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-5">5</a><span class="sw s4"></span><div class="ce-b"><div class="ce-q">&ldquo;In 1807 Broadway was regulated from Astor Place to the vicinity of Twenty-third Street, and…&rdquo;</div><div class="ce-s">Lockwood, <em>Manhattan Moves Uptown</em>, 1976, p. 167 <a class="pglink" href="#src-lockwood-manhattan-moves-uptown-1976-p-167" data-scan="lockwood-manhattan-moves-uptown-1976-p-167">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-6">6</a><span class="sw s4"></span><div class="ce-b"><div class="ce-q">&ldquo;now that the ground is unoccupied, the purchase can be effected, which, in the lapse of a…&rdquo;</div><div class="ce-s">Lockwood, <em>Manhattan Moves Uptown</em>, 1976, p. 167 <a class="pglink" href="#src-lockwood-manhattan-moves-uptown-1976-p-167" data-scan="lockwood-manhattan-moves-uptown-1976-p-167">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-7">7</a><span class="sw s4"></span><div class="ce-b"><div class="ce-q">&ldquo;ventilators to a densely populated city.&rdquo;</div><div class="ce-s">Lockwood, <em>Manhattan Moves Uptown</em>, 1976, p. 167 <a class="pglink" href="#src-lockwood-manhattan-moves-uptown-1976-p-167" data-scan="lockwood-manhattan-moves-uptown-1976-p-167">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-8">8</a><span class="sw s4"></span><div class="ce-b"><div class="ce-q">&ldquo;With its enviable location at what was then the northernmost limit of Broadway and just…&rdquo;</div><div class="ce-s">Lockwood, <em>Manhattan Moves Uptown</em>, 1976, p. 167 <a class="pglink" href="#src-lockwood-manhattan-moves-uptown-1976-p-167" data-scan="lockwood-manhattan-moves-uptown-1976-p-167">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-9">9</a><span class="sw s4"></span><div class="ce-b"><div class="ce-q">&ldquo;Whole streets of magnificent dwelling houses have been erected in the vicinity of Union…&rdquo;</div><div class="ce-s">Lockwood, <em>Manhattan Moves Uptown</em>, 1976, p. 167 <a class="pglink" href="#src-lockwood-manhattan-moves-uptown-1976-p-167" data-scan="lockwood-manhattan-moves-uptown-1976-p-167">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-10">10</a><span class="sw s4"></span><div class="ce-b"><div class="ce-q">&ldquo;Palatial row houses and mansions began to rise, facing Union Square itself, after the Bank…&rdquo;</div><div class="ce-s">Lockwood, <em>Manhattan Moves Uptown</em>, 1976, p. 167 <a class="pglink" href="#src-lockwood-manhattan-moves-uptown-1976-p-167" data-scan="lockwood-manhattan-moves-uptown-1976-p-167">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-11">11</a><span class="sw s4"></span><div class="ce-b"><div class="ce-q">&ldquo;the park was planted with lawns, flower beds, trees, and shrubbery. Gas street lights were…&rdquo;</div><div class="ce-s">Lockwood, <em>Manhattan Moves Uptown</em>, 1976, p. 178 <a class="pglink" href="#src-lockwood-manhattan-moves-uptown-1976-p-178" data-scan="lockwood-manhattan-moves-uptown-1976-p-178">scan</a></div></div></div>
+<div class="cc-sec">The Belle Époque of the Square: Salon Culture and Genteel Repose</div>
+<div class="ce"><a class="ce-n" href="#hl-12">12</a><span class="sw s5"></span><div class="ce-b"><div class="ce-q">&ldquo;Union Square quickly became the central gathering place for those who lived in the mansions…&rdquo;</div><div class="ce-s">St Louis, <em>Lonely Planet New York City</em>, 2016, p. 163 <a class="pglink" href="#src-st-louis-lonely-planet-new-york-city-2016-p-163" data-scan="st-louis-lonely-planet-new-york-city-2016-p-163">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-13">13</a><span class="sw s4"></span><div class="ce-b"><div class="ce-q">&ldquo;Not a store is to be seen...nothing but the dwellings of the aristocracy, who moved up here…&rdquo;</div><div class="ce-s">Lockwood, <em>Manhattan Moves Uptown</em>, 1976, p. 169 <a class="pglink" href="#src-lockwood-manhattan-moves-uptown-1976-p-169" data-scan="lockwood-manhattan-moves-uptown-1976-p-169">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-14">14</a><span class="sw s4"></span><div class="ce-b"><div class="ce-q">&ldquo;ingeniously contrived miniature buildings for these little birds, placed among the branches…&rdquo;</div><div class="ce-s">Lockwood, <em>Manhattan Moves Uptown</em>, 1976, p. 178 <a class="pglink" href="#src-lockwood-manhattan-moves-uptown-1976-p-178" data-scan="lockwood-manhattan-moves-uptown-1976-p-178">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-15">15</a><span class="sw s4"></span><div class="ce-b"><div class="ce-q">&ldquo;represent different business departments as &#x27;The Post Office,&#x27; &#x27;The Custom House,&#x27; &#x27;The…&rdquo;</div><div class="ce-s">Lockwood, <em>Manhattan Moves Uptown</em>, 1976, p. 178 <a class="pglink" href="#src-lockwood-manhattan-moves-uptown-1976-p-178" data-scan="lockwood-manhattan-moves-uptown-1976-p-178">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-16">16</a><span class="sw s4"></span><div class="ce-b"><div class="ce-q">&ldquo;even the neighborhood birds had to be busy at work all day long&rdquo;</div><div class="ce-s">Lockwood, <em>Manhattan Moves Uptown</em>, 1976, p. 178 <a class="pglink" href="#src-lockwood-manhattan-moves-uptown-1976-p-178" data-scan="lockwood-manhattan-moves-uptown-1976-p-178">scan</a></div></div></div>
+<div class="cc-sec">The Great Reversal: Trade Ascendant and the Patrician Exodus</div>
+<div class="ce"><a class="ce-n" href="#hl-17">17</a><span class="sw s4"></span><div class="ce-b"><div class="ce-q">&ldquo;shocked and upset the gentility in the 1860s was the influx of shops into Union Square.…&rdquo;</div><div class="ce-s">Lockwood, <em>Manhattan Moves Uptown</em>, 1976, p. 291 <a class="pglink" href="#src-lockwood-manhattan-moves-uptown-1976-p-291" data-scan="lockwood-manhattan-moves-uptown-1976-p-291">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-18">18</a><span class="sw s4"></span><div class="ce-b"><div class="ce-q">&ldquo;the Times reported that nearly all the houses on Union Square had become boardinghouses.&rdquo;</div><div class="ce-s">Lockwood, <em>Manhattan Moves Uptown</em>, 1976, p. 291 <a class="pglink" href="#src-lockwood-manhattan-moves-uptown-1976-p-291" data-scan="lockwood-manhattan-moves-uptown-1976-p-291">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-19">19</a><span class="sw s6"></span><div class="ce-b"><div class="ce-q">&ldquo;the blocks surrounding the formerly tranquil square hummed with commercial activity, with…&rdquo;</div><div class="ce-s">Leadon, <em>Broadway A History of New York in Thirteen Miles</em>, 2018, p. 118 <a class="pglink" href="#src-leadon-broadway-a-history-of-new-york-in-thirteen-miles-2018-p-118" data-scan="leadon-broadway-a-history-of-new-york-in-thirteen-miles-2018-p-118">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-20">20</a><span class="sw s6"></span><div class="ce-b"><div class="ce-q">&ldquo;IN 1870, TIFFANY&#x27;S DEMOLISHED the James Renwick-designed Church of the Puritans on the west…&rdquo;</div><div class="ce-s">Leadon, <em>Broadway A History of New York in Thirteen Miles</em>, 2018, p. 118 <a class="pglink" href="#src-leadon-broadway-a-history-of-new-york-in-thirteen-miles-2018-p-118" data-scan="leadon-broadway-a-history-of-new-york-in-thirteen-miles-2018-p-118">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-21">21</a><span class="sw s6"></span><div class="ce-b"><div class="ce-q">&ldquo;In 1872 the city hired Calvert Vaux and Frederick Law Olmsted, designers of Central Park,…&rdquo;</div><div class="ce-s">Leadon, <em>Broadway A History of New York in Thirteen Miles</em>, 2018, p. 118 <a class="pglink" href="#src-leadon-broadway-a-history-of-new-york-in-thirteen-miles-2018-p-118" data-scan="leadon-broadway-a-history-of-new-york-in-thirteen-miles-2018-p-118">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-22">22</a><span class="sw s4"></span><div class="ce-b"><div class="ce-q">&ldquo;1866 and 1867, houses on Union Square were selling for $125,000 to $180,000, up from the…&rdquo;</div><div class="ce-s">Lockwood, <em>Manhattan Moves Uptown</em>, 1976, p. 291 <a class="pglink" href="#src-lockwood-manhattan-moves-uptown-1976-p-291" data-scan="lockwood-manhattan-moves-uptown-1976-p-291">scan</a></div></div></div>
+<div class="cc-sec">The Theater of the Republic: Rally, Rite, and Remonstrance</div>
+<div class="ce"><a class="ce-n" href="#hl-23">23</a><span class="sw s7"></span><div class="ce-b"><div class="ce-q">&ldquo;Union Square would replace City Hall Park as the center of civic life.&rdquo;</div><div class="ce-s">Burrows &amp; Wallace, <em>Gotham</em>, 1999, p. 869 <a class="pglink" href="#src-burrows-wallace-gotham-1999-p-869" data-scan="burrows-wallace-gotham-1999-p-869">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-24">24</a><span class="sw s7"></span><div class="ce-b"><div class="ce-q">&ldquo;what was reputedly the largest assemblage ever seen on the continent—somewhere between…&rdquo;</div><div class="ce-s">Burrows &amp; Wallace, <em>Gotham</em>, 1999, p. 869 <a class="pglink" href="#src-burrows-wallace-gotham-1999-p-869" data-scan="burrows-wallace-gotham-1999-p-869">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-25">25</a><span class="sw s7"></span><div class="ce-b"><div class="ce-q">&ldquo;The new bronze statue of Washington was wrapped in the flag that had been fired upon at…&rdquo;</div><div class="ce-s">Burrows &amp; Wallace, <em>Gotham</em>, 1999, p. 869 <a class="pglink" href="#src-burrows-wallace-gotham-1999-p-869" data-scan="burrows-wallace-gotham-1999-p-869">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-26">26</a><span class="sw s5"></span><div class="ce-b"><div class="ce-q">&ldquo;the vast public space (large by New York standards, of course) was center stage for…&rdquo;</div><div class="ce-s">St Louis, <em>Lonely Planet New York City</em>, 2016, p. 163 <a class="pglink" href="#src-st-louis-lonely-planet-new-york-city-2016-p-163" data-scan="st-louis-lonely-planet-new-york-city-2016-p-163">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-27">27</a><span class="sw s5"></span><div class="ce-b"><div class="ce-q">&ldquo;politically and socially driven organizations like the American Civil Liberties Union, the…&rdquo;</div><div class="ce-s">St Louis, <em>Lonely Planet New York City</em>, 2016, p. 163 <a class="pglink" href="#src-st-louis-lonely-planet-new-york-city-2016-p-163" data-scan="st-louis-lonely-planet-new-york-city-2016-p-163">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-28">28</a><span class="sw s1"></span><div class="ce-b"><div class="ce-q">&ldquo;The Communists of New York make their headquarters at Union Square also.&rdquo;</div><div class="ce-s">Chase, <em>New York The Wonder City</em>, 1932, p. 198 <a class="pglink" href="#src-chase-new-york-the-wonder-city-1932-p-198" data-scan="chase-new-york-the-wonder-city-1932-p-198">scan</a></div></div></div>
+<div class="cc-sec">33 Union Square West — The Decker Building: Ornamental Gothic to Avant-Garde Atelier</div>
+<div class="ce"><a class="ce-n" href="#hl-29">29</a><span class="sw s8"></span><div class="ce-b"><div class="ce-q">&ldquo;But, of all our new buildings., the handsomest Is the one on Union Square, for Decker…&rdquo;</div><div class="ce-s">Unknown Author, <em>New York Illustrated</em>, 1876, p. 63 <a class="pglink" href="#src-unknown-author-new-york-illustrated-1876-p-63" data-scan="unknown-author-new-york-illustrated-1876-p-63">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-30">30</a><span class="sw s8"></span><div class="ce-b"><div class="ce-q">&ldquo;One is so weary of brownstone, sandstone, white marble, and painted iron, in our…&rdquo;</div><div class="ce-s">Unknown Author, <em>New York Illustrated</em>, 1876, p. 63 <a class="pglink" href="#src-unknown-author-new-york-illustrated-1876-p-63" data-scan="unknown-author-new-york-illustrated-1876-p-63">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-31">31</a><span class="sw s8"></span><div class="ce-b"><div class="ce-q">&ldquo;The firm is one of the most prominent of representative piano-forte makers in the world,…&rdquo;</div><div class="ce-s">Unknown Author, <em>New York Illustrated</em>, 1876, p. 63 <a class="pglink" href="#src-unknown-author-new-york-illustrated-1876-p-63" data-scan="unknown-author-new-york-illustrated-1876-p-63">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-32">32</a><span class="sw s9"></span><div class="ce-b"><div class="ce-q">&ldquo;In 1968 Warhol moved downtown to the Decker Building, where he set up his White Factory. A…&rdquo;</div><div class="ce-s">Museyon Inc., <em>Art+NYC</em>, 2011, p. 208 <a class="pglink" href="#src-museyon-inc-art-nyc-2011-p-208" data-scan="museyon-inc-art-nyc-2011-p-208">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-33">33</a><span class="sw s10"></span><div class="ce-b"><div class="ce-q">&ldquo;the sixth floor of a ca. 1900 loft building at 33 Union Square West.&rdquo;</div><div class="ce-s">Alleman, <em>New York The Movie Lover&#x27;s Guide</em>, 2005, p. 212 <a class="pglink" href="#src-alleman-new-york-the-movie-lover-s-guide-2005-p-212" data-scan="alleman-new-york-the-movie-lover-s-guide-2005-p-212">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-34">34</a><span class="sw s11"></span><div class="ce-b"><div class="ce-q">&ldquo;Only the Decker Piano Building remains (33 Union Square West). A beautiful architectural…&rdquo;</div><div class="ce-s">Binkowski, <em>Musical New York</em>, 1999, p. 107 <a class="pglink" href="#src-binkowski-musical-new-york-1999-p-107" data-scan="binkowski-musical-new-york-1999-p-107">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-35">35</a><span class="sw s12"></span><div class="ce-b"><div class="ce-q">&ldquo;Brick, Limestone, Terra Cotta&rdquo;</div><div class="ce-s">LPC, <em>Union Square</em>, 1893, p. 1</div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-36">36</a><span class="sw s12"></span><div class="ce-b"><div class="ce-q">&ldquo;Tile Roof&rdquo;</div><div class="ce-s">LPC, <em>Union Square</em>, 1893, p. 1</div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-37">37</a><span class="sw s12"></span><div class="ce-b"><div class="ce-q">&ldquo;Islamic Star Roundels&rdquo;</div><div class="ce-s">LPC, <em>Union Square</em>, 1893, p. 1</div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-38">38</a><span class="sw s13"></span><div class="ce-b"><div class="ce-q">&ldquo;at No. 33 the Union Building, built in 1893, has richly framed windows inspired by Spanish…&rdquo;</div><div class="ce-s">WPA, <em>WPA Guide to NYC</em>, 1939, p. 203 <a class="pglink" href="#src-wpa-wpa-guide-to-nyc-1939-p-203" data-scan="wpa-wpa-guide-to-nyc-1939-p-203">scan</a></div></div></div>
+<div class="cc-sec">31 Union Square West — The Bank of the Metropolis: Tripartite Rigor in Limestone</div>
+<div class="ce"><a class="ce-n" href="#hl-39">39</a><span class="sw s14"></span><div class="ce-b"><div class="ce-q">&ldquo;The familiar, sober classical vocabulary of bank architecture is enlivened here by a…&rdquo;</div><div class="ce-s">Hennessy, <em>Walking Broadway</em>, 2020, p. 97 <a class="pglink" href="#src-hennessy-walking-broadway-2020-p-97" data-scan="hennessy-walking-broadway-2020-p-97">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-40">40</a><span class="sw s14"></span><div class="ce-b"><div class="ce-q">&ldquo;The long 16th Street elevation also features some distinctive touches.&rdquo;</div><div class="ce-s">Hennessy, <em>Walking Broadway</em>, 2020, p. 97 <a class="pglink" href="#src-hennessy-walking-broadway-2020-p-97" data-scan="hennessy-walking-broadway-2020-p-97">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-41">41</a><span class="sw s15"></span><div class="ce-b"><div class="ce-q">&ldquo;founded m 1871 to serve the needs of businesses in the Union Square area, maintained its…&rdquo;</div><div class="ce-s">Postal &amp; Dolkart, <em>Guide to New York City Landmarks</em>, 2009, p. 76 <a class="pglink" href="#src-postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76" data-scan="postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-42">42</a><span class="sw s15"></span><div class="ce-b"><div class="ce-q">&ldquo;an important early skyscraper designer with a particular interest in adapting the…&rdquo;</div><div class="ce-s">Postal &amp; Dolkart, <em>Guide to New York City Landmarks</em>, 2009, p. 76 <a class="pglink" href="#src-postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76" data-scan="postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-43">43</a><span class="sw s16"></span><div class="ce-b"><div class="ce-q">&ldquo;Its Union Square front is extremely narrow.&rdquo;</div><div class="ce-s">Morrone, <em>Architectural Guidebook</em>, 1994, p. 116 <a class="pglink" href="#src-morrone-architectural-guidebook-1994-p-116" data-scan="morrone-architectural-guidebook-1994-p-116">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-44">44</a><span class="sw s17"></span><div class="ce-b"><div class="ce-q">&ldquo;Rusticated Limestone, Granite Bulkheads, Polished Granite Columns&rdquo;</div><div class="ce-s">LPC, <em>Union Square</em>, 1903, p. 1 <a class="pglink" href="#src-lpc-union-square-1903-p-1" data-scan="lpc-union-square-1903-p-1">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-45">45</a><span class="sw s17"></span><div class="ce-b"><div class="ce-q">&ldquo;Limestone&rdquo;</div><div class="ce-s">LPC, <em>Union Square</em>, 1903, p. 1 <a class="pglink" href="#src-lpc-union-square-1903-p-1" data-scan="lpc-union-square-1903-p-1">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-46">46</a><span class="sw s18"></span><div class="ce-b"><div class="ce-q">&ldquo;there is written &#x27;White Manfg.Co.&#x27;&rdquo;</div><div class="ce-s">Robinson, <em>1885 Robinsons Atlas</em>, p. 15 <a class="pglink" href="#src-robinson-1885-robinsons-atlas-p-15" data-scan="robinson-1885-robinsons-atlas-p-15">scan</a></div></div></div>
+<div class="cc-sec">33 East 17th Street — The Century Building: Queen Anne Erudition in Brick and Bluestone</div>
+<div class="ce"><a class="ce-n" href="#hl-47">47</a><span class="sw s19"></span><div class="ce-b"><div class="ce-q">&ldquo;The red brick. Queen Anne-style structure is one of the finest examples of the style and…&rdquo;</div><div class="ce-s">Wolfe, <em>New York 15 Walking Tours</em>, 2003, p. 249 <a class="pglink" href="#src-wolfe-new-york-15-walking-tours-2003-p-249" data-scan="wolfe-new-york-15-walking-tours-2003-p-249">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-48">48</a><span class="sw s16"></span><div class="ce-b"><div class="ce-q">&ldquo;red-brick-and-limestone Queen Anne pile comes straight out of Victorian London&rdquo;</div><div class="ce-s">Morrone, <em>Architectural Guidebook</em>, 1994, p. 116 <a class="pglink" href="#src-morrone-architectural-guidebook-1994-p-116" data-scan="morrone-architectural-guidebook-1994-p-116">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-49">49</a><span class="sw s16"></span><div class="ce-b"><div class="ce-q">&ldquo;one of the few extant major Queen Anne buildings in Manhattan.&rdquo;</div><div class="ce-s">Morrone, <em>Architectural Guidebook</em>, 1994, p. 116 <a class="pglink" href="#src-morrone-architectural-guidebook-1994-p-116" data-scan="morrone-architectural-guidebook-1994-p-116">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-50">50</a><span class="sw s19"></span><div class="ce-b"><div class="ce-q">&ldquo;Among its imprints were the Century and St. Nicholas magazines and a host of fine books.&rdquo;</div><div class="ce-s">Wolfe, <em>New York 15 Walking Tours</em>, 2003, p. 249 <a class="pglink" href="#src-wolfe-new-york-15-walking-tours-2003-p-249" data-scan="wolfe-new-york-15-walking-tours-2003-p-249">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-51">51</a><span class="sw s20"></span><div class="ce-b"><div class="ce-q">&ldquo;The large building in the background is the Century Company Building Completed in 1881 on…&rdquo;</div><div class="ce-s">Reiss, <em>New York Then and Now</em>, 2019, p. 76 <a class="pglink" href="#src-reiss-new-york-then-and-now-2019-p-76" data-scan="reiss-new-york-then-and-now-2019-p-76">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-52">52</a><span class="sw s21"></span><div class="ce-b"><div class="ce-q">&ldquo;the Century Building (William Schickel, 1881), 33 East Seventeenth Street.&rdquo;</div><div class="ce-s">Stern, <em>New York 2000</em>, 2006, p. 377 <a class="pglink" href="#src-stern-new-york-2000-2006-p-377" data-scan="stern-new-york-2000-2006-p-377">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-53">53</a><span class="sw s22"></span><div class="ce-b"><div class="ce-q">&ldquo;Red Brick, Wyoming Bluestone&rdquo;</div><div class="ce-s">LPC, <em>Union Square</em>, 1881, p. 1 <a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-54">54</a><span class="sw s22"></span><div class="ce-b"><div class="ce-q">&ldquo;Brick, Terra Cotta, Wyoming Bluestone, Iron&rdquo;</div><div class="ce-s">LPC, <em>Union Square</em>, 1881, p. 1 <a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-55">55</a><span class="sw s22"></span><div class="ce-b"><div class="ce-q">&ldquo;Gambrel Roof&rdquo;</div><div class="ce-s">LPC, <em>Union Square</em>, 1881, p. 1 <a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-56">56</a><span class="sw s22"></span><div class="ce-b"><div class="ce-q">&ldquo;Sunflower Terra Cotta Finials&rdquo;</div><div class="ce-s">LPC, <em>Union Square</em>, 1881, p. 1 <a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">scan</a></div></div></div>
+<div class="cc-sec">45 East 17th Street — The Everett Building: Classical Revival on Hallowed Ground</div>
+<div class="ce"><a class="ce-n" href="#hl-57">57</a><span class="sw s21"></span><div class="ce-b"><div class="ce-q">&ldquo;Concerns about the fate of historic buildings on other sites around the square led to the…&rdquo;</div><div class="ce-s">Stern, <em>New York 2000</em>, 2006, p. 377 <a class="pglink" href="#src-stern-new-york-2000-2006-p-377" data-scan="stern-new-york-2000-2006-p-377">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-58">58</a><span class="sw s23"></span><div class="ce-b"><div class="ce-q">&ldquo;Terra Cotta, Marble&rdquo;</div><div class="ce-s">LPC, <em>Union Square</em>, 1908, p. 1</div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-59">59</a><span class="sw s23"></span><div class="ce-b"><div class="ce-q">&ldquo;Terra Cotta, Polychrome Terra Cotta&rdquo;</div><div class="ce-s">LPC, <em>Union Square</em>, 1908, p. 1</div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-60">60</a><span class="sw s23"></span><div class="ce-b"><div class="ce-q">&ldquo;Classical-Revival.&rdquo;</div><div class="ce-s">LPC, <em>Union Square</em>, 1908, p. 1</div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-61">61</a><span class="sw s4"></span><div class="ce-b"><div class="ce-q">&ldquo;The Everett House, completed in 1854, stood at 41 East Seventeenth Street, on the north…&rdquo;</div><div class="ce-s">Lockwood, <em>Manhattan Moves Uptown</em>, 1976, p. 291 <a class="pglink" href="#src-lockwood-manhattan-moves-uptown-1976-p-291" data-scan="lockwood-manhattan-moves-uptown-1976-p-291">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-62">62</a><span class="sw s24"></span><div class="ce-b"><div class="ce-q">&ldquo;The five-story building at the northwest corner of East 17th Street is the Everett House.…&rdquo;</div><div class="ce-s">Watson &amp; Gillon, <em>New York Then and Now</em>, 1976, p. 80 <a class="pglink" href="#src-watson-gillon-new-york-then-and-now-1976-p-80" data-scan="watson-gillon-new-york-then-and-now-1976-p-80">scan</a></div></div></div>
+<div class="cc-sec">1-3 Union Square West — The Lincoln Building: Romanesque Gravitas</div>
+<div class="ce"><a class="ce-n" href="#hl-63">63</a><span class="sw s13"></span><div class="ce-b"><div class="ce-q">&ldquo;The Lincoln Building, erected at I Union Square in 1889, is an example adapted from…&rdquo;</div><div class="ce-s">WPA, <em>WPA Guide to NYC</em>, 1939, p. 203 <a class="pglink" href="#src-wpa-wpa-guide-to-nyc-1939-p-203" data-scan="wpa-wpa-guide-to-nyc-1939-p-203">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-64">64</a><span class="sw s21"></span><div class="ce-b"><div class="ce-q">&ldquo;the Lincoln Building (R. H. Robertson, 1890), 1-3 Union Square West.&rdquo;</div><div class="ce-s">Stern, <em>New York 2000</em>, 2006, p. 377 <a class="pglink" href="#src-stern-new-york-2000-2006-p-377" data-scan="stern-new-york-2000-2006-p-377">scan</a></div></div></div>
+<div class="cc-sec">100-102 East 17th Street — Tammany Hall: The Iconography of Legitimacy</div>
+<div class="ce"><a class="ce-n" href="#hl-65">65</a><span class="sw s25"></span><div class="ce-b"><div class="ce-q">&ldquo;On the southeast corner of East 17th Street and Union Square East, at 100-102 East 17th…&rdquo;</div><div class="ce-s">Dolkart, <em>Gramercy</em>, 1996, p. 78 <a class="pglink" href="#src-dolkart-gramercy-1996-p-78" data-scan="dolkart-gramercy-1996-p-78">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-66">66</a><span class="sw s25"></span><div class="ce-b"><div class="ce-q">&ldquo;a dignified architectural treatment, one of the chief motifs of which arc the severe…&rdquo;</div><div class="ce-s">Dolkart, <em>Gramercy</em>, 1996, p. 78 <a class="pglink" href="#src-dolkart-gramercy-1996-p-78" data-scan="dolkart-gramercy-1996-p-78">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-67">67</a><span class="sw s25"></span><div class="ce-b"><div class="ce-q">&ldquo;The Colonial Revival was undoubtedly chosen not only because it was reminiscent of the…&rdquo;</div><div class="ce-s">Dolkart, <em>Gramercy</em>, 1996, p. 78 <a class="pglink" href="#src-dolkart-gramercy-1996-p-78" data-scan="dolkart-gramercy-1996-p-78">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-68">68</a><span class="sw s25"></span><div class="ce-b"><div class="ce-q">&ldquo;The Society of Tammany was attempting to associate itself with the ideals of early American…&rdquo;</div><div class="ce-s">Dolkart, <em>Gramercy</em>, 1996, p. 78 <a class="pglink" href="#src-dolkart-gramercy-1996-p-78" data-scan="dolkart-gramercy-1996-p-78">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-69">69</a><span class="sw s26"></span><div class="ce-b"><div class="ce-q">&ldquo;This distinguished neo-Georgian facade, with its rusticated stone base, double-height…&rdquo;</div><div class="ce-s">Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 679 <a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-679" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-679">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-70">70</a><span class="sw s26"></span><div class="ce-b"><div class="ce-q">&ldquo;Tammany Hall, now a byword for municipal corruption, once dominated the City&#x27;s political…&rdquo;</div><div class="ce-s">Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 679 <a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-679" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-679">scan</a></div></div></div>
+<div class="cc-sec">Coda: The Square as Architectural Palimpsest</div>
+<div class="ce"><a class="ce-n" href="#hl-71">71</a><span class="sw s13"></span><div class="ce-b"><div class="ce-q">&ldquo;The diverse architecture of the buildings surrounding Union Square does not supply the…&rdquo;</div><div class="ce-s">WPA, <em>WPA Guide to NYC</em>, 1939, p. 203 <a class="pglink" href="#src-wpa-wpa-guide-to-nyc-1939-p-203" data-scan="wpa-wpa-guide-to-nyc-1939-p-203">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-72">72</a><span class="sw s13"></span><div class="ce-b"><div class="ce-q">&ldquo;Three divisions of each facade are clearly marked: a base ornamented with classical…&rdquo;</div><div class="ce-s">WPA, <em>WPA Guide to NYC</em>, 1939, p. 203 <a class="pglink" href="#src-wpa-wpa-guide-to-nyc-1939-p-203" data-scan="wpa-wpa-guide-to-nyc-1939-p-203">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-73">73</a><span class="sw s5"></span><div class="ce-b"><div class="ce-q">&ldquo;like the Noah&#x27;s Ark of New York, rescuing at least two of every kind from the curling seas…&rdquo;</div><div class="ce-s">St Louis, <em>Lonely Planet New York City</em>, 2016, p. 163 <a class="pglink" href="#src-st-louis-lonely-planet-new-york-city-2016-p-163" data-scan="st-louis-lonely-planet-new-york-city-2016-p-163">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-74">74</a><span class="sw s27"></span><div class="ce-b"><div class="ce-q">&ldquo;The trick to any stroll through this zone is to look up. Each building brings an animated…&rdquo;</div><div class="ce-s">Kahn, <em>City Secrets New York City</em>, 2002, p. 189 <a class="pglink" href="#src-kahn-city-secrets-new-york-city-2002-p-189" data-scan="kahn-city-secrets-new-york-city-2002-p-189">scan</a></div></div></div>
+</aside>
+<div class="wrap">
+
+<h1>Union Square</h1>
+<p class="sub">The Palimpsest of Union Square's Northern Crown: An Architectural and Social Genealogy</p>
+<p class="note">Every previously italicized phrase is highlighted and colour-coded by source. Where the source page is on file, clicking the highlight opens the scan.</p>
+
+<div class="legend"><div class="legend-title">Colour key — one colour per source <span class="lk">· sources with a page scan are marked ⌕</span></div><ul>
+<li><span class="sw s1"></span><span class="lg">Chase, <em>New York The Wonder City</em>, 1932 <span class="pg">p.&nbsp;198</span> <span class="ct">(2)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s2"></span><span class="lg">Bergman, <em>The Spiritual Traveler New York City</em>, 2001 <span class="pg">p.&nbsp;133</span> <span class="ct">(1)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s3"></span><span class="lg">Holmes, <em>100 New Yorker</em>, 2004 <span class="pg">p.&nbsp;168</span> <span class="ct">(1)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s4"></span><span class="lg">Lockwood, <em>Manhattan Moves Uptown</em>, 1976 <span class="pg">pp.&nbsp;167, 169, 178, 291</span> <span class="ct">(16)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s5"></span><span class="lg">St Louis, <em>Lonely Planet New York City</em>, 2016 <span class="pg">p.&nbsp;163</span> <span class="ct">(4)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s6"></span><span class="lg">Leadon, <em>Broadway A History of New York in Thirteen Miles</em>, 2018 <span class="pg">p.&nbsp;118</span> <span class="ct">(3)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s7"></span><span class="lg">Burrows &amp; Wallace, <em>Gotham</em>, 1999 <span class="pg">p.&nbsp;869</span> <span class="ct">(3)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s8"></span><span class="lg">Unknown Author, <em>New York Illustrated</em>, 1876 <span class="pg">p.&nbsp;63</span> <span class="ct">(3)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s9"></span><span class="lg">Museyon Inc., <em>Art+NYC</em>, 2011 <span class="pg">p.&nbsp;208</span> <span class="ct">(1)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s10"></span><span class="lg">Alleman, <em>New York The Movie Lover&#x27;s Guide</em>, 2005 <span class="pg">p.&nbsp;212</span> <span class="ct">(1)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s11"></span><span class="lg">Binkowski, <em>Musical New York</em>, 1999 <span class="pg">p.&nbsp;107</span> <span class="ct">(1)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s12"></span><span class="lg">LPC, <em>Union Square</em>, 1893 <span class="pg">p.&nbsp;1</span> <span class="ct">(3)</span></span></li>
+<li><span class="sw s13"></span><span class="lg">WPA, <em>WPA Guide to NYC</em>, 1939 <span class="pg">p.&nbsp;203</span> <span class="ct">(4)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s14"></span><span class="lg">Hennessy, <em>Walking Broadway</em>, 2020 <span class="pg">p.&nbsp;97</span> <span class="ct">(2)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s15"></span><span class="lg">Postal &amp; Dolkart, <em>Guide to New York City Landmarks</em>, 2009 <span class="pg">p.&nbsp;76</span> <span class="ct">(2)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s16"></span><span class="lg">Morrone, <em>Architectural Guidebook</em>, 1994 <span class="pg">p.&nbsp;116</span> <span class="ct">(3)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s17"></span><span class="lg">LPC, <em>Union Square</em>, 1903 <span class="pg">p.&nbsp;1</span> <span class="ct">(2)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s18"></span><span class="lg">Robinson, <em>1885 Robinsons Atlas</em> <span class="pg">p.&nbsp;15</span> <span class="ct">(1)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s19"></span><span class="lg">Wolfe, <em>New York 15 Walking Tours</em>, 2003 <span class="pg">p.&nbsp;249</span> <span class="ct">(2)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s20"></span><span class="lg">Reiss, <em>New York Then and Now</em>, 2019 <span class="pg">p.&nbsp;76</span> <span class="ct">(1)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s21"></span><span class="lg">Stern, <em>New York 2000</em>, 2006 <span class="pg">p.&nbsp;377</span> <span class="ct">(3)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s22"></span><span class="lg">LPC, <em>Union Square</em>, 1881 <span class="pg">p.&nbsp;1</span> <span class="ct">(4)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s23"></span><span class="lg">LPC, <em>Union Square</em>, 1908 <span class="pg">p.&nbsp;1</span> <span class="ct">(3)</span></span></li>
+<li><span class="sw s24"></span><span class="lg">Watson &amp; Gillon, <em>New York Then and Now</em>, 1976 <span class="pg">p.&nbsp;80</span> <span class="ct">(1)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s25"></span><span class="lg">Dolkart, <em>Gramercy</em>, 1996 <span class="pg">p.&nbsp;78</span> <span class="ct">(4)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s26"></span><span class="lg">Spielvogel, <em>The Landmarks of New York</em>, 2016 <span class="pg">p.&nbsp;679</span> <span class="ct">(2)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s27"></span><span class="lg">Kahn, <em>City Secrets New York City</em>, 2002 <span class="pg">p.&nbsp;189</span> <span class="ct">(1)</span> <span class="has">⌕</span></span></li>
+</ul></div>
+
+<section class="audio"><div class="audio-label">Audio &mdash; Union Square | Brick Cake (Multi Address) <span class="audio-meta">22 min 36 s</span></div><audio controls preload="none" src="assets/media/union-square-multi-address.mp3"></audio><p class="audio-fallback">Audio track &mdash; playable in the HTML version of this document.</p></section>
+
+<h2>Genesis: From Alluvial Hillock to Civic Commons</h2>
+
+<p>Beneath the ordered geometry of the modern square lies a topography of pure accident. In its primordial state, <a class="srclink" href="#src-chase-new-york-the-wonder-city-1932-p-198" data-scan="chase-new-york-the-wonder-city-1932-p-198" title="See the source page — Chase, New York The Wonder City, 1932, p. 198"><mark id="hl-1" class="s1" title="Chase, New York The Wonder City, 1932, p. 198">(Union Square was originally a sand hill. Had it not been for the sand, Irving Place &amp; Lexington Ave. would likely be part of Broadway today!)</mark></a> — a geological caprice that, in redirecting the city&#x27;s northward march, quietly authored the very street grid we now take for granted. The nomenclature itself encodes a cartographic confluence, for <a class="srclink" href="#src-bergman-the-spiritual-traveler-new-york-city-2001-p-133" data-scan="bergman-the-spiritual-traveler-new-york-city-2001-p-133" title="See the source page — Bergman, The Spiritual Traveler New York City, 2001, p. 133"><mark id="hl-2" class="s2" title="Bergman, The Spiritual Traveler New York City, 2001, p. 133">(Union Square took its name from the fact that it was the spot where the Bowery and Bloomingdale Road (today&#x27;s Broadway) came together, that is, united.)</mark></a> Situated at this juncture of thoroughfares, <a class="srclink" href="#src-holmes-100-new-yorker-2004-p-168" data-scan="holmes-100-new-yorker-2004-p-168" title="See the source page — Holmes, 100 New Yorker, 2004, p. 168"><mark id="hl-3" class="s3" title="Holmes, 100 New Yorker, 2004, p. 168">(The square marks the union of Fourth Avenue and Broadway and was saved from further development by the city in 1811.)</mark></a></p>
+
+<p>The parcel&#x27;s provenance is a chronicle of colonial-era conveyances. <a class="srclink" href="#src-lockwood-manhattan-moves-uptown-1976-p-167" data-scan="lockwood-manhattan-moves-uptown-1976-p-167" title="See the source page — Lockwood, Manhattan Moves Uptown, 1976, p. 167"><mark id="hl-4" class="s4" title="Lockwood, Manhattan Moves Uptown, 1976, p. 167">(The land was once part of Elias Brevoort&#x27;s farm, but in 1762 he sold twenty acres lying west of the Bowery Road, or Third Avenue, to John Smith, whose heirs subsequently sold it to Henry Spingler for $4750.)</mark></a> Municipal foresight then intervened, though with characteristic bureaucratic deliberation: <a class="srclink" href="#src-lockwood-manhattan-moves-uptown-1976-p-167" data-scan="lockwood-manhattan-moves-uptown-1976-p-167" title="See the source page — Lockwood, Manhattan Moves Uptown, 1976, p. 167"><mark id="hl-5" class="s4" title="Lockwood, Manhattan Moves Uptown, 1976, p. 167">(In 1807 Broadway was regulated from Astor Place to the vicinity of Twenty-third Street, and in 1815 the city designated part of the land that became Union Square as a public park. The city, however, did not take title to Union Square or lay out the land as a park until 1831.)</mark></a></p>
+
+<p>The rationale advanced for the acquisition betrays a shrewd anticipation of the speculative pressures to come. Municipal authorities reasoned that <a class="srclink" href="#src-lockwood-manhattan-moves-uptown-1976-p-167" data-scan="lockwood-manhattan-moves-uptown-1976-p-167" title="See the source page — Lockwood, Manhattan Moves Uptown, 1976, p. 167"><mark id="hl-6" class="s4" title="Lockwood, Manhattan Moves Uptown, 1976, p. 167">(now that the ground is unoccupied, the purchase can be effected, which, in the lapse of a few years, when valuable buildings are erected, will be impracticable, on account of the great expense.)</mark></a> Undergirding this fiscal prudence was a nascent theory of urban salubrity, the conviction that open ground furnished indispensable <a class="srclink" href="#src-lockwood-manhattan-moves-uptown-1976-p-167" data-scan="lockwood-manhattan-moves-uptown-1976-p-167" title="See the source page — Lockwood, Manhattan Moves Uptown, 1976, p. 167"><mark id="hl-7" class="s4" title="Lockwood, Manhattan Moves Uptown, 1976, p. 167">(ventilators to a densely populated city.)</mark></a> Thus was the commons conceived less as ornament than as civic respiratory apparatus.</p>
+
+<p>The square&#x27;s ascendancy to fashionable pre-eminence was foretold almost from its inception. <a class="srclink" href="#src-lockwood-manhattan-moves-uptown-1976-p-167" data-scan="lockwood-manhattan-moves-uptown-1976-p-167" title="See the source page — Lockwood, Manhattan Moves Uptown, 1976, p. 167"><mark id="hl-8" class="s4" title="Lockwood, Manhattan Moves Uptown, 1976, p. 167">(With its enviable location at what was then the northernmost limit of Broadway and just half a mile north of stylish Bond Street, Union Square was assured of a fashionable destiny, predicted the Herald as early as 1836.)</mark></a> The subsequent building boom proceeded at a velocity that astonished contemporaries, who marveled that <a class="srclink" href="#src-lockwood-manhattan-moves-uptown-1976-p-167" data-scan="lockwood-manhattan-moves-uptown-1976-p-167" title="See the source page — Lockwood, Manhattan Moves Uptown, 1976, p. 167"><mark id="hl-9" class="s4" title="Lockwood, Manhattan Moves Uptown, 1976, p. 167">(Whole streets of magnificent dwelling houses have been erected in the vicinity of Union Square within the last year.)</mark></a> The pivotal act of speculative release came when <a class="srclink" href="#src-lockwood-manhattan-moves-uptown-1976-p-167" data-scan="lockwood-manhattan-moves-uptown-1976-p-167" title="See the source page — Lockwood, Manhattan Moves Uptown, 1976, p. 167"><mark id="hl-10" class="s4" title="Lockwood, Manhattan Moves Uptown, 1976, p. 167">(Palatial row houses and mansions began to rise, facing Union Square itself, after the Bank of Manhattan sold the lots it owned around the perimeter of the park in 1845.)</mark></a> As mansions proliferated, the park was refined to complement its patrician setting, and <a class="srclink" href="#src-lockwood-manhattan-moves-uptown-1976-p-178" data-scan="lockwood-manhattan-moves-uptown-1976-p-178" title="See the source page — Lockwood, Manhattan Moves Uptown, 1976, p. 178"><mark id="hl-11" class="s4" title="Lockwood, Manhattan Moves Uptown, 1976, p. 178">(the park was planted with lawns, flower beds, trees, and shrubbery. Gas street lights were installed by 1849.)</mark></a></p>
+
+<h2>The Belle Époque of the Square: Salon Culture and Genteel Repose</h2>
+
+<p>In its meridian, the square constituted the acknowledged locus of metropolitan gentility. From its opening in 1831, <a class="srclink" href="#src-st-louis-lonely-planet-new-york-city-2016-p-163" data-scan="st-louis-lonely-planet-new-york-city-2016-p-163" title="See the source page — St Louis, Lonely Planet New York City, 2016, p. 163"><mark id="hl-12" class="s5" title="St Louis, Lonely Planet New York City, 2016, p. 163">(Union Square quickly became the central gathering place for those who lived in the mansions nearby. Concert halls and artist societies further enhanced the cultured atmosphere, and high-end shopping quickly proliferated along Broadway, which was dubbed &#x27;Ladies&#x27; Mile.&#x27;)</mark></a> So thoroughgoing was the exclusion of commerce from these precincts that a visitor could remark, of the residential streets to the north, that <a class="srclink" href="#src-lockwood-manhattan-moves-uptown-1976-p-169" data-scan="lockwood-manhattan-moves-uptown-1976-p-169" title="See the source page — Lockwood, Manhattan Moves Uptown, 1976, p. 169"><mark id="hl-13" class="s4" title="Lockwood, Manhattan Moves Uptown, 1976, p. 169">(Not a store is to be seen...nothing but the dwellings of the aristocracy, who moved up here out of the noisy and dusty part of the city.)</mark></a></p>
+
+<p>The neighborhood&#x27;s mercantile ethos insinuated itself even into the park&#x27;s most whimsical furnishings. The avian dwellings suspended in the trees were <a class="srclink" href="#src-lockwood-manhattan-moves-uptown-1976-p-178" data-scan="lockwood-manhattan-moves-uptown-1976-p-178" title="See the source page — Lockwood, Manhattan Moves Uptown, 1976, p. 178"><mark id="hl-14" class="s4" title="Lockwood, Manhattan Moves Uptown, 1976, p. 178">(ingeniously contrived miniature buildings for these little birds, placed among the branches of the trees)</mark></a>, and these confections were fashioned to <a class="srclink" href="#src-lockwood-manhattan-moves-uptown-1976-p-178" data-scan="lockwood-manhattan-moves-uptown-1976-p-178" title="See the source page — Lockwood, Manhattan Moves Uptown, 1976, p. 178"><mark id="hl-15" class="s4" title="Lockwood, Manhattan Moves Uptown, 1976, p. 178">(represent different business departments as &#x27;The Post Office,&#x27; &#x27;The Custom House,&#x27; &#x27;The Exchange,&#x27; etc.)</mark></a> So relentlessly commercial was the surrounding sensibility that wags observed how <a class="srclink" href="#src-lockwood-manhattan-moves-uptown-1976-p-178" data-scan="lockwood-manhattan-moves-uptown-1976-p-178" title="See the source page — Lockwood, Manhattan Moves Uptown, 1976, p. 178"><mark id="hl-16" class="s4" title="Lockwood, Manhattan Moves Uptown, 1976, p. 178">(even the neighborhood birds had to be busy at work all day long)</mark></a> — a droll allegory of a moneyed class incapable of imagining leisure untethered from enterprise.</p>
+
+<h2>The Great Reversal: Trade Ascendant and the Patrician Exodus</h2>
+
+<p>The idyll proved evanescent. What <a class="srclink" href="#src-lockwood-manhattan-moves-uptown-1976-p-291" data-scan="lockwood-manhattan-moves-uptown-1976-p-291" title="See the source page — Lockwood, Manhattan Moves Uptown, 1976, p. 291"><mark id="hl-17" class="s4" title="Lockwood, Manhattan Moves Uptown, 1976, p. 291">(shocked and upset the gentility in the 1860s was the influx of shops into Union Square. They took over the basements and parlor floors of mansions and row houses, some of which were less than ten years old, and none of them more than twenty years old.)</mark></a> The tempo of transformation was such that, by mid-decade, <a class="srclink" href="#src-lockwood-manhattan-moves-uptown-1976-p-291" data-scan="lockwood-manhattan-moves-uptown-1976-p-291" title="See the source page — Lockwood, Manhattan Moves Uptown, 1976, p. 291"><mark id="hl-18" class="s4" title="Lockwood, Manhattan Moves Uptown, 1976, p. 291">(the Times reported that nearly all the houses on Union Square had become boardinghouses.)</mark></a></p>
+
+<p>Commerce advanced with an almost tidal inexorability, and <a class="srclink" href="#src-leadon-broadway-a-history-of-new-york-in-thirteen-miles-2018-p-118" data-scan="leadon-broadway-a-history-of-new-york-in-thirteen-miles-2018-p-118" title="See the source page — Leadon, Broadway A History of New York in Thirteen Miles, 2018, p. 118"><mark id="hl-19" class="s6" title="Leadon, Broadway A History of New York in Thirteen Miles, 2018, p. 118">(the blocks surrounding the formerly tranquil square hummed with commercial activity, with once-grand mansions converted to boardinghouses, stores, and offices rented to chiropodists, coal dealers, dressmakers, milliners, hairdressers, furriers, and cloak manufacturers.)</mark></a> The symbolic coup de grâce arrived when <a class="srclink" href="#src-leadon-broadway-a-history-of-new-york-in-thirteen-miles-2018-p-118" data-scan="leadon-broadway-a-history-of-new-york-in-thirteen-miles-2018-p-118" title="See the source page — Leadon, Broadway A History of New York in Thirteen Miles, 2018, p. 118"><mark id="hl-20" class="s6" title="Leadon, Broadway A History of New York in Thirteen Miles, 2018, p. 118">(IN 1870, TIFFANY&#x27;S DEMOLISHED the James Renwick-designed Church of the Puritans on the west side of Union Square and replaced it with a huge cast-iron store-the &quot;Palace of Jewels.&quot;)</mark></a> — the supplanting of a sanctuary by a temple of luxury retail furnishing an almost too-perfect emblem of the age&#x27;s transvaluation.</p>
+
+<p>To dignify the increasingly commercial precinct, the municipality summoned the era&#x27;s foremost landscape practitioners: <a class="srclink" href="#src-leadon-broadway-a-history-of-new-york-in-thirteen-miles-2018-p-118" data-scan="leadon-broadway-a-history-of-new-york-in-thirteen-miles-2018-p-118" title="See the source page — Leadon, Broadway A History of New York in Thirteen Miles, 2018, p. 118"><mark id="hl-21" class="s6" title="Leadon, Broadway A History of New York in Thirteen Miles, 2018, p. 118">(In 1872 the city hired Calvert Vaux and Frederick Law Olmsted, designers of Central Park, to remake Union Square according to a more up-to-date, picturesque aesthetic.)</mark></a> Meanwhile, spiraling valuations accelerated the flight of the old families, for by <a class="srclink" href="#src-lockwood-manhattan-moves-uptown-1976-p-291" data-scan="lockwood-manhattan-moves-uptown-1976-p-291" title="See the source page — Lockwood, Manhattan Moves Uptown, 1976, p. 291"><mark id="hl-22" class="s4" title="Lockwood, Manhattan Moves Uptown, 1976, p. 291">(1866 and 1867, houses on Union Square were selling for $125,000 to $180,000, up from the $15,000 that lots in the area had fetched ten or fifteen years earlier.)</mark></a> — a twelvefold appreciation that rendered residential occupancy an act of economic irrationality.</p>
+
+<h2>The Theater of the Republic: Rally, Rite, and Remonstrance</h2>
+
+<p>As its domestic character dissolved, the square assumed a grander vocation as the amphitheater of the body politic. In the crucible of civil conflict, <a class="srclink" href="#src-burrows-wallace-gotham-1999-p-869" data-scan="burrows-wallace-gotham-1999-p-869" title="See the source page — Burrows &amp; Wallace, Gotham, 1999, p. 869"><mark id="hl-23" class="s7" title="Burrows &amp; Wallace, Gotham, 1999, p. 869">(Union Square would replace City Hall Park as the center of civic life.)</mark></a> The most celebrated of its convocations unfolded in 1861, when <a class="srclink" href="#src-burrows-wallace-gotham-1999-p-869" data-scan="burrows-wallace-gotham-1999-p-869" title="See the source page — Burrows &amp; Wallace, Gotham, 1999, p. 869"><mark id="hl-24" class="s7" title="Burrows &amp; Wallace, Gotham, 1999, p. 869">(what was reputedly the largest assemblage ever seen on the continent—somewhere between 100,000 and 250,000 people—flooded into Union Square.)</mark></a> On that consecrated occasion, <a class="srclink" href="#src-burrows-wallace-gotham-1999-p-869" data-scan="burrows-wallace-gotham-1999-p-869" title="See the source page — Burrows &amp; Wallace, Gotham, 1999, p. 869"><mark id="hl-25" class="s7" title="Burrows &amp; Wallace, Gotham, 1999, p. 869">(The new bronze statue of Washington was wrapped in the flag that had been fired upon at Sumter)</mark></a> — a gesture in which the relic of a besieged fortress and the effigy of the republic&#x27;s founder were fused into a single patriotic tableau.</p>
+
+<p>The square&#x27;s identity as a forum of dissent proved durable across generations. With the outbreak of hostilities, <a class="srclink" href="#src-st-louis-lonely-planet-new-york-city-2016-p-163" data-scan="st-louis-lonely-planet-new-york-city-2016-p-163" title="See the source page — St Louis, Lonely Planet New York City, 2016, p. 163"><mark id="hl-26" class="s5" title="St Louis, Lonely Planet New York City, 2016, p. 163">(the vast public space (large by New York standards, of course) was center stage for protesters of all sorts-from union workers to political activists.)</mark></a> In the ensuing decades it became a magnet for the era&#x27;s insurgent movements, drawing <a class="srclink" href="#src-st-louis-lonely-planet-new-york-city-2016-p-163" data-scan="st-louis-lonely-planet-new-york-city-2016-p-163" title="See the source page — St Louis, Lonely Planet New York City, 2016, p. 163"><mark id="hl-27" class="s5" title="St Louis, Lonely Planet New York City, 2016, p. 163">(politically and socially driven organizations like the American Civil Liberties Union, the Communist and Socialist Parties, and the Ladies&#x27; Garment Workers Union to move in.)</mark></a> By the interwar years its radical complexion was unmistakable, such that <a class="srclink" href="#src-chase-new-york-the-wonder-city-1932-p-198" data-scan="chase-new-york-the-wonder-city-1932-p-198" title="See the source page — Chase, New York The Wonder City, 1932, p. 198"><mark id="hl-28" class="s1" title="Chase, New York The Wonder City, 1932, p. 198">(The Communists of New York make their headquarters at Union Square also.)</mark></a></p>
+
+<h2>33 Union Square West — The Decker Building: Ornamental Gothic to Avant-Garde Atelier</h2>
+
+<p>At the square&#x27;s northern flank stood an edifice whose successive incarnations trace the arc of the city&#x27;s cultural history. Erected to house celebrated piano warerooms, it drew rhapsodic contemporary notice: <a class="srclink" href="#src-unknown-author-new-york-illustrated-1876-p-63" data-scan="unknown-author-new-york-illustrated-1876-p-63" title="See the source page — Unknown Author, New York Illustrated, 1876, p. 63"><mark id="hl-29" class="s8" title="Unknown Author, New York Illustrated, 1876, p. 63">(But, of all our new buildings., the handsomest Is the one on Union Square, for Decker Brothers&#x27; piano warerooms. This building, though not large, is in a new direction in street-architecture, and we may well hope to sec its example followed. It is of Ohio freestone and brick, in the style known as the ornamental Gothic, and, with the contrasts of tints in the material and its quaint windows, makes a most picturesque effect.)</mark></a></p>
+
+<p>The chronicler&#x27;s enthusiasm swelled into a manifesto against the monotony of the prevailing idiom: <a class="srclink" href="#src-unknown-author-new-york-illustrated-1876-p-63" data-scan="unknown-author-new-york-illustrated-1876-p-63" title="See the source page — Unknown Author, New York Illustrated, 1876, p. 63"><mark id="hl-30" class="s8" title="Unknown Author, New York Illustrated, 1876, p. 63">(One is so weary of brownstone, sandstone, white marble, and painted iron, in our architecture, that a front like this, so full of light and shadow, so mellow and rich in tone, so fresh and pleasing in design, is a very agreeable revelation. What a superb quarter of the city Union Square would be, if fronted with buildings as inspiriting as this!)</mark></a> The instruments crafted within secured the firm an international eminence, for <a class="srclink" href="#src-unknown-author-new-york-illustrated-1876-p-63" data-scan="unknown-author-new-york-illustrated-1876-p-63" title="See the source page — Unknown Author, New York Illustrated, 1876, p. 63"><mark id="hl-31" class="s8" title="Unknown Author, New York Illustrated, 1876, p. 63">(The firm is one of the most prominent of representative piano-forte makers in the world, having won this proud position by the intrinsic merits of the instruments of its make.)</mark></a></p>
+
+<p>In the fullness of time, the building was inducted into the annals of the postwar avant-garde. <a class="srclink" href="#src-museyon-inc-art-nyc-2011-p-208" data-scan="museyon-inc-art-nyc-2011-p-208" title="See the source page — Museyon Inc., Art+NYC, 2011, p. 208"><mark id="hl-32" class="s9" title="Museyon Inc., Art+NYC, 2011, p. 208">(In 1968 Warhol moved downtown to the Decker Building, where he set up his White Factory. A stark contrast to the anything-goes vibe of the Silver Factory, Warhol&#x27;s Union Square studio was set up like an office. It was here that he was shot by Valerie Solanas in July 1968.)</mark></a> As a corollary account specifies, the artist&#x27;s coterie migrated in early 1968 to <a class="srclink" href="#src-alleman-new-york-the-movie-lover-s-guide-2005-p-212" data-scan="alleman-new-york-the-movie-lover-s-guide-2005-p-212" title="See the source page — Alleman, New York The Movie Lover&#x27;s Guide, 2005, p. 212"><mark id="hl-33" class="s10" title="Alleman, New York The Movie Lover&#x27;s Guide, 2005, p. 212">(the sixth floor of a ca. 1900 loft building at 33 Union Square West.)</mark></a> By the close of the century, its origins as a musical enterprise survived only as elegiac memory: <a class="srclink" href="#src-binkowski-musical-new-york-1999-p-107" data-scan="binkowski-musical-new-york-1999-p-107" title="See the source page — Binkowski, Musical New York, 1999, p. 107"><mark id="hl-34" class="s11" title="Binkowski, Musical New York, 1999, p. 107">(Only the Decker Piano Building remains (33 Union Square West). A beautiful architectural example of bygone times, its days as a piano firm are long gone, too.)</mark></a> The survey record consecrates its exotic idiom — a Moorish, Venetian composition wrought in <mark id="hl-35" class="s12" title="LPC, Union Square, 1893, p. 1">(Brick, Limestone, Terra Cotta)</mark> and surmounted by a <mark id="hl-36" class="s12" title="LPC, Union Square, 1893, p. 1">(Tile Roof)</mark> studded with <mark id="hl-37" class="s12" title="LPC, Union Square, 1893, p. 1">(Islamic Star Roundels)</mark>. The WPA corroborated this Orientalist flourish, noting that <a class="srclink" href="#src-wpa-wpa-guide-to-nyc-1939-p-203" data-scan="wpa-wpa-guide-to-nyc-1939-p-203" title="See the source page — WPA, WPA Guide to NYC, 1939, p. 203"><mark id="hl-38" class="s13" title="WPA, WPA Guide to NYC, 1939, p. 203">(at No. 33 the Union Building, built in 1893, has richly framed windows inspired by Spanish Moorish design.)</mark></a></p>
+
+<h2>31 Union Square West — The Bank of the Metropolis: Tripartite Rigor in Limestone</h2>
+
+<p>Adjacent stood a paradigm of financial architecture&#x27;s studied gravitas. <a class="srclink" href="#src-hennessy-walking-broadway-2020-p-97" data-scan="hennessy-walking-broadway-2020-p-97" title="See the source page — Hennessy, Walking Broadway, 2020, p. 97"><mark id="hl-39" class="s14" title="Hennessy, Walking Broadway, 2020, p. 97">(The familiar, sober classical vocabulary of bank architecture is enlivened here by a welcoming two-story bowed portico supported by a pair of gray granite Ionic columns facing Union Square.)</mark></a> Nor was its longer elevation neglected, for <a class="srclink" href="#src-hennessy-walking-broadway-2020-p-97" data-scan="hennessy-walking-broadway-2020-p-97" title="See the source page — Hennessy, Walking Broadway, 2020, p. 97"><mark id="hl-40" class="s14" title="Hennessy, Walking Broadway, 2020, p. 97">(The long 16th Street elevation also features some distinctive touches.)</mark></a></p>
+
+<p>The institution was woven into the commercial fabric of the district from its founding, having been <a class="srclink" href="#src-postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76" data-scan="postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76" title="See the source page — Postal &amp; Dolkart, Guide to New York City Landmarks, 2009, p. 76"><mark id="hl-41" class="s15" title="Postal &amp; Dolkart, Guide to New York City Landmarks, 2009, p. 76">(founded m 1871 to serve the needs of businesses in the Union Square area, maintained its offices on the square until 1918. when it was absorbed by the Bank of Manhattan.)</mark></a> Its architect commanded particular distinction as <a class="srclink" href="#src-postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76" data-scan="postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76" title="See the source page — Postal &amp; Dolkart, Guide to New York City Landmarks, 2009, p. 76"><mark id="hl-42" class="s15" title="Postal &amp; Dolkart, Guide to New York City Landmarks, 2009, p. 76">(an important early skyscraper designer with a particular interest in adapting the tripartite form of the column Io tad buildings)</mark></a> — a preoccupation legible in the building&#x27;s disciplined base-shaft-capital articulation. Constrained by its lot, the structure presents a face of exceptional slenderness, for <a class="srclink" href="#src-morrone-architectural-guidebook-1994-p-116" data-scan="morrone-architectural-guidebook-1994-p-116" title="See the source page — Morrone, Architectural Guidebook, 1994, p. 116"><mark id="hl-43" class="s16" title="Morrone, Architectural Guidebook, 1994, p. 116">(Its Union Square front is extremely narrow.)</mark></a> The survey assigns its base the tone Coral Reef and its façade Pearl White, a marriage of <a class="srclink" href="#src-lpc-union-square-1903-p-1" data-scan="lpc-union-square-1903-p-1" title="See the source page — LPC, Union Square, 1903, p. 1"><mark id="hl-44" class="s17" title="LPC, Union Square, 1903, p. 1">(Rusticated Limestone, Granite Bulkheads, Polished Granite Columns)</mark></a> ascending to a <a class="srclink" href="#src-lpc-union-square-1903-p-1" data-scan="lpc-union-square-1903-p-1" title="See the source page — LPC, Union Square, 1903, p. 1"><mark id="hl-45" class="s17" title="LPC, Union Square, 1903, p. 1">(Limestone)</mark></a> shaft. The site had long served commerce, an 1885 atlas recording that at this address <a class="srclink" href="#src-robinson-1885-robinsons-atlas-p-15" data-scan="robinson-1885-robinsons-atlas-p-15" title="See the source page — Robinson, 1885 Robinsons Atlas, p. 15"><mark id="hl-46" class="s18" title="Robinson, 1885 Robinsons Atlas, p. 15">(there is written &#x27;White Manfg.Co.&#x27;)</mark></a></p>
+
+<h2>33 East 17th Street — The Century Building: Queen Anne Erudition in Brick and Bluestone</h2>
+
+<p>At the square&#x27;s upper margin presides a redbrick monument to the golden age of American periodical publishing. <a class="srclink" href="#src-wolfe-new-york-15-walking-tours-2003-p-249" data-scan="wolfe-new-york-15-walking-tours-2003-p-249" title="See the source page — Wolfe, New York 15 Walking Tours, 2003, p. 249"><mark id="hl-47" class="s19" title="Wolfe, New York 15 Walking Tours, 2003, p. 249">(The red brick. Queen Anne-style structure is one of the finest examples of the style and was built to house the many publishing activities of the Century Company.)</mark></a> In an alternative appraisal it emerges as a <a class="srclink" href="#src-morrone-architectural-guidebook-1994-p-116" data-scan="morrone-architectural-guidebook-1994-p-116" title="See the source page — Morrone, Architectural Guidebook, 1994, p. 116"><mark id="hl-48" class="s16" title="Morrone, Architectural Guidebook, 1994, p. 116">(red-brick-and-limestone Queen Anne pile comes straight out of Victorian London)</mark></a>, a transatlantic import so faithful that it ranks among <a class="srclink" href="#src-morrone-architectural-guidebook-1994-p-116" data-scan="morrone-architectural-guidebook-1994-p-116" title="See the source page — Morrone, Architectural Guidebook, 1994, p. 116"><mark id="hl-49" class="s16" title="Morrone, Architectural Guidebook, 1994, p. 116">(one of the few extant major Queen Anne buildings in Manhattan.)</mark></a></p>
+
+<p>The firm it sheltered commanded a distinguished catalogue, for <a class="srclink" href="#src-wolfe-new-york-15-walking-tours-2003-p-249" data-scan="wolfe-new-york-15-walking-tours-2003-p-249" title="See the source page — Wolfe, New York 15 Walking Tours, 2003, p. 249"><mark id="hl-50" class="s19" title="Wolfe, New York 15 Walking Tours, 2003, p. 249">(Among its imprints were the Century and St. Nicholas magazines and a host of fine books.)</mark></a> In the vernal flower markets that once animated the square, its bulk dominated the horizon, since <a class="srclink" href="#src-reiss-new-york-then-and-now-2019-p-76" data-scan="reiss-new-york-then-and-now-2019-p-76" title="See the source page — Reiss, New York Then and Now, 2019, p. 76"><mark id="hl-51" class="s20" title="Reiss, New York Then and Now, 2019, p. 76">(The large building in the background is the Century Company Building Completed in 1881 on the north end of the square, it was first leased to the publishers of the popular Century and St Nicholas magazines.)</mark></a> Its architectural significance was ratified by its inclusion among the landmarked ensemble as <a class="srclink" href="#src-stern-new-york-2000-2006-p-377" data-scan="stern-new-york-2000-2006-p-377" title="See the source page — Stern, New York 2000, 2006, p. 377"><mark id="hl-52" class="s21" title="Stern, New York 2000, 2006, p. 377">(the Century Building (William Schickel, 1881), 33 East Seventeenth Street.)</mark></a> The survey records its base as Crystal and its façade as Brick Red, composed of <a class="srclink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1" title="See the source page — LPC, Union Square, 1881, p. 1"><mark id="hl-53" class="s22" title="LPC, Union Square, 1881, p. 1">(Red Brick, Wyoming Bluestone)</mark></a> at grade and <a class="srclink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1" title="See the source page — LPC, Union Square, 1881, p. 1"><mark id="hl-54" class="s22" title="LPC, Union Square, 1881, p. 1">(Brick, Terra Cotta, Wyoming Bluestone, Iron)</mark></a> above, crowned by a <a class="srclink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1" title="See the source page — LPC, Union Square, 1881, p. 1"><mark id="hl-55" class="s22" title="LPC, Union Square, 1881, p. 1">(Gambrel Roof)</mark></a> and ornamented with <a class="srclink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1" title="See the source page — LPC, Union Square, 1881, p. 1"><mark id="hl-56" class="s22" title="LPC, Union Square, 1881, p. 1">(Sunflower Terra Cotta Finials)</mark></a> — an Aesthetic Movement conceit rendered in fired clay.</p>
+
+<h2>45 East 17th Street — The Everett Building: Classical Revival on Hallowed Ground</h2>
+
+<p>Upon a site once graced by a celebrated hostelry rose a Beaux-Arts-inflected office block whose preservation reflected a broader vigilance. <a class="srclink" href="#src-stern-new-york-2000-2006-p-377" data-scan="stern-new-york-2000-2006-p-377" title="See the source page — Stern, New York 2000, 2006, p. 377"><mark id="hl-57" class="s21" title="Stern, New York 2000, 2006, p. 377">(Concerns about the fate of historic buildings on other sites around the square led to the designation as landmarks of...the Everett Building (Starrett &amp; Van Vleck, 1908), 45 East Seventeenth Street.)</mark></a> The survey fixes its base at Antique Brass and its façade at Beige, executed in <mark id="hl-58" class="s23" title="LPC, Union Square, 1908, p. 1">(Terra Cotta, Marble)</mark> at the base and <mark id="hl-59" class="s23" title="LPC, Union Square, 1908, p. 1">(Terra Cotta, Polychrome Terra Cotta)</mark> across the elevation, in an idiom identified as <mark id="hl-60" class="s23" title="LPC, Union Square, 1908, p. 1">(Classical-Revival.)</mark> The block bore an antecedent of renown, for <a class="srclink" href="#src-lockwood-manhattan-moves-uptown-1976-p-291" data-scan="lockwood-manhattan-moves-uptown-1976-p-291" title="See the source page — Lockwood, Manhattan Moves Uptown, 1976, p. 291"><mark id="hl-61" class="s4" title="Lockwood, Manhattan Moves Uptown, 1976, p. 291">(The Everett House, completed in 1854, stood at 41 East Seventeenth Street, on the north side of the park)</mark></a>; and, as a later observer recorded, <a class="srclink" href="#src-watson-gillon-new-york-then-and-now-1976-p-80" data-scan="watson-gillon-new-york-then-and-now-1976-p-80" title="See the source page — Watson &amp; Gillon, New York Then and Now, 1976, p. 80"><mark id="hl-62" class="s24" title="Watson &amp; Gillon, New York Then and Now, 1976, p. 80">(The five-story building at the northwest corner of East 17th Street is the Everett House. Built in 1854, this hotel was convenient to 14th Street&#x27;s shopping, musical and theatrical attractions.)</mark></a></p>
+
+<h2>1-3 Union Square West — The Lincoln Building: Romanesque Gravitas</h2>
+
+<p>Presiding over a further corner stood a Romanesque revival veteran. <a class="srclink" href="#src-wpa-wpa-guide-to-nyc-1939-p-203" data-scan="wpa-wpa-guide-to-nyc-1939-p-203" title="See the source page — WPA, WPA Guide to NYC, 1939, p. 203"><mark id="hl-63" class="s13" title="WPA, WPA Guide to NYC, 1939, p. 203">(The Lincoln Building, erected at I Union Square in 1889, is an example adapted from Romanesque work.)</mark></a> It too was accorded protection, enumerated among the landmarks as <a class="srclink" href="#src-stern-new-york-2000-2006-p-377" data-scan="stern-new-york-2000-2006-p-377" title="See the source page — Stern, New York 2000, 2006, p. 377"><mark id="hl-64" class="s21" title="Stern, New York 2000, 2006, p. 377">(the Lincoln Building (R. H. Robertson, 1890), 1-3 Union Square West.)</mark></a></p>
+
+<h2>100-102 East 17th Street — Tammany Hall: The Iconography of Legitimacy</h2>
+
+<p>At the southeastern corner of 17th Street rose an edifice conceived as a rhetorical instrument of political rehabilitation. <a class="srclink" href="#src-dolkart-gramercy-1996-p-78" data-scan="dolkart-gramercy-1996-p-78" title="See the source page — Dolkart, Gramercy, 1996, p. 78"><mark id="hl-65" class="s25" title="Dolkart, Gramercy, 1996, p. 78">(On the southeast corner of East 17th Street and Union Square East, at 100-102 East 17th Street, stands the second of the district&#x27;s institutional buildings. Tammany Hall, once the headquarters of New York City&#x27;s Democratic Earn political machine.)</mark></a> Its architectural vocabulary was deliberately declarative, presenting <a class="srclink" href="#src-dolkart-gramercy-1996-p-78" data-scan="dolkart-gramercy-1996-p-78" title="See the source page — Dolkart, Gramercy, 1996, p. 78"><mark id="hl-66" class="s25" title="Dolkart, Gramercy, 1996, p. 78">(a dignified architectural treatment, one of the chief motifs of which arc the severe Colonial columns in the centers of the Union Square and the Seventeenth-street facades which recall the days of early American architecture.)</mark></a></p>
+
+<p>The stylistic choice was freighted with intention, for <a class="srclink" href="#src-dolkart-gramercy-1996-p-78" data-scan="dolkart-gramercy-1996-p-78" title="See the source page — Dolkart, Gramercy, 1996, p. 78"><mark id="hl-67" class="s25" title="Dolkart, Gramercy, 1996, p. 78">(The Colonial Revival was undoubtedly chosen not only because it was reminiscent of the architecture of the early republic, bur also because it symbolized the government established during that period.)</mark></a> In effect, the organization pursued architectural absolution, since <a class="srclink" href="#src-dolkart-gramercy-1996-p-78" data-scan="dolkart-gramercy-1996-p-78" title="See the source page — Dolkart, Gramercy, 1996, p. 78"><mark id="hl-68" class="s25" title="Dolkart, Gramercy, 1996, p. 78">(The Society of Tammany was attempting to associate itself with the ideals of early American democracy.)</mark></a> Its material vocabulary reinforced the historicist argument: <a class="srclink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-679" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-679" title="See the source page — Spielvogel, The Landmarks of New York, 2016, p. 679"><mark id="hl-69" class="s26" title="Spielvogel, The Landmarks of New York, 2016, p. 679">(This distinguished neo-Georgian facade, with its rusticated stone base, double-height pilasters, and sculptural reliefs in terra cotta and limestone, was inspired by the original Federal Hall.)</mark></a> The gambit was audacious given the institution&#x27;s reputation, for <a class="srclink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-679" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-679" title="See the source page — Spielvogel, The Landmarks of New York, 2016, p. 679"><mark id="hl-70" class="s26" title="Spielvogel, The Landmarks of New York, 2016, p. 679">(Tammany Hall, now a byword for municipal corruption, once dominated the City&#x27;s political arena)</mark></a> — a machine that sought, through the borrowed dignity of Federal-era motifs, to launder its notoriety in the currency of republican virtue.</p>
+
+<h2>Coda: The Square as Architectural Palimpsest</h2>
+
+<p>To traverse the northern crown of the square is to read a stratified text in masonry, each layer bearing witness to a distinct chapter of the city&#x27;s self-invention. <a class="srclink" href="#src-wpa-wpa-guide-to-nyc-1939-p-203" data-scan="wpa-wpa-guide-to-nyc-1939-p-203" title="See the source page — WPA, WPA Guide to NYC, 1939, p. 203"><mark id="hl-71" class="s13" title="WPA, WPA Guide to NYC, 1939, p. 203">(The diverse architecture of the buildings surrounding Union Square does not supply the unified feeling of enclosure implied by the word &#x27;&#x27;square,&#x27;&#x27; but it does offer an interesting record of architectural styles that have been popular in past years.)</mark></a> The commercial palaces share, for all their stylistic disparity, a governing compositional logic, whereby <a class="srclink" href="#src-wpa-wpa-guide-to-nyc-1939-p-203" data-scan="wpa-wpa-guide-to-nyc-1939-p-203" title="See the source page — WPA, WPA Guide to NYC, 1939, p. 203"><mark id="hl-72" class="s13" title="WPA, WPA Guide to NYC, 1939, p. 203">(Three divisions of each facade are clearly marked: a base ornamented with classical details, an intermediate portion of undecorated masonry pierced by regular windows, and a crowning element at the top consisting of arched windows and an elaborate cornice.)</mark></a></p>
+
+<p>The square endures as a repository of improbable heterogeneity, a place <a class="srclink" href="#src-st-louis-lonely-planet-new-york-city-2016-p-163" data-scan="st-louis-lonely-planet-new-york-city-2016-p-163" title="See the source page — St Louis, Lonely Planet New York City, 2016, p. 163"><mark id="hl-73" class="s5" title="St Louis, Lonely Planet New York City, 2016, p. 163">(like the Noah&#x27;s Ark of New York, rescuing at least two of every kind from the curling seas of concrete.)</mark></a> For the discerning peripatetic, the counsel remains as apt as ever: <a class="srclink" href="#src-kahn-city-secrets-new-york-city-2002-p-189" data-scan="kahn-city-secrets-new-york-city-2002-p-189" title="See the source page — Kahn, City Secrets New York City, 2002, p. 189"><mark id="hl-74" class="s27" title="Kahn, City Secrets New York City, 2002, p. 189">(The trick to any stroll through this zone is to look up. Each building brings an animated story to the streetscape, and many have been lovingly restored and given meaningful, modern uses.)</mark></a></p>
+
+<section class="chart-print"><h2 id="citations">Citation Chart</h2>
+<p class="note2">Every highlighted quote, in order of appearance, correlated to its underlying source. The swatch matches the highlight colour in the text.</p>
+<div class="tablewrap">
+<h3 class="csec">Genesis: From Alluvial Hillock to Civic Commons</h3>
+<table><thead><tr><th class="num">#</th><th>Verbatim Quote (abbreviated)</th><th>Source (Author, Title, Year, Page)</th></tr></thead><tbody>
+<tr><td class="num">1</td><td class="quote">&ldquo;Union Square was originally a sand hill. Had it not been for the sand, Irving Place &amp; Lexington Ave. would likely be part of Broadway today!&rdquo;</td><td class="src"><span class="sw s1"></span>Chase, <em>New York The Wonder City</em>, 1932, p. 198&nbsp;<a class="pglink" href="#src-chase-new-york-the-wonder-city-1932-p-198" data-scan="chase-new-york-the-wonder-city-1932-p-198">[page scan]</a></td></tr>
+<tr><td class="num">2</td><td class="quote">&ldquo;Union Square took its name from the fact that it was the spot where the Bowery and Bloomingdale Road (today&#x27;s Broadway) came together, that is, united.&rdquo;</td><td class="src"><span class="sw s2"></span>Bergman, <em>The Spiritual Traveler New York City</em>, 2001, p. 133&nbsp;<a class="pglink" href="#src-bergman-the-spiritual-traveler-new-york-city-2001-p-133" data-scan="bergman-the-spiritual-traveler-new-york-city-2001-p-133">[page scan]</a></td></tr>
+<tr><td class="num">3</td><td class="quote">&ldquo;The square marks the union of Fourth Avenue and Broadway and was saved from further development by the city in 1811.&rdquo;</td><td class="src"><span class="sw s3"></span>Holmes, <em>100 New Yorker</em>, 2004, p. 168&nbsp;<a class="pglink" href="#src-holmes-100-new-yorker-2004-p-168" data-scan="holmes-100-new-yorker-2004-p-168">[page scan]</a></td></tr>
+<tr><td class="num">4</td><td class="quote">&ldquo;The land was once part of Elias Brevoort&#x27;s farm, but in 1762 he sold twenty acres lying west of the Bowery Road, or Third Avenue, to John Smith, whose heirs subsequently…&rdquo;</td><td class="src"><span class="sw s4"></span>Lockwood, <em>Manhattan Moves Uptown</em>, 1976, p. 167&nbsp;<a class="pglink" href="#src-lockwood-manhattan-moves-uptown-1976-p-167" data-scan="lockwood-manhattan-moves-uptown-1976-p-167">[page scan]</a></td></tr>
+<tr><td class="num">5</td><td class="quote">&ldquo;In 1807 Broadway was regulated from Astor Place to the vicinity of Twenty-third Street, and in 1815 the city designated part of the land that became Union Square as a…&rdquo;</td><td class="src"><span class="sw s4"></span>Lockwood, <em>Manhattan Moves Uptown</em>, 1976, p. 167&nbsp;<a class="pglink" href="#src-lockwood-manhattan-moves-uptown-1976-p-167" data-scan="lockwood-manhattan-moves-uptown-1976-p-167">[page scan]</a></td></tr>
+<tr><td class="num">6</td><td class="quote">&ldquo;now that the ground is unoccupied, the purchase can be effected, which, in the lapse of a few years, when valuable buildings are erected, will be impracticable, on…&rdquo;</td><td class="src"><span class="sw s4"></span>Lockwood, <em>Manhattan Moves Uptown</em>, 1976, p. 167&nbsp;<a class="pglink" href="#src-lockwood-manhattan-moves-uptown-1976-p-167" data-scan="lockwood-manhattan-moves-uptown-1976-p-167">[page scan]</a></td></tr>
+<tr><td class="num">7</td><td class="quote">&ldquo;ventilators to a densely populated city.&rdquo;</td><td class="src"><span class="sw s4"></span>Lockwood, <em>Manhattan Moves Uptown</em>, 1976, p. 167&nbsp;<a class="pglink" href="#src-lockwood-manhattan-moves-uptown-1976-p-167" data-scan="lockwood-manhattan-moves-uptown-1976-p-167">[page scan]</a></td></tr>
+<tr><td class="num">8</td><td class="quote">&ldquo;With its enviable location at what was then the northernmost limit of Broadway and just half a mile north of stylish Bond Street, Union Square was assured of a…&rdquo;</td><td class="src"><span class="sw s4"></span>Lockwood, <em>Manhattan Moves Uptown</em>, 1976, p. 167&nbsp;<a class="pglink" href="#src-lockwood-manhattan-moves-uptown-1976-p-167" data-scan="lockwood-manhattan-moves-uptown-1976-p-167">[page scan]</a></td></tr>
+<tr><td class="num">9</td><td class="quote">&ldquo;Whole streets of magnificent dwelling houses have been erected in the vicinity of Union Square within the last year.&rdquo;</td><td class="src"><span class="sw s4"></span>Lockwood, <em>Manhattan Moves Uptown</em>, 1976, p. 167&nbsp;<a class="pglink" href="#src-lockwood-manhattan-moves-uptown-1976-p-167" data-scan="lockwood-manhattan-moves-uptown-1976-p-167">[page scan]</a></td></tr>
+<tr><td class="num">10</td><td class="quote">&ldquo;Palatial row houses and mansions began to rise, facing Union Square itself, after the Bank of Manhattan sold the lots it owned around the perimeter of the park in 1845.&rdquo;</td><td class="src"><span class="sw s4"></span>Lockwood, <em>Manhattan Moves Uptown</em>, 1976, p. 167&nbsp;<a class="pglink" href="#src-lockwood-manhattan-moves-uptown-1976-p-167" data-scan="lockwood-manhattan-moves-uptown-1976-p-167">[page scan]</a></td></tr>
+<tr><td class="num">11</td><td class="quote">&ldquo;the park was planted with lawns, flower beds, trees, and shrubbery. Gas street lights were installed by 1849.&rdquo;</td><td class="src"><span class="sw s4"></span>Lockwood, <em>Manhattan Moves Uptown</em>, 1976, p. 178&nbsp;<a class="pglink" href="#src-lockwood-manhattan-moves-uptown-1976-p-178" data-scan="lockwood-manhattan-moves-uptown-1976-p-178">[page scan]</a></td></tr>
+</tbody></table>
+<h3 class="csec">The Belle Époque of the Square: Salon Culture and Genteel Repose</h3>
+<table><thead><tr><th class="num">#</th><th>Verbatim Quote (abbreviated)</th><th>Source (Author, Title, Year, Page)</th></tr></thead><tbody>
+<tr><td class="num">12</td><td class="quote">&ldquo;Union Square quickly became the central gathering place for those who lived in the mansions nearby. Concert halls and artist societies further enhanced the cultured…&rdquo;</td><td class="src"><span class="sw s5"></span>St Louis, <em>Lonely Planet New York City</em>, 2016, p. 163&nbsp;<a class="pglink" href="#src-st-louis-lonely-planet-new-york-city-2016-p-163" data-scan="st-louis-lonely-planet-new-york-city-2016-p-163">[page scan]</a></td></tr>
+<tr><td class="num">13</td><td class="quote">&ldquo;Not a store is to be seen...nothing but the dwellings of the aristocracy, who moved up here out of the noisy and dusty part of the city.&rdquo;</td><td class="src"><span class="sw s4"></span>Lockwood, <em>Manhattan Moves Uptown</em>, 1976, p. 169&nbsp;<a class="pglink" href="#src-lockwood-manhattan-moves-uptown-1976-p-169" data-scan="lockwood-manhattan-moves-uptown-1976-p-169">[page scan]</a></td></tr>
+<tr><td class="num">14</td><td class="quote">&ldquo;ingeniously contrived miniature buildings for these little birds, placed among the branches of the trees&rdquo;</td><td class="src"><span class="sw s4"></span>Lockwood, <em>Manhattan Moves Uptown</em>, 1976, p. 178&nbsp;<a class="pglink" href="#src-lockwood-manhattan-moves-uptown-1976-p-178" data-scan="lockwood-manhattan-moves-uptown-1976-p-178">[page scan]</a></td></tr>
+<tr><td class="num">15</td><td class="quote">&ldquo;represent different business departments as &#x27;The Post Office,&#x27; &#x27;The Custom House,&#x27; &#x27;The Exchange,&#x27; etc.&rdquo;</td><td class="src"><span class="sw s4"></span>Lockwood, <em>Manhattan Moves Uptown</em>, 1976, p. 178&nbsp;<a class="pglink" href="#src-lockwood-manhattan-moves-uptown-1976-p-178" data-scan="lockwood-manhattan-moves-uptown-1976-p-178">[page scan]</a></td></tr>
+<tr><td class="num">16</td><td class="quote">&ldquo;even the neighborhood birds had to be busy at work all day long&rdquo;</td><td class="src"><span class="sw s4"></span>Lockwood, <em>Manhattan Moves Uptown</em>, 1976, p. 178&nbsp;<a class="pglink" href="#src-lockwood-manhattan-moves-uptown-1976-p-178" data-scan="lockwood-manhattan-moves-uptown-1976-p-178">[page scan]</a></td></tr>
+</tbody></table>
+<h3 class="csec">The Great Reversal: Trade Ascendant and the Patrician Exodus</h3>
+<table><thead><tr><th class="num">#</th><th>Verbatim Quote (abbreviated)</th><th>Source (Author, Title, Year, Page)</th></tr></thead><tbody>
+<tr><td class="num">17</td><td class="quote">&ldquo;shocked and upset the gentility in the 1860s was the influx of shops into Union Square. They took over the basements and parlor floors of mansions and row houses, some…&rdquo;</td><td class="src"><span class="sw s4"></span>Lockwood, <em>Manhattan Moves Uptown</em>, 1976, p. 291&nbsp;<a class="pglink" href="#src-lockwood-manhattan-moves-uptown-1976-p-291" data-scan="lockwood-manhattan-moves-uptown-1976-p-291">[page scan]</a></td></tr>
+<tr><td class="num">18</td><td class="quote">&ldquo;the Times reported that nearly all the houses on Union Square had become boardinghouses.&rdquo;</td><td class="src"><span class="sw s4"></span>Lockwood, <em>Manhattan Moves Uptown</em>, 1976, p. 291&nbsp;<a class="pglink" href="#src-lockwood-manhattan-moves-uptown-1976-p-291" data-scan="lockwood-manhattan-moves-uptown-1976-p-291">[page scan]</a></td></tr>
+<tr><td class="num">19</td><td class="quote">&ldquo;the blocks surrounding the formerly tranquil square hummed with commercial activity, with once-grand mansions converted to boardinghouses, stores, and offices rented to…&rdquo;</td><td class="src"><span class="sw s6"></span>Leadon, <em>Broadway A History of New York in Thirteen Miles</em>, 2018, p. 118&nbsp;<a class="pglink" href="#src-leadon-broadway-a-history-of-new-york-in-thirteen-miles-2018-p-118" data-scan="leadon-broadway-a-history-of-new-york-in-thirteen-miles-2018-p-118">[page scan]</a></td></tr>
+<tr><td class="num">20</td><td class="quote">&ldquo;IN 1870, TIFFANY&#x27;S DEMOLISHED the James Renwick-designed Church of the Puritans on the west side of Union Square and replaced it with a huge cast-iron store-the &quot;Palace…&rdquo;</td><td class="src"><span class="sw s6"></span>Leadon, <em>Broadway A History of New York in Thirteen Miles</em>, 2018, p. 118&nbsp;<a class="pglink" href="#src-leadon-broadway-a-history-of-new-york-in-thirteen-miles-2018-p-118" data-scan="leadon-broadway-a-history-of-new-york-in-thirteen-miles-2018-p-118">[page scan]</a></td></tr>
+<tr><td class="num">21</td><td class="quote">&ldquo;In 1872 the city hired Calvert Vaux and Frederick Law Olmsted, designers of Central Park, to remake Union Square according to a more up-to-date, picturesque aesthetic.&rdquo;</td><td class="src"><span class="sw s6"></span>Leadon, <em>Broadway A History of New York in Thirteen Miles</em>, 2018, p. 118&nbsp;<a class="pglink" href="#src-leadon-broadway-a-history-of-new-york-in-thirteen-miles-2018-p-118" data-scan="leadon-broadway-a-history-of-new-york-in-thirteen-miles-2018-p-118">[page scan]</a></td></tr>
+<tr><td class="num">22</td><td class="quote">&ldquo;1866 and 1867, houses on Union Square were selling for $125,000 to $180,000, up from the $15,000 that lots in the area had fetched ten or fifteen years earlier.&rdquo;</td><td class="src"><span class="sw s4"></span>Lockwood, <em>Manhattan Moves Uptown</em>, 1976, p. 291&nbsp;<a class="pglink" href="#src-lockwood-manhattan-moves-uptown-1976-p-291" data-scan="lockwood-manhattan-moves-uptown-1976-p-291">[page scan]</a></td></tr>
+</tbody></table>
+<h3 class="csec">The Theater of the Republic: Rally, Rite, and Remonstrance</h3>
+<table><thead><tr><th class="num">#</th><th>Verbatim Quote (abbreviated)</th><th>Source (Author, Title, Year, Page)</th></tr></thead><tbody>
+<tr><td class="num">23</td><td class="quote">&ldquo;Union Square would replace City Hall Park as the center of civic life.&rdquo;</td><td class="src"><span class="sw s7"></span>Burrows &amp; Wallace, <em>Gotham</em>, 1999, p. 869&nbsp;<a class="pglink" href="#src-burrows-wallace-gotham-1999-p-869" data-scan="burrows-wallace-gotham-1999-p-869">[page scan]</a></td></tr>
+<tr><td class="num">24</td><td class="quote">&ldquo;what was reputedly the largest assemblage ever seen on the continent—somewhere between 100,000 and 250,000 people—flooded into Union Square.&rdquo;</td><td class="src"><span class="sw s7"></span>Burrows &amp; Wallace, <em>Gotham</em>, 1999, p. 869&nbsp;<a class="pglink" href="#src-burrows-wallace-gotham-1999-p-869" data-scan="burrows-wallace-gotham-1999-p-869">[page scan]</a></td></tr>
+<tr><td class="num">25</td><td class="quote">&ldquo;The new bronze statue of Washington was wrapped in the flag that had been fired upon at Sumter&rdquo;</td><td class="src"><span class="sw s7"></span>Burrows &amp; Wallace, <em>Gotham</em>, 1999, p. 869&nbsp;<a class="pglink" href="#src-burrows-wallace-gotham-1999-p-869" data-scan="burrows-wallace-gotham-1999-p-869">[page scan]</a></td></tr>
+<tr><td class="num">26</td><td class="quote">&ldquo;the vast public space (large by New York standards, of course) was center stage for protesters of all sorts-from union workers to political activists.&rdquo;</td><td class="src"><span class="sw s5"></span>St Louis, <em>Lonely Planet New York City</em>, 2016, p. 163&nbsp;<a class="pglink" href="#src-st-louis-lonely-planet-new-york-city-2016-p-163" data-scan="st-louis-lonely-planet-new-york-city-2016-p-163">[page scan]</a></td></tr>
+<tr><td class="num">27</td><td class="quote">&ldquo;politically and socially driven organizations like the American Civil Liberties Union, the Communist and Socialist Parties, and the Ladies&#x27; Garment Workers Union to move…&rdquo;</td><td class="src"><span class="sw s5"></span>St Louis, <em>Lonely Planet New York City</em>, 2016, p. 163&nbsp;<a class="pglink" href="#src-st-louis-lonely-planet-new-york-city-2016-p-163" data-scan="st-louis-lonely-planet-new-york-city-2016-p-163">[page scan]</a></td></tr>
+<tr><td class="num">28</td><td class="quote">&ldquo;The Communists of New York make their headquarters at Union Square also.&rdquo;</td><td class="src"><span class="sw s1"></span>Chase, <em>New York The Wonder City</em>, 1932, p. 198&nbsp;<a class="pglink" href="#src-chase-new-york-the-wonder-city-1932-p-198" data-scan="chase-new-york-the-wonder-city-1932-p-198">[page scan]</a></td></tr>
+</tbody></table>
+<h3 class="csec">33 Union Square West — The Decker Building: Ornamental Gothic to Avant-Garde Atelier</h3>
+<table><thead><tr><th class="num">#</th><th>Verbatim Quote (abbreviated)</th><th>Source (Author, Title, Year, Page)</th></tr></thead><tbody>
+<tr><td class="num">29</td><td class="quote">&ldquo;But, of all our new buildings., the handsomest Is the one on Union Square, for Decker Brothers&#x27; piano warerooms. This building, though not large, is in a new direction…&rdquo;</td><td class="src"><span class="sw s8"></span>Unknown Author, <em>New York Illustrated</em>, 1876, p. 63&nbsp;<a class="pglink" href="#src-unknown-author-new-york-illustrated-1876-p-63" data-scan="unknown-author-new-york-illustrated-1876-p-63">[page scan]</a></td></tr>
+<tr><td class="num">30</td><td class="quote">&ldquo;One is so weary of brownstone, sandstone, white marble, and painted iron, in our architecture, that a front like this, so full of light and shadow, so mellow and rich in…&rdquo;</td><td class="src"><span class="sw s8"></span>Unknown Author, <em>New York Illustrated</em>, 1876, p. 63&nbsp;<a class="pglink" href="#src-unknown-author-new-york-illustrated-1876-p-63" data-scan="unknown-author-new-york-illustrated-1876-p-63">[page scan]</a></td></tr>
+<tr><td class="num">31</td><td class="quote">&ldquo;The firm is one of the most prominent of representative piano-forte makers in the world, having won this proud position by the intrinsic merits of the instruments of its…&rdquo;</td><td class="src"><span class="sw s8"></span>Unknown Author, <em>New York Illustrated</em>, 1876, p. 63&nbsp;<a class="pglink" href="#src-unknown-author-new-york-illustrated-1876-p-63" data-scan="unknown-author-new-york-illustrated-1876-p-63">[page scan]</a></td></tr>
+<tr><td class="num">32</td><td class="quote">&ldquo;In 1968 Warhol moved downtown to the Decker Building, where he set up his White Factory. A stark contrast to the anything-goes vibe of the Silver Factory, Warhol&#x27;s Union…&rdquo;</td><td class="src"><span class="sw s9"></span>Museyon Inc., <em>Art+NYC</em>, 2011, p. 208&nbsp;<a class="pglink" href="#src-museyon-inc-art-nyc-2011-p-208" data-scan="museyon-inc-art-nyc-2011-p-208">[page scan]</a></td></tr>
+<tr><td class="num">33</td><td class="quote">&ldquo;the sixth floor of a ca. 1900 loft building at 33 Union Square West.&rdquo;</td><td class="src"><span class="sw s10"></span>Alleman, <em>New York The Movie Lover&#x27;s Guide</em>, 2005, p. 212&nbsp;<a class="pglink" href="#src-alleman-new-york-the-movie-lover-s-guide-2005-p-212" data-scan="alleman-new-york-the-movie-lover-s-guide-2005-p-212">[page scan]</a></td></tr>
+<tr><td class="num">34</td><td class="quote">&ldquo;Only the Decker Piano Building remains (33 Union Square West). A beautiful architectural example of bygone times, its days as a piano firm are long gone, too.&rdquo;</td><td class="src"><span class="sw s11"></span>Binkowski, <em>Musical New York</em>, 1999, p. 107&nbsp;<a class="pglink" href="#src-binkowski-musical-new-york-1999-p-107" data-scan="binkowski-musical-new-york-1999-p-107">[page scan]</a></td></tr>
+<tr><td class="num">35</td><td class="quote">&ldquo;Brick, Limestone, Terra Cotta&rdquo;</td><td class="src"><span class="sw s12"></span>LPC, <em>Union Square</em>, 1893, p. 1</td></tr>
+<tr><td class="num">36</td><td class="quote">&ldquo;Tile Roof&rdquo;</td><td class="src"><span class="sw s12"></span>LPC, <em>Union Square</em>, 1893, p. 1</td></tr>
+<tr><td class="num">37</td><td class="quote">&ldquo;Islamic Star Roundels&rdquo;</td><td class="src"><span class="sw s12"></span>LPC, <em>Union Square</em>, 1893, p. 1</td></tr>
+<tr><td class="num">38</td><td class="quote">&ldquo;at No. 33 the Union Building, built in 1893, has richly framed windows inspired by Spanish Moorish design.&rdquo;</td><td class="src"><span class="sw s13"></span>WPA, <em>WPA Guide to NYC</em>, 1939, p. 203&nbsp;<a class="pglink" href="#src-wpa-wpa-guide-to-nyc-1939-p-203" data-scan="wpa-wpa-guide-to-nyc-1939-p-203">[page scan]</a></td></tr>
+</tbody></table>
+<h3 class="csec">31 Union Square West — The Bank of the Metropolis: Tripartite Rigor in Limestone</h3>
+<table><thead><tr><th class="num">#</th><th>Verbatim Quote (abbreviated)</th><th>Source (Author, Title, Year, Page)</th></tr></thead><tbody>
+<tr><td class="num">39</td><td class="quote">&ldquo;The familiar, sober classical vocabulary of bank architecture is enlivened here by a welcoming two-story bowed portico supported by a pair of gray granite Ionic columns…&rdquo;</td><td class="src"><span class="sw s14"></span>Hennessy, <em>Walking Broadway</em>, 2020, p. 97&nbsp;<a class="pglink" href="#src-hennessy-walking-broadway-2020-p-97" data-scan="hennessy-walking-broadway-2020-p-97">[page scan]</a></td></tr>
+<tr><td class="num">40</td><td class="quote">&ldquo;The long 16th Street elevation also features some distinctive touches.&rdquo;</td><td class="src"><span class="sw s14"></span>Hennessy, <em>Walking Broadway</em>, 2020, p. 97&nbsp;<a class="pglink" href="#src-hennessy-walking-broadway-2020-p-97" data-scan="hennessy-walking-broadway-2020-p-97">[page scan]</a></td></tr>
+<tr><td class="num">41</td><td class="quote">&ldquo;founded m 1871 to serve the needs of businesses in the Union Square area, maintained its offices on the square until 1918. when it was absorbed by the Bank of Manhattan.&rdquo;</td><td class="src"><span class="sw s15"></span>Postal &amp; Dolkart, <em>Guide to New York City Landmarks</em>, 2009, p. 76&nbsp;<a class="pglink" href="#src-postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76" data-scan="postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76">[page scan]</a></td></tr>
+<tr><td class="num">42</td><td class="quote">&ldquo;an important early skyscraper designer with a particular interest in adapting the tripartite form of the column Io tad buildings&rdquo;</td><td class="src"><span class="sw s15"></span>Postal &amp; Dolkart, <em>Guide to New York City Landmarks</em>, 2009, p. 76&nbsp;<a class="pglink" href="#src-postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76" data-scan="postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76">[page scan]</a></td></tr>
+<tr><td class="num">43</td><td class="quote">&ldquo;Its Union Square front is extremely narrow.&rdquo;</td><td class="src"><span class="sw s16"></span>Morrone, <em>Architectural Guidebook</em>, 1994, p. 116&nbsp;<a class="pglink" href="#src-morrone-architectural-guidebook-1994-p-116" data-scan="morrone-architectural-guidebook-1994-p-116">[page scan]</a></td></tr>
+<tr><td class="num">44</td><td class="quote">&ldquo;Rusticated Limestone, Granite Bulkheads, Polished Granite Columns&rdquo;</td><td class="src"><span class="sw s17"></span>LPC, <em>Union Square</em>, 1903, p. 1&nbsp;<a class="pglink" href="#src-lpc-union-square-1903-p-1" data-scan="lpc-union-square-1903-p-1">[page scan]</a></td></tr>
+<tr><td class="num">45</td><td class="quote">&ldquo;Limestone&rdquo;</td><td class="src"><span class="sw s17"></span>LPC, <em>Union Square</em>, 1903, p. 1&nbsp;<a class="pglink" href="#src-lpc-union-square-1903-p-1" data-scan="lpc-union-square-1903-p-1">[page scan]</a></td></tr>
+<tr><td class="num">46</td><td class="quote">&ldquo;there is written &#x27;White Manfg.Co.&#x27;&rdquo;</td><td class="src"><span class="sw s18"></span>Robinson, <em>1885 Robinsons Atlas</em>, p. 15&nbsp;<a class="pglink" href="#src-robinson-1885-robinsons-atlas-p-15" data-scan="robinson-1885-robinsons-atlas-p-15">[page scan]</a></td></tr>
+</tbody></table>
+<h3 class="csec">33 East 17th Street — The Century Building: Queen Anne Erudition in Brick and Bluestone</h3>
+<table><thead><tr><th class="num">#</th><th>Verbatim Quote (abbreviated)</th><th>Source (Author, Title, Year, Page)</th></tr></thead><tbody>
+<tr><td class="num">47</td><td class="quote">&ldquo;The red brick. Queen Anne-style structure is one of the finest examples of the style and was built to house the many publishing activities of the Century Company.&rdquo;</td><td class="src"><span class="sw s19"></span>Wolfe, <em>New York 15 Walking Tours</em>, 2003, p. 249&nbsp;<a class="pglink" href="#src-wolfe-new-york-15-walking-tours-2003-p-249" data-scan="wolfe-new-york-15-walking-tours-2003-p-249">[page scan]</a></td></tr>
+<tr><td class="num">48</td><td class="quote">&ldquo;red-brick-and-limestone Queen Anne pile comes straight out of Victorian London&rdquo;</td><td class="src"><span class="sw s16"></span>Morrone, <em>Architectural Guidebook</em>, 1994, p. 116&nbsp;<a class="pglink" href="#src-morrone-architectural-guidebook-1994-p-116" data-scan="morrone-architectural-guidebook-1994-p-116">[page scan]</a></td></tr>
+<tr><td class="num">49</td><td class="quote">&ldquo;one of the few extant major Queen Anne buildings in Manhattan.&rdquo;</td><td class="src"><span class="sw s16"></span>Morrone, <em>Architectural Guidebook</em>, 1994, p. 116&nbsp;<a class="pglink" href="#src-morrone-architectural-guidebook-1994-p-116" data-scan="morrone-architectural-guidebook-1994-p-116">[page scan]</a></td></tr>
+<tr><td class="num">50</td><td class="quote">&ldquo;Among its imprints were the Century and St. Nicholas magazines and a host of fine books.&rdquo;</td><td class="src"><span class="sw s19"></span>Wolfe, <em>New York 15 Walking Tours</em>, 2003, p. 249&nbsp;<a class="pglink" href="#src-wolfe-new-york-15-walking-tours-2003-p-249" data-scan="wolfe-new-york-15-walking-tours-2003-p-249">[page scan]</a></td></tr>
+<tr><td class="num">51</td><td class="quote">&ldquo;The large building in the background is the Century Company Building Completed in 1881 on the north end of the square, it was first leased to the publishers of the…&rdquo;</td><td class="src"><span class="sw s20"></span>Reiss, <em>New York Then and Now</em>, 2019, p. 76&nbsp;<a class="pglink" href="#src-reiss-new-york-then-and-now-2019-p-76" data-scan="reiss-new-york-then-and-now-2019-p-76">[page scan]</a></td></tr>
+<tr><td class="num">52</td><td class="quote">&ldquo;the Century Building (William Schickel, 1881), 33 East Seventeenth Street.&rdquo;</td><td class="src"><span class="sw s21"></span>Stern, <em>New York 2000</em>, 2006, p. 377&nbsp;<a class="pglink" href="#src-stern-new-york-2000-2006-p-377" data-scan="stern-new-york-2000-2006-p-377">[page scan]</a></td></tr>
+<tr><td class="num">53</td><td class="quote">&ldquo;Red Brick, Wyoming Bluestone&rdquo;</td><td class="src"><span class="sw s22"></span>LPC, <em>Union Square</em>, 1881, p. 1&nbsp;<a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">[page scan]</a></td></tr>
+<tr><td class="num">54</td><td class="quote">&ldquo;Brick, Terra Cotta, Wyoming Bluestone, Iron&rdquo;</td><td class="src"><span class="sw s22"></span>LPC, <em>Union Square</em>, 1881, p. 1&nbsp;<a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">[page scan]</a></td></tr>
+<tr><td class="num">55</td><td class="quote">&ldquo;Gambrel Roof&rdquo;</td><td class="src"><span class="sw s22"></span>LPC, <em>Union Square</em>, 1881, p. 1&nbsp;<a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">[page scan]</a></td></tr>
+<tr><td class="num">56</td><td class="quote">&ldquo;Sunflower Terra Cotta Finials&rdquo;</td><td class="src"><span class="sw s22"></span>LPC, <em>Union Square</em>, 1881, p. 1&nbsp;<a class="pglink" href="#src-lpc-union-square-1881-p-1" data-scan="lpc-union-square-1881-p-1">[page scan]</a></td></tr>
+</tbody></table>
+<h3 class="csec">45 East 17th Street — The Everett Building: Classical Revival on Hallowed Ground</h3>
+<table><thead><tr><th class="num">#</th><th>Verbatim Quote (abbreviated)</th><th>Source (Author, Title, Year, Page)</th></tr></thead><tbody>
+<tr><td class="num">57</td><td class="quote">&ldquo;Concerns about the fate of historic buildings on other sites around the square led to the designation as landmarks of...the Everett Building (Starrett &amp; Van Vleck,…&rdquo;</td><td class="src"><span class="sw s21"></span>Stern, <em>New York 2000</em>, 2006, p. 377&nbsp;<a class="pglink" href="#src-stern-new-york-2000-2006-p-377" data-scan="stern-new-york-2000-2006-p-377">[page scan]</a></td></tr>
+<tr><td class="num">58</td><td class="quote">&ldquo;Terra Cotta, Marble&rdquo;</td><td class="src"><span class="sw s23"></span>LPC, <em>Union Square</em>, 1908, p. 1</td></tr>
+<tr><td class="num">59</td><td class="quote">&ldquo;Terra Cotta, Polychrome Terra Cotta&rdquo;</td><td class="src"><span class="sw s23"></span>LPC, <em>Union Square</em>, 1908, p. 1</td></tr>
+<tr><td class="num">60</td><td class="quote">&ldquo;Classical-Revival.&rdquo;</td><td class="src"><span class="sw s23"></span>LPC, <em>Union Square</em>, 1908, p. 1</td></tr>
+<tr><td class="num">61</td><td class="quote">&ldquo;The Everett House, completed in 1854, stood at 41 East Seventeenth Street, on the north side of the park&rdquo;</td><td class="src"><span class="sw s4"></span>Lockwood, <em>Manhattan Moves Uptown</em>, 1976, p. 291&nbsp;<a class="pglink" href="#src-lockwood-manhattan-moves-uptown-1976-p-291" data-scan="lockwood-manhattan-moves-uptown-1976-p-291">[page scan]</a></td></tr>
+<tr><td class="num">62</td><td class="quote">&ldquo;The five-story building at the northwest corner of East 17th Street is the Everett House. Built in 1854, this hotel was convenient to 14th Street&#x27;s shopping, musical and…&rdquo;</td><td class="src"><span class="sw s24"></span>Watson &amp; Gillon, <em>New York Then and Now</em>, 1976, p. 80&nbsp;<a class="pglink" href="#src-watson-gillon-new-york-then-and-now-1976-p-80" data-scan="watson-gillon-new-york-then-and-now-1976-p-80">[page scan]</a></td></tr>
+</tbody></table>
+<h3 class="csec">1-3 Union Square West — The Lincoln Building: Romanesque Gravitas</h3>
+<table><thead><tr><th class="num">#</th><th>Verbatim Quote (abbreviated)</th><th>Source (Author, Title, Year, Page)</th></tr></thead><tbody>
+<tr><td class="num">63</td><td class="quote">&ldquo;The Lincoln Building, erected at I Union Square in 1889, is an example adapted from Romanesque work.&rdquo;</td><td class="src"><span class="sw s13"></span>WPA, <em>WPA Guide to NYC</em>, 1939, p. 203&nbsp;<a class="pglink" href="#src-wpa-wpa-guide-to-nyc-1939-p-203" data-scan="wpa-wpa-guide-to-nyc-1939-p-203">[page scan]</a></td></tr>
+<tr><td class="num">64</td><td class="quote">&ldquo;the Lincoln Building (R. H. Robertson, 1890), 1-3 Union Square West.&rdquo;</td><td class="src"><span class="sw s21"></span>Stern, <em>New York 2000</em>, 2006, p. 377&nbsp;<a class="pglink" href="#src-stern-new-york-2000-2006-p-377" data-scan="stern-new-york-2000-2006-p-377">[page scan]</a></td></tr>
+</tbody></table>
+<h3 class="csec">100-102 East 17th Street — Tammany Hall: The Iconography of Legitimacy</h3>
+<table><thead><tr><th class="num">#</th><th>Verbatim Quote (abbreviated)</th><th>Source (Author, Title, Year, Page)</th></tr></thead><tbody>
+<tr><td class="num">65</td><td class="quote">&ldquo;On the southeast corner of East 17th Street and Union Square East, at 100-102 East 17th Street, stands the second of the district&#x27;s institutional buildings. Tammany…&rdquo;</td><td class="src"><span class="sw s25"></span>Dolkart, <em>Gramercy</em>, 1996, p. 78&nbsp;<a class="pglink" href="#src-dolkart-gramercy-1996-p-78" data-scan="dolkart-gramercy-1996-p-78">[page scan]</a></td></tr>
+<tr><td class="num">66</td><td class="quote">&ldquo;a dignified architectural treatment, one of the chief motifs of which arc the severe Colonial columns in the centers of the Union Square and the Seventeenth-street…&rdquo;</td><td class="src"><span class="sw s25"></span>Dolkart, <em>Gramercy</em>, 1996, p. 78&nbsp;<a class="pglink" href="#src-dolkart-gramercy-1996-p-78" data-scan="dolkart-gramercy-1996-p-78">[page scan]</a></td></tr>
+<tr><td class="num">67</td><td class="quote">&ldquo;The Colonial Revival was undoubtedly chosen not only because it was reminiscent of the architecture of the early republic, bur also because it symbolized the government…&rdquo;</td><td class="src"><span class="sw s25"></span>Dolkart, <em>Gramercy</em>, 1996, p. 78&nbsp;<a class="pglink" href="#src-dolkart-gramercy-1996-p-78" data-scan="dolkart-gramercy-1996-p-78">[page scan]</a></td></tr>
+<tr><td class="num">68</td><td class="quote">&ldquo;The Society of Tammany was attempting to associate itself with the ideals of early American democracy.&rdquo;</td><td class="src"><span class="sw s25"></span>Dolkart, <em>Gramercy</em>, 1996, p. 78&nbsp;<a class="pglink" href="#src-dolkart-gramercy-1996-p-78" data-scan="dolkart-gramercy-1996-p-78">[page scan]</a></td></tr>
+<tr><td class="num">69</td><td class="quote">&ldquo;This distinguished neo-Georgian facade, with its rusticated stone base, double-height pilasters, and sculptural reliefs in terra cotta and limestone, was inspired by the…&rdquo;</td><td class="src"><span class="sw s26"></span>Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 679&nbsp;<a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-679" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-679">[page scan]</a></td></tr>
+<tr><td class="num">70</td><td class="quote">&ldquo;Tammany Hall, now a byword for municipal corruption, once dominated the City&#x27;s political arena&rdquo;</td><td class="src"><span class="sw s26"></span>Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 679&nbsp;<a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-679" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-679">[page scan]</a></td></tr>
+</tbody></table>
+<h3 class="csec">Coda: The Square as Architectural Palimpsest</h3>
+<table><thead><tr><th class="num">#</th><th>Verbatim Quote (abbreviated)</th><th>Source (Author, Title, Year, Page)</th></tr></thead><tbody>
+<tr><td class="num">71</td><td class="quote">&ldquo;The diverse architecture of the buildings surrounding Union Square does not supply the unified feeling of enclosure implied by the word &#x27;&#x27;square,&#x27;&#x27; but it does offer an…&rdquo;</td><td class="src"><span class="sw s13"></span>WPA, <em>WPA Guide to NYC</em>, 1939, p. 203&nbsp;<a class="pglink" href="#src-wpa-wpa-guide-to-nyc-1939-p-203" data-scan="wpa-wpa-guide-to-nyc-1939-p-203">[page scan]</a></td></tr>
+<tr><td class="num">72</td><td class="quote">&ldquo;Three divisions of each facade are clearly marked: a base ornamented with classical details, an intermediate portion of undecorated masonry pierced by regular windows,…&rdquo;</td><td class="src"><span class="sw s13"></span>WPA, <em>WPA Guide to NYC</em>, 1939, p. 203&nbsp;<a class="pglink" href="#src-wpa-wpa-guide-to-nyc-1939-p-203" data-scan="wpa-wpa-guide-to-nyc-1939-p-203">[page scan]</a></td></tr>
+<tr><td class="num">73</td><td class="quote">&ldquo;like the Noah&#x27;s Ark of New York, rescuing at least two of every kind from the curling seas of concrete.&rdquo;</td><td class="src"><span class="sw s5"></span>St Louis, <em>Lonely Planet New York City</em>, 2016, p. 163&nbsp;<a class="pglink" href="#src-st-louis-lonely-planet-new-york-city-2016-p-163" data-scan="st-louis-lonely-planet-new-york-city-2016-p-163">[page scan]</a></td></tr>
+<tr><td class="num">74</td><td class="quote">&ldquo;The trick to any stroll through this zone is to look up. Each building brings an animated story to the streetscape, and many have been lovingly restored and given…&rdquo;</td><td class="src"><span class="sw s27"></span>Kahn, <em>City Secrets New York City</em>, 2002, p. 189&nbsp;<a class="pglink" href="#src-kahn-city-secrets-new-york-city-2002-p-189" data-scan="kahn-city-secrets-new-york-city-2002-p-189">[page scan]</a></td></tr>
+</tbody></table></div></section>
+
+<h2 class="srcpage" id="sources">Source Pages</h2>
+<p class="note2">28 scanned pages, one per cited source page. Each lists the highlighted quotes drawn from it.</p>
+<section class="srcsec"><h3 class="scanhead"><span id="src-chase-new-york-the-wonder-city-1932-p-198"></span>Chase, <em>New York The Wonder City</em>, 1932, p. 198</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-1">1</a> <a href="#hl-28">28</a></span></p>
+<figure class="scan"><img id="scan-chase-new-york-the-wonder-city-1932-p-198" src="assets/scans/chase-new-york-the-wonder-city-1932-p-198.jpg" alt="Chase, New York The Wonder City, 1932, p. 198"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-bergman-the-spiritual-traveler-new-york-city-2001-p-133"></span>Bergman, <em>The Spiritual Traveler New York City</em>, 2001, p. 133</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-2">2</a></span></p>
+<figure class="scan"><img id="scan-bergman-the-spiritual-traveler-new-york-city-2001-p-133" src="assets/scans/bergman-the-spiritual-traveler-new-york-city-2001-p-133.jpg" alt="Bergman, The Spiritual Traveler New York City, 2001, p. 133"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-holmes-100-new-yorker-2004-p-168"></span>Holmes, <em>100 New Yorker</em>, 2004, p. 168</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-3">3</a></span></p>
+<figure class="scan"><img id="scan-holmes-100-new-yorker-2004-p-168" src="assets/scans/holmes-100-new-yorker-2004-p-168.jpg" alt="Holmes, 100 New Yorker, 2004, p. 168"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-lockwood-manhattan-moves-uptown-1976-p-167"></span>Lockwood, <em>Manhattan Moves Uptown</em>, 1976, p. 167</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-4">4</a> <a href="#hl-5">5</a> <a href="#hl-6">6</a> <a href="#hl-7">7</a> <a href="#hl-8">8</a> <a href="#hl-9">9</a> <a href="#hl-10">10</a></span></p>
+<figure class="scan"><img id="scan-lockwood-manhattan-moves-uptown-1976-p-167" src="assets/scans/lockwood-manhattan-moves-uptown-1976-p-167.jpg" alt="Lockwood, Manhattan Moves Uptown, 1976, p. 167"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-lockwood-manhattan-moves-uptown-1976-p-178"></span>Lockwood, <em>Manhattan Moves Uptown</em>, 1976, p. 178</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-11">11</a> <a href="#hl-14">14</a> <a href="#hl-15">15</a> <a href="#hl-16">16</a></span></p>
+<figure class="scan"><img id="scan-lockwood-manhattan-moves-uptown-1976-p-178" src="assets/scans/lockwood-manhattan-moves-uptown-1976-p-178.jpg" alt="Lockwood, Manhattan Moves Uptown, 1976, p. 178"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-st-louis-lonely-planet-new-york-city-2016-p-163"></span>St Louis, <em>Lonely Planet New York City</em>, 2016, p. 163</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-12">12</a> <a href="#hl-26">26</a> <a href="#hl-27">27</a> <a href="#hl-73">73</a></span></p>
+<figure class="scan"><img id="scan-st-louis-lonely-planet-new-york-city-2016-p-163" src="assets/scans/st-louis-lonely-planet-new-york-city-2016-p-163.jpg" alt="St Louis, Lonely Planet New York City, 2016, p. 163"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-lockwood-manhattan-moves-uptown-1976-p-169"></span>Lockwood, <em>Manhattan Moves Uptown</em>, 1976, p. 169</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-13">13</a></span></p>
+<figure class="scan"><img id="scan-lockwood-manhattan-moves-uptown-1976-p-169" src="assets/scans/lockwood-manhattan-moves-uptown-1976-p-169.jpg" alt="Lockwood, Manhattan Moves Uptown, 1976, p. 169"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-lockwood-manhattan-moves-uptown-1976-p-291"></span>Lockwood, <em>Manhattan Moves Uptown</em>, 1976, p. 291</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-17">17</a> <a href="#hl-18">18</a> <a href="#hl-22">22</a> <a href="#hl-61">61</a></span></p>
+<figure class="scan"><img id="scan-lockwood-manhattan-moves-uptown-1976-p-291" src="assets/scans/lockwood-manhattan-moves-uptown-1976-p-291.jpg" alt="Lockwood, Manhattan Moves Uptown, 1976, p. 291"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-leadon-broadway-a-history-of-new-york-in-thirteen-miles-2018-p-118"></span>Leadon, <em>Broadway A History of New York in Thirteen Miles</em>, 2018, p. 118</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-19">19</a> <a href="#hl-20">20</a> <a href="#hl-21">21</a></span></p>
+<figure class="scan"><img id="scan-leadon-broadway-a-history-of-new-york-in-thirteen-miles-2018-p-118" src="assets/scans/leadon-broadway-a-history-of-new-york-in-thirteen-miles-2018-p-118.jpg" alt="Leadon, Broadway A History of New York in Thirteen Miles, 2018, p. 118"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-burrows-wallace-gotham-1999-p-869"></span>Burrows &amp; Wallace, <em>Gotham</em>, 1999, p. 869</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-23">23</a> <a href="#hl-24">24</a> <a href="#hl-25">25</a></span></p>
+<figure class="scan"><img id="scan-burrows-wallace-gotham-1999-p-869" src="assets/scans/burrows-wallace-gotham-1999-p-869.jpg" alt="Burrows &amp; Wallace, Gotham, 1999, p. 869"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-unknown-author-new-york-illustrated-1876-p-63"></span>Unknown Author, <em>New York Illustrated</em>, 1876, p. 63</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-29">29</a> <a href="#hl-30">30</a> <a href="#hl-31">31</a></span></p>
+<figure class="scan"><img id="scan-unknown-author-new-york-illustrated-1876-p-63" src="assets/scans/unknown-author-new-york-illustrated-1876-p-63.jpg" alt="Unknown Author, New York Illustrated, 1876, p. 63"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-museyon-inc-art-nyc-2011-p-208"></span>Museyon Inc., <em>Art+NYC</em>, 2011, p. 208</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-32">32</a></span></p>
+<figure class="scan"><img id="scan-museyon-inc-art-nyc-2011-p-208" src="assets/scans/museyon-inc-art-nyc-2011-p-208.jpg" alt="Museyon Inc., Art+NYC, 2011, p. 208"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-alleman-new-york-the-movie-lover-s-guide-2005-p-212"></span>Alleman, <em>New York The Movie Lover&#x27;s Guide</em>, 2005, p. 212</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-33">33</a></span></p>
+<figure class="scan"><img id="scan-alleman-new-york-the-movie-lover-s-guide-2005-p-212" src="assets/scans/alleman-new-york-the-movie-lover-s-guide-2005-p-212.jpg" alt="Alleman, New York The Movie Lover&#x27;s Guide, 2005, p. 212"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-binkowski-musical-new-york-1999-p-107"></span>Binkowski, <em>Musical New York</em>, 1999, p. 107</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-34">34</a></span></p>
+<figure class="scan"><img id="scan-binkowski-musical-new-york-1999-p-107" src="assets/scans/binkowski-musical-new-york-1999-p-107.jpg" alt="Binkowski, Musical New York, 1999, p. 107"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-wpa-wpa-guide-to-nyc-1939-p-203"></span>WPA, <em>WPA Guide to NYC</em>, 1939, p. 203</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-38">38</a> <a href="#hl-63">63</a> <a href="#hl-71">71</a> <a href="#hl-72">72</a></span></p>
+<figure class="scan"><img id="scan-wpa-wpa-guide-to-nyc-1939-p-203" src="assets/scans/wpa-wpa-guide-to-nyc-1939-p-203.jpg" alt="WPA, WPA Guide to NYC, 1939, p. 203"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-hennessy-walking-broadway-2020-p-97"></span>Hennessy, <em>Walking Broadway</em>, 2020, p. 97</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-39">39</a> <a href="#hl-40">40</a></span></p>
+<figure class="scan"><img id="scan-hennessy-walking-broadway-2020-p-97" src="assets/scans/hennessy-walking-broadway-2020-p-97.jpg" alt="Hennessy, Walking Broadway, 2020, p. 97"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76"></span>Postal &amp; Dolkart, <em>Guide to New York City Landmarks</em>, 2009, p. 76</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-41">41</a> <a href="#hl-42">42</a></span></p>
+<figure class="scan"><img id="scan-postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76" src="assets/scans/postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76.jpg" alt="Postal &amp; Dolkart, Guide to New York City Landmarks, 2009, p. 76"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-morrone-architectural-guidebook-1994-p-116"></span>Morrone, <em>Architectural Guidebook</em>, 1994, p. 116</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-43">43</a> <a href="#hl-48">48</a> <a href="#hl-49">49</a></span></p>
+<figure class="scan"><img id="scan-morrone-architectural-guidebook-1994-p-116" src="assets/scans/morrone-architectural-guidebook-1994-p-116.jpg" alt="Morrone, Architectural Guidebook, 1994, p. 116"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-lpc-union-square-1903-p-1"></span>LPC, <em>Union Square</em>, 1903, p. 1</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-44">44</a> <a href="#hl-45">45</a></span></p>
+<figure class="scan"><img id="scan-lpc-union-square-1903-p-1" src="assets/scans/lpc-union-square-1903-p-1.jpg" alt="LPC, Union Square, 1903, p. 1"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-robinson-1885-robinsons-atlas-p-15"></span>Robinson, <em>1885 Robinsons Atlas</em>, p. 15</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-46">46</a></span> &middot; <i>Sheet supplied is Plate 12 (Wards 18 & 21); the citation records p. 15.</i></p>
+<figure class="scan"><img id="scan-robinson-1885-robinsons-atlas-p-15" src="assets/scans/robinson-1885-robinsons-atlas-p-15.jpg" alt="Robinson, 1885 Robinsons Atlas, p. 15"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-wolfe-new-york-15-walking-tours-2003-p-249"></span>Wolfe, <em>New York 15 Walking Tours</em>, 2003, p. 249</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-47">47</a> <a href="#hl-50">50</a></span></p>
+<figure class="scan"><img id="scan-wolfe-new-york-15-walking-tours-2003-p-249" src="assets/scans/wolfe-new-york-15-walking-tours-2003-p-249.jpg" alt="Wolfe, New York 15 Walking Tours, 2003, p. 249"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-reiss-new-york-then-and-now-2019-p-76"></span>Reiss, <em>New York Then and Now</em>, 2019, p. 76</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-51">51</a></span></p>
+<figure class="scan"><img id="scan-reiss-new-york-then-and-now-2019-p-76" src="assets/scans/reiss-new-york-then-and-now-2019-p-76.jpg" alt="Reiss, New York Then and Now, 2019, p. 76"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-stern-new-york-2000-2006-p-377"></span>Stern, <em>New York 2000</em>, 2006, p. 377</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-52">52</a> <a href="#hl-57">57</a> <a href="#hl-64">64</a></span></p>
+<figure class="scan"><img id="scan-stern-new-york-2000-2006-p-377" src="assets/scans/stern-new-york-2000-2006-p-377.jpg" alt="Stern, New York 2000, 2006, p. 377"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-lpc-union-square-1881-p-1"></span>LPC, <em>Union Square</em>, 1881, p. 1</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-53">53</a> <a href="#hl-54">54</a> <a href="#hl-55">55</a> <a href="#hl-56">56</a></span></p>
+<figure class="scan"><img id="scan-lpc-union-square-1881-p-1" src="assets/scans/lpc-union-square-1881-p-1.jpg" alt="LPC, Union Square, 1881, p. 1"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-watson-gillon-new-york-then-and-now-1976-p-80"></span>Watson &amp; Gillon, <em>New York Then and Now</em>, 1976, p. 80</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-62">62</a></span></p>
+<figure class="scan"><img id="scan-watson-gillon-new-york-then-and-now-1976-p-80" src="assets/scans/watson-gillon-new-york-then-and-now-1976-p-80.jpg" alt="Watson &amp; Gillon, New York Then and Now, 1976, p. 80"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-dolkart-gramercy-1996-p-78"></span>Dolkart, <em>Gramercy</em>, 1996, p. 78</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-65">65</a> <a href="#hl-66">66</a> <a href="#hl-67">67</a> <a href="#hl-68">68</a></span></p>
+<figure class="scan"><img id="scan-dolkart-gramercy-1996-p-78" src="assets/scans/dolkart-gramercy-1996-p-78.jpg" alt="Dolkart, Gramercy, 1996, p. 78"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-spielvogel-the-landmarks-of-new-york-2016-p-679"></span>Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 679</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-69">69</a> <a href="#hl-70">70</a></span></p>
+<figure class="scan"><img id="scan-spielvogel-the-landmarks-of-new-york-2016-p-679" src="assets/scans/spielvogel-the-landmarks-of-new-york-2016-p-679.jpg" alt="Spielvogel, The Landmarks of New York, 2016, p. 679"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-kahn-city-secrets-new-york-city-2002-p-189"></span>Kahn, <em>City Secrets New York City</em>, 2002, p. 189</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-74">74</a></span></p>
+<figure class="scan"><img id="scan-kahn-city-secrets-new-york-city-2002-p-189" src="assets/scans/kahn-city-secrets-new-york-city-2002-p-189.jpg" alt="Kahn, City Secrets New York City, 2002, p. 189"></figure></section>
+</div>
+
+</div>
+<div class="lightbox" hidden><div class="lb-head"><span class="lb-t"></span><button class="lb-btn lb-zoom" type="button">Zoom</button><button class="lb-btn lb-close" type="button">Close &times;</button></div><div class="lb-body"><img alt="Enlarged view"></div></div>
+
+<div class="sp-backdrop" hidden></div>
+<aside class="scanpanel" hidden aria-label="Source page">
+  <div class="sp-head">
+    <div class="sp-title"><span class="sp-cite"></span><span class="sp-q"></span></div>
+    <button class="sp-btn sp-zoom" type="button">Zoom</button>
+    <button class="sp-btn sp-close" type="button" aria-label="Close">&times;</button>
+  </div>
+  <div class="sp-body"><img alt="Source page scan"></div>
+</aside>
+<script>
+(function () {
+  var panel = document.querySelector('.scanpanel'),
+      back  = document.querySelector('.sp-backdrop'),
+      bodyEl= panel.querySelector('.sp-body'),
+      img   = panel.querySelector('.sp-body img'),
+      citeEl= panel.querySelector('.sp-cite'),
+      qEl   = panel.querySelector('.sp-q');
+  function open(slug, label, num) {
+    var full = document.getElementById('scan-' + slug);
+    if (!full) return;
+    if (img.getAttribute('src') !== full.src) img.src = full.src;
+    bodyEl.classList.remove('zoom'); bodyEl.scrollTop = 0;
+    citeEl.innerHTML = label;
+    qEl.textContent = num ? 'Highlighted quote no. ' + num : '';
+    panel.hidden = false; back.hidden = false;
+    requestAnimationFrame(function () { document.body.classList.add('sp-open'); });
+  }
+  function close() {
+    document.body.classList.remove('sp-open');
+    setTimeout(function () { panel.hidden = true; back.hidden = true; }, 220);
+  }
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest) return;
+    var a = e.target.closest('a.srclink, a.pglink');
+    if (a && a.dataset.scan) {
+      e.preventDefault();
+      var head = document.getElementById('src-' + a.dataset.scan),
+          label = head ? head.parentNode.innerHTML.replace(/<span id="src-[^"]*"><\/span>/, '') : '',
+          mk = a.querySelector('mark'), num = '';
+      if (mk && mk.id) num = mk.id.replace('hl-', '');
+      else {
+        var tr = a.closest('tr'), ce = a.closest('.ce');
+        if (tr) num = tr.querySelector('td.num').textContent.trim();
+        else if (ce) num = ce.querySelector('.ce-n').textContent.trim();
+      }
+      open(a.dataset.scan, label, num);
+      return;
+    }
+    if (e.target.closest('.sp-close') || e.target.closest('.sp-backdrop')) close();
+    else if (e.target.closest('.sp-zoom') || e.target === img) bodyEl.classList.toggle('zoom');
+  });
+  var lb = document.querySelector('.lightbox'), lbBody = lb.querySelector('.lb-body'),
+      lbImg = lb.querySelector('.lb-body img'), lbT = lb.querySelector('.lb-t');
+  function lbOpen(slug, label) {
+    var full = document.getElementById('view-' + slug);
+    if (!full) return;
+    if (lbImg.getAttribute('src') !== full.src) lbImg.src = full.src;
+    lbT.innerHTML = label || '';
+    lb.hidden = false;
+    requestAnimationFrame(function () { document.body.classList.add('lb-open'); });
+  }
+  function lbClose() {
+    document.body.classList.remove('lb-open');
+    lbBody.classList.remove('zoom');
+    setTimeout(function () { lb.hidden = true; }, 200);
+  }
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest) return;
+    if (e.target.closest('.lb-close')) { lbClose(); return; }
+    if (e.target.closest('.lb-zoom') || e.target.closest('.lb-body img')) { lbBody.classList.toggle('zoom'); return; }
+    if (e.target.closest('.lightbox') && !e.target.closest('.lb-head')) { lbClose(); return; }
+    if (e.target.closest('.lb-body')) lbClose();
+  });
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest) return;
+    var v = e.target.closest('figure.view');
+    if (v) {
+      var cap = v.querySelector('figcaption b');
+      lbOpen(v.dataset.view, cap ? cap.innerHTML : '');
+    }
+  });
+  // ---- citation column tracks the text ----
+  var col = document.getElementById('chartcol');
+  if (col) {
+    var entryFor = {};
+    Array.prototype.forEach.call(col.querySelectorAll('.ce'), function (ce) {
+      entryFor[ce.querySelector('.ce-n').textContent.trim()] = ce;
+    });
+    var marks = Array.prototype.slice.call(document.querySelectorAll('.wrap mark[id^="hl-"]'));
+    var current = null, touched = 0, selfUntil = 0, hoverNum = null;
+
+    col.addEventListener('scroll', function () {
+      if (Date.now() > selfUntil) touched = Date.now();   // a real scroll by the reader
+    }, { passive: true });
+
+    function activate(num, force) {
+      if (num === current && !force) return;
+      var ce = entryFor[num];
+      if (num !== current) {
+        current = num;
+        Array.prototype.forEach.call(col.querySelectorAll('.ce.active'), function (e) { e.classList.remove('active'); });
+        Array.prototype.forEach.call(document.querySelectorAll('mark.reading'), function (m) { m.classList.remove('reading'); });
+        if (ce) {
+          ce.classList.add('active');
+          var mk = document.getElementById('hl-' + num);
+          if (mk) mk.classList.add('reading');
+        }
+      }
+      if (!ce) return;
+      if (getComputedStyle(col).position !== 'sticky') return;   // stacked layout: don't hijack scrolling
+      if (!force && Date.now() - touched < 2000) return;         // reader is browsing the column
+      var top = ce.offsetTop - col.clientHeight * 0.38;
+      selfUntil = Date.now() + 900;                      // our own smooth scroll, not the reader's
+      col.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+    }
+
+    // ---- pointing at a highlight sends the column straight to its citation ----
+    var textcol = document.querySelector('.wrap');
+    if (textcol) {
+      textcol.addEventListener('mouseover', function (e) {
+        var m = e.target.closest ? e.target.closest('mark[id^="hl-"]') : null;
+        if (!m) return;
+        var n = m.id.replace('hl-', '');
+        if (n === hoverNum) return;        // bubbling from inside the same mark
+        hoverNum = n;
+        activate(n, true);                 // deliberate aim beats the scroll guard
+      });
+      textcol.addEventListener('mouseout', function (e) {
+        var m = e.target.closest ? e.target.closest('mark[id^="hl-"]') : null;
+        if (!m) return;
+        if (e.relatedTarget && m.contains(e.relatedTarget)) return;   // still inside the same mark
+        hoverNum = null;
+      });
+    }
+
+    function pick() {
+      if (hoverNum) return;               // the cursor is aiming; don't argue with it
+      var best = null, bestTop = Infinity, fallback = null, fallbackTop = -Infinity;
+      for (var i = 0; i < marks.length; i++) {
+        var r = marks[i].getBoundingClientRect();
+        if (r.bottom < 0 || r.top > window.innerHeight) continue;
+        if (r.top >= 0 && r.top < bestTop) { best = marks[i]; bestTop = r.top; }
+        else if (r.top < 0 && r.top > fallbackTop) { fallback = marks[i]; fallbackTop = r.top; }
+      }
+      var m = best || fallback;
+      if (m) activate(m.id.replace('hl-', ''));
+    }
+
+    var ticking = false;
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () { ticking = false; pick(); });
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    pick();
+  }
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { close(); if (!lb.hidden) lbClose(); }
+  });
+})();
+</script>
+
+</body>
+</html>
