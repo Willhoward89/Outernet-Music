@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>44 Union Square East — Italics Highlighted</title>
+<style>
+
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; margin: 0; padding: 40px 24px 64px;
+         background:#f8f5e7; color:#1a1a1a; font-family: Georgia, "Times New Roman", serif; font-size:17px; line-height:1.7; }
+  .layout { display: flex; align-items: flex-start; gap: 30px; max-width: 1580px; margin: 0 auto; }
+  .chartcol { flex: 0 0 320px; width: 320px; position: sticky; top: 28px; align-self: flex-start;
+              max-height: calc(100vh - 56px); overflow-y: auto; padding: 0 4px 0 18px;
+              border-left: 1px solid #e2ddc8; background: rgba(248,245,231,.92);
+              font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  .cc-head { position: sticky; top: 0; background: #f8f5e7; padding-bottom: 8px; margin-bottom: 4px;
+             border-bottom: 1px solid #e2ddc8; z-index: 2; }
+  .cc-title { display: block; font-size: 11px; font-weight: 600; letter-spacing: .05em;
+              text-transform: uppercase; color: #888; }
+  .cc-sub { display: block; font-size: 10.5px; color: #aaa; margin-top: 3px; line-height: 1.35; }
+  .cc-sec { font-size: 10.5px; font-weight: 600; letter-spacing: .03em; text-transform: uppercase;
+            color: #999; margin: 16px 0 6px; }
+  .ce { display: flex; gap: 7px; align-items: baseline; padding: 6px 0; border-bottom: 1px solid #ebe6d6; }
+  .ce-n { flex: 0 0 22px; text-align: right; font-size: 10px; color: #bbb; text-decoration: none; }
+  .ce-n:hover { color: #3b6ea5; }
+  .ce .sw { flex: 0 0 9px; width: 9px; height: 9px; transform: translateY(1px); }
+  .ce-b { min-width: 0; }
+  .ce-q { font-size: 11.5px; line-height: 1.4; color: #333; }
+  .ce-s { font-size: 10.5px; line-height: 1.4; color: #999; margin-top: 2px; }
+  .ce { border-left: 2px solid transparent; padding-left: 6px; transition: background .18s ease, border-color .18s ease; }
+  .ce.active { background: rgba(255,255,255,.75); border-left-color: #3b6ea5; }
+  .ce.active .ce-n { color: #3b6ea5; font-weight: 600; }
+  .ce.active .ce-q { color: #111; }
+  mark.reading { box-shadow: 0 0 0 2px rgba(59,110,165,.55); border-radius: 3px; }
+  .chartcol.on-left { border-left: none; border-right: 1px solid #e2ddc8; padding: 0 18px 0 4px; }
+  .rail.on-right { padding: 0 4px 0 4px; }
+  .chartcol::-webkit-scrollbar { width: 7px; }
+  .chartcol::-webkit-scrollbar-thumb { background: #dcdcdc; border-radius: 4px; }
+  .chart-print { display: none; }
+  @media (max-width: 1360px) {
+    .chartcol { position: static; width: 100%; flex: none; max-height: none; border-left: none;
+                border-top: 1px solid #ececec; padding: 18px 0 0; margin-top: 26px; }
+    .layout { flex-wrap: wrap; }
+    .chartcol .ce { max-width: 820px; }
+  }
+  .wrap { flex: 1 1 auto; min-width: 0; max-width: 820px; }
+  .rail { flex: 0 0 262px; width: 262px; position: sticky; top: 28px; align-self: flex-start;
+          max-height: calc(100vh - 56px); overflow-y: auto; padding-right: 4px;
+          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  .rail-title { font-size: 11px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase;
+                color: #888; margin: 0 0 10px; }
+  figure.view { margin: 0 0 16px; cursor: zoom-in; }
+  figure.view img { display: block; width: 100%; border: 1px solid #e0e0e0; border-radius: 4px; }
+  figure.view:hover img { border-color: #9c9c9c; }
+  figure.view figcaption { margin-top: 5px; font-size: 11px; line-height: 1.42; color: #8a8a8a; }
+  figure.view figcaption b { display: block; font-weight: 600; color: #444; }
+  figure.railvid { margin: 0 0 16px; }
+  figure.railvid video { display: block; width: 100%; border: 1px solid #e0e0e0; border-radius: 4px;
+                         background: #111; }
+  figure.railvid figcaption { margin-top: 5px; font-size: 11px; line-height: 1.42; color: #8a8a8a; }
+  figure.railvid figcaption b { display: block; font-weight: 600; color: #444; }
+  /* read-along: the spoken word is underlined rather than boxed, so it reads as a cursor
+     travelling through the text instead of a second kind of highlight competing with the
+     source colours. The sentence around it gets a faint wash to keep the eye in place. */
+  .w { transition: color .12s ease; }
+  .w-on { color: #111; box-shadow: inset 0 -2px 0 0 #c2452d; border-radius: 1px; }
+  .p-on { background: rgba(194, 69, 45, .045); border-radius: 3px;
+          box-shadow: 0 0 0 5px rgba(194, 69, 45, .045); }
+  mark .w-on { box-shadow: inset 0 -2px 0 0 rgba(0,0,0,.62); }
+  .w[data-t] { cursor: pointer; }
+  figure.railvid .ra-bar { display: block; margin: 6px 0 0; }
+  figure.railvid .ra-hint { display: block; margin-top: 3px; }
+  .ra-bar { display: flex; align-items: center; gap: 12px; margin: 8px 0 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 11.5px; }
+  .ra-bar label { display: inline-flex; align-items: center; gap: 5px; color: #7a7a7a; cursor: pointer; }
+  .ra-hint { color: #aaa; }
+  .wrap h1 + .sub { margin-bottom: 18px; }
+  .epigraph { font-style: italic; font-size: 20.5px; line-height: 1.45; color: #4a4336;
+              max-width: 30em; margin: 30px 0 30px; text-wrap: balance;
+              border-left: 2px solid #c9bfa4; padding-left: 16px; }
+  @media (max-width: 720px) { .epigraph { font-size: 18px; padding-left: 12px; } }
+  .rail-foot { font-size: 10.5px; color: #aaa; margin: 2px 0 0; }
+  .rail::-webkit-scrollbar { width: 7px; }
+  .rail::-webkit-scrollbar-thumb { background: #dcdcdc; border-radius: 4px; }
+  @media (max-width: 1080px) {
+    .layout { flex-direction: column; gap: 18px; }
+    /* stacked, these are width:100% and still carry side padding, so on a phone they ran
+       13px past the viewport and the whole page scrolled sideways */
+    .chartcol, .wrap, .rail { box-sizing: border-box; max-width: 100%; }
+    .rail { position: static; width: 100%; flex: none; max-height: none; display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 14px; }
+    .rail-title, .rail-foot { grid-column: 1 / -1; }
+  }
+  /* full-bleed lightbox */
+  .lightbox { position: fixed; inset: 0; z-index: 60; background: rgba(16,14,13,.93);
+              display: flex; flex-direction: column; opacity: 0; transition: opacity .18s ease; }
+  body.lb-open .lightbox { opacity: 1; }
+  .lightbox[hidden] { display: none !important; }
+  .lb-head { display: flex; align-items: center; gap: 12px; padding: 12px 16px; color: #eee;
+             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 13px; }
+  .lb-head .lb-t { flex: 1; }
+  .lb-btn { border: 1px solid rgba(255,255,255,.28); background: rgba(255,255,255,.08); color: #eee;
+            border-radius: 5px; cursor: pointer; font-size: 13px; line-height: 1; padding: 7px 10px; }
+  .lb-btn:hover { background: rgba(255,255,255,.18); }
+  .lb-body { flex: 1; overflow: auto; display: flex; align-items: center; justify-content: center; padding: 0 16px 18px; }
+  .lb-body img { max-width: 100%; max-height: 100%; object-fit: contain; cursor: zoom-in; }
+  .lb-body.zoom { align-items: flex-start; justify-content: flex-start; }
+  .lb-body.zoom img { max-width: none; max-height: none; width: 220%; cursor: zoom-out; }
+  h1 { font-size: 26px; line-height: 1.25; margin: 0 0 6px; font-weight: 700;
+       letter-spacing: -.012em; color:#1d1a12; }
+  .sub { font-family: Georgia, serif; font-style: italic; font-size: 15px; color: #555; margin: 0 0 8px; }
+  h2 { font-size: 15px; font-weight: 700; letter-spacing: .085em; text-transform: uppercase;
+       color: #6d5a33; margin: 52px 0 16px; padding-bottom: 7px; position: relative;
+       border-bottom: 1px solid #e3dcc6; }
+  h2::after { content: ""; position: absolute; left: 0; bottom: -1px; width: 58px; height: 2px;
+              background: #b39445; }
+  .wrap > h2:first-of-type { margin-top: 34px; }
+  h3 { font-size: 16px; margin: 30px 0 10px; }
+  p { margin: 0 0 20px; }
+  hr { border: none; border-top: 1px solid #e2ddc8; margin: 34px 0 28px; }
+  .note { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 13px; color:#666;
+          margin: 0 0 28px; padding-bottom: 20px; border-bottom: 1px solid #e2ddc8; }
+  .note2 { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 13px; color:#666; margin: 0 0 18px; }
+  mark { color: inherit; font-style: italic; padding: 1px 2px; border-radius: 2px;
+         box-decoration-break: clone; -webkit-box-decoration-break: clone; background:#e4e4e4; }
+  /* adapted passages keep their source colour but wear a dashed rule, so the eye can
+     tell a borrowed phrase that was reshaped from one quoted word for word. */
+  mark.adapted { border-bottom: 1.5px dashed rgba(0,0,0,.42); border-radius: 2px 2px 0 0; }
+  /* provenance badge after each phrase: V verbatim, A adapted, O the poet's own */
+  sup.tg { font-style: normal; font-weight: 700; font-size: 8.5px; line-height: 0;
+           letter-spacing: .02em; vertical-align: super; margin-left: 1px; cursor: help;
+           font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; }
+  sup.tg.tv { color: #4a6f3f; }
+  sup.tg.ta { color: #8a5a2b; }
+  /* a touch darker than first drafted: at reading size a pale O reads as a degree sign */
+  sup.tg.to { color: #a09781; }
+  a.srclink { text-decoration: none; color: inherit; cursor: zoom-in; }
+  a.srclink:hover mark { outline: 2px solid rgba(0,0,0,.35); outline-offset: 1px; }
+  .tablewrap { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+          font-size: 13.5px; line-height: 1.55; }
+  th, td { text-align: left; vertical-align: top; padding: 9px 12px; border-bottom: 1px solid #ebe6d6; }
+  thead th { background:#efece0; border-bottom: 1px solid #ddd8c6; font-weight: 600; }
+  td.num, th.num { width: 34px; color:#888; text-align: right; padding-right: 6px; }
+  td.quote { width: 56%; }
+  td.src { color:#444; }
+  tbody tr:nth-child(even) { background:rgba(255,255,255,.45); }
+  h3.csec { font-size: 14px; margin: 26px 0 8px; color:#333;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  .nosrc { color:#999; font-style: italic; }
+  a.pglink, .pglink { font-size: 11px; color:#3b6ea5; text-decoration: none; white-space: nowrap; }
+  .backlinks a { display:inline-block; margin: 0 3px; color:#3b6ea5; text-decoration:none; }
+  .legend { margin: 0 0 30px; padding: 16px 18px; border: 1px solid #e2ddc8; border-radius: 6px; background:rgba(255,253,244,.82);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  .legend-title { font-size: 12px; font-weight: 600; letter-spacing:.04em; text-transform: uppercase; color:#777; margin-bottom: 10px; }
+  .legend-title .lk { text-transform: none; letter-spacing: 0; font-weight: 400; color:#999; }
+  .legend ul { list-style:none; margin:0; padding:0; display:grid; grid-template-columns: repeat(auto-fill, minmax(290px,1fr)); gap: 5px 20px; }
+  .legend li { display:flex; align-items:baseline; gap:8px; font-size:12.5px; line-height:1.45; }
+  .sw { display:inline-block; width:13px; height:13px; border-radius:3px; flex:0 0 13px;
+        border:1px solid rgba(0,0,0,.14); transform: translateY(2px); }
+  td.src .sw { margin-right: 6px; }
+  .ct { color:#999; } .has { color:#3b6ea5; }
+  .adp { font-style: normal; font-size: 9.5px; letter-spacing: .05em; text-transform: uppercase;
+         color:#9a9282; border:1px solid #e2ddc8; border-radius:2px; padding:0 3px; margin-left:4px;
+         white-space: nowrap; }
+  .sw.adapted { background:#efefef; border-bottom:1.5px dashed rgba(0,0,0,.42); }
+  .adp-key .lg, .tag-key .lg { color:#6f6a5e; }
+  .tag-key { list-style: none; }
+  .pg { color:#8a8272; white-space: nowrap; }
+  section.audio { margin: 0 0 30px; padding: 14px 18px 16px; border: 1px solid #e2ddc8; border-radius: 6px;
+                  background: rgba(255,253,244,.82); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  .audio-label { font-size: 12px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase;
+                 color: #777; margin-bottom: 10px; }
+  .audio-meta { font-weight: 400; letter-spacing: 0; text-transform: none; color: #aaa; margin-left: 4px; }
+  section.audio audio { width: 100%; display: block; }
+  .audio-fallback { display: none; font-size: 12.5px; color: #666; margin: 0; }
+  section.srcsec { margin: 0 0 34px; }
+  h3.scanhead { font-size: 14.5px; margin: 26px 0 6px;
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  figure.scan { margin: 8px 0 0; }
+  figure.scan img { width: 100%; border: 1px solid #ddd; border-radius: 4px; }
+
+  mark.s1, .sw.s1 { background: #38b6fa; }
+  mark.s2, .sw.s2 { background: #ebebd6; }
+  mark.s3, .sw.s3 { background: #fc7e7e; }
+  mark.s4, .sw.s4 { background: #d4a5d4; }
+  mark.s5, .sw.s5 { background: #a3cc66; }
+  mark.s6, .sw.s6 { background: #e27efc; }
+  mark.s7, .sw.s7 { background: #38fab6; }
+  mark.s8, .sw.s8 { background: #38f0fa; }
+  mark.s9, .sw.s9 { background: #faf038; }
+  mark.s10, .sw.s10 { background: #faa338; }
+  mark.s0, .sw.s0 { background: #e4e4e4; }
+
+  body::after { content: ""; position: fixed; left: 0; right: 0; bottom: 0; height: 62vh; z-index: -1; pointer-events: none; opacity: .5; background: url(assets/media/skyline.jpg) bottom center / 100% auto no-repeat; -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 42%, #000 100%); mask-image: linear-gradient(to bottom, transparent 0%, #000 42%, #000 100%); }
+
+
+  .sp-backdrop { position: fixed; inset: 0; background: rgba(20,20,20,.28); opacity: 0; transition: opacity .18s ease; z-index: 40; }
+  body.sp-open .sp-backdrop { opacity: 1; }
+  .scanpanel { position: fixed; top:0; right:0; height:100%; width: min(46vw, 620px); background:#fffdf4;
+               border-left: 1px solid #ddd; box-shadow: -8px 0 26px rgba(0,0,0,.13); transform: translateX(101%);
+               transition: transform .22s ease; z-index: 41; display:flex; flex-direction:column;
+               font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  body.sp-open .scanpanel { transform: translateX(0); }
+  .scanpanel[hidden], .sp-backdrop[hidden] { display: none !important; }
+  .sp-head { display:flex; align-items:flex-start; gap:10px; padding:14px 16px; border-bottom:1px solid #eee; }
+  .sp-title { font-size:13px; line-height:1.4; color:#222; flex:1; }
+  .sp-title .sp-q { display:block; color:#777; font-size:11.5px; margin-top:3px; }
+  .sp-btn { border:1px solid #ddd; background:#fafafa; border-radius:5px; cursor:pointer; font-size:13px;
+            line-height:1; padding:6px 9px; color:#444; }
+  .sp-btn:hover { background:#f0f0f0; }
+  .sp-body { flex:1; overflow:auto; padding:12px; background:#efece0; }
+  .sp-body img { display:block; width:100%; border:1px solid #ddd; background:#fff; cursor: zoom-in; }
+  .sp-body.zoom img { cursor: zoom-out; }
+  /* the quoted passage, marked on the page it came from. Drawn as an overlay rather than
+     burnt into the image, so one scan still serves every quote that cites it. Zoom scales
+     the wrapper, not the image, so the overlay keeps step with the page beneath it. */
+  .sp-img { position: relative; display: block; width: 100%; }
+  .sp-body.zoom .sp-img { width: 200%; }
+  .sp-ov { position: absolute; inset: 0; pointer-events: none; }
+  .sp-ov i { position: absolute; display: block; background: rgba(255, 214, 0, .30);
+             box-shadow: 0 0 0 1px rgba(184, 134, 0, .55) inset; border-radius: 2px;
+             animation: sp-in .35s ease both; }
+  @keyframes sp-in { from { opacity: 0 } to { opacity: 1 } }
+  @media (max-width: 820px) { .scanpanel { width:100%; } }
+  @media (max-width: 700px) { body { padding: 16px 10px 40px; } .wrap { padding: 24px 18px 32px; } }
+  @page { size: Letter; margin: 0.75in 0.7in; }
+  @media print {
+    body { padding:0; font-size:11.5pt; line-height:1.55; background:#fff; }
+    body::before { display: none; }
+    .wrap { max-width:none; background:none; padding:0; border-radius:0; box-shadow:none; }
+    .layout { display: block; }
+    .rail { position: static; width: 100%; max-height: none; overflow: visible; display: grid;
+            grid-template-columns: 1fr 1fr; gap: 12px; margin: 0 0 18px; }
+    .rail-title { grid-column: 1 / -1; } .rail-foot { display: none; }
+    figure.view { break-inside: avoid; }
+    .lightbox, .chartcol { display: none !important; }
+    .chart-print { display: block; }
+    h1 { font-size:17pt; } h2 { font-size:10.5pt; letter-spacing:.08em; break-after: avoid; } h3 { font-size:12pt; break-after: avoid; }
+    h2#citations, h2.srcpage { break-before: page; }
+    p { orphans:3; widows:3; }
+    table { font-size:8.6pt; line-height:1.4; } th,td { padding:5px 7px; }
+    thead { display: table-header-group; } tr { break-inside: avoid; }
+    .tablewrap { overflow: visible; }
+    .legend { break-inside: avoid; padding:10px 12px; margin-bottom:20px; }
+    .legend ul { grid-template-columns: 1fr 1fr; gap:3px 16px; } .legend li { font-size:8.4pt; }
+    .sw { width:10px; height:10px; flex:0 0 10px; }
+    section.srcsec { break-inside: avoid; break-before: page; }
+    figure.scan { break-inside: avoid; }
+    a.srclink, a.pglink, .backlinks a { color: inherit; }
+    .scanpanel, .sp-backdrop { display:none !important; }
+    .w-on, .p-on { box-shadow: none; background: none; }
+    .ra-bar { display: none; }
+    figure.railvid { display: none; }
+    section.audio audio { display: none; }
+    .audio-fallback { display: block; }
+    section.audio { break-inside: avoid; }
+  }
+
+</style>
+</head>
+<body>
+<div class="layout">
+<aside class="chartcol on-left" id="chartcol" aria-label="Citation chart">
+<div class="cc-head"><span class="cc-title">Citation chart</span><span class="cc-sub">33 quotes &middot; click a number to jump to it in the text, or <i>scan</i> to open the source page</span></div>
+<div class="cc-sec">Finding the Magic Corner 🗺️🐜</div>
+<div class="ce"><a class="ce-n" href="#hl-1">1</a><span class="sw s1"></span><div class="ce-b"><div class="ce-q">&ldquo;It sits on a sunny spot where two streets give each other a big hug — the corner of East…&rdquo;</div><div class="ce-s">Dolkart, <em>Gramercy</em>, 1996, p. 78 <a class="pglink" href="#src-dolkart-gramercy-1996-p-78" data-scan="dolkart-gramercy-1996-p-78">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-2">2</a><span class="sw s1"></span><div class="ce-b"><div class="ce-q">&ldquo;This building is one of the big, important buildings in the whole neighborhood.&rdquo;</div><div class="ce-s">Dolkart, <em>Gramercy</em>, 1996, p. 78 <a class="pglink" href="#src-dolkart-gramercy-1996-p-78" data-scan="dolkart-gramercy-1996-p-78">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-3">3</a><span class="sw s2"></span><div class="ce-b"><div class="ce-q">&ldquo;It has SO many nicknames and address numbers that it&#x27;s a little bit like a superhero with…&rdquo;</div><div class="ce-s">Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 679 <a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-679" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-679">scan</a></div></div></div>
+<div class="cc-sec">A Clubhouse With a Funny Name! 🎩🪶</div>
+<div class="ce"><a class="ce-n" href="#hl-4">4</a><span class="sw s1"></span><div class="ce-b"><div class="ce-q">&ldquo;Long, long ago, this building became home to a big, famous grown-up club.&rdquo;</div><div class="ce-s">Dolkart, <em>Gramercy</em>, 1996, p. 78 <a class="pglink" href="#src-dolkart-gramercy-1996-p-78" data-scan="dolkart-gramercy-1996-p-78">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-5">5</a><span class="sw s3"></span><div class="ce-b"><div class="ce-q">&ldquo;People had REALLY big feelings about this club. Some people cheered for it, some people…&rdquo;</div><div class="ce-s">Chase, <em>New York The Wonder City</em>, 1932, p. 23 <a class="pglink" href="#src-chase-new-york-the-wonder-city-1932-p-23" data-scan="chase-new-york-the-wonder-city-1932-p-23">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-6">6</a><span class="sw s3"></span><div class="ce-b"><div class="ce-q">&ldquo;It came from a wise Native American leader named Tammany, a chief who lived near a river a…&rdquo;</div><div class="ce-s">Chase, <em>New York The Wonder City</em>, 1932, p. 23 <a class="pglink" href="#src-chase-new-york-the-wonder-city-1932-p-23" data-scan="chase-new-york-the-wonder-city-1932-p-23">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-7">7</a><span class="sw s3"></span><div class="ce-b"><div class="ce-q">&ldquo;The club got so big and famous that people ALL around the whole wide world knew its name!&rdquo;</div><div class="ce-s">Chase, <em>New York The Wonder City</em>, 1932, p. 23 <a class="pglink" href="#src-chase-new-york-the-wonder-city-1932-p-23" data-scan="chase-new-york-the-wonder-city-1932-p-23">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-8">8</a><span class="sw s3"></span><div class="ce-b"><div class="ce-q">&ldquo;They sent help and money to people far away who were having a hard time — like people who…&rdquo;</div><div class="ce-s">Chase, <em>New York The Wonder City</em>, 1932, p. 23 <a class="pglink" href="#src-chase-new-york-the-wonder-city-1932-p-23" data-scan="chase-new-york-the-wonder-city-1932-p-23">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-9">9</a><span class="sw s1"></span><div class="ce-b"><div class="ce-q">&ldquo;Some folks thought it was a little too tricky.&rdquo;</div><div class="ce-s">Dolkart, <em>Gramercy</em>, 1996, p. 78 <a class="pglink" href="#src-dolkart-gramercy-1996-p-78" data-scan="dolkart-gramercy-1996-p-78">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-10">10</a><span class="sw s1"></span><div class="ce-b"><div class="ce-q">&ldquo;the club worked really hard to look honest and friendly, hoping people would stop saying…&rdquo;</div><div class="ce-s">Dolkart, <em>Gramercy</em>, 1996, p. 78 <a class="pglink" href="#src-dolkart-gramercy-1996-p-78" data-scan="dolkart-gramercy-1996-p-78">scan</a></div></div></div>
+<div class="cc-sec">Building the Brand-New Clubhouse! 🧱👷</div>
+<div class="ce"><a class="ce-n" href="#hl-11">11</a><span class="sw s1"></span><div class="ce-b"><div class="ce-q">&ldquo;The club decided to sell its old home and build a shiny new one.&rdquo;</div><div class="ce-s">Dolkart, <em>Gramercy</em>, 1996, p. 78 <a class="pglink" href="#src-dolkart-gramercy-1996-p-78" data-scan="dolkart-gramercy-1996-p-78">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-12">12</a><span class="sw s1"></span><div class="ce-b"><div class="ce-q">&ldquo;They showed everybody the big plans in 1928.&rdquo;</div><div class="ce-s">Dolkart, <em>Gramercy</em>, 1996, p. 78 <a class="pglink" href="#src-dolkart-gramercy-1996-p-78" data-scan="dolkart-gramercy-1996-p-78">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-13">13</a><span class="sw s1"></span><div class="ce-b"><div class="ce-q">&ldquo;Two teams of super-smart builder-designers drew it all up.&rdquo;</div><div class="ce-s">Dolkart, <em>Gramercy</em>, 1996, p. 78 <a class="pglink" href="#src-dolkart-gramercy-1996-p-78" data-scan="dolkart-gramercy-1996-p-78">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-14">14</a><span class="sw s4"></span><div class="ce-b"><div class="ce-q">&ldquo;the building was all finished in 1929!&rdquo;</div><div class="ce-s">Unknown Author, <em>Landmarks Preservation Commission</em>, n.d., p. 1 <a class="pglink" href="#src-unknown-author-landmarks-preservation-commission-n-d-p-1" data-scan="unknown-author-landmarks-preservation-commission-n-d-p-1">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-15">15</a><span class="sw s1"></span><div class="ce-b"><div class="ce-q">&ldquo;The builders made it look like the fancy old days of America, with tall, proud columns that…&rdquo;</div><div class="ce-s">Dolkart, <em>Gramercy</em>, 1996, p. 78 <a class="pglink" href="#src-dolkart-gramercy-1996-p-78" data-scan="dolkart-gramercy-1996-p-78">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-16">16</a><span class="sw s1"></span><div class="ce-b"><div class="ce-q">&ldquo;It even looks like a super-famous building where George Washington, our very first…&rdquo;</div><div class="ce-s">Dolkart, <em>Gramercy</em>, 1996, p. 78 <a class="pglink" href="#src-dolkart-gramercy-1996-p-78" data-scan="dolkart-gramercy-1996-p-78">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-17">17</a><span class="sw s5"></span><div class="ce-b"><div class="ce-q">&ldquo;pretty arched doorways, a little balcony to stand on, flowery garland designs, and a…&rdquo;</div><div class="ce-s">LPC, <em>Union Square</em>, 1929, p. 1 <a class="pglink" href="#src-lpc-union-square-1929-p-1" data-scan="lpc-union-square-1929-p-1">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-18">18</a><span class="sw s6"></span><div class="ce-b"><div class="ce-q">&ldquo;There&#x27;s a special &quot;Liberty Cap&quot; hat sitting way up high on the building, like it&#x27;s wearing…&rdquo;</div><div class="ce-s">Hennessy, <em>Walking Broadway</em>, 2020, p. 95 <a class="pglink" href="#src-hennessy-walking-broadway-2020-p-95" data-scan="hennessy-walking-broadway-2020-p-95">scan</a></div></div></div>
+<div class="cc-sec">The Big Ups and the Bumpy Downs! 🎢</div>
+<div class="ce"><a class="ce-n" href="#hl-19">19</a><span class="sw s7"></span><div class="ce-b"><div class="ce-q">&ldquo;the club was riding high at the tippy-top, like the king of the mountain!&rdquo;</div><div class="ce-s">Jackson, <em>The Encyclopedia of New York</em>, 2010, p. 1278 <a class="pglink" href="#src-jackson-the-encyclopedia-of-new-york-2010-p-1278" data-scan="jackson-the-encyclopedia-of-new-york-2010-p-1278">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-20">20</a><span class="sw s7"></span><div class="ce-b"><div class="ce-q">&ldquo;Some grown-ups started asking lots of tricky questions, and one of the club&#x27;s leaders had…&rdquo;</div><div class="ce-s">Jackson, <em>The Encyclopedia of New York</em>, 2010, p. 1278 <a class="pglink" href="#src-jackson-the-encyclopedia-of-new-york-2010-p-1278" data-scan="jackson-the-encyclopedia-of-new-york-2010-p-1278">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-21">21</a><span class="sw s7"></span><div class="ce-b"><div class="ce-q">&ldquo;they had to sell it to a group of hard-working people who made clothes.&rdquo;</div><div class="ce-s">Jackson, <em>The Encyclopedia of New York</em>, 2010, p. 1278 <a class="pglink" href="#src-jackson-the-encyclopedia-of-new-york-2010-p-1278" data-scan="jackson-the-encyclopedia-of-new-york-2010-p-1278">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-22">22</a><span class="sw s7"></span><div class="ce-b"><div class="ce-q">&ldquo;the old club slowly faded away, like a sandcastle washed by the waves.&rdquo;</div><div class="ce-s">Jackson, <em>The Encyclopedia of New York</em>, 2010, p. 1278 <a class="pglink" href="#src-jackson-the-encyclopedia-of-new-york-2010-p-1278" data-scan="jackson-the-encyclopedia-of-new-york-2010-p-1278">scan</a></div></div></div>
+<div class="cc-sec">Hooray for New Friends! 🎭🎬</div>
+<div class="ce"><a class="ce-n" href="#hl-23">23</a><span class="sw s6"></span><div class="ce-b"><div class="ce-q">&ldquo;it became a busy, bustling place where the clothes-makers worked together.&rdquo;</div><div class="ce-s">Hennessy, <em>Walking Broadway</em>, 2020, p. 95 <a class="pglink" href="#src-hennessy-walking-broadway-2020-p-95" data-scan="hennessy-walking-broadway-2020-p-95">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-24">24</a><span class="sw s6"></span><div class="ce-b"><div class="ce-q">&ldquo;A group of actors took over and put on wonderful plays.&rdquo;</div><div class="ce-s">Hennessy, <em>Walking Broadway</em>, 2020, p. 95 <a class="pglink" href="#src-hennessy-walking-broadway-2020-p-95" data-scan="hennessy-walking-broadway-2020-p-95">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-25">25</a><span class="sw s8"></span><div class="ce-b"><div class="ce-q">&ldquo;They made a cozy little theater inside, turning a great big room into a snug one just right…&rdquo;</div><div class="ce-s">Lawliss, <em>The New York Theatre Sourcebook</em>, 1981, p. 183 <a class="pglink" href="#src-lawliss-the-new-york-theatre-sourcebook-1981-p-183" data-scan="lawliss-the-new-york-theatre-sourcebook-1981-p-183">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-26">26</a><span class="sw s9"></span><div class="ce-b"><div class="ce-q">&ldquo;it became a theater with a new name,&rdquo;</div><div class="ce-s">Wolfe, <em>New York 15 Walking Tours</em>, 2003, p. 250 <a class="pglink" href="#src-wolfe-new-york-15-walking-tours-2003-p-250" data-scan="wolfe-new-york-15-walking-tours-2003-p-250">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-27">27</a><span class="sw s9"></span><div class="ce-b"><div class="ce-q">&ldquo;it became a school where kids and grown-ups could learn how to make movies!&rdquo;</div><div class="ce-s">Wolfe, <em>New York 15 Walking Tours</em>, 2003, p. 250 <a class="pglink" href="#src-wolfe-new-york-15-walking-tours-2003-p-250" data-scan="wolfe-new-york-15-walking-tours-2003-p-250">scan</a></div></div></div>
+<div class="cc-sec">A Spooky, Giggly Ghost Story! 👻</div>
+<div class="ce"><a class="ce-n" href="#hl-28">28</a><span class="sw s10"></span><div class="ce-b"><div class="ce-q">&ldquo;People said the theater had a mysterious ghostly visitor who hid in a little crawl space…&rdquo;</div><div class="ce-s">Lanigan-Schmidt, <em>Ghosts of New York City</em>, 2003, p. 64 <a class="pglink" href="#src-lanigan-schmidt-ghosts-of-new-york-city-2003-p-64" data-scan="lanigan-schmidt-ghosts-of-new-york-city-2003-p-64">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-29">29</a><span class="sw s10"></span><div class="ce-b"><div class="ce-q">&ldquo;windows and a sparkly chandelier started rattling all by themselves! But the maintenance…&rdquo;</div><div class="ce-s">Lanigan-Schmidt, <em>Ghosts of New York City</em>, 2003, p. 64 <a class="pglink" href="#src-lanigan-schmidt-ghosts-of-new-york-city-2003-p-64" data-scan="lanigan-schmidt-ghosts-of-new-york-city-2003-p-64">scan</a></div></div></div>
+<div class="cc-sec">A Super Funny Joke! 😄</div>
+<div class="ce"><a class="ce-n" href="#hl-30">30</a><span class="sw s9"></span><div class="ce-b"><div class="ce-q">&ldquo;maybe they could turn it into a &quot;Museum of All the Sneaky Tricks!&quot;&rdquo;</div><div class="ce-s">Wolfe, <em>New York 15 Walking Tours</em>, 2003, p. 250 <a class="pglink" href="#src-wolfe-new-york-15-walking-tours-2003-p-250" data-scan="wolfe-new-york-15-walking-tours-2003-p-250">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-31">31</a><span class="sw s9"></span><div class="ce-b"><div class="ce-q">&ldquo;the building wouldn&#x27;t be big enough to fit ALL the sneaky tricks inside!&rdquo;</div><div class="ce-s">Wolfe, <em>New York 15 Walking Tours</em>, 2003, p. 250 <a class="pglink" href="#src-wolfe-new-york-15-walking-tours-2003-p-250" data-scan="wolfe-new-york-15-walking-tours-2003-p-250">scan</a></div></div></div>
+<div class="cc-sec">The Big Gold Star of History! 🏅🌟</div>
+<div class="ce"><a class="ce-n" href="#hl-32">32</a><span class="sw s2"></span><div class="ce-b"><div class="ce-q">&ldquo;In the year 2013, it was named a protected treasure forever and ever!&rdquo;</div><div class="ce-s">Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 679 <a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-679" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-679">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-33">33</a><span class="sw s9"></span><div class="ce-b"><div class="ce-q">&ldquo;it&#x27;s the very last little piece left of that whole grand old story.&rdquo;</div><div class="ce-s">Wolfe, <em>New York 15 Walking Tours</em>, 2003, p. 250 <a class="pglink" href="#src-wolfe-new-york-15-walking-tours-2003-p-250" data-scan="wolfe-new-york-15-walking-tours-2003-p-250">scan</a></div></div></div>
+</aside>
+<div class="wrap">
+
+<h1>44 Union Square East</h1>
+<p class="sub">The Super-Duper Story of the Coolest Building on the Corner</p>
+
+<p class="note">Every previously italicized phrase is highlighted and colour-coded by source. Where the source page is on file, clicking the highlight opens the scan.</p>
+
+<div class="legend"><div class="legend-title">Colour key — one colour per source <span class="lk">· sources with a page scan are marked ⌕</span></div><ul>
+<li><span class="sw s1"></span><span class="lg">Dolkart, <em>Gramercy</em>, 1996 <span class="pg">p.&nbsp;78</span> <span class="ct">(10)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s2"></span><span class="lg">Spielvogel, <em>The Landmarks of New York</em>, 2016 <span class="pg">p.&nbsp;679</span> <span class="ct">(2)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s3"></span><span class="lg">Chase, <em>New York The Wonder City</em>, 1932 <span class="pg">p.&nbsp;23</span> <span class="ct">(4)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s4"></span><span class="lg">Unknown Author, <em>Landmarks Preservation Commission</em>, n.d. <span class="pg">p.&nbsp;1</span> <span class="ct">(1)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s5"></span><span class="lg">LPC, <em>Union Square</em>, 1929 <span class="pg">p.&nbsp;1</span> <span class="ct">(1)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s6"></span><span class="lg">Hennessy, <em>Walking Broadway</em>, 2020 <span class="pg">p.&nbsp;95</span> <span class="ct">(3)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s7"></span><span class="lg">Jackson, <em>The Encyclopedia of New York</em>, 2010 <span class="pg">p.&nbsp;1278</span> <span class="ct">(4)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s8"></span><span class="lg">Lawliss, <em>The New York Theatre Sourcebook</em>, 1981 <span class="pg">p.&nbsp;183</span> <span class="ct">(1)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s9"></span><span class="lg">Wolfe, <em>New York 15 Walking Tours</em>, 2003 <span class="pg">p.&nbsp;250</span> <span class="ct">(5)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s10"></span><span class="lg">Lanigan-Schmidt, <em>Ghosts of New York City</em>, 2003 <span class="pg">p.&nbsp;64</span> <span class="ct">(2)</span> <span class="has">⌕</span></span></li>
+</ul></div>
+
+
+
+<p>Hello there, friends! Pull up a comfy cushion, wiggle your toes, and get ready for one of the GREATEST stories ever told about a building! Yes, a BUILDING! This one is extra special, and by the end you&#x27;ll want to go say hello to it. Let&#x27;s gooo! 🎉</p>
+
+<h2>Finding the Magic Corner 🗺️🐜</h2>
+
+<p>Imagine you&#x27;re a teeny-tiny ant with a teeny-tiny backpack, hiking along the busy New York City sidewalks. If you turned the right corner, you&#x27;d bump right into our amazing building! <a class="srclink" href="#src-dolkart-gramercy-1996-p-78" data-scan="dolkart-gramercy-1996-p-78" title="See the source page — Dolkart, Gramercy, 1996, p. 78"><mark id="hl-1" class="s1" title="Dolkart, Gramercy, 1996, p. 78">(It sits on a sunny spot where two streets give each other a big hug — the corner of East 17th Street and Union Square East.)</mark></a></p>
+
+<p><a class="srclink" href="#src-dolkart-gramercy-1996-p-78" data-scan="dolkart-gramercy-1996-p-78" title="See the source page — Dolkart, Gramercy, 1996, p. 78"><mark id="hl-2" class="s1" title="Dolkart, Gramercy, 1996, p. 78">(This building is one of the big, important buildings in the whole neighborhood.)</mark></a> And guess what? <a class="srclink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-679" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-679" title="See the source page — Spielvogel, The Landmarks of New York, 2016, p. 679"><mark id="hl-3" class="s2" title="Spielvogel, The Landmarks of New York, 2016, p. 679">(It has SO many nicknames and address numbers that it&#x27;s a little bit like a superhero with lots of secret identities!)</mark></a></p>
+
+<h2>A Clubhouse With a Funny Name! 🎩🪶</h2>
+
+<p><a class="srclink" href="#src-dolkart-gramercy-1996-p-78" data-scan="dolkart-gramercy-1996-p-78" title="See the source page — Dolkart, Gramercy, 1996, p. 78"><mark id="hl-4" class="s1" title="Dolkart, Gramercy, 1996, p. 78">(Long, long ago, this building became home to a big, famous grown-up club.)</mark></a> The club had the funniest name — &quot;Tammany Hall!&quot; <a class="srclink" href="#src-chase-new-york-the-wonder-city-1932-p-23" data-scan="chase-new-york-the-wonder-city-1932-p-23" title="See the source page — Chase, New York The Wonder City, 1932, p. 23"><mark id="hl-5" class="s3" title="Chase, New York The Wonder City, 1932, p. 23">(People had REALLY big feelings about this club. Some people cheered for it, some people weren&#x27;t sure about it, and some people wrinkled their noses at it.)</mark></a></p>
+
+<p>Where did that silly name come from? Here&#x27;s the neat part! <a class="srclink" href="#src-chase-new-york-the-wonder-city-1932-p-23" data-scan="chase-new-york-the-wonder-city-1932-p-23" title="See the source page — Chase, New York The Wonder City, 1932, p. 23"><mark id="hl-6" class="s3" title="Chase, New York The Wonder City, 1932, p. 23">(It came from a wise Native American leader named Tammany, a chief who lived near a river a very, very long time ago.)</mark></a> <a class="srclink" href="#src-chase-new-york-the-wonder-city-1932-p-23" data-scan="chase-new-york-the-wonder-city-1932-p-23" title="See the source page — Chase, New York The Wonder City, 1932, p. 23"><mark id="hl-7" class="s3" title="Chase, New York The Wonder City, 1932, p. 23">(The club got so big and famous that people ALL around the whole wide world knew its name!)</mark></a></p>
+
+<p>The club did some really kind things, too. <a class="srclink" href="#src-chase-new-york-the-wonder-city-1932-p-23" data-scan="chase-new-york-the-wonder-city-1932-p-23" title="See the source page — Chase, New York The Wonder City, 1932, p. 23"><mark id="hl-8" class="s3" title="Chase, New York The Wonder City, 1932, p. 23">(They sent help and money to people far away who were having a hard time — like people who needed help after big earthquakes.)</mark></a> Giving and sharing — what good manners!</p>
+
+<p>But not everybody trusted the club. <a class="srclink" href="#src-dolkart-gramercy-1996-p-78" data-scan="dolkart-gramercy-1996-p-78" title="See the source page — Dolkart, Gramercy, 1996, p. 78"><mark id="hl-9" class="s1" title="Dolkart, Gramercy, 1996, p. 78">(Some folks thought it was a little too tricky.)</mark></a> So <a class="srclink" href="#src-dolkart-gramercy-1996-p-78" data-scan="dolkart-gramercy-1996-p-78" title="See the source page — Dolkart, Gramercy, 1996, p. 78"><mark id="hl-10" class="s1" title="Dolkart, Gramercy, 1996, p. 78">(the club worked really hard to look honest and friendly, hoping people would stop saying mean things about it.)</mark></a> Hmmm, sneaky-sneaky!</p>
+
+<h2>Building the Brand-New Clubhouse! 🧱👷</h2>
+
+<p>Now for the hammer-and-nails part! <a class="srclink" href="#src-dolkart-gramercy-1996-p-78" data-scan="dolkart-gramercy-1996-p-78" title="See the source page — Dolkart, Gramercy, 1996, p. 78"><mark id="hl-11" class="s1" title="Dolkart, Gramercy, 1996, p. 78">(The club decided to sell its old home and build a shiny new one.)</mark></a> <a class="srclink" href="#src-dolkart-gramercy-1996-p-78" data-scan="dolkart-gramercy-1996-p-78" title="See the source page — Dolkart, Gramercy, 1996, p. 78"><mark id="hl-12" class="s1" title="Dolkart, Gramercy, 1996, p. 78">(They showed everybody the big plans in 1928.)</mark></a> <a class="srclink" href="#src-dolkart-gramercy-1996-p-78" data-scan="dolkart-gramercy-1996-p-78" title="See the source page — Dolkart, Gramercy, 1996, p. 78"><mark id="hl-13" class="s1" title="Dolkart, Gramercy, 1996, p. 78">(Two teams of super-smart builder-designers drew it all up.)</mark></a> And TA-DA — <a class="srclink" href="#src-unknown-author-landmarks-preservation-commission-n-d-p-1" data-scan="unknown-author-landmarks-preservation-commission-n-d-p-1" title="See the source page — Unknown Author, Landmarks Preservation Commission, n.d., p. 1"><mark id="hl-14" class="s4" title="Unknown Author, Landmarks Preservation Commission, n.d., p. 1">(the building was all finished in 1929!)</mark></a></p>
+
+<p><a class="srclink" href="#src-dolkart-gramercy-1996-p-78" data-scan="dolkart-gramercy-1996-p-78" title="See the source page — Dolkart, Gramercy, 1996, p. 78"><mark id="hl-15" class="s1" title="Dolkart, Gramercy, 1996, p. 78">(The builders made it look like the fancy old days of America, with tall, proud columns that reminded everybody of long ago.)</mark></a> <a class="srclink" href="#src-dolkart-gramercy-1996-p-78" data-scan="dolkart-gramercy-1996-p-78" title="See the source page — Dolkart, Gramercy, 1996, p. 78"><mark id="hl-16" class="s1" title="Dolkart, Gramercy, 1996, p. 78">(It even looks like a super-famous building where George Washington, our very first President, stood up and made his big promise!)</mark></a> Wowza!</p>
+
+<p>If you look really, REALLY closely, you&#x27;ll spot all kinds of fun decorations — <a class="srclink" href="#src-lpc-union-square-1929-p-1" data-scan="lpc-union-square-1929-p-1" title="See the source page — LPC, Union Square, 1929, p. 1"><mark id="hl-17" class="s5" title="LPC, Union Square, 1929, p. 1">(pretty arched doorways, a little balcony to stand on, flowery garland designs, and a rooftop that slopes like a wizard&#x27;s hat.)</mark></a> And the coolest part? <a class="srclink" href="#src-hennessy-walking-broadway-2020-p-95" data-scan="hennessy-walking-broadway-2020-p-95" title="See the source page — Hennessy, Walking Broadway, 2020, p. 95"><mark id="hl-18" class="s6" title="Hennessy, Walking Broadway, 2020, p. 95">(There&#x27;s a special &quot;Liberty Cap&quot; hat sitting way up high on the building, like it&#x27;s wearing a crown!)</mark></a> A building wearing a hat — how silly and wonderful!</p>
+
+<h2>The Big Ups and the Bumpy Downs! 🎢</h2>
+
+<p>For a little while, <a class="srclink" href="#src-jackson-the-encyclopedia-of-new-york-2010-p-1278" data-scan="jackson-the-encyclopedia-of-new-york-2010-p-1278" title="See the source page — Jackson, The Encyclopedia of New York, 2010, p. 1278"><mark id="hl-19" class="s7" title="Jackson, The Encyclopedia of New York, 2010, p. 1278">(the club was riding high at the tippy-top, like the king of the mountain!)</mark></a> But then — uh-oh! — things got wobbly. <a class="srclink" href="#src-jackson-the-encyclopedia-of-new-york-2010-p-1278" data-scan="jackson-the-encyclopedia-of-new-york-2010-p-1278" title="See the source page — Jackson, The Encyclopedia of New York, 2010, p. 1278"><mark id="hl-20" class="s7" title="Jackson, The Encyclopedia of New York, 2010, p. 1278">(Some grown-ups started asking lots of tricky questions, and one of the club&#x27;s leaders had to pack up and leave his job.)</mark></a></p>
+
+<p>Then the saddest thing happened. The club ran out of money to pay for its beautiful building. 😢 So <a class="srclink" href="#src-jackson-the-encyclopedia-of-new-york-2010-p-1278" data-scan="jackson-the-encyclopedia-of-new-york-2010-p-1278" title="See the source page — Jackson, The Encyclopedia of New York, 2010, p. 1278"><mark id="hl-21" class="s7" title="Jackson, The Encyclopedia of New York, 2010, p. 1278">(they had to sell it to a group of hard-working people who made clothes.)</mark></a> After that, <a class="srclink" href="#src-jackson-the-encyclopedia-of-new-york-2010-p-1278" data-scan="jackson-the-encyclopedia-of-new-york-2010-p-1278" title="See the source page — Jackson, The Encyclopedia of New York, 2010, p. 1278"><mark id="hl-22" class="s7" title="Jackson, The Encyclopedia of New York, 2010, p. 1278">(the old club slowly faded away, like a sandcastle washed by the waves.)</mark></a></p>
+
+<h2>Hooray for New Friends! 🎭🎬</h2>
+
+<p>But wait — don&#x27;t be sad for the building! It didn&#x27;t stay lonely for even one minute. It made LOTS of fun new friends!</p>
+
+<p>First, <a class="srclink" href="#src-hennessy-walking-broadway-2020-p-95" data-scan="hennessy-walking-broadway-2020-p-95" title="See the source page — Hennessy, Walking Broadway, 2020, p. 95"><mark id="hl-23" class="s6" title="Hennessy, Walking Broadway, 2020, p. 95">(it became a busy, bustling place where the clothes-makers worked together.)</mark></a> Then the theater people came skipping in! <a class="srclink" href="#src-hennessy-walking-broadway-2020-p-95" data-scan="hennessy-walking-broadway-2020-p-95" title="See the source page — Hennessy, Walking Broadway, 2020, p. 95"><mark id="hl-24" class="s6" title="Hennessy, Walking Broadway, 2020, p. 95">(A group of actors took over and put on wonderful plays.)</mark></a> <a class="srclink" href="#src-lawliss-the-new-york-theatre-sourcebook-1981-p-183" data-scan="lawliss-the-new-york-theatre-sourcebook-1981-p-183" title="See the source page — Lawliss, The New York Theatre Sourcebook, 1981, p. 183"><mark id="hl-25" class="s8" title="Lawliss, The New York Theatre Sourcebook, 1981, p. 183">(They made a cozy little theater inside, turning a great big room into a snug one just right for shows.)</mark></a></p>
+
+<p>After that, <a class="srclink" href="#src-wolfe-new-york-15-walking-tours-2003-p-250" data-scan="wolfe-new-york-15-walking-tours-2003-p-250" title="See the source page — Wolfe, New York 15 Walking Tours, 2003, p. 250"><mark id="hl-26" class="s9" title="Wolfe, New York 15 Walking Tours, 2003, p. 250">(it became a theater with a new name,)</mark></a> and then — lights! camera! action! — <a class="srclink" href="#src-wolfe-new-york-15-walking-tours-2003-p-250" data-scan="wolfe-new-york-15-walking-tours-2003-p-250" title="See the source page — Wolfe, New York 15 Walking Tours, 2003, p. 250"><mark id="hl-27" class="s9" title="Wolfe, New York 15 Walking Tours, 2003, p. 250">(it became a school where kids and grown-ups could learn how to make movies!)</mark></a> From clubhouse to movie school — what an adventure!</p>
+
+<h2>A Spooky, Giggly Ghost Story! 👻</h2>
+
+<p>Ooooh, here&#x27;s a shivery part to make your arms get goosebumps! <a class="srclink" href="#src-lanigan-schmidt-ghosts-of-new-york-city-2003-p-64" data-scan="lanigan-schmidt-ghosts-of-new-york-city-2003-p-64" title="See the source page — Lanigan-Schmidt, Ghosts of New York City, 2003, p. 64"><mark id="hl-28" class="s10" title="Lanigan-Schmidt, Ghosts of New York City, 2003, p. 64">(People said the theater had a mysterious ghostly visitor who hid in a little crawl space and had glowing eyes like a sneaky cat in the dark!)</mark></a></p>
+
+<p>One night, things got super noisy — <a class="srclink" href="#src-lanigan-schmidt-ghosts-of-new-york-city-2003-p-64" data-scan="lanigan-schmidt-ghosts-of-new-york-city-2003-p-64" title="See the source page — Lanigan-Schmidt, Ghosts of New York City, 2003, p. 64"><mark id="hl-29" class="s10" title="Lanigan-Schmidt, Ghosts of New York City, 2003, p. 64">(windows and a sparkly chandelier started rattling all by themselves! But the maintenance man was very tired and just wanted to sleep, so he told the spooky noise to please be quiet... and guess what? It actually listened and stopped!)</mark></a> Hee hee! Even ghosts have a bedtime!</p>
+
+<h2>A Super Funny Joke! 😄</h2>
+
+<p>When grown-ups were trying to decide what to do with the old building, somebody had a giggly idea: <a class="srclink" href="#src-wolfe-new-york-15-walking-tours-2003-p-250" data-scan="wolfe-new-york-15-walking-tours-2003-p-250" title="See the source page — Wolfe, New York 15 Walking Tours, 2003, p. 250"><mark id="hl-30" class="s9" title="Wolfe, New York 15 Walking Tours, 2003, p. 250">(maybe they could turn it into a &quot;Museum of All the Sneaky Tricks!&quot;)</mark></a> But a joker chuckled and said <a class="srclink" href="#src-wolfe-new-york-15-walking-tours-2003-p-250" data-scan="wolfe-new-york-15-walking-tours-2003-p-250" title="See the source page — Wolfe, New York 15 Walking Tours, 2003, p. 250"><mark id="hl-31" class="s9" title="Wolfe, New York 15 Walking Tours, 2003, p. 250">(the building wouldn&#x27;t be big enough to fit ALL the sneaky tricks inside!)</mark></a> Ha ha ha!</p>
+
+<h2>The Big Gold Star of History! 🏅🌟</h2>
+
+<p>And finally, this wonderful, hat-wearing, ghost-hosting, play-putting-on building got a very special honor. <a class="srclink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-679" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-679" title="See the source page — Spielvogel, The Landmarks of New York, 2016, p. 679"><mark id="hl-32" class="s2" title="Spielvogel, The Landmarks of New York, 2016, p. 679">(In the year 2013, it was named a protected treasure forever and ever!)</mark></a> That means it&#x27;s so special, it gets to be kept safe, because <a class="srclink" href="#src-wolfe-new-york-15-walking-tours-2003-p-250" data-scan="wolfe-new-york-15-walking-tours-2003-p-250" title="See the source page — Wolfe, New York 15 Walking Tours, 2003, p. 250"><mark id="hl-33" class="s9" title="Wolfe, New York 15 Walking Tours, 2003, p. 250">(it&#x27;s the very last little piece left of that whole grand old story.)</mark></a></p>
+
+<p>And THAT, my dear friends, is the super-duper tale of the coolest building on the corner — a clubhouse, a workshop, a theater, a movie school, AND a ghost&#x27;s bedroom, all rolled into one!</p>
+
+<h2>The end! Give yourself a big round of applause! 👏🌟</h2>
+
+<section class="chart-print"><h2 id="citations">Citation Chart</h2>
+<p class="note2">Every highlighted quote, in order of appearance, correlated to its underlying source. The swatch matches the highlight colour in the text.</p>
+<div class="tablewrap">
+<h3 class="csec">Finding the Magic Corner 🗺️🐜</h3>
+<table><thead><tr><th class="num">#</th><th>Verbatim Quote (abbreviated)</th><th>Source (Author, Title, Year, Page)</th></tr></thead><tbody>
+<tr><td class="num">1</td><td class="quote">&ldquo;It sits on a sunny spot where two streets give each other a big hug — the corner of East 17th Street and Union Square East.&rdquo;</td><td class="src"><span class="sw s1"></span>Dolkart, <em>Gramercy</em>, 1996, p. 78&nbsp;<a class="pglink" href="#src-dolkart-gramercy-1996-p-78" data-scan="dolkart-gramercy-1996-p-78">[page scan]</a></td></tr>
+<tr><td class="num">2</td><td class="quote">&ldquo;This building is one of the big, important buildings in the whole neighborhood.&rdquo;</td><td class="src"><span class="sw s1"></span>Dolkart, <em>Gramercy</em>, 1996, p. 78&nbsp;<a class="pglink" href="#src-dolkart-gramercy-1996-p-78" data-scan="dolkart-gramercy-1996-p-78">[page scan]</a></td></tr>
+<tr><td class="num">3</td><td class="quote">&ldquo;It has SO many nicknames and address numbers that it&#x27;s a little bit like a superhero with lots of secret identities!&rdquo;</td><td class="src"><span class="sw s2"></span>Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 679&nbsp;<a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-679" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-679">[page scan]</a></td></tr>
+</tbody></table>
+<h3 class="csec">A Clubhouse With a Funny Name! 🎩🪶</h3>
+<table><thead><tr><th class="num">#</th><th>Verbatim Quote (abbreviated)</th><th>Source (Author, Title, Year, Page)</th></tr></thead><tbody>
+<tr><td class="num">4</td><td class="quote">&ldquo;Long, long ago, this building became home to a big, famous grown-up club.&rdquo;</td><td class="src"><span class="sw s1"></span>Dolkart, <em>Gramercy</em>, 1996, p. 78&nbsp;<a class="pglink" href="#src-dolkart-gramercy-1996-p-78" data-scan="dolkart-gramercy-1996-p-78">[page scan]</a></td></tr>
+<tr><td class="num">5</td><td class="quote">&ldquo;People had REALLY big feelings about this club. Some people cheered for it, some people weren&#x27;t sure about it, and some people wrinkled their noses at it.&rdquo;</td><td class="src"><span class="sw s3"></span>Chase, <em>New York The Wonder City</em>, 1932, p. 23&nbsp;<a class="pglink" href="#src-chase-new-york-the-wonder-city-1932-p-23" data-scan="chase-new-york-the-wonder-city-1932-p-23">[page scan]</a></td></tr>
+<tr><td class="num">6</td><td class="quote">&ldquo;It came from a wise Native American leader named Tammany, a chief who lived near a river a very, very long time ago.&rdquo;</td><td class="src"><span class="sw s3"></span>Chase, <em>New York The Wonder City</em>, 1932, p. 23&nbsp;<a class="pglink" href="#src-chase-new-york-the-wonder-city-1932-p-23" data-scan="chase-new-york-the-wonder-city-1932-p-23">[page scan]</a></td></tr>
+<tr><td class="num">7</td><td class="quote">&ldquo;The club got so big and famous that people ALL around the whole wide world knew its name!&rdquo;</td><td class="src"><span class="sw s3"></span>Chase, <em>New York The Wonder City</em>, 1932, p. 23&nbsp;<a class="pglink" href="#src-chase-new-york-the-wonder-city-1932-p-23" data-scan="chase-new-york-the-wonder-city-1932-p-23">[page scan]</a></td></tr>
+<tr><td class="num">8</td><td class="quote">&ldquo;They sent help and money to people far away who were having a hard time — like people who needed help after big earthquakes.&rdquo;</td><td class="src"><span class="sw s3"></span>Chase, <em>New York The Wonder City</em>, 1932, p. 23&nbsp;<a class="pglink" href="#src-chase-new-york-the-wonder-city-1932-p-23" data-scan="chase-new-york-the-wonder-city-1932-p-23">[page scan]</a></td></tr>
+<tr><td class="num">9</td><td class="quote">&ldquo;Some folks thought it was a little too tricky.&rdquo;</td><td class="src"><span class="sw s1"></span>Dolkart, <em>Gramercy</em>, 1996, p. 78&nbsp;<a class="pglink" href="#src-dolkart-gramercy-1996-p-78" data-scan="dolkart-gramercy-1996-p-78">[page scan]</a></td></tr>
+<tr><td class="num">10</td><td class="quote">&ldquo;the club worked really hard to look honest and friendly, hoping people would stop saying mean things about it.&rdquo;</td><td class="src"><span class="sw s1"></span>Dolkart, <em>Gramercy</em>, 1996, p. 78&nbsp;<a class="pglink" href="#src-dolkart-gramercy-1996-p-78" data-scan="dolkart-gramercy-1996-p-78">[page scan]</a></td></tr>
+</tbody></table>
+<h3 class="csec">Building the Brand-New Clubhouse! 🧱👷</h3>
+<table><thead><tr><th class="num">#</th><th>Verbatim Quote (abbreviated)</th><th>Source (Author, Title, Year, Page)</th></tr></thead><tbody>
+<tr><td class="num">11</td><td class="quote">&ldquo;The club decided to sell its old home and build a shiny new one.&rdquo;</td><td class="src"><span class="sw s1"></span>Dolkart, <em>Gramercy</em>, 1996, p. 78&nbsp;<a class="pglink" href="#src-dolkart-gramercy-1996-p-78" data-scan="dolkart-gramercy-1996-p-78">[page scan]</a></td></tr>
+<tr><td class="num">12</td><td class="quote">&ldquo;They showed everybody the big plans in 1928.&rdquo;</td><td class="src"><span class="sw s1"></span>Dolkart, <em>Gramercy</em>, 1996, p. 78&nbsp;<a class="pglink" href="#src-dolkart-gramercy-1996-p-78" data-scan="dolkart-gramercy-1996-p-78">[page scan]</a></td></tr>
+<tr><td class="num">13</td><td class="quote">&ldquo;Two teams of super-smart builder-designers drew it all up.&rdquo;</td><td class="src"><span class="sw s1"></span>Dolkart, <em>Gramercy</em>, 1996, p. 78&nbsp;<a class="pglink" href="#src-dolkart-gramercy-1996-p-78" data-scan="dolkart-gramercy-1996-p-78">[page scan]</a></td></tr>
+<tr><td class="num">14</td><td class="quote">&ldquo;the building was all finished in 1929!&rdquo;</td><td class="src"><span class="sw s4"></span>Unknown Author, <em>Landmarks Preservation Commission</em>, n.d., p. 1&nbsp;<a class="pglink" href="#src-unknown-author-landmarks-preservation-commission-n-d-p-1" data-scan="unknown-author-landmarks-preservation-commission-n-d-p-1">[page scan]</a></td></tr>
+<tr><td class="num">15</td><td class="quote">&ldquo;The builders made it look like the fancy old days of America, with tall, proud columns that reminded everybody of long ago.&rdquo;</td><td class="src"><span class="sw s1"></span>Dolkart, <em>Gramercy</em>, 1996, p. 78&nbsp;<a class="pglink" href="#src-dolkart-gramercy-1996-p-78" data-scan="dolkart-gramercy-1996-p-78">[page scan]</a></td></tr>
+<tr><td class="num">16</td><td class="quote">&ldquo;It even looks like a super-famous building where George Washington, our very first President, stood up and made his big promise!&rdquo;</td><td class="src"><span class="sw s1"></span>Dolkart, <em>Gramercy</em>, 1996, p. 78&nbsp;<a class="pglink" href="#src-dolkart-gramercy-1996-p-78" data-scan="dolkart-gramercy-1996-p-78">[page scan]</a></td></tr>
+<tr><td class="num">17</td><td class="quote">&ldquo;pretty arched doorways, a little balcony to stand on, flowery garland designs, and a rooftop that slopes like a wizard&#x27;s hat.&rdquo;</td><td class="src"><span class="sw s5"></span>LPC, <em>Union Square</em>, 1929, p. 1&nbsp;<a class="pglink" href="#src-lpc-union-square-1929-p-1" data-scan="lpc-union-square-1929-p-1">[page scan]</a></td></tr>
+<tr><td class="num">18</td><td class="quote">&ldquo;There&#x27;s a special &quot;Liberty Cap&quot; hat sitting way up high on the building, like it&#x27;s wearing a crown!&rdquo;</td><td class="src"><span class="sw s6"></span>Hennessy, <em>Walking Broadway</em>, 2020, p. 95&nbsp;<a class="pglink" href="#src-hennessy-walking-broadway-2020-p-95" data-scan="hennessy-walking-broadway-2020-p-95">[page scan]</a></td></tr>
+</tbody></table>
+<h3 class="csec">The Big Ups and the Bumpy Downs! 🎢</h3>
+<table><thead><tr><th class="num">#</th><th>Verbatim Quote (abbreviated)</th><th>Source (Author, Title, Year, Page)</th></tr></thead><tbody>
+<tr><td class="num">19</td><td class="quote">&ldquo;the club was riding high at the tippy-top, like the king of the mountain!&rdquo;</td><td class="src"><span class="sw s7"></span>Jackson, <em>The Encyclopedia of New York</em>, 2010, p. 1278&nbsp;<a class="pglink" href="#src-jackson-the-encyclopedia-of-new-york-2010-p-1278" data-scan="jackson-the-encyclopedia-of-new-york-2010-p-1278">[page scan]</a></td></tr>
+<tr><td class="num">20</td><td class="quote">&ldquo;Some grown-ups started asking lots of tricky questions, and one of the club&#x27;s leaders had to pack up and leave his job.&rdquo;</td><td class="src"><span class="sw s7"></span>Jackson, <em>The Encyclopedia of New York</em>, 2010, p. 1278&nbsp;<a class="pglink" href="#src-jackson-the-encyclopedia-of-new-york-2010-p-1278" data-scan="jackson-the-encyclopedia-of-new-york-2010-p-1278">[page scan]</a></td></tr>
+<tr><td class="num">21</td><td class="quote">&ldquo;they had to sell it to a group of hard-working people who made clothes.&rdquo;</td><td class="src"><span class="sw s7"></span>Jackson, <em>The Encyclopedia of New York</em>, 2010, p. 1278&nbsp;<a class="pglink" href="#src-jackson-the-encyclopedia-of-new-york-2010-p-1278" data-scan="jackson-the-encyclopedia-of-new-york-2010-p-1278">[page scan]</a></td></tr>
+<tr><td class="num">22</td><td class="quote">&ldquo;the old club slowly faded away, like a sandcastle washed by the waves.&rdquo;</td><td class="src"><span class="sw s7"></span>Jackson, <em>The Encyclopedia of New York</em>, 2010, p. 1278&nbsp;<a class="pglink" href="#src-jackson-the-encyclopedia-of-new-york-2010-p-1278" data-scan="jackson-the-encyclopedia-of-new-york-2010-p-1278">[page scan]</a></td></tr>
+</tbody></table>
+<h3 class="csec">Hooray for New Friends! 🎭🎬</h3>
+<table><thead><tr><th class="num">#</th><th>Verbatim Quote (abbreviated)</th><th>Source (Author, Title, Year, Page)</th></tr></thead><tbody>
+<tr><td class="num">23</td><td class="quote">&ldquo;it became a busy, bustling place where the clothes-makers worked together.&rdquo;</td><td class="src"><span class="sw s6"></span>Hennessy, <em>Walking Broadway</em>, 2020, p. 95&nbsp;<a class="pglink" href="#src-hennessy-walking-broadway-2020-p-95" data-scan="hennessy-walking-broadway-2020-p-95">[page scan]</a></td></tr>
+<tr><td class="num">24</td><td class="quote">&ldquo;A group of actors took over and put on wonderful plays.&rdquo;</td><td class="src"><span class="sw s6"></span>Hennessy, <em>Walking Broadway</em>, 2020, p. 95&nbsp;<a class="pglink" href="#src-hennessy-walking-broadway-2020-p-95" data-scan="hennessy-walking-broadway-2020-p-95">[page scan]</a></td></tr>
+<tr><td class="num">25</td><td class="quote">&ldquo;They made a cozy little theater inside, turning a great big room into a snug one just right for shows.&rdquo;</td><td class="src"><span class="sw s8"></span>Lawliss, <em>The New York Theatre Sourcebook</em>, 1981, p. 183&nbsp;<a class="pglink" href="#src-lawliss-the-new-york-theatre-sourcebook-1981-p-183" data-scan="lawliss-the-new-york-theatre-sourcebook-1981-p-183">[page scan]</a></td></tr>
+<tr><td class="num">26</td><td class="quote">&ldquo;it became a theater with a new name,&rdquo;</td><td class="src"><span class="sw s9"></span>Wolfe, <em>New York 15 Walking Tours</em>, 2003, p. 250&nbsp;<a class="pglink" href="#src-wolfe-new-york-15-walking-tours-2003-p-250" data-scan="wolfe-new-york-15-walking-tours-2003-p-250">[page scan]</a></td></tr>
+<tr><td class="num">27</td><td class="quote">&ldquo;it became a school where kids and grown-ups could learn how to make movies!&rdquo;</td><td class="src"><span class="sw s9"></span>Wolfe, <em>New York 15 Walking Tours</em>, 2003, p. 250&nbsp;<a class="pglink" href="#src-wolfe-new-york-15-walking-tours-2003-p-250" data-scan="wolfe-new-york-15-walking-tours-2003-p-250">[page scan]</a></td></tr>
+</tbody></table>
+<h3 class="csec">A Spooky, Giggly Ghost Story! 👻</h3>
+<table><thead><tr><th class="num">#</th><th>Verbatim Quote (abbreviated)</th><th>Source (Author, Title, Year, Page)</th></tr></thead><tbody>
+<tr><td class="num">28</td><td class="quote">&ldquo;People said the theater had a mysterious ghostly visitor who hid in a little crawl space and had glowing eyes like a sneaky cat in the dark!&rdquo;</td><td class="src"><span class="sw s10"></span>Lanigan-Schmidt, <em>Ghosts of New York City</em>, 2003, p. 64&nbsp;<a class="pglink" href="#src-lanigan-schmidt-ghosts-of-new-york-city-2003-p-64" data-scan="lanigan-schmidt-ghosts-of-new-york-city-2003-p-64">[page scan]</a></td></tr>
+<tr><td class="num">29</td><td class="quote">&ldquo;windows and a sparkly chandelier started rattling all by themselves! But the maintenance man was very tired and just wanted to sleep, so he told the spooky noise to…&rdquo;</td><td class="src"><span class="sw s10"></span>Lanigan-Schmidt, <em>Ghosts of New York City</em>, 2003, p. 64&nbsp;<a class="pglink" href="#src-lanigan-schmidt-ghosts-of-new-york-city-2003-p-64" data-scan="lanigan-schmidt-ghosts-of-new-york-city-2003-p-64">[page scan]</a></td></tr>
+</tbody></table>
+<h3 class="csec">A Super Funny Joke! 😄</h3>
+<table><thead><tr><th class="num">#</th><th>Verbatim Quote (abbreviated)</th><th>Source (Author, Title, Year, Page)</th></tr></thead><tbody>
+<tr><td class="num">30</td><td class="quote">&ldquo;maybe they could turn it into a &quot;Museum of All the Sneaky Tricks!&quot;&rdquo;</td><td class="src"><span class="sw s9"></span>Wolfe, <em>New York 15 Walking Tours</em>, 2003, p. 250&nbsp;<a class="pglink" href="#src-wolfe-new-york-15-walking-tours-2003-p-250" data-scan="wolfe-new-york-15-walking-tours-2003-p-250">[page scan]</a></td></tr>
+<tr><td class="num">31</td><td class="quote">&ldquo;the building wouldn&#x27;t be big enough to fit ALL the sneaky tricks inside!&rdquo;</td><td class="src"><span class="sw s9"></span>Wolfe, <em>New York 15 Walking Tours</em>, 2003, p. 250&nbsp;<a class="pglink" href="#src-wolfe-new-york-15-walking-tours-2003-p-250" data-scan="wolfe-new-york-15-walking-tours-2003-p-250">[page scan]</a></td></tr>
+</tbody></table>
+<h3 class="csec">The Big Gold Star of History! 🏅🌟</h3>
+<table><thead><tr><th class="num">#</th><th>Verbatim Quote (abbreviated)</th><th>Source (Author, Title, Year, Page)</th></tr></thead><tbody>
+<tr><td class="num">32</td><td class="quote">&ldquo;In the year 2013, it was named a protected treasure forever and ever!&rdquo;</td><td class="src"><span class="sw s2"></span>Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 679&nbsp;<a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-679" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-679">[page scan]</a></td></tr>
+<tr><td class="num">33</td><td class="quote">&ldquo;it&#x27;s the very last little piece left of that whole grand old story.&rdquo;</td><td class="src"><span class="sw s9"></span>Wolfe, <em>New York 15 Walking Tours</em>, 2003, p. 250&nbsp;<a class="pglink" href="#src-wolfe-new-york-15-walking-tours-2003-p-250" data-scan="wolfe-new-york-15-walking-tours-2003-p-250">[page scan]</a></td></tr>
+</tbody></table></div></section>
+
+<h2 class="srcpage" id="sources">Source Pages</h2>
+<p class="note2">10 scanned pages, one per cited source page. Each lists the highlighted quotes drawn from it.</p>
+<section class="srcsec"><h3 class="scanhead"><span id="src-dolkart-gramercy-1996-p-78"></span>Dolkart, <em>Gramercy</em>, 1996, p. 78</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-1">1</a> <a href="#hl-2">2</a> <a href="#hl-4">4</a> <a href="#hl-9">9</a> <a href="#hl-10">10</a> <a href="#hl-11">11</a> <a href="#hl-12">12</a> <a href="#hl-13">13</a> <a href="#hl-15">15</a> <a href="#hl-16">16</a></span></p>
+<figure class="scan"><img id="scan-dolkart-gramercy-1996-p-78" src="assets/scans/dolkart-gramercy-1996-p-78.jpg" alt="Dolkart, Gramercy, 1996, p. 78"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-spielvogel-the-landmarks-of-new-york-2016-p-679"></span>Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 679</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-3">3</a> <a href="#hl-32">32</a></span></p>
+<figure class="scan"><img id="scan-spielvogel-the-landmarks-of-new-york-2016-p-679" src="assets/scans/spielvogel-the-landmarks-of-new-york-2016-p-679.jpg" alt="Spielvogel, The Landmarks of New York, 2016, p. 679"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-chase-new-york-the-wonder-city-1932-p-23"></span>Chase, <em>New York The Wonder City</em>, 1932, p. 23</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-5">5</a> <a href="#hl-6">6</a> <a href="#hl-7">7</a> <a href="#hl-8">8</a></span></p>
+<figure class="scan"><img id="scan-chase-new-york-the-wonder-city-1932-p-23" src="assets/scans/chase-new-york-the-wonder-city-1932-p-23.jpg" alt="Chase, New York The Wonder City, 1932, p. 23"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-unknown-author-landmarks-preservation-commission-n-d-p-1"></span>Unknown Author, <em>Landmarks Preservation Commission</em>, n.d., p. 1</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-14">14</a></span></p>
+<figure class="scan"><img id="scan-unknown-author-landmarks-preservation-commission-n-d-p-1" src="assets/scans/unknown-author-landmarks-preservation-commission-n-d-p-1.jpg" alt="Unknown Author, Landmarks Preservation Commission, n.d., p. 1"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-lpc-union-square-1929-p-1"></span>LPC, <em>Union Square</em>, 1929, p. 1</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-17">17</a></span></p>
+<figure class="scan"><img id="scan-lpc-union-square-1929-p-1" src="assets/scans/lpc-union-square-1929-p-1.jpg" alt="LPC, Union Square, 1929, p. 1"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-hennessy-walking-broadway-2020-p-95"></span>Hennessy, <em>Walking Broadway</em>, 2020, p. 95</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-18">18</a> <a href="#hl-23">23</a> <a href="#hl-24">24</a></span></p>
+<figure class="scan"><img id="scan-hennessy-walking-broadway-2020-p-95" src="assets/scans/hennessy-walking-broadway-2020-p-95.jpg" alt="Hennessy, Walking Broadway, 2020, p. 95"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-jackson-the-encyclopedia-of-new-york-2010-p-1278"></span>Jackson, <em>The Encyclopedia of New York</em>, 2010, p. 1278</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-19">19</a> <a href="#hl-20">20</a> <a href="#hl-21">21</a> <a href="#hl-22">22</a></span></p>
+<figure class="scan"><img id="scan-jackson-the-encyclopedia-of-new-york-2010-p-1278" src="assets/scans/jackson-the-encyclopedia-of-new-york-2010-p-1278.jpg" alt="Jackson, The Encyclopedia of New York, 2010, p. 1278"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-lawliss-the-new-york-theatre-sourcebook-1981-p-183"></span>Lawliss, <em>The New York Theatre Sourcebook</em>, 1981, p. 183</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-25">25</a></span></p>
+<figure class="scan"><img id="scan-lawliss-the-new-york-theatre-sourcebook-1981-p-183" src="assets/scans/lawliss-the-new-york-theatre-sourcebook-1981-p-183.jpg" alt="Lawliss, The New York Theatre Sourcebook, 1981, p. 183"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-wolfe-new-york-15-walking-tours-2003-p-250"></span>Wolfe, <em>New York 15 Walking Tours</em>, 2003, p. 250</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-26">26</a> <a href="#hl-27">27</a> <a href="#hl-30">30</a> <a href="#hl-31">31</a> <a href="#hl-33">33</a></span></p>
+<figure class="scan"><img id="scan-wolfe-new-york-15-walking-tours-2003-p-250" src="assets/scans/wolfe-new-york-15-walking-tours-2003-p-250.jpg" alt="Wolfe, New York 15 Walking Tours, 2003, p. 250"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-lanigan-schmidt-ghosts-of-new-york-city-2003-p-64"></span>Lanigan-Schmidt, <em>Ghosts of New York City</em>, 2003, p. 64</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-28">28</a> <a href="#hl-29">29</a></span></p>
+<figure class="scan"><img id="scan-lanigan-schmidt-ghosts-of-new-york-city-2003-p-64" src="assets/scans/lanigan-schmidt-ghosts-of-new-york-city-2003-p-64.jpg" alt="Lanigan-Schmidt, Ghosts of New York City, 2003, p. 64"></figure></section>
+</div>
+<aside class="rail on-right" id="rail" aria-label="Views of the building">
+<div class="rail-title">The narration</div>
+<figure class="railvid"><video controls playsinline preload="metadata" poster="assets/media/rail-poster.jpg" src="assets/media/44-rail.mp4"></video><figcaption><b>Read aloud</b><span>6 min 29 s &mdash; press play and the story follows along, word by word.</span></figcaption></figure>
+<p class="rail-foot"></p></aside>
+</div>
+<div class="lightbox" hidden><div class="lb-head"><span class="lb-t"></span><button class="lb-btn lb-zoom" type="button">Zoom</button><button class="lb-btn lb-close" type="button">Close &times;</button></div><div class="lb-body"><img alt="Enlarged view"></div></div>
+
+
+<div class="sp-backdrop" hidden></div>
+<aside class="scanpanel" hidden aria-label="Source page">
+  <div class="sp-head">
+    <div class="sp-title"><span class="sp-cite"></span><span class="sp-q"></span></div>
+    <button class="sp-btn sp-zoom" type="button">Zoom</button>
+    <button class="sp-btn sp-close" type="button" aria-label="Close">&times;</button>
+  </div>
+  <div class="sp-body"><div class="sp-img"><img alt="Source page scan"><div class="sp-ov"></div></div></div>
+</aside>
+<script>
+(function () {
+  var panel = document.querySelector('.scanpanel'),
+      back  = document.querySelector('.sp-backdrop'),
+      bodyEl= panel.querySelector('.sp-body'),
+      img   = panel.querySelector('.sp-body img'),
+      citeEl= panel.querySelector('.sp-cite'),
+      qEl   = panel.querySelector('.sp-q');
+  var ov = panel.querySelector('.sp-ov'), shown = null;
+  function paint() {
+    ov.innerHTML = '';
+    if (!shown || !img.naturalWidth) return;
+    var k = img.clientWidth / img.naturalWidth;
+    shown.forEach(function (b) {
+      var e = document.createElement('i');
+      e.style.left = (b[0] * k - 3) + 'px';  e.style.top = (b[1] * k - 2) + 'px';
+      e.style.width = (b[2] * k + 6) + 'px'; e.style.height = (b[3] * k + 4) + 'px';
+      ov.appendChild(e);
+    });
+  }
+  img.addEventListener('load', paint);
+  window.addEventListener('resize', paint);
+  function open(slug, label, num) {
+    var full = document.getElementById('scan-' + slug);
+    if (!full) return;
+    if (img.getAttribute('src') !== full.src) img.src = full.src;
+    bodyEl.classList.remove('zoom'); bodyEl.scrollTop = 0;
+    shown = (typeof QB !== 'undefined' && QB[slug] && QB[slug][num]) ? QB[slug][num] : null;
+    paint();
+    citeEl.innerHTML = label;
+    qEl.textContent = num ? 'Highlighted quote no. ' + num : '';
+    panel.hidden = false; back.hidden = false;
+    requestAnimationFrame(function () { document.body.classList.add('sp-open'); });
+  }
+  function close() {
+    document.body.classList.remove('sp-open');
+    setTimeout(function () { panel.hidden = true; back.hidden = true; }, 220);
+  }
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest) return;
+    var a = e.target.closest('a.srclink, a.pglink');
+    if (a && a.dataset.scan) {
+      e.preventDefault();
+      var head = document.getElementById('src-' + a.dataset.scan),
+          label = head ? head.parentNode.innerHTML.replace(/<span id="src-[^"]*"><\/span>/, '') : '',
+          mk = a.querySelector('mark'), num = '';
+      if (mk && mk.id) num = mk.id.replace('hl-', '');
+      else {
+        var tr = a.closest('tr'), ce = a.closest('.ce');
+        if (tr) num = tr.querySelector('td.num').textContent.trim();
+        else if (ce) num = ce.querySelector('.ce-n').textContent.trim();
+      }
+      open(a.dataset.scan, label, num);
+      return;
+    }
+    if (e.target.closest('.sp-close') || e.target.closest('.sp-backdrop')) close();
+    else if (e.target.closest('.sp-zoom') || e.target === img) { bodyEl.classList.toggle('zoom'); paint(); }
+  });
+  var lb = document.querySelector('.lightbox'), lbBody = lb.querySelector('.lb-body'),
+      lbImg = lb.querySelector('.lb-body img'), lbT = lb.querySelector('.lb-t');
+  function lbOpen(slug, label) {
+    var full = document.getElementById('view-' + slug);
+    if (!full) return;
+    if (lbImg.getAttribute('src') !== full.src) lbImg.src = full.src;
+    lbT.innerHTML = label || '';
+    lb.hidden = false;
+    requestAnimationFrame(function () { document.body.classList.add('lb-open'); });
+  }
+  function lbClose() {
+    document.body.classList.remove('lb-open');
+    lbBody.classList.remove('zoom');
+    setTimeout(function () { lb.hidden = true; }, 200);
+  }
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest) return;
+    if (e.target.closest('.lb-close')) { lbClose(); return; }
+    if (e.target.closest('.lb-zoom') || e.target.closest('.lb-body img')) { lbBody.classList.toggle('zoom'); return; }
+    if (e.target.closest('.lightbox') && !e.target.closest('.lb-head')) { lbClose(); return; }
+    if (e.target.closest('.lb-body')) lbClose();
+  });
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest) return;
+    var v = e.target.closest('figure.view');
+    if (v) {
+      var cap = v.querySelector('figcaption b');
+      lbOpen(v.dataset.view, cap ? cap.innerHTML : '');
+    }
+  });
+  // ---- citation column tracks the text ----
+  var col = document.getElementById('chartcol');
+  if (col) {
+    var entryFor = {};
+    Array.prototype.forEach.call(col.querySelectorAll('.ce'), function (ce) {
+      entryFor[ce.querySelector('.ce-n').textContent.trim()] = ce;
+    });
+    var marks = Array.prototype.slice.call(document.querySelectorAll('.wrap mark[id^="hl-"]'));
+    var current = null, touched = 0, selfUntil = 0, hoverNum = null;
+
+    col.addEventListener('scroll', function () {
+      if (Date.now() > selfUntil) touched = Date.now();   // a real scroll by the reader
+    }, { passive: true });
+
+    function activate(num, force) {
+      if (num === current && !force) return;
+      var ce = entryFor[num];
+      if (num !== current) {
+        current = num;
+        Array.prototype.forEach.call(col.querySelectorAll('.ce.active'), function (e) { e.classList.remove('active'); });
+        Array.prototype.forEach.call(document.querySelectorAll('mark.reading'), function (m) { m.classList.remove('reading'); });
+        if (ce) {
+          ce.classList.add('active');
+          var mk = document.getElementById('hl-' + num);
+          if (mk) mk.classList.add('reading');
+        }
+      }
+      if (!ce) return;
+      if (getComputedStyle(col).position !== 'sticky') return;   // stacked layout: don't hijack scrolling
+      if (!force && Date.now() - touched < 2000) return;         // reader is browsing the column
+      var top = ce.offsetTop - col.clientHeight * 0.38;
+      selfUntil = Date.now() + 900;                      // our own smooth scroll, not the reader's
+      col.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+    }
+
+    // ---- pointing at a highlight sends the column straight to its citation ----
+    var textcol = document.querySelector('.wrap');
+    if (textcol) {
+      textcol.addEventListener('mouseover', function (e) {
+        var m = e.target.closest ? e.target.closest('mark[id^="hl-"]') : null;
+        if (!m) return;
+        var n = m.id.replace('hl-', '');
+        if (n === hoverNum) return;        // bubbling from inside the same mark
+        hoverNum = n;
+        activate(n, true);                 // deliberate aim beats the scroll guard
+      });
+      textcol.addEventListener('mouseout', function (e) {
+        var m = e.target.closest ? e.target.closest('mark[id^="hl-"]') : null;
+        if (!m) return;
+        if (e.relatedTarget && m.contains(e.relatedTarget)) return;   // still inside the same mark
+        hoverNum = null;
+      });
+    }
+
+    function pick() {
+      if (hoverNum) return;               // the cursor is aiming; don't argue with it
+      var best = null, bestTop = Infinity, fallback = null, fallbackTop = -Infinity;
+      for (var i = 0; i < marks.length; i++) {
+        var r = marks[i].getBoundingClientRect();
+        if (r.bottom < 0 || r.top > window.innerHeight) continue;
+        if (r.top >= 0 && r.top < bestTop) { best = marks[i]; bestTop = r.top; }
+        else if (r.top < 0 && r.top > fallbackTop) { fallback = marks[i]; fallbackTop = r.top; }
+      }
+      var m = best || fallback;
+      if (m) activate(m.id.replace('hl-', ''));
+    }
+
+    var ticking = false;
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () { ticking = false; pick(); });
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    pick();
+  }
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { close(); if (!lb.hidden) lbClose(); }
+  });
+})();
+</script>
+
+<script>
+const WT=[0.0, 0.0, 0.0, 0.0, 0.18, 0.59, 0.94, 1.45, 1.54, 1.62, 2.22, 2.65, 2.85, 2.95, 3.47, 4.03, 4.26, 5.13, 5.36, 5.54, 5.64, 6.06, 6.76, 7.21, 7.43, 8.0, 8.23, 8.53, 8.88, 9.07, 9.31, 9.4, 9.52, 10.14, 10.86, 11.19, 11.64, 12.02, 12.09, 13.02, 13.61, 13.68, 14.63, 14.92, 15.1, 15.26, 15.69, 16.32, 16.75, 16.93, 17.1, 17.7, 17.85, 18.06, 18.16, 18.35, 18.59, 18.95, 19.11, 19.53, 20.15, 20.76, 21.37, 21.44, 21.87, 22.69, 23.23, 23.46, 23.56, 23.95, 24.42, 25.0, 25.2, 25.32, 25.68, 26.05, 27.01, 27.42, 27.84, 27.92, 28.32, 28.51, 28.81, 29.23, 30.4, 30.53, 30.67, 31.05, 31.15, 31.42, 32.21, 32.39, 32.71, 33.1, 33.46, 33.7, 34.53, 35.45, 35.58, 35.95, 36.1, 36.18, 36.6, 37.1, 37.27, 37.61, 38.1, 38.3, 38.55, 38.86, 38.94, 39.28, 39.74, 40.16, 40.78, 40.92, 41.59, 41.93, 42.33, 42.58, 43.0, 43.4, 44.35, 44.64, 45.15, 45.35, 45.54, 45.67, 45.77, 46.14, 46.75, 47.28, 47.4, 47.48, 47.83, 49.04, 49.16, 49.44, 50.12, 50.27, 50.56, 50.96, 51.31, 51.98, 52.22, 52.68, 53.48, 53.67, 53.87, 53.92, 54.23, 54.53, 54.77, 54.82, 55.76, 56.02, 56.5, 56.62, 57.09, 58.63, 58.75, 59.66, 59.89, 59.95, 60.37, 61.66, 62.14, 62.39, 63.04, 63.3, 63.78, 64.17, 64.53, 64.71, 64.81, 65.41, 66.1, 66.52, 66.68, 67.07, 67.75, 68.16, 68.47, 68.6, 69.23, 69.98, 70.56, 71.5, 71.92, 72.22, 72.64, 72.92, 73.47, 73.79, 74.04, 74.82, 75.09, 75.52, 75.94, 76.29, 76.71, 77.06, 77.44, 77.79, 78.2, 78.54, 78.91, 79.16, 79.38, 79.79, 80.31, 80.45, 80.95, 81.12, 81.84, 82.08, 82.26, 82.48, 82.86, 83.18, 83.47, 84.17, 84.46, 84.55, 84.89, 85.64, 85.77, 86.11, 86.36, 86.41, 86.88, 87.25, 87.86, 88.2, 88.52, 89.46, 89.57, 89.94, 90.09, 90.44, 90.78, 90.81, 91.57, 91.65, 92.17, 92.63, 92.95, 93.35, 94.37, 94.46, 94.81, 95.04, 95.35, 95.66, 95.8, 96.32, 96.56, 97.03, 97.31, 97.64, 97.7, 97.99, 98.39, 98.66, 98.88, 99.13, 100.16, 100.3, 100.65, 100.87, 101.14, 101.5, 101.92, 102.27, 103.1, 103.29, 103.64, 104.04, 104.2, 104.48, 104.65, 105.07, 105.44, 106.07, 106.21, 106.34, 106.83, 106.86, 107.28, 108.03, 108.21, 108.63, 108.79, 109.16, 109.5, 109.87, 110.23, 111.71, 112.16, 112.3, 113.34, 113.52, 113.72, 114.81, 115.01, 115.38, 115.98, 116.49, 116.56, 117.51, 117.86, 118.26, 118.55, 118.69, 118.9, 118.98, 119.3, 119.53, 120.88, 121.63, 121.75, 122.13, 122.5, 122.83, 123.16, 123.33, 123.69, 124.16, 124.3, 125.31, 125.78, 126.11, 126.29, 126.66, 127.09, 127.41, 127.77, 128.12, 128.82, 129.52, 129.95, 130.88, 131.31, 131.39, 131.72, 131.93, 132.97, 133.19, 133.41, 133.5, 133.91, 134.02, 134.39, 135.12, 135.23, 135.52, 136.06, 136.15, 136.5, 136.7, 136.94, 137.4, 137.79, 138.08, 138.13, 138.68, 138.93, 139.74, 139.87, 140.28, 140.99, 141.07, 141.3, 141.81, 142.06, 142.23, 142.87, 143.92, 144.24, 144.59, 144.9, 145.75, 146.21, 146.91, 147.09, 147.92, 148.18, 148.5, 149.44, 149.52, 149.97, 150.22, 150.43, 150.97, 151.32, 153.41, 153.94, 154.18, 154.33, 154.65, 154.86, 154.96, 155.54, 155.85, 156.16, 156.28, 157.28, 157.48, 157.89, 158.28, 158.8, 158.99, 159.66, 160.31, 160.47, 160.82, 162.2, 162.3, 162.65, 162.92, 163.13, 163.18, 163.6, 164.06, 164.58, 164.77, 165.18, 166.28, 166.41, 166.71, 167.07, 167.85, 168.23, 168.47, 168.71, 168.94, 169.19, 169.39, 170.63, 171.88, 172.02, 172.26, 172.58, 173.14, 173.45, 174.4, 174.54, 175.05, 175.22, 175.65, 175.73, 176.04, 177.21, 177.62, 178.05, 178.96, 179.01, 179.28, 179.88, 180.0, 180.44, 180.89, 181.49, 182.04, 182.78, 182.93, 183.04, 183.65, 183.82, 184.37, 184.58, 184.84, 185.1, 186.18, 186.32, 186.39, 186.93, 187.82, 188.06, 188.1, 188.68, 189.23, 189.51, 189.91, 190.44, 190.72, 190.83, 191.28, 191.39, 191.49, 192.28, 192.52, 192.71, 193.14, 193.25, 194.55, 194.65, 195.19, 195.54, 195.57, 196.29, 196.49, 197.07, 197.33, 198.06, 198.44, 198.72, 199.09, 199.37, 199.43, 199.85, 200.75, 200.93, 200.98, 201.31, 201.93, 202.09, 202.43, 202.65, 203.12, 203.46, 203.57, 203.66, 204.02, 204.64, 204.86, 205.0, 205.28, 205.4, 205.48, 206.63, 206.83, 207.59, 207.72, 208.42, 208.92, 209.33, 210.33, 210.77, 211.1, 211.33, 211.8, 212.4, 212.76, 212.86, 213.27, 214.2, 214.34, 214.57, 214.66, 214.75, 215.2, 215.9, 216.09, 216.19, 216.58, 216.8, 217.03, 217.36, 217.63, 218.01, 218.84, 219.14, 219.73, 219.93, 220.54, 221.11, 221.48, 221.85, 222.11, 222.23, 222.74, 222.89, 223.23, 223.44, 223.65, 224.22, 225.27, 226.01, 226.14, 226.33, 226.46, 226.76, 226.88, 227.04, 227.16, 227.46, 227.59, 227.92, 228.27, 228.97, 229.13, 229.42, 230.6, 231.0, 231.61, 231.83, 232.13, 232.52, 233.21, 233.66, 234.39, 234.82, 234.98, 235.14, 235.46, 236.28, 236.43, 237.71, 238.22, 238.41, 238.65, 239.74, 239.95, 240.72, 240.92, 241.08, 241.43, 241.6, 241.7, 242.75, 242.84, 243.1, 243.47, 243.87, 244.04, 244.38, 244.65, 245.33, 245.5, 245.73, 246.28, 246.39, 246.8, 246.99, 248.19, 249.06, 249.17, 249.64, 249.75, 250.27, 250.95, 251.68, 251.83, 251.92, 252.38, 252.83, 253.1, 254.26, 254.64, 254.75, 255.21, 255.58, 255.82, 256.41, 257.01, 257.07, 257.35, 257.47, 258.05, 258.29, 258.7, 258.87, 259.06, 259.28, 259.79, 261.11, 261.22, 261.44, 261.55, 261.97, 262.24, 262.69, 263.24, 263.64, 263.7, 264.1, 264.42, 264.77, 265.08, 265.13, 265.63, 265.89, 266.24, 266.53, 266.68, 268.11, 268.47, 269.08, 269.19, 269.57, 269.64, 270.09, 270.27, 270.33, 270.58, 271.45, 271.66, 272.31, 273.14, 274.16, 275.34, 275.43, 275.79, 275.84, 276.35, 276.51, 276.97, 277.16, 277.46, 277.69, 277.87, 278.19, 278.38, 278.52, 278.8, 280.19, 280.42, 281.16, 281.35, 281.67, 282.59, 282.81, 282.92, 284.14, 284.19, 285.23, 285.66, 285.95, 287.15, 288.35, 288.9, 289.07, 289.25, 289.66, 289.79, 290.05, 290.2, 290.59, 291.46, 292.34, 292.69, 293.01, 293.1, 293.55, 293.82, 293.87, 294.72, 295.28, 296.22, 296.41, 296.79, 296.97, 297.01, 297.27, 297.71, 298.25, 298.63, 299.01, 299.54, 299.97, 300.17, 300.22, 300.86, 301.25, 301.38, 301.5, 302.64, 302.86, 303.44, 303.73, 304.01, 304.59, 305.54, 306.1, 306.43, 306.47, 307.05, 307.91, 308.44, 308.94, 309.24, 309.44, 310.39, 310.57, 310.65, 311.35, 311.77, 312.0, 312.48, 312.95, 313.31, 313.56, 313.96, 314.06, 314.67, 314.86, 315.03, 315.39, 315.47, 316.01, 316.68, 316.82, 317.29, 317.48, 318.38, 318.56, 318.83, 319.33, 319.46, 319.92, 320.45, 320.71, 321.72, 321.97, 322.69, 322.98, 323.31, 323.53, 323.64, 324.81, 324.87, 325.38, 325.81, 326.71, 326.91, 327.26, 327.48, 327.6, 327.93, 328.07, 328.78, 328.96, 329.1, 329.32, 329.47, 329.65, 329.97, 330.73, 331.28, 331.52, 331.6, 332.2, 333.24, 333.61, 333.76, 334.01, 334.31, 334.45, 334.79, 334.88, 335.52, 335.66, 336.05, 336.14, 336.68, 337.65, 337.8, 337.9, 338.46, 339.03, 339.2, 340.01, 340.1, 340.67, 340.95, 341.11, 341.36, 341.63, 341.75, 342.29, 342.58, 342.67, 343.14, 343.58, 344.57, 344.7, 344.91, 345.6, 345.71, 346.07, 346.38, 346.8, 346.89, 347.88, 348.07, 348.81, 349.28, 349.96, 350.31, 351.12, 351.49, 352.05, 352.32, 352.68, 352.92, 353.61, 353.77, 353.86, 354.34, 354.89, 355.75, 355.81, 355.98, 356.28, 356.49, 356.61, 356.77, 356.8, 359.31, 359.76, 360.44, 360.65, 361.41, 361.65, 361.94, 362.23, 362.44, 363.52, 363.66, 363.99, 364.15, 364.3, 364.62, 365.41, 366.15, 366.34, 366.52, 367.0, 367.43, 367.66, 368.04, 368.49, 368.61, 368.79, 369.1, 369.52, 369.7, 370.54, 371.09, 371.84, 372.04, 372.31, 373.18, 373.41, 373.54, 374.15, 374.75, 375.59, 375.73, 375.83, 376.49, 377.01, 377.22, 377.31, 378.35, 378.48, 379.38, 379.5, 380.46, 380.56, 381.38, 381.5, 381.98, 382.49, 382.99, 383.27, 383.56, 384.38, 384.72, 385.01, 385.3, 385.94, 386.15, 386.69, 386.9, 387.37, 387.46, 387.84, 388.18, 388.3];
+</script>
+<script>
+// Read-along: a cursor that travels through the text in step with the narration.
+//
+// The word times come from a forced alignment of the recording against this document's
+// own text, so index N in WT is the Nth word of the prose, counted the same way here.
+// The wrapping is done at runtime rather than at build time on purpose: the prose is
+// already full of <mark> elements carrying click handlers, and rewriting their innerHTML
+// server-side would mean re-deriving those. Walking text nodes leaves every existing
+// element, listener and attribute untouched.
+(function () {
+  // A score is not a narration: skip it and follow the voice, wherever that lives.
+  var audio = document.querySelector('section.audio:not(.music) audio')
+           || document.querySelector('figure.railvid video');
+  if (!audio || typeof WT === 'undefined' || !WT.length) return;
+  var isVideo = audio.tagName === 'VIDEO';
+
+  var wrap = document.querySelector('.wrap');
+  var blocks = [];
+  wrap.querySelectorAll('h1, p.sub, .wrap > h2, .wrap > p, .wrap > blockquote, .wrap > ul li').forEach(function (el) {
+    if (el.closest('.legend') || el.closest('section.audio') || el.closest('.chart-print')) return;
+    if (el.classList.contains('note') || el.classList.contains('audio-fallback')) return;
+    blocks.push(el);
+  });
+
+  // Wrap every word in a span, numbering them in document order. Anything past the end of
+  // WT (the trailing note about the scans, which is not read aloud) simply gets no time.
+  var TOKEN = /[A-Za-z'’]+/g;
+  var spans = [], n = 0;
+  blocks.forEach(function (block) {
+    var walker = document.createTreeWalker(block, NodeFilter.SHOW_TEXT, null);
+    var nodes = [], node;
+    while ((node = walker.nextNode())) nodes.push(node);
+    nodes.forEach(function (tn) {
+      var text = tn.nodeValue;
+      if (!TOKEN.test(text)) return;
+      TOKEN.lastIndex = 0;
+      var frag = document.createDocumentFragment(), last = 0, m;
+      while ((m = TOKEN.exec(text))) {
+        if (m.index > last) frag.appendChild(document.createTextNode(text.slice(last, m.index)));
+        var s = document.createElement('span');
+        s.className = 'w';
+        s.textContent = m[0];
+        if (n < WT.length) { s.dataset.t = WT[n]; spans.push(s); }
+        n++;
+        frag.appendChild(s);
+        last = m.index + m[0].length;
+      }
+      if (last < text.length) frag.appendChild(document.createTextNode(text.slice(last)));
+      tn.parentNode.replaceChild(frag, tn);
+    });
+  });
+  if (!spans.length) return;
+
+  // ---- the moving cursor -------------------------------------------------------------
+  var cur = -1, curBlock = null, follow = true, userScrolled = 0;
+
+  function blockOf(el) {
+    var p = el;
+    while (p && blocks.indexOf(p) === -1) p = p.parentElement;
+    return p;
+  }
+
+  function at(t) {                       // last word whose time is <= t
+    var lo = 0, hi = spans.length - 1, best = -1;
+    while (lo <= hi) {
+      var mid = (lo + hi) >> 1;
+      if (+spans[mid].dataset.t <= t) { best = mid; lo = mid + 1; } else hi = mid - 1;
+    }
+    return best;
+  }
+
+  function show(i) {
+    if (i === cur) return;
+    if (cur >= 0 && spans[cur]) spans[cur].classList.remove('w-on');
+    cur = i;
+    if (i < 0 || !spans[i]) return;
+    spans[i].classList.add('w-on');
+    var b = blockOf(spans[i]);
+    if (b !== curBlock) {
+      if (curBlock) curBlock.classList.remove('p-on');
+      curBlock = b;
+      if (b) b.classList.add('p-on');
+    }
+    if (follow && Date.now() - userScrolled > 2500) keepInView(spans[i]);
+  }
+
+  function keepInView(el) {
+    var r = el.getBoundingClientRect();
+    var top = window.innerHeight * 0.30, bot = window.innerHeight * 0.75;
+    if (r.top < top || r.bottom > bot) {
+      window.scrollTo({ top: window.scrollY + r.top - window.innerHeight * 0.42,
+                        behavior: 'smooth' });
+    }
+  }
+
+  audio.addEventListener('timeupdate', function () { show(at(audio.currentTime)); });
+  audio.addEventListener('seeked', function () { show(at(audio.currentTime)); });
+
+  // A manual scroll suspends auto-follow briefly, so the reader can look away from the
+  // narration without the page dragging them back mid-sentence.
+  window.addEventListener('scroll', function () {
+    if (!audio.paused) userScrolled = Date.now();
+  }, { passive: true });
+
+  // Click a word to hear it. Words inside a highlight keep their existing job — opening
+  // the source scan — so seeking there would fight the citation, and is left alone.
+  wrap.addEventListener('click', function (e) {
+    var s = e.target.closest ? e.target.closest('.w[data-t]') : null;
+    if (!s || s.closest('mark')) return;
+    audio.currentTime = +s.dataset.t;
+    if (audio.paused) audio.play();
+  });
+
+  // ---- the follow toggle, under the player -------------------------------------------
+  var bar = document.createElement('div');
+  bar.className = 'ra-bar';
+  var id = 'ra-follow';
+  bar.innerHTML = '<label for="' + id + '"><input type="checkbox" id="' + id +
+    '" checked> Follow the reading</label>' +
+    '<span class="ra-hint">Click any word outside a highlight to jump the audio there.</span>';
+  (isVideo ? audio.closest('figure.railvid') : audio.parentNode).appendChild(bar);
+  bar.querySelector('input').addEventListener('change', function () {
+    follow = this.checked;
+    if (follow && cur >= 0) keepInView(spans[cur]);
+  });
+})();
+</script>
+</body>
+</html>
