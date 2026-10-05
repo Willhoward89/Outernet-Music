@@ -54,11 +54,39 @@
   figure.view:hover img { border-color: #9c9c9c; }
   figure.view figcaption { margin-top: 5px; font-size: 11px; line-height: 1.42; color: #8a8a8a; }
   figure.view figcaption b { display: block; font-weight: 600; color: #444; }
+  figure.railvid { margin: 0 0 16px; }
+  figure.railvid video { display: block; width: 100%; border: 1px solid #e0e0e0; border-radius: 4px;
+                         background: #111; }
+  figure.railvid figcaption { margin-top: 5px; font-size: 11px; line-height: 1.42; color: #8a8a8a; }
+  figure.railvid figcaption b { display: block; font-weight: 600; color: #444; }
+  /* read-along: the spoken word is underlined rather than boxed, so it reads as a cursor
+     travelling through the text instead of a second kind of highlight competing with the
+     source colours. The sentence around it gets a faint wash to keep the eye in place. */
+  .w { transition: color .12s ease; }
+  .w-on { color: #111; box-shadow: inset 0 -2px 0 0 #c2452d; border-radius: 1px; }
+  .p-on { background: rgba(194, 69, 45, .045); border-radius: 3px;
+          box-shadow: 0 0 0 5px rgba(194, 69, 45, .045); }
+  mark .w-on { box-shadow: inset 0 -2px 0 0 rgba(0,0,0,.62); }
+  .w[data-t] { cursor: pointer; }
+  figure.railvid .ra-bar { display: block; margin: 6px 0 0; }
+  figure.railvid .ra-hint { display: block; margin-top: 3px; }
+  .ra-bar { display: flex; align-items: center; gap: 12px; margin: 8px 0 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 11.5px; }
+  .ra-bar label { display: inline-flex; align-items: center; gap: 5px; color: #7a7a7a; cursor: pointer; }
+  .ra-hint { color: #aaa; }
+  .wrap h1 + .sub { margin-bottom: 18px; }
+  .epigraph { font-style: italic; font-size: 20.5px; line-height: 1.45; color: #4a4336;
+              max-width: 30em; margin: 30px 0 30px; text-wrap: balance;
+              border-left: 2px solid #c9bfa4; padding-left: 16px; }
+  @media (max-width: 720px) { .epigraph { font-size: 18px; padding-left: 12px; } }
   .rail-foot { font-size: 10.5px; color: #aaa; margin: 2px 0 0; }
   .rail::-webkit-scrollbar { width: 7px; }
   .rail::-webkit-scrollbar-thumb { background: #dcdcdc; border-radius: 4px; }
   @media (max-width: 1080px) {
     .layout { flex-direction: column; gap: 18px; }
+    /* stacked, these are width:100% and still carry side padding, so on a phone they ran
+       13px past the viewport and the whole page scrolled sideways */
+    .chartcol, .wrap, .rail { box-sizing: border-box; max-width: 100%; }
     .rail { position: static; width: 100%; flex: none; max-height: none; display: grid;
             grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 14px; }
     .rail-title, .rail-foot { grid-column: 1 / -1; }
@@ -204,7 +232,17 @@
   .sp-btn:hover { background:#f0f0f0; }
   .sp-body { flex:1; overflow:auto; padding:12px; background:#efece0; }
   .sp-body img { display:block; width:100%; border:1px solid #ddd; background:#fff; cursor: zoom-in; }
-  .sp-body.zoom img { width:200%; max-width:none; cursor: zoom-out; }
+  .sp-body.zoom img { cursor: zoom-out; }
+  /* the quoted passage, marked on the page it came from. Drawn as an overlay rather than
+     burnt into the image, so one scan still serves every quote that cites it. Zoom scales
+     the wrapper, not the image, so the overlay keeps step with the page beneath it. */
+  .sp-img { position: relative; display: block; width: 100%; }
+  .sp-body.zoom .sp-img { width: 200%; }
+  .sp-ov { position: absolute; inset: 0; pointer-events: none; }
+  .sp-ov i { position: absolute; display: block; background: rgba(255, 214, 0, .30);
+             box-shadow: 0 0 0 1px rgba(184, 134, 0, .55) inset; border-radius: 2px;
+             animation: sp-in .35s ease both; }
+  @keyframes sp-in { from { opacity: 0 } to { opacity: 1 } }
   @media (max-width: 820px) { .scanpanel { width:100%; } }
   @media (max-width: 700px) { body { padding: 16px 10px 40px; } .wrap { padding: 24px 18px 32px; } }
   @page { size: Letter; margin: 0.75in 0.7in; }
@@ -232,6 +270,9 @@
     figure.scan { break-inside: avoid; }
     a.srclink, a.pglink, .backlinks a { color: inherit; }
     .scanpanel, .sp-backdrop { display:none !important; }
+    .w-on, .p-on { box-shadow: none; background: none; }
+    .ra-bar { display: none; }
+    figure.railvid { display: none; }
     section.audio audio { display: none; }
     .audio-fallback { display: block; }
     section.audio { break-inside: avoid; }
@@ -281,7 +322,7 @@
 <div class="ce"><a class="ce-n" href="#hl-28">28</a><span class="sw s12"></span><div class="ce-b"><div class="ce-q">&ldquo;Aaron Arnold opened his first store in Lower Manhattan in 1825; the company name changed to…&rdquo;</div><div class="ce-s">Hennessey, <em>Fifth Avenue</em>, 2022, p. 43 <a class="pglink" href="#src-hennessey-fifth-avenue-2022-p-43" data-scan="hennessey-fifth-avenue-2022-p-43">scan</a></div></div></div>
 <div class="ce"><a class="ce-n" href="#hl-29">29</a><span class="sw s13"></span><div class="ce-b"><div class="ce-q">&ldquo;Lovers of marble walls, cast-iron facades, and mansard roofs, rejoice! There is something…&rdquo;</div><div class="ce-s">AIA, <em>AIA Edition 3</em>, 1988, p. 187 <a class="pglink" href="#src-aia-aia-edition-3-1988-p-187" data-scan="aia-aia-edition-3-1988-p-187">scan</a></div></div></div>
 <div class="ce"><a class="ce-n" href="#hl-30">30</a><span class="sw s9"></span><div class="ce-b"><div class="ce-q">&ldquo;The business started in 1825, and by 1857 Arnold Constable was ensconced on Canal Street in…&rdquo;</div><div class="ce-s">Tauranac, <em>Essential New York</em>, 1979, p. 42 <a class="pglink" href="#src-tauranac-essential-new-york-1979-p-42" data-scan="tauranac-essential-new-york-1979-p-42">scan</a></div></div></div>
-<div class="ce"><a class="ce-n" href="#hl-31">31</a><span class="sw s14"></span><div class="ce-b"><div class="ce-q">&ldquo;Constable probably felt limestone and brick to be more imposing architecturally than the…&rdquo;</div><div class="ce-s">White &amp; Willensky, <em>AIA Edition 1</em>, 1968, p. 94</div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-31">31</a><span class="sw s14"></span><div class="ce-b"><div class="ce-q">&ldquo;Constable probably felt limestone and brick to be more imposing architecturally than the…&rdquo;</div><div class="ce-s">White &amp; Willensky, <em>AIA Edition 1</em>, 1968, p. 94 <a class="pglink" href="#src-white-willensky-aia-edition-1-1968-p-94" data-scan="white-willensky-aia-edition-1-1968-p-94">scan</a></div></div></div>
 <div class="cc-sec">IX. THE HEROIC DIADEM OF THE MANSARD</div>
 <div class="ce"><a class="ce-n" href="#hl-32">32</a><span class="sw s9"></span><div class="ce-b"><div class="ce-q">&ldquo;a roof that surely could have been the inspiration for the best of cartoonist Charles…&rdquo;</div><div class="ce-s">Tauranac, <em>Essential New York</em>, 1979, p. 42 <a class="pglink" href="#src-tauranac-essential-new-york-1979-p-42" data-scan="tauranac-essential-new-york-1979-p-42">scan</a></div></div></div>
 <div class="ce"><a class="ce-n" href="#hl-33">33</a><span class="sw s9"></span><div class="ce-b"><div class="ce-q">&ldquo;Especially famous for its mourning clothes, it did a huge business in dry goods, carpets,…&rdquo;</div><div class="ce-s">Tauranac, <em>Essential New York</em>, 1979, p. 42 <a class="pglink" href="#src-tauranac-essential-new-york-1979-p-42" data-scan="tauranac-essential-new-york-1979-p-42">scan</a></div></div></div>
@@ -347,6 +388,7 @@
 
 <h1>881–887 Broadway</h1>
 <p class="sub">The Palimpsest of a Metropolitan Corner — 881–887 Broadway / 113–115 Fifth Avenue / 9–13 East 18th Street</p>
+
 <p class="note">Every previously italicized phrase is highlighted and colour-coded by source. Where the source page is on file, clicking the highlight opens the scan.</p>
 
 <div class="legend"><div class="legend-title">Colour key — one colour per source <span class="lk">· sources with a page scan are marked ⌕</span></div><ul>
@@ -363,7 +405,7 @@
 <li><span class="sw s11"></span><span class="lg">Boyer, <em>Manhattan Manners</em>, 1985 <span class="pg">p.&nbsp;96</span> <span class="ct">(4)</span> <span class="has">⌕</span></span></li>
 <li><span class="sw s12"></span><span class="lg">Hennessey, <em>Fifth Avenue</em>, 2022 <span class="pg">p.&nbsp;43</span> <span class="ct">(6)</span> <span class="has">⌕</span></span></li>
 <li><span class="sw s13"></span><span class="lg">AIA, <em>AIA Edition 3</em>, 1988 <span class="pg">p.&nbsp;187</span> <span class="ct">(2)</span> <span class="has">⌕</span></span></li>
-<li><span class="sw s14"></span><span class="lg">White &amp; Willensky, <em>AIA Edition 1</em>, 1968 <span class="pg">p.&nbsp;94</span> <span class="ct">(1)</span></span></li>
+<li><span class="sw s14"></span><span class="lg">White &amp; Willensky, <em>AIA Edition 1</em>, 1968 <span class="pg">p.&nbsp;94</span> <span class="ct">(1)</span> <span class="has">⌕</span></span></li>
 <li><span class="sw s15"></span><span class="lg">Gayle &amp; Gillon, <em>Cast Iron Architecture</em>, 1974 <span class="pg">p.&nbsp;164</span> <span class="ct">(3)</span> <span class="has">⌕</span></span></li>
 <li><span class="sw s16"></span><span class="lg">Brown, <em>Valentine&#x27;s Manual 1921</em>, 1921 <span class="pg">p.&nbsp;99</span> <span class="ct">(3)</span> <span class="has">⌕</span></span></li>
 <li><span class="sw s17"></span><span class="lg">Finney, <em>Time and Again</em>, 1970 <span class="pg">p.&nbsp;179</span> <span class="ct">(7)</span> <span class="has">⌕</span></span></li>
@@ -383,7 +425,7 @@
 <li><span class="sw s31"></span><span class="lg">Murphy, <em>Murph Guide Closed Bars</em>, 2023 <span class="pg">p.&nbsp;15</span> <span class="ct">(1)</span></span></li>
 </ul></div>
 
-<section class="audio"><div class="audio-label">Audio &mdash; 881-887 Broadway | Brick Cake <span class="audio-meta">34 min 58 s</span></div><audio controls preload="none" src="assets/media/881-887-broadway.mp3"></audio><p class="audio-fallback">Audio track &mdash; playable in the HTML version of this document.</p></section>
+<section class="audio"><div class="audio-label">Audio &mdash; 881-887 Broadway | Brick Cake <span class="audio-meta">34 min 58 s</span></div><audio controls preload="none" src="assets/media/audio-881.mp3"></audio><p class="audio-fallback">Audio track &mdash; playable in the HTML version of this document.</p></section>
 
 <h2>THE PALIMPSEST OF A METROPOLITAN CORNER</h2>
 
@@ -423,7 +465,7 @@
 
 <p>The lineage of the firm extends into an even remoter antiquity, as the modern connoisseur relates: <a class="srclink" href="#src-hennessey-fifth-avenue-2022-p-43" data-scan="hennessey-fifth-avenue-2022-p-43" title="See the source page — Hennessey, Fifth Avenue, 2022, p. 43"><mark id="hl-28" class="s12" title="Hennessey, Fifth Avenue, 2022, p. 43">(Aaron Arnold opened his first store in Lower Manhattan in 1825; the company name changed to Arnold Constable &amp; Company following the marriage of his daughter to James Mansell Constable, an employee who became a partner in 1842. In 1868 with the emergence of Union Square as retail center, the firm hired Griffith Thomas to build a new store at 881-887 Broadway. Business was brisk, and in 1876 the store was extended west along 19th Street to Fifth Avenue. This facade echoes that of the main front on Broadway except that it is executed in cast iron.)</mark></a></p>
 
-<p>The very materiality of the structure narrates its stratified chronology. As the architectural cognoscenti exhort with unrestrained enthusiasm: <a class="srclink" href="#src-aia-aia-edition-3-1988-p-187" data-scan="aia-aia-edition-3-1988-p-187" title="See the source page — AIA, AIA Edition 3, 1988, p. 187"><mark id="hl-29" class="s13" title="AIA, AIA Edition 3, 1988, p. 187">(Lovers of marble walls, cast-iron facades, and mansard roofs, rejoice! There is something here for each of you. The Broadway facade, the oldest, is of marble. The extension to Fifth Avenue, the youngest, is of cast iron, an economical simulation of its adjacent parent. In between, the 2-story miraculous mansard crown rises over the original body and the Fifth Avenue extension. It now houses publishers&#x27; offices and menswear outlets.)</mark></a> The commercial enterprise that animated these floors possessed a venerable pedigree, for <a class="srclink" href="#src-tauranac-essential-new-york-1979-p-42" data-scan="tauranac-essential-new-york-1979-p-42" title="See the source page — Tauranac, Essential New York, 1979, p. 42"><mark id="hl-30" class="s9" title="Tauranac, Essential New York, 1979, p. 42">(The business started in 1825, and by 1857 Arnold Constable was ensconced on Canal Street in a five-story building with a marble front, designed by Griffith Thomas.)</mark></a> The family&#x27;s predilection in building materials was one of deliberate aesthetic conviction, since <mark id="hl-31" class="s14" title="White &amp; Willensky, AIA Edition 1, 1968, p. 94">(Constable probably felt limestone and brick to be more imposing architecturally than the then currently popular cast iron. Note the steep two-storied mansarded roof.)</mark></p>
+<p>The very materiality of the structure narrates its stratified chronology. As the architectural cognoscenti exhort with unrestrained enthusiasm: <a class="srclink" href="#src-aia-aia-edition-3-1988-p-187" data-scan="aia-aia-edition-3-1988-p-187" title="See the source page — AIA, AIA Edition 3, 1988, p. 187"><mark id="hl-29" class="s13" title="AIA, AIA Edition 3, 1988, p. 187">(Lovers of marble walls, cast-iron facades, and mansard roofs, rejoice! There is something here for each of you. The Broadway facade, the oldest, is of marble. The extension to Fifth Avenue, the youngest, is of cast iron, an economical simulation of its adjacent parent. In between, the 2-story miraculous mansard crown rises over the original body and the Fifth Avenue extension. It now houses publishers&#x27; offices and menswear outlets.)</mark></a> The commercial enterprise that animated these floors possessed a venerable pedigree, for <a class="srclink" href="#src-tauranac-essential-new-york-1979-p-42" data-scan="tauranac-essential-new-york-1979-p-42" title="See the source page — Tauranac, Essential New York, 1979, p. 42"><mark id="hl-30" class="s9" title="Tauranac, Essential New York, 1979, p. 42">(The business started in 1825, and by 1857 Arnold Constable was ensconced on Canal Street in a five-story building with a marble front, designed by Griffith Thomas.)</mark></a> The family&#x27;s predilection in building materials was one of deliberate aesthetic conviction, since <a class="srclink" href="#src-white-willensky-aia-edition-1-1968-p-94" data-scan="white-willensky-aia-edition-1-1968-p-94" title="See the source page — White &amp; Willensky, AIA Edition 1, 1968, p. 94"><mark id="hl-31" class="s14" title="White &amp; Willensky, AIA Edition 1, 1968, p. 94">(Constable probably felt limestone and brick to be more imposing architecturally than the then currently popular cast iron. Note the steep two-storied mansarded roof.)</mark></a></p>
 
 <h2>IX. THE HEROIC DIADEM OF THE MANSARD</h2>
 
@@ -523,7 +565,7 @@
 <tr><td class="num">28</td><td class="quote">&ldquo;Aaron Arnold opened his first store in Lower Manhattan in 1825; the company name changed to Arnold Constable &amp; Company following the marriage of his daughter to James…&rdquo;</td><td class="src"><span class="sw s12"></span>Hennessey, <em>Fifth Avenue</em>, 2022, p. 43&nbsp;<a class="pglink" href="#src-hennessey-fifth-avenue-2022-p-43" data-scan="hennessey-fifth-avenue-2022-p-43">[page scan]</a></td></tr>
 <tr><td class="num">29</td><td class="quote">&ldquo;Lovers of marble walls, cast-iron facades, and mansard roofs, rejoice! There is something here for each of you. The Broadway facade, the oldest, is of marble. The…&rdquo;</td><td class="src"><span class="sw s13"></span>AIA, <em>AIA Edition 3</em>, 1988, p. 187&nbsp;<a class="pglink" href="#src-aia-aia-edition-3-1988-p-187" data-scan="aia-aia-edition-3-1988-p-187">[page scan]</a></td></tr>
 <tr><td class="num">30</td><td class="quote">&ldquo;The business started in 1825, and by 1857 Arnold Constable was ensconced on Canal Street in a five-story building with a marble front, designed by Griffith Thomas.&rdquo;</td><td class="src"><span class="sw s9"></span>Tauranac, <em>Essential New York</em>, 1979, p. 42&nbsp;<a class="pglink" href="#src-tauranac-essential-new-york-1979-p-42" data-scan="tauranac-essential-new-york-1979-p-42">[page scan]</a></td></tr>
-<tr><td class="num">31</td><td class="quote">&ldquo;Constable probably felt limestone and brick to be more imposing architecturally than the then currently popular cast iron. Note the steep two-storied mansarded roof.&rdquo;</td><td class="src"><span class="sw s14"></span>White &amp; Willensky, <em>AIA Edition 1</em>, 1968, p. 94</td></tr>
+<tr><td class="num">31</td><td class="quote">&ldquo;Constable probably felt limestone and brick to be more imposing architecturally than the then currently popular cast iron. Note the steep two-storied mansarded roof.&rdquo;</td><td class="src"><span class="sw s14"></span>White &amp; Willensky, <em>AIA Edition 1</em>, 1968, p. 94&nbsp;<a class="pglink" href="#src-white-willensky-aia-edition-1-1968-p-94" data-scan="white-willensky-aia-edition-1-1968-p-94">[page scan]</a></td></tr>
 </tbody></table>
 <h3 class="csec">IX. THE HEROIC DIADEM OF THE MANSARD</h3>
 <table><thead><tr><th class="num">#</th><th>Verbatim Quote (abbreviated)</th><th>Source (Author, Title, Year, Page)</th></tr></thead><tbody>
@@ -605,7 +647,7 @@
 </tbody></table></div></section>
 
 <h2 class="srcpage" id="sources">Source Pages</h2>
-<p class="note2">33 scanned pages, one per cited source page. Each lists the highlighted quotes drawn from it.</p>
+<p class="note2">34 scanned pages, one per cited source page. Each lists the highlighted quotes drawn from it.</p>
 <section class="srcsec"><h3 class="scanhead"><span id="src-haswell-reminiscences-of-new-york-by-an-octogenarian-1923-p-110"></span>Haswell, <em>Reminiscences of New York by an Octogenarian</em>, 1923, p. 110</h3>
 <p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-1">1</a> <a href="#hl-2">2</a></span></p>
 <figure class="scan"><img id="scan-haswell-reminiscences-of-new-york-by-an-octogenarian-1923-p-110" src="assets/scans/haswell-reminiscences-of-new-york-by-an-octogenarian-1923-p-110.jpg" alt="Haswell, Reminiscences of New York by an Octogenarian, 1923, p. 110"></figure></section>
@@ -651,6 +693,9 @@
 <section class="srcsec"><h3 class="scanhead"><span id="src-aia-aia-edition-3-1988-p-187"></span>AIA, <em>AIA Edition 3</em>, 1988, p. 187</h3>
 <p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-29">29</a> <a href="#hl-76">76</a></span></p>
 <figure class="scan"><img id="scan-aia-aia-edition-3-1988-p-187" src="assets/scans/aia-aia-edition-3-1988-p-187.jpg" alt="AIA, AIA Edition 3, 1988, p. 187"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-white-willensky-aia-edition-1-1968-p-94"></span>White &amp; Willensky, <em>AIA Edition 1</em>, 1968, p. 94</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-31">31</a></span></p>
+<figure class="scan"><img id="scan-white-willensky-aia-edition-1-1968-p-94" src="assets/scans/white-willensky-aia-edition-1-1968-p-94.jpg" alt="White &amp; Willensky, AIA Edition 1, 1968, p. 94"></figure></section>
 <section class="srcsec"><h3 class="scanhead"><span id="src-gayle-gillon-cast-iron-architecture-1974-p-164"></span>Gayle &amp; Gillon, <em>Cast Iron Architecture</em>, 1974, p. 164</h3>
 <p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-35">35</a> <a href="#hl-36">36</a> <a href="#hl-37">37</a></span></p>
 <figure class="scan"><img id="scan-gayle-gillon-cast-iron-architecture-1974-p-164" src="assets/scans/gayle-gillon-cast-iron-architecture-1974-p-164.jpg" alt="Gayle &amp; Gillon, Cast Iron Architecture, 1974, p. 164"></figure></section>
@@ -718,6 +763,7 @@
 </div>
 <div class="lightbox" hidden><div class="lb-head"><span class="lb-t"></span><button class="lb-btn lb-zoom" type="button">Zoom</button><button class="lb-btn lb-close" type="button">Close &times;</button></div><div class="lb-body"><img alt="Enlarged view"></div></div>
 
+
 <div class="sp-backdrop" hidden></div>
 <aside class="scanpanel" hidden aria-label="Source page">
   <div class="sp-head">
@@ -725,7 +771,7 @@
     <button class="sp-btn sp-zoom" type="button">Zoom</button>
     <button class="sp-btn sp-close" type="button" aria-label="Close">&times;</button>
   </div>
-  <div class="sp-body"><img alt="Source page scan"></div>
+  <div class="sp-body"><div class="sp-img"><img alt="Source page scan"><div class="sp-ov"></div></div></div>
 </aside>
 <script>
 (function () {
@@ -735,11 +781,27 @@
       img   = panel.querySelector('.sp-body img'),
       citeEl= panel.querySelector('.sp-cite'),
       qEl   = panel.querySelector('.sp-q');
+  var ov = panel.querySelector('.sp-ov'), shown = null;
+  function paint() {
+    ov.innerHTML = '';
+    if (!shown || !img.naturalWidth) return;
+    var k = img.clientWidth / img.naturalWidth;
+    shown.forEach(function (b) {
+      var e = document.createElement('i');
+      e.style.left = (b[0] * k - 3) + 'px';  e.style.top = (b[1] * k - 2) + 'px';
+      e.style.width = (b[2] * k + 6) + 'px'; e.style.height = (b[3] * k + 4) + 'px';
+      ov.appendChild(e);
+    });
+  }
+  img.addEventListener('load', paint);
+  window.addEventListener('resize', paint);
   function open(slug, label, num) {
     var full = document.getElementById('scan-' + slug);
     if (!full) return;
     if (img.getAttribute('src') !== full.src) img.src = full.src;
     bodyEl.classList.remove('zoom'); bodyEl.scrollTop = 0;
+    shown = (typeof QB !== 'undefined' && QB[slug] && QB[slug][num]) ? QB[slug][num] : null;
+    paint();
     citeEl.innerHTML = label;
     qEl.textContent = num ? 'Highlighted quote no. ' + num : '';
     panel.hidden = false; back.hidden = false;
@@ -767,7 +829,7 @@
       return;
     }
     if (e.target.closest('.sp-close') || e.target.closest('.sp-backdrop')) close();
-    else if (e.target.closest('.sp-zoom') || e.target === img) bodyEl.classList.toggle('zoom');
+    else if (e.target.closest('.sp-zoom') || e.target === img) { bodyEl.classList.toggle('zoom'); paint(); }
   });
   var lb = document.querySelector('.lightbox'), lbBody = lb.querySelector('.lb-body'),
       lbImg = lb.querySelector('.lb-body img'), lbT = lb.querySelector('.lb-t');
@@ -882,6 +944,7 @@
   });
 })();
 </script>
+
 
 </body>
 </html>
