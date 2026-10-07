@@ -27,8 +27,14 @@ waiting on a scan.
 
 ## How it reads
 
-The page opens on a title card with a play button — browsers will not start sound without a
-click. Pressing play runs the narration full-bleed behind the text.
+**The film takes the left two thirds of the screen; the story runs down its own lane on the
+right.** The page opens on a title card with a play button — browsers will not start sound
+without a click.
+
+Two thirds is exact at 1440 px and wider. Below that the film gives up a little width so the
+story lane never falls under about 460 px, which is where the line length stops being readable;
+under 1100 px there is no room for two lanes, so the film goes full-bleed and the story returns
+to a centred column over it, as it does on a phone.
 
 - **The paragraph being read is at full brightness**; the rest of the story recedes. Within it,
   each word lights as it is spoken and stays lit.
