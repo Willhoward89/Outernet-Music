@@ -1,0 +1,1516 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Edificio Everett — Italics Highlighted</title>
+<style>
+
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; margin: 0; padding: 40px 24px 64px;
+         background:#f8f5e7; color:#1a1a1a; font-family: Georgia, "Times New Roman", serif; font-size:17px; line-height:1.7; }
+  .layout { display: flex; align-items: flex-start; gap: 30px; max-width: 1580px; margin: 0 auto; }
+  .chartcol { flex: 0 0 320px; width: 320px; position: sticky; top: 28px; align-self: flex-start;
+              max-height: calc(100vh - 56px); overflow-y: auto; padding: 0 4px 0 18px;
+              border-left: 1px solid #e2ddc8; background: rgba(248,245,231,.92);
+              font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  .cc-head { position: sticky; top: 0; background: #f8f5e7; padding-bottom: 8px; margin-bottom: 4px;
+             border-bottom: 1px solid #e2ddc8; z-index: 2; }
+  .cc-title { display: block; font-size: 11px; font-weight: 600; letter-spacing: .05em;
+              text-transform: uppercase; color: #888; }
+  .cc-sub { display: block; font-size: 10.5px; color: #aaa; margin-top: 3px; line-height: 1.35; }
+  .cc-sec { font-size: 10.5px; font-weight: 600; letter-spacing: .03em; text-transform: uppercase;
+            color: #999; margin: 16px 0 6px; }
+  .ce { display: flex; gap: 7px; align-items: baseline; padding: 6px 0; border-bottom: 1px solid #ebe6d6; }
+  .ce-n { flex: 0 0 22px; text-align: right; font-size: 10px; color: #bbb; text-decoration: none; }
+  .ce-n:hover { color: #3b6ea5; }
+  .ce .sw { flex: 0 0 9px; width: 9px; height: 9px; transform: translateY(1px); }
+  .ce-b { min-width: 0; }
+  .ce-q { font-size: 11.5px; line-height: 1.4; color: #333; }
+  .ce-s { font-size: 10.5px; line-height: 1.4; color: #999; margin-top: 2px; }
+  .ce { border-left: 2px solid transparent; padding-left: 6px; transition: background .18s ease, border-color .18s ease; }
+  .ce.active { background: rgba(255,255,255,.75); border-left-color: #3b6ea5; }
+  .ce.active .ce-n { color: #3b6ea5; font-weight: 600; }
+  .ce.active .ce-q { color: #111; }
+  mark.reading { box-shadow: 0 0 0 2px rgba(59,110,165,.55); border-radius: 3px; }
+  .chartcol.on-left { border-left: none; border-right: 1px solid #e2ddc8; padding: 0 18px 0 4px; }
+  .rail.on-right { padding: 0 4px 0 4px; }
+  .chartcol::-webkit-scrollbar { width: 7px; }
+  .chartcol::-webkit-scrollbar-thumb { background: #dcdcdc; border-radius: 4px; }
+  .chart-print { display: none; }
+  @media (max-width: 1360px) {
+    .chartcol { position: static; width: 100%; flex: none; max-height: none; border-left: none;
+                border-top: 1px solid #ececec; padding: 18px 0 0; margin-top: 26px; }
+    .layout { flex-wrap: wrap; }
+    .chartcol .ce { max-width: 820px; }
+  }
+  .wrap { flex: 1 1 auto; min-width: 0; max-width: 820px; }
+  .rail { flex: 0 0 262px; width: 262px; position: sticky; top: 28px; align-self: flex-start;
+          max-height: calc(100vh - 56px); overflow-y: auto; padding-right: 4px;
+          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  .rail-title { font-size: 11px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase;
+                color: #888; margin: 0 0 10px; }
+  figure.view { margin: 0 0 16px; cursor: zoom-in; }
+  figure.view img { display: block; width: 100%; border: 1px solid #e0e0e0; border-radius: 4px; }
+  figure.view:hover img { border-color: #9c9c9c; }
+  figure.view figcaption { margin-top: 5px; font-size: 11px; line-height: 1.42; color: #8a8a8a; }
+  figure.view figcaption b { display: block; font-weight: 600; color: #444; }
+  figure.railvid { margin: 0 0 16px; }
+  figure.railvid video { display: block; width: 100%; border: 1px solid #e0e0e0; border-radius: 4px;
+                         background: #111; }
+  figure.railvid figcaption { margin-top: 5px; font-size: 11px; line-height: 1.42; color: #8a8a8a; }
+  figure.railvid figcaption b { display: block; font-weight: 600; color: #444; }
+  /* read-along: the spoken word is underlined rather than boxed, so it reads as a cursor
+     travelling through the text instead of a second kind of highlight competing with the
+     source colours. The sentence around it gets a faint wash to keep the eye in place. */
+  .w { transition: color .12s ease; }
+  .w-on { color: #111; box-shadow: inset 0 -2px 0 0 #c2452d; border-radius: 1px; }
+  .p-on { background: rgba(194, 69, 45, .045); border-radius: 3px;
+          box-shadow: 0 0 0 5px rgba(194, 69, 45, .045); }
+  mark .w-on { box-shadow: inset 0 -2px 0 0 rgba(0,0,0,.62); }
+  .w[data-t] { cursor: pointer; }
+  figure.railvid .ra-bar { display: block; margin: 6px 0 0; }
+  figure.railvid .ra-hint { display: block; margin-top: 3px; }
+  .ra-bar { display: flex; align-items: center; gap: 12px; margin: 8px 0 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 11.5px; }
+  .ra-bar label { display: inline-flex; align-items: center; gap: 5px; color: #7a7a7a; cursor: pointer; }
+  .ra-hint { color: #aaa; }
+  .wrap h1 + .sub { margin-bottom: 18px; }
+  .epigraph { font-style: italic; font-size: 20.5px; line-height: 1.45; color: #4a4336;
+              max-width: 30em; margin: 30px 0 30px; text-wrap: balance;
+              border-left: 2px solid #c9bfa4; padding-left: 16px; }
+  @media (max-width: 720px) { .epigraph { font-size: 18px; padding-left: 12px; } }
+  .rail-foot { font-size: 10.5px; color: #aaa; margin: 2px 0 0; }
+  .rail::-webkit-scrollbar { width: 7px; }
+  .rail::-webkit-scrollbar-thumb { background: #dcdcdc; border-radius: 4px; }
+  @media (max-width: 1080px) {
+    .layout { flex-direction: column; gap: 18px; }
+    /* stacked, these are width:100% and still carry side padding, so on a phone they ran
+       13px past the viewport and the whole page scrolled sideways */
+    .chartcol, .wrap, .rail { box-sizing: border-box; max-width: 100%; }
+    .rail { position: static; width: 100%; flex: none; max-height: none; display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 14px; }
+    .rail-title, .rail-foot { grid-column: 1 / -1; }
+  }
+  /* full-bleed lightbox */
+  .lightbox { position: fixed; inset: 0; z-index: 60; background: rgba(16,14,13,.93);
+              display: flex; flex-direction: column; opacity: 0; transition: opacity .18s ease; }
+  body.lb-open .lightbox { opacity: 1; }
+  .lightbox[hidden] { display: none !important; }
+  .lb-head { display: flex; align-items: center; gap: 12px; padding: 12px 16px; color: #eee;
+             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 13px; }
+  .lb-head .lb-t { flex: 1; }
+  .lb-btn { border: 1px solid rgba(255,255,255,.28); background: rgba(255,255,255,.08); color: #eee;
+            border-radius: 5px; cursor: pointer; font-size: 13px; line-height: 1; padding: 7px 10px; }
+  .lb-btn:hover { background: rgba(255,255,255,.18); }
+  .lb-body { flex: 1; overflow: auto; display: flex; align-items: center; justify-content: center; padding: 0 16px 18px; }
+  .lb-body img { max-width: 100%; max-height: 100%; object-fit: contain; cursor: zoom-in; }
+  .lb-body.zoom { align-items: flex-start; justify-content: flex-start; }
+  .lb-body.zoom img { max-width: none; max-height: none; width: 220%; cursor: zoom-out; }
+  h1 { font-size: 26px; line-height: 1.25; margin: 0 0 6px; font-weight: 700;
+       letter-spacing: -.012em; color:#1d1a12; }
+  .sub { font-family: Georgia, serif; font-style: italic; font-size: 15px; color: #555; margin: 0 0 8px; }
+  h2 { font-size: 15px; font-weight: 700; letter-spacing: .085em; text-transform: uppercase;
+       color: #6d5a33; margin: 52px 0 16px; padding-bottom: 7px; position: relative;
+       border-bottom: 1px solid #e3dcc6; }
+  h2::after { content: ""; position: absolute; left: 0; bottom: -1px; width: 58px; height: 2px;
+              background: #b39445; }
+  .wrap > h2:first-of-type { margin-top: 34px; }
+  h3 { font-size: 16px; margin: 30px 0 10px; }
+  p { margin: 0 0 20px; }
+  hr { border: none; border-top: 1px solid #e2ddc8; margin: 34px 0 28px; }
+  .note { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 13px; color:#666;
+          margin: 0 0 28px; padding-bottom: 20px; border-bottom: 1px solid #e2ddc8; }
+  .note2 { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 13px; color:#666; margin: 0 0 18px; }
+  mark { color: inherit; font-style: italic; padding: 1px 2px; border-radius: 2px;
+         box-decoration-break: clone; -webkit-box-decoration-break: clone; background:#e4e4e4; }
+  /* adapted passages keep their source colour but wear a dashed rule, so the eye can
+     tell a borrowed phrase that was reshaped from one quoted word for word. */
+  mark.adapted { border-bottom: 1.5px dashed rgba(0,0,0,.42); border-radius: 2px 2px 0 0; }
+  /* provenance badge after each phrase: V verbatim, A adapted, O the poet's own */
+  sup.tg { font-style: normal; font-weight: 700; font-size: 8.5px; line-height: 0;
+           letter-spacing: .02em; vertical-align: super; margin-left: 1px; cursor: help;
+           font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; }
+  sup.tg.tv { color: #4a6f3f; }
+  sup.tg.ta { color: #8a5a2b; }
+  /* a touch darker than first drafted: at reading size a pale O reads as a degree sign */
+  sup.tg.to { color: #a09781; }
+  a.srclink { text-decoration: none; color: inherit; cursor: zoom-in; }
+  a.srclink:hover mark { outline: 2px solid rgba(0,0,0,.35); outline-offset: 1px; }
+  .tablewrap { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+          font-size: 13.5px; line-height: 1.55; }
+  th, td { text-align: left; vertical-align: top; padding: 9px 12px; border-bottom: 1px solid #ebe6d6; }
+  thead th { background:#efece0; border-bottom: 1px solid #ddd8c6; font-weight: 600; }
+  td.num, th.num { width: 34px; color:#888; text-align: right; padding-right: 6px; }
+  td.quote { width: 56%; }
+  td.src { color:#444; }
+  tbody tr:nth-child(even) { background:rgba(255,255,255,.45); }
+  h3.csec { font-size: 14px; margin: 26px 0 8px; color:#333;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  .nosrc { color:#999; font-style: italic; }
+  a.pglink, .pglink { font-size: 11px; color:#3b6ea5; text-decoration: none; white-space: nowrap; }
+  .backlinks a { display:inline-block; margin: 0 3px; color:#3b6ea5; text-decoration:none; }
+  .legend { margin: 0 0 30px; padding: 16px 18px; border: 1px solid #e2ddc8; border-radius: 6px; background:rgba(255,253,244,.82);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  .legend-title { font-size: 12px; font-weight: 600; letter-spacing:.04em; text-transform: uppercase; color:#777; margin-bottom: 10px; }
+  .legend-title .lk { text-transform: none; letter-spacing: 0; font-weight: 400; color:#999; }
+  .legend ul { list-style:none; margin:0; padding:0; display:grid; grid-template-columns: repeat(auto-fill, minmax(290px,1fr)); gap: 5px 20px; }
+  .legend li { display:flex; align-items:baseline; gap:8px; font-size:12.5px; line-height:1.45; }
+  .sw { display:inline-block; width:13px; height:13px; border-radius:3px; flex:0 0 13px;
+        border:1px solid rgba(0,0,0,.14); transform: translateY(2px); }
+  td.src .sw { margin-right: 6px; }
+  .ct { color:#999; } .has { color:#3b6ea5; }
+  .adp { font-style: normal; font-size: 9.5px; letter-spacing: .05em; text-transform: uppercase;
+         color:#9a9282; border:1px solid #e2ddc8; border-radius:2px; padding:0 3px; margin-left:4px;
+         white-space: nowrap; }
+  .sw.adapted { background:#efefef; border-bottom:1.5px dashed rgba(0,0,0,.42); }
+  .adp-key .lg, .tag-key .lg { color:#6f6a5e; }
+  .tag-key { list-style: none; }
+  .pg { color:#8a8272; white-space: nowrap; }
+  section.audio { margin: 0 0 30px; padding: 14px 18px 16px; border: 1px solid #e2ddc8; border-radius: 6px;
+                  background: rgba(255,253,244,.82); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  .audio-label { font-size: 12px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase;
+                 color: #777; margin-bottom: 10px; }
+  .audio-meta { font-weight: 400; letter-spacing: 0; text-transform: none; color: #aaa; margin-left: 4px; }
+  section.audio audio { width: 100%; display: block; }
+  .audio-fallback { display: none; font-size: 12.5px; color: #666; margin: 0; }
+  section.srcsec { margin: 0 0 34px; }
+  h3.scanhead { font-size: 14.5px; margin: 26px 0 6px;
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  figure.scan { margin: 8px 0 0; }
+  figure.scan img { width: 100%; border: 1px solid #ddd; border-radius: 4px; }
+
+  mark.s1, .sw.s1 { background: #38b6fa; }
+  mark.s2, .sw.s2 { background: #a3cc66; }
+  mark.s3, .sw.s3 { background: #faa338; }
+  mark.s4, .sw.s4 { background: #faf038; }
+  mark.s5, .sw.s5 { background: #38f0fa; }
+  mark.s6, .sw.s6 { background: #75bd99; }
+  mark.s7, .sw.s7 { background: #68ee68; }
+  mark.s8, .sw.s8 { background: #fc7e7e; }
+  mark.s9, .sw.s9 { background: #38fab6; }
+  mark.s10, .sw.s10 { background: #e27efc; }
+  mark.s11, .sw.s11 { background: #ebebd6; }
+  mark.s12, .sw.s12 { background: #cc9966; }
+  mark.s13, .sw.s13 { background: #fc7ec3; }
+  mark.s14, .sw.s14 { background: #8dbac8; }
+  mark.s15, .sw.s15 { background: #fcdc7e; }
+  mark.s16, .sw.s16 { background: #d4a5d4; }
+  mark.s0, .sw.s0 { background: #e4e4e4; }
+
+  body::after { content: ""; position: fixed; left: 0; right: 0; bottom: 0; height: 62vh; z-index: -1; pointer-events: none; opacity: .5; background: url(assets/media/skyline.jpg) bottom center / 100% auto no-repeat; -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 42%, #000 100%); mask-image: linear-gradient(to bottom, transparent 0%, #000 42%, #000 100%); }
+
+
+  .sp-backdrop { position: fixed; inset: 0; background: rgba(20,20,20,.28); opacity: 0; transition: opacity .18s ease; z-index: 40; }
+  body.sp-open .sp-backdrop { opacity: 1; }
+  .scanpanel { position: fixed; top:0; right:0; height:100%; width: min(46vw, 620px); background:#fffdf4;
+               border-left: 1px solid #ddd; box-shadow: -8px 0 26px rgba(0,0,0,.13); transform: translateX(101%);
+               transition: transform .22s ease; z-index: 41; display:flex; flex-direction:column;
+               font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  body.sp-open .scanpanel { transform: translateX(0); }
+  .scanpanel[hidden], .sp-backdrop[hidden] { display: none !important; }
+  .sp-head { display:flex; align-items:flex-start; gap:10px; padding:14px 16px; border-bottom:1px solid #eee; }
+  .sp-title { font-size:13px; line-height:1.4; color:#222; flex:1; }
+  .sp-title .sp-q { display:block; color:#777; font-size:11.5px; margin-top:3px; }
+  .sp-btn { border:1px solid #ddd; background:#fafafa; border-radius:5px; cursor:pointer; font-size:13px;
+            line-height:1; padding:6px 9px; color:#444; }
+  .sp-btn:hover { background:#f0f0f0; }
+  .sp-body { flex:1; overflow:auto; padding:12px; background:#efece0; }
+  .sp-body img { display:block; width:100%; border:1px solid #ddd; background:#fff; cursor: zoom-in; }
+  .sp-body.zoom img { cursor: zoom-out; }
+  /* the quoted passage, marked on the page it came from. Drawn as an overlay rather than
+     burnt into the image, so one scan still serves every quote that cites it. Zoom scales
+     the wrapper, not the image, so the overlay keeps step with the page beneath it. */
+  .sp-img { position: relative; display: block; width: 100%; }
+  .sp-body.zoom .sp-img { width: 200%; }
+  .sp-ov { position: absolute; inset: 0; pointer-events: none; }
+  .sp-ov i { position: absolute; display: block; background: rgba(255, 214, 0, .30);
+             box-shadow: 0 0 0 1px rgba(184, 134, 0, .55) inset; border-radius: 2px;
+             animation: sp-in .35s ease both; }
+  @keyframes sp-in { from { opacity: 0 } to { opacity: 1 } }
+  @media (max-width: 820px) { .scanpanel { width:100%; } }
+  @media (max-width: 700px) { body { padding: 16px 10px 40px; } .wrap { padding: 24px 18px 32px; } }
+  @page { size: Letter; margin: 0.75in 0.7in; }
+  @media print {
+    body { padding:0; font-size:11.5pt; line-height:1.55; background:#fff; }
+    body::before { display: none; }
+    .wrap { max-width:none; background:none; padding:0; border-radius:0; box-shadow:none; }
+    .layout { display: block; }
+    .rail { position: static; width: 100%; max-height: none; overflow: visible; display: grid;
+            grid-template-columns: 1fr 1fr; gap: 12px; margin: 0 0 18px; }
+    .rail-title { grid-column: 1 / -1; } .rail-foot { display: none; }
+    figure.view { break-inside: avoid; }
+    .lightbox, .chartcol { display: none !important; }
+    .chart-print { display: block; }
+    h1 { font-size:17pt; } h2 { font-size:10.5pt; letter-spacing:.08em; break-after: avoid; } h3 { font-size:12pt; break-after: avoid; }
+    h2#citations, h2.srcpage { break-before: page; }
+    p { orphans:3; widows:3; }
+    table { font-size:8.6pt; line-height:1.4; } th,td { padding:5px 7px; }
+    thead { display: table-header-group; } tr { break-inside: avoid; }
+    .tablewrap { overflow: visible; }
+    .legend { break-inside: avoid; padding:10px 12px; margin-bottom:20px; }
+    .legend ul { grid-template-columns: 1fr 1fr; gap:3px 16px; } .legend li { font-size:8.4pt; }
+    .sw { width:10px; height:10px; flex:0 0 10px; }
+    section.srcsec { break-inside: avoid; break-before: page; }
+    figure.scan { break-inside: avoid; }
+    a.srclink, a.pglink, .backlinks a { color: inherit; }
+    .scanpanel, .sp-backdrop { display:none !important; }
+    .w-on, .p-on { box-shadow: none; background: none; }
+    .ra-bar { display: none; }
+    figure.railvid { display: none; }
+    section.audio audio { display: none; }
+    .audio-fallback { display: block; }
+    section.audio { break-inside: avoid; }
+  }
+
+</style>
+<style id="cinema-mode">
+/* ============================================================================
+   CINEMA MODE — the narration fills the page and the story scrolls over it.
+   Appended last so it wins on equal specificity. The read-along script is
+   untouched: it scrolls the window, and the video is fixed behind the window.
+   ========================================================================== */
+
+:root{
+  --film-ink:#f6f1e3;        /* text on film */
+  --film-dim:rgba(246,241,227,.40);
+  --film-rule:rgba(246,241,227,.22);
+  --film-deep:#0b0c0e;
+  color-scheme: dark;
+}
+
+/* ---- the film -------------------------------------------------------- */
+/* the house styles pad the body 24px each side; cinema mode runs edge to edge
+   and the text blocks carry their own gutter instead */
+body.cinema{
+  background:var(--film-deep); color:var(--film-ink);
+  padding-left:0; padding-right:0;
+}
+
+body.cinema .rail.on-right{
+  position:fixed; inset:0; top:0; left:0; right:0; bottom:0; z-index:0;
+  width:100vw; height:100vh; height:100dvh;
+  /* the house rules give the rail a sticky max-height; cinema mode needs the
+     whole viewport, so both the cap and the floor are cleared here. */
+  max-height:none; min-height:0;
+  margin:0; padding:0; max-width:none; border:0; background:none;
+  display:block; overflow:hidden;
+}
+body.cinema .rail .rail-title{ display:none; }
+body.cinema figure.railvid{
+  position:absolute; inset:0; margin:0; width:100%; height:100%;
+  border:0; border-radius:0; box-shadow:none; background:#000;
+}
+body.cinema figure.railvid video{
+  width:100%; height:100%; object-fit:cover; display:block; border-radius:0;
+  border:0; outline:0; box-shadow:none; max-width:none; max-height:none;
+  box-sizing:border-box;
+}
+body.cinema figure.railvid figcaption{ display:none; }
+
+/* the scrim that makes text legible without hiding the face */
+body.cinema .filmscrim{
+  position:fixed; inset:0; z-index:1; pointer-events:none;
+  background:
+    /* the shade sits over the right-hand column only, so the middle of the
+       frame — where the reader is — stays clear */
+    linear-gradient(to right,
+      rgba(11,12,14,0)   0%,
+      rgba(11,12,14,0)   38%,
+      rgba(11,12,14,.34) 52%,
+      rgba(11,12,14,.52) 66%,
+      rgba(11,12,14,.56) 100%),
+    /* a light overall wash, enough to seat the type without flattening the film */
+    linear-gradient(to bottom,
+      rgba(11,12,14,.58) 0%,
+      rgba(11,12,14,.24) 20%,
+      rgba(11,12,14,.20) 50%,
+      rgba(11,12,14,.34) 82%,
+      rgba(11,12,14,.70) 100%);
+}
+/* a centred column has the whole frame behind it, so it needs an even wash
+   rather than a side panel — still lighter than before */
+@media (max-width:900px){
+  body.cinema .filmscrim{
+    background:linear-gradient(to bottom,
+      rgba(11,12,14,.70) 0%,
+      rgba(11,12,14,.44) 20%,
+      rgba(11,12,14,.40) 50%,
+      rgba(11,12,14,.52) 82%,
+      rgba(11,12,14,.80) 100%);
+  }
+}
+
+/* ---- the story, riding over the film ---------------------------------- */
+body.cinema .layout{ display:block; max-width:none; margin:0; padding:0; }
+body.cinema .chartcol.on-left{ display:none; }
+
+body.cinema .wrap{
+  position:relative; z-index:2;
+  max-width:none; margin:0; padding:0;
+}
+/* ---- the split: two thirds film, one third story ----------------------- */
+/* Below the breakpoint there is no room for two lanes, so the story goes back
+   to a centred column over a full-bleed film. */
+body.cinema .wrap > *{
+  max-width:34rem; margin-left:auto; margin-right:auto;
+  padding-left:20px; padding-right:20px;
+}
+
+@media (min-width:1100px){
+  /* Two thirds to the film wherever the remaining third is still a readable
+     measure — on a 1440 screen and up it is exactly two thirds. On a narrower
+     laptop the story lane holds at 460px and the film yields, because a third
+     of 1100px is a 26-character line. */
+  :root{ --film-w:min(66.666vw, calc(100vw - 460px)); }
+
+  /* the film holds the left two thirds */
+  body.cinema .rail.on-right{ width:var(--film-w); right:auto; }
+
+  /* the story gets the right third as a lane of its own, on its own ground —
+     no video behind it, so nothing competes with the type */
+  body.cinema .wrap{ padding-left:0; padding-right:0; }
+  body.cinema .filmscrim{
+    left:var(--film-w); right:0; width:auto;
+    background:var(--film-deep);
+    box-shadow:inset 14px 0 28px -14px rgba(0,0,0,.9);
+    border-left:1px solid rgba(246,241,227,.10);
+  }
+  body.cinema .wrap > *{
+    box-sizing:border-box;          /* the padding sits inside the lane, not beside it */
+    /* auto, not a vw width: vw counts the scrollbar but the content box does
+       not, and the difference pushed the lane off the right edge */
+    width:auto; max-width:none;
+    margin-left:var(--film-w); margin-right:0;
+    padding-left:clamp(22px, 2.2vw, 40px);
+    padding-right:clamp(22px, 2.2vw, 40px);
+  }
+
+  /* the follow bar belongs to the story, so it centres in the story's lane */
+  body.cinema .ra-bar{ left:calc(var(--film-w) + (100vw - var(--film-w)) / 2); }
+
+  /* on a solid ground the unread text can recede further and still be read */
+  body.cinema .wrap p,
+  body.cinema .wrap h2{ opacity:.40; }
+}
+body.cinema .wrap p,
+body.cinema .wrap h2,
+body.cinema .wrap h3{
+  color:var(--film-ink);
+  text-shadow:0 1px 14px rgba(0,0,0,.85), 0 0 3px rgba(0,0,0,.7);
+}
+body.cinema .wrap p{ font-size:1.18rem; line-height:1.72; }
+body.cinema .wrap h2{
+  font-size:1.6rem; line-height:1.2; text-wrap:balance;
+  margin-top:3.2em; margin-bottom:.7em; letter-spacing:.005em;
+}
+body.cinema .wrap h1{ color:var(--film-ink); }
+
+/* breathing room so the first and last lines can reach the middle of the screen */
+body.cinema .wrap{ padding-top:46vh; padding-bottom:58vh; }
+
+/* ---- the realtime part: unspoken text recedes, the live line comes up -- */
+body.cinema .wrap p,
+body.cinema .wrap h2{
+  /* lifted from .34 to carry the lighter scrim: text that has not been reached
+     yet still recedes, but stays readable if you want to look ahead */
+  opacity:.46;
+  transition:opacity .5s ease, filter .5s ease;
+  filter:blur(.3px);
+}
+body.cinema .wrap p.p-on,
+body.cinema .wrap h2.p-on{ opacity:1; filter:none; }
+body.cinema .wrap p:hover{ opacity:.8; }
+
+body.cinema .w{ transition:color .18s ease; }
+body.cinema .p-on .w{ color:rgba(246,241,227,.62); }
+body.cinema .p-on .w.spoken{ color:var(--film-ink); }
+body.cinema .w-on{
+  color:#fff !important;
+  text-shadow:0 0 18px rgba(255,241,190,.55), 0 1px 14px rgba(0,0,0,.9);
+}
+
+/* ---- highlights keep their source colour, lifted for a dark ground ---- */
+body.cinema mark{
+  background:transparent !important;
+  color:inherit !important;
+  padding:0 .04em;
+  box-shadow:inset 0 -0.42em 0 0 var(--hl, rgba(255,255,255,.17));
+  border-radius:2px;
+}
+body.cinema mark.p-on,
+body.cinema .p-on mark{ box-shadow:inset 0 -0.46em 0 0 var(--hl, rgba(255,255,255,.3)); }
+
+/* ---- controls --------------------------------------------------------- */
+body.cinema .ra-bar{
+  position:fixed; left:50%; transform:translateX(-50%);
+  bottom:calc(16px + env(safe-area-inset-bottom,0px));
+  z-index:6; margin:0; padding:9px 15px;
+  background:rgba(11,12,14,.72); backdrop-filter:blur(9px);
+  border:1px solid var(--film-rule); border-radius:999px;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  font-size:12px; color:var(--film-ink); white-space:nowrap;
+}
+body.cinema .ra-bar label{ color:var(--film-ink); cursor:pointer; }
+
+.filmbtn{
+  position:fixed; z-index:6;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  font-size:12px; letter-spacing:.06em; text-transform:uppercase;
+  color:var(--film-ink); background:rgba(11,12,14,.72); backdrop-filter:blur(9px);
+  border:1px solid var(--film-rule); border-radius:999px;
+  padding:9px 15px; cursor:pointer;
+}
+.filmbtn:hover{ background:rgba(11,12,14,.9); }
+.filmbtn:focus-visible{ outline:2px solid #ffd978; outline-offset:2px; }
+/* the narration control and the score control sit in one cluster, so neither
+   has to guess the other's width */
+.film-left{
+  position:fixed; z-index:9; display:flex; align-items:center; gap:8px;
+  left:16px; bottom:calc(16px + env(safe-area-inset-bottom,0px));
+}
+.film-left .filmbtn{ position:static; }
+body.cinema #film-score[aria-pressed="true"]{
+  background:#f3e4bd; color:#14110a; border-color:#f3e4bd;
+}
+
+/* the score's own player: the house rule is that it runs independently of the
+   voice, so it keeps its own transport rather than following the video */
+.scorebox{
+  position:fixed; z-index:9;
+  left:16px; bottom:calc(62px + env(safe-area-inset-bottom,0px));
+  display:none; align-items:center; gap:10px;
+  padding:9px 14px; width:min(400px, calc(100vw - 32px));
+  background:rgba(11,12,14,.78); backdrop-filter:blur(9px);
+  border:1px solid var(--film-rule); border-radius:16px;
+}
+body.cinema.score-open .scorebox{ display:flex; }
+.scorebox .scorelabel{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  font-size:11px; letter-spacing:.1em; text-transform:uppercase;
+  color:rgba(246,241,227,.62); white-space:nowrap;
+}
+.scorebox audio{ flex:1 1 auto; min-width:0; width:auto; height:34px; display:block; }
+/* above the chart panel, or opening the panel buries its own toggle */
+#film-chart{ right:16px; bottom:calc(16px + env(safe-area-inset-bottom,0px)); z-index:9; }
+body.cinema.chart-open #film-chart{ background:#f3e4bd; color:#14110a; border-color:#f3e4bd; }
+
+/* tapping the film beside the panel closes it */
+.chart-backdrop{
+  position:fixed; inset:0; z-index:6; display:none;
+  background:rgba(6,7,9,.42);
+}
+body.cinema.chart-open .chart-backdrop{ display:block; }
+
+/* ---- the opening card ------------------------------------------------- */
+.filmstart{
+  position:fixed; inset:0; z-index:9;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:22px; padding:28px 20px;
+  background:rgba(8,9,11,.80); backdrop-filter:blur(3px);
+  text-align:center; color:var(--film-ink);
+  transition:opacity .6s ease;
+}
+.filmstart[hidden]{ display:none !important; }
+.filmstart.gone{ opacity:0; pointer-events:none; }
+.filmstart h1{
+  font-family:Georgia,"Times New Roman",serif; font-weight:400;
+  font-size:clamp(1.9rem,6vw,3rem); line-height:1.12; margin:0; max-width:16ch;
+  text-wrap:balance; text-shadow:0 2px 24px rgba(0,0,0,.8);
+}
+.filmstart p{
+  margin:0; max-width:34ch; font-size:1rem; line-height:1.55;
+  color:rgba(246,241,227,.78); font-family:Georgia,serif; font-style:italic;
+}
+.filmstart button{
+  margin-top:6px; display:inline-flex; align-items:center; gap:11px;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  font-size:13px; letter-spacing:.14em; text-transform:uppercase;
+  color:#14110a; background:#f3e4bd; border:0; border-radius:999px;
+  padding:14px 26px; cursor:pointer;
+}
+.filmstart button:hover{ background:#fff; }
+.filmstart button:focus-visible{ outline:2px solid #ffd978; outline-offset:3px; }
+.filmstart small{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  font-size:11px; letter-spacing:.16em; text-transform:uppercase;
+  color:rgba(246,241,227,.45);
+}
+
+/* ---- the citation chart, on demand ------------------------------------ */
+body.cinema.chart-open .chartcol.on-left{
+  display:block; position:fixed; z-index:7;
+  top:0; right:0; bottom:0; left:auto;
+  width:min(420px,88vw); margin:0; overflow:auto;
+  background:rgba(10,11,13,.96); backdrop-filter:blur(14px);
+  border-left:1px solid var(--film-rule);
+  padding:62px 20px calc(86px + env(safe-area-inset-bottom,0px));
+  color:var(--film-ink);
+}
+body.cinema.chart-open .chartcol *:not(.cc-close){ color:var(--film-ink) !important; border-color:var(--film-rule) !important; }
+body.cinema.chart-open .chartcol .cc-head{
+  background:transparent !important; box-shadow:none !important;
+  padding:0 0 14px; margin:0 0 6px; border-bottom:1px solid var(--film-rule);
+}
+body.cinema.chart-open .chartcol .cc-title{ font-size:15px; letter-spacing:.04em; }
+body.cinema.chart-open .chartcol .cc-sub{ display:block; margin-top:5px; opacity:.62; font-size:12px; line-height:1.45; }
+body.cinema.chart-open .chartcol .cc-sec{
+  background:transparent !important; margin-top:20px;
+  font-size:11px; letter-spacing:.16em; text-transform:uppercase; opacity:.62;
+}
+body.cinema.chart-open .chartcol a:not(.cc-close){ color:#ffd978 !important; }
+
+/* the panel's own close, pinned to its top edge so it is reachable after
+   scrolling down a 35-entry chart */
+/* pinned to the panel's own corner rather than floated inside it: the chart
+   has its own sticky header, which would otherwise sit over the button */
+body.cinema .cc-close{ display:none; }
+body.cinema.chart-open .cc-close{
+  position:fixed; z-index:10;
+  top:calc(10px + env(safe-area-inset-top,0px)); right:12px;
+  width:40px; height:40px; margin:0; padding:0;
+  display:flex; align-items:center; justify-content:center;
+  font-size:22px; line-height:1;
+  color:#14110a !important; background:#f3e4bd; border:0; border-radius:999px;
+  box-shadow:0 2px 14px rgba(0,0,0,.5); cursor:pointer;
+}
+body.cinema .cc-close:hover{ background:#fff; }
+body.cinema .cc-close:focus-visible{ outline:2px solid #ffd978; outline-offset:2px; }
+
+/* ---- things cinema mode puts away ------------------------------------- */
+body.cinema .legend,
+body.cinema .chart-print,
+body.cinema section.srcsec,
+body.cinema h2.srcpage,
+body.cinema h2.srcpage + p.note2{ display:none; }
+/* the score section leaves the flow of the story and becomes a control; its
+   own heading and print fallback are not needed there */
+body.cinema section.audio.music{ display:contents; }
+body.cinema .scorebox .audio-label,
+body.cinema .scorebox .audio-fallback{ display:none; }
+
+/* the scan panel and lightbox must still sit above the film */
+body.cinema .scanpanel{ z-index:12 !important; }
+body.cinema .sp-backdrop{ z-index:11 !important; }
+body.cinema .lightbox{ z-index:13 !important; }
+
+/* ---- phone ------------------------------------------------------------ */
+@media (max-width:620px){
+  body.cinema .wrap p{ font-size:1.08rem; }
+  body.cinema .wrap h2{ font-size:1.35rem; }
+  body.cinema .wrap > *{ padding-left:18px; padding-right:18px; }
+  body.cinema .ra-bar{ font-size:11px; padding:8px 12px; bottom:calc(64px + env(safe-area-inset-bottom,0px)); }
+  /* narrow screens stack the three controls instead of placing them side by
+     side: buttons, then the follow bar, then the score above it */
+  /* the follow bar wraps to two lines at this width, so the score clears its
+     full height rather than its single-line height */
+  .scorebox{ bottom:calc(138px + env(safe-area-inset-bottom,0px)); left:16px; right:16px; width:auto; }
+}
+
+@media (prefers-reduced-motion:reduce){
+  body.cinema .wrap p, body.cinema .wrap h2{ transition:none; }
+  .filmstart{ transition:none; }
+}
+
+/* ---- placed last, so it wins over the base control styling above -------- */
+@media (min-width:1100px){
+  /* the follow bar belongs to the story, so it centres in the story's lane
+     rather than over the middle of the film */
+  body.cinema .ra-bar{
+    left:calc(var(--film-w) + (100vw - var(--film-w)) / 2);
+  }
+}
+
+/* ---- a language whose film has not arrived yet ------------------------- */
+/* The story still reads and still follows the voice; the film side carries the
+   series' skyline instead of a frame grab, so nothing pretends to be footage
+   that does not exist. */
+body.cinema.no-film .rail.on-right{ background:#0b0c0e; }
+body.cinema.no-film .filmstill{
+  position:fixed; z-index:0; inset:0; pointer-events:none;
+  background:#0b0c0e url(assets/media/skyline.jpg) no-repeat center 78%;
+  background-size:min(118%, 1500px) auto;
+  opacity:.5; filter:grayscale(.3);
+}
+@media (min-width:1100px){
+  body.cinema.no-film .filmstill{ right:auto; width:var(--film-w); }
+}
+body.cinema.no-film .filmnote{
+  position:fixed; z-index:4; left:16px; top:calc(14px + env(safe-area-inset-top,0px));
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+  color:rgba(246,241,227,.45);
+}
+
+/* ---- the language switch ---------------------------------------------- */
+.langsel{
+  position:fixed; z-index:10;
+  top:calc(14px + env(safe-area-inset-top,0px));
+  right:16px; display:flex; align-items:stretch;
+  background:rgba(11,12,14,.74); backdrop-filter:blur(9px);
+  border:1px solid var(--film-rule); border-radius:999px; overflow:hidden;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+}
+.langsel a{
+  display:block; padding:7px 15px; text-decoration:none;
+  font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+  color:rgba(246,241,227,.62);
+}
+.langsel a[aria-current="true"]{ background:#f3e4bd; color:#14110a; font-weight:600; }
+.langsel a:not([aria-current="true"]):hover{ background:rgba(246,241,227,.12); color:var(--film-ink); }
+.langsel a:focus-visible{ outline:2px solid #ffd978; outline-offset:-2px; }
+/* clear of the chart panel, which slides in from the same edge */
+body.cinema.chart-open .langsel{ display:none; }
+
+/* ---- the follow bar, bounded so it never reaches the Sources button ----- */
+body.cinema .ra-bar{
+  max-width:calc(100vw - 32px);
+  box-sizing:border-box;
+}
+@media (min-width:1100px){
+  /* sits inside the story lane, stopping short of the button at its right */
+  body.cinema .ra-bar{
+    left:calc(var(--film-w) + 14px); right:auto; transform:none;
+    max-width:calc(100vw - var(--film-w) - 132px);
+    overflow:hidden; text-overflow:ellipsis;
+  }
+}
+
+/* ---- where the film sits inside its frame ------------------------------ */
+/* The source is portrait and the frame is not, so `cover` crops top and
+   bottom. Centred, the crop cut the top of the narrator's head. Biasing the
+   crop towards the top of the source lowers the picture in frame — about two
+   and a half inches at 1440x900 — and shows the whole figure.
+   A percentage, not a pixel offset: it scales with the crop, so a tall or
+   narrow window can never open a gap above the image. */
+body.cinema figure.railvid video{ object-position:50% 30%; }
+
+/* The standing note under the title explains the highlighting; in cinema mode
+   the colour-coding speaks for itself and the line crowds the opening. */
+body.cinema .wrap > p.note{ display:none; }
+
+/* ---- the Chinese label ------------------------------------------------- */
+/* Two Han characters, not a two-letter abbreviation: uppercase does nothing
+   to them and the wide tracking leaves a gap hanging off the right, so the
+   label gets its own metrics rather than being forced into the Latin ones. */
+.langsel a[hreflang="zh"]{
+  letter-spacing:0; font-size:12.5px; padding-left:13px; padding-right:13px;
+}
+
+</style>
+
+</head>
+<body>
+<div class="layout">
+<aside class="chartcol on-left" id="chartcol" aria-label="Citation chart">
+<div class="cc-head"><span class="cc-title">Citation chart</span><span class="cc-sub">35 quotes &middot; click a number to jump to it in the text, or <i>scan</i> to open the source page</span></div>
+<div class="cc-sec">Capítulo Uno: ¡Cuando la Gente Elegante se Marchó Corriendo!</div>
+<div class="ce"><a class="ce-n" href="#hl-1">1</a><span class="sw s1"></span><div class="ce-b"><div class="ce-q">&ldquo;muchas familias ricas vivían en hermosas casas de ladrillo&rdquo;</div><div class="ce-s">Lockwood, Manhattan Moves Uptown, 1976, p. 290 <a class="pglink" href="#src-lockwood-manhattan-moves-uptown-1976-p-290" data-scan="lockwood-manhattan-moves-uptown-1976-p-290">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-2">2</a><span class="sw s1"></span><div class="ce-b"><div class="ce-q">&ldquo;por todas partes, justo en medio de las elegantes casas, empezaron a aparecer tiendas&rdquo;</div><div class="ce-s">Lockwood, Manhattan Moves Uptown, 1976, p. 290 <a class="pglink" href="#src-lockwood-manhattan-moves-uptown-1976-p-290" data-scan="lockwood-manhattan-moves-uptown-1976-p-290">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-3">3</a><span class="sw s1"></span><div class="ce-b"><div class="ce-q">&ldquo;empacaron todas sus pertenencias y salieron volando hacia otro vecindario&rdquo;</div><div class="ce-s">Lockwood, Manhattan Moves Uptown, 1976, p. 290 <a class="pglink" href="#src-lockwood-manhattan-moves-uptown-1976-p-290" data-scan="lockwood-manhattan-moves-uptown-1976-p-290">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-4">4</a><span class="sw s1"></span><div class="ce-b"><div class="ce-q">&ldquo;casi todas las casas elegantes se habían convertido en acogedoras casas de huéspedes&rdquo;</div><div class="ce-s">Lockwood, Manhattan Moves Uptown, 1976, p. 290 <a class="pglink" href="#src-lockwood-manhattan-moves-uptown-1976-p-290" data-scan="lockwood-manhattan-moves-uptown-1976-p-290">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-5">5</a><span class="sw s1"></span><div class="ce-b"><div class="ce-q">&ldquo;Union Square era el mejor lugar de toda la ciudad para construir un maravilloso hotel&rdquo;</div><div class="ce-s">Lockwood, Manhattan Moves Uptown, 1976, p. 290 <a class="pglink" href="#src-lockwood-manhattan-moves-uptown-1976-p-290" data-scan="lockwood-manhattan-moves-uptown-1976-p-290">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-6">6</a><span class="sw s1"></span><div class="ce-b"><div class="ce-q">&ldquo;la tierra allí valía cada vez más dinero — montones y montones de él&rdquo;</div><div class="ce-s">Lockwood, Manhattan Moves Uptown, 1976, p. 291 <a class="pglink" href="#src-lockwood-manhattan-moves-uptown-1976-p-291" data-scan="lockwood-manhattan-moves-uptown-1976-p-291">scan</a></div></div></div>
+<div class="cc-sec">Capítulo Dos: ¡Hola, Magnífico Hotel!</div>
+<div class="ce"><a class="ce-n" href="#hl-7">7</a><span class="sw s1"></span><div class="ce-b"><div class="ce-q">&ldquo;un grandioso hotel llamado Everett House! Fue construido allá por la década de 1850, justo…&rdquo;</div><div class="ce-s">Lockwood, Manhattan Moves Uptown, 1976, p. 291 <a class="pglink" href="#src-lockwood-manhattan-moves-uptown-1976-p-291" data-scan="lockwood-manhattan-moves-uptown-1976-p-291">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-8">8</a><span class="sw s2"></span><div class="ce-b"><div class="ce-q">&ldquo;Venían escritores de visita. Venían actores de visita. Venía gente que amaba los libros y…&rdquo;</div><div class="ce-s">Watson &amp; Gillon, New York Then and Now, 1976, p. 80 <a class="pglink" href="#src-watson-gillon-new-york-then-and-now-1976-p-80" data-scan="watson-gillon-new-york-then-and-now-1976-p-80">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-9">9</a><span class="sw s3"></span><div class="ce-b"><div class="ce-q">&ldquo;tan grande que podía albergar hasta 250 huéspedes a la vez&rdquo;</div><div class="ce-s">Boyer, Manhattan Manners, 1985, p. 46 <a class="pglink" href="#src-boyer-manhattan-manners-1985-p-46" data-scan="boyer-manhattan-manners-1985-p-46">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-10">10</a><span class="sw s3"></span><div class="ce-b"><div class="ce-q">&ldquo;el primerísimo hotel de toda la ciudad en encender luces eléctricas centelleantes&rdquo;</div><div class="ce-s">Boyer, Manhattan Manners, 1985, p. 46 <a class="pglink" href="#src-boyer-manhattan-manners-1985-p-46" data-scan="boyer-manhattan-manners-1985-p-46">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-11">11</a><span class="sw s4"></span><div class="ce-b"><div class="ce-q">&ldquo;su nombre de un hombre muy importante llamado Edward Everett, quien fue un famoso orador y…&rdquo;</div><div class="ce-s">Trager, <em>Park Avenue</em>, 1990, p. 39 <a class="pglink" href="#src-trager-park-avenue-1990-p-39" data-scan="trager-park-avenue-1990-p-39">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-12">12</a><span class="sw s4"></span><div class="ce-b"><div class="ce-q">&ldquo;le regaló al hotel un retrato de sí mismo que colgó de la pared durante años&rdquo;</div><div class="ce-s">Trager, <em>Park Avenue</em>, 1990, p. 39 <a class="pglink" href="#src-trager-park-avenue-1990-p-39" data-scan="trager-park-avenue-1990-p-39">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-13">13</a><span class="sw s5"></span><div class="ce-b"><div class="ce-q">&ldquo;llamándolo un magnífico hotel que se sentía a la vez elegante Y acogedor, como una…&rdquo;</div><div class="ce-s">Nelson &amp; Sons, Nelsons Guide to the City of New York, 1858, p. 39 <a class="pglink" href="#src-nelson-sons-nelsons-guide-to-the-city-of-new-york-1858-p-39" data-scan="nelson-sons-nelsons-guide-to-the-city-of-new-york-1858-p-39">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-14">14</a><span class="sw s6"></span><div class="ce-b"><div class="ce-q">&ldquo;Incluso te decían exactamente a qué hora se servía la cena&rdquo;</div><div class="ce-s">Brown, Valentine&#x27;s Manual 1924, 1924, p. 160 <a class="pglink" href="#src-brown-valentine-s-manual-1924-1924-p-160" data-scan="brown-valentine-s-manual-1924-1924-p-160">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-15">15</a><span class="sw s7"></span><div class="ce-b"><div class="ce-q">&ldquo;La calle justo afuera del hotel se iluminaba con coloridas y resplandecientes lámparas&rdquo;</div><div class="ce-s">Lightfoot, Nineteenth Century in Rare Photographs, 1981, p. 76 <a class="pglink" href="#src-lightfoot-nineteenth-century-in-rare-photographs-1981-p-76" data-scan="lightfoot-nineteenth-century-in-rare-photographs-1981-p-76">scan</a></div></div></div>
+<div class="cc-sec">Capítulo Tres: La Gran Fiesta Sorpresa que se Desinfló</div>
+<div class="ce"><a class="ce-n" href="#hl-16">16</a><span class="sw s8"></span><div class="ce-b"><div class="ce-q">&ldquo;la noche de las elecciones, allá por 1876, y mucha gente vino a aclamar a un hombre llamado…&rdquo;</div><div class="ce-s">Bunyan, All Around the Town, 1990, p. 242 <a class="pglink" href="#src-bunyan-all-around-the-town-1990-p-242" data-scan="bunyan-all-around-the-town-1990-p-242">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-17">17</a><span class="sw s8"></span><div class="ce-b"><div class="ce-q">&ldquo;la fiesta no salió como todos habían planeado&rdquo;</div><div class="ce-s">Bunyan, All Around the Town, 1990, p. 242 <a class="pglink" href="#src-bunyan-all-around-the-town-1990-p-242" data-scan="bunyan-all-around-the-town-1990-p-242">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-18">18</a><span class="sw s8"></span><div class="ce-b"><div class="ce-q">&ldquo;En su lugar, ganó un hombre llamado Hayes&rdquo;</div><div class="ce-s">Bunyan, All Around the Town, 1990, p. 242 <a class="pglink" href="#src-bunyan-all-around-the-town-1990-p-242" data-scan="bunyan-all-around-the-town-1990-p-242">scan</a></div></div></div>
+<div class="cc-sec">Capítulo Cuatro: ¡Fuera lo Viejo, Arriba lo Nuevo!</div>
+<div class="ce"><a class="ce-n" href="#hl-19">19</a><span class="sw s4"></span><div class="ce-b"><div class="ce-q">&ldquo;Los constructores estaban por todas partes, derribando edificios viejos y cavando grandes y…&rdquo;</div><div class="ce-s">Trager, <em>Park Avenue</em>, 1990, p. 183 <a class="pglink" href="#src-trager-park-avenue-1990-p-183" data-scan="trager-park-avenue-1990-p-183">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-20">20</a><span class="sw s4"></span><div class="ce-b"><div class="ce-q">&ldquo;el querido y viejo hotel Everett House finalmente se despidió. ¡En su lugar se alzó un…&rdquo;</div><div class="ce-s">Trager, <em>Park Avenue</em>, 1990, p. 183 <a class="pglink" href="#src-trager-park-avenue-1990-p-183" data-scan="trager-park-avenue-1990-p-183">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-21">21</a><span class="sw s9"></span><div class="ce-b"><div class="ce-q">&ldquo;Fue construido en 1908 y se estiró 16 pisos enteros hacia el cielo&rdquo;</div><div class="ce-s">Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 542 <a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-542" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-542">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-22">22</a><span class="sw s10"></span><div class="ce-b"><div class="ce-q">&ldquo;El ingenioso arquitecto que lo diseñó había aprendido todos sus mejores trucos de…&rdquo;</div><div class="ce-s">Postal &amp; Dolkart, Guide to New York City Landmarks, 2009, p. 76 <a class="pglink" href="#src-postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76" data-scan="postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-23">23</a><span class="sw s10"></span><div class="ce-b"><div class="ce-q">&ldquo;súper fuerte, súper protegido contra el fuego, y tenía grandes y hermosas ventanas&rdquo;</div><div class="ce-s">Postal &amp; Dolkart, Guide to New York City Landmarks, 2009, p. 76 <a class="pglink" href="#src-postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76" data-scan="postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-24">24</a><span class="sw s10"></span><div class="ce-b"><div class="ce-q">&ldquo;Se alzaba orgulloso justo al lado del parque&rdquo;</div><div class="ce-s">Postal &amp; Dolkart, Guide to New York City Landmarks, 2009, p. 76 <a class="pglink" href="#src-postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76" data-scan="postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76">scan</a></div></div></div>
+<div class="cc-sec">Capítulo Cinco: El Edificio Más Elegante y Arreglado</div>
+<div class="ce"><a class="ce-n" href="#hl-25">25</a><span class="sw s11"></span><div class="ce-b"><div class="ce-q">&ldquo;decorado con relucientes ornamentos hechos de un tipo especial de arcilla horneada en…&rdquo;</div><div class="ce-s">LPC, <em>Union Square</em>, 1908, p. 1 <a class="pglink" href="#src-lpc-union-square-1908-p-1" data-scan="lpc-union-square-1908-p-1">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-26">26</a><span class="sw s11"></span><div class="ce-b"><div class="ce-q">&ldquo;formas frondosas y elegantes&rdquo;</div><div class="ce-s">LPC, <em>Union Square</em>, 1908, p. 1 <a class="pglink" href="#src-lpc-union-square-1908-p-1" data-scan="lpc-union-square-1908-p-1">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-27">27</a><span class="sw s11"></span><div class="ce-b"><div class="ce-q">&ldquo;una hilera de pequeñas decoraciones dentadas que bordean el borde más alto&rdquo;</div><div class="ce-s">LPC, <em>Union Square</em>, 1908, p. 1 <a class="pglink" href="#src-lpc-union-square-1908-p-1" data-scan="lpc-union-square-1908-p-1">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-28">28</a><span class="sw s9"></span><div class="ce-b"><div class="ce-q">&ldquo;recibió una brillante insignia de honor convirtiéndolo en un monumento protegido&rdquo;</div><div class="ce-s">Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 542 <a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-542" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-542">scan</a></div></div></div>
+<div class="cc-sec">Capítulo Seis: Todos los Amigos que Vivieron Adentro</div>
+<div class="ce"><a class="ce-n" href="#hl-29">29</a><span class="sw s12"></span><div class="ce-b"><div class="ce-q">&ldquo;amables ayudantes que asistían a las personas que llegaban a la ciudad desde lugares lejanos&rdquo;</div><div class="ce-s">Jackson, <em>The Encyclopedia of New York</em>, 2010, p. 587 <a class="pglink" href="#src-jackson-the-encyclopedia-of-new-york-2010-p-587" data-scan="jackson-the-encyclopedia-of-new-york-2010-p-587">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-30">30</a><span class="sw s13"></span><div class="ce-b"><div class="ce-q">&ldquo;una tienda repleta a reventar de revistas para leer&rdquo;</div><div class="ce-s">Halliday, Zinester&#x27;s Guide to NYC, p. 170</div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-31">31</a><span class="sw s14"></span><div class="ce-b"><div class="ce-q">&ldquo;una elegante tienda de ropa llena de atuendos modernos para personas mayores&rdquo;</div><div class="ce-s">Frank, Where to Find It Buy It Eat It In New York, 1980, p. 404</div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-32">32</a><span class="sw s15"></span><div class="ce-b"><div class="ce-q">&ldquo;una acogedora librería muy arriba que vendía maravillosos libros antiguos&rdquo;</div><div class="ce-s">Hart, Hart&#x27;s Guide to New York City, 1964, p. 191 <a class="pglink" href="#src-hart-hart-s-guide-to-new-york-city-1964-p-191" data-scan="hart-hart-s-guide-to-new-york-city-1964-p-191">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-33">33</a><span class="sw s16"></span><div class="ce-b"><div class="ce-q">&ldquo;un spa salpicado por todas partes con un alegre y brillante color rojo&rdquo;</div><div class="ce-s">Hess, New York through a Fashion Eye, 2016, p. 28 <a class="pglink" href="#src-hess-new-york-through-a-fashion-eye-2016-p-28" data-scan="hess-new-york-through-a-fashion-eye-2016-p-28">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-34">34</a><span class="sw s16"></span><div class="ce-b"><div class="ce-q">&ldquo;el lugar perfecto para sentirse elegante y relajado antes de un gran día especial&rdquo;</div><div class="ce-s">Hess, New York through a Fashion Eye, 2016, p. 28 <a class="pglink" href="#src-hess-new-york-through-a-fashion-eye-2016-p-28" data-scan="hess-new-york-through-a-fashion-eye-2016-p-28">scan</a></div></div></div>
+<div class="ce"><a class="ce-n" href="#hl-35">35</a><span class="sw s9"></span><div class="ce-b"><div class="ce-q">&ldquo;nuestro alto amigo de terracota todavía se alza junto al parque hoy en día&rdquo;</div><div class="ce-s">Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 542 <a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-542" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-542">scan</a></div></div></div>
+</aside>
+<div class="wrap">
+
+<h1>Edificio Everett</h1>
+<p class="sub">El alto edificio que vigilaba el parque — una historia real sobre una esquina especial de Nueva York</p>
+
+<p class="note">Every previously italicized phrase is highlighted and colour-coded by source. Where the source page is on file, clicking the highlight opens the scan.</p>
+
+<div class="legend"><div class="legend-title">Colour key — one colour per source <span class="lk">· sources with a page scan are marked ⌕</span></div><ul>
+<li><span class="sw s1"></span><span class="lg">Lockwood, Manhattan Moves Uptown, 1976 <span class="pg">pp.&nbsp;290, 291</span> <span class="ct">(7)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s2"></span><span class="lg">Watson &amp; Gillon, New York Then and Now, 1976 <span class="pg">p.&nbsp;80</span> <span class="ct">(1)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s3"></span><span class="lg">Boyer, Manhattan Manners, 1985 <span class="pg">p.&nbsp;46</span> <span class="ct">(2)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s4"></span><span class="lg">Trager, <em>Park Avenue</em>, 1990 <span class="pg">pp.&nbsp;39, 183</span> <span class="ct">(4)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s5"></span><span class="lg">Nelson &amp; Sons, Nelsons Guide to the City of New York, 1858 <span class="pg">p.&nbsp;39</span> <span class="ct">(1)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s6"></span><span class="lg">Brown, Valentine&#x27;s Manual 1924, 1924 <span class="pg">p.&nbsp;160</span> <span class="ct">(1)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s7"></span><span class="lg">Lightfoot, Nineteenth Century in Rare Photographs, 1981 <span class="pg">p.&nbsp;76</span> <span class="ct">(1)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s8"></span><span class="lg">Bunyan, All Around the Town, 1990 <span class="pg">p.&nbsp;242</span> <span class="ct">(3)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s9"></span><span class="lg">Spielvogel, <em>The Landmarks of New York</em>, 2016 <span class="pg">p.&nbsp;542</span> <span class="ct">(3)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s10"></span><span class="lg">Postal &amp; Dolkart, Guide to New York City Landmarks, 2009 <span class="pg">p.&nbsp;76</span> <span class="ct">(3)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s11"></span><span class="lg">LPC, <em>Union Square</em>, 1908 <span class="pg">p.&nbsp;1</span> <span class="ct">(3)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s12"></span><span class="lg">Jackson, <em>The Encyclopedia of New York</em>, 2010 <span class="pg">p.&nbsp;587</span> <span class="ct">(1)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s13"></span><span class="lg">Halliday, Zinester&#x27;s Guide to NYC <span class="pg">p.&nbsp;170</span> <span class="ct">(1)</span></span></li>
+<li><span class="sw s14"></span><span class="lg">Frank, Where to Find It Buy It Eat It In New York, 1980 <span class="pg">p.&nbsp;404</span> <span class="ct">(1)</span></span></li>
+<li><span class="sw s15"></span><span class="lg">Hart, Hart&#x27;s Guide to New York City, 1964 <span class="pg">p.&nbsp;191</span> <span class="ct">(1)</span> <span class="has">⌕</span></span></li>
+<li><span class="sw s16"></span><span class="lg">Hess, New York through a Fashion Eye, 2016 <span class="pg">p.&nbsp;28</span> <span class="ct">(2)</span> <span class="has">⌕</span></span></li>
+</ul></div>
+
+<section class="audio music"><div class="audio-label">Score &mdash; Outernet Acoustic Trio <span class="audio-meta">12 min 27 s</span></div><audio controls preload="none" src="assets/media/ev-score.mp3"></audio><p class="audio-fallback">Audio track &mdash; playable in the HTML version of this document.</p></section>
+
+<h2>Capítulo Uno: ¡Cuando la Gente Elegante se Marchó Corriendo!</h2>
+
+<p>Había una vez, hace mucho, mucho tiempo, un pequeño y bullicioso vecindario llamado Union Square. En aquel entonces, <a class="srclink" href="#src-lockwood-manhattan-moves-uptown-1976-p-290" data-scan="lockwood-manhattan-moves-uptown-1976-p-290" title="See the source page — Lockwood, Manhattan Moves Uptown, 1976, p. 290"><mark id="hl-1" class="s1" title="Lockwood, Manhattan Moves Uptown, 1976, p. 290">(muchas familias ricas vivían en hermosas casas de ladrillo)</mark></a>. ¡Pero luego sucedió algo sorprendente — <a class="srclink" href="#src-lockwood-manhattan-moves-uptown-1976-p-290" data-scan="lockwood-manhattan-moves-uptown-1976-p-290" title="See the source page — Lockwood, Manhattan Moves Uptown, 1976, p. 290"><mark id="hl-2" class="s1" title="Lockwood, Manhattan Moves Uptown, 1976, p. 290">(por todas partes, justo en medio de las elegantes casas, empezaron a aparecer tiendas)</mark></a>! 🏪</p>
+
+<p>¡Las familias adineradas estaban TAN sorprendidas! Resoplaron y refunfuñaron, y <a class="srclink" href="#src-lockwood-manhattan-moves-uptown-1976-p-290" data-scan="lockwood-manhattan-moves-uptown-1976-p-290" title="See the source page — Lockwood, Manhattan Moves Uptown, 1976, p. 290"><mark id="hl-3" class="s1" title="Lockwood, Manhattan Moves Uptown, 1976, p. 290">(empacaron todas sus pertenencias y salieron volando hacia otro vecindario)</mark></a>, donde esperaban que las tiendas nunca los siguieran. Pronto, un periódico se asomó por ahí e informó que <a class="srclink" href="#src-lockwood-manhattan-moves-uptown-1976-p-290" data-scan="lockwood-manhattan-moves-uptown-1976-p-290" title="See the source page — Lockwood, Manhattan Moves Uptown, 1976, p. 290"><mark id="hl-4" class="s1" title="Lockwood, Manhattan Moves Uptown, 1976, p. 290">(casi todas las casas elegantes se habían convertido en acogedoras casas de huéspedes)</mark></a>, donde vivían juntas muchas personas.</p>
+
+<p>Pero, ¿saben quién ADORABA este lugar ajetreado y bullicioso? ¡Los hoteles! ¡Grandes, grandiosos y relucientes hoteles! Todos estaban de acuerdo en que <a class="srclink" href="#src-lockwood-manhattan-moves-uptown-1976-p-290" data-scan="lockwood-manhattan-moves-uptown-1976-p-290" title="See the source page — Lockwood, Manhattan Moves Uptown, 1976, p. 290"><mark id="hl-5" class="s1" title="Lockwood, Manhattan Moves Uptown, 1976, p. 290">(Union Square era el mejor lugar de toda la ciudad para construir un maravilloso hotel)</mark></a>. ¡Y <a class="srclink" href="#src-lockwood-manhattan-moves-uptown-1976-p-291" data-scan="lockwood-manhattan-moves-uptown-1976-p-291" title="See the source page — Lockwood, Manhattan Moves Uptown, 1976, p. 291"><mark id="hl-6" class="s1" title="Lockwood, Manhattan Moves Uptown, 1976, p. 291">(la tierra allí valía cada vez más dinero — montones y montones de él)</mark></a>! 💰</p>
+
+<h2>Capítulo Dos: ¡Hola, Magnífico Hotel!</h2>
+
+<p>Y ahora, conozcan a la estrella brillante de nuestra historia — ¡<a class="srclink" href="#src-lockwood-manhattan-moves-uptown-1976-p-291" data-scan="lockwood-manhattan-moves-uptown-1976-p-291" title="See the source page — Lockwood, Manhattan Moves Uptown, 1976, p. 291"><mark id="hl-7" class="s1" title="Lockwood, Manhattan Moves Uptown, 1976, p. 291">(un grandioso hotel llamado Everett House! Fue construido allá por la década de 1850, justo en una esquina especial junto al parque)</mark></a>. 🏨✨</p>
+
+<p>¡Oh, era un lugar elegante! <a class="srclink" href="#src-watson-gillon-new-york-then-and-now-1976-p-80" data-scan="watson-gillon-new-york-then-and-now-1976-p-80" title="See the source page — Watson &amp; Gillon, New York Then and Now, 1976, p. 80"><mark id="hl-8" class="s2" title="Watson &amp; Gillon, New York Then and Now, 1976, p. 80">(Venían escritores de visita. Venían actores de visita. Venía gente que amaba los libros y las obras de teatro)</mark></a>. ¡El hotel era <a class="srclink" href="#src-boyer-manhattan-manners-1985-p-46" data-scan="boyer-manhattan-manners-1985-p-46" title="See the source page — Boyer, Manhattan Manners, 1985, p. 46"><mark id="hl-9" class="s3" title="Boyer, Manhattan Manners, 1985, p. 46">(tan grande que podía albergar hasta 250 huéspedes a la vez)</mark></a> — eso es MUCHÍSIMAS camas que hacer! Y aquí viene la parte más mágica: ¡en 1882, el Everett House se convirtió en <a class="srclink" href="#src-boyer-manhattan-manners-1985-p-46" data-scan="boyer-manhattan-manners-1985-p-46" title="See the source page — Boyer, Manhattan Manners, 1985, p. 46"><mark id="hl-10" class="s3" title="Boyer, Manhattan Manners, 1985, p. 46">(el primerísimo hotel de toda la ciudad en encender luces eléctricas centelleantes)</mark></a>! ¡Imaginen el resplandor! 💡</p>
+
+<p>El hotel recibió <a class="srclink" href="#src-trager-park-avenue-1990-p-39" data-scan="trager-park-avenue-1990-p-39" title="See the source page — Trager, Park Avenue, 1990, p. 39"><mark id="hl-11" class="s4" title="Trager, Park Avenue, 1990, p. 39">(su nombre de un hombre muy importante llamado Edward Everett, quien fue un famoso orador y líder)</mark></a>. ¡Incluso <a class="srclink" href="#src-trager-park-avenue-1990-p-39" data-scan="trager-park-avenue-1990-p-39" title="See the source page — Trager, Park Avenue, 1990, p. 39"><mark id="hl-12" class="s4" title="Trager, Park Avenue, 1990, p. 39">(le regaló al hotel un retrato de sí mismo que colgó de la pared durante años)</mark></a>! Las antiguas guías de viaje elogiaban al Everett House, <a class="srclink" href="#src-nelson-sons-nelsons-guide-to-the-city-of-new-york-1858-p-39" data-scan="nelson-sons-nelsons-guide-to-the-city-of-new-york-1858-p-39" title="See the source page — Nelson &amp; Sons, Nelsons Guide to the City of New York, 1858, p. 39"><mark id="hl-13" class="s5" title="Nelson &amp; Sons, Nelsons Guide to the City of New York, 1858, p. 39">(llamándolo un magnífico hotel que se sentía a la vez elegante Y acogedor, como una tranquila casa privada)</mark></a>. ¡<a class="srclink" href="#src-brown-valentine-s-manual-1924-1924-p-160" data-scan="brown-valentine-s-manual-1924-1924-p-160" title="See the source page — Brown, Valentine&#x27;s Manual 1924, 1924, p. 160"><mark id="hl-14" class="s6" title="Brown, Valentine&#x27;s Manual 1924, 1924, p. 160">(Incluso te decían exactamente a qué hora se servía la cena)</mark></a>!</p>
+
+<p>¿Y en las noches muy especiales? <a class="srclink" href="#src-lightfoot-nineteenth-century-in-rare-photographs-1981-p-76" data-scan="lightfoot-nineteenth-century-in-rare-photographs-1981-p-76" title="See the source page — Lightfoot, Nineteenth Century in Rare Photographs, 1981, p. 76"><mark id="hl-15" class="s7" title="Lightfoot, Nineteenth Century in Rare Photographs, 1981, p. 76">(La calle justo afuera del hotel se iluminaba con coloridas y resplandecientes lámparas)</mark></a>. ¡Qué soñador! 🌈</p>
+
+<h2>Capítulo Tres: La Gran Fiesta Sorpresa que se Desinfló</h2>
+
+<p>Una emocionante noche, una enorme multitud se apretujó dentro del Everett House con la esperanza de organizar una gigantesca celebración. Era <a class="srclink" href="#src-bunyan-all-around-the-town-1990-p-242" data-scan="bunyan-all-around-the-town-1990-p-242" title="See the source page — Bunyan, All Around the Town, 1990, p. 242"><mark id="hl-16" class="s8" title="Bunyan, All Around the Town, 1990, p. 242">(la noche de las elecciones, allá por 1876, y mucha gente vino a aclamar a un hombre llamado Samuel Tilden)</mark></a>, quien esperaban que se convirtiera en Presidente. 🎉</p>
+
+<p>Pero oh, no... <a class="srclink" href="#src-bunyan-all-around-the-town-1990-p-242" data-scan="bunyan-all-around-the-town-1990-p-242" title="See the source page — Bunyan, All Around the Town, 1990, p. 242"><mark id="hl-17" class="s8" title="Bunyan, All Around the Town, 1990, p. 242">(la fiesta no salió como todos habían planeado)</mark></a>. Hubo una decisión grande y complicada, y al final, Tilden NO llegó a ser Presidente después de todo. <a class="srclink" href="#src-bunyan-all-around-the-town-1990-p-242" data-scan="bunyan-all-around-the-town-1990-p-242" title="See the source page — Bunyan, All Around the Town, 1990, p. 242"><mark id="hl-18" class="s8" title="Bunyan, All Around the Town, 1990, p. 242">(En su lugar, ganó un hombre llamado Hayes)</mark></a>. Bua, bua. ¡Todos esos gorritos de fiesta para nada! 🎩</p>
+
+<h2>Capítulo Cuatro: ¡Fuera lo Viejo, Arriba lo Nuevo!</h2>
+
+<p>Pasaron los años, y toda la ciudad se volvió cada vez más ajetreada. ¡<a class="srclink" href="#src-trager-park-avenue-1990-p-183" data-scan="trager-park-avenue-1990-p-183" title="See the source page — Trager, Park Avenue, 1990, p. 183"><mark id="hl-19" class="s4" title="Trager, Park Avenue, 1990, p. 183">(Los constructores estaban por todas partes, derribando edificios viejos y cavando grandes y profundos agujeros)</mark></a> para dar paso a otros nuevos y altos! 🏗️</p>
+
+<p>Y así, <a class="srclink" href="#src-trager-park-avenue-1990-p-183" data-scan="trager-park-avenue-1990-p-183" title="See the source page — Trager, Park Avenue, 1990, p. 183"><mark id="hl-20" class="s4" title="Trager, Park Avenue, 1990, p. 183">(el querido y viejo hotel Everett House finalmente se despidió. ¡En su lugar se alzó un nuevo héroe — el alto y poderoso Edificio Everett)</mark></a>! ¡<a class="srclink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-542" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-542" title="See the source page — Spielvogel, The Landmarks of New York, 2016, p. 542"><mark id="hl-21" class="s9" title="Spielvogel, The Landmarks of New York, 2016, p. 542">(Fue construido en 1908 y se estiró 16 pisos enteros hacia el cielo)</mark></a>! 🌇</p>
+
+<p><a class="srclink" href="#src-postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76" data-scan="postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76" title="See the source page — Postal &amp; Dolkart, Guide to New York City Landmarks, 2009, p. 76"><mark id="hl-22" class="s10" title="Postal &amp; Dolkart, Guide to New York City Landmarks, 2009, p. 76">(El ingenioso arquitecto que lo diseñó había aprendido todos sus mejores trucos de construcción en una ciudad lejana)</mark></a> antes de venir a crear este. El edificio era <a class="srclink" href="#src-postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76" data-scan="postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76" title="See the source page — Postal &amp; Dolkart, Guide to New York City Landmarks, 2009, p. 76"><mark id="hl-23" class="s10" title="Postal &amp; Dolkart, Guide to New York City Landmarks, 2009, p. 76">(súper fuerte, súper protegido contra el fuego, y tenía grandes y hermosas ventanas)</mark></a> para dejar entrar la luz del sol. <a class="srclink" href="#src-postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76" data-scan="postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76" title="See the source page — Postal &amp; Dolkart, Guide to New York City Landmarks, 2009, p. 76"><mark id="hl-24" class="s10" title="Postal &amp; Dolkart, Guide to New York City Landmarks, 2009, p. 76">(Se alzaba orgulloso justo al lado del parque)</mark></a>, como un alto y amistoso sujetalibros vigilando todo.</p>
+
+<h2>Capítulo Cinco: El Edificio Más Elegante y Arreglado</h2>
+
+<p>¡De cerca, el Edificio Everett es simplemente precioso! Está <a class="srclink" href="#src-lpc-union-square-1908-p-1" data-scan="lpc-union-square-1908-p-1" title="See the source page — LPC, Union Square, 1908, p. 1"><mark id="hl-25" class="s11" title="LPC, Union Square, 1908, p. 1">(decorado con relucientes ornamentos hechos de un tipo especial de arcilla horneada en muchos colores)</mark></a>. Hay <a class="srclink" href="#src-lpc-union-square-1908-p-1" data-scan="lpc-union-square-1908-p-1" title="See the source page — LPC, Union Square, 1908, p. 1"><mark id="hl-26" class="s11" title="LPC, Union Square, 1908, p. 1">(formas frondosas y elegantes)</mark></a>, y <a class="srclink" href="#src-lpc-union-square-1908-p-1" data-scan="lpc-union-square-1908-p-1" title="See the source page — LPC, Union Square, 1908, p. 1"><mark id="hl-27" class="s11" title="LPC, Union Square, 1908, p. 1">(una hilera de pequeñas decoraciones dentadas que bordean el borde más alto)</mark></a>, casi como si el edificio estuviera dando una gran sonrisa. 😁</p>
+
+<p>¿Y la mejor parte? ¡Este edificio era tan especial que <a class="srclink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-542" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-542" title="See the source page — Spielvogel, The Landmarks of New York, 2016, p. 542"><mark id="hl-28" class="s9" title="Spielvogel, The Landmarks of New York, 2016, p. 542">(recibió una brillante insignia de honor convirtiéndolo en un monumento protegido)</mark></a> — eso significa que será cuidado y mantenido a salvo durante muchísimo, muchísimo tiempo! ¡Hurra! 🏅</p>
+
+<h2>Capítulo Seis: Todos los Amigos que Vivieron Adentro</h2>
+
+<p>A lo largo de los años, ¡TANTA gente interesante llenó las habitaciones de este alto edificio! 🏢</p>
+
+<p>Había <a class="srclink" href="#src-jackson-the-encyclopedia-of-new-york-2010-p-587" data-scan="jackson-the-encyclopedia-of-new-york-2010-p-587" title="See the source page — Jackson, The Encyclopedia of New York, 2010, p. 587"><mark id="hl-29" class="s12" title="Jackson, The Encyclopedia of New York, 2010, p. 587">(amables ayudantes que asistían a las personas que llegaban a la ciudad desde lugares lejanos)</mark></a>. Había <mark id="hl-30" class="s13" title="Halliday, Zinester&#x27;s Guide to NYC, p. 170">(una tienda repleta a reventar de revistas para leer)</mark>. Había <mark id="hl-31" class="s14" title="Frank, Where to Find It Buy It Eat It In New York, 1980, p. 404">(una elegante tienda de ropa llena de atuendos modernos para personas mayores)</mark>. ¡Incluso había <a class="srclink" href="#src-hart-hart-s-guide-to-new-york-city-1964-p-191" data-scan="hart-hart-s-guide-to-new-york-city-1964-p-191" title="See the source page — Hart, Hart&#x27;s Guide to New York City, 1964, p. 191"><mark id="hl-32" class="s15" title="Hart, Hart&#x27;s Guide to New York City, 1964, p. 191">(una acogedora librería muy arriba que vendía maravillosos libros antiguos)</mark></a>! 📚</p>
+
+<p>Y había <a class="srclink" href="#src-hess-new-york-through-a-fashion-eye-2016-p-28" data-scan="hess-new-york-through-a-fashion-eye-2016-p-28" title="See the source page — Hess, New York through a Fashion Eye, 2016, p. 28"><mark id="hl-33" class="s16" title="Hess, New York through a Fashion Eye, 2016, p. 28">(un spa salpicado por todas partes con un alegre y brillante color rojo)</mark></a> — <a class="srclink" href="#src-hess-new-york-through-a-fashion-eye-2016-p-28" data-scan="hess-new-york-through-a-fashion-eye-2016-p-28" title="See the source page — Hess, New York through a Fashion Eye, 2016, p. 28"><mark id="hl-34" class="s16" title="Hess, New York through a Fashion Eye, 2016, p. 28">(el lugar perfecto para sentirse elegante y relajado antes de un gran día especial)</mark></a>. 💅</p>
+
+<p>Y así, <a class="srclink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-542" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-542" title="See the source page — Spielvogel, The Landmarks of New York, 2016, p. 542"><mark id="hl-35" class="s9" title="Spielvogel, The Landmarks of New York, 2016, p. 542">(nuestro alto amigo de terracota todavía se alza junto al parque hoy en día)</mark></a>, lleno de cien años de historias, observando cómo toda la ajetreada ciudad bulle y se mueve allá abajo.</p>
+
+<h2>¡Fin! 🌟</h2>
+
+<section class="chart-print"><h2 id="citations">Citation Chart</h2>
+<p class="note2">Every highlighted quote, in order of appearance, correlated to its underlying source. The swatch matches the highlight colour in the text.</p>
+<div class="tablewrap">
+<h3 class="csec">Capítulo Uno: ¡Cuando la Gente Elegante se Marchó Corriendo!</h3>
+<table><thead><tr><th class="num">#</th><th>Verbatim Quote (abbreviated)</th><th>Source (Author, Title, Year, Page)</th></tr></thead><tbody>
+<tr><td class="num">1</td><td class="quote">&ldquo;muchas familias ricas vivían en hermosas casas de ladrillo&rdquo;</td><td class="src"><span class="sw s1"></span>Lockwood, Manhattan Moves Uptown, 1976, p. 290&nbsp;<a class="pglink" href="#src-lockwood-manhattan-moves-uptown-1976-p-290" data-scan="lockwood-manhattan-moves-uptown-1976-p-290">[page scan]</a></td></tr>
+<tr><td class="num">2</td><td class="quote">&ldquo;por todas partes, justo en medio de las elegantes casas, empezaron a aparecer tiendas&rdquo;</td><td class="src"><span class="sw s1"></span>Lockwood, Manhattan Moves Uptown, 1976, p. 290&nbsp;<a class="pglink" href="#src-lockwood-manhattan-moves-uptown-1976-p-290" data-scan="lockwood-manhattan-moves-uptown-1976-p-290">[page scan]</a></td></tr>
+<tr><td class="num">3</td><td class="quote">&ldquo;empacaron todas sus pertenencias y salieron volando hacia otro vecindario&rdquo;</td><td class="src"><span class="sw s1"></span>Lockwood, Manhattan Moves Uptown, 1976, p. 290&nbsp;<a class="pglink" href="#src-lockwood-manhattan-moves-uptown-1976-p-290" data-scan="lockwood-manhattan-moves-uptown-1976-p-290">[page scan]</a></td></tr>
+<tr><td class="num">4</td><td class="quote">&ldquo;casi todas las casas elegantes se habían convertido en acogedoras casas de huéspedes&rdquo;</td><td class="src"><span class="sw s1"></span>Lockwood, Manhattan Moves Uptown, 1976, p. 290&nbsp;<a class="pglink" href="#src-lockwood-manhattan-moves-uptown-1976-p-290" data-scan="lockwood-manhattan-moves-uptown-1976-p-290">[page scan]</a></td></tr>
+<tr><td class="num">5</td><td class="quote">&ldquo;Union Square era el mejor lugar de toda la ciudad para construir un maravilloso hotel&rdquo;</td><td class="src"><span class="sw s1"></span>Lockwood, Manhattan Moves Uptown, 1976, p. 290&nbsp;<a class="pglink" href="#src-lockwood-manhattan-moves-uptown-1976-p-290" data-scan="lockwood-manhattan-moves-uptown-1976-p-290">[page scan]</a></td></tr>
+<tr><td class="num">6</td><td class="quote">&ldquo;la tierra allí valía cada vez más dinero — montones y montones de él&rdquo;</td><td class="src"><span class="sw s1"></span>Lockwood, Manhattan Moves Uptown, 1976, p. 291&nbsp;<a class="pglink" href="#src-lockwood-manhattan-moves-uptown-1976-p-291" data-scan="lockwood-manhattan-moves-uptown-1976-p-291">[page scan]</a></td></tr>
+</tbody></table>
+<h3 class="csec">Capítulo Dos: ¡Hola, Magnífico Hotel!</h3>
+<table><thead><tr><th class="num">#</th><th>Verbatim Quote (abbreviated)</th><th>Source (Author, Title, Year, Page)</th></tr></thead><tbody>
+<tr><td class="num">7</td><td class="quote">&ldquo;un grandioso hotel llamado Everett House! Fue construido allá por la década de 1850, justo en una esquina especial junto al parque&rdquo;</td><td class="src"><span class="sw s1"></span>Lockwood, Manhattan Moves Uptown, 1976, p. 291&nbsp;<a class="pglink" href="#src-lockwood-manhattan-moves-uptown-1976-p-291" data-scan="lockwood-manhattan-moves-uptown-1976-p-291">[page scan]</a></td></tr>
+<tr><td class="num">8</td><td class="quote">&ldquo;Venían escritores de visita. Venían actores de visita. Venía gente que amaba los libros y las obras de teatro&rdquo;</td><td class="src"><span class="sw s2"></span>Watson &amp; Gillon, New York Then and Now, 1976, p. 80&nbsp;<a class="pglink" href="#src-watson-gillon-new-york-then-and-now-1976-p-80" data-scan="watson-gillon-new-york-then-and-now-1976-p-80">[page scan]</a></td></tr>
+<tr><td class="num">9</td><td class="quote">&ldquo;tan grande que podía albergar hasta 250 huéspedes a la vez&rdquo;</td><td class="src"><span class="sw s3"></span>Boyer, Manhattan Manners, 1985, p. 46&nbsp;<a class="pglink" href="#src-boyer-manhattan-manners-1985-p-46" data-scan="boyer-manhattan-manners-1985-p-46">[page scan]</a></td></tr>
+<tr><td class="num">10</td><td class="quote">&ldquo;el primerísimo hotel de toda la ciudad en encender luces eléctricas centelleantes&rdquo;</td><td class="src"><span class="sw s3"></span>Boyer, Manhattan Manners, 1985, p. 46&nbsp;<a class="pglink" href="#src-boyer-manhattan-manners-1985-p-46" data-scan="boyer-manhattan-manners-1985-p-46">[page scan]</a></td></tr>
+<tr><td class="num">11</td><td class="quote">&ldquo;su nombre de un hombre muy importante llamado Edward Everett, quien fue un famoso orador y líder&rdquo;</td><td class="src"><span class="sw s4"></span>Trager, <em>Park Avenue</em>, 1990, p. 39&nbsp;<a class="pglink" href="#src-trager-park-avenue-1990-p-39" data-scan="trager-park-avenue-1990-p-39">[page scan]</a></td></tr>
+<tr><td class="num">12</td><td class="quote">&ldquo;le regaló al hotel un retrato de sí mismo que colgó de la pared durante años&rdquo;</td><td class="src"><span class="sw s4"></span>Trager, <em>Park Avenue</em>, 1990, p. 39&nbsp;<a class="pglink" href="#src-trager-park-avenue-1990-p-39" data-scan="trager-park-avenue-1990-p-39">[page scan]</a></td></tr>
+<tr><td class="num">13</td><td class="quote">&ldquo;llamándolo un magnífico hotel que se sentía a la vez elegante Y acogedor, como una tranquila casa privada&rdquo;</td><td class="src"><span class="sw s5"></span>Nelson &amp; Sons, Nelsons Guide to the City of New York, 1858, p. 39&nbsp;<a class="pglink" href="#src-nelson-sons-nelsons-guide-to-the-city-of-new-york-1858-p-39" data-scan="nelson-sons-nelsons-guide-to-the-city-of-new-york-1858-p-39">[page scan]</a></td></tr>
+<tr><td class="num">14</td><td class="quote">&ldquo;Incluso te decían exactamente a qué hora se servía la cena&rdquo;</td><td class="src"><span class="sw s6"></span>Brown, Valentine&#x27;s Manual 1924, 1924, p. 160&nbsp;<a class="pglink" href="#src-brown-valentine-s-manual-1924-1924-p-160" data-scan="brown-valentine-s-manual-1924-1924-p-160">[page scan]</a></td></tr>
+<tr><td class="num">15</td><td class="quote">&ldquo;La calle justo afuera del hotel se iluminaba con coloridas y resplandecientes lámparas&rdquo;</td><td class="src"><span class="sw s7"></span>Lightfoot, Nineteenth Century in Rare Photographs, 1981, p. 76&nbsp;<a class="pglink" href="#src-lightfoot-nineteenth-century-in-rare-photographs-1981-p-76" data-scan="lightfoot-nineteenth-century-in-rare-photographs-1981-p-76">[page scan]</a></td></tr>
+</tbody></table>
+<h3 class="csec">Capítulo Tres: La Gran Fiesta Sorpresa que se Desinfló</h3>
+<table><thead><tr><th class="num">#</th><th>Verbatim Quote (abbreviated)</th><th>Source (Author, Title, Year, Page)</th></tr></thead><tbody>
+<tr><td class="num">16</td><td class="quote">&ldquo;la noche de las elecciones, allá por 1876, y mucha gente vino a aclamar a un hombre llamado Samuel Tilden&rdquo;</td><td class="src"><span class="sw s8"></span>Bunyan, All Around the Town, 1990, p. 242&nbsp;<a class="pglink" href="#src-bunyan-all-around-the-town-1990-p-242" data-scan="bunyan-all-around-the-town-1990-p-242">[page scan]</a></td></tr>
+<tr><td class="num">17</td><td class="quote">&ldquo;la fiesta no salió como todos habían planeado&rdquo;</td><td class="src"><span class="sw s8"></span>Bunyan, All Around the Town, 1990, p. 242&nbsp;<a class="pglink" href="#src-bunyan-all-around-the-town-1990-p-242" data-scan="bunyan-all-around-the-town-1990-p-242">[page scan]</a></td></tr>
+<tr><td class="num">18</td><td class="quote">&ldquo;En su lugar, ganó un hombre llamado Hayes&rdquo;</td><td class="src"><span class="sw s8"></span>Bunyan, All Around the Town, 1990, p. 242&nbsp;<a class="pglink" href="#src-bunyan-all-around-the-town-1990-p-242" data-scan="bunyan-all-around-the-town-1990-p-242">[page scan]</a></td></tr>
+</tbody></table>
+<h3 class="csec">Capítulo Cuatro: ¡Fuera lo Viejo, Arriba lo Nuevo!</h3>
+<table><thead><tr><th class="num">#</th><th>Verbatim Quote (abbreviated)</th><th>Source (Author, Title, Year, Page)</th></tr></thead><tbody>
+<tr><td class="num">19</td><td class="quote">&ldquo;Los constructores estaban por todas partes, derribando edificios viejos y cavando grandes y profundos agujeros&rdquo;</td><td class="src"><span class="sw s4"></span>Trager, <em>Park Avenue</em>, 1990, p. 183&nbsp;<a class="pglink" href="#src-trager-park-avenue-1990-p-183" data-scan="trager-park-avenue-1990-p-183">[page scan]</a></td></tr>
+<tr><td class="num">20</td><td class="quote">&ldquo;el querido y viejo hotel Everett House finalmente se despidió. ¡En su lugar se alzó un nuevo héroe — el alto y poderoso Edificio Everett&rdquo;</td><td class="src"><span class="sw s4"></span>Trager, <em>Park Avenue</em>, 1990, p. 183&nbsp;<a class="pglink" href="#src-trager-park-avenue-1990-p-183" data-scan="trager-park-avenue-1990-p-183">[page scan]</a></td></tr>
+<tr><td class="num">21</td><td class="quote">&ldquo;Fue construido en 1908 y se estiró 16 pisos enteros hacia el cielo&rdquo;</td><td class="src"><span class="sw s9"></span>Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 542&nbsp;<a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-542" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-542">[page scan]</a></td></tr>
+<tr><td class="num">22</td><td class="quote">&ldquo;El ingenioso arquitecto que lo diseñó había aprendido todos sus mejores trucos de construcción en una ciudad lejana&rdquo;</td><td class="src"><span class="sw s10"></span>Postal &amp; Dolkart, Guide to New York City Landmarks, 2009, p. 76&nbsp;<a class="pglink" href="#src-postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76" data-scan="postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76">[page scan]</a></td></tr>
+<tr><td class="num">23</td><td class="quote">&ldquo;súper fuerte, súper protegido contra el fuego, y tenía grandes y hermosas ventanas&rdquo;</td><td class="src"><span class="sw s10"></span>Postal &amp; Dolkart, Guide to New York City Landmarks, 2009, p. 76&nbsp;<a class="pglink" href="#src-postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76" data-scan="postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76">[page scan]</a></td></tr>
+<tr><td class="num">24</td><td class="quote">&ldquo;Se alzaba orgulloso justo al lado del parque&rdquo;</td><td class="src"><span class="sw s10"></span>Postal &amp; Dolkart, Guide to New York City Landmarks, 2009, p. 76&nbsp;<a class="pglink" href="#src-postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76" data-scan="postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76">[page scan]</a></td></tr>
+</tbody></table>
+<h3 class="csec">Capítulo Cinco: El Edificio Más Elegante y Arreglado</h3>
+<table><thead><tr><th class="num">#</th><th>Verbatim Quote (abbreviated)</th><th>Source (Author, Title, Year, Page)</th></tr></thead><tbody>
+<tr><td class="num">25</td><td class="quote">&ldquo;decorado con relucientes ornamentos hechos de un tipo especial de arcilla horneada en muchos colores&rdquo;</td><td class="src"><span class="sw s11"></span>LPC, <em>Union Square</em>, 1908, p. 1&nbsp;<a class="pglink" href="#src-lpc-union-square-1908-p-1" data-scan="lpc-union-square-1908-p-1">[page scan]</a></td></tr>
+<tr><td class="num">26</td><td class="quote">&ldquo;formas frondosas y elegantes&rdquo;</td><td class="src"><span class="sw s11"></span>LPC, <em>Union Square</em>, 1908, p. 1&nbsp;<a class="pglink" href="#src-lpc-union-square-1908-p-1" data-scan="lpc-union-square-1908-p-1">[page scan]</a></td></tr>
+<tr><td class="num">27</td><td class="quote">&ldquo;una hilera de pequeñas decoraciones dentadas que bordean el borde más alto&rdquo;</td><td class="src"><span class="sw s11"></span>LPC, <em>Union Square</em>, 1908, p. 1&nbsp;<a class="pglink" href="#src-lpc-union-square-1908-p-1" data-scan="lpc-union-square-1908-p-1">[page scan]</a></td></tr>
+<tr><td class="num">28</td><td class="quote">&ldquo;recibió una brillante insignia de honor convirtiéndolo en un monumento protegido&rdquo;</td><td class="src"><span class="sw s9"></span>Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 542&nbsp;<a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-542" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-542">[page scan]</a></td></tr>
+</tbody></table>
+<h3 class="csec">Capítulo Seis: Todos los Amigos que Vivieron Adentro</h3>
+<table><thead><tr><th class="num">#</th><th>Verbatim Quote (abbreviated)</th><th>Source (Author, Title, Year, Page)</th></tr></thead><tbody>
+<tr><td class="num">29</td><td class="quote">&ldquo;amables ayudantes que asistían a las personas que llegaban a la ciudad desde lugares lejanos&rdquo;</td><td class="src"><span class="sw s12"></span>Jackson, <em>The Encyclopedia of New York</em>, 2010, p. 587&nbsp;<a class="pglink" href="#src-jackson-the-encyclopedia-of-new-york-2010-p-587" data-scan="jackson-the-encyclopedia-of-new-york-2010-p-587">[page scan]</a></td></tr>
+<tr><td class="num">30</td><td class="quote">&ldquo;una tienda repleta a reventar de revistas para leer&rdquo;</td><td class="src"><span class="sw s13"></span>Halliday, Zinester&#x27;s Guide to NYC, p. 170</td></tr>
+<tr><td class="num">31</td><td class="quote">&ldquo;una elegante tienda de ropa llena de atuendos modernos para personas mayores&rdquo;</td><td class="src"><span class="sw s14"></span>Frank, Where to Find It Buy It Eat It In New York, 1980, p. 404</td></tr>
+<tr><td class="num">32</td><td class="quote">&ldquo;una acogedora librería muy arriba que vendía maravillosos libros antiguos&rdquo;</td><td class="src"><span class="sw s15"></span>Hart, Hart&#x27;s Guide to New York City, 1964, p. 191&nbsp;<a class="pglink" href="#src-hart-hart-s-guide-to-new-york-city-1964-p-191" data-scan="hart-hart-s-guide-to-new-york-city-1964-p-191">[page scan]</a></td></tr>
+<tr><td class="num">33</td><td class="quote">&ldquo;un spa salpicado por todas partes con un alegre y brillante color rojo&rdquo;</td><td class="src"><span class="sw s16"></span>Hess, New York through a Fashion Eye, 2016, p. 28&nbsp;<a class="pglink" href="#src-hess-new-york-through-a-fashion-eye-2016-p-28" data-scan="hess-new-york-through-a-fashion-eye-2016-p-28">[page scan]</a></td></tr>
+<tr><td class="num">34</td><td class="quote">&ldquo;el lugar perfecto para sentirse elegante y relajado antes de un gran día especial&rdquo;</td><td class="src"><span class="sw s16"></span>Hess, New York through a Fashion Eye, 2016, p. 28&nbsp;<a class="pglink" href="#src-hess-new-york-through-a-fashion-eye-2016-p-28" data-scan="hess-new-york-through-a-fashion-eye-2016-p-28">[page scan]</a></td></tr>
+<tr><td class="num">35</td><td class="quote">&ldquo;nuestro alto amigo de terracota todavía se alza junto al parque hoy en día&rdquo;</td><td class="src"><span class="sw s9"></span>Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 542&nbsp;<a class="pglink" href="#src-spielvogel-the-landmarks-of-new-york-2016-p-542" data-scan="spielvogel-the-landmarks-of-new-york-2016-p-542">[page scan]</a></td></tr>
+</tbody></table></div></section>
+
+<h2 class="srcpage" id="sources">Source Pages</h2>
+<p class="note2">16 scanned pages, one per cited source page. Each lists the highlighted quotes drawn from it.</p>
+<section class="srcsec"><h3 class="scanhead"><span id="src-lockwood-manhattan-moves-uptown-1976-p-290"></span>Lockwood, Manhattan Moves Uptown, 1976, p. 290</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-1">1</a> <a href="#hl-2">2</a> <a href="#hl-3">3</a> <a href="#hl-4">4</a> <a href="#hl-5">5</a></span></p>
+<figure class="scan"><img id="scan-lockwood-manhattan-moves-uptown-1976-p-290" src="assets/scans/lockwood-manhattan-moves-uptown-1976-p-290.jpg" alt="Lockwood, Manhattan Moves Uptown, 1976, p. 290"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-lockwood-manhattan-moves-uptown-1976-p-291"></span>Lockwood, Manhattan Moves Uptown, 1976, p. 291</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-6">6</a> <a href="#hl-7">7</a></span></p>
+<figure class="scan"><img id="scan-lockwood-manhattan-moves-uptown-1976-p-291" src="assets/scans/lockwood-manhattan-moves-uptown-1976-p-291.jpg" alt="Lockwood, Manhattan Moves Uptown, 1976, p. 291"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-watson-gillon-new-york-then-and-now-1976-p-80"></span>Watson &amp; Gillon, New York Then and Now, 1976, p. 80</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-8">8</a></span></p>
+<figure class="scan"><img id="scan-watson-gillon-new-york-then-and-now-1976-p-80" src="assets/scans/watson-gillon-new-york-then-and-now-1976-p-80.jpg" alt="Watson &amp; Gillon, New York Then and Now, 1976, p. 80"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-boyer-manhattan-manners-1985-p-46"></span>Boyer, Manhattan Manners, 1985, p. 46</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-9">9</a> <a href="#hl-10">10</a></span></p>
+<figure class="scan"><img id="scan-boyer-manhattan-manners-1985-p-46" src="assets/scans/boyer-manhattan-manners-1985-p-46.jpg" alt="Boyer, Manhattan Manners, 1985, p. 46"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-trager-park-avenue-1990-p-39"></span>Trager, <em>Park Avenue</em>, 1990, p. 39</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-11">11</a> <a href="#hl-12">12</a></span></p>
+<figure class="scan"><img id="scan-trager-park-avenue-1990-p-39" src="assets/scans/trager-park-avenue-1990-p-39.jpg" alt="Trager, Park Avenue, 1990, p. 39"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-nelson-sons-nelsons-guide-to-the-city-of-new-york-1858-p-39"></span>Nelson &amp; Sons, Nelsons Guide to the City of New York, 1858, p. 39</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-13">13</a></span></p>
+<figure class="scan"><img id="scan-nelson-sons-nelsons-guide-to-the-city-of-new-york-1858-p-39" src="assets/scans/nelson-sons-nelsons-guide-to-the-city-of-new-york-1858-p-39.jpg" alt="Nelson &amp; Sons, Nelsons Guide to the City of New York, 1858, p. 39"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-brown-valentine-s-manual-1924-1924-p-160"></span>Brown, Valentine&#x27;s Manual 1924, 1924, p. 160</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-14">14</a></span></p>
+<figure class="scan"><img id="scan-brown-valentine-s-manual-1924-1924-p-160" src="assets/scans/brown-valentine-s-manual-1924-1924-p-160.jpg" alt="Brown, Valentine&#x27;s Manual 1924, 1924, p. 160"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-lightfoot-nineteenth-century-in-rare-photographs-1981-p-76"></span>Lightfoot, Nineteenth Century in Rare Photographs, 1981, p. 76</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-15">15</a></span></p>
+<figure class="scan"><img id="scan-lightfoot-nineteenth-century-in-rare-photographs-1981-p-76" src="assets/scans/lightfoot-nineteenth-century-in-rare-photographs-1981-p-76.jpg" alt="Lightfoot, Nineteenth Century in Rare Photographs, 1981, p. 76"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-bunyan-all-around-the-town-1990-p-242"></span>Bunyan, All Around the Town, 1990, p. 242</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-16">16</a> <a href="#hl-17">17</a> <a href="#hl-18">18</a></span></p>
+<figure class="scan"><img id="scan-bunyan-all-around-the-town-1990-p-242" src="assets/scans/bunyan-all-around-the-town-1990-p-242.jpg" alt="Bunyan, All Around the Town, 1990, p. 242"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-trager-park-avenue-1990-p-183"></span>Trager, <em>Park Avenue</em>, 1990, p. 183</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-19">19</a> <a href="#hl-20">20</a></span></p>
+<figure class="scan"><img id="scan-trager-park-avenue-1990-p-183" src="assets/scans/trager-park-avenue-1990-p-183.jpg" alt="Trager, Park Avenue, 1990, p. 183"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-spielvogel-the-landmarks-of-new-york-2016-p-542"></span>Spielvogel, <em>The Landmarks of New York</em>, 2016, p. 542</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-21">21</a> <a href="#hl-28">28</a> <a href="#hl-35">35</a></span></p>
+<figure class="scan"><img id="scan-spielvogel-the-landmarks-of-new-york-2016-p-542" src="assets/scans/spielvogel-the-landmarks-of-new-york-2016-p-542.jpg" alt="Spielvogel, The Landmarks of New York, 2016, p. 542"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76"></span>Postal &amp; Dolkart, Guide to New York City Landmarks, 2009, p. 76</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-22">22</a> <a href="#hl-23">23</a> <a href="#hl-24">24</a></span></p>
+<figure class="scan"><img id="scan-postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76" src="assets/scans/postal-dolkart-guide-to-new-york-city-landmarks-2009-p-76.jpg" alt="Postal &amp; Dolkart, Guide to New York City Landmarks, 2009, p. 76"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-lpc-union-square-1908-p-1"></span>LPC, <em>Union Square</em>, 1908, p. 1</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-25">25</a> <a href="#hl-26">26</a> <a href="#hl-27">27</a></span> &middot; <i>The Landmarks Preservation Commission record for 200 Park Avenue South, supplied as the catalogue entry rather than a page image.</i></p>
+<figure class="scan"><img id="scan-lpc-union-square-1908-p-1" src="assets/scans/lpc-union-square-1908-p-1.jpg" alt="LPC, Union Square, 1908, p. 1"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-jackson-the-encyclopedia-of-new-york-2010-p-587"></span>Jackson, <em>The Encyclopedia of New York</em>, 2010, p. 587</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-29">29</a></span></p>
+<figure class="scan"><img id="scan-jackson-the-encyclopedia-of-new-york-2010-p-587" src="assets/scans/jackson-the-encyclopedia-of-new-york-2010-p-587.jpg" alt="Jackson, The Encyclopedia of New York, 2010, p. 587"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-hart-hart-s-guide-to-new-york-city-1964-p-191"></span>Hart, Hart&#x27;s Guide to New York City, 1964, p. 191</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-32">32</a></span></p>
+<figure class="scan"><img id="scan-hart-hart-s-guide-to-new-york-city-1964-p-191" src="assets/scans/hart-hart-s-guide-to-new-york-city-1964-p-191.jpg" alt="Hart, Hart&#x27;s Guide to New York City, 1964, p. 191"></figure></section>
+<section class="srcsec"><h3 class="scanhead"><span id="src-hess-new-york-through-a-fashion-eye-2016-p-28"></span>Hess, New York through a Fashion Eye, 2016, p. 28</h3>
+<p class="note2">Quotes drawn from this page: <span class="backlinks"><a href="#hl-33">33</a> <a href="#hl-34">34</a></span></p>
+<figure class="scan"><img id="scan-hess-new-york-through-a-fashion-eye-2016-p-28" src="assets/scans/hess-new-york-through-a-fashion-eye-2016-p-28.jpg" alt="Hess, New York through a Fashion Eye, 2016, p. 28"></figure></section>
+</div>
+<aside class="rail on-right" id="rail" aria-label="Views of the building">
+<div class="rail-title">La narración</div>
+<figure class="railvid"><video controls playsinline preload="metadata" poster="assets/media/es-poster.jpg" src="assets/media/es-rail.mp4"></video><figcaption><b>Escuchar</b><span>6 min 37 s &mdash; pulsa play y el texto sigue a la voz.</span></figcaption></figure>
+<p class="rail-foot"></p></aside>
+</div>
+<div class="lightbox" hidden><div class="lb-head"><span class="lb-t"></span><button class="lb-btn lb-zoom" type="button">Zoom</button><button class="lb-btn lb-close" type="button">Close &times;</button></div><div class="lb-body"><img alt="Enlarged view"></div></div>
+
+
+<div class="sp-backdrop" hidden></div>
+<aside class="scanpanel" hidden aria-label="Source page">
+  <div class="sp-head">
+    <div class="sp-title"><span class="sp-cite"></span><span class="sp-q"></span></div>
+    <button class="sp-btn sp-zoom" type="button">Zoom</button>
+    <button class="sp-btn sp-close" type="button" aria-label="Close">&times;</button>
+  </div>
+  <div class="sp-body"><div class="sp-img"><img alt="Source page scan"><div class="sp-ov"></div></div></div>
+</aside>
+<script>
+(function () {
+  var panel = document.querySelector('.scanpanel'),
+      back  = document.querySelector('.sp-backdrop'),
+      bodyEl= panel.querySelector('.sp-body'),
+      img   = panel.querySelector('.sp-body img'),
+      citeEl= panel.querySelector('.sp-cite'),
+      qEl   = panel.querySelector('.sp-q');
+  var ov = panel.querySelector('.sp-ov'), shown = null;
+  function paint() {
+    ov.innerHTML = '';
+    if (!shown || !img.naturalWidth) return;
+    var k = img.clientWidth / img.naturalWidth;
+    shown.forEach(function (b) {
+      var e = document.createElement('i');
+      e.style.left = (b[0] * k - 3) + 'px';  e.style.top = (b[1] * k - 2) + 'px';
+      e.style.width = (b[2] * k + 6) + 'px'; e.style.height = (b[3] * k + 4) + 'px';
+      ov.appendChild(e);
+    });
+  }
+  img.addEventListener('load', paint);
+  window.addEventListener('resize', paint);
+  function open(slug, label, num) {
+    var full = document.getElementById('scan-' + slug);
+    if (!full) return;
+    if (img.getAttribute('src') !== full.src) img.src = full.src;
+    bodyEl.classList.remove('zoom'); bodyEl.scrollTop = 0;
+    shown = (typeof QB !== 'undefined' && QB[slug] && QB[slug][num]) ? QB[slug][num] : null;
+    paint();
+    citeEl.innerHTML = label;
+    qEl.textContent = num ? 'Highlighted quote no. ' + num : '';
+    panel.hidden = false; back.hidden = false;
+    requestAnimationFrame(function () { document.body.classList.add('sp-open'); });
+  }
+  function close() {
+    document.body.classList.remove('sp-open');
+    setTimeout(function () { panel.hidden = true; back.hidden = true; }, 220);
+  }
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest) return;
+    var a = e.target.closest('a.srclink, a.pglink');
+    if (a && a.dataset.scan) {
+      e.preventDefault();
+      var head = document.getElementById('src-' + a.dataset.scan),
+          label = head ? head.parentNode.innerHTML.replace(/<span id="src-[^"]*"><\/span>/, '') : '',
+          mk = a.querySelector('mark'), num = '';
+      if (mk && mk.id) num = mk.id.replace('hl-', '');
+      else {
+        var tr = a.closest('tr'), ce = a.closest('.ce');
+        if (tr) num = tr.querySelector('td.num').textContent.trim();
+        else if (ce) num = ce.querySelector('.ce-n').textContent.trim();
+      }
+      open(a.dataset.scan, label, num);
+      return;
+    }
+    if (e.target.closest('.sp-close') || e.target.closest('.sp-backdrop')) close();
+    else if (e.target.closest('.sp-zoom') || e.target === img) { bodyEl.classList.toggle('zoom'); paint(); }
+  });
+  var lb = document.querySelector('.lightbox'), lbBody = lb.querySelector('.lb-body'),
+      lbImg = lb.querySelector('.lb-body img'), lbT = lb.querySelector('.lb-t');
+  function lbOpen(slug, label) {
+    var full = document.getElementById('view-' + slug);
+    if (!full) return;
+    if (lbImg.getAttribute('src') !== full.src) lbImg.src = full.src;
+    lbT.innerHTML = label || '';
+    lb.hidden = false;
+    requestAnimationFrame(function () { document.body.classList.add('lb-open'); });
+  }
+  function lbClose() {
+    document.body.classList.remove('lb-open');
+    lbBody.classList.remove('zoom');
+    setTimeout(function () { lb.hidden = true; }, 200);
+  }
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest) return;
+    if (e.target.closest('.lb-close')) { lbClose(); return; }
+    if (e.target.closest('.lb-zoom') || e.target.closest('.lb-body img')) { lbBody.classList.toggle('zoom'); return; }
+    if (e.target.closest('.lightbox') && !e.target.closest('.lb-head')) { lbClose(); return; }
+    if (e.target.closest('.lb-body')) lbClose();
+  });
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest) return;
+    var v = e.target.closest('figure.view');
+    if (v) {
+      var cap = v.querySelector('figcaption b');
+      lbOpen(v.dataset.view, cap ? cap.innerHTML : '');
+    }
+  });
+  // ---- citation column tracks the text ----
+  var col = document.getElementById('chartcol');
+  if (col) {
+    var entryFor = {};
+    Array.prototype.forEach.call(col.querySelectorAll('.ce'), function (ce) {
+      entryFor[ce.querySelector('.ce-n').textContent.trim()] = ce;
+    });
+    var marks = Array.prototype.slice.call(document.querySelectorAll('.wrap mark[id^="hl-"]'));
+    var current = null, touched = 0, selfUntil = 0, hoverNum = null;
+
+    col.addEventListener('scroll', function () {
+      if (Date.now() > selfUntil) touched = Date.now();   // a real scroll by the reader
+    }, { passive: true });
+
+    function activate(num, force) {
+      if (num === current && !force) return;
+      var ce = entryFor[num];
+      if (num !== current) {
+        current = num;
+        Array.prototype.forEach.call(col.querySelectorAll('.ce.active'), function (e) { e.classList.remove('active'); });
+        Array.prototype.forEach.call(document.querySelectorAll('mark.reading'), function (m) { m.classList.remove('reading'); });
+        if (ce) {
+          ce.classList.add('active');
+          var mk = document.getElementById('hl-' + num);
+          if (mk) mk.classList.add('reading');
+        }
+      }
+      if (!ce) return;
+      if (getComputedStyle(col).position !== 'sticky') return;   // stacked layout: don't hijack scrolling
+      if (!force && Date.now() - touched < 2000) return;         // reader is browsing the column
+      var top = ce.offsetTop - col.clientHeight * 0.38;
+      selfUntil = Date.now() + 900;                      // our own smooth scroll, not the reader's
+      col.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+    }
+
+    // ---- pointing at a highlight sends the column straight to its citation ----
+    var textcol = document.querySelector('.wrap');
+    if (textcol) {
+      textcol.addEventListener('mouseover', function (e) {
+        var m = e.target.closest ? e.target.closest('mark[id^="hl-"]') : null;
+        if (!m) return;
+        var n = m.id.replace('hl-', '');
+        if (n === hoverNum) return;        // bubbling from inside the same mark
+        hoverNum = n;
+        activate(n, true);                 // deliberate aim beats the scroll guard
+      });
+      textcol.addEventListener('mouseout', function (e) {
+        var m = e.target.closest ? e.target.closest('mark[id^="hl-"]') : null;
+        if (!m) return;
+        if (e.relatedTarget && m.contains(e.relatedTarget)) return;   // still inside the same mark
+        hoverNum = null;
+      });
+    }
+
+    function pick() {
+      if (hoverNum) return;               // the cursor is aiming; don't argue with it
+      var best = null, bestTop = Infinity, fallback = null, fallbackTop = -Infinity;
+      for (var i = 0; i < marks.length; i++) {
+        var r = marks[i].getBoundingClientRect();
+        if (r.bottom < 0 || r.top > window.innerHeight) continue;
+        if (r.top >= 0 && r.top < bestTop) { best = marks[i]; bestTop = r.top; }
+        else if (r.top < 0 && r.top > fallbackTop) { fallback = marks[i]; fallbackTop = r.top; }
+      }
+      var m = best || fallback;
+      if (m) activate(m.id.replace('hl-', ''));
+    }
+
+    var ticking = false;
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () { ticking = false; pick(); });
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    pick();
+  }
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { close(); if (!lb.hidden) lbClose(); }
+  });
+})();
+</script>
+
+<script>
+const WT=[0.0,0.0,0.0,0.16,0.47,1.27,2.04,2.67,2.83,3.31,3.62,4.26,4.57,5.37,5.69,6.32,6.95,7.11,7.58,8.18,8.69,8.94,9.32,9.45,9.7,10.21,10.34,10.59,11.4,11.85,12.16,12.31,13.09,13.39,13.69,14.44,14.6,15.2,15.35,16.41,17.16,17.61,18.07,19.06,19.19,19.59,19.99,20.26,20.79,21.05,21.45,21.58,22.4,22.67,22.8,23.5,23.85,24.38,25.08,25.44,26.48,26.66,27.01,27.36,27.71,27.89,28.82,28.99,29.17,29.87,30.23,30.93,31.11,31.81,32.8,32.9,33.3,33.8,34.1,34.2,34.9,35.57,35.74,36.58,36.75,37.74,38.08,38.25,39.09,39.26,39.93,40.81,41.32,41.66,42.5,42.83,43.95,44.28,44.45,44.95,45.29,45.46,46.62,46.89,47.02,47.7,47.83,48.24,48.37,48.64,48.78,49.18,49.85,50.12,50.39,50.52,50.79,51.33,51.47,51.87,52.41,52.55,53.22,53.49,53.62,54.16,54.43,54.84,55.11,55.38,56.76,57.04,57.33,57.75,58.32,58.6,58.88,59.59,59.73,60.76,60.96,61.98,62.35,63.1,63.29,64.22,65.16,65.49,66.0,66.16,66.83,67.0,67.34,67.84,68.34,68.68,68.84,69.18,69.51,69.68,70.01,70.18,70.68,71.02,71.52,71.69,72.53,73.36,73.55,73.74,74.31,74.69,75.26,75.64,75.83,76.02,76.91,77.48,77.67,78.24,78.43,79.06,80.07,80.32,81.21,82.22,83.18,83.34,84.1,84.58,84.74,84.9,85.39,85.87,86.03,86.51,87.55,87.71,88.35,88.68,89.16,89.64,90.58,90.95,91.68,92.05,92.23,92.42,92.97,93.15,93.52,93.7,94.07,95.2,95.94,96.31,96.49,97.42,97.59,98.21,98.38,98.72,99.74,100.25,100.92,101.09,102.08,102.58,103.08,103.24,104.08,104.63,104.99,105.35,105.9,106.08,106.44,106.63,106.81,107.17,107.35,108.42,108.61,108.99,109.38,109.57,109.95,110.33,110.9,111.48,111.86,112.62,112.81,113.01,113.2,114.22,114.41,115.17,115.56,115.94,116.78,116.95,117.45,117.95,118.11,118.45,118.61,119.11,119.28,119.84,120.34,120.84,121.01,121.68,121.84,122.01,123.2,123.82,123.98,124.32,124.48,124.98,125.15,125.65,125.98,126.65,127.84,129.35,129.73,131.36,131.57,131.99,132.84,133.49,133.92,134.13,134.34,134.76,135.19,136.43,137.07,137.49,138.13,138.76,139.64,139.86,140.49,141.13,141.34,142.16,142.69,142.87,143.4,143.58,144.23,144.41,144.94,145.12,145.3,145.65,146.01,146.36,146.54,146.72,147.45,147.99,148.82,148.99,149.67,150.18,150.36,151.17,152.02,152.19,152.7,153.21,153.9,154.07,154.75,155.09,155.71,155.88,156.39,156.57,156.74,156.91,157.89,158.06,158.74,159.42,159.76,160.45,160.79,161.64,162.17,162.35,162.88,163.76,163.94,164.29,164.64,164.82,165.35,165.53,166.22,166.4,166.57,166.75,167.1,167.46,168.94,169.12,169.47,169.82,170.52,170.69,171.04,171.22,172.09,172.27,172.97,173.14,174.19,175.04,175.59,177.2,178.0,178.21,178.41,178.61,179.21,179.81,180.22,180.42,181.36,181.79,183.06,183.49,183.91,184.55,185.19,185.4,186.25,186.67,187.23,187.87,188.5,188.72,188.93,189.78,189.99,190.84,191.27,192.12,193.54,193.86,194.03,194.35,194.51,194.67,195.48,195.81,195.97,196.53,196.86,197.18,197.51,197.67,198.15,198.32,198.48,198.8,199.29,199.77,200.1,200.96,201.61,201.94,202.1,202.91,203.07,204.04,204.51,204.74,205.32,205.47,205.91,206.05,206.49,206.78,207.08,207.51,208.5,208.83,209.16,209.82,210.16,210.32,211.3,211.47,211.63,212.29,212.62,212.78,213.11,213.28,213.44,214.11,214.6,214.77,215.54,215.59,215.63,215.72,215.81,215.86,215.95,216.08,216.56,217.44,218.76,219.21,219.67,220.35,220.57,221.25,221.71,222.48,223.25,223.82,224.79,224.99,225.56,226.13,226.33,227.22,227.74,227.91,228.26,228.43,228.78,228.95,229.47,229.64,230.16,230.51,230.68,230.85,232.08,232.28,233.09,233.69,233.89,234.29,235.07,235.88,236.88,237.49,237.69,238.29,238.7,238.9,239.5,240.3,240.71,240.91,241.31,241.51,241.91,242.52,242.72,243.42,243.64,244.08,244.29,245.17,245.39,246.04,246.48,247.14,248.09,248.97,249.19,250.4,250.57,250.73,251.06,251.23,251.56,251.73,252.23,252.72,252.89,253.78,253.95,254.61,255.44,256.28,256.56,257.12,257.25,257.39,257.53,257.95,258.23,258.65,259.06,259.2,260.0,260.17,261.03,261.89,262.24,262.71,263.23,263.74,264.43,264.78,264.95,265.46,265.81,265.98,266.67,266.84,267.19,267.7,268.22,268.56,268.74,269.08,269.25,269.6,270.22,270.42,271.45,271.86,272.27,273.18,273.59,274.42,274.82,275.03,275.64,275.85,276.46,276.88,277.08,277.7,278.31,278.72,279.13,279.54,279.74,279.95,280.16,280.94,281.11,281.63,282.33,282.67,282.84,283.19,283.36,284.26,284.61,284.78,285.13,285.3,286.0,286.86,287.55,288.34,289.13,289.52,289.71,291.12,291.31,292.1,292.29,293.6,293.77,294.11,294.29,295.14,295.66,295.83,296.51,297.74,298.43,299.81,300.16,301.88,303.26,303.95,304.3,304.64,305.33,306.71,307.06,308.09,309.47,309.82,310.5,311.82,312.19,312.55,313.1,313.28,314.02,314.2,314.56,315.11,315.3,316.03,317.13,317.68,318.04,318.59,318.77,319.14,319.32,319.69,320.05,320.42,320.6,320.79,321.7,322.62,322.98,323.35,323.53,324.46,325.13,325.81,327.15,328.84,329.23,330.97,331.35,331.55,332.86,333.24,334.01,334.4,334.98,336.13,336.32,336.7,338.2,338.39,338.58,339.66,340.43,340.81,341.58,341.97,342.35,343.58,343.78,344.55,344.74,345.12,345.7,346.47,347.24,348.2,350.36,351.08,351.43,351.79,351.97,352.51,352.87,353.58,354.74,354.9,355.06,355.38,355.53,355.69,356.01,356.33,356.65,357.44,357.76,357.92,358.87,359.03,359.35,359.67,360.94,361.25,361.55,362.06,362.27,362.67,362.78,362.88,363.18,363.39,363.69,363.8,363.9,364.2,364.41,364.71,365.3,365.62,365.83,366.16,366.48,366.58,366.9,367.01,367.33,367.55,368.22,368.72,369.05,369.72,370.22,370.38,370.72,371.05,371.22,371.88,372.38,372.71,373.21,374.34,374.81,375.27,375.58,376.36,376.98,377.29,377.76,378.07,378.53,379.31,379.62,380.68,380.78,381.09,381.2,381.62,382.03,382.14,382.34,382.55,382.65,382.76,383.07,383.17,383.48,383.69,383.89,384.0,384.21,384.52,384.72,385.03,385.45,385.55,385.96,386.17,386.27,386.38,386.48,386.69,387.44,387.54,387.75,388.06,388.26,388.57,388.68,389.09,389.5,389.96,390.17,390.37,390.48,390.79,390.99,391.09,391.3,391.51,391.61,391.81,392.02,392.12,392.53,392.95,393.15,393.36,393.46,394.34,394.64,394.85,394.95,395.06,395.37,395.57,396.44];
+</script>
+<script>
+// Read-along: a cursor that travels through the text in step with the narration.
+//
+// The word times come from a forced alignment of the recording against this document's
+// own text, so index N in WT is the Nth word of the prose, counted the same way here.
+// The wrapping is done at runtime rather than at build time on purpose: the prose is
+// already full of <mark> elements carrying click handlers, and rewriting their innerHTML
+// server-side would mean re-deriving those. Walking text nodes leaves every existing
+// element, listener and attribute untouched.
+(function () {
+  // A score is not a narration: skip it and follow the voice, wherever that lives.
+  var audio = document.querySelector('section.audio:not(.music) audio')
+           || document.querySelector('figure.railvid video');
+  if (!audio || typeof WT === 'undefined' || !WT.length) return;
+  var isVideo = audio.tagName === 'VIDEO';
+
+  var wrap = document.querySelector('.wrap');
+  var blocks = [];
+  wrap.querySelectorAll('h1, p.sub, .wrap > h2, .wrap > p, .wrap > blockquote, .wrap > ul li').forEach(function (el) {
+    if (el.closest('.legend') || el.closest('section.audio') || el.closest('.chart-print')) return;
+    if (el.classList.contains('note') || el.classList.contains('audio-fallback')) return;
+    blocks.push(el);
+  });
+
+  // Wrap every word in a span, numbering them in document order. Anything past the end of
+  // WT (the trailing note about the scans, which is not read aloud) simply gets no time.
+  // Latin and Cyrillic both count as word characters: with the Latin-only
+  // class a Russian document tokenised to nothing and the cursor never moved.
+  // Chinese writes no spaces, so there is no run of letters to match; the
+  // second branch takes each Han character as its own token, which is also
+  // the unit the voice moves through — roughly one syllable apiece.
+  var TOKEN = /[A-Za-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u024F\u0400-\u04FF'’]+|[\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF]/g;
+  var spans = [], n = 0;
+  blocks.forEach(function (block) {
+    var walker = document.createTreeWalker(block, NodeFilter.SHOW_TEXT, null);
+    var nodes = [], node;
+    while ((node = walker.nextNode())) nodes.push(node);
+    nodes.forEach(function (tn) {
+      var text = tn.nodeValue;
+      if (!TOKEN.test(text)) return;
+      TOKEN.lastIndex = 0;
+      var frag = document.createDocumentFragment(), last = 0, m;
+      while ((m = TOKEN.exec(text))) {
+        if (m.index > last) frag.appendChild(document.createTextNode(text.slice(last, m.index)));
+        var s = document.createElement('span');
+        s.className = 'w';
+        s.textContent = m[0];
+        if (n < WT.length) { s.dataset.t = WT[n]; spans.push(s); }
+        n++;
+        frag.appendChild(s);
+        last = m.index + m[0].length;
+      }
+      if (last < text.length) frag.appendChild(document.createTextNode(text.slice(last)));
+      tn.parentNode.replaceChild(frag, tn);
+    });
+  });
+  if (!spans.length) return;
+
+  // ---- the moving cursor -------------------------------------------------------------
+  var cur = -1, curBlock = null, follow = true, userScrolled = 0;
+
+  function blockOf(el) {
+    var p = el;
+    while (p && blocks.indexOf(p) === -1) p = p.parentElement;
+    return p;
+  }
+
+  function at(t) {                       // last word whose time is <= t
+    var lo = 0, hi = spans.length - 1, best = -1;
+    while (lo <= hi) {
+      var mid = (lo + hi) >> 1;
+      if (+spans[mid].dataset.t <= t) { best = mid; lo = mid + 1; } else hi = mid - 1;
+    }
+    return best;
+  }
+
+  function show(i) {
+    if (i === cur) return;
+    if (cur >= 0 && spans[cur]) spans[cur].classList.remove('w-on');
+    cur = i;
+    if (i < 0 || !spans[i]) return;
+    spans[i].classList.add('w-on');
+    var b = blockOf(spans[i]);
+    if (b !== curBlock) {
+      if (curBlock) curBlock.classList.remove('p-on');
+      curBlock = b;
+      if (b) b.classList.add('p-on');
+    }
+    if (follow && Date.now() - userScrolled > 2500) keepInView(spans[i]);
+  }
+
+  function keepInView(el) {
+    var r = el.getBoundingClientRect();
+    var top = window.innerHeight * 0.30, bot = window.innerHeight * 0.75;
+    if (r.top < top || r.bottom > bot) {
+      window.scrollTo({ top: window.scrollY + r.top - window.innerHeight * 0.42,
+                        behavior: 'smooth' });
+    }
+  }
+
+  audio.addEventListener('timeupdate', function () { show(at(audio.currentTime)); });
+  audio.addEventListener('seeked', function () { show(at(audio.currentTime)); });
+
+  // A manual scroll suspends auto-follow briefly, so the reader can look away from the
+  // narration without the page dragging them back mid-sentence.
+  window.addEventListener('scroll', function () {
+    if (!audio.paused) userScrolled = Date.now();
+  }, { passive: true });
+
+  // Click a word to hear it. Words inside a highlight keep their existing job — opening
+  // the source scan — so seeking there would fight the citation, and is left alone.
+  wrap.addEventListener('click', function (e) {
+    var s = e.target.closest ? e.target.closest('.w[data-t]') : null;
+    if (!s || s.closest('mark')) return;
+    audio.currentTime = +s.dataset.t;
+    if (audio.paused) audio.play();
+  });
+
+  // ---- the follow toggle, under the player -------------------------------------------
+  var bar = document.createElement('div');
+  bar.className = 'ra-bar';
+  var id = 'ra-follow';
+  bar.innerHTML = '<label for="' + id + '"><input type="checkbox" id="' + id +
+    '" checked> Follow the reading</label>' +
+    '<span class="ra-hint">Click any word outside a highlight to jump the audio there.</span>';
+  (isVideo ? audio.closest('figure.railvid') : audio.parentNode).appendChild(bar);
+  bar.querySelector('input').addEventListener('change', function () {
+    follow = this.checked;
+    if (follow && cur >= 0) keepInView(spans[cur]);
+  });
+})();
+</script>
+
+<script>
+/* ============================================================================
+   CINEMA MODE — wiring only. The read-along script above is untouched: it
+   scrolls the window, and the video is fixed behind the window, so the story
+   travels across the film in step with the voice.
+   ========================================================================== */
+(function () {
+  // The narration is normally the rail video. A language whose film has not
+  // arrived yet carries only its audio, so cinema mode binds to whichever is
+  // present and drops the film layer when there is no video to show.
+  var video = document.querySelector('figure.railvid video');
+  var narration = document.querySelector('section.audio:not(.music) audio');
+  var media = video || narration;
+  // A language whose narration has not arrived yet still gets the page: the
+  // story, the chart, the scans and the language switch. Only the parts that
+  // need a voice — play/pause, the word cursor, the follow bar — stand down.
+  if (!video) document.body.classList.add('no-film');
+
+  // ---- keep each highlight's source colour before the dark theme lands ----
+  // Cinema mode clears mark backgrounds, so read the colour-coding first and
+  // keep it as an underline; otherwise every source would look alike.
+  document.querySelectorAll('.wrap mark').forEach(function (m) {
+    var bg = getComputedStyle(m).backgroundColor;
+    if (bg && bg !== 'transparent' && !/rgba\(0, 0, 0, 0\)/.test(bg)) {
+      m.style.setProperty('--hl', bg);
+    }
+  });
+
+  document.body.classList.add('cinema');
+
+  // ---- the language switch ------------------------------------------------
+  // Each language is its own document, because the read-along binds to one
+  // voice and one word list at load; switching is a navigation, not a toggle
+  // of hidden content.
+  (function () {
+    var LANGS = [
+      { file: 'index.html', label: 'EN', code: 'en' },
+      { file: 'ru.html',    label: 'RU', code: 'ru' },
+      { file: 'es.html',    label: 'ES', code: 'es' },
+      { file: 'fr.html',    label: 'FR', code: 'fr' },
+      { file: 'zh.html',    label: '中文', code: 'zh' }
+    ];
+    var here = (location.pathname.split('/').pop() || 'index.html');
+    if (here.indexOf('.') < 0) here = 'index.html';
+    var current = LANGS.filter(function (l) { return l.file === here; })[0] || LANGS[0];
+    var sel = document.createElement('nav');
+    sel.className = 'langsel';
+    sel.setAttribute('aria-label', 'Language');
+    sel.innerHTML = LANGS.map(function (l) {
+      return '<a href="' + l.file + '" hreflang="' + l.code + '"' +
+             (l === current ? ' aria-current="true"' : '') + '>' + l.label + '</a>';
+    }).join('');
+    document.body.appendChild(sel);
+  })();
+
+  var scrim = document.createElement('div');
+  scrim.className = 'filmscrim';
+  document.body.insertBefore(scrim, document.body.firstChild);
+
+  if (!video) {
+    var still = document.createElement('div');
+    still.className = 'filmstill';
+    document.body.insertBefore(still, document.body.firstChild);
+    var note = document.createElement('div');
+    note.className = 'filmnote';
+    note.textContent = {ru:'Фильм готовится', es:'Película en camino',
+                        fr:'Film à venir', zh:'影片即将推出'}[document.documentElement.lang] || 'Film to come';
+    document.body.appendChild(note);
+  }
+
+  // ---- the opening card ---------------------------------------------------
+  var h1 = document.querySelector('.wrap h1, h1');
+  var title = h1 ? h1.textContent.trim() : 'The Everett Building';
+  var sub = document.querySelector('.wrap .subtitle, .wrap .sub');
+
+  var start = document.createElement('div');
+  start.className = 'filmstart';
+  start.innerHTML =
+    '<small>Pinball Publishing</small>' +
+    '<h1></h1>' +
+    '<p></p>' +
+    '<button type="button">▶ Play the story</button>';
+  start.querySelector('h1').textContent = title;
+  start.querySelector('p').textContent = sub
+    ? sub.textContent.trim()
+    : 'Read along as the story is told. The words follow the voice.';
+  document.body.appendChild(start);
+
+  function begin() {
+    start.classList.add('gone');
+    setTimeout(function () { start.hidden = true; }, 600);
+    if (!media) return;                       // no narration yet: just reveal the page
+    var p = media.play();
+    if (p && p.catch) p.catch(function () {});
+  }
+  start.querySelector('button').addEventListener('click', begin);
+
+  // ---- play / pause -------------------------------------------------------
+  var left = document.createElement('div');
+  left.className = 'film-left';
+  document.body.appendChild(left);
+
+  var pp = null;
+  if (media) {
+    pp = document.createElement('button');
+    pp.className = 'filmbtn'; pp.id = 'film-playpause'; pp.type = 'button';
+    pp.textContent = 'Pause';
+    pp.addEventListener('click', function () {
+      if (media.paused) { var p = media.play(); if (p && p.catch) p.catch(function () {}); }
+      else media.pause();
+    });
+    left.appendChild(pp);
+    var syncPP = function () { pp.textContent = media.paused ? 'Play' : 'Pause'; };
+    media.addEventListener('play', syncPP);
+    media.addEventListener('pause', syncPP);
+  }
+
+  // ---- the score ----------------------------------------------------------
+  // It runs independently of the narration, as it does in the other documents:
+  // its own transport, its own volume, and nothing here starts or stops the
+  // voice on its behalf.
+  var score = document.querySelector('section.audio.music audio');
+  if (score) {
+    var box = document.createElement('div');
+    box.className = 'scorebox';
+    var label = document.createElement('span');
+    label.className = 'scorelabel';
+    label.textContent = 'Score';
+    box.appendChild(label);
+    box.appendChild(score);            // the player itself, controls and all
+    document.body.appendChild(box);
+
+    // Under the voice by default, so the two can run together; the slider on
+    // the player overrides this.
+    score.volume = 0.4;
+    score.preload = 'metadata';
+
+    // The follow-the-reading bar wraps to a different height at every width, so
+    // the score sits above whatever that bar actually measures rather than at a
+    // breakpoint-guessed offset.
+    function placeScore() {
+      if (!document.body.classList.contains('score-open')) return;
+      var bar = document.querySelector('.ra-bar');
+      var btns = document.querySelector('.film-left');
+      var floor = 16;
+      if (btns) floor = Math.max(floor, window.innerHeight - btns.getBoundingClientRect().top + 10);
+      if (bar) {
+        var r = bar.getBoundingClientRect();
+        if (r.height > 0) floor = Math.max(floor, window.innerHeight - r.top + 10);
+      }
+      box.style.bottom = 'calc(' + Math.round(floor) + 'px + env(safe-area-inset-bottom, 0px))';
+    }
+    window.addEventListener('resize', placeScore);
+
+    var sb = document.createElement('button');
+    sb.className = 'filmbtn'; sb.id = 'film-score'; sb.type = 'button';
+    sb.textContent = '♪ Score';
+    sb.setAttribute('aria-pressed', 'false');
+    sb.addEventListener('click', function () {
+      var open = document.body.classList.toggle('score-open');
+      sb.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if (open) {
+        placeScore();
+        if (score.paused) { var q = score.play(); if (q && q.catch) q.catch(function () {}); }
+      } else if (!score.paused) score.pause();
+    });
+    function syncScore() { sb.setAttribute('aria-pressed', score.paused ? 'false' : 'true'); }
+    score.addEventListener('play', syncScore);
+    score.addEventListener('pause', syncScore);
+    left.appendChild(sb);
+  }
+
+  // ---- the citation chart, on demand --------------------------------------
+  var chart = document.querySelector('.chartcol.on-left');
+  if (chart) {
+    var cb = document.createElement('button');
+    cb.className = 'filmbtn'; cb.id = 'film-chart'; cb.type = 'button';
+    cb.textContent = 'Sources';
+    cb.setAttribute('aria-expanded', 'false');
+
+    // Tapping the film beside the panel closes it, the way any drawer behaves.
+    var backdrop = document.createElement('div');
+    backdrop.className = 'chart-backdrop';
+    document.body.appendChild(backdrop);
+
+    // The panel is taller than the screen, so its close sticks to the top edge
+    // and stays reachable however far down the chart you have scrolled.
+    // Appended to the body, not to the panel: the panel has a backdrop-filter,
+    // which makes it the containing block for fixed children, so a close button
+    // inside it scrolls away with the chart instead of staying at the corner.
+    var x = document.createElement('button');
+    x.className = 'cc-close'; x.type = 'button';
+    x.setAttribute('aria-label', 'Close sources');
+    x.innerHTML = '&times;';
+    document.body.appendChild(x);
+
+    function setChart(open) {
+      document.body.classList.toggle('chart-open', open);
+      cb.setAttribute('aria-expanded', open ? 'true' : 'false');
+      cb.textContent = open ? 'Close' : 'Sources';
+      if (open) { chart.scrollTop = 0; x.focus(); } else { cb.focus(); }
+    }
+    cb.addEventListener('click', function () {
+      setChart(!document.body.classList.contains('chart-open'));
+    });
+    x.addEventListener('click', function () { setChart(false); });
+    backdrop.addEventListener('click', function () { setChart(false); });
+
+    // Jumping to a passage from the chart should get the chart out of the way.
+    chart.addEventListener('click', function (e) {
+      if (e.target.closest('a')) setChart(false);
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && document.body.classList.contains('chart-open')) setChart(false);
+    });
+    document.body.appendChild(cb);
+  }
+
+  // ---- words already spoken stay lit, the rest wait -----------------------
+  // The read-along marks only the live word; this fills in the line behind it
+  // so a paragraph reads as it is spoken rather than blinking one word at a time.
+  var lastBlock = null;
+  function paint() {
+    if (!media) return;
+    var b = document.querySelector('.wrap .p-on');
+    if (b !== lastBlock) {
+      if (lastBlock) lastBlock.querySelectorAll('.w.spoken')
+        .forEach(function (w) { w.classList.remove('spoken'); });
+      lastBlock = b;
+    }
+    if (!b) return;
+    var t = media.currentTime;
+    b.querySelectorAll('.w[data-t]').forEach(function (w) {
+      if (parseFloat(w.dataset.t) <= t) w.classList.add('spoken');
+      else w.classList.remove('spoken');
+    });
+  }
+  if (media) {
+    media.addEventListener('timeupdate', paint);
+    media.addEventListener('seeked', paint);
+  }
+
+  // ---- keyboard -----------------------------------------------------------
+  document.addEventListener('keydown', function (e) {
+    if (/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)) return;
+    if (e.key === ' ' && pp) { e.preventDefault(); pp.click(); }
+    else if (e.key === 'ArrowLeft' && media) media.currentTime = Math.max(0, media.currentTime - 5);
+    else if (e.key === 'ArrowRight' && media) media.currentTime += 5;
+    else if (e.key === 'Escape') document.body.classList.remove('chart-open');
+  });
+})();
+
+</script>
+
+</body>
+</html>
