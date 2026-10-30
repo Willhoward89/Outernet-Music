@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Schvitz or Die</title>
+<meta name="description" content="Schvitz or Die — East 10th Street Anthem">
+<meta property="og:title" content="Schvitz or Die — East 10th Street Anthem">
+<meta property="og:type" content="video.other">
+<meta property="og:image" content="poster.jpg">
+<meta property="og:video" content="video.mp4">
+<style>
+  :root{--bg:#0b0b0c;--panel:#141416;--fg:#f4f1ea;--dim:#6f6c66;--past:#a8a49c;--accent:#ffb347;--line:#26262a}
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+  main{max-width:1900px;margin:0 auto;padding:16px 16px 24px}
+  header{margin-bottom:12px;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+  h1{margin:0;font-size:clamp(1.2rem,2.4vw,1.6rem);letter-spacing:.01em}
+  .sub{color:var(--dim);font-size:.95rem}
+  .stage{display:grid;grid-template-columns:minmax(0,1fr) clamp(240px,24vw,340px);gap:16px;align-items:start}
+  .player{background:#000;border-radius:10px;overflow:hidden;aspect-ratio:832/464;box-shadow:0 10px 40px rgba(0,0,0,.6)}
+  video{width:100%;height:100%;display:block}
+  .lyrics{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:10px;height:var(--h,460px);overflow-y:auto;scroll-behavior:smooth;padding:45% 16px 60%;-webkit-mask-image:linear-gradient(transparent,#000 14%,#000 86%,transparent);mask-image:linear-gradient(transparent,#000 14%,#000 86%,transparent);scrollbar-width:thin;scrollbar-color:#333 transparent}
+  .sec{font-size:.7rem;text-transform:uppercase;letter-spacing:.14em;color:var(--dim);margin:22px 0 6px}
+  .ln{font-size:clamp(.95rem,1.15vw,1.12rem);line-height:1.35;font-weight:650;color:var(--dim);padding:6px 8px;margin:0 -8px;border-radius:6px;cursor:pointer;transition:color .25s,transform .25s,opacity .25s;transform-origin:left center}
+  .ln:hover{background:rgba(255,255,255,.04)}
+  .ln.past{color:var(--past);opacity:.55}
+  .ln.on{color:rgba(244,241,234,.45);transform:scale(1.04)}
+  .ln.on .w.sung{color:var(--fg)}
+  .ln.on .w.now{color:var(--accent);text-shadow:0 0 18px rgba(255,179,71,.45)}
+  .w{transition:color .12s}
+  .hint{color:var(--dim);font-size:.8rem;margin-top:10px}
+  footer{color:var(--dim);font-size:.85rem;margin-top:24px;text-align:center}
+  @media (max-width:820px){
+    .stage{grid-template-columns:1fr}
+    .lyrics{height:46vh!important;padding:30vh 16px 30vh}
+  }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Schvitz or Die</h1>
+    <div class="sub">East 10th Street Anthem</div>
+  </header>
+  <div class="stage">
+    <div>
+      <div class="player">
+        <video id="v" controls playsinline preload="metadata" poster="poster.jpg">
+          <source src="video.mp4" type="video/mp4">
+          Your browser can't play this video. <a href="video.mp4">Download it here.</a>
+        </video>
+      </div>
+      <div class="hint">Tap any lyric to jump to it.</div>
+    </div>
+    <div class="lyrics" id="lyr" aria-label="Lyrics"></div>
+  </div>
+  <footer>&copy; Pinball Publishing</footer>
+</main>
+<script>
+// Seconds into the video where the song begins (opening clip plays first).
+const SONG_OFFSET = 15.0417;
+// Small lead so highlights land right on the syllable.
+const LEAD = 0.12;
+const LYRICS = [{"s":"Intro","t":38.5,"w":[["Schvitz",38.5],["or",38.85],["Die —",39.09],["East",39.65],["10th",40.01],["Street",40.37],["Anthem",40.77]]},{"s":"Verse 1","t":41.41,"w":[["Deposit",41.41],["your",42.05],["money,",42.21],["your",42.45],["jewelry,",42.69],["your",43.09],["blues",43.49]]},{"s":"Verse 1","t":43.97,"w":[["Cotton",43.97],["robe,",44.37],["plastic",44.85],["slippers,",45.49],["curtain",45.97],["drawn",46.37],["back",46.77]]},{"s":"Verse 1","t":47.54,"w":[["Cold",47.54],["plunge",47.86],["waitin',",48.34],["radiant",48.82],["room",49.54],["on",49.94],["attack",50.18]]},{"s":"Verse 1","t":51.22,"w":[["Fifteen",51.22],["tons",51.78],["of",52.18],["rock",52.34],["cooked",52.74],["overnight",53.22]]},{"s":"Verse 1","t":54.18,"w":[["Built",54.18],["from",54.58],["headstones,",54.74],["that's",55.62],["old",55.86],["New",56.34],["York",56.58],["right",57.14]]},{"s":"Verse 1","t":57.46,"w":[["Brick",57.46],["and",57.78],["basement,",57.94],["four",58.66],["stories",59.14],["of",59.54],["grime",59.86]]},{"s":"Verse 1","t":60.42,"w":[["1892,",60.42],["been",61.86],["holdin'",62.26],["down",62.74],["time",63.06]]},{"s":"Verse 1","t":63.78,"w":[["Boris",63.78],["on",64.42],["one",64.66],["week,",64.82],["David",65.46],["on",66.02],["the",66.18],["next",66.34]]},{"s":"Verse 1","t":67.03,"w":[["Multi-visit",67.03],["passes",67.83],["got",68.39],["the",68.55],["patrons",68.63],["perplexed",69.11]]},{"s":"Verse 1","t":69.95,"w":[["Schvitzers",69.95],["and",70.79],["immigrants",70.95],["speakin'",71.83],["Russian",72.31],["tongue",72.63]]},{"s":"Verse 1","t":73.19,"w":[["East",73.19],["Village",73.43],["tenement,",73.91],["holdin'",75.03],["on",75.67],["strong",75.83]]},{"s":"Chorus","t":76.95,"w":[["Steam",76.95],["rise,",77.43],["cold",78.23],["plunge,",78.66],["oak",79.08],["leaf",79.51],["broom",80.08]]},{"s":"Chorus","t":80.65,"w":[["Platza",80.65],["on",81.21],["the",81.33],["slab",81.45],["in",81.93],["the",82.09],["radiant",82.25],["room",82.97]]},{"s":"Chorus","t":83.26,"w":[["Brick",83.26],["and",83.56],["sweat,",83.85],["no",84.33],["windows",84.57],["in",85.21],["sight",85.37]]},{"s":"Chorus","t":86.25,"w":[["Cold",86.25],["War",86.61],["shelter",86.97],["still",87.53],["burning",87.85],["bright",88.73]]},{"s":"Chorus","t":89.61,"w":[["This",89.61],["ain't",89.85],["a",90.11],["spa,",90.37],["this",90.63],["a",90.89],["temple",91.05],["of",91.53],["sweat",91.69]]},{"s":"Chorus","t":92.57,"w":[["Funkiest",92.57],["block",93.45],["in",93.93],["the",94.09],["city,",94.17],["don't",94.65],["forget",94.89]]},{"s":"Chorus","t":95.45,"w":[["East",95.45],["Tenth",95.85],["Street,",96.17],["where",97.05],["the",97.29],["hot",97.45],["rocks",97.77],["glow",98.25]]},{"s":"Chorus","t":98.73,"w":[["1892 —",98.73],["let",100.17],["the",100.41],["steam",100.57],["flow",101.21]]},{"s":"Verse 2","t":102.57,"w":[["VCR",102.57],["feedin'",103.37],["two",103.85],["TVs",104.09],["on",104.73],["the",104.89],["wall",105.05]]},{"s":"Verse 2","t":105.85,"w":[["Old",105.85],["newspaper",106.17],["clippings",106.89],["linin'",107.45],["the",108.01],["hall",108.09]]},{"s":"Verse 2","t":108.49,"w":[["Borscht",108.49],["and",108.93],["pelmeni,",109.37],["Baltic",109.81],["herring",110.25],["on",110.73],["ice",110.97]]},{"s":"Verse 2","t":111.37,"w":[["Polish",111.37],["sausage",111.77],["on",112.25],["styrofoam,",112.57],["pay",113.45],["the",113.77],["price",114.01]]},{"s":"Verse 2","t":115.29,"w":[["Single",115.29],["worker",115.69],["behind",116.48],["a",116.8],["long",116.96],["deli",117.4],["counter",117.84]]},{"s":"Verse 2","t":118.64,"w":[["Every",118.64],["week",118.88],["you",119.2],["show",119.44],["up,",119.68],["the",119.92],["heat",120.13],["gets",120.35],["louder",120.56]]},{"s":"Verse 2","t":121.28,"w":[["Jump",121.28],["the",121.56],["cold",121.84],["pool,",122.16],["feel",122.56],["your",122.8],["tensions",123.04],["melt",123.6]]},{"s":"Verse 2","t":124.16,"w":[["Best",124.16],["transcendental",124.56],["doze",125.24],["you",125.92],["ever",126.24],["felt",127.0]]},{"s":"Verse 2","t":127.76,"w":[["Mud",127.76],["from",128.16],["the",128.4],["Dead",128.48],["Sea,",128.88],["salt",129.28],["scrub",129.72],["raw",130.16]]},{"s":"Verse 2","t":130.88,"w":[["Oak",130.88],["twigs",131.36],["soaked",131.68],["in",131.96],["olive",132.24],["oil,",132.64],["ancient",133.04],["law",133.36]]},{"s":"Verse 2","t":134.18,"w":[["Eucalyptus",134.18],["driftin'",134.98],["down",135.46],["the",135.62],["whole",135.78],["block",136.46]]},{"s":"Verse 2","t":137.14,"w":[["Redwood",137.14],["sauna",137.66],["hummin'",138.18],["like",138.66],["a",138.82],["ticking",138.98],["clock",139.62]]},{"s":"Chorus","t":140.82,"w":[["Steam",140.82],["rise,",141.38],["cold",142.1],["plunge,",142.42],["oak",142.9],["leaf",143.38],["broom",143.86]]},{"s":"Chorus","t":144.34,"w":[["Platza",144.34],["on",145.06],["the",145.18],["slab",145.3],["in",145.78],["the",145.94],["radiant",146.1],["room",146.82]]},{"s":"Chorus","t":147.11,"w":[["Brick",147.11],["and",147.41],["sweat,",147.7],["no",148.26],["windows",148.42],["in",149.06],["sight",149.22]]},{"s":"Chorus","t":150.11,"w":[["Cold",150.11],["War",150.47],["shelter",150.83],["still",151.39],["burning",151.71],["bright",152.18]]},{"s":"Chorus","t":152.64,"w":[["This",152.64],["ain't",153.11],["a",153.58],["spa,",154.04],["this",154.51],["a",154.75],["temple",154.83],["of",155.31],["sweat",155.55]]},{"s":"Chorus","t":156.43,"w":[["Funkiest",156.43],["block",157.23],["in",157.79],["the",157.95],["city,",158.11],["don't",158.51],["forget",158.75]]},{"s":"Chorus","t":159.31,"w":[["East",159.31],["Tenth",159.63],["Street,",160.11],["where",160.83],["the",161.07],["hot",161.31],["rocks",161.63],["glow",162.11]]},{"s":"Chorus","t":162.51,"w":[["1892 —",162.51],["let",164.03],["the",164.27],["steam",164.43],["flow",165.23]]},{"s":"Bridge","t":166.35,"w":[["They'll",166.35],["pour",166.59],["cognac",166.83],["in",167.55],["a",167.63],["plastic",167.79],["cup",168.43]]},{"s":"Bridge","t":169.58,"w":[["Share",169.58],["the",169.9],["food",170.06],["till",170.46],["the",170.7],["whole",170.86],["room's",171.18],["lit",171.74],["up",171.98]]},{"s":"Bridge","t":172.46,"w":[["Hugs",172.46],["and",172.86],["kisses",173.02],["when",173.66],["you",173.9],["head",174.06],["for",174.38],["the",174.62],["door",174.78]]},{"s":"Bridge","t":175.66,"w":[["Walk",175.66],["down",176.06],["the",176.22],["stairs,",176.38],["hit",176.86],["the",177.1],["street",177.26],["once",177.66],["more",178.38]]},{"s":"Bridge","t":178.78,"w":[["Greek",178.78],["and",179.1],["Roman",179.26],["murals",179.66],["on",180.14],["the",180.3],["kitschy",180.46],["walls",181.1]]},{"s":"Bridge","t":181.66,"w":[["Park",181.66],["bench",182.06],["in",182.54],["the",182.7],["entranceway",182.78],["down",183.5],["narrow",183.74],["halls",184.22]]},{"s":"Bridge","t":184.86,"w":[["Disappearing",184.86],["pocket,",185.66],["last",186.42],["bastion",186.74],["standing",187.22]]},{"s":"Bridge","t":187.7,"w":[["East",187.7],["Village",188.02],["schvitz —",188.7],["no",189.38],["compromising,",189.62],["no",190.66],["branding",190.82]]},{"s":"Outro","t":191.7,"w":[["Stone",191.7],["room,",192.34],["two",192.79],["tiers,",193.25],["wooden",193.7],["bench",194.02],["high",194.46]]},{"s":"Outro","t":194.9,"w":[["Bucket",194.9],["of",195.38],["icy",195.7],["water,",196.18],["baptized",196.9],["alive",197.7]]},{"s":"Outro","t":198.5,"w":[["Overturned",198.5],["it",199.14],["on",199.3],["my",199.54],["head —",199.7],["it",200.1],["was",200.26],["wonderful",200.42]]},{"s":"Outro","t":201.06,"w":[["East",201.06],["Tenth",201.62],["Street",202.02],["baths —",202.42],["eternal,",202.82],["powerful",203.46]]}];
+
+const v = document.getElementById('v');
+const box = document.getElementById('lyr');
+const lines = [];
+let lastSec = null;
+LYRICS.forEach((l, i) => {
+  if (l.s !== lastSec) {
+    const h = document.createElement('div'); h.className = 'sec'; h.textContent = l.s;
+    box.appendChild(h); lastSec = l.s;
+  }
+  const el = document.createElement('div'); el.className = 'ln';
+  const words = l.w.map(([txt, t], k) => {
+    const s = document.createElement('span'); s.className = 'w'; s.textContent = txt;
+    el.appendChild(s); if (k < l.w.length - 1) el.appendChild(document.createTextNode(' '));
+    return { el: s, t };
+  });
+  el.addEventListener('click', () => { v.currentTime = Math.max(0, l.t + SONG_OFFSET - 0.4); v.play(); });
+  box.appendChild(el);
+  lines.push({ el, t: l.t, words });
+});
+for (let i = 0; i < lines.length; i++) {
+  const next = lines[i + 1];
+  const lastW = lines[i].words[lines[i].words.length - 1].t;
+  lines[i].end = next ? Math.min(next.t, lastW + 2.5) : lastW + 3;
+}
+
+// Match lyric panel height to the video on desktop.
+function sizePanel() {
+  const p = document.querySelector('.player');
+  box.style.setProperty('--h', Math.max(320, p.getBoundingClientRect().height) + 'px');
+}
+window.addEventListener('resize', sizePanel); sizePanel();
+
+let userScrollUntil = 0;
+['wheel', 'touchmove'].forEach(ev => box.addEventListener(ev, () => { userScrollUntil = performance.now() + 4000; }, { passive: true }));
+
+let cur = -1, curWord = -1;
+function center(el) {
+  if (performance.now() < userScrollUntil) return;
+  box.scrollTop = el.offsetTop - box.clientHeight / 2 + el.offsetHeight / 2;
+}
+function update() {
+  const t = v.currentTime - SONG_OFFSET + LEAD;
+  let idx = -1;
+  for (let i = 0; i < lines.length; i++) { if (lines[i].t <= t) idx = i; else break; }
+  const active = idx >= 0 && t < lines[idx].end ? idx : -1;
+  if (idx !== cur || active === -1) {
+    lines.forEach((L, i) => {
+      L.el.classList.toggle('past', i < idx || (i === idx && active === -1));
+      L.el.classList.toggle('on', i === active);
+    });
+    if (idx !== cur) {
+      if (cur >= 0) cur < lines.length && lines[cur].words.forEach(w => w.el.classList.remove('sung', 'now'));
+      cur = idx; curWord = -1;
+      center(lines[Math.max(0, Math.min(idx + (active === -1 ? 1 : 0), lines.length - 1))].el);
+    }
+  }
+  if (active >= 0) {
+    const W = lines[active].words;
+    let wi = -1; for (let k = 0; k < W.length; k++) { if (W[k].t <= t) wi = k; else break; }
+    if (wi !== curWord) {
+      W.forEach((w, k) => { w.el.classList.toggle('sung', k <= wi); w.el.classList.toggle('now', k === wi); });
+      curWord = wi;
+    }
+  }
+}
+function loop() { update(); if (!v.paused && !v.ended) requestAnimationFrame(loop); }
+v.addEventListener('play', () => requestAnimationFrame(loop));
+['seeked', 'timeupdate', 'loadedmetadata'].forEach(ev => v.addEventListener(ev, update));
+update(); center(lines[0].el);
+</script>
+</body>
+</html>
