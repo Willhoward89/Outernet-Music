@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Berkeley Rise</title>
+<meta name="description" content="20 Fifth Avenue — The Berkeley Rise, with lyrics and sources">
+<style>
+  :root{--bg:#0b0b0c;--panel:#141416;--fg:#f4f1ea;--dim:#6f6c66;--past:#a8a49c;
+        --accent:#ffb347;--line:#26262a;
+        --sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+        --serif:Georgia,"Times New Roman",serif;color-scheme:dark}
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans)}
+  main{max-width:1900px;margin:0 auto;
+       padding-block:16px 32px;
+       padding-left:max(16px,env(safe-area-inset-left,0px));
+       padding-right:max(16px,env(safe-area-inset-right,0px))}
+  header{margin-bottom:14px}
+  .titlerow{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+  h1{margin:0;font-size:clamp(1.2rem,2.4vw,1.6rem);letter-spacing:.01em;text-wrap:balance}
+  .sub{color:var(--dim);font-size:.95rem}
+  .bar{margin-top:12px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+       background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 14px}
+  audio{flex:1 1 320px;min-width:260px;height:36px}
+  .barnote{color:var(--dim);font-size:.82rem}
+
+  /* The chart takes the stage; the lyric rail runs beside it. */
+  .stage{display:grid;grid-template-columns:minmax(0,1fr) clamp(240px,24vw,340px);
+         gap:12px 16px;align-items:start}
+  .chartwrap{min-width:0}
+  h2{font-size:1rem;margin:0}
+  .charthead{display:flex;align-items:baseline;gap:6px 14px;flex-wrap:wrap;margin-bottom:8px}
+  .chartnote{color:var(--dim);font-size:.82rem;margin:0}
+  .tablebox{position:relative;overflow:auto;max-height:var(--ch,72vh);scroll-behavior:smooth;
+            scrollbar-width:thin;scrollbar-color:#333 transparent;
+            border:1px solid var(--line);border-radius:10px}
+  table.chart{border-collapse:collapse;width:100%;min-width:720px;font-size:.88rem;line-height:1.45}
+  .chart th{position:sticky;top:0;z-index:1;background:var(--panel);text-align:left;
+            font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;color:var(--dim);
+            font-weight:600;padding:10px 12px;border-bottom:1px solid var(--line)}
+  .chart td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--past)}
+  .chart tr:last-child td{border-bottom:0}
+  .chart td.n{color:var(--accent);font-variant-numeric:tabular-nums;width:3em;opacity:.8}
+  .chart td.s{white-space:nowrap;color:var(--dim)}
+  .chart td.l{color:var(--fg);font-weight:600;min-width:190px}
+  .chart td.q{font-family:var(--serif);font-style:italic;color:var(--fg);min-width:230px}
+  .chart td.r{min-width:170px}
+  .chart tbody tr{cursor:pointer;transition:background .2s}
+  .chart tbody tr:hover{background:rgba(255,255,255,.03)}
+  .chart tbody tr.on{background:rgba(255,179,71,.11);box-shadow:inset 3px 0 0 var(--accent)}
+  .chart tbody tr.on td{color:var(--fg)}
+  .chart tbody tr.on td.l{color:var(--accent)}
+  .chart tr:focus-visible,.ln:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+  /* The source page sits in its own column between the chart and the rail,
+     so a page can be read against the row that cites it without either moving. */
+  .chartgrid{display:grid;grid-template-columns:minmax(0,1fr) clamp(200px,22vw,330px);
+             gap:12px;align-items:start}
+  .scans{height:var(--ch,72vh);background:var(--panel);border:1px solid var(--line);
+         border-radius:10px;padding:10px;display:flex;gap:10px;min-width:0;overflow:hidden}
+  .scanidle{margin:auto;color:var(--dim);font-size:.82rem;text-align:center;max-width:26ch;line-height:1.5}
+  .scanidle code{color:var(--past);font-size:.95em}
+  .scan{flex:1 1 0;min-width:0;margin:0;display:flex;flex-direction:column;gap:6px;
+        animation:scanin .45s ease both}
+  .scan button{flex:1;min-height:0;padding:0;border:0;background:#0a0a0b;border-radius:6px;
+               cursor:zoom-in;overflow:hidden;display:block}
+  .scan img{width:100%;height:100%;object-fit:contain;display:block}
+  .scan figcaption{font-size:.72rem;color:var(--past);line-height:1.35}
+  .scan figcaption em{color:var(--fg)}
+  .scanmiss{margin:auto;text-align:center;color:var(--dim);font-size:.8rem;line-height:1.5;padding:0 6px}
+  .scanmiss strong{display:block;color:var(--past);font-weight:600;margin-bottom:5px}
+  .scanmiss code{color:var(--accent);opacity:.75;font-size:.92em;word-break:break-all}
+  @keyframes scanin{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  .lb{position:fixed;inset:0;z-index:50;background:rgba(5,5,6,.92);display:flex;
+      flex-direction:column;align-items:center;justify-content:center;gap:10px;
+      padding:calc(16px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px))
+              calc(16px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));
+      cursor:zoom-out}
+  .lb[hidden]{display:none}
+  .lb img{max-width:100%;max-height:calc(100% - 70px);object-fit:contain;border-radius:4px}
+  .lbcap{color:var(--past);font-size:.85rem;text-align:center}
+  .lbcap em{color:var(--fg)}
+  .lbx{position:absolute;top:calc(12px + env(safe-area-inset-top,0px));
+       right:max(12px,env(safe-area-inset-right,0px));background:var(--panel);color:var(--fg);
+       border:1px solid var(--line);border-radius:6px;padding:6px 12px;font:inherit;
+       font-size:.85rem;cursor:pointer}
+  .lbx:focus-visible,.scan button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+  .lyrics{position:relative;background:var(--panel);border:1px solid var(--line);
+          border-radius:10px;height:var(--h,72vh);overflow-y:auto;scroll-behavior:smooth;
+          padding:40% 16px 55%;
+          -webkit-mask-image:linear-gradient(transparent,#000 14%,#000 86%,transparent);
+          mask-image:linear-gradient(transparent,#000 14%,#000 86%,transparent);
+          scrollbar-width:thin;scrollbar-color:#333 transparent}
+  .sec{font-size:.7rem;text-transform:uppercase;letter-spacing:.14em;color:var(--dim);margin:22px 0 6px}
+  .ln{font-size:clamp(.95rem,1.15vw,1.12rem);line-height:1.35;font-weight:650;color:var(--dim);
+      padding:6px 8px;margin:0 -8px;border-radius:6px;cursor:pointer;
+      transition:color .25s,transform .25s,opacity .25s;transform-origin:left center}
+  .ln:hover{background:rgba(255,255,255,.04)}
+  .ln.past{color:var(--past);opacity:.55}
+  .ln.on{color:rgba(244,241,234,.45);transform:scale(1.04)}
+  .ln.on .w.sung{color:var(--fg)}
+  .ln.on .w.now{color:var(--accent);text-shadow:0 0 18px rgba(255,179,71,.45)}
+  .w{transition:color .12s}
+  .ref{font-size:.62em;font-weight:600;color:var(--accent);opacity:.6;vertical-align:super;
+       margin-left:3px;font-variant-numeric:tabular-nums}
+  .nosync{color:var(--dim);font-size:.78rem;line-height:1.5;margin:0 0 14px;
+          padding:9px 11px;background:rgba(255,179,71,.07);border:1px solid rgba(255,179,71,.22);
+          border-radius:7px}
+  footer{color:var(--dim);font-size:.85rem;margin-top:28px;text-align:center}
+  @media (max-width:1200px){
+    .chartgrid{grid-template-columns:minmax(0,1fr)}
+    .scans{height:auto;min-height:0}
+    .scan button{height:56vh;flex:none}
+  }
+  @media (max-width:880px){
+    .stage{grid-template-columns:minmax(0,1fr)}
+    .lyrics{height:46vh!important;padding:20vh 16px 24vh;order:-1}
+    .tablebox{max-height:64vh!important}
+  }
+  @media (prefers-reduced-motion:reduce){.lyrics,.tablebox{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="titlerow">
+      <h1>The Berkeley Rise</h1>
+      <div class="sub">20 Fifth Avenue</div>
+    </div>
+    <div class="bar">
+      <audio id="a" controls preload="metadata" src="audio.mp3"></audio>
+      <span class="barnote">1 min 48 s</span>
+    </div>
+  </header>
+  <div class="stage">
+    <section class="chartwrap" aria-labelledby="ch">
+      <div class="charthead">
+        <h2 id="ch">Citation chart</h2>
+        <p class="chartnote">24 sourced phrases. Tap a row to jump the track to that line.</p>
+      </div>
+      <div class="chartgrid">
+        <div class="tablebox">
+          <table class="chart">
+            <thead><tr><th>#</th><th>Section</th><th>Lyric</th><th>Supporting quote</th><th>Source</th></tr></thead>
+            <tbody id="rows"><tr data-c="0" tabindex="0"><td class="n">40</td><td class="s">Verse 1</td><td class="l">Twenty Fifth Avenue, southwest corner Ninth</td><td class="q">The Berkeley, southwest corner of 9th Street.</td><td class="r">Brown. (1924) Fifth Avenue Old and New, p. 36</td></tr><tr data-c="1" tabindex="0"><td class="n">39</td><td class="s">Verse 1</td><td class="l">Berkeley on the block since eighteen-seventy-nine</td><td class="q">BERKELEY, 5th av. and 9th st.</td><td class="r">Appleton. (1879) Appleton's Dictionary of New York, p. 6</td></tr><tr data-c="2" tabindex="0"><td class="n">3</td><td class="s">Verse 1</td><td class="l">Stone front six stories, brick with basement laid</td><td class="q">1 Structure; 6 Story Brick building with Basement and Stone front.</td><td class="r">Bromley. 1897 Bromleys Atlas, p. 16</td></tr><tr data-c="3" tabindex="0"><td class="n">39</td><td class="s">Verse 1</td><td class="l">Rents from eight thousand down to five hundred paid</td><td class="q">The rents of these apartments range from $8,000 to $500 a year.</td><td class="r">Appleton. (1879) Appleton's Dictionary of New York, p. 6</td></tr><tr data-c="4" tabindex="0"><td class="n">40</td><td class="s">Verse 1</td><td class="l">Grace Church interwoven with the life of New York</td><td class="q">For more than a century, Grace Church has been interwoven with the life of New York.</td><td class="r">Brown. (1924) Fifth Avenue Old and New, p. 36</td></tr><tr data-c="5" tabindex="0"><td class="n">40</td><td class="s">Verse 1</td><td class="l">Historic fabric of Fifth Avenue, where the legends talk</td><td class="q">its history and ideals are part of the historic fabric of Fifth Avenue.</td><td class="r">Brown. (1924) Fifth Avenue Old and New, p. 36</td></tr><tr data-c="6" tabindex="0"><td class="n">5</td><td class="s">Chorus</td><td class="l">Seventeen stories, steel and fireproof frame</td><td class="q">17 Story Brick or Stone or Concrete building with Basement and Elevators and Fire proof building (steel construction).</td><td class="r">Bromley. 1955 Manhattan Land Book, p. 32</td></tr><tr data-c="7" tabindex="0"><td class="n">13</td><td class="s">Chorus</td><td class="l">Built in nineteen-forty, they replaced the name</td><td class="q">Was built in 1940.</td><td class="r">Unknown Author. Landmarks Preservation Commission, p. 1</td></tr><tr data-c="8" tabindex="0"><td class="n">38</td><td class="s">Chorus</td><td class="l">From hotel to tower, watch the skyline grow</td><td class="q">17-Story Apartment House Nearing Completion on Berkeley Hotel Site.</td><td class="r">Stern. (1987) New York 1930, p. 798</td></tr><tr data-c="9" tabindex="0"><td class="n">38</td><td class="s">Chorus</td><td class="l">Boak and Paris drew it — now the whole world know</td><td class="q">Other notable buildings by Boak &amp; Paris include...20 Fifth Avenue.</td><td class="r">Stern. (1987) New York 1930, p. 798</td></tr><tr data-c="10" tabindex="0"><td class="n">2</td><td class="s">Verse 2</td><td class="l">Eighteen-fifty-three, not a structure stood</td><td class="q">In the 1853 Perris Maps, on 20 Fifth Avenue, there is reference to 0 Structures.</td><td class="r">Perris. 1853 Perris Maps, p. 62</td></tr><tr data-c="11" tabindex="0"><td class="n">1</td><td class="s">Verse 2</td><td class="l">Eighteen-sixty-seven, still an empty hood</td><td class="q">In the 1867 Dripps Plan, on 20 Fifth Avenue, there is reference to 0 Structures.</td><td class="r">Dripps. 1867 Dripps Plan, p. 7</td></tr><tr data-c="12" tabindex="0"><td class="n">4</td><td class="s">Verse 2</td><td class="l">By eighteen-eighty-five, Robinson wrote 'Berkley' — stone</td><td class="q">In the 1885 Robinsons Atlas, on 20 Fifth Avenue, there is written 'BERKLEY' as well as reference to 1 Structure; Stone building.</td><td class="r">Robinson. 1885 Robinsons Atlas, p. 12</td></tr><tr data-c="13" tabindex="0"><td class="n">3</td><td class="s">Verse 2</td><td class="l">Eighteen-ninety-seven, Bromley mapped it grown</td><td class="q">In the 1897 Bromleys Atlas, on 20 Fifth Avenue, there is written 'Berkeley' as well as reference to 1 Structure; 6 Story Brick building with Basement and Stone front.</td><td class="r">Bromley. 1897 Bromleys Atlas, p. 16</td></tr><tr data-c="14" tabindex="0"><td class="n">12</td><td class="s">Verse 2</td><td class="l">Educators, lawyers, surgeons called it home</td><td class="q">Home: 20 Fifth Av., N.Y.C. 11.</td><td class="r">Marquis. (1961) Who's Who in the East Eighth Edition, p. 714</td></tr><tr data-c="15" tabindex="0"><td class="n">12</td><td class="s">Verse 2</td><td class="l">Pickett, Freedman, Haines — Fifth Avenue's throne</td><td class="q">Home: 20 Fifth Av., N.Y.C. 11.</td><td class="r">Marquis. (1961) Who's Who in the East Eighth Edition, p. 714</td></tr><tr data-c="16" tabindex="0"><td class="n">25</td><td class="s">Verse 2</td><td class="l">Pickett, Freedman, Haines — Fifth Avenue's throne</td><td class="q">Home: 20 Fifth Av., N.Y.C. 11.</td><td class="r">Marquis. (1959) Who's Who in the East Seventh Edition, p. 317</td></tr><tr data-c="17" tabindex="0"><td class="n">8</td><td class="s">Verse 2</td><td class="l">Pickett, Freedman, Haines — Fifth Avenue's throne</td><td class="q">Haines, John Peter: born New York City, December 17th, 1851; Humanitarian.</td><td class="r">Brainard. (1911) Who's Who In New York City and State, p. 418</td></tr><tr data-c="18" tabindex="0"><td class="n">19</td><td class="s">Bridge</td><td class="l">The Row on Washington Square, Wharton wrote the scene</td><td class="q">Edith Wharton, William Dean Howells, and Henry James, all lived and worked at No. 1.</td><td class="r">White &amp; Willensky. (1968) AIA Edition 1, p. 66</td></tr><tr data-c="19" tabindex="0"><td class="n">19</td><td class="s">Bridge</td><td class="l">Dos Passos penned Manhattan Transfer at thirteen</td><td class="q">John Dos Passos wrote 'Manhattan Transfer' in No. 3.</td><td class="r">White &amp; Willensky. (1968) AIA Edition 1, p. 66</td></tr><tr data-c="20" tabindex="0"><td class="n">19</td><td class="s">Bridge</td><td class="l">No. 2 Fifth Avenue brought the outcry loud</td><td class="q">when the huge No. 2 Fifth Avenue apartment tower was being planned, citizens put up an outcry.</td><td class="r">White &amp; Willensky. (1968) AIA Edition 1, p. 66</td></tr><tr data-c="21" tabindex="0"><td class="n">5</td><td class="s">Bridge</td><td class="l">But Twenty Fifth still stands, unbowed, unbowed</td><td class="q">17 Story Brick or Stone or Concrete building with Basement and Elevators and Fire proof building (steel construction).</td><td class="r">Bromley. 1955 Manhattan Land Book, p. 32</td></tr><tr data-c="22" tabindex="0"><td class="n">5</td><td class="s">Outro</td><td class="l">From zero structures to seventeen floors of steel</td><td class="q">17 Story Brick or Stone or Concrete building with Basement and Elevators and Fire proof building (steel construction).</td><td class="r">Bromley. 1955 Manhattan Land Book, p. 32</td></tr><tr data-c="23" tabindex="0"><td class="n">13</td><td class="s">Outro</td><td class="l">Twenty Fifth Avenue — forever real</td><td class="q">Was built in 1940.</td><td class="r">Unknown Author. Landmarks Preservation Commission, p. 1</td></tr></tbody>
+          </table>
+        </div>
+        <aside class="scans" id="scans" aria-live="polite" aria-label="Source pages">
+          <p class="scanidle">The page behind each citation appears here as the song reaches it.</p>
+        </aside>
+      </div>
+    </section>
+    <div class="lyrics" id="lyr" aria-label="Lyrics"></div>
+  </div>
+  <footer>&copy; Pinball Publishing</footer>
+  <div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Source page">
+    <button class="lbx" id="lbx" type="button" aria-label="Close">Close</button>
+    <img id="lbimg" alt="">
+    <div class="lbcap" id="lbcap"></div>
+  </div>
+</main>
+<script>
+const LYRICS = [{"s": "Verse 1", "l": "Twenty Fifth Avenue, southwest corner Ninth"}, {"s": "Verse 1", "l": "Berkeley on the block since eighteen-seventy-nine"}, {"s": "Verse 1", "l": "Stone front six stories, brick with basement laid"}, {"s": "Verse 1", "l": "Rents from eight thousand down to five hundred paid"}, {"s": "Verse 1", "l": "Grace Church interwoven with the life of New York"}, {"s": "Verse 1", "l": "Historic fabric of Fifth Avenue, where the legends talk"}, {"s": "Chorus", "l": "Seventeen stories, steel and fireproof frame"}, {"s": "Chorus", "l": "Built in nineteen-forty, they replaced the name"}, {"s": "Chorus", "l": "From hotel to tower, watch the skyline grow"}, {"s": "Chorus", "l": "Boak and Paris drew it — now the whole world know"}, {"s": "Verse 2", "l": "Eighteen-fifty-three, not a structure stood"}, {"s": "Verse 2", "l": "Eighteen-sixty-seven, still an empty hood"}, {"s": "Verse 2", "l": "By eighteen-eighty-five, Robinson wrote 'Berkley' — stone"}, {"s": "Verse 2", "l": "Eighteen-ninety-seven, Bromley mapped it grown"}, {"s": "Verse 2", "l": "Educators, lawyers, surgeons called it home"}, {"s": "Verse 2", "l": "Pickett, Freedman, Haines — Fifth Avenue's throne"}, {"s": "Bridge", "l": "The Row on Washington Square, Wharton wrote the scene"}, {"s": "Bridge", "l": "Dos Passos penned Manhattan Transfer at thirteen"}, {"s": "Bridge", "l": "No. 2 Fifth Avenue brought the outcry loud"}, {"s": "Bridge", "l": "But Twenty Fifth still stands, unbowed, unbowed"}, {"s": "Outro", "l": "From zero structures to seventeen floors of steel"}, {"s": "Outro", "l": "Twenty Fifth Avenue — forever real"}], CITES = [{"ref": 40, "sec": "Verse 1", "lyric": "Twenty Fifth Avenue, southwest corner Ninth", "who": "", "q": "The Berkeley, southwest corner of 9th Street.", "src": "Brown. (1924) Fifth Avenue Old and New, p. 36"}, {"ref": 39, "sec": "Verse 1", "lyric": "Berkeley on the block since eighteen-seventy-nine", "who": "", "q": "BERKELEY, 5th av. and 9th st.", "src": "Appleton. (1879) Appleton's Dictionary of New York, p. 6"}, {"ref": 3, "sec": "Verse 1", "lyric": "Stone front six stories, brick with basement laid", "who": "", "q": "1 Structure; 6 Story Brick building with Basement and Stone front.", "src": "Bromley. 1897 Bromleys Atlas, p. 16"}, {"ref": 39, "sec": "Verse 1", "lyric": "Rents from eight thousand down to five hundred paid", "who": "", "q": "The rents of these apartments range from $8,000 to $500 a year.", "src": "Appleton. (1879) Appleton's Dictionary of New York, p. 6"}, {"ref": 40, "sec": "Verse 1", "lyric": "Grace Church interwoven with the life of New York", "who": "", "q": "For more than a century, Grace Church has been interwoven with the life of New York.", "src": "Brown. (1924) Fifth Avenue Old and New, p. 36"}, {"ref": 40, "sec": "Verse 1", "lyric": "Historic fabric of Fifth Avenue, where the legends talk", "who": "", "q": "its history and ideals are part of the historic fabric of Fifth Avenue.", "src": "Brown. (1924) Fifth Avenue Old and New, p. 36"}, {"ref": 5, "sec": "Chorus", "lyric": "Seventeen stories, steel and fireproof frame", "who": "", "q": "17 Story Brick or Stone or Concrete building with Basement and Elevators and Fire proof building (steel construction).", "src": "Bromley. 1955 Manhattan Land Book, p. 32"}, {"ref": 13, "sec": "Chorus", "lyric": "Built in nineteen-forty, they replaced the name", "who": "", "q": "Was built in 1940.", "src": "Unknown Author. Landmarks Preservation Commission, p. 1"}, {"ref": 38, "sec": "Chorus", "lyric": "From hotel to tower, watch the skyline grow", "who": "", "q": "17-Story Apartment House Nearing Completion on Berkeley Hotel Site.", "src": "Stern. (1987) New York 1930, p. 798"}, {"ref": 38, "sec": "Chorus", "lyric": "Boak and Paris drew it — now the whole world know", "who": "", "q": "Other notable buildings by Boak & Paris include...20 Fifth Avenue.", "src": "Stern. (1987) New York 1930, p. 798"}, {"ref": 2, "sec": "Verse 2", "lyric": "Eighteen-fifty-three, not a structure stood", "who": "", "q": "In the 1853 Perris Maps, on 20 Fifth Avenue, there is reference to 0 Structures.", "src": "Perris. 1853 Perris Maps, p. 62"}, {"ref": 1, "sec": "Verse 2", "lyric": "Eighteen-sixty-seven, still an empty hood", "who": "", "q": "In the 1867 Dripps Plan, on 20 Fifth Avenue, there is reference to 0 Structures.", "src": "Dripps. 1867 Dripps Plan, p. 7"}, {"ref": 4, "sec": "Verse 2", "lyric": "By eighteen-eighty-five, Robinson wrote 'Berkley' — stone", "who": "", "q": "In the 1885 Robinsons Atlas, on 20 Fifth Avenue, there is written 'BERKLEY' as well as reference to 1 Structure; Stone building.", "src": "Robinson. 1885 Robinsons Atlas, p. 12"}, {"ref": 3, "sec": "Verse 2", "lyric": "Eighteen-ninety-seven, Bromley mapped it grown", "who": "", "q": "In the 1897 Bromleys Atlas, on 20 Fifth Avenue, there is written 'Berkeley' as well as reference to 1 Structure; 6 Story Brick building with Basement and Stone front.", "src": "Bromley. 1897 Bromleys Atlas, p. 16"}, {"ref": 12, "sec": "Verse 2", "lyric": "Educators, lawyers, surgeons called it home", "who": "", "q": "Home: 20 Fifth Av., N.Y.C. 11.", "src": "Marquis. (1961) Who's Who in the East Eighth Edition, p. 714"}, {"ref": 12, "sec": "Verse 2", "lyric": "Pickett, Freedman, Haines — Fifth Avenue's throne", "who": "Pickett", "q": "Home: 20 Fifth Av., N.Y.C. 11.", "src": "Marquis. (1961) Who's Who in the East Eighth Edition, p. 714"}, {"ref": 25, "sec": "Verse 2", "lyric": "Pickett, Freedman, Haines — Fifth Avenue's throne", "who": "Freedman", "q": "Home: 20 Fifth Av., N.Y.C. 11.", "src": "Marquis. (1959) Who's Who in the East Seventh Edition, p. 317"}, {"ref": 8, "sec": "Verse 2", "lyric": "Pickett, Freedman, Haines — Fifth Avenue's throne", "who": "Haines", "q": "Haines, John Peter: born New York City, December 17th, 1851; Humanitarian.", "src": "Brainard. (1911) Who's Who In New York City and State, p. 418"}, {"ref": 19, "sec": "Bridge", "lyric": "The Row on Washington Square, Wharton wrote the scene", "who": "", "q": "Edith Wharton, William Dean Howells, and Henry James, all lived and worked at No. 1.", "src": "White & Willensky. (1968) AIA Edition 1, p. 66"}, {"ref": 19, "sec": "Bridge", "lyric": "Dos Passos penned Manhattan Transfer at thirteen", "who": "", "q": "John Dos Passos wrote 'Manhattan Transfer' in No. 3.", "src": "White & Willensky. (1968) AIA Edition 1, p. 66"}, {"ref": 19, "sec": "Bridge", "lyric": "No. 2 Fifth Avenue brought the outcry loud", "who": "", "q": "when the huge No. 2 Fifth Avenue apartment tower was being planned, citizens put up an outcry.", "src": "White & Willensky. (1968) AIA Edition 1, p. 66"}, {"ref": 5, "sec": "Bridge", "lyric": "But Twenty Fifth still stands, unbowed, unbowed", "who": "", "q": "17 Story Brick or Stone or Concrete building with Basement and Elevators and Fire proof building (steel construction).", "src": "Bromley. 1955 Manhattan Land Book, p. 32"}, {"ref": 5, "sec": "Outro", "lyric": "From zero structures to seventeen floors of steel", "who": "", "q": "17 Story Brick or Stone or Concrete building with Basement and Elevators and Fire proof building (steel construction).", "src": "Bromley. 1955 Manhattan Land Book, p. 32"}, {"ref": 13, "sec": "Outro", "lyric": "Twenty Fifth Avenue — forever real", "who": "", "q": "Was built in 1940.", "src": "Unknown Author. Landmarks Preservation Commission, p. 1"}], LINE_CITE = {"0": [0], "1": [1], "2": [2], "3": [3], "4": [4], "5": [5], "6": [6], "7": [7], "8": [8], "9": [9], "10": [10], "11": [11], "12": [12], "13": [13], "14": [14], "15": [15, 16, 17], "16": [18], "17": [19], "18": [20], "19": [21], "20": [22], "21": [23]}, WT = [{"t": 15.08, "w": [[15.08, "Twenty"], [15.48, "Fifth"], [15.8, "Avenue,"], [16.64, "southwest"], [17.32, "corner"], [17.76, "Ninth"]]}, {"t": 18.16, "w": [[18.16, "Berkeley"], [18.62, "on"], [18.78, "the"], [18.96, "block"], [19.3, "since"], [19.54, "eighteen-seventy-nine"]]}, {"t": 20.96, "w": [[20.96, "Stone"], [21.5, "front"], [21.86, "six"], [22.18, "stories,"], [22.66, "brick"], [22.88, "with"], [23.06, "basement"], [23.54, "laid"]]}, {"t": 23.92, "w": [[23.92, "Rents"], [24.24, "from"], [24.44, "eight"], [24.68, "thousand"], [25.1, "down"], [25.32, "to"], [25.52, "five"], [25.9, "hundred"], [26.3, "paid"]]}, {"t": 26.66, "w": [[26.66, "Grace"], [27.34, "Church"], [27.68, "interwoven"], [28.36, "with"], [28.56, "the"], [28.72, "life"], [29.0, "of"], [29.12, "New"], [29.38, "York"]]}, {"t": 29.84, "w": [[29.84, "Historic"], [30.44, "fabric"], [30.84, "of"], [30.96, "Fifth"], [31.32, "Avenue,"], [32.06, "where"], [32.22, "the"], [32.38, "legends"], [32.86, "talk"]]}, {"t": 33.7, "w": [[33.7, "Seventeen"], [34.5, "stories,"], [35.32, "steel"], [35.54, "and"], [35.72, "fireproof"], [36.48, "frame"]]}, {"t": 36.88, "w": [[36.88, "Built"], [37.16, "in"], [37.3, "nineteen-forty,"], [38.58, "they"], [38.74, "replaced"], [39.22, "the"], [39.42, "name"]]}, {"t": 39.96, "w": [[39.96, "From"], [40.18, "hotel"], [40.74, "to"], [40.98, "tower,"], [41.36, "watch"], [41.62, "the"], [41.86, "skyline"], [42.6, "grow"]]}, {"t": 43.42, "w": [[43.42, "Boak"], [43.66, "and"], [43.82, "Paris"], [44.24, "drew"], [44.5, "it"], [44.66, "now"], [44.88, "the"], [45.08, "whole"], [45.42, "world"], [45.84, "know"]]}, {"t": 47.62, "w": [[47.62, "Eighteen-fifty-three,"], [49.18, "not"], [49.36, "a"], [49.5, "structure"], [50.0, "stood"]]}, {"t": 50.9, "w": [[50.9, "Eighteen-sixty-seven,"], [52.38, "still"], [52.62, "an"], [52.8, "empty"], [53.18, "hood"]]}, {"t": 53.8, "w": [[53.8, "By"], [54.0, "eighteen-eighty-five,"], [55.22, "Robinson"], [55.82, "wrote"], [56.44, "Berkley"], [57.02, "stone"]]}, {"t": 57.3, "w": [[57.3, "Eighteen-ninety-seven,"], [58.46, "Bromley"], [58.88, "mapped"], [59.12, "it"], [59.3, "grown"]]}, {"t": 60.18, "w": [[60.18, "Educators,"], [60.94, "lawyers,"], [61.32, "surgeons"], [61.74, "called"], [62.02, "it"], [62.16, "home"]]}, {"t": 62.96, "w": [[62.96, "Pickett,"], [63.36, "Freedman,"], [63.78, "Haines"], [64.38, "Fifth"], [64.7, "Avenue's"], [65.16, "throne"]]}, {"t": 65.94, "w": [[65.94, "The"], [66.16, "Row"], [66.82, "on"], [67.14, "Washington"], [67.86, "Square,"], [68.72, "Wharton"], [69.06, "wrote"], [69.34, "the"], [69.56, "scene"]]}, {"t": 69.9, "w": [[69.9, "Dos"], [70.3, "Passos"], [70.82, "penned"], [71.12, "Manhattan"], [71.74, "Transfer"], [72.36, "at"], [72.54, "thirteen"]]}, {"t": 73.16, "w": [[73.16, "No."], [73.6, "2"], [73.72, "Fifth"], [74.08, "Avenue"], [74.84, "brought"], [75.08, "the"], [75.32, "outcry"], [75.96, "loud"]]}, {"t": 76.26, "w": [[76.26, "But"], [76.44, "Twenty"], [76.86, "Fifth"], [77.18, "still"], [77.58, "stands,"], [78.12, "unbowed,"], [78.9, "unbowed"]]}, {"t": 82.7, "w": [[82.7, "From"], [82.92, "zero"], [83.3, "structures"], [83.76, "to"], [83.94, "seventeen"], [84.48, "floors"], [84.8, "of"], [85.02, "steel"]]}, {"t": 87.64, "w": [[87.64, "Twenty"], [87.92, "Fifth"], [88.26, "Avenue"], [91.56, "forever"], [91.96, "real"]]}], SCANS = {"Brown. (1924) Fifth Avenue Old and New, p. 36": {"f": "brown-1924-fifth-avenue-old-and-new-p-36.jpg", "have": true}, "Appleton. (1879) Appleton's Dictionary of New York, p. 6": {"f": "appleton-1879-appletons-dictionary-of-new-york-p-6.jpg", "have": true}, "Bromley. 1897 Bromleys Atlas, p. 16": {"f": "bromley-1897-bromleys-atlas-p-16.jpg", "have": false}, "Bromley. 1955 Manhattan Land Book, p. 32": {"f": "bromley-1955-manhattan-land-book-p-32.jpg", "have": false}, "Unknown Author. Landmarks Preservation Commission, p. 1": {"f": "unknown-author-landmarks-preservation-commission-p-1.jpg", "have": false}, "Stern. (1987) New York 1930, p. 798": {"f": "stern-1987-new-york-1930-p-798.jpg", "have": true}, "Perris. 1853 Perris Maps, p. 62": {"f": "perris-1853-perris-maps-p-62.jpg", "have": true}, "Dripps. 1867 Dripps Plan, p. 7": {"f": "dripps-1867-dripps-plan-p-7.jpg", "have": false}, "Robinson. 1885 Robinsons Atlas, p. 12": {"f": "robinson-1885-robinsons-atlas-p-12.jpg", "have": true}, "Marquis. (1961) Who's Who in the East Eighth Edition, p. 714": {"f": "marquis-1961-whos-who-in-the-east-eighth-edition-p-714.jpg", "have": true}, "Marquis. (1959) Who's Who in the East Seventh Edition, p. 317": {"f": "marquis-1959-whos-who-in-the-east-seventh-edition-p-317.jpg", "have": true}, "Brainard. (1911) Who's Who In New York City and State, p. 418": {"f": "brainard-1911-whos-who-in-new-york-city-and-state-p-418.jpg", "have": true}, "White & Willensky. (1968) AIA Edition 1, p. 66": {"f": "white-and-willensky-1968-aia-edition-1-p-66.jpg", "have": true}}, NO_SCAN = {"18": "This sentence is printed on p.&nbsp;65. The leaf on file opens mid-sentence at &ldquo;in No.&nbsp;3&rdquo;.", "19": "This sentence begins on p.&nbsp;65 and only its last words fall on p.&nbsp;66."};
+const a = document.getElementById('a'), box = document.getElementById('lyr'),
+      tbody = document.getElementById('rows'), tbox = document.querySelector('.tablebox');
+
+// ---- the lyric rail -------------------------------------------------------
+let lastSec = null; const lines = [];
+LYRICS.forEach((L, i) => {
+  if (L.s !== lastSec) {
+    const h = document.createElement('div'); h.className = 'sec';
+    h.textContent = L.s; box.appendChild(h); lastSec = L.s;
+  }
+  const el = document.createElement('div'); el.className = 'ln'; el.tabIndex = 0;
+  const refs = (LINE_CITE[i] || []).map(j => CITES[j].ref);
+  el.innerHTML = (WT && WT[i] ? WT[i].w.map(
+        ([t, s]) => '<span class="w">' + s + '</span>').join(' ')
+      : L.l.split(/\s+/).map(s => '<span class="w">' + s + '</span>').join(' '))
+    + (refs.length ? '<span class="ref">' + refs.join(',') + '</span>' : '');
+  el.addEventListener('click', () => { if (WT && WT[i]) { a.currentTime = WT[i].t; a.play(); } });
+  box.appendChild(el); lines.push(el);
+});
+
+// ---- the chart ------------------------------------------------------------
+[...tbody.rows].forEach(tr => tr.addEventListener('click', () => {
+  const j = +tr.dataset.c;
+  const i = Object.keys(LINE_CITE).find(k => (LINE_CITE[k] || []).includes(j));
+  showScan(j);
+  if (WT && i != null && WT[i]) { a.currentTime = WT[i].t; a.play(); }
+}));
+
+// ---- the source page panel ------------------------------------------------
+const scansEl = document.getElementById('scans'), lb = document.getElementById('lb'),
+      lbimg = document.getElementById('lbimg'), lbcap = document.getElementById('lbcap');
+let shownKey = null;
+const srcLabel = s => s.replace(/^([^.]+)\.\s*/, '<em>$1</em> ');
+
+function showScan(j) {
+  if (j == null || !CITES[j]) return;
+  const src = CITES[j].src;
+  const key = src + '|' + (NO_SCAN[String(j)] ? 'x' : 'o');
+  if (key === shownKey) return;
+  shownKey = key;
+  const info = SCANS[src], blocked = NO_SCAN[String(j)];
+  if (blocked) {
+    scansEl.innerHTML = '<div class="scanmiss"><strong>Not on this leaf</strong>' +
+      srcLabel(src) + '<br><br>' + blocked + '</div>';
+    return;
+  }
+  if (info && info.have) {
+    scansEl.innerHTML =
+      '<figure class="scan"><button type="button" aria-label="Enlarge">' +
+      '<img src="scans/' + info.f + '" alt="' + src + '"></button>' +
+      '<figcaption>' + srcLabel(src) + '</figcaption></figure>';
+    scansEl.querySelector('button').addEventListener('click', () => {
+      lbimg.src = 'scans/' + info.f; lbcap.innerHTML = srcLabel(src); lb.hidden = false;
+    });
+  } else {
+    scansEl.innerHTML = '<div class="scanmiss"><strong>No page on file</strong>' +
+      srcLabel(src) + '<br><br>Drop it in as<br><code>scans/' +
+      (info ? info.f : '?') + '</code></div>';
+  }
+}
+lb.addEventListener('click', e => { if (e.target !== lbimg) lb.hidden = true; });
+document.getElementById('lbx').addEventListener('click', () => lb.hidden = true);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') lb.hidden = true; });
+[...tbody.rows].forEach(tr => tr.addEventListener('mouseenter', () => showScan(+tr.dataset.c)));
+
+// ---- follow the track, when there are timings to follow -------------------
+if (WT) {
+  let cur = -1;
+  a.addEventListener('timeupdate', () => {
+    const t = a.currentTime + 0.12;
+    let n = -1;
+    for (let i = 0; i < WT.length; i++) { if (WT[i] && WT[i].t <= t) n = i; else break; }
+    if (n !== cur) {
+      cur = n;
+      lines.forEach((el, i) => {
+        el.classList.toggle('on', i === n);
+        el.classList.toggle('past', i < n);
+      });
+      if (n >= 0) {
+        lines[n].scrollIntoView({ block: 'center', behavior: 'smooth' });
+        const j = (LINE_CITE[n] || [])[0];
+        [...tbody.rows].forEach(tr => tr.classList.toggle('on', +tr.dataset.c === j));
+        const hit = [...tbody.rows].find(tr => +tr.dataset.c === j);
+        if (hit) tbox.scrollTo({ top: hit.offsetTop - tbox.clientHeight / 2, behavior: 'smooth' });
+        showScan(j);
+      }
+    }
+    if (n >= 0 && WT[n]) {
+      const ws = lines[n].querySelectorAll('.w');
+      WT[n].w.forEach(([wt], k) => {
+        if (!ws[k]) return;
+        ws[k].classList.toggle('sung', wt <= t);
+        ws[k].classList.toggle('now', wt <= t && (!WT[n].w[k+1] || WT[n].w[k+1][0] > t));
+      });
+    }
+  });
+}
+</script>
+</body>
+</html>
