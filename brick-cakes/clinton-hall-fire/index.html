@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Clinton Hall Fire</title>
+<meta name="description" content="21 Astor Place — Clinton Hall Fire, with lyrics and sources">
+<style>
+  :root{--bg:#0b0b0c;--panel:#141416;--fg:#f4f1ea;--dim:#6f6c66;--past:#a8a49c;
+        --accent:#ffb347;--line:#26262a;
+        --sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+        --serif:Georgia,"Times New Roman",serif;color-scheme:dark}
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans)}
+  main{max-width:1900px;margin:0 auto;
+       padding-block:16px 32px;
+       padding-left:max(16px,env(safe-area-inset-left,0px));
+       padding-right:max(16px,env(safe-area-inset-right,0px))}
+  header{margin-bottom:14px}
+  .titlerow{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+  h1{margin:0;font-size:clamp(1.2rem,2.4vw,1.6rem);letter-spacing:.01em;text-wrap:balance}
+  .sub{color:var(--dim);font-size:.95rem}
+  .bar{margin-top:12px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+       background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 14px}
+  audio{flex:1 1 320px;min-width:260px;height:36px}
+  .barnote{color:var(--dim);font-size:.82rem}
+
+  /* The chart takes the stage; the lyric rail runs beside it. */
+  .stage{display:grid;grid-template-columns:minmax(0,1fr) clamp(240px,24vw,340px);
+         gap:12px 16px;align-items:start}
+  .chartwrap{min-width:0}
+  h2{font-size:1rem;margin:0}
+  .charthead{display:flex;align-items:baseline;gap:6px 14px;flex-wrap:wrap;margin-bottom:8px}
+  .chartnote{color:var(--dim);font-size:.82rem;margin:0}
+  .tablebox{position:relative;overflow:auto;max-height:var(--ch,72vh);scroll-behavior:smooth;
+            scrollbar-width:thin;scrollbar-color:#333 transparent;
+            border:1px solid var(--line);border-radius:10px}
+  table.chart{border-collapse:collapse;width:100%;min-width:720px;font-size:.88rem;line-height:1.45}
+  .chart th{position:sticky;top:0;z-index:1;background:var(--panel);text-align:left;
+            font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;color:var(--dim);
+            font-weight:600;padding:10px 12px;border-bottom:1px solid var(--line)}
+  .chart td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--past)}
+  .chart tr:last-child td{border-bottom:0}
+  .chart td.n{color:var(--accent);font-variant-numeric:tabular-nums;width:3em;opacity:.8}
+  .chart td.s{white-space:nowrap;color:var(--dim)}
+  .chart td.l{color:var(--fg);font-weight:600;min-width:190px}
+  .chart td.q{font-family:var(--serif);font-style:italic;color:var(--fg);min-width:230px}
+  .chart td.r{min-width:170px}
+  .chart tbody tr{cursor:pointer;transition:background .2s}
+  .chart tbody tr:hover{background:rgba(255,255,255,.03)}
+  .chart tbody tr.on{background:rgba(255,179,71,.11);box-shadow:inset 3px 0 0 var(--accent)}
+  .chart tbody tr.on td{color:var(--fg)}
+  .chart tbody tr.on td.l{color:var(--accent)}
+  .chart tr:focus-visible,.ln:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+  /* The source page sits in its own column between the chart and the rail,
+     so a page can be read against the row that cites it without either moving. */
+  .chartgrid{display:grid;grid-template-columns:minmax(0,1fr) clamp(200px,22vw,330px);
+             gap:12px;align-items:start}
+  .scans{height:var(--ch,72vh);background:var(--panel);border:1px solid var(--line);
+         border-radius:10px;padding:10px;display:flex;gap:10px;min-width:0;overflow:hidden}
+  .scanidle{margin:auto;color:var(--dim);font-size:.82rem;text-align:center;max-width:26ch;line-height:1.5}
+  .scanidle code{color:var(--past);font-size:.95em}
+  .scan{flex:1 1 0;min-width:0;margin:0;display:flex;flex-direction:column;gap:6px;
+        animation:scanin .45s ease both}
+  .scan button{flex:1;min-height:0;padding:0;border:0;background:#0a0a0b;border-radius:6px;
+               cursor:zoom-in;overflow:hidden;display:block}
+  .scan img{width:100%;height:100%;object-fit:contain;display:block}
+  .scan figcaption{font-size:.72rem;color:var(--past);line-height:1.35}
+  .scan figcaption em{color:var(--fg)}
+  .scanmiss{margin:auto;text-align:center;color:var(--dim);font-size:.8rem;line-height:1.5;padding:0 6px}
+  .scanmiss strong{display:block;color:var(--past);font-weight:600;margin-bottom:5px}
+  .scanmiss code{color:var(--accent);opacity:.75;font-size:.92em;word-break:break-all}
+  @keyframes scanin{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  .lb{position:fixed;inset:0;z-index:50;background:rgba(5,5,6,.92);display:flex;
+      flex-direction:column;align-items:center;justify-content:center;gap:10px;
+      padding:calc(16px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px))
+              calc(16px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));
+      cursor:zoom-out}
+  .lb[hidden]{display:none}
+  .lb img{max-width:100%;max-height:calc(100% - 70px);object-fit:contain;border-radius:4px}
+  .lbcap{color:var(--past);font-size:.85rem;text-align:center}
+  .lbcap em{color:var(--fg)}
+  .lbx{position:absolute;top:calc(12px + env(safe-area-inset-top,0px));
+       right:max(12px,env(safe-area-inset-right,0px));background:var(--panel);color:var(--fg);
+       border:1px solid var(--line);border-radius:6px;padding:6px 12px;font:inherit;
+       font-size:.85rem;cursor:pointer}
+  .lbx:focus-visible,.scan button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+  .lyrics{position:relative;background:var(--panel);border:1px solid var(--line);
+          border-radius:10px;height:var(--h,72vh);overflow-y:auto;scroll-behavior:smooth;
+          padding:40% 16px 55%;
+          -webkit-mask-image:linear-gradient(transparent,#000 14%,#000 86%,transparent);
+          mask-image:linear-gradient(transparent,#000 14%,#000 86%,transparent);
+          scrollbar-width:thin;scrollbar-color:#333 transparent}
+  .sec{font-size:.7rem;text-transform:uppercase;letter-spacing:.14em;color:var(--dim);margin:22px 0 6px}
+  .ln{font-size:clamp(.95rem,1.15vw,1.12rem);line-height:1.35;font-weight:650;color:var(--dim);
+      padding:6px 8px;margin:0 -8px;border-radius:6px;cursor:pointer;
+      transition:color .25s,transform .25s,opacity .25s;transform-origin:left center}
+  .ln:hover{background:rgba(255,255,255,.04)}
+  .ln.past{color:var(--past);opacity:.55}
+  .ln.on{color:rgba(244,241,234,.45);transform:scale(1.04)}
+  .ln.on .w.sung{color:var(--fg)}
+  .ln.on .w.now{color:var(--accent);text-shadow:0 0 18px rgba(255,179,71,.45)}
+  .w{transition:color .12s}
+  .ref{font-size:.62em;font-weight:600;color:var(--accent);opacity:.6;vertical-align:super;
+       margin-left:3px;font-variant-numeric:tabular-nums}
+  .nosync{color:var(--dim);font-size:.78rem;line-height:1.5;margin:0 0 14px;
+          padding:9px 11px;background:rgba(255,179,71,.07);border:1px solid rgba(255,179,71,.22);
+          border-radius:7px}
+  footer{color:var(--dim);font-size:.85rem;margin-top:28px;text-align:center}
+  @media (max-width:1200px){
+    .chartgrid{grid-template-columns:minmax(0,1fr)}
+    .scans{height:auto;min-height:0}
+    .scan button{height:56vh;flex:none}
+  }
+  @media (max-width:880px){
+    .stage{grid-template-columns:minmax(0,1fr)}
+    .lyrics{height:46vh!important;padding:20vh 16px 24vh;order:-1}
+    .tablebox{max-height:64vh!important}
+  }
+  @media (prefers-reduced-motion:reduce){.lyrics,.tablebox{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="titlerow">
+      <h1>Clinton Hall Fire</h1>
+      <div class="sub">21 Astor Place</div>
+    </div>
+    <div class="bar">
+      <audio id="a" controls preload="metadata" src="audio.mp3"></audio>
+      <span class="barnote">6 min 24 s &middot; the last 1 min 40 s is instrumental</span>
+    </div>
+  </header>
+  <div class="stage">
+    <section class="chartwrap" aria-labelledby="ch">
+      <div class="charthead">
+        <h2 id="ch">Citation chart</h2>
+        <p class="chartnote">21 sourced phrases across 26 sung lines. Tap a row to jump the track to that line.</p>
+      </div>
+      <div class="chartgrid">
+        <div class="tablebox">
+          <table class="chart">
+            <thead><tr><th>#</th><th>Section</th><th>Lyric</th><th>Supporting quote</th><th>Source</th></tr></thead>
+            <tbody id="rows"><tr data-c="0" tabindex="0"><td class="n">1</td><td class="s">Verse 1</td><td class="l">Twenty-one Astor Place, brick building standing tall</td><td class="q">"In the 1897 Bromleys Atlas, on 21 Astor Place, there is written 'Mercantile Library, Bank' as well as reference to 1 Structure; Brick building."</td><td class="r">Bromley. "1897 Bromleys Atlas," p. 16</td></tr><tr data-c="1" tabindex="0"><td class="n">2</td><td class="s">Verse 1</td><td class="l">Clinton Hall Mercantile Library on the wall</td><td class="q">"In the 1885 Robinson Atlas, on 21 Astor Place, there is written 'Clinton Hall Mercantile Library' as well as reference to 1 Structure; Brick building."</td><td class="r">Robinson. "1885 Robinson Atlas," p. 12</td></tr><tr data-c="2" tabindex="0"><td class="n">9</td><td class="s">Verse 1</td><td class="l">Built in 1892, rising from the ground</td><td class="q">"Was built in 1892."</td><td class="r">Unknown Author. "Landmarks Preservation Commission," p. 1</td></tr><tr data-c="3" tabindex="0"><td class="n">35</td><td class="s">Verse 1</td><td class="l">George E. Harney drew the plans, understated brick and sound</td><td class="q">"Down the block at 13-25 Astor Place is the Mercantile Library Building (I) (1890. George E. Harney, a handsome, understated brick and terracotta endeavor."</td><td class="r">Hennessy. (2020) Walking Broadway, p. 84</td></tr><tr data-c="4" tabindex="0"><td class="n">35</td><td class="s">Verse 1</td><td class="l">Twelve thousand members, hundred twenty thousand books around</td><td class="q">"in 1890 the Library boasted 12,000 members and a collection of 120,000 volumes."</td><td class="r">Hennessy. (2020) Walking Broadway, p. 84</td></tr><tr data-c="5" tabindex="0"><td class="n">17</td><td class="s">Chorus</td><td class="l">Astor Place! Crowd of ten thousand lost control!</td><td class="q">"A crowd of 10,000 milled out of control outside the theatre."</td><td class="r">McDarrah. (1963) Greenwich Village, p. 72</td></tr><tr data-c="6" tabindex="0"><td class="n">17</td><td class="s">Chorus</td><td class="l">Rotten eggs and copper pennies, Macbeth took its toll!</td><td class="q">"Macready's appearance in Macbeth was greeted with rotten eggs, copper pennies, apples, potatoes, lemons, and assorted articles which splashed the actor's costume."</td><td class="r">McDarrah. (1963) Greenwich Village, p. 72</td></tr><tr data-c="7" tabindex="0"><td class="n">17</td><td class="s">Chorus</td><td class="l">Thirty-one were dead, hundred fifty casualties!</td><td class="q">"accounting for 31 deaths and 150 casualties."</td><td class="r">McDarrah. (1963) Greenwich Village, p. 72</td></tr><tr data-c="8" tabindex="0"><td class="n">37</td><td class="s">Verse 2</td><td class="l">Opera House of classical design, a Greek temple made</td><td class="q">"Located on Lafayette Street between Astor Place and 8th Street, the Opera House was of classical design, resembling a Greek temple."</td><td class="r">Schermerhorn. (1982) Letters to Phil 1848-1856, p. 68</td></tr><tr data-c="9" tabindex="0"><td class="n">37</td><td class="s">Verse 2</td><td class="l">Eighteen hundred seats for drama, concerts, vaudeville, and balls displayed</td><td class="q">"The 1800-seat house was also used for drama, vaudeville, concerts, and balls."</td><td class="r">Schermerhorn. (1982) Letters to Phil 1848-1856, p. 68</td></tr><tr data-c="10" tabindex="0"><td class="n">48</td><td class="s">Verse 2</td><td class="l">Forrest was the hero, Macready was the foe</td><td class="q">"the popular American actor EDWIN FORREST was due to perform his Macbeth at the Bowery Theater" and "the renowned English actor WILLIAM MACREADY to perform Macbeth."</td><td class="r">Winn. (2013) I Never Knew That About New York, p. 108</td></tr><tr data-c="11" tabindex="0"><td class="n">17</td><td class="s">Verse 2</td><td class="l">Militia fired into the crowd — the worst riot the theatre'd know</td><td class="q">"order wasn't restored until mounted police fired small arms and artillery into the mob" and "the worst riot in the history of the theatre."</td><td class="r">McDarrah. (1963) Greenwich Village, p. 72</td></tr><tr data-c="12" tabindex="0"><td class="n">17</td><td class="s">Verse 2</td><td class="l">Shambles left behind, demolished — but the story'd grow</td><td class="q">"The opera house was left in shambles and demolished shortly after."</td><td class="r">McDarrah. (1963) Greenwich Village, p. 72</td></tr><tr data-c="13" tabindex="0"><td class="n">5</td><td class="s">Bridge</td><td class="l">Corn Exchange Bank held the corner, Alexander Hamilton Hall</td><td class="q">"In the 1930 Land Book of the Borough of Manhattan, on 21 Astor Place, there is written 'Alex Hamilton Hall, Corn Ex. Bank' as well as reference to 1 Structure; 10 Story Brick building with Store and Elevators and Fire proof building (steel construction)."</td><td class="r">Bromley. "1930 Land Book of the Borough of Manhattan," p. 28</td></tr><tr data-c="14" tabindex="0"><td class="n">5</td><td class="s">Bridge</td><td class="l">Ten story brick with elevators, fireproof steel standing through it all</td><td class="q">"10 Story Brick building with Store and Elevators and Fire proof building (steel construction)."</td><td class="r">Bromley. "1930 Land Book of the Borough of Manhattan," p. 28</td></tr><tr data-c="15" tabindex="0"><td class="n">22</td><td class="s">Bridge</td><td class="l">Harvard Club was founded in an upstairs room one night</td><td class="q">"The Harvard Club of New York is founded in late October by a small group of graduates who meet in an upstairs room of the Mercantile Library at 13 Astor Place."</td><td class="r">Trager. (2003) The New York Chronology, p. 140</td></tr><tr data-c="16" tabindex="0"><td class="n">35</td><td class="s">Bridge</td><td class="l">Distract the working men through reading from less wholesome light</td><td class="q">"The library was founded in 1820 for the benefit of working men. Its goal was to distract them through reading from less wholesome entertainment."</td><td class="r">Hennessy. (2020) Walking Broadway, p. 84</td></tr><tr data-c="17" tabindex="0"><td class="n">17</td><td class="s">Outro</td><td class="l">Named for John Jacob Astor, fur trader, real estate</td><td class="q">"ASTOR PLACE bounded by Broadway and 8th Street was named for the American fur trader and real estate tycoon John Jacob Astor."</td><td class="r">McDarrah. (1963) Greenwich Village, p. 72</td></tr><tr data-c="18" tabindex="0"><td class="n">29</td><td class="s">Outro</td><td class="l">First multi-millionaire — transformed the city's fate</td><td class="q">"The country's first multi-millionaire, he and his descendants would make the Astor family one of the most famous in the world. John Jacob Astor helped transform this area."</td><td class="r">Millar. (2023) New York Offbeat Walks, p. 160</td></tr><tr data-c="19" tabindex="0"><td class="n">8</td><td class="s">Outro</td><td class="l">From sand hill roads to Stuyvesant, from opera house to hall</td><td class="q">"Astor Place, as far as Fifth Avenue, was called Art Street when it was changed from a road to a street. The continuation of Astor Place to the east, now Stuyvesant Street, was originally Stuyvesant Road."</td><td class="r">Hemftreet. (1899) Nooks and Corner of Old New York, p. 167</td></tr><tr data-c="20" tabindex="0"><td class="n">1</td><td class="s">Outro</td><td class="l">Twenty-one Astor Place forever — Clinton never falls</td><td class="q">"In the 1897 Bromleys Atlas, on 21 Astor Place, there is written 'Mercantile Library, Bank' as well as reference to 1 Structure; Brick building."</td><td class="r">Bromley. "1897 Bromleys Atlas," p. 16</td></tr></tbody>
+          </table>
+        </div>
+        <aside class="scans" id="scans" aria-live="polite" aria-label="Source pages">
+          <p class="scanidle">The page behind each citation appears here as the song reaches it.</p>
+        </aside>
+      </div>
+    </section>
+    <div class="lyrics" id="lyr" aria-label="Lyrics"></div>
+  </div>
+  <footer>&copy; Pinball Publishing</footer>
+  <div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Source page">
+    <button class="lbx" id="lbx" type="button" aria-label="Close">Close</button>
+    <img id="lbimg" alt="">
+    <div class="lbcap" id="lbcap"></div>
+  </div>
+</main>
+<script>
+const LYRICS = [{"l": "Twenty-one Astor Place, brick building standing tall", "s": "Verse 1"}, {"l": "Clinton Hall Mercantile Library on the wall", "s": "Verse 1"}, {"l": "Built in eighteen ninety-two, rising from the ground", "s": "Verse 1"}, {"l": "George E. Harney drew the plans, understated brick and sound", "s": "Verse 1"}, {"l": "Twelve thousand members, hundred twenty thousand books around", "s": "Verse 1"}, {"l": "Astor Place! Crowd of ten thousand lost control!", "s": "Chorus"}, {"l": "Rotten eggs and copper pennies, Macbeth took its toll!", "s": "Chorus"}, {"l": "Thirty-one were dead, hundred fifty casualties!", "s": "Chorus"}, {"l": "Clinton Hall fire, rising from the ashes on these streets", "s": "Chorus"}, {"l": "Opera House of classical design, a Greek temple made", "s": "Verse 2"}, {"l": "Eighteen hundred seats for drama, concerts, vaudeville, and balls displayed", "s": "Verse 2"}, {"l": "Forrest was the hero, Macready was the foe", "s": "Verse 2"}, {"l": "Militia fired into the crowd — the worst riot the theatre'd know", "s": "Verse 2"}, {"l": "Shambles left behind, demolished — but the story'd grow", "s": "Verse 2"}, {"l": "Astor Place! Crowd of ten thousand lost control!", "s": "Chorus"}, {"l": "Rotten eggs and copper pennies, Macbeth took its toll!", "s": "Chorus"}, {"l": "Thirty-one were dead, hundred fifty casualties!", "s": "Chorus"}, {"l": "Clinton Hall fire, rising from the ashes on these streets", "s": "Chorus"}, {"l": "Corn Exchange Bank held the corner, Alexander Hamilton Hall", "s": "Bridge"}, {"l": "Ten story brick with elevators, fireproof steel standing through it all", "s": "Bridge"}, {"l": "Harvard Club was founded in an upstairs room one night", "s": "Bridge"}, {"l": "Distract the working men through reading from less wholesome light", "s": "Bridge"}, {"l": "Named for John Jacob Astor, fur trader, real estate", "s": "Outro"}, {"l": "First multi-millionaire — transformed the city's fate", "s": "Outro"}, {"l": "From sand hill roads to Stuyvesant, from opera house to hall", "s": "Outro"}, {"l": "Twenty-one Astor Place forever — Clinton never falls", "s": "Outro"}], CITES = [{"ref": 1, "sec": "Verse 1", "lyric": "Twenty-one Astor Place, brick building standing tall", "who": null, "q": "\"In the 1897 Bromleys Atlas, on 21 Astor Place, there is written 'Mercantile Library, Bank' as well as reference to 1 Structure; Brick building.\"", "src": "Bromley. \"1897 Bromleys Atlas,\" p. 16"}, {"ref": 2, "sec": "Verse 1", "lyric": "Clinton Hall Mercantile Library on the wall", "who": null, "q": "\"In the 1885 Robinson Atlas, on 21 Astor Place, there is written 'Clinton Hall Mercantile Library' as well as reference to 1 Structure; Brick building.\"", "src": "Robinson. \"1885 Robinson Atlas,\" p. 12"}, {"ref": 9, "sec": "Verse 1", "lyric": "Built in 1892, rising from the ground", "who": null, "q": "\"Was built in 1892.\"", "src": "Unknown Author. \"Landmarks Preservation Commission,\" p. 1"}, {"ref": 35, "sec": "Verse 1", "lyric": "George E. Harney drew the plans, understated brick and sound", "who": null, "q": "\"Down the block at 13-25 Astor Place is the Mercantile Library Building (I) (1890. George E. Harney, a handsome, understated brick and terracotta endeavor.\"", "src": "Hennessy. (2020) Walking Broadway, p. 84"}, {"ref": 35, "sec": "Verse 1", "lyric": "Twelve thousand members, hundred twenty thousand books around", "who": null, "q": "\"in 1890 the Library boasted 12,000 members and a collection of 120,000 volumes.\"", "src": "Hennessy. (2020) Walking Broadway, p. 84"}, {"ref": 17, "sec": "Chorus", "lyric": "Astor Place! Crowd of ten thousand lost control!", "who": null, "q": "\"A crowd of 10,000 milled out of control outside the theatre.\"", "src": "McDarrah. (1963) Greenwich Village, p. 72"}, {"ref": 17, "sec": "Chorus", "lyric": "Rotten eggs and copper pennies, Macbeth took its toll!", "who": null, "q": "\"Macready's appearance in Macbeth was greeted with rotten eggs, copper pennies, apples, potatoes, lemons, and assorted articles which splashed the actor's costume.\"", "src": "McDarrah. (1963) Greenwich Village, p. 72"}, {"ref": 17, "sec": "Chorus", "lyric": "Thirty-one were dead, hundred fifty casualties!", "who": null, "q": "\"accounting for 31 deaths and 150 casualties.\"", "src": "McDarrah. (1963) Greenwich Village, p. 72"}, {"ref": 37, "sec": "Verse 2", "lyric": "Opera House of classical design, a Greek temple made", "who": null, "q": "\"Located on Lafayette Street between Astor Place and 8th Street, the Opera House was of classical design, resembling a Greek temple.\"", "src": "Schermerhorn. (1982) Letters to Phil 1848-1856, p. 68"}, {"ref": 37, "sec": "Verse 2", "lyric": "Eighteen hundred seats for drama, concerts, vaudeville, and balls displayed", "who": null, "q": "\"The 1800-seat house was also used for drama, vaudeville, concerts, and balls.\"", "src": "Schermerhorn. (1982) Letters to Phil 1848-1856, p. 68"}, {"ref": 48, "sec": "Verse 2", "lyric": "Forrest was the hero, Macready was the foe", "who": null, "q": "\"the popular American actor EDWIN FORREST was due to perform his Macbeth at the Bowery Theater\" and \"the renowned English actor WILLIAM MACREADY to perform Macbeth.\"", "src": "Winn. (2013) I Never Knew That About New York, p. 108"}, {"ref": 17, "sec": "Verse 2", "lyric": "Militia fired into the crowd — the worst riot the theatre'd know", "who": null, "q": "\"order wasn't restored until mounted police fired small arms and artillery into the mob\" and \"the worst riot in the history of the theatre.\"", "src": "McDarrah. (1963) Greenwich Village, p. 72"}, {"ref": 17, "sec": "Verse 2", "lyric": "Shambles left behind, demolished — but the story'd grow", "who": null, "q": "\"The opera house was left in shambles and demolished shortly after.\"", "src": "McDarrah. (1963) Greenwich Village, p. 72"}, {"ref": 5, "sec": "Bridge", "lyric": "Corn Exchange Bank held the corner, Alexander Hamilton Hall", "who": null, "q": "\"In the 1930 Land Book of the Borough of Manhattan, on 21 Astor Place, there is written 'Alex Hamilton Hall, Corn Ex. Bank' as well as reference to 1 Structure; 10 Story Brick building with Store and Elevators and Fire proof building (steel construction).\"", "src": "Bromley. \"1930 Land Book of the Borough of Manhattan,\" p. 28"}, {"ref": 5, "sec": "Bridge", "lyric": "Ten story brick with elevators, fireproof steel standing through it all", "who": null, "q": "\"10 Story Brick building with Store and Elevators and Fire proof building (steel construction).\"", "src": "Bromley. \"1930 Land Book of the Borough of Manhattan,\" p. 28"}, {"ref": 22, "sec": "Bridge", "lyric": "Harvard Club was founded in an upstairs room one night", "who": null, "q": "\"The Harvard Club of New York is founded in late October by a small group of graduates who meet in an upstairs room of the Mercantile Library at 13 Astor Place.\"", "src": "Trager. (2003) The New York Chronology, p. 140"}, {"ref": 35, "sec": "Bridge", "lyric": "Distract the working men through reading from less wholesome light", "who": null, "q": "\"The library was founded in 1820 for the benefit of working men. Its goal was to distract them through reading from less wholesome entertainment.\"", "src": "Hennessy. (2020) Walking Broadway, p. 84"}, {"ref": 17, "sec": "Outro", "lyric": "Named for John Jacob Astor, fur trader, real estate", "who": null, "q": "\"ASTOR PLACE bounded by Broadway and 8th Street was named for the American fur trader and real estate tycoon John Jacob Astor.\"", "src": "McDarrah. (1963) Greenwich Village, p. 72"}, {"ref": 29, "sec": "Outro", "lyric": "First multi-millionaire — transformed the city's fate", "who": null, "q": "\"The country's first multi-millionaire, he and his descendants would make the Astor family one of the most famous in the world. John Jacob Astor helped transform this area.\"", "src": "Millar. (2023) New York Offbeat Walks, p. 160"}, {"ref": 8, "sec": "Outro", "lyric": "From sand hill roads to Stuyvesant, from opera house to hall", "who": null, "q": "\"Astor Place, as far as Fifth Avenue, was called Art Street when it was changed from a road to a street. The continuation of Astor Place to the east, now Stuyvesant Street, was originally Stuyvesant Road.\"", "src": "Hemftreet. (1899) Nooks and Corner of Old New York, p. 167"}, {"ref": 1, "sec": "Outro", "lyric": "Twenty-one Astor Place forever — Clinton never falls", "who": null, "q": "\"In the 1897 Bromleys Atlas, on 21 Astor Place, there is written 'Mercantile Library, Bank' as well as reference to 1 Structure; Brick building.\"", "src": "Bromley. \"1897 Bromleys Atlas,\" p. 16"}], LINE_CITE = {"0": [0], "1": [1], "2": [2], "3": [3], "4": [4], "5": [5], "6": [6], "7": [7], "9": [8], "10": [9], "11": [10], "12": [11], "13": [12], "14": [5], "15": [6], "16": [7], "18": [13], "19": [14], "20": [15], "21": [16], "22": [17], "23": [18], "24": [19], "25": [20]}, WT = [{"t": 19.72, "w": [[19.72, "Twenty-one"], [20.26, "Astor"], [20.72, "Place,"], [23.58, "brick"], [24.16, "building"], [24.66, "standing"], [25.3, "tall"]]}, {"t": 28.76, "w": [[28.76, "Clinton"], [29.24, "Hall"], [29.8, "Mercantile"], [32.06, "Library"], [33.26, "on"], [33.62, "the"], [33.74, "wall"]]}, {"t": 37.24, "w": [[37.24, "Built"], [37.62, "in"], [37.84, "eighteen"], [38.26, "ninety-two,"], [41.08, "rising"], [41.62, "from"], [41.94, "the"], [42.18, "ground"]]}, {"t": 45.92, "w": [[45.92, "George"], [46.52, "E."], [46.84, "Harney"], [47.24, "drew"], [47.56, "the"], [47.78, "plans,"], [49.02, "understated"], [50.04, "brick"], [50.84, "and"], [51.86, "sound"]]}, {"t": 55.24, "w": [[55.24, "Twelve"], [55.86, "thousand"], [58.0, "members,"], [59.24, "hundred"], [59.78, "twenty"], [60.24, "thousand"], [60.94, "books"], [61.24, "around"]]}, {"t": 64.2, "w": [[64.2, "Astor"], [64.7, "Place!"], [66.8, "Crowd"], [67.2, "of"], [67.38, "ten"], [67.66, "thousand"], [68.22, "lost"], [68.68, "control!"]]}, {"t": 73.34, "w": [[73.34, "Rotten"], [73.76, "eggs"], [74.16, "and"], [74.32, "copper"], [74.86, "pennies,"], [76.4, "Macbeth"], [77.26, "took"], [77.76, "its"], [78.08, "toll!"]]}, {"t": 81.74, "w": [[81.74, "Thirty-one"], [82.48, "were"], [82.74, "dead,"], [84.32, "hundred"], [85.16, "fifty"], [86.3, "casualties!"]]}, {"t": 90.74, "w": [[90.74, "Clinton"], [91.48, "Hall"], [91.78, "fire,"], [92.92, "rising"], [93.46, "from"], [93.78, "the"], [94.1, "ashes"], [95.22, "on"], [96.02, "these"], [96.36, "streets"]]}, {"t": 111.1, "w": [[111.1, "Opera"], [111.58, "House"], [111.92, "of"], [112.04, "classical"], [112.88, "design,"], [114.6, "a"], [114.84, "Greek"], [115.44, "temple"], [116.0, "made"]]}, {"t": 120.08, "w": [[120.08, "Eighteen"], [120.62, "hundred"], [121.4, "seats"], [121.92, "for"], [122.28, "drama,"], [123.32, "concerts,"], [124.04, "vaudeville,"], [124.76, "and"], [125.02, "balls"], [125.9, "displayed"]]}, {"t": 128.96, "w": [[128.96, "Forrest"], [129.56, "was"], [130.38, "the"], [130.639, "hero,"], [131.64, "Macready"], [132.38, "was"], [132.64, "the"], [132.88, "foe"]]}, {"t": 133.76, "w": [[133.76, "Militia"], [134.6, "fired"], [135.24, "into"], [135.7, "the"], [135.82, "crowd"], [136.46, "\u2014"], [137.42, "the"], [137.58, "worst"], [138.02, "riot"], [138.5, "the"], [138.64, "theatre'd"], [139.08, "know"]]}, {"t": 140.2, "w": [[140.2, "Shambles"], [140.8, "left"], [141.08, "behind,"], [141.92, "demolished"], [142.76, "\u2014"], [142.78, "but"], [143.06, "the"], [143.26, "story'd"], [144.16, "grow"]]}, {"t": 147.02, "w": [[147.02, "Astor"], [147.52, "Place!"], [149.64, "Crowd"], [150.0, "of"], [150.22, "ten"], [150.52, "thousand"], [151.08, "lost"], [151.52, "control!"]]}, {"t": 156.14, "w": [[156.14, "Rotten"], [156.62, "eggs"], [157.0, "and"], [157.14, "copper"], [157.7, "pennies,"], [159.24, "Macbeth"], [160.08, "took"], [160.56, "its"], [160.92, "toll!"]]}, {"t": 164.56, "w": [[164.56, "Thirty-one"], [165.3, "were"], [165.56, "dead,"], [167.16, "hundred"], [167.94, "fifty"], [169.1, "casualties!"]]}, {"t": 173.58, "w": [[173.58, "Clinton"], [174.3, "Hall"], [174.6, "fire,"], [175.74, "rising"], [176.28, "from"], [176.58, "the"], [176.9, "ashes"], [178.06, "on"], [178.84, "these"], [179.16, "streets"]]}, {"t": 197.22, "w": [[197.22, "Corn"], [197.74, "Exchange"], [198.4, "Bank"], [198.96, "held"], [199.4, "the"], [199.74, "corner,"], [201.78, "Alexander"], [202.86, "Hamilton"], [203.72, "Hall"]]}, {"t": 206.24, "w": [[206.24, "Ten"], [206.62, "story"], [207.38, "brick"], [207.84, "with"], [208.34, "elevators,"], [209.94, "fireproof"], [210.74, "steel"], [211.3, "standing"], [211.76, "through"], [212.56, "it"], [212.84, "all"]]}, {"t": 215.3, "w": [[215.3, "Harvard"], [217.22, "Club"], [218.42, "was"], [218.68, "founded"], [219.3, "in"], [219.44, "an"], [219.76, "upstairs"], [221.84, "room"], [224.22, "one"], [224.46, "night"]]}, {"t": 225.3, "w": [[225.3, "Distract"], [226.24, "the"], [226.46, "working"], [227.0, "men"], [227.5, "through"], [227.84, "reading"], [228.24, "from"], [228.58, "less"], [229.12, "wholesome"], [230.74, "light"]]}, {"t": 250.52, "w": [[250.52, "Named"], [250.94, "for"], [251.32, "John"], [252.74, "Jacob"], [253.64, "Astor,"], [255.3, "fur"], [255.68, "trader,"], [257.3, "real"], [257.74, "estate"]]}, {"t": 259.54, "w": [[259.54, "First"], [259.959, "multi-millionaire"], [261.88, "\u2014"], [262.86, "transformed"], [264.14, "the"], [264.4, "city's"], [264.9, "fate"]]}, {"t": 268.5, "w": [[268.5, "From"], [269.34, "sand"], [269.8, "hill"], [270.24, "roads"], [271.04, "to"], [271.32, "Stuyvesant,"], [273.58, "from"], [273.96, "opera"], [274.74, "house"], [275.56, "to"], [275.86, "hall"]]}, {"t": 277.8, "w": [[277.8, "Twenty-one"], [278.86, "Astor"], [279.34, "Place"], [280.06, "forever"], [280.96, "\u2014"], [281.72, "Clinton"], [282.2, "never"], [282.9, "falls"]]}], SCANS = {"Bromley. \"1897 Bromleys Atlas,\" p. 16": {"f": "bromley-1897-bromleys-atlas-p-16.jpg", "have": true}, "Robinson. \"1885 Robinson Atlas,\" p. 12": {"f": "robinson-1885-robinson-atlas-p-12.jpg", "have": true}, "Unknown Author. \"Landmarks Preservation Commission,\" p. 1": {"f": "unknown-author-landmarks-preservation-commission-p-1.jpg", "have": false}, "Hennessy. (2020) Walking Broadway, p. 84": {"f": "hennessy-2020-walking-broadway-p-84.jpg", "have": true}, "McDarrah. (1963) Greenwich Village, p. 72": {"f": "mcdarrah-1963-greenwich-village-p-72.jpg", "have": true}, "Schermerhorn. (1982) Letters to Phil 1848-1856, p. 68": {"f": "schermerhorn-1982-letters-to-phil-1848-1856-p-68.jpg", "have": true}, "Winn. (2013) I Never Knew That About New York, p. 108": {"f": "winn-2013-i-never-knew-that-about-new-york-p-108.jpg", "have": false}, "Bromley. \"1930 Land Book of the Borough of Manhattan,\" p. 28": {"f": "bromley-1930-land-book-of-the-borough-of-manhattan-p-28.jpg", "have": false}, "Trager. (2003) The New York Chronology, p. 140": {"f": "trager-2003-the-new-york-chronology-p-140.jpg", "have": true}, "Millar. (2023) New York Offbeat Walks, p. 160": {"f": "millar-2023-new-york-offbeat-walks-p-160.jpg", "have": true}, "Hemftreet. (1899) Nooks and Corner of Old New York, p. 167": {"f": "hemftreet-1899-nooks-and-corner-of-old-new-york-p-167.jpg", "have": true}}, NO_SCAN = {"12": "This sentence is not on p.&nbsp;72. The leaf breaks off mid-sentence at &ldquo;fired small arms&rdquo;, and the opera house&rsquo;s demolition is recounted on p.&nbsp;73."};
+const a = document.getElementById('a'), box = document.getElementById('lyr'),
+      tbody = document.getElementById('rows'), tbox = document.querySelector('.tablebox');
+
+// ---- the lyric rail -------------------------------------------------------
+let lastSec = null; const lines = [];
+LYRICS.forEach((L, i) => {
+  if (L.s !== lastSec) {
+    const h = document.createElement('div'); h.className = 'sec';
+    h.textContent = L.s; box.appendChild(h); lastSec = L.s;
+  }
+  const el = document.createElement('div'); el.className = 'ln'; el.tabIndex = 0;
+  const refs = (LINE_CITE[i] || []).map(j => CITES[j].ref);
+  el.innerHTML = (WT && WT[i] ? WT[i].w.map(
+        ([t, s]) => '<span class="w">' + s + '</span>').join(' ')
+      : L.l.split(/\s+/).map(s => '<span class="w">' + s + '</span>').join(' '))
+    + (refs.length ? '<span class="ref">' + refs.join(',') + '</span>' : '');
+  el.addEventListener('click', () => { if (WT && WT[i]) { a.currentTime = WT[i].t; a.play(); } });
+  box.appendChild(el); lines.push(el);
+});
+
+// ---- the chart ------------------------------------------------------------
+[...tbody.rows].forEach(tr => tr.addEventListener('click', () => {
+  const j = +tr.dataset.c;
+  const ks = Object.keys(LINE_CITE).filter(k => (LINE_CITE[k] || []).includes(j))
+                   .map(Number).sort((x, y) => x - y);
+  const i = ks.find(k => WT && WT[k] && WT[k].t > a.currentTime);
+  showScan(j);
+  const k = (i != null ? i : ks[0]);
+  if (WT && k != null && WT[k]) { a.currentTime = WT[k].t; a.play(); }
+}));
+
+// ---- the source page panel ------------------------------------------------
+const scansEl = document.getElementById('scans'), lb = document.getElementById('lb'),
+      lbimg = document.getElementById('lbimg'), lbcap = document.getElementById('lbcap');
+let shownKey = null;
+const srcOf = i => i.d || ('scans/' + i.f);
+const srcLabel = s => s.replace(/^([^.]+)\.\s*/, '<em>$1</em> ');
+
+function showScan(j) {
+  if (j == null || !CITES[j]) return;
+  const src = CITES[j].src;
+  const key = src + '|' + (NO_SCAN[String(j)] ? 'x' : 'o');
+  if (key === shownKey) return;
+  shownKey = key;
+  const info = SCANS[src], blocked = NO_SCAN[String(j)];
+  if (blocked) {
+    scansEl.innerHTML = '<div class="scanmiss"><strong>Not on this leaf</strong>' +
+      srcLabel(src) + '<br><br>' + blocked + '</div>';
+    return;
+  }
+  if (info && info.have) {
+    scansEl.innerHTML =
+      '<figure class="scan"><button type="button" aria-label="Enlarge">' +
+      '<img src="' + srcOf(info) + '" alt="' + src + '"></button>' +
+      '<figcaption>' + srcLabel(src) + '</figcaption></figure>';
+    scansEl.querySelector('button').addEventListener('click', () => {
+      lbimg.src = srcOf(info); lbcap.innerHTML = srcLabel(src); lb.hidden = false;
+    });
+  } else {
+    scansEl.innerHTML = '<div class="scanmiss"><strong>No page on file</strong>' +
+      srcLabel(src) + '<br><br>Drop it in as<br><code>scans/' +
+      (info ? info.f : '?') + '</code></div>';
+  }
+}
+lb.addEventListener('click', e => { if (e.target !== lbimg) lb.hidden = true; });
+document.getElementById('lbx').addEventListener('click', () => lb.hidden = true);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') lb.hidden = true; });
+[...tbody.rows].forEach(tr => tr.addEventListener('mouseenter', () => showScan(+tr.dataset.c)));
+
+// ---- follow the track, when there are timings to follow -------------------
+if (WT) {
+  let cur = -1;
+  a.addEventListener('timeupdate', () => {
+    const t = a.currentTime + 0.12;
+    let n = -1;
+    for (let i = 0; i < WT.length; i++) { if (WT[i] && WT[i].t <= t) n = i; else break; }
+    if (n !== cur) {
+      cur = n;
+      lines.forEach((el, i) => {
+        el.classList.toggle('on', i === n);
+        el.classList.toggle('past', i < n);
+      });
+      if (n >= 0) {
+        lines[n].scrollIntoView({ block: 'center', behavior: 'smooth' });
+        const j = (LINE_CITE[n] || [])[0];
+        if (j != null) {
+          [...tbody.rows].forEach(tr => tr.classList.toggle('on', +tr.dataset.c === j));
+          const hit = [...tbody.rows].find(tr => +tr.dataset.c === j);
+          if (hit) tbox.scrollTo({ top: hit.offsetTop - tbox.clientHeight / 2, behavior: 'smooth' });
+          showScan(j);
+        }
+      }
+    }
+    if (n >= 0 && WT[n]) {
+      const ws = lines[n].querySelectorAll('.w');
+      WT[n].w.forEach(([wt], k) => {
+        if (!ws[k]) return;
+        ws[k].classList.toggle('sung', wt <= t);
+        ws[k].classList.toggle('now', wt <= t && (!WT[n].w[k+1] || WT[n].w[k+1][0] > t));
+      });
+    }
+  });
+}
+</script>
+</body>
+</html>
