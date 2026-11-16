@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Thimble Theatre Dreams</title>
+<meta name="description" content="10 Fifth Avenue — Thimble Theatre Dreams, with lyrics and sources">
+<style>
+  :root{--bg:#0b0b0c;--panel:#141416;--fg:#f4f1ea;--dim:#6f6c66;--past:#a8a49c;
+        --accent:#ffb347;--line:#26262a;
+        --sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+        --serif:Georgia,"Times New Roman",serif;color-scheme:dark}
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans)}
+  main{max-width:1900px;margin:0 auto;
+       padding-block:16px 32px;
+       padding-left:max(16px,env(safe-area-inset-left,0px));
+       padding-right:max(16px,env(safe-area-inset-right,0px))}
+  header{margin-bottom:14px}
+  .titlerow{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+  h1{margin:0;font-size:clamp(1.2rem,2.4vw,1.6rem);letter-spacing:.01em;text-wrap:balance}
+  .sub{color:var(--dim);font-size:.95rem}
+  .bar{margin-top:12px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+       background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 14px}
+  audio{flex:1 1 320px;min-width:260px;height:36px}
+  .barnote{color:var(--dim);font-size:.82rem}
+
+  /* The chart takes the stage; the lyric rail runs beside it. */
+  .stage{display:block}
+  .chartwrap{min-width:0}
+  h2{font-size:1rem;margin:0}
+  .charthead{display:flex;align-items:baseline;gap:6px 14px;flex-wrap:wrap;margin-bottom:8px}
+  .chartnote{color:var(--dim);font-size:.82rem;margin:0}
+  .tablebox{position:relative;overflow:auto;max-height:var(--ch,72vh);scroll-behavior:smooth;
+            scrollbar-width:thin;scrollbar-color:#333 transparent;
+            border:1px solid var(--line);border-radius:10px}
+  table.chart{border-collapse:collapse;width:100%;min-width:720px;font-size:.88rem;line-height:1.45}
+  .chart th{position:sticky;top:0;z-index:1;background:var(--panel);text-align:left;
+            font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;color:var(--dim);
+            font-weight:600;padding:10px 12px;border-bottom:1px solid var(--line)}
+  .chart td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--past)}
+  .chart tr:last-child td{border-bottom:0}
+  .chart td.n{color:var(--accent);font-variant-numeric:tabular-nums;width:3em;opacity:.8}
+  .chart td.s{white-space:nowrap;color:var(--dim)}
+  .chart td.l{color:var(--fg);font-weight:600;min-width:190px}
+  .chart td.q{font-family:var(--serif);font-style:italic;color:var(--fg);min-width:230px}
+  .chart td.r{min-width:170px}
+  .chart tbody tr{cursor:pointer;transition:background .2s}
+  .chart tbody tr:hover{background:rgba(255,255,255,.03)}
+  .chart tbody tr.on{background:rgba(255,179,71,.11);box-shadow:inset 3px 0 0 var(--accent)}
+  .chart tbody tr.on td{color:var(--fg)}
+  .chart tbody tr.on td.l{color:var(--accent)}
+  .chart tr:focus-visible,.ln:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+  /* The source page sits in its own column between the chart and the rail,
+     so a page can be read against the row that cites it without either moving. */
+  .chartgrid{display:grid;grid-template-columns:minmax(0,1fr) clamp(340px,42vw,760px);
+             gap:14px;align-items:start}
+  .scans{height:var(--ch,72vh);background:var(--panel);border:1px solid var(--line);
+         border-radius:10px;padding:10px;display:flex;gap:10px;min-width:0;overflow:hidden}
+  .scanidle{margin:auto;color:var(--dim);font-size:.9rem;text-align:center;max-width:34ch;line-height:1.6}
+  .scanidle code{color:var(--past);font-size:.95em}
+  .scan{flex:1 1 0;min-width:0;margin:0;display:flex;flex-direction:column;gap:6px;
+        animation:scanin .45s ease both}
+  .scan button{flex:1;min-height:0;padding:0;border:0;background:#0a0a0b;border-radius:6px;
+               cursor:zoom-in;overflow:hidden;display:block}
+  .scan img{width:100%;height:100%;object-fit:contain;display:block}
+  .scan figcaption{font-size:.72rem;color:var(--past);line-height:1.35}
+  .scan figcaption em{color:var(--fg)}
+  .scanmiss{margin:auto;text-align:center;color:var(--dim);font-size:.8rem;line-height:1.5;padding:0 6px}
+  .scanmiss strong{display:block;color:var(--past);font-weight:600;margin-bottom:5px}
+  .scanmiss code{color:var(--accent);opacity:.75;font-size:.92em;word-break:break-all}
+  @keyframes scanin{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  .lb{position:fixed;inset:0;z-index:50;background:rgba(5,5,6,.92);display:flex;
+      flex-direction:column;align-items:center;justify-content:center;gap:10px;
+      padding:calc(16px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px))
+              calc(16px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));
+      cursor:zoom-out}
+  .lb[hidden]{display:none}
+  .lb img{max-width:100%;max-height:calc(100% - 70px);object-fit:contain;border-radius:4px}
+  .lbcap{color:var(--past);font-size:.85rem;text-align:center}
+  .lbcap em{color:var(--fg)}
+  .lbx{position:absolute;top:calc(12px + env(safe-area-inset-top,0px));
+       right:max(12px,env(safe-area-inset-right,0px));background:var(--panel);color:var(--fg);
+       border:1px solid var(--line);border-radius:6px;padding:6px 12px;font:inherit;
+       font-size:.85rem;cursor:pointer}
+  .lbx:focus-visible,.scan button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+  .chart td.l .w{transition:color .12s}
+  .chart tr.on td.l{color:rgba(244,241,234,.42)}
+  .chart tr.on td.l .w.sung{color:var(--fg)}
+  .chart tr.on td.l .w.now{color:var(--accent);text-shadow:0 0 14px rgba(255,179,71,.5)}
+  .ref{font-size:.62em;font-weight:600;color:var(--accent);opacity:.6;vertical-align:super;
+       margin-left:3px;font-variant-numeric:tabular-nums}
+  .nosync{color:var(--dim);font-size:.78rem;line-height:1.5;margin:0 0 14px;
+          padding:9px 11px;background:rgba(255,179,71,.07);border:1px solid rgba(255,179,71,.22);
+          border-radius:7px}
+  footer{color:var(--dim);font-size:.85rem;margin-top:28px;text-align:center}
+  @media (max-width:1100px){
+    .chartgrid{grid-template-columns:minmax(0,1fr)}
+    .scans{height:auto;min-height:0}
+    .scan button{height:56vh;flex:none}
+  }
+  @media (max-width:880px){
+    .tablebox{max-height:64vh!important}
+  }
+  @media (prefers-reduced-motion:reduce){.tablebox{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="titlerow">
+      <h1>Thimble Theatre Dreams</h1>
+      <div class="sub">10 Fifth Avenue</div>
+    </div>
+    <div class="bar">
+      <audio id="a" controls preload="metadata" src="audio.mp3"></audio>
+      <span class="barnote">1 min 21 s</span>
+    </div>
+  </header>
+  <div class="stage">
+    <section class="chartwrap" aria-labelledby="ch">
+      <div class="charthead">
+        <h2 id="ch">Citation chart</h2>
+        <p class="chartnote">25 sourced phrases across 26 sung lines. The current line reads along in place; tap any row to jump the track to it.</p>
+      </div>
+      <div class="chartgrid">
+        <div class="tablebox">
+          <table class="chart">
+            <thead><tr><th>#</th><th>Section</th><th>Lyric</th><th>Supporting quote</th><th>Source</th></tr></thead>
+            <tbody id="rows"><tr data-c="0" tabindex="0"><td class="n">15</td><td class="s">Verse 1</td><td class="l">Ten Fifth Avenue, Gothic townhouse on the block</td><td class="q">"10 Fifth Avenue (21) is an understated gem. This Gothic townhouse, one of a group of four built in 1848 by Henry Brevoort Jr."</td><td class="r">Hennessey. (2022) Fifth Avenue, p. 27</td></tr><tr data-c="1" tabindex="0"><td class="n">6</td><td class="s">Verse 1</td><td class="l">Eighteen-forty-nine, brownstone front and crenellated top</td><td class="q">"No. 10 Fifth Avenue (1848-1849) at the northwest corner of West Eighth Street" and "some row houses of the late 1840s were among the first dwellings in the city to employ the then-daring full brownstone front."</td><td class="r">Lockwood. (1972) Bricks and Brownstone, p. 112</td></tr><tr data-c="2" tabindex="0"><td class="n">8</td><td class="s">Verse 1</td><td class="l">Eighteen-forty-nine, brownstone front and crenellated top</td><td class="q">"Was built in 1849."</td><td class="r">Unknown Author. Landmarks Preservation Commission, p. 1</td></tr><tr data-c="3" tabindex="0"><td class="n">2</td><td class="s">Verse 1</td><td class="l">Henry Brevoort built it, first man on the avenue</td><td class="q">"Old Henry Brevoort was the first man to live on Fifth Avenue."</td><td class="r">Patterson. (1998) Fifth Avenue The Best Address, p. 9</td></tr><tr data-c="4" tabindex="0"><td class="n">15</td><td class="s">Verse 1</td><td class="l">Henry Brevoort built it, first man on the avenue</td><td class="q">"one of a group of four built in 1848 by Henry Brevoort Jr."</td><td class="r">Hennessey. (2022) Fifth Avenue, p. 27</td></tr><tr data-c="5" tabindex="0"><td class="n">15</td><td class="s">Verse 1</td><td class="l">Quatrefoil decoration, stone panels in the view</td><td class="q">"features a crenellated cornice, fine window frames and mullions, and stone panels with quatrefoil decoration above the windows on the second floor."</td><td class="r">Hennessey. (2022) Fifth Avenue, p. 27</td></tr><tr data-c="6" tabindex="0"><td class="n">2</td><td class="s">Verse 1</td><td class="l">Minetta Water flooding basements down below</td><td class="q">"Through the entire low-lying area ran Minetta Water, a creek that was always ducking beneath the surface and which, even after the area had been drained and Fifth Avenue laid out, continued to flood basements."</td><td class="r">Patterson. (1998) Fifth Avenue The Best Address, p. 9</td></tr><tr data-c="7" tabindex="0"><td class="n">2</td><td class="s">Verse 1</td><td class="l">His father was a mariner, fortune made at sea you know</td><td class="q">"because," as he wrote in his will, "my father was a mariner; his fortune was made at sea."</td><td class="r">Patterson. (1998) Fifth Avenue The Best Address, p. 9</td></tr><tr data-c="8" tabindex="0"><td class="n">16</td><td class="s">Chorus</td><td class="l">Ten Fifth Avenue, where the ghosts still play</td><td class="q">"Home to the ghost of the theatre's founder, Guido Bruno."</td><td class="r">Lanigan-Schmidt. (2003) Ghosts of New York City, p. 64</td></tr><tr data-c="9" tabindex="0"><td class="n">16</td><td class="s">Chorus</td><td class="l">Music from no source, objects sail away</td><td class="q">"peculiar happenings, such as music playing from no visible source and objects sailing across the room."</td><td class="r">Lanigan-Schmidt. (2003) Ghosts of New York City, p. 64</td></tr><tr data-c="10" tabindex="0"><td class="n">2</td><td class="s">Chorus</td><td class="l">From pirate gold to phonographs, opera in the square</td><td class="q">"actually, the elder Randall had been a successful pirate in the Caribbean."</td><td class="r">Patterson. (1998) Fifth Avenue The Best Address, p. 9</td></tr><tr data-c="11" tabindex="0"><td class="n">19</td><td class="s">Chorus</td><td class="l">From pirate gold to phonographs, opera in the square</td><td class="q">"Strollers unaccustomed to music without musicians were startled out of their wits by the opera overtures blaring from the bushes."</td><td class="r">Miller. (1990) Greenwich Village and how it got that way, p. 69</td></tr><tr data-c="12" tabindex="0"><td class="n">6</td><td class="s">Chorus</td><td class="l">Brownstone on the corner, legends layered there</td><td class="q">"No. 10 Fifth Avenue (1848-1849) at the northwest corner of West Eighth Street."</td><td class="r">Lockwood. (1972) Bricks and Brownstone, p. 112</td></tr><tr data-c="13" tabindex="0"><td class="n">16</td><td class="s">Verse 2</td><td class="l">Guido Bruno in his plaid suits, flashy and ill-fit</td><td class="q">"Guido Bruno, a Greenwich Village eccentric usually identified by his flashy, ill-fitting plaid suits."</td><td class="r">Lanigan-Schmidt. (2003) Ghosts of New York City, p. 64</td></tr><tr data-c="14" tabindex="0"><td class="n">19</td><td class="s">Verse 2</td><td class="l">Thimble Theatre in the basement, wooden benches lit</td><td class="q">"By October 1915 he had installed wooden benches to seat one hundred and a stage equipped with curtains."</td><td class="r">Miller. (1990) Greenwich Village and how it got that way, p. 69</td></tr><tr data-c="15" tabindex="0"><td class="n">19</td><td class="s">Verse 2</td><td class="l">Strindberg's Miss Julie, first performance in the land</td><td class="q">"the Bruno Players earned theatrical immortality with the first regular performances in America of Strindberg's brutal drama, 'Miss Julie'."</td><td class="r">Miller. (1990) Greenwich Village and how it got that way, p. 69</td></tr><tr data-c="16" tabindex="0"><td class="n">19</td><td class="s">Verse 2</td><td class="l">Peacock curtains by Clara Tice, butterflies so grand</td><td class="q">"curtains decorated by Clara Tice with butterflies and peacocks in attitudes more chaste than her earlier designs for Bruno."</td><td class="r">Miller. (1990) Greenwich Village and how it got that way, p. 69</td></tr><tr data-c="17" tabindex="0"><td class="n">19</td><td class="s">Verse 2</td><td class="l">Edison's son cranked the phonograph, strollers lost their minds</td><td class="q">"Charles Edison had been trying without success to sell the phonograph records his famous father had invented" and "with him planned a promotional stunt that involved playing a hand-cranked phonograph in Washington Square. Strollers unaccustomed to music without musicians were startled out of their wits."</td><td class="r">Miller. (1990) Greenwich Village and how it got that way, p. 69</td></tr><tr data-c="18" tabindex="0"><td class="n">10</td><td class="s">Verse 2</td><td class="l">Music blaring from the bushes, no musicians you could find</td><td class="q">"Strollers were surprised to hear music coming out of the bushes with no musicians to be seen."</td><td class="r">Dickhuth. (2011) Greenwich Village, p. 120</td></tr><tr data-c="19" tabindex="0"><td class="n">1</td><td class="s">Bridge</td><td class="l">Brick or stone first class in eighteen-fifty-three</td><td class="q">"In the 1853 Perris Maps, on 10 Fifth Avenue, there is reference to 1 Structure; Brick or Stone dwellings first class."</td><td class="r">Perris. 1853 Perris Maps, p. 62</td></tr><tr data-c="20" tabindex="0"><td class="n">1</td><td class="s">Bridge</td><td class="l">Slate or metal roof, skylights setting top floors free</td><td class="q">"slate or metal roof &amp; coped...with skylights lighting the top floor only."</td><td class="r">Perris. 1853 Perris Maps, p. 62</td></tr><tr data-c="21" tabindex="0"><td class="n">5</td><td class="s">Bridge</td><td class="l">Five stories by nineteen-sixteen, the block kept climbing high</td><td class="q">"In the 1916 Atlas of the Borough of Manhattan, on 10 Fifth Avenue, there is reference to 1 Structure; 5 Story Brick building."</td><td class="r">G W Bromley &amp; Co. 1916 Atlas of the Borough of Manhattan, p. 43</td></tr><tr data-c="22" tabindex="0"><td class="n">6</td><td class="s">Bridge</td><td class="l">Northwest corner Eighth Street where the legends never die</td><td class="q">"No. 10 Fifth Avenue (1848-1849) at the northwest corner of West Eighth Street."</td><td class="r">Lockwood. (1972) Bricks and Brownstone, p. 112</td></tr><tr data-c="23" tabindex="0"><td class="n">15</td><td class="s">Outro</td><td class="l">Ten Fifth Avenue standing, understated gem</td><td class="q">"10 Fifth Avenue (21) is an understated gem."</td><td class="r">Hennessey. (2022) Fifth Avenue, p. 27</td></tr><tr data-c="24" tabindex="0"><td class="n">2</td><td class="s">Outro</td><td class="l">From village to metropolis, I tip my hat to them</td><td class="q">"1 From Village to Metropolis."</td><td class="r">Patterson. (1998) Fifth Avenue The Best Address, p. 9</td></tr></tbody>
+          </table>
+        </div>
+        <aside class="scans" id="scans" aria-live="polite" aria-label="Source pages">
+          <p class="scanidle">The page behind each citation appears here as the song reaches it.</p>
+        </aside>
+      </div>
+      
+    </section>
+  </div>
+  <footer>&copy; Pinball Publishing</footer>
+  <div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Source page">
+    <button class="lbx" id="lbx" type="button" aria-label="Close">Close</button>
+    <img id="lbimg" alt="">
+    <div class="lbcap" id="lbcap"></div>
+  </div>
+</main>
+<script>
+const LYRICS = [{"l": "Thimble Theatre dreams", "s": "Intro"}, {"l": "Thimble Theatre dreams", "s": "Intro"}, {"l": "Thimble Theatre dreams", "s": "Intro"}, {"l": "Ten Fifth Avenue, Gothic townhouse on the block", "s": "Verse 1"}, {"l": "Eighteen-forty-nine, brownstone front and crenellated top", "s": "Verse 1"}, {"l": "Henry Brevoort built it, first man on the avenue", "s": "Verse 1"}, {"l": "Quatrefoil decoration, stone panels in the view", "s": "Verse 1"}, {"l": "Minetta Water flooding basements down below", "s": "Verse 1"}, {"l": "His father was a mariner, fortune made at sea you know", "s": "Verse 1"}, {"l": "Ten Fifth Avenue, where the ghosts still play", "s": "Chorus"}, {"l": "Music from no source, objects sail away", "s": "Chorus"}, {"l": "From pirate gold to phonographs, opera in the square", "s": "Chorus"}, {"l": "Brownstone on the corner, legends layered there", "s": "Chorus"}, {"l": "Guido Bruno in his plaid suits, flashy and ill-fit", "s": "Verse 2"}, {"l": "Thimble Theatre in the basement, wooden benches lit", "s": "Verse 2"}, {"l": "Strindberg's Miss Julie, first performance in the land", "s": "Verse 2"}, {"l": "Peacock curtains by Clara Tice, butterflies so grand", "s": "Verse 2"}, {"l": "Edison's son cranked the phonograph, strollers lost their minds", "s": "Verse 2"}, {"l": "Music blaring from the bushes, no musicians you could find", "s": "Verse 2"}, {"l": "Brick or stone first class in eighteen-fifty-three", "s": "Bridge"}, {"l": "Slate or metal roof, skylights setting top floors free", "s": "Bridge"}, {"l": "Five stories by nineteen-sixteen, the block kept climbing high", "s": "Bridge"}, {"l": "Northwest corner Eighth Street where the legends never die", "s": "Bridge"}, {"l": "Ten Fifth Avenue standing, understated gem", "s": "Outro"}, {"l": "From village to metropolis, I tip my hat to them", "s": "Outro"}, {"l": "Thimble Theatre dreams", "s": "Outro"}], CITES = [{"ref": 15, "sec": "Verse 1", "lyric": "Ten Fifth Avenue, Gothic townhouse on the block", "who": null, "q": "\"10 Fifth Avenue (21) is an understated gem. This Gothic townhouse, one of a group of four built in 1848 by Henry Brevoort Jr.\"", "src": "Hennessey. (2022) Fifth Avenue, p. 27"}, {"ref": 6, "sec": "Verse 1", "lyric": "Eighteen-forty-nine, brownstone front and crenellated top", "who": null, "q": "\"No. 10 Fifth Avenue (1848-1849) at the northwest corner of West Eighth Street\" and \"some row houses of the late 1840s were among the first dwellings in the city to employ the then-daring full brownstone front.\"", "src": "Lockwood. (1972) Bricks and Brownstone, p. 112"}, {"ref": 8, "sec": "Verse 1", "lyric": "Eighteen-forty-nine, brownstone front and crenellated top", "who": null, "q": "\"Was built in 1849.\"", "src": "Unknown Author. Landmarks Preservation Commission, p. 1"}, {"ref": 2, "sec": "Verse 1", "lyric": "Henry Brevoort built it, first man on the avenue", "who": null, "q": "\"Old Henry Brevoort was the first man to live on Fifth Avenue.\"", "src": "Patterson. (1998) Fifth Avenue The Best Address, p. 9"}, {"ref": 15, "sec": "Verse 1", "lyric": "Henry Brevoort built it, first man on the avenue", "who": null, "q": "\"one of a group of four built in 1848 by Henry Brevoort Jr.\"", "src": "Hennessey. (2022) Fifth Avenue, p. 27"}, {"ref": 15, "sec": "Verse 1", "lyric": "Quatrefoil decoration, stone panels in the view", "who": null, "q": "\"features a crenellated cornice, fine window frames and mullions, and stone panels with quatrefoil decoration above the windows on the second floor.\"", "src": "Hennessey. (2022) Fifth Avenue, p. 27"}, {"ref": 2, "sec": "Verse 1", "lyric": "Minetta Water flooding basements down below", "who": null, "q": "\"Through the entire low-lying area ran Minetta Water, a creek that was always ducking beneath the surface and which, even after the area had been drained and Fifth Avenue laid out, continued to flood basements.\"", "src": "Patterson. (1998) Fifth Avenue The Best Address, p. 9"}, {"ref": 2, "sec": "Verse 1", "lyric": "His father was a mariner, fortune made at sea you know", "who": null, "q": "\"because,\" as he wrote in his will, \"my father was a mariner; his fortune was made at sea.\"", "src": "Patterson. (1998) Fifth Avenue The Best Address, p. 9"}, {"ref": 16, "sec": "Chorus", "lyric": "Ten Fifth Avenue, where the ghosts still play", "who": null, "q": "\"Home to the ghost of the theatre's founder, Guido Bruno.\"", "src": "Lanigan-Schmidt. (2003) Ghosts of New York City, p. 64"}, {"ref": 16, "sec": "Chorus", "lyric": "Music from no source, objects sail away", "who": null, "q": "\"peculiar happenings, such as music playing from no visible source and objects sailing across the room.\"", "src": "Lanigan-Schmidt. (2003) Ghosts of New York City, p. 64"}, {"ref": 2, "sec": "Chorus", "lyric": "From pirate gold to phonographs, opera in the square", "who": null, "q": "\"actually, the elder Randall had been a successful pirate in the Caribbean.\"", "src": "Patterson. (1998) Fifth Avenue The Best Address, p. 9"}, {"ref": 19, "sec": "Chorus", "lyric": "From pirate gold to phonographs, opera in the square", "who": null, "q": "\"Strollers unaccustomed to music without musicians were startled out of their wits by the opera overtures blaring from the bushes.\"", "src": "Miller. (1990) Greenwich Village and how it got that way, p. 69"}, {"ref": 6, "sec": "Chorus", "lyric": "Brownstone on the corner, legends layered there", "who": null, "q": "\"No. 10 Fifth Avenue (1848-1849) at the northwest corner of West Eighth Street.\"", "src": "Lockwood. (1972) Bricks and Brownstone, p. 112"}, {"ref": 16, "sec": "Verse 2", "lyric": "Guido Bruno in his plaid suits, flashy and ill-fit", "who": null, "q": "\"Guido Bruno, a Greenwich Village eccentric usually identified by his flashy, ill-fitting plaid suits.\"", "src": "Lanigan-Schmidt. (2003) Ghosts of New York City, p. 64"}, {"ref": 19, "sec": "Verse 2", "lyric": "Thimble Theatre in the basement, wooden benches lit", "who": null, "q": "\"By October 1915 he had installed wooden benches to seat one hundred and a stage equipped with curtains.\"", "src": "Miller. (1990) Greenwich Village and how it got that way, p. 69"}, {"ref": 19, "sec": "Verse 2", "lyric": "Strindberg's Miss Julie, first performance in the land", "who": null, "q": "\"the Bruno Players earned theatrical immortality with the first regular performances in America of Strindberg's brutal drama, 'Miss Julie'.\"", "src": "Miller. (1990) Greenwich Village and how it got that way, p. 69"}, {"ref": 19, "sec": "Verse 2", "lyric": "Peacock curtains by Clara Tice, butterflies so grand", "who": null, "q": "\"curtains decorated by Clara Tice with butterflies and peacocks in attitudes more chaste than her earlier designs for Bruno.\"", "src": "Miller. (1990) Greenwich Village and how it got that way, p. 69"}, {"ref": 19, "sec": "Verse 2", "lyric": "Edison's son cranked the phonograph, strollers lost their minds", "who": null, "q": "\"Charles Edison had been trying without success to sell the phonograph records his famous father had invented\" and \"with him planned a promotional stunt that involved playing a hand-cranked phonograph in Washington Square. Strollers unaccustomed to music without musicians were startled out of their wits.\"", "src": "Miller. (1990) Greenwich Village and how it got that way, p. 69"}, {"ref": 10, "sec": "Verse 2", "lyric": "Music blaring from the bushes, no musicians you could find", "who": null, "q": "\"Strollers were surprised to hear music coming out of the bushes with no musicians to be seen.\"", "src": "Dickhuth. (2011) Greenwich Village, p. 120"}, {"ref": 1, "sec": "Bridge", "lyric": "Brick or stone first class in eighteen-fifty-three", "who": null, "q": "\"In the 1853 Perris Maps, on 10 Fifth Avenue, there is reference to 1 Structure; Brick or Stone dwellings first class.\"", "src": "Perris. 1853 Perris Maps, p. 62"}, {"ref": 1, "sec": "Bridge", "lyric": "Slate or metal roof, skylights setting top floors free", "who": null, "q": "\"slate or metal roof & coped...with skylights lighting the top floor only.\"", "src": "Perris. 1853 Perris Maps, p. 62"}, {"ref": 5, "sec": "Bridge", "lyric": "Five stories by nineteen-sixteen, the block kept climbing high", "who": null, "q": "\"In the 1916 Atlas of the Borough of Manhattan, on 10 Fifth Avenue, there is reference to 1 Structure; 5 Story Brick building.\"", "src": "G W Bromley & Co. 1916 Atlas of the Borough of Manhattan, p. 43"}, {"ref": 6, "sec": "Bridge", "lyric": "Northwest corner Eighth Street where the legends never die", "who": null, "q": "\"No. 10 Fifth Avenue (1848-1849) at the northwest corner of West Eighth Street.\"", "src": "Lockwood. (1972) Bricks and Brownstone, p. 112"}, {"ref": 15, "sec": "Outro", "lyric": "Ten Fifth Avenue standing, understated gem", "who": null, "q": "\"10 Fifth Avenue (21) is an understated gem.\"", "src": "Hennessey. (2022) Fifth Avenue, p. 27"}, {"ref": 2, "sec": "Outro", "lyric": "From village to metropolis, I tip my hat to them", "who": null, "q": "\"1 From Village to Metropolis.\"", "src": "Patterson. (1998) Fifth Avenue The Best Address, p. 9"}], LINE_CITE = {"3": [0], "4": [1, 2], "5": [3, 4], "6": [5], "7": [6], "8": [7], "9": [8], "10": [9], "11": [10, 11], "12": [12], "13": [13], "14": [14], "15": [15], "16": [16], "17": [17], "18": [18], "19": [19], "20": [20], "21": [21], "22": [22], "23": [23], "24": [24]}, WT = [{"t": 0.66, "w": [[0.66, "Thimble"], [1.0, "Theatre"], [1.42, "dreams"]]}, {"t": 2.86, "w": [[2.86, "Thimble"], [5.66, "Theatre"], [6.0, "dreams"]]}, {"t": 6.88, "w": [[6.88, "Thimble"], [10.62, "Theatre"], [10.96, "dreams"]]}, {"t": 11.24, "w": [[11.24, "Ten"], [11.58, "Fifth"], [11.94, "Avenue,"], [12.38, "Gothic"], [12.74, "townhouse"], [13.22, "on"], [13.32, "the"], [13.46, "block"]]}, {"t": 13.76, "w": [[13.76, "Eighteen-forty-nine,"], [14.68, "brownstone"], [15.2, "front"], [15.46, "and"], [15.62, "crenellated"], [16.26, "top"]]}, {"t": 16.56, "w": [[16.56, "Henry"], [16.88, "Brevoort"], [17.32, "built"], [17.54, "it,"], [17.68, "first"], [17.96, "man"], [18.18, "on"], [18.3, "the"], [18.5, "avenue"]]}, {"t": 19.04, "w": [[19.04, "Quatrefoil"], [19.68, "decoration,"], [20.3, "stone"], [20.62, "panels"], [20.96, "in"], [21.08, "the"], [21.22, "view"]]}, {"t": 21.72, "w": [[21.72, "Minetta"], [22.18, "Water"], [22.46, "flooding"], [22.78, "basements"], [23.1, "down"], [23.28, "below"]]}, {"t": 23.86, "w": [[23.86, "His"], [24.04, "father"], [24.36, "was"], [24.54, "a"], [24.66, "mariner,"], [25.14, "fortune"], [25.58, "made"], [25.74, "at"], [25.88, "sea"], [26.08, "you"], [26.2, "know"]]}, {"t": 26.52, "w": [[26.52, "Ten"], [26.82, "Fifth"], [27.2, "Avenue,"], [28.08, "where"], [28.24, "the"], [28.38, "ghosts"], [28.64, "still"], [29.0, "play"]]}, {"t": 29.3, "w": [[29.3, "Music"], [29.64, "from"], [29.84, "no"], [30.12, "source,"], [30.5, "objects"], [30.88, "sail"], [31.12, "away"]]}, {"t": 31.36, "w": [[31.36, "From"], [31.52, "pirate"], [31.82, "gold"], [31.98, "to"], [32.119, "phonographs,"], [32.82, "opera"], [33.12, "in"], [33.22, "the"], [33.36, "square"]]}, {"t": 33.68, "w": [[33.68, "Brownstone"], [34.36, "on"], [34.48, "the"], [34.62, "corner,"], [35.24, "legends"], [35.56, "layered"], [35.9, "there"]]}, {"t": 36.18, "w": [[36.18, "Guido"], [36.5, "Bruno"], [36.84, "in"], [36.94, "his"], [37.14, "plaid"], [37.44, "suits,"], [37.72, "flashy"], [38.1, "and"], [38.26, "ill-fit"]]}, {"t": 38.68, "w": [[38.68, "Thimble"], [38.98, "Theatre"], [39.34, "in"], [39.46, "the"], [39.64, "basement,"], [40.26, "wooden"], [40.54, "benches"], [40.9, "lit"]]}, {"t": 41.12, "w": [[41.12, "Strindberg's"], [41.82, "Miss"], [42.1, "Julie,"], [42.4, "first"], [42.58, "performance"], [43.1, "in"], [43.2, "the"], [43.36, "land"]]}, {"t": 43.66, "w": [[43.66, "Peacock"], [43.98, "curtains"], [44.28, "by"], [44.44, "Clara"], [44.78, "Tice,"], [45.08, "butterflies"], [45.66, "so"], [45.84, "grand"]]}, {"t": 46.2, "w": [[46.2, "Edison's"], [46.66, "son"], [47.08, "cranked"], [47.28, "the"], [47.4, "phonograph,"], [48.0, "strollers"], [48.34, "lost"], [48.5, "their"], [48.66, "minds"]]}, {"t": 48.94, "w": [[48.94, "Music"], [49.24, "blaring"], [49.56, "from"], [49.72, "the"], [49.88, "bushes,"], [50.2, "no"], [50.32, "musicians"], [50.8, "you"], [50.94, "could"], [51.14, "find"]]}, {"t": 51.4, "w": [[51.4, "Brick"], [51.58, "or"], [51.72, "stone"], [52.04, "first"], [52.26, "class"], [52.56, "in"], [52.7, "eighteen-fifty-three"]]}, {"t": 53.58, "w": [[53.58, "Slate"], [53.8, "or"], [53.94, "metal"], [54.24, "roof,"], [54.52, "skylights"], [55.06, "setting"], [55.5, "top"], [55.76, "floors"], [56.12, "free"]]}, {"t": 56.4, "w": [[56.4, "Five"], [56.7, "stories"], [57.24, "by"], [57.52, "nineteen-sixteen,"], [58.76, "the"], [58.92, "block"], [59.24, "kept"], [59.5, "climbing"], [59.88, "high"]]}, {"t": 60.48, "w": [[60.48, "Northwest"], [61.06, "corner"], [61.44, "Eighth"], [61.68, "Street"], [62.34, "where"], [62.48, "the"], [62.62, "legends"], [62.98, "never"], [63.32, "die"]]}, {"t": 68.88, "w": [[68.88, "Ten"], [69.2, "Fifth"], [69.56, "Avenue"], [70.1, "standing,"], [70.48, "understated"], [71.1, "gem"]]}, {"t": 71.38, "w": [[71.38, "From"], [71.56, "village"], [71.86, "to"], [72.0, "metropolis,"], [72.8, "I"], [72.92, "tip"], [73.1, "my"], [73.28, "hat"], [73.54, "to"], [73.74, "them"]]}, {"t": 75.08, "w": [[75.08, "Thimble"], [75.72, "Theatre"], [76.34, "dreams"]]}], SCANS = {"Hennessey. (2022) Fifth Avenue, p. 27": {"f": "hennessey-2022-fifth-avenue-p-27.jpg", "have": true}, "Lockwood. (1972) Bricks and Brownstone, p. 112": {"f": "lockwood-1972-bricks-and-brownstone-p-112.jpg", "have": true}, "Unknown Author. Landmarks Preservation Commission, p. 1": {"f": "unknown-author-landmarks-preservation-commission-p-1.jpg", "have": true}, "Patterson. (1998) Fifth Avenue The Best Address, p. 9": {"f": "patterson-1998-fifth-avenue-the-best-address-p-9.jpg", "have": true}, "Lanigan-Schmidt. (2003) Ghosts of New York City, p. 64": {"f": "lanigan-schmidt-2003-ghosts-of-new-york-city-p-64.jpg", "have": true}, "Miller. (1990) Greenwich Village and how it got that way, p. 69": {"f": "miller-1990-greenwich-village-and-how-it-got-that-way-p-69.jpg", "have": true}, "Dickhuth. (2011) Greenwich Village, p. 120": {"f": "dickhuth-2011-greenwich-village-p-120.jpg", "have": true}, "Perris. 1853 Perris Maps, p. 62": {"f": "perris-1853-perris-maps-p-62.jpg", "have": true}, "G W Bromley & Co. 1916 Atlas of the Borough of Manhattan, p. 43": {"f": "g-w-bromley-and-co-1916-atlas-of-the-borough-of-manhattan-p-43.jpg", "have": false}}, NO_SCAN = {"2": "The record on file is headed <em>634 Hudson Street</em>, not 10 Fifth Avenue. The sentence matches, but the Commission writes one of these per building, so this is a different building that happens to share the year."};
+const a = document.getElementById('a'),
+      tbody = document.getElementById('rows'), tbox = document.querySelector('.tablebox');
+
+// ---- the read-along, now in the chart's own lyric cell -------------------
+// Only the current row is split into words, and its original markup is put
+// back when the song moves on, so the chart reads as a chart the rest of the
+// time.
+const CELL = new Map();
+function railOn(tr, n) {
+  if (!tr || !WT || !WT[n]) return;
+  const td = tr.querySelector('td.l');
+  if (!CELL.has(td)) CELL.set(td, td.innerHTML);
+  td.innerHTML = WT[n].w.map(([t, w]) => '<span class="w">' + w + '</span>').join(' ');
+}
+function railOff() {
+  CELL.forEach((html, td) => { td.innerHTML = html; });
+  CELL.clear();
+}
+
+// ---- the chart ------------------------------------------------------------
+[...tbody.rows].forEach(tr => tr.addEventListener('click', () => {
+  const j = +tr.dataset.c;
+  const ks = Object.keys(LINE_CITE).filter(k => (LINE_CITE[k] || []).includes(j))
+                   .map(Number).sort((x, y) => x - y);
+  const i = ks.find(k => WT && WT[k] && WT[k].t > a.currentTime);
+  showScan(j);
+  const k = (i != null ? i : ks[0]);
+  if (WT && k != null && WT[k]) { a.currentTime = WT[k].t; a.play(); }
+}));
+
+// ---- the source page panel ------------------------------------------------
+const scansEl = document.getElementById('scans'), lb = document.getElementById('lb'),
+      lbimg = document.getElementById('lbimg'), lbcap = document.getElementById('lbcap');
+let shownKey = null;
+const srcOf = i => i.d || ('scans/' + i.f);
+const srcLabel = s => s.replace(/^([^.]+)\.\s*/, '<em>$1</em> ');
+
+function showScan(j) {
+  if (j == null || !CITES[j]) return;
+  const src = CITES[j].src;
+  const key = src + '|' + (NO_SCAN[String(j)] ? 'x' : 'o');
+  if (key === shownKey) return;
+  shownKey = key;
+  const info = SCANS[src], blocked = NO_SCAN[String(j)];
+  if (blocked) {
+    scansEl.innerHTML = '<div class="scanmiss"><strong>Not on this leaf</strong>' +
+      srcLabel(src) + '<br><br>' + blocked + '</div>';
+    return;
+  }
+  if (info && info.have) {
+    scansEl.innerHTML =
+      '<figure class="scan"><button type="button" aria-label="Enlarge">' +
+      '<img src="' + srcOf(info) + '" alt="' + src + '"></button>' +
+      '<figcaption>' + srcLabel(src) + '</figcaption></figure>';
+    scansEl.querySelector('button').addEventListener('click', () => {
+      lbimg.src = srcOf(info); lbcap.innerHTML = srcLabel(src); lb.hidden = false;
+    });
+  } else {
+    scansEl.innerHTML = '<div class="scanmiss"><strong>No page on file</strong>' +
+      srcLabel(src) + '<br><br>Drop it in as<br><code>scans/' +
+      (info ? info.f : '?') + '</code></div>';
+  }
+}
+lb.addEventListener('click', e => { if (e.target !== lbimg) lb.hidden = true; });
+document.getElementById('lbx').addEventListener('click', () => lb.hidden = true);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') lb.hidden = true; });
+[...tbody.rows].forEach(tr => tr.addEventListener('mouseenter', () => showScan(+tr.dataset.c)));
+
+// ---- follow the track, when there are timings to follow -------------------
+if (WT) {
+  let cur = -1;
+  a.addEventListener('timeupdate', () => {
+    const t = a.currentTime + 0.12;
+    let n = -1;
+    for (let i = 0; i < WT.length; i++) { if (WT[i] && WT[i].t <= t) n = i; else break; }
+    if (n !== cur) {
+      cur = n;
+      railOff();
+      if (n >= 0) {
+        const j = (LINE_CITE[n] || [])[0];
+        if (j != null) {
+          [...tbody.rows].forEach(tr => tr.classList.toggle('on', +tr.dataset.c === j));
+          const hit = [...tbody.rows].find(tr => +tr.dataset.c === j);
+          if (hit) {
+            tbox.scrollTo({ top: hit.offsetTop - tbox.clientHeight / 2, behavior: 'smooth' });
+            railOn(hit, n);
+          }
+          showScan(j);
+        }
+      }
+    }
+    if (n >= 0 && WT[n]) {
+      const row = [...tbody.rows].find(tr => tr.classList.contains('on'));
+      const ws = row ? row.querySelectorAll('td.l .w') : [];
+      WT[n].w.forEach(([wt], k) => {
+        if (!ws[k]) return;
+        ws[k].classList.toggle('sung', wt <= t);
+        ws[k].classList.toggle('now', wt <= t && (!WT[n].w[k+1] || WT[n].w[k+1][0] > t));
+      });
+    }
+  });
+}
+</script>
+</body>
+</html>
