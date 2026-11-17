@@ -68,31 +68,59 @@ each time.
 
 ## Citations
 
-24 citations across 22 lines, 13 distinct source pages, 9 leaves on file.
+24 citations across 22 lines, 14 distinct source pages, **all 14 leaves on
+file**. Nothing is missing and nothing is suppressed.
 
-Two citations are suppressed from the panel and show a note instead:
+Two map plates were added on 17 November. Both fail OCR by their nature — a map
+plate's "quote" describes what the sheet shows — so both were read by eye.
 
-- **"The Row on Washington Square, Wharton wrote the scene"** — the sentence is
-  printed on White & Willensky p. 65. The leaf on file is p. 66, which opens
-  mid-sentence at "in No. 3".
-- **"Dos Passos penned *Manhattan Transfer* at thirteen"** — same sentence, same
-  split. Only its last words fall on p. 66.
+- **Dripps 1867, sheet 7.** Fifth Avenue runs up the sheet from Washington
+  Square with Clinton Place (8th Street) and Ninth Street crossing it, and the
+  block where number 20 stands is drawn at lot level.
+- **Bromley 1897, cited p. 16.** Carried over from *Clinton Hall Fire*, which
+  already had it. The sheet itself reads **PLATE 11**, not 16 — atlases number
+  plates and pages separately, so both may be right, but the chart should carry
+  whichever number gets a reader back to the leaf. The word **BERKELEY** is
+  printed on the corner building at Fifth Avenue and 9th Street, west side,
+  which is exactly what the citation claims.
 
-A scan of p. 65 would unblock both.
+### The document cites the wrong page for two of them
+
+All three White & Willensky citations are printed in the document as **p. 66**.
+Two of them are not on p. 66. The Wharton/Howells/James sentence and the Dos
+Passos sentence are both on **p. 65**, which ends mid-sentence with "John Dos
+Passos wrote 'Manhattan Transfer'" — and p. 66 opens with the words that finish
+it, "in No. 3". Both are now pointed at p. 65, which is the leaf a reader needs.
+The third citation, the No. 2 Fifth Avenue outcry, really is on p. 66 and stays
+there.
+
+So the chart now cites two pages where the document cited one. That is a
+correction to the document, not a transcription of it, and it is the kind of
+thing worth checking against the printed book before this goes out.
 
 ### Leaves still wanted
 
 | source | citations |
 |---|---|
-| Bromley. 1955 Manhattan Land Book, p. 32 | 3 |
-| Bromley. 1897 Bromleys Atlas, p. 16 | 2 |
-| Unknown Author. Landmarks Preservation Commission, p. 1 | 2 |
-| Dripps. 1867 Dripps Plan, p. 7 | 1 |
-| White & Willensky. (1968) AIA Edition 1, p. 65 | unblocks 2 |
+None. Every source page this document cites is on file.
 
-Drop a JPEG into `scans/` under the filename the panel prints when the page is
-missing — the panel names the exact file it is looking for — and it appears
-with no rebuild.
+The last three arrived on 17 November: Bromley 1955 plate 32, the Landmarks
+Preservation Commission record for 20 Fifth Avenue, and White & Willensky p. 65.
+
+**One reading to confirm.** Bromley 1955 is a map plate, so it fails OCR by its
+nature and was read by eye. The sheet is unambiguously PLATE 32, it covers Fifth
+Avenue from 8th Street to 14th, and the west-side block between 8th and 9th —
+where number 20 stands — is drawn at lot level with the building present,
+carrying the elevator and fire-proof symbols the quote describes. The storey
+count beside it could not be read with certainty at this scan resolution; the
+neighbouring buildings use the same convention (15B on the Fifth Avenue Hotel,
+19B on block 566), so the quote's "17 Story" is consistent with what is there
+but is not independently confirmed from this scan.
+
+When a leaf is missing the panel prints the exact filename it wants. Drop a JPEG
+into `scans/` under that name **and run the build again** — the page carries a
+baked list of which leaves exist, so the file alone is not enough. Earlier
+versions of this README said no rebuild was needed. That was wrong.
 
 ### Two things to check against the originals
 
