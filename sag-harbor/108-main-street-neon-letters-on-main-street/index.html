@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Neon Letters on Main Street</title>
+<meta name="description" content="108 Main Street, Sag Harbor — Neon Letters on Main Street, with lyrics and sources">
+<style>
+  :root{--bg:#0b0b0c;--panel:#141416;--fg:#f4f1ea;--dim:#6f6c66;--past:#a8a49c;
+        --accent:#ffb347;--line:#26262a;
+        --sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+        --serif:Georgia,"Times New Roman",serif;color-scheme:dark}
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans)}
+  main{max-width:1900px;margin:0 auto;
+       padding-block:16px 32px;
+       padding-left:max(16px,env(safe-area-inset-left,0px));
+       padding-right:max(16px,env(safe-area-inset-right,0px))}
+  header{margin-bottom:14px}
+  .titlerow{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+  h1{margin:0;font-size:clamp(1.2rem,2.4vw,1.6rem);letter-spacing:.01em;text-wrap:balance}
+  .sub{color:var(--dim);font-size:.95rem}
+  .bar{margin-top:12px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+       background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 14px}
+  audio{flex:1 1 320px;min-width:260px;height:36px}
+  .barnote{color:var(--dim);font-size:.82rem}
+
+  /* The chart takes the stage; the lyric rail runs beside it. */
+  .stage{display:block}
+  .chartwrap{min-width:0}
+  h2{font-size:1rem;margin:0}
+  .charthead{display:flex;align-items:baseline;gap:6px 14px;flex-wrap:wrap;margin-bottom:8px}
+  .chartnote{color:var(--dim);font-size:.82rem;margin:0}
+  .tablebox{position:relative;overflow:auto;max-height:var(--ch,72vh);scroll-behavior:smooth;
+            scrollbar-width:thin;scrollbar-color:#333 transparent;
+            border:1px solid var(--line);border-radius:10px}
+  table.chart{border-collapse:collapse;width:100%;min-width:600px;font-size:.88rem;line-height:1.45}
+  .chart th{position:sticky;top:0;z-index:1;background:var(--panel);text-align:left;
+            font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;color:var(--dim);
+            font-weight:600;padding:10px 12px;border-bottom:1px solid var(--line)}
+  .chart td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--past)}
+  .chart tr:last-child td{border-bottom:0}
+  .chart td.n{color:var(--accent);font-variant-numeric:tabular-nums;width:3em;opacity:.8}
+  .chart td.s{white-space:nowrap;color:var(--dim)}
+  .chart td.l{color:var(--fg);font-weight:600;min-width:190px}
+  .chart td.q{font-family:var(--serif);font-style:italic;color:var(--fg);min-width:200px}
+  .chart td.r{min-width:150px;hyphens:auto}
+  .chart td.r em{font-style:italic;color:var(--past)}
+  .chart tbody tr{cursor:pointer;transition:background .2s}
+  .chart tbody tr:hover{background:rgba(255,255,255,.03)}
+  .chart tbody tr.on{background:rgba(255,179,71,.11);box-shadow:inset 3px 0 0 var(--accent)}
+  .chart tbody tr.on td{color:var(--fg)}
+  .chart tbody tr.on td.l{color:var(--accent)}
+  .chart tr:focus-visible,.ln:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+  /* The source page sits in its own column between the chart and the rail,
+     so a page can be read against the row that cites it without either moving. */
+  .chartgrid{display:grid;grid-template-columns:minmax(0,1fr) clamp(300px,34vw,620px);
+             gap:14px;align-items:start}
+  .scans{height:var(--ch,72vh);background:var(--panel);border:1px solid var(--line);
+         border-radius:10px;padding:10px;display:flex;gap:10px;min-width:0;overflow:hidden}
+  .scanidle{margin:auto;color:var(--dim);font-size:.9rem;text-align:center;max-width:34ch;line-height:1.6}
+  .scanidle code{color:var(--past);font-size:.95em}
+  .scan{flex:1 1 0;min-width:0;margin:0;display:flex;flex-direction:column;gap:6px;
+        animation:scanin .45s ease both}
+  .scan button{flex:1;min-height:0;padding:0;border:0;background:#0a0a0b;border-radius:6px;
+               cursor:zoom-in;overflow:hidden;display:block}
+  .scan img{width:100%;height:100%;object-fit:contain;display:block}
+  .scan figcaption{font-size:.72rem;color:var(--past);line-height:1.35}
+  .scan figcaption em{color:var(--fg)}
+  .scanmiss{margin:auto;text-align:center;color:var(--dim);font-size:.8rem;line-height:1.5;padding:0 6px}
+  .scanmiss strong{display:block;color:var(--past);font-weight:600;margin-bottom:5px}
+  .scanmiss code{color:var(--accent);opacity:.75;font-size:.92em;word-break:break-all}
+  @keyframes scanin{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  .lb{position:fixed;inset:0;z-index:50;background:rgba(5,5,6,.92);display:flex;
+      flex-direction:column;align-items:center;justify-content:center;gap:10px;
+      padding:calc(16px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px))
+              calc(16px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));
+      cursor:zoom-out}
+  .lb[hidden]{display:none}
+  .lb img{max-width:100%;max-height:calc(100% - 70px);object-fit:contain;border-radius:4px}
+  .lbcap{color:var(--past);font-size:.85rem;text-align:center}
+  .lbcap em{color:var(--fg)}
+  .lbx{position:absolute;top:calc(12px + env(safe-area-inset-top,0px));
+       right:max(12px,env(safe-area-inset-right,0px));background:var(--panel);color:var(--fg);
+       border:1px solid var(--line);border-radius:6px;padding:6px 12px;font:inherit;
+       font-size:.85rem;cursor:pointer}
+  .lbx:focus-visible,.scan button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+  .chart td.l .w{transition:color .12s}
+  .chart tr.on td.l{color:rgba(244,241,234,.42)}
+  .chart tr.on td.l .w.sung{color:var(--fg)}
+  .chart tr.on td.l .w.now{color:var(--accent);text-shadow:0 0 14px rgba(255,179,71,.5)}
+  .ref{font-size:.62em;font-weight:600;color:var(--accent);opacity:.6;vertical-align:super;
+       margin-left:3px;font-variant-numeric:tabular-nums}
+  .nosync{color:var(--dim);font-size:.78rem;line-height:1.5;margin:0 0 14px;
+          padding:9px 11px;background:rgba(255,179,71,.07);border:1px solid rgba(255,179,71,.22);
+          border-radius:7px}
+  footer{color:var(--dim);font-size:.85rem;margin-top:28px;text-align:center}
+  @media (max-width:1100px){
+    .chartgrid{grid-template-columns:minmax(0,1fr)}
+    .scans{height:auto;min-height:0}
+    .scan button{height:56vh;flex:none}
+  }
+  @media (max-width:880px){
+    .tablebox{max-height:64vh!important}
+  }
+  @media (prefers-reduced-motion:reduce){.tablebox{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="titlerow">
+      <h1>Neon Letters on Main Street</h1>
+      <div class="sub">108 Main Street, Sag Harbor</div>
+    </div>
+    <div class="bar">
+      <audio id="a" controls preload="metadata" src="assets/media/score.mp3"></audio>
+      <span class="barnote">5 min 38 s &middot; inspired by George Benson</span>
+    </div>
+  </header>
+  <div class="stage">
+    <section class="chartwrap" aria-labelledby="ch">
+      <div class="charthead">
+        <h2 id="ch">Citation chart</h2>
+        <p class="chartnote">Every line of the song is sourced &mdash; 25 citations across 24 lines in five sections, checked against the lyric sheet. The current line reads along in place; tap any row to jump the track to it.</p>
+      </div>
+      <div class="chartgrid">
+        <div class="tablebox">
+          <table class="chart">
+            <thead><tr><th>#</th><th>Section</th><th>Lyric</th><th>Supporting quote</th><th>Source</th></tr></thead>
+            <tbody id="rows"><tr data-c="0" tabindex="0"><td class="n">1</td><td class="s">Verse 1</td><td class="l">Ninety Main Street, Sag Harbor Cinema on the scene</td><td class="q">In June 1936, Prudential Playhouses, Inc. opened the Sag Harbor Theatre at 90 Main Street.</td><td class="r">Annette Hinkle, (2017) <em>Sag Harbor: 100 Years of Film in the Village</em>, p. 59</td></tr><tr data-c="1" tabindex="0"><td class="n">2</td><td class="s">Verse 1</td><td class="l">Built in 1936, between two World Wars, midst the Great Depression</td><td class="q">Built in 1936, between two World Wars and in the midst of the Great Depression</td><td class="r">Annette Hinkle, (2017) <em>Sag Harbor: 100 Years of Film in the Village</em>, p. 13</td></tr><tr data-c="2" tabindex="0"><td class="n">3</td><td class="s">Verse 1</td><td class="l">Plainspoken, free of pretense, beautifully elegant in its own way</td><td class="q">it was plainspoken, free of pretense or outward adornment, yet beautifully elegant in its own way</td><td class="r">Annette Hinkle, (2017) <em>Sag Harbor: 100 Years of Film in the Village</em>, p. 13</td></tr><tr data-c="3" tabindex="0"><td class="n">4</td><td class="s">Verse 1</td><td class="l">Glowing neon letters served as a beacon, bright as day</td><td class="q">the cinema's glowing neon letters must have served as a beacon of hope, both physically and metaphorically</td><td class="r">Annette Hinkle, (2017) <em>Sag Harbor: 100 Years of Film in the Village</em>, p. 13</td></tr><tr data-c="4" tabindex="0"><td class="n">5</td><td class="s">Verse 1</td><td class="l">Art Deco–style letters illuminated with neon tubing on the front</td><td class="q">Eberson specified that ‘Sag Harbor,’ in Art Deco—style letters, be illuminated with neon tubing on the front of the building.</td><td class="r">Tucker Burns Roth, (2018) <em>Images of America Sag Harbor</em>, p. 77</td></tr><tr data-c="5" tabindex="0"><td class="n">6</td><td class="s">Verse 1</td><td class="l">Architect John Eberson, steel and concrete, fireproof and blunt</td><td class="q">a new a two-story, three-bay fireproof cinema box made of steel and concrete… the work of famed theater designer John Eberson</td><td class="r">Annette Hinkle, (2017) <em>Sag Harbor: 100 Years of Film in the Village</em>, p. 59</td></tr><tr data-c="6" tabindex="0"><td class="n">7</td><td class="s">Chorus</td><td class="l">Neon letters on Main Street, red and blue marquee</td><td class="q">that iconic marquee of red and blue which… remained its defining feature for the next eight decades</td><td class="r">Annette Hinkle, (2017) <em>Sag Harbor: 100 Years of Film in the Village</em>, p. 94</td></tr><tr data-c="7" tabindex="0"><td class="n">8</td><td class="s">Chorus</td><td class="l">Eighty years defined this village, refuge for the free</td><td class="q">For 80 years, the Sag Harbor Cinema defined this village. … found a place that offered refuge</td><td class="r">Annette Hinkle, (2017) <em>Sag Harbor: 100 Years of Film in the Village</em>, p. 13</td></tr><tr data-c="8" tabindex="0"><td class="n">9</td><td class="s">Chorus</td><td class="l">Working-class populace escaping reality</td><td class="q">Sag Harbor's working-class populace found a place that offered refuge, allowing them to escape reality</td><td class="r">Annette Hinkle, (2017) <em>Sag Harbor: 100 Years of Film in the Village</em>, p. 13</td></tr><tr data-c="9" tabindex="0"><td class="n">10</td><td class="s">Chorus</td><td class="l">Even if only for a couple hours at a time, that's the key</td><td class="q">even if only for a couple hours at a time</td><td class="r">Annette Hinkle, (2017) <em>Sag Harbor: 100 Years of Film in the Village</em>, p. 13</td></tr><tr data-c="10" tabindex="0"><td class="n">11</td><td class="s">Verse 2</td><td class="l">George's Theatre opened up, fall of nineteen-fifteen</td><td class="q">George's Theatre, built by one George Kiernan, opened its doors in the fall of 1915</td><td class="r">Annette Hinkle, (2017) <em>Sag Harbor: 100 Years of Film in the Village</em>, p. 10</td></tr><tr data-c="11" tabindex="0"><td class="n">12</td><td class="s">Verse 2</td><td class="l">Marshall Seaton's Elite, seven hundred seats, Wurlitzer machine</td><td class="q">Owned by Marshall Seaton, it opened in October 1919 and had an impressive 700 seats… Also new was a Wurlitzer Orchestra organ</td><td class="r">Annette Hinkle, (2017) <em>Sag Harbor: 100 Years of Film in the Village</em>, p. 49</td></tr><tr data-c="12" tabindex="0"><td class="n">13</td><td class="s">Verse 2</td><td class="l">Mike Glynne bought it, gave it his name, showed the first talkie on the East End</td><td class="q">Michael Glynne bought the Elite… renamed it Glynne's Sag Harbor Theater, and showed the first talkie on the East End</td><td class="r">Tucker Burns Roth, (2018) <em>Images of America Sag Harbor</em></td></tr><tr data-c="13" tabindex="0"><td class="n">14</td><td class="s">Verse 2</td><td class="l">Polka dots in sixty-one, like a Wonder Bread wrapper, trying to mend</td><td class="q">in 1961, the cinema's façade was painted with a series of colorful polka dots… his inspiration for the paint job was the Wonder Bread wrapper</td><td class="r">Annette Hinkle, (2017) <em>Sag Harbor: 100 Years of Film in the Village</em>, p. 88</td></tr><tr data-c="14" tabindex="0"><td class="n">15</td><td class="s">Verse 2</td><td class="l">Bakery next door smelled wonderful, warm jelly donuts in the dawn</td><td class="q">the bakery next to the movie theater, where you could always buy warm jelly donuts… Main Street always smelled wonderful</td><td class="r">Nina Tobier, (2007) <em>Voices of Sag Harbor: A Village Remembered</em>, p. 37</td></tr><tr data-c="15" tabindex="0"><td class="n">16</td><td class="s">Verse 2</td><td class="l">Musty charm still haunts the place, but the cinema plays on</td><td class="q">If a hint of mustiness still haunts the place, that just adds to the charm.</td><td class="r">Nina Tobier, (2007) <em>Voices of Sag Harbor: A Village Remembered</em>, p. 37</td></tr><tr data-c="16" tabindex="0"><td class="n">17</td><td class="s">Bridge</td><td class="l">Memorial Day parade, the sidewalk was the focal point</td><td class="q">the sidewalk in front of the cinema has traditionally been the focal point of the parade route</td><td class="r">Annette Hinkle, (2017) <em>Sag Harbor: 100 Years of Film in the Village</em>, p. 22</td></tr><tr data-c="17" tabindex="0"><td class="n">18</td><td class="s">Bridge</td><td class="l">Community Band in white shirts and red trousers at that joint</td><td class="q">members of the Sag Harbor Community Band take up position and, in their white shirts and red trousers</td><td class="r">Annette Hinkle, (2017) <em>Sag Harbor: 100 Years of Film in the Village</em>, p. 22</td></tr><tr data-c="18" tabindex="0"><td class="n">19</td><td class="s">Bridge</td><td class="l">Lone trumpeter offers somber Taps, twenty-one guns sound</td><td class="q">a lone trumpeter offers a somber rendition of Taps, followed by a 21-gun salute</td><td class="r">Annette Hinkle, (2017) <em>Sag Harbor: 100 Years of Film in the Village</em>, p. 22</td></tr><tr data-c="19" tabindex="0"><td class="n">20</td><td class="s">Bridge</td><td class="l">December 2016 fire, but the sign — they brought it back around</td><td class="q">the Sag Harbor Cinema was destroyed by fire on Friday, December 16, 2016</td><td class="r">Zachary Studenroth, (2023) <em>Preserving Sag Harbor: The Historic District After 50 Years</em>, p. 58</td></tr><tr data-c="20" tabindex="0"><td class="n">20</td><td class="s">Bridge</td><td class="l">December 2016 fire, but the sign — they brought it back around</td><td class="q">The iconic, neon ‘Sag Harbor’ sign has been restored</td><td class="r">Tucker Burns Roth, (2018) <em>Images of America Sag Harbor</em>, p. 77</td></tr><tr data-c="21" tabindex="0"><td class="n">21</td><td class="s">Outro</td><td class="l">I was born in the building next door, movies were my babysitter</td><td class="q">I was born in the building next to the cinema… The move theater was like my baby sitter.</td><td class="r">Annette Hinkle, (2017) <em>Sag Harbor: 100 Years of Film in the Village</em>, p. 78</td></tr><tr data-c="22" tabindex="0"><td class="n">22</td><td class="s">Outro</td><td class="l">Sat through every cliffhanger, Saturday made my heart glitter</td><td class="q">I'd sit in the movies until they closed the store. Every Saturday, they'd show cliffhangers.</td><td class="r">Annette Hinkle, (2017) <em>Sag Harbor: 100 Years of Film in the Village</em>, p. 78</td></tr><tr data-c="23" tabindex="0"><td class="n">23</td><td class="s">Outro</td><td class="l">From a factory town in those bleak years, needing relief</td><td class="q">To a populace struggling to survive in this factory town in those bleak years… a village that was badly in need of relief</td><td class="r">Annette Hinkle, (2017) <em>Sag Harbor: 100 Years of Film in the Village</em>, p. 13</td></tr><tr data-c="24" tabindex="0"><td class="n">24</td><td class="s">Outro</td><td class="l">Neon letters on Main Street — Sag Harbor's bright belief</td><td class="q">A bright spot in a village that was badly in need of relief</td><td class="r">Annette Hinkle, (2017) <em>Sag Harbor: 100 Years of Film in the Village</em>, p. 14</td></tr></tbody>
+          </table>
+        </div>
+        <aside class="scans" id="scans" aria-live="polite" aria-label="Source pages">
+          <p class="scanidle">The page behind each citation appears here as the song reaches it.</p>
+        </aside>
+      </div>
+      
+    </section>
+  </div>
+  <footer>&copy; Pinball Publishing</footer>
+  <div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Source page">
+    <button class="lbx" id="lbx" type="button" aria-label="Close">Close</button>
+    <img id="lbimg" alt="">
+    <div class="lbcap" id="lbcap"></div>
+  </div>
+</main>
+<script>
+const LYRICS = [{"s": "Verse 1", "l": "Ninety Main Street, Sag Harbor Cinema on the scene"}, {"s": "Verse 1", "l": "Built in 1936, between two World Wars, midst the Great Depression"}, {"s": "Verse 1", "l": "Plainspoken, free of pretense, beautifully elegant in its own way"}, {"s": "Verse 1", "l": "Glowing neon letters served as a beacon, bright as day"}, {"s": "Verse 1", "l": "Art Deco–style letters illuminated with neon tubing on the front"}, {"s": "Verse 1", "l": "Architect John Eberson, steel and concrete, fireproof and blunt"}, {"s": "Chorus", "l": "Neon letters on Main Street, red and blue marquee"}, {"s": "Chorus", "l": "Eighty years defined this village, refuge for the free"}, {"s": "Chorus", "l": "Working-class populace escaping reality"}, {"s": "Chorus", "l": "Even if only for a couple hours at a time, that's the key"}, {"s": "Verse 2", "l": "George's Theatre opened up, fall of nineteen-fifteen"}, {"s": "Verse 2", "l": "Marshall Seaton's Elite, seven hundred seats, Wurlitzer machine"}, {"s": "Verse 2", "l": "Mike Glynne bought it, gave it his name, showed the first talkie on the East End"}, {"s": "Verse 2", "l": "Polka dots in sixty-one, like a Wonder Bread wrapper, trying to mend"}, {"s": "Verse 2", "l": "Bakery next door smelled wonderful, warm jelly donuts in the dawn"}, {"s": "Verse 2", "l": "Musty charm still haunts the place, but the cinema plays on"}, {"s": "Bridge", "l": "Memorial Day parade, the sidewalk was the focal point"}, {"s": "Bridge", "l": "Community Band in white shirts and red trousers at that joint"}, {"s": "Bridge", "l": "Lone trumpeter offers somber Taps, twenty-one guns sound"}, {"s": "Bridge", "l": "December 2016 fire, but the sign — they brought it back around"}, {"s": "Outro", "l": "I was born in the building next door, movies were my babysitter"}, {"s": "Outro", "l": "Sat through every cliffhanger, Saturday made my heart glitter"}, {"s": "Outro", "l": "From a factory town in those bleak years, needing relief"}, {"s": "Outro", "l": "Neon letters on Main Street — Sag Harbor's bright belief"}], CITES = [{"ref": 1, "sec": "Verse 1", "lyric": "Ninety Main Street, Sag Harbor Cinema on the scene", "who": "", "q": "In June 1936, Prudential Playhouses, Inc. opened the Sag Harbor Theatre at 90 Main Street.", "src": "Annette Hinkle, (2017) Sag Harbor: 100 Years of Film in the Village, p. 59", "page": true}, {"ref": 2, "sec": "Verse 1", "lyric": "Built in 1936, between two World Wars, midst the Great Depression", "who": "", "q": "Built in 1936, between two World Wars and in the midst of the Great Depression", "src": "Annette Hinkle, (2017) Sag Harbor: 100 Years of Film in the Village, p. 13", "page": true}, {"ref": 3, "sec": "Verse 1", "lyric": "Plainspoken, free of pretense, beautifully elegant in its own way", "who": "", "q": "it was plainspoken, free of pretense or outward adornment, yet beautifully elegant in its own way", "src": "Annette Hinkle, (2017) Sag Harbor: 100 Years of Film in the Village, p. 13", "page": true}, {"ref": 4, "sec": "Verse 1", "lyric": "Glowing neon letters served as a beacon, bright as day", "who": "", "q": "the cinema's glowing neon letters must have served as a beacon of hope, both physically and metaphorically", "src": "Annette Hinkle, (2017) Sag Harbor: 100 Years of Film in the Village, p. 13", "page": true}, {"ref": 5, "sec": "Verse 1", "lyric": "Art Deco–style letters illuminated with neon tubing on the front", "who": "", "q": "Eberson specified that ‘Sag Harbor,’ in Art Deco—style letters, be illuminated with neon tubing on the front of the building.", "src": "Tucker Burns Roth, (2018) Images of America Sag Harbor, p. 77", "page": true}, {"ref": 6, "sec": "Verse 1", "lyric": "Architect John Eberson, steel and concrete, fireproof and blunt", "who": "", "q": "a new a two-story, three-bay fireproof cinema box made of steel and concrete… the work of famed theater designer John Eberson", "src": "Annette Hinkle, (2017) Sag Harbor: 100 Years of Film in the Village, p. 59", "page": true}, {"ref": 7, "sec": "Chorus", "lyric": "Neon letters on Main Street, red and blue marquee", "who": "", "q": "that iconic marquee of red and blue which… remained its defining feature for the next eight decades", "src": "Annette Hinkle, (2017) Sag Harbor: 100 Years of Film in the Village, p. 94", "page": true}, {"ref": 8, "sec": "Chorus", "lyric": "Eighty years defined this village, refuge for the free", "who": "", "q": "For 80 years, the Sag Harbor Cinema defined this village. … found a place that offered refuge", "src": "Annette Hinkle, (2017) Sag Harbor: 100 Years of Film in the Village, p. 13", "page": true}, {"ref": 9, "sec": "Chorus", "lyric": "Working-class populace escaping reality", "who": "", "q": "Sag Harbor's working-class populace found a place that offered refuge, allowing them to escape reality", "src": "Annette Hinkle, (2017) Sag Harbor: 100 Years of Film in the Village, p. 13", "page": true}, {"ref": 10, "sec": "Chorus", "lyric": "Even if only for a couple hours at a time, that's the key", "who": "", "q": "even if only for a couple hours at a time", "src": "Annette Hinkle, (2017) Sag Harbor: 100 Years of Film in the Village, p. 13", "page": true}, {"ref": 11, "sec": "Verse 2", "lyric": "George's Theatre opened up, fall of nineteen-fifteen", "who": "", "q": "George's Theatre, built by one George Kiernan, opened its doors in the fall of 1915", "src": "Annette Hinkle, (2017) Sag Harbor: 100 Years of Film in the Village, p. 10", "page": true}, {"ref": 12, "sec": "Verse 2", "lyric": "Marshall Seaton's Elite, seven hundred seats, Wurlitzer machine", "who": "", "q": "Owned by Marshall Seaton, it opened in October 1919 and had an impressive 700 seats… Also new was a Wurlitzer Orchestra organ", "src": "Annette Hinkle, (2017) Sag Harbor: 100 Years of Film in the Village, p. 49", "page": true}, {"ref": 13, "sec": "Verse 2", "lyric": "Mike Glynne bought it, gave it his name, showed the first talkie on the East End", "who": "", "q": "Michael Glynne bought the Elite… renamed it Glynne's Sag Harbor Theater, and showed the first talkie on the East End", "src": "Tucker Burns Roth, (2018) Images of America Sag Harbor", "page": false}, {"ref": 14, "sec": "Verse 2", "lyric": "Polka dots in sixty-one, like a Wonder Bread wrapper, trying to mend", "who": "", "q": "in 1961, the cinema's façade was painted with a series of colorful polka dots… his inspiration for the paint job was the Wonder Bread wrapper", "src": "Annette Hinkle, (2017) Sag Harbor: 100 Years of Film in the Village, p. 88", "page": true}, {"ref": 15, "sec": "Verse 2", "lyric": "Bakery next door smelled wonderful, warm jelly donuts in the dawn", "who": "", "q": "the bakery next to the movie theater, where you could always buy warm jelly donuts… Main Street always smelled wonderful", "src": "Nina Tobier, (2007) Voices of Sag Harbor: A Village Remembered, p. 37", "page": true}, {"ref": 16, "sec": "Verse 2", "lyric": "Musty charm still haunts the place, but the cinema plays on", "who": "", "q": "If a hint of mustiness still haunts the place, that just adds to the charm.", "src": "Nina Tobier, (2007) Voices of Sag Harbor: A Village Remembered, p. 37", "page": true}, {"ref": 17, "sec": "Bridge", "lyric": "Memorial Day parade, the sidewalk was the focal point", "who": "", "q": "the sidewalk in front of the cinema has traditionally been the focal point of the parade route", "src": "Annette Hinkle, (2017) Sag Harbor: 100 Years of Film in the Village, p. 22", "page": true}, {"ref": 18, "sec": "Bridge", "lyric": "Community Band in white shirts and red trousers at that joint", "who": "", "q": "members of the Sag Harbor Community Band take up position and, in their white shirts and red trousers", "src": "Annette Hinkle, (2017) Sag Harbor: 100 Years of Film in the Village, p. 22", "page": true}, {"ref": 19, "sec": "Bridge", "lyric": "Lone trumpeter offers somber Taps, twenty-one guns sound", "who": "", "q": "a lone trumpeter offers a somber rendition of Taps, followed by a 21-gun salute", "src": "Annette Hinkle, (2017) Sag Harbor: 100 Years of Film in the Village, p. 22", "page": true}, {"ref": 20, "sec": "Bridge", "lyric": "December 2016 fire, but the sign — they brought it back around", "who": "", "q": "the Sag Harbor Cinema was destroyed by fire on Friday, December 16, 2016", "src": "Zachary Studenroth, (2023) Preserving Sag Harbor: The Historic District After 50 Years, p. 58", "page": true}, {"ref": 20, "sec": "Bridge", "lyric": "December 2016 fire, but the sign — they brought it back around", "who": "", "q": "The iconic, neon ‘Sag Harbor’ sign has been restored", "src": "Tucker Burns Roth, (2018) Images of America Sag Harbor, p. 77", "page": true}, {"ref": 21, "sec": "Outro", "lyric": "I was born in the building next door, movies were my babysitter", "who": "", "q": "I was born in the building next to the cinema… The move theater was like my baby sitter.", "src": "Annette Hinkle, (2017) Sag Harbor: 100 Years of Film in the Village, p. 78", "page": true}, {"ref": 22, "sec": "Outro", "lyric": "Sat through every cliffhanger, Saturday made my heart glitter", "who": "", "q": "I'd sit in the movies until they closed the store. Every Saturday, they'd show cliffhangers.", "src": "Annette Hinkle, (2017) Sag Harbor: 100 Years of Film in the Village, p. 78", "page": true}, {"ref": 23, "sec": "Outro", "lyric": "From a factory town in those bleak years, needing relief", "who": "", "q": "To a populace struggling to survive in this factory town in those bleak years… a village that was badly in need of relief", "src": "Annette Hinkle, (2017) Sag Harbor: 100 Years of Film in the Village, p. 13", "page": true}, {"ref": 24, "sec": "Outro", "lyric": "Neon letters on Main Street — Sag Harbor's bright belief", "who": "", "q": "A bright spot in a village that was badly in need of relief", "src": "Annette Hinkle, (2017) Sag Harbor: 100 Years of Film in the Village, p. 14", "page": true}], LINE_CITE = {"0": [0], "1": [1], "2": [2], "3": [3], "4": [4], "5": [5], "6": [6], "7": [7], "8": [8], "9": [9], "10": [10], "11": [11], "12": [12], "13": [13], "14": [14], "15": [15], "16": [16], "17": [17], "18": [18], "19": [19, 20], "20": [21], "21": [22], "22": [23], "23": [24]}, WT = [{"t": 21.01, "w": [[21.01, "Ninety"], [22.51, "Main"], [23.01, "Street,"], [23.51, "Sag"], [24.01, "Harbor"], [25.01, "Cinema"], [26.51, "on"], [27.01, "the"], [27.51, "scene"]]}, {"t": 30.42, "w": [[30.42, "Built"], [30.93, "in"], [31.43, "1936,"], [31.94, "between"], [32.95, "two"], [33.45, "World"], [33.96, "Wars,"], [34.47, "midst"], [34.97, "the"], [35.48, "Great"], [35.98, "Depression"]]}, {"t": 41.29, "w": [[41.29, "Plainspoken,"], [42.74, "free"], [43.22, "of"], [43.71, "pretense,"], [45.16, "beautifully"], [47.09, "elegant"], [48.54, "in"], [49.02, "its"], [49.5, "own"], [49.99, "way"]]}, {"t": 50.58, "w": [[50.58, "Glowing"], [51.59, "neon"], [52.1, "letters"], [53.11, "served"], [54.12, "as"], [54.63, "a"], [55.13, "beacon,"], [56.14, "bright"], [56.65, "as"], [57.15, "day"]]}, {"t": 60.55, "w": [[60.55, "Art"], [61.03, "Deco\u2013style"], [62.97, "letters"], [63.93, "illuminated"], [66.35, "with"], [66.83, "neon"], [67.31, "tubing"], [68.28, "on"], [68.76, "the"], [69.25, "front"]]}, {"t": 70.61, "w": [[70.61, "Architect"], [72.01, "John"], [72.48, "Eberson,"], [73.88, "steel"], [74.34, "and"], [74.81, "concrete,"], [76.21, "fireproof"], [77.61, "and"], [78.07, "blunt"]]}, {"t": 78.54, "w": [[78.54, "Neon"], [79.07, "letters"], [80.13, "on"], [80.66, "Main"], [81.19, "Street,"], [81.71, "red"], [82.24, "and"], [82.77, "blue"], [83.3, "marquee"]]}, {"t": 90.13, "w": [[90.13, "Eighty"], [91.12, "years"], [91.61, "defined"], [93.1, "this"], [93.59, "village,"], [95.08, "refuge"], [96.56, "for"], [97.06, "the"], [97.55, "free"]]}, {"t": 100.24, "w": [[100.24, "Working-class"], [100.97, "populace"], [101.95, "escaping"], [102.68, "reality"]]}, {"t": 103.41, "w": [[103.41, "Even"], [104.39, "if"], [104.88, "only"], [105.86, "for"], [106.35, "a"], [106.84, "couple"], [107.83, "hours"], [108.32, "at"], [108.81, "a"], [109.3, "time,"], [110.28, "that's"], [110.77, "the"], [111.26, "key"]]}, {"t": 116.18, "w": [[116.18, "George's"], [116.83, "Theatre"], [117.48, "opened"], [118.45, "up,"], [118.78, "fall"], [119.1, "of"], [119.43, "nineteen-fifteen"]]}, {"t": 121.05, "w": [[121.05, "Marshall"], [121.89, "Seaton's"], [122.73, "Elite,"], [123.99, "seven"], [124.84, "hundred"], [125.68, "seats,"], [126.1, "Wurlitzer"], [127.36, "machine"]]}, {"t": 128.62, "w": [[128.62, "Mike"], [129.57, "Glynne"], [130.52, "bought"], [130.99, "it,"], [131.47, "gave"], [132.42, "it"], [132.89, "his"], [133.37, "name,"], [134.31, "showed"], [135.26, "the"], [135.74, "first"], [136.21, "talkie"], [137.16, "on"], [137.64, "the"], [138.11, "East"], [138.59, "End"]]}, {"t": 140.43, "w": [[140.43, "Polka"], [141.4, "dots"], [141.89, "in"], [142.38, "sixty-one,"], [143.84, "like"], [144.81, "a"], [145.3, "Wonder"], [146.27, "Bread"], [146.76, "wrapper,"], [147.73, "trying"], [148.22, "to"], [148.7, "mend"]]}, {"t": 150.87, "w": [[150.87, "Bakery"], [152.33, "next"], [152.82, "door"], [153.3, "smelled"], [154.28, "wonderful,"], [155.74, "warm"], [156.22, "jelly"], [157.2, "donuts"], [158.17, "in"], [158.66, "the"], [159.14, "dawn"]]}, {"t": 160.61, "w": [[160.61, "Musty"], [161.61, "charm"], [162.11, "still"], [162.61, "haunts"], [163.11, "the"], [163.61, "place,"], [164.61, "but"], [165.11, "the"], [165.61, "cinema"], [167.11, "plays"], [167.61, "on"]]}, {"t": 171.53, "w": [[171.53, "Memorial"], [172.75, "Day"], [173.16, "parade,"], [174.38, "the"], [174.79, "sidewalk"], [176.01, "was"], [176.42, "the"], [176.83, "focal"], [177.64, "point"]]}, {"t": 178.05, "w": [[178.05, "Community"], [179.93, "Band"], [180.4, "in"], [180.87, "white"], [181.81, "shirts"], [182.28, "and"], [182.75, "red"], [183.22, "trousers"], [184.16, "at"], [184.63, "that"], [185.1, "joint"]]}, {"t": 185.57, "w": [[185.57, "Lone"], [186.32, "trumpeter"], [187.44, "offers"], [188.19, "somber"], [188.94, "Taps,"], [189.31, "twenty-one"], [190.43, "guns"], [190.81, "sound"]]}, {"t": 191.18, "w": [[191.18, "December"], [192.67, "2016"], [193.16, "fire,"], [194.15, "but"], [194.65, "the"], [195.14, "sign"], [195.64, "\u2014"], [196.13, "they"], [196.62, "brought"], [197.12, "it"], [197.62, "back"], [198.11, "around"]]}, {"t": 217.08, "w": [[217.08, "I"], [217.5, "was"], [217.92, "born"], [218.33, "in"], [218.75, "the"], [219.17, "building"], [220.0, "next"], [220.42, "door,"], [220.84, "movies"], [221.68, "were"], [222.51, "my"], [222.93, "babysitter"]]}, {"t": 224.6, "w": [[224.6, "Sat"], [225.0, "through"], [225.39, "every"], [226.58, "cliffhanger,"], [227.76, "Saturday"], [228.95, "made"], [229.74, "my"], [230.13, "heart"], [230.53, "glitter"]]}, {"t": 231.32, "w": [[231.32, "From"], [231.82, "a"], [232.32, "factory"], [233.82, "town"], [234.32, "in"], [234.82, "those"], [235.82, "bleak"], [236.32, "years,"], [236.82, "needing"], [237.82, "relief"]]}, {"t": 241.32, "w": [[241.32, "Neon"], [241.78, "letters"], [242.7, "on"], [243.17, "Main"], [243.63, "Street"], [244.09, "\u2014"], [244.55, "Sag"], [245.01, "Harbor's"], [245.94, "bright"], [246.4, "belief"]]}], SCANS = {"Annette Hinkle, (2017) Sag Harbor: 100 Years of Film in the Village, p. 59": {"f": "annette-hinkle-2017-sag-harbor-100-years-of-film-in-the-village-p-59.jpg", "have": true, "d": "assets/media/asset-01.jpg"}, "Annette Hinkle, (2017) Sag Harbor: 100 Years of Film in the Village, p. 13": {"f": "annette-hinkle-2017-sag-harbor-100-years-of-film-in-the-village-p-13.jpg", "have": true, "d": "assets/media/asset-02.jpg"}, "Tucker Burns Roth, (2018) Images of America Sag Harbor, p. 77": {"f": "tucker-burns-roth-2018-images-of-america-sag-harbor-p-77.jpg", "have": true, "d": "assets/media/asset-03.jpg"}, "Annette Hinkle, (2017) Sag Harbor: 100 Years of Film in the Village, p. 94": {"f": "annette-hinkle-2017-sag-harbor-100-years-of-film-in-the-village-p-94.jpg", "have": true, "d": "assets/media/asset-04.jpg"}, "Annette Hinkle, (2017) Sag Harbor: 100 Years of Film in the Village, p. 10": {"f": "annette-hinkle-2017-sag-harbor-100-years-of-film-in-the-village-p-10.jpg", "have": true, "d": "assets/media/asset-05.jpg"}, "Annette Hinkle, (2017) Sag Harbor: 100 Years of Film in the Village, p. 49": {"f": "annette-hinkle-2017-sag-harbor-100-years-of-film-in-the-village-p-49.jpg", "have": true, "d": "assets/media/asset-06.jpg"}, "Annette Hinkle, (2017) Sag Harbor: 100 Years of Film in the Village, p. 88": {"f": "annette-hinkle-2017-sag-harbor-100-years-of-film-in-the-village-p-88.jpg", "have": true, "d": "assets/media/asset-07.jpg"}, "Nina Tobier, (2007) Voices of Sag Harbor: A Village Remembered, p. 37": {"f": "nina-tobier-2007-voices-of-sag-harbor-a-village-remembered-p-37.jpg", "have": true, "d": "assets/media/asset-08.jpg"}, "Annette Hinkle, (2017) Sag Harbor: 100 Years of Film in the Village, p. 22": {"f": "annette-hinkle-2017-sag-harbor-100-years-of-film-in-the-village-p-22.jpg", "have": true, "d": "assets/media/asset-09.jpg"}, "Zachary Studenroth, (2023) Preserving Sag Harbor: The Historic District After 50 Years, p. 58": {"f": "zachary-studenroth-2023-preserving-sag-harbor-the-historic-district-after-50-years-p-58.jpg", "have": true, "d": "assets/media/asset-10.jpg"}, "Annette Hinkle, (2017) Sag Harbor: 100 Years of Film in the Village, p. 78": {"f": "annette-hinkle-2017-sag-harbor-100-years-of-film-in-the-village-p-78.jpg", "have": true, "d": "assets/media/asset-11.jpg"}, "Annette Hinkle, (2017) Sag Harbor: 100 Years of Film in the Village, p. 14": {"f": "annette-hinkle-2017-sag-harbor-100-years-of-film-in-the-village-p-14.jpg", "have": true, "d": "assets/media/asset-12.jpg"}}, NO_SCAN = {"6": "This leaf is the full-page plate <em>Winter in the Harbor</em> &mdash; the neon sign under snow, courtesy of Elizabeth Glasgow. It carries no body text, so the sentence about the marquee of red and blue is printed on a text page near it, not here.", "13": "This leaf is the full-page photograph of the 1963 Memorial Day parade, courtesy of the <em>Sag Harbor Express</em>. The polka dots and the Wonder Bread wrapper are recounted in body text on a nearby page, not on this one.", "16": "The text runs over from the page before. This leaf opens mid-sentence at &ldquo;silent while a lone trumpeter&hellip;&rdquo;, so the sentence about the sidewalk being the focal point of the parade route sits on the facing page.", "17": "Same leaf, same break. The band taking up position in white shirts and red trousers is on the facing page; what this one carries is the photograph of them playing in front of the theater, and the end of the passage.", "21": "This leaf is the Battle of Sag Harbor and the Meigs Monument, presented in 1902 on the 125th anniversary of the raid. It is page 78, but not the page the oral history about being born next door is printed on.", "22": "Same leaf as the row above &mdash; the Meigs Monument and the Memorial Day 1960 commemoration. The cliffhangers and the Saturday afternoons are not on it."};
+const a = document.getElementById('a'),
+      tbody = document.getElementById('rows'), tbox = document.querySelector('.tablebox');
+
+// ---- the read-along, now in the chart's own lyric cell -------------------
+// Only the current row is split into words, and its original markup is put
+// back when the song moves on, so the chart reads as a chart the rest of the
+// time.
+const CELL = new Map();
+function railOn(tr, n) {
+  if (!tr || !WT || !WT[n]) return;
+  const td = tr.querySelector('td.l');
+  if (!CELL.has(td)) CELL.set(td, td.innerHTML);
+  td.innerHTML = WT[n].w.map(([t, w]) => '<span class="w">' + w + '</span>').join(' ');
+}
+function railOff() {
+  CELL.forEach((html, td) => { td.innerHTML = html; });
+  CELL.clear();
+}
+
+// ---- the chart ------------------------------------------------------------
+[...tbody.rows].forEach(tr => tr.addEventListener('click', () => {
+  const j = +tr.dataset.c;
+  const ks = Object.keys(LINE_CITE).filter(k => (LINE_CITE[k] || []).includes(j))
+                   .map(Number).sort((x, y) => x - y);
+  const i = ks.find(k => WT && WT[k] && WT[k].t > a.currentTime);
+  showScan(j);
+  const k = (i != null ? i : ks[0]);
+  if (WT && k != null && WT[k]) { a.currentTime = WT[k].t; a.play(); }
+}));
+
+// ---- the source page panel ------------------------------------------------
+const scansEl = document.getElementById('scans'), lb = document.getElementById('lb'),
+      lbimg = document.getElementById('lbimg'), lbcap = document.getElementById('lbcap');
+let shownKey = null;
+const srcOf = i => i.d || ('scans/' + i.f);
+const srcLabel = s => s.replace(/^([^.]+)\.\s*/, '<em>$1</em> ');
+
+function showScan(j) {
+  if (j == null || !CITES[j]) return;
+  const src = CITES[j].src;
+  const key = src + '|' + (NO_SCAN[String(j)] ? 'x' : 'o');
+  if (key === shownKey) return;
+  shownKey = key;
+  const info = SCANS[src], blocked = NO_SCAN[String(j)];
+  if (blocked) {
+    // The leaf is on file and worth seeing even when the quoted sentence is not
+    // printed on it -- a full-page plate says plainly why it cannot be.
+    const info0 = SCANS[src];
+    scansEl.innerHTML = (info0 && info0.have
+        ? '<figure class="scan"><button type="button" aria-label="Enlarge">' +
+          '<img src="' + srcOf(info0) + '" alt="' + src + '"></button>' +
+          '<figcaption><strong>Not the leaf this quote is on</strong><br>' +
+          srcLabel(src) + '<br>' + blocked + '</figcaption></figure>'
+        : '<div class="scanmiss"><strong>Not on this leaf</strong>' +
+          srcLabel(src) + '<br><br>' + blocked + '</div>');
+    const btn0 = scansEl.querySelector('button');
+    if (btn0) btn0.addEventListener('click', () => {
+      lbimg.src = srcOf(info0); lbcap.innerHTML = srcLabel(src); lb.hidden = false;
+    });
+    return;
+  }
+  if (info && info.have) {
+    scansEl.innerHTML =
+      '<figure class="scan"><button type="button" aria-label="Enlarge">' +
+      '<img src="' + srcOf(info) + '" alt="' + src + '"></button>' +
+      '<figcaption>' + srcLabel(src) + '</figcaption></figure>';
+    scansEl.querySelector('button').addEventListener('click', () => {
+      lbimg.src = srcOf(info); lbcap.innerHTML = srcLabel(src); lb.hidden = false;
+    });
+  } else if (!info) {
+    scansEl.innerHTML = '<div class="scanmiss"><strong>Page not identified</strong>' +
+      srcLabel(src) + '<br><br>The chart cites the work but not the leaf. ' +
+      'A scan is filed under its page number, so this one cannot be placed ' +
+      'until the page is known.</div>';
+  } else {
+    scansEl.innerHTML = '<div class="scanmiss"><strong>No page on file</strong>' +
+      srcLabel(src) + '<br><br>Drop it in as<br><code>scans/' +
+      info.f + '</code></div>';
+  }
+}
+lb.addEventListener('click', e => { if (e.target !== lbimg) lb.hidden = true; });
+document.getElementById('lbx').addEventListener('click', () => lb.hidden = true);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') lb.hidden = true; });
+[...tbody.rows].forEach(tr => tr.addEventListener('mouseenter', () => showScan(+tr.dataset.c)));
+
+// ---- follow the track, when there are timings to follow -------------------
+if (WT) {
+  let cur = -1;
+  a.addEventListener('timeupdate', () => {
+    const t = a.currentTime + 0.12;
+    let n = -1;
+    for (let i = 0; i < WT.length; i++) { if (WT[i] && WT[i].t <= t) n = i; else break; }
+    if (n !== cur) {
+      cur = n;
+      railOff();
+      if (n >= 0) {
+        const js = LINE_CITE[n] || [];
+        if (js.length) {
+          [...tbody.rows].forEach(tr => tr.classList.toggle('on', js.includes(+tr.dataset.c)));
+          const hit = [...tbody.rows].find(tr => +tr.dataset.c === js[0]);
+          if (hit) {
+            tbox.scrollTo({ top: hit.offsetTop - tbox.clientHeight / 2, behavior: 'smooth' });
+            railOn(hit, n);
+          }
+          showScan(js[0]);
+        }
+      }
+    }
+    if (n >= 0 && WT[n]) {
+      const row = [...tbody.rows].find(tr => tr.classList.contains('on'));
+      const ws = row ? row.querySelectorAll('td.l .w') : [];
+      WT[n].w.forEach(([wt], k) => {
+        if (!ws[k]) return;
+        ws[k].classList.toggle('sung', wt <= t);
+        ws[k].classList.toggle('now', wt <= t && (!WT[n].w[k+1] || WT[n].w[k+1][0] > t));
+      });
+    }
+  });
+}
+</script>
+</body>
+</html>
