@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Every page published to the Outernet Music repository, read from the repository itself and grouped by collection.">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Outernet Music Catalogue</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@400;600&display=swap">
+<style>
+/* Layout: a surveyor's catalogue — a masthead of counts, then one plate per
+   collection: formal title, explanatory note, and a dense register of paths. */
+:root{
+  --paper:#f2f3f5; --ink:#15181d; --ink-soft:#4d5560; --rule:#d2d6dc;
+  --card:#ffffff; --accent:#1f4e79; --flag:#8a4b2a;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --serif:"IBM Plex Serif",Georgia,"Times New Roman",serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#101216; --ink:#e8eaee; --ink-soft:#99a2ae; --rule:#2a2f38;
+    --card:#171a20; --accent:#7fb3e0; --flag:#d08a5e; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#101216; --ink:#e8eaee; --ink-soft:#99a2ae; --rule:#2a2f38;
+  --card:#171a20; --accent:#7fb3e0; --flag:#d08a5e; color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+     font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin:0 auto;padding-block:40px 64px;
+      padding-left:max(16px,env(safe-area-inset-left,0px));
+      padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1{font-family:var(--serif);font-weight:600;font-size:clamp(1.9rem,4.4vw,2.7rem);
+   line-height:1.12;margin:0 0 10px;text-wrap:balance;letter-spacing:-.01em}
+.standfirst{font-size:1.05rem;color:var(--ink-soft);max-width:62ch;margin:0 0 26px}
+.counts{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 20px;padding:0;list-style:none}
+.counts li{background:var(--card);border:1px solid var(--rule);border-radius:3px;
+           padding:9px 13px;min-width:112px}
+.counts b{display:block;font-family:var(--mono);font-size:1.35rem;font-weight:500;
+          font-variant-numeric:tabular-nums;line-height:1.1}
+.counts span{display:block;font-size:.72rem;text-transform:uppercase;
+             letter-spacing:.1em;color:var(--ink-soft);margin-top:3px}
+.provenance{border-left:3px solid var(--flag);background:var(--card);
+            padding:13px 16px;margin:0 0 44px;font-size:.92rem;color:var(--ink-soft);
+            max-width:74ch}
+.provenance strong{color:var(--ink);font-weight:600}
+section{margin:0 0 50px;scroll-margin-top:16px}
+.plate{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;
+       border-bottom:1px solid var(--rule);padding-bottom:9px;margin-bottom:14px}
+h2{font-family:var(--serif);font-weight:600;font-size:clamp(1.2rem,2.6vw,1.5rem);
+   margin:0;letter-spacing:-.005em}
+.tag{font-family:var(--mono);font-size:.76rem;color:var(--accent);
+     border:1px solid var(--rule);border-radius:2px;padding:2px 7px}
+.n{font-family:var(--mono);font-size:.8rem;color:var(--ink-soft);
+   font-variant-numeric:tabular-nums;margin-left:auto}
+.note{color:var(--ink-soft);max-width:72ch;margin:0 0 18px;font-size:.95rem}
+/* Rules are drawn on the cells, not by letting a gap show the container
+   through: a register whose last row is short would otherwise end in a blank
+   grey cell. Dropping the container's top and left edge lets the first row and
+   first column supply them instead, which holds at one, two or three columns. */
+ol.reg{list-style:none;margin:0;padding:0;display:grid;background:var(--card);
+       border:1px solid var(--rule);border-top:0;border-left:0;
+       border-radius:3px;overflow:hidden}
+ol.reg li{background:var(--card);padding:8px 12px;min-width:0;
+          border-top:1px solid var(--rule);border-left:1px solid var(--rule)}
+ol.reg a{font-family:var(--mono);font-size:.86rem;color:var(--accent);
+         text-decoration:none;word-break:break-word;display:block}
+ol.reg a:hover,ol.reg a:focus-visible{text-decoration:underline}
+ol.reg a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+ol.reg li.pending{background:color-mix(in srgb,var(--flag) 9%,var(--card))}
+ol.reg li.pending a{color:var(--flag)}
+ol.reg .soon{display:inline-block;margin-left:8px;font-family:var(--sans);
+  font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--flag);
+  border:1px solid currentColor;border-radius:2px;padding:0 4px;vertical-align:1px}
+@media (min-width:700px){ol.reg{grid-template-columns:1fr 1fr}}
+@media (min-width:1000px){ol.reg.wide{grid-template-columns:1fr 1fr 1fr}}
+table.recent{width:100%;border-collapse:collapse;font-size:.92rem}
+.scroller{overflow-x:auto;border:1px solid var(--rule);border-radius:3px;background:var(--card)}
+table.recent th{text-align:left;font-size:.7rem;text-transform:uppercase;
+                letter-spacing:.1em;color:var(--ink-soft);font-weight:600;
+                padding:10px 12px;border-bottom:1px solid var(--rule);white-space:nowrap}
+table.recent td{padding:10px 12px;border-bottom:1px solid var(--rule);vertical-align:top}
+table.recent tr:last-child td{border-bottom:0}
+table.recent td.p{font-family:var(--mono);font-size:.84rem;white-space:nowrap}
+table.recent td.p a{color:var(--accent);text-decoration:none}
+table.recent td.p a:hover{text-decoration:underline}
+.status{display:inline-block;font-size:.7rem;text-transform:uppercase;
+        letter-spacing:.08em;padding:2px 7px;border-radius:2px;white-space:nowrap;
+        border:1px solid currentColor;font-weight:600}
+.s-live{color:#2d6a43}.s-packaged{color:var(--accent)}
+.s-progress{color:var(--flag)}.s-unknown{color:var(--ink-soft)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .s-live{color:#6cc08b}}
+:root[data-theme="dark"] .s-live{color:#6cc08b}
+dl.anom{margin:0;display:grid;gap:14px}
+dl.anom div{background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:13px 16px}
+dl.anom dt{font-weight:600;margin:0 0 4px}
+dl.anom dd{margin:0;color:var(--ink-soft);font-size:.93rem;max-width:76ch}
+footer{margin-top:52px;padding-top:18px;border-top:1px solid var(--rule);
+       color:var(--ink-soft);font-size:.85rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Outernet Music Catalogue</h1>
+<p class="standfirst">Every page published to <span style="font-family:var(--mono)">github.com/Willhoward89/Outernet-Music</span>, read from the repository itself and grouped by collection.</p>
+
+<ul class="counts">
+<li><b>155</b><span>Pages published</span></li>
+<li><b>153</b><span>Distinct documents</span></li>
+<li><b>5</b><span>Also served</span></li>
+<li><b>2</b><span>Not yet published</span></li>
+</ul>
+<p class="provenance"><strong>Where this comes from.</strong> Read from the repository’s own git tree on <strong>17 November 2026</strong> — every path in it holding an <span style="font-family:var(--mono)">index.html</span>, and every one requested and confirmed to resolve. It is not transcribed from <span style="font-family:var(--mono)">outernet-music-urls.txt</span>, which was last written on 14 October, listed 140 pages, and silently omitted five that were live. Of the 151 folders here, two are this catalogue itself; four further pages are served from inside a folder rather than as its index, which a listing built by walking for <span style="font-family:var(--mono)">index.html</span> would miss. That leaves <strong>153 documents</strong>. A second repository, noted at the end, holds one more.</p>
+<section>
+<div class="plate"><h2>The Principal Series</h2><span class="tag">brick-cakes</span><span class="n">36 pages + 1 going up</span></div>
+<p class="note">The flagship collection, and the one still in active use. It began as the Union Square and Broadway holdings — 842, 860, 862–872, 881–887, 888 and 889 Broadway, 1–3 and 31 Union Square West, 44 Union Square East, 7 East 14th Street, 33 East 17th Street — and has since taken in work from other neighbourhoods and other boroughs. Several addresses appear more than once because a building was treated in more than one form: a song, a story, a poem. Everything built recently lands here whatever part of the city it describes — the Sag Harbor documents, the Mansion House at 55 Main Street, and Schvitz or Die, which is a film rather than a citation chart and is the only moving-image work in the repository. One more is on its way in: The Sag Harbor Watchcase Factory, at 15 Church Street, which will be the longest document the series holds by every measure — fifteen chapters, 107 citations, twenty-two minutes of narration. It is in the register below, marked — the count beside the heading stays at what the repository already serves.</p>
+<ol class="reg wide">
+<li><a href="https://willhoward89.github.io/Outernet-Music/brick-cakes/1-3-union-square-west/" target="_blank" rel="noopener">1-3-union-square-west</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/brick-cakes/1-3-union-square-west-2/" target="_blank" rel="noopener">1-3-union-square-west-2</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/brick-cakes/31-union-square-west/" target="_blank" rel="noopener">31-union-square-west</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/brick-cakes/33-east-17th-street/" target="_blank" rel="noopener">33-east-17th-street</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/brick-cakes/33-east-17th-street-2/" target="_blank" rel="noopener">33-east-17th-street-2</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/brick-cakes/33-east-17th-street-3/" target="_blank" rel="noopener">33-east-17th-street-3</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/brick-cakes/33-east-17th-street-4/" target="_blank" rel="noopener">33-east-17th-street-4</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/brick-cakes/33-east-17th-street-story/" target="_blank" rel="noopener">33-east-17th-street-story</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/brick-cakes/44-union-square-east/" target="_blank" rel="noopener">44-union-square-east</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/brick-cakes/44-union-square-east-poem/" target="_blank" rel="noopener">44-union-square-east-poem</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/brick-cakes/44-union-square-east-story/" target="_blank" rel="noopener">44-union-square-east-story</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/brick-cakes/55-main-street/" target="_blank" rel="noopener">55-main-street</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/brick-cakes/7-east-14th-street/" target="_blank" rel="noopener">7-east-14th-street</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/brick-cakes/842-broadway/" target="_blank" rel="noopener">842-broadway</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/brick-cakes/860-broadway/" target="_blank" rel="noopener">860-broadway</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/brick-cakes/862-872-broadway/" target="_blank" rel="noopener">862-872-broadway</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/brick-cakes/881-887-broadway/" target="_blank" rel="noopener">881-887-broadway</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/brick-cakes/888-broadway/" target="_blank" rel="noopener">888-broadway</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/brick-cakes/889-broadway/" target="_blank" rel="noopener">889-broadway</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/brick-cakes/american-hotel-kids/" target="_blank" rel="noopener">american-hotel-kids</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/brick-cakes/berkeley-rise/" target="_blank" rel="noopener">berkeley-rise</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/brick-cakes/catalogue-upload/" target="_blank" rel="noopener">catalogue-upload</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/brick-cakes/clinton-hall-fire/" target="_blank" rel="noopener">clinton-hall-fire</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/brick-cakes/everett-building-story/" target="_blank" rel="noopener">everett-building-story</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/brick-cakes/granite-union-square/" target="_blank" rel="noopener">granite-union-square</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/brick-cakes/ground-beneath-the-bowery/" target="_blank" rel="noopener">ground-beneath-the-bowery</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/brick-cakes/john-jermain-library/" target="_blank" rel="noopener">john-jermain-library</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/brick-cakes/sag-harbor-cinema/" target="_blank" rel="noopener">sag-harbor-cinema</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/brick-cakes/sag-harbor-pharmacy/" target="_blank" rel="noopener">sag-harbor-pharmacy</a></li>
+<li class="pending"><a href="https://willhoward89.github.io/Outernet-Music/brick-cakes/sag-harbor-watchcase-factory/" target="_blank" rel="noopener">sag-harbor-watchcase-factory</a><span class="soon">going up</span></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/brick-cakes/schvitzers-rhyme/" target="_blank" rel="noopener">schvitzers-rhyme</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/brick-cakes/tammany-hall/" target="_blank" rel="noopener">tammany-hall</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/brick-cakes/the-century-building/" target="_blank" rel="noopener">the-century-building</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/brick-cakes/thimble-theatre-dreams/" target="_blank" rel="noopener">thimble-theatre-dreams</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/brick-cakes/union-square-big-wigs/" target="_blank" rel="noopener">union-square-big-wigs</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/brick-cakes/union-square-multi-address/" target="_blank" rel="noopener">union-square-multi-address</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/brick-cakes/union-square-multi-address-poem/" target="_blank" rel="noopener">union-square-multi-address-poem</a></li>
+</ol></section>
+<section>
+<div class="plate"><h2>The Cooper Union Survey</h2><span class="tag">cooper-union</span><span class="n">66 pages</span></div>
+<p class="note">The largest collection by a wide margin: a block-by-block treatment of the ground around Cooper Square and Astor Place, running out along Second and Third Avenues, East 4th and East 7th Streets, Lafayette Street, Taras Shevchenko Place and the Broadway frontage from 726 to 800. The survey is dense enough that single addresses carry several documents — 7 East 7th Street has four, including a rondo — and it reaches beyond its own boundaries to Sag Harbor and Main Street, which suggests it also served as a general holding area during a period of rapid work.</p>
+<ol class="reg wide">
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/1-cooper-square-morgens-of-the-valley/" target="_blank" rel="noopener">1-cooper-square-morgens-of-the-valley</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/11-east-7th-street-pysanky/" target="_blank" rel="noopener">11-east-7th-street-pysanky</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/144-avenue-a/" target="_blank" rel="noopener">144-avenue-a</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/144-avenue-a-sixteen-blessed-acres/" target="_blank" rel="noopener">144-avenue-a-sixteen-blessed-acres</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/15-church-street-smoke-on-the-harbor/" target="_blank" rel="noopener">15-church-street-smoke-on-the-harbor</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/15-east-7th-street-be-good-or-be-gone/" target="_blank" rel="noopener">15-east-7th-street-be-good-or-be-gone</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/16-cooper-square-seven-stories-one-ground/" target="_blank" rel="noopener">16-cooper-square-seven-stories-one-ground</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/162-second-avenue-ground-beneath-the-bowery/" target="_blank" rel="noopener">162-second-avenue-ground-beneath-the-bowery</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/170-second-avenue-chocolate-on-the-marble/" target="_blank" rel="noopener">170-second-avenue-chocolate-on-the-marble</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/170-second-avenue-chocolate-on-the-marble-part-2/" target="_blank" rel="noopener">170-second-avenue-chocolate-on-the-marble-part-2</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/175-second-avenue/" target="_blank" rel="noopener">175-second-avenue</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/179-first-avenue-measured-from-the-cornerstone/" target="_blank" rel="noopener">179-first-avenue-measured-from-the-cornerstone</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/181-second-avenue/" target="_blank" rel="noopener">181-second-avenue</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/188-second-avenue-southeast-corner-188/" target="_blank" rel="noopener">188-second-avenue-southeast-corner-188</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/2-cooper-square-store-under/" target="_blank" rel="noopener">2-cooper-square-store-under</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/2-taras-shevchenko-place-nine-to-zero-to-one/" target="_blank" rel="noopener">2-taras-shevchenko-place-nine-to-zero-to-one</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/201-main-street-dome-of-whispers/" target="_blank" rel="noopener">201-main-street-dome-of-whispers</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/21-astor-place-clinton-hall-fire/" target="_blank" rel="noopener">21-astor-place-clinton-hall-fire</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/23-third-avenue-sand-on-the-barroom-floor/" target="_blank" rel="noopener">23-third-avenue-sand-on-the-barroom-floor</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/24-east-7th-street-pantocrator-on-the-seventh-street-lot/" target="_blank" rel="noopener">24-east-7th-street-pantocrator-on-the-seventh-street-lot</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/25-cooper-square-twenty-five-stories-fritted/" target="_blank" rel="noopener">25-cooper-square-twenty-five-stories-fritted</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/27-cooper-square-seven-strata-one-cooper/" target="_blank" rel="noopener">27-cooper-square-seven-strata-one-cooper</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/28-stuyvesant-street-the-barney-stratum/" target="_blank" rel="noopener">28-stuyvesant-street-the-barney-stratum</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/29-east-4th-street-always-as-papa-wanted-it/" target="_blank" rel="noopener">29-east-4th-street-always-as-papa-wanted-it</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/29-east-4th-street-amber-fly-east-fourth/" target="_blank" rel="noopener">29-east-4th-street-amber-fly-east-fourth</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/29-third-avenue-iron-spot-ground/" target="_blank" rel="noopener">29-third-avenue-iron-spot-ground</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/30-cooper-square-iron-let-through-the-grid/" target="_blank" rel="noopener">30-cooper-square-iron-let-through-the-grid</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/30-east-9th-street-coped-roof-to-cornice/" target="_blank" rel="noopener">30-east-9th-street-coped-roof-to-cornice</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/302-east-12th-street-wax-mountain-range/" target="_blank" rel="noopener">302-east-12th-street-wax-mountain-range</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/32-cooper-square-thirty-two-cooper-square-paresis-blues/" target="_blank" rel="noopener">32-cooper-square-thirty-two-cooper-square-paresis-blues</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/331-east-10th-street-stagger-stone-egg-and-dart/" target="_blank" rel="noopener">331-east-10th-street-stagger-stone-egg-and-dart</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/34-cooper-square-seven-story-brick/" target="_blank" rel="noopener">34-cooper-square-seven-story-brick</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/35-cooper-square-strata-on-the-bowery-edge/" target="_blank" rel="noopener">35-cooper-square-strata-on-the-bowery-edge</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/35-east-4th-street-slate-roof-to-oil-stain/" target="_blank" rel="noopener">35-east-4th-street-slate-roof-to-oil-stain</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/37-east-4th-street-ionic-line-east-fourth/" target="_blank" rel="noopener">37-east-4th-street-ionic-line-east-fourth</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/38-cooper-square-strata-thirty-eight-cooper-square/" target="_blank" rel="noopener">38-cooper-square-strata-thirty-eight-cooper-square</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/393-lafayette-street-forty-inch-reveal/" target="_blank" rel="noopener">393-lafayette-street-forty-inch-reveal</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/4-saint-marks-place-stoop-worn-blue/" target="_blank" rel="noopener">4-saint-marks-place-stoop-worn-blue</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/40-east-9th-street-twelve-stories-of-tan-brick/" target="_blank" rel="noopener">40-east-9th-street-twelve-stories-of-tan-brick</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/41-cooper-square-iron-and-pixel/" target="_blank" rel="noopener">41-cooper-square-iron-and-pixel</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/425-lafayette-street-four-twenty-five/" target="_blank" rel="noopener">425-lafayette-street-four-twenty-five</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/44-union-street-old-whalers-church/" target="_blank" rel="noopener">44-union-street-old-whalers-church</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/445-lafayette-street-four-forty-five-lafayette/" target="_blank" rel="noopener">445-lafayette-street-four-forty-five-lafayette</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/51-astor-place-bible-house-bones/" target="_blank" rel="noopener">51-astor-place-bible-house-bones</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/56-62-cooper-square-cooper-square-cornerstone/" target="_blank" rel="noopener">56-62-cooper-square-cooper-square-cornerstone</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/6-taras-shevchenko-place-onion-domes-over-hall-place/" target="_blank" rel="noopener">6-taras-shevchenko-place-onion-domes-over-hall-place</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/60-east-9th-street-always-the-same-lot/" target="_blank" rel="noopener">60-east-9th-street-always-the-same-lot</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/61-cooper-square-marble-on-iron/" target="_blank" rel="noopener">61-cooper-square-marble-on-iron</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/63-cooper-square-six-story-neighbor/" target="_blank" rel="noopener">63-cooper-square-six-story-neighbor</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/63-cooper-square-six-story-neighbor%202/" target="_blank" rel="noopener">63-cooper-square-six-story-neighbor 2</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/67-third-avenue-stratum-and-store/" target="_blank" rel="noopener">67-third-avenue-stratum-and-store</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/7-east-7th-street-iron-bones-at-cooper-square/" target="_blank" rel="noopener">7-east-7th-street-iron-bones-at-cooper-square</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/7-east-7th-street-iron-rail-psalm/" target="_blank" rel="noopener">7-east-7th-street-iron-rail-psalm</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/7-east-7th-street-the-cooper-union-groove/" target="_blank" rel="noopener">7-east-7th-street-the-cooper-union-groove</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/71-cooper-square-cornerstone-at-seventy-one/" target="_blank" rel="noopener">71-cooper-square-cornerstone-at-seventy-one</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/726-broadway-seven-twenty-six-the-scent-of-church/" target="_blank" rel="noopener">726-broadway-seven-twenty-six-the-scent-of-church</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/752-broadway-corner-lot-eighth-and-broadway-the-potter-seam/" target="_blank" rel="noopener">752-broadway-corner-lot-eighth-and-broadway-the-potter-seam</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/770-broadway-holdout-on-broadway/" target="_blank" rel="noopener">770-broadway-holdout-on-broadway</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/772-broadway-iron-palace-burns/" target="_blank" rel="noopener">772-broadway-iron-palace-burns</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/788-broadway-marble-cut-by-convicts/" target="_blank" rel="noopener">788-broadway-marble-cut-by-convicts</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/788-broadway-marble-spire/" target="_blank" rel="noopener">788-broadway-marble-spire</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/800-broadway-walk-the-years-down/" target="_blank" rel="noopener">800-broadway-walk-the-years-down</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/800-broadway-walk-the-years-down-three-part-suite/" target="_blank" rel="noopener">800-broadway-walk-the-years-down-three-part-suite</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/cooper-triangle-enthroned-on-the-triangle/" target="_blank" rel="noopener">cooper-triangle-enthroned-on-the-triangle</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/four-hundred-thousand-deep/" target="_blank" rel="noopener">four-hundred-thousand-deep</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/cooper-union/rondo-form-7-east-7th-street-right-makes-might/" target="_blank" rel="noopener">rondo-form-7-east-7th-street-right-makes-might</a></li>
+</ol></section>
+<section>
+<div class="plate"><h2>The Sag Harbor Village Survey</h2><span class="tag">sag-harbor</span><span class="n">35 pages</span></div>
+<p class="note">A village-wide survey of the Long Island whaling port: Main Street from number 1 to number 221, the Bay Street waterfront, Division, Madison, Rector, Church, Hampton and Washington Streets. The subject matter runs from the whale-oil trade and the windmills on the shore to the Watchcase factory and the fires that repeatedly took the village. Two further Sag Harbor documents — the Pharmacy and the John Jermain Memorial Library — were built later and published to the principal series instead.</p>
+<ol class="reg wide">
+<li><a href="https://willhoward89.github.io/Outernet-Music/sag-harbor/1-bay-street-sag-harbor-long-wharf/" target="_blank" rel="noopener">1-bay-street-sag-harbor-long-wharf</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/sag-harbor/1-main-street-oh-sag-harbor/" target="_blank" rel="noopener">1-main-street-oh-sag-harbor</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/sag-harbor/103-main-street-silver-and-smoke/" target="_blank" rel="noopener">103-main-street-silver-and-smoke</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/sag-harbor/108-main-street-neon-letters-on-main-street/" target="_blank" rel="noopener">108-main-street-neon-letters-on-main-street</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/sag-harbor/11-washington-street-devotion-on-main-street/" target="_blank" rel="noopener">11-washington-street-devotion-on-main-street</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/sag-harbor/117-main-street-lifted-from-the-ground/" target="_blank" rel="noopener">117-main-street-lifted-from-the-ground</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/sag-harbor/12-bay-street-sandy-streets-and-whale-oil-dreams/" target="_blank" rel="noopener">12-bay-street-sandy-streets-and-whale-oil-dreams</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/sag-harbor/120-main-street-sag-harbor/" target="_blank" rel="noopener">120-main-street-sag-harbor</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/sag-harbor/122-division-street-sandy-trail-to-silent-streets/" target="_blank" rel="noopener">122-division-street-sandy-trail-to-silent-streets</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/sag-harbor/127-main-street-main-and-madison/" target="_blank" rel="noopener">127-main-street-main-and-madison</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/sag-harbor/133-main-street-stately-on-main-street/" target="_blank" rel="noopener">133-main-street-stately-on-main-street</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/sag-harbor/144-main-street-long-wharf-blues/" target="_blank" rel="noopener">144-main-street-long-wharf-blues</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/sag-harbor/15-church-street-watchcase-factory/" target="_blank" rel="noopener">15-church-street-watchcase-factory</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/sag-harbor/155-main-street-hands-corner/" target="_blank" rel="noopener">155-main-street-hands-corner</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/sag-harbor/16-main-street-windmills-on-the-shore/" target="_blank" rel="noopener">16-main-street-windmills-on-the-shore</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/sag-harbor/17-main-street-main-street-sag-harbor/" target="_blank" rel="noopener">17-main-street-main-street-sag-harbor</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/sag-harbor/2-bay-street-division-street-ashes/" target="_blank" rel="noopener">2-bay-street-division-street-ashes</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/sag-harbor/2-main-street-thirteen-whale-boats-crossing/" target="_blank" rel="noopener">2-main-street-thirteen-whale-boats-crossing</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/sag-harbor/20-main-street-sag-harbor-lament/" target="_blank" rel="noopener">20-main-street-sag-harbor-lament</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/sag-harbor/22-division-street-main-street-sag-harbor/" target="_blank" rel="noopener">22-division-street-main-street-sag-harbor</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/sag-harbor/221-main-street-windmills-on-the-shore/" target="_blank" rel="noopener">221-main-street-windmills-on-the-shore</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/sag-harbor/26-bay-street-spermaceti-burning/" target="_blank" rel="noopener">26-bay-street-spermaceti-burning</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/sag-harbor/26-madison-street-garlic-rolls-and-geraniums/" target="_blank" rel="noopener">26-madison-street-garlic-rolls-and-geraniums</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/sag-harbor/28-rector-street-ashes-on-the-water/" target="_blank" rel="noopener">28-rector-street-ashes-on-the-water</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/sag-harbor/3-bay-street-bay-street-ghosts/" target="_blank" rel="noopener">3-bay-street-bay-street-ghosts</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/sag-harbor/31-madison-street-where-sage-meets-madison/" target="_blank" rel="noopener">31-madison-street-where-sage-meets-madison</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/sag-harbor/34%20division%20street%20brick%20and%20fire/" target="_blank" rel="noopener">34 division street brick and fire</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/sag-harbor/34-bay-street-healing-on-bay-street/" target="_blank" rel="noopener">34-bay-street-healing-on-bay-street</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/sag-harbor/40-madison-avenue-sandy-trail-to-lighted-boulevard/" target="_blank" rel="noopener">40-madison-avenue-sandy-trail-to-lighted-boulevard</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/sag-harbor/41-cooper-square-iron-and-pixel/" target="_blank" rel="noopener">41-cooper-square-iron-and-pixel</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/sag-harbor/43-madison-avenue-meeting-house-forever/" target="_blank" rel="noopener">43-madison-avenue-meeting-house-forever</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/sag-harbor/48-madison-street-madison-street-feuer/" target="_blank" rel="noopener">48-madison-street-madison-street-feuer</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/sag-harbor/5-hampton-street-wharf-heart-beating/" target="_blank" rel="noopener">5-hampton-street-wharf-heart-beating</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/sag-harbor/55-main-street-ill-be-around/" target="_blank" rel="noopener">55-main-street-ill-be-around</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/sag-harbor/75-washington-street-main-and-washington/" target="_blank" rel="noopener">75-washington-street-main-and-washington</a></li>
+</ol></section>
+<section>
+<div class="plate"><h2>The Fifth Avenue Sequence</h2><span class="tag">fifth-avenue</span><span class="n">8 pages</span></div>
+<p class="note">A sequence following the avenue northward from Washington Square: numbers 10, 11, 20, 55 and 60 in the lower village, then 141, 250 and 366 as the avenue turns commercial. Three of these addresses are under active revision — 10, 20 and 51 — and their current versions are listed in the final section rather than here.</p>
+<ol class="reg">
+<li><a href="https://willhoward89.github.io/Outernet-Music/fifth-avenue/10-fifth-avenue-thimble-theatre-dreams/" target="_blank" rel="noopener">10-fifth-avenue-thimble-theatre-dreams</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/fifth-avenue/11-fifth-avenue-ghosts-of-the-brevoort/" target="_blank" rel="noopener">11-fifth-avenue-ghosts-of-the-brevoort</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/fifth-avenue/141-fifth-avenue-cupola-over-twenty-first/" target="_blank" rel="noopener">141-fifth-avenue-cupola-over-twenty-first</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/fifth-avenue/20-fifth-avenue-the-berkeley-rise/" target="_blank" rel="noopener">20-fifth-avenue-the-berkeley-rise</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/fifth-avenue/250-fifth-avenue-limestone-groove-on-twenty-eighth/" target="_blank" rel="noopener">250-fifth-avenue-limestone-groove-on-twenty-eighth</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/fifth-avenue/366-fifth-avenue-roseate-mist-on-fifth-avenue/" target="_blank" rel="noopener">366-fifth-avenue-roseate-mist-on-fifth-avenue</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/fifth-avenue/55-fifth-avenue-the-lenox-legacy/" target="_blank" rel="noopener">55-fifth-avenue-the-lenox-legacy</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/fifth-avenue/60-fifth-avenue-limestone-and-legends/" target="_blank" rel="noopener">60-fifth-avenue-limestone-and-legends</a></li>
+</ol></section>
+<section>
+<div class="plate"><h2>The East Village Group</h2><span class="tag">east-village</span><span class="n">4 pages</span></div>
+<p class="note">A short group covering Avenue A and East 10th Street: Wilson's mission at 131, the Avenue A frontage at 135 and 147, and the red brick of 288 East 10th. Small enough to read as the opening of a survey that was folded into the Cooper Union collection rather than continued separately.</p>
+<ol class="reg">
+<li><a href="https://willhoward89.github.io/Outernet-Music/east-village/131-avenue-a-wilson-s-mission-on-avenue-a/" target="_blank" rel="noopener">131-avenue-a-wilson-s-mission-on-avenue-a</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/east-village/135-avenue-a-avenue-a-where-legends-stay/" target="_blank" rel="noopener">135-avenue-a-avenue-a-where-legends-stay</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/east-village/147-avenue-a-peace-eye-on-avenue-a/" target="_blank" rel="noopener">147-avenue-a-peace-eye-on-avenue-a</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/east-village/288-east-10th-street-red-brick-gospel/" target="_blank" rel="noopener">288-east-10th-street-red-brick-gospel</a></li>
+</ol></section>
+<section>
+<div class="plate"><h2>Published at the Repository Root</h2><span class="tag">/</span><span class="n">2 pages</span></div>
+<p class="note">Two pages sit at the top of the site rather than inside a collection. One is this catalogue. The other, Union Square Big Wigs, is byte-for-byte the same page as the copy inside the principal series — a stray from an early upload.</p>
+<ol class="reg">
+<li><a href="https://willhoward89.github.io/Outernet-Music/catalogue/" target="_blank" rel="noopener">catalogue</a></li>
+<li><a href="https://willhoward89.github.io/Outernet-Music/union-square-big-wigs/" target="_blank" rel="noopener">union-square-big-wigs</a></li>
+</ol></section>
+<section><div class="plate"><h2>Pages Served From Inside a Folder</h2><span class="tag">everett-building-story</span><span class="n">4 pages</span></div>
+<p class="note">The Everett Building story exists in four further languages, each a full page in its own right but addressed as a file inside the English document’s folder rather than as a folder of its own. Nothing else in the repository is published this way, and a catalogue built by looking for <span style="font-family:var(--mono)">index.html</span> will not find them.</p>
+<div class="scroller"><table class="recent"><thead><tr><th>Title</th><th>Edition</th><th>Path</th></tr></thead><tbody>
+<tr><td>Edificio Everett</td><td>Spanish edition</td><td class="p"><a href="https://willhoward89.github.io/Outernet-Music/brick-cakes/everett-building-story/es.html" target="_blank" rel="noopener">es.html</a></td></tr>
+<tr><td>Everett Building</td><td>French edition</td><td class="p"><a href="https://willhoward89.github.io/Outernet-Music/brick-cakes/everett-building-story/fr.html" target="_blank" rel="noopener">fr.html</a></td></tr>
+<tr><td>Эверетт-Билдинг</td><td>Russian edition</td><td class="p"><a href="https://willhoward89.github.io/Outernet-Music/brick-cakes/everett-building-story/ru.html" target="_blank" rel="noopener">ru.html</a></td></tr>
+<tr><td>埃弗雷特大厦</td><td>Chinese edition</td><td class="p"><a href="https://willhoward89.github.io/Outernet-Music/brick-cakes/everett-building-story/zh.html" target="_blank" rel="noopener">zh.html</a></td></tr>
+</tbody></table></div></section>
+<section><div class="plate"><h2>Also Served</h2><span class="n">5 files</span></div>
+<p class="note">Files the site will hand over but which are not documents in the sense above. The four single-file copies fold the audio and every source leaf into one HTML file for sending to people; each duplicates a page already published beside it, and one of them is 16 MB. They were not meant to be in the repository.</p>
+<div class="scroller"><table class="recent"><thead><tr><th>What it is</th><th>Path</th></tr></thead><tbody>
+<tr><td>The Berkeley Rise, single file</td><td class="p"><a href="https://willhoward89.github.io/Outernet-Music/brick-cakes/berkeley-rise/berkeley-rise-standalone.html" target="_blank" rel="noopener">brick-cakes/berkeley-rise/berkeley-rise-standalone.html</a></td></tr>
+<tr><td>Clinton Hall Fire, single file</td><td class="p"><a href="https://willhoward89.github.io/Outernet-Music/brick-cakes/clinton-hall-fire/clinton-hall-fire-standalone.html" target="_blank" rel="noopener">brick-cakes/clinton-hall-fire/clinton-hall-fire-standalone.html</a></td></tr>
+<tr><td>Ground Beneath the Bowery, single file</td><td class="p"><a href="https://willhoward89.github.io/Outernet-Music/brick-cakes/ground-beneath-the-bowery/ground-beneath-the-bowery.html" target="_blank" rel="noopener">brick-cakes/ground-beneath-the-bowery/ground-beneath-the-bowery.html</a></td></tr>
+<tr><td>Thimble Theatre Dreams, single file</td><td class="p"><a href="https://willhoward89.github.io/Outernet-Music/brick-cakes/thimble-theatre-dreams/thimble-theatre-dreams.html" target="_blank" rel="noopener">brick-cakes/thimble-theatre-dreams/thimble-theatre-dreams.html</a></td></tr>
+<tr><td>A nine-line list of addresses, served publicly</td><td class="p"><a href="https://willhoward89.github.io/Outernet-Music/URLS.txt" target="_blank" rel="noopener">URLS.txt</a></td></tr>
+</tbody></table></div></section>
+<section><div class="plate"><h2>Built Since the Index Was Written</h2><span class="tag">brick-cakes</span><span class="n">10 documents</span></div>
+<p class="note">The ten documents of the current working period, with what is behind each. Eight are live. The Watchcase Factory is going up now — its folder is built and its path is listed here so the link is right the moment it lands. Penthouse on Fifth is the single page in this catalogue that does not yet exist. On the four checked file by file — Berkeley, Clinton Hall, Bowery and Thimble — every leaf the page asks for is present except those known to be outstanding, and the panel names each of those by filename when a reader reaches it.</p>
+<div class="scroller"><table class="recent"><thead><tr><th>Document</th><th>Status</th><th>Path</th><th>Notes</th></tr></thead><tbody>
+<tr><td>The Sag Harbor Watchcase Factory · 15 Church Street</td><td><span class="status s-progress">uploading</span></td><td class="p"><a href="https://willhoward89.github.io/Outernet-Music/brick-cakes/sag-harbor-watchcase-factory/" target="_blank" rel="noopener">sag-harbor-watchcase-factory</a></td><td>107 citations across fifteen chapters; 102 carry a source leaf. Narration film in eleven parts, joined, 21 min 58 s, with word-exact timings from forced alignment. The page itself is headed The Great Big Complete Story of Sag Harbor’s Busiest Corner — the title the narrator reads aloud — so the running head and this entry differ by design. It is the third document in the repository on this address and is unrelated to the other two: sag-harbor/15-church-street-watchcase-factory, which is a different document despite the near-identical name, and cooper-union/15-church-street-smoke-on-the-harbor.</td></tr>
+<tr><td>Sag Harbor Pharmacy</td><td><span class="status s-live">live</span></td><td class="p"><a href="https://willhoward89.github.io/Outernet-Music/brick-cakes/sag-harbor-pharmacy/" target="_blank" rel="noopener">sag-harbor-pharmacy</a></td><td>58 citations, 57 with a source leaf behind them; narration film in three parts, 11 min 35 s.</td></tr>
+<tr><td>John Jermain Memorial Library</td><td><span class="status s-live">live</span></td><td class="p"><a href="https://willhoward89.github.io/Outernet-Music/brick-cakes/john-jermain-library/" target="_blank" rel="noopener">john-jermain-library</a></td><td>72 citations across seven chapters; narration film in four parts, 15 min 21 s.</td></tr>
+<tr><td>The Berkeley Rise · 20 Fifth Avenue</td><td><span class="status s-live">live</span></td><td class="p"><a href="https://willhoward89.github.io/Outernet-Music/brick-cakes/berkeley-rise/" target="_blank" rel="noopener">berkeley-rise</a></td><td>21 citations; 9 of 13 leaves. Serving the current build — expanded layout, source panel, scans in place. Also live at its older fifth-avenue path.</td></tr>
+<tr><td>The American Hotel · children's edition</td><td><span class="status s-live">live</span></td><td class="p"><a href="https://willhoward89.github.io/Outernet-Music/brick-cakes/american-hotel-kids/" target="_blank" rel="noopener">american-hotel-kids</a></td><td>Resolves. Not to be confused with brick-cakes/american-hotel, which does not.</td></tr>
+<tr><td>Clinton Hall Fire · 21 Astor Place</td><td><span class="status s-live">live</span></td><td class="p"><a href="https://willhoward89.github.io/Outernet-Music/brick-cakes/clinton-hall-fire/" target="_blank" rel="noopener">clinton-hall-fire</a></td><td>21 citations over 26 sung lines; 8 of 11 leaves. Also live at its older cooper-union path.</td></tr>
+<tr><td>Ground Beneath the Bowery · 162 Second Avenue</td><td><span class="status s-live">live</span></td><td class="p"><a href="https://willhoward89.github.io/Outernet-Music/brick-cakes/ground-beneath-the-bowery/" target="_blank" rel="noopener">ground-beneath-the-bowery</a></td><td>25 citations over 37 chart rows; 20 of 23 leaves. Rebuilt against the second take of the song. Also live at its older cooper-union path.</td></tr>
+<tr><td>Thimble Theatre Dreams · 10 Fifth Avenue</td><td><span class="status s-live">live</span></td><td class="p"><a href="https://willhoward89.github.io/Outernet-Music/brick-cakes/thimble-theatre-dreams/" target="_blank" rel="noopener">thimble-theatre-dreams</a></td><td>25 citations over 29 sung lines; 8 of 9 leaves. Also live at its older fifth-avenue path.</td></tr>
+<tr><td>Penthouse on Fifth · 51 Fifth Avenue</td><td><span class="status s-progress">not published</span></td><td class="p"><a href="https://willhoward89.github.io/Outernet-Music/brick-cakes/penthouse-on-fifth/" target="_blank" rel="noopener">penthouse-on-fifth</a></td><td>23 citations over 29 sung lines, fully synchronised; 1 of 17 leaves. Still being built, and the only address in this catalogue that is expected to 404.</td></tr>
+<tr><td>Sag Harbor Cinema</td><td><span class="status s-live">live</span></td><td class="p"><a href="https://willhoward89.github.io/Outernet-Music/brick-cakes/sag-harbor-cinema/" target="_blank" rel="noopener">sag-harbor-cinema</a></td><td>Published at some point without being recorded in the index.</td></tr>
+</tbody></table></div></section>
+<section><div class="plate"><h2>Discrepancies in the Record</h2></div>
+<p class="note">Five things the check of 17 November turned up, in the order they are worth acting on.</p><dl class="anom">
+<div><dt>A second repository publishes a document of its own.</dt><dd>Willhoward89/34_Division_Street-Brick_and_Fire has GitHub Pages switched on and serves “34 DIVISION STREET__Brick and Fire_” at willhoward89.github.io/34_Division_Street-Brick_and_Fire/ — a 6 MB page, last pushed 12 June, and the same subject as the sag-harbor folder of nearly the same name. It is outside this catalogue because it is outside the repository. Either fold it in or retire it, so one address is the answer for that building.</dd></div>
+<div><dt>The repository serves a public list of its own addresses.</dt><dd>URLS.txt sits at the root and anyone can read it. It holds nine lines, so it is neither current nor complete, and it is the kind of file that gets mistaken for an index later.</dd></div>
+<div><dt>This catalogue is published twice, and the second copy is now out of date.</dt><dd>brick-cakes/catalogue-upload was uploaded under the working folder name, before the folder was renamed. It is no longer the same page: /catalogue/ has been replaced with this revision and brick-cakes/catalogue-upload still serves the earlier one, so a reader who lands there gets a catalogue that is missing the newest document and still describes the repository as it stood before. Delete brick-cakes/catalogue-upload; keep /catalogue/.</dd></div>
+<div><dt>Four documents are published twice, at two different paths.</dt><dd>Clinton Hall Fire and Ground Beneath the Bowery resolve both under cooper-union and under brick-cakes; The Berkeley Rise and Thimble Theatre Dreams resolve both under fifth-avenue and under brick-cakes. Both copies of each are live, and the older path is likely an earlier version — so a reader following a link from before the move sees superseded work.</dd></div>
+<div><dt>Union Square Big Wigs is published twice.</dt><dd>The copy at the repository root and the copy inside the principal series are the same page at the same size. One of them is a stray from an early upload.</dd></div>
+<div><dt>One page in the old index does not exist.</dt><dd>brick-cakes/american-hotel returns GitHub’s own “Page not found”, and the git tree confirms no such folder was ever committed. A prepared folder for it sits on disk, so the upload never happened. brick-cakes/american-hotel-kids, a different document, is fine.</dd></div>
+<div><dt>Sag Harbor is spread across three collections.</dt><dd>Besides its own survey, Sag Harbor addresses appear under cooper-union (15 Church Street, 44 Union Street, 201 Main Street) and under brick-cakes (55 Main Street, the Pharmacy, the John Jermain Library, the Cinema). 55 Main Street in fact has two documents in two collections, on two different subjects.</dd></div>
+<div><dt>Two folder names contain spaces.</dt><dd>“34 division street brick and fire” under sag-harbor and “63-cooper-square-six-story-neighbor 2” under cooper-union are the only paths with spaces rather than hyphens, so their URLs carry %20 escapes. Both resolve, but they are the two entries that will break if a link is ever copied by hand.</dd></div>
+</dl></section>
+<footer>Compiled for Pinball Publishing. Generated from the repository git tree and verified against the live site, 17 November 2026; revised 19 November 2026 to enter 15 Church Street. Regenerate it the same way rather than editing it by hand.</footer></div>
+</body>
+</html>
