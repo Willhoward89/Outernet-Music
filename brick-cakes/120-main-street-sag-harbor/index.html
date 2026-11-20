@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sag Harbor</title>
+<meta name="description" content="120 Main Street, Sag Harbor — Sag Harbor, with lyrics and sources">
+<style>
+  :root{--bg:#0b0b0c;--panel:#141416;--fg:#f4f1ea;--dim:#6f6c66;--past:#a8a49c;
+        --accent:#ffb347;--line:#26262a;
+        --sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+        --serif:Georgia,"Times New Roman",serif;color-scheme:dark}
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans)}
+  main{max-width:1900px;margin:0 auto;
+       padding-block:16px 32px;
+       padding-left:max(16px,env(safe-area-inset-left,0px));
+       padding-right:max(16px,env(safe-area-inset-right,0px))}
+  header{margin-bottom:14px}
+  .titlerow{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+  h1{margin:0;font-size:clamp(1.2rem,2.4vw,1.6rem);letter-spacing:.01em;text-wrap:balance}
+  .sub{color:var(--dim);font-size:.95rem}
+  .bar{margin-top:12px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+       background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 14px}
+  audio{flex:1 1 320px;min-width:260px;height:36px}
+  .barnote{color:var(--dim);font-size:.82rem}
+
+  /* The chart takes the stage; the lyric rail runs beside it. */
+  .stage{display:block}
+  .chartwrap{min-width:0}
+  h2{font-size:1rem;margin:0}
+  .charthead{display:flex;align-items:baseline;gap:6px 14px;flex-wrap:wrap;margin-bottom:8px}
+  .chartnote{color:var(--dim);font-size:.82rem;margin:0}
+  .tablebox{position:relative;overflow:auto;max-height:var(--ch,72vh);scroll-behavior:smooth;
+            scrollbar-width:thin;scrollbar-color:#333 transparent;
+            border:1px solid var(--line);border-radius:10px}
+  table.chart{border-collapse:collapse;width:100%;min-width:600px;font-size:.88rem;line-height:1.45}
+  .chart th{position:sticky;top:0;z-index:1;background:var(--panel);text-align:left;
+            font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;color:var(--dim);
+            font-weight:600;padding:10px 12px;border-bottom:1px solid var(--line)}
+  .chart td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--past)}
+  .chart tr:last-child td{border-bottom:0}
+  .chart td.n{color:var(--accent);font-variant-numeric:tabular-nums;width:3em;opacity:.8}
+  .chart td.s{white-space:nowrap;color:var(--dim)}
+  .chart td.l{color:var(--fg);font-weight:600;min-width:190px}
+  .chart td.q{font-family:var(--serif);font-style:italic;color:var(--fg);min-width:200px}
+  .chart td.r{min-width:150px;hyphens:auto}
+  .chart td.r em{font-style:italic;color:var(--past)}
+  .chart td.r .buy{display:inline-block;margin:3px 0 0 6px;padding:1px 7px;
+    font-size:.66rem;letter-spacing:.09em;text-transform:uppercase;
+    border:1px solid currentColor;border-radius:999px;text-decoration:none;
+    vertical-align:1px;white-space:nowrap;color:var(--accent);
+    transition:background .12s,color .12s}
+  .chart td.r .buy:hover{background:var(--accent);color:var(--bg)}
+  .chart td.r .buy:focus-visible{outline:2px solid currentColor;outline-offset:2px}
+  .chart tbody tr{cursor:pointer;transition:background .2s}
+  .chart tbody tr:hover{background:rgba(255,255,255,.03)}
+  .chart tbody tr.on{background:rgba(255,179,71,.11);box-shadow:inset 3px 0 0 var(--accent)}
+  .chart tbody tr.on td{color:var(--fg)}
+  .chart tbody tr.on td.l{color:var(--accent)}
+  .chart tr:focus-visible,.ln:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+  /* The source page sits in its own column between the chart and the rail,
+     so a page can be read against the row that cites it without either moving. */
+  .chartgrid{display:grid;grid-template-columns:minmax(0,1fr) clamp(300px,34vw,620px);
+             gap:14px;align-items:start}
+  .scans{height:var(--ch,72vh);background:var(--panel);border:1px solid var(--line);
+         border-radius:10px;padding:10px;display:flex;gap:10px;min-width:0;overflow:hidden}
+  .scanidle{margin:auto;color:var(--dim);font-size:.9rem;text-align:center;max-width:34ch;line-height:1.6}
+  .scanidle code{color:var(--past);font-size:.95em}
+  .scan{flex:1 1 0;min-width:0;margin:0;display:flex;flex-direction:column;gap:6px;
+        animation:scanin .45s ease both}
+  .scan button{flex:1;min-height:0;padding:0;border:0;background:#0a0a0b;border-radius:6px;
+               cursor:zoom-in;overflow:hidden;display:block}
+  .scan img{width:100%;height:100%;object-fit:contain;display:block}
+  .scan figcaption{font-size:.72rem;color:var(--past);line-height:1.35}
+  .scan figcaption em{color:var(--fg)}
+  .scanmiss{margin:auto;text-align:center;color:var(--dim);font-size:.8rem;line-height:1.5;padding:0 6px}
+  .scanmiss strong{display:block;color:var(--past);font-weight:600;margin-bottom:5px}
+  .scanmiss code{color:var(--accent);opacity:.75;font-size:.92em;word-break:break-all}
+  @keyframes scanin{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  .lb{position:fixed;inset:0;z-index:50;background:rgba(5,5,6,.92);display:flex;
+      flex-direction:column;align-items:center;justify-content:center;gap:10px;
+      padding:calc(16px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px))
+              calc(16px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));
+      cursor:zoom-out}
+  .lb[hidden]{display:none}
+  .lb img{max-width:100%;max-height:calc(100% - 70px);object-fit:contain;border-radius:4px}
+  .lbcap{color:var(--past);font-size:.85rem;text-align:center}
+  .lbcap em{color:var(--fg)}
+  .lbx{position:absolute;top:calc(12px + env(safe-area-inset-top,0px));
+       right:max(12px,env(safe-area-inset-right,0px));background:var(--panel);color:var(--fg);
+       border:1px solid var(--line);border-radius:6px;padding:6px 12px;font:inherit;
+       font-size:.85rem;cursor:pointer}
+  .lbx:focus-visible,.scan button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+  .chart td.l .w{transition:color .12s}
+  .chart tr.on td.l{color:rgba(244,241,234,.42)}
+  .chart tr.on td.l .w.sung{color:var(--fg)}
+  .chart tr.on td.l .w.now{color:var(--accent);text-shadow:0 0 14px rgba(255,179,71,.5)}
+  .ref{font-size:.62em;font-weight:600;color:var(--accent);opacity:.6;vertical-align:super;
+       margin-left:3px;font-variant-numeric:tabular-nums}
+  .nosync{color:var(--dim);font-size:.78rem;line-height:1.5;margin:0 0 14px;
+          padding:9px 11px;background:rgba(255,179,71,.07);border:1px solid rgba(255,179,71,.22);
+          border-radius:7px}
+  footer{color:var(--dim);font-size:.85rem;margin-top:28px;text-align:center}
+  @media (max-width:1100px){
+    .chartgrid{grid-template-columns:minmax(0,1fr)}
+    .scans{height:auto;min-height:0}
+    .scan button{height:56vh;flex:none}
+  }
+  @media (max-width:880px){
+    .tablebox{max-height:64vh!important}
+  }
+  @media (prefers-reduced-motion:reduce){.tablebox{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="titlerow">
+      <h1>Sag Harbor</h1>
+      <div class="sub">120 Main Street, Sag Harbor · the pharmacy</div>
+    </div>
+    <div class="bar">
+      <audio id="a" controls preload="metadata" src="assets/media/score.mp3"></audio>
+      <span class="barnote">5 min 38 s &middot; inspired by George Benson</span>
+    </div>
+  </header>
+  <div class="stage">
+    <section class="chartwrap" aria-labelledby="ch">
+      <div class="charthead">
+        <h2 id="ch">Citation chart</h2>
+        <p class="chartnote">Every line of the song is sourced &mdash; 22 citations across 24 lines in five sections, checked against the lyric sheet. The current line reads along in place; tap any row to jump the track to it.</p>
+      </div>
+      <div class="chartgrid">
+        <div class="tablebox">
+          <table class="chart">
+            <thead><tr><th>#</th><th>Section</th><th>Lyric</th><th>Supporting quote</th><th>Source</th></tr></thead>
+            <tbody id="rows"><tr data-c="0" tabindex="0"><td class="n">1</td><td class="s">Verse 1</td><td class="l">One-twenty Main Street, Sag Harbor Pharmacy</td><td class="q">SAG HARBOR PHARMACY… 120 Main Street, Sag Harbor - 631.725.0074 - sagharborpharm.com</td><td class="r">Tice, (2022) <em>Sag Harbor Chamber of Commerce Visitors Guide 2022-2023</em>, p. 23</td></tr><tr data-c="1" tabindex="0"><td class="n">2</td><td class="s">Verse 1</td><td class="l">A staple in the community for over a hundred fifty years</td><td class="q">which has been a staple in the community for over 150 years.</td><td class="r">Tice, (2022) <em>Sag Harbor Chamber of Commerce Visitors Guide 2022-2023</em>, p. 23</td></tr><tr data-c="2" tabindex="0"><td class="n">3</td><td class="s">Verse 1</td><td class="l">William Buck was the original occupant, eighteen-fifty-nine</td><td class="q">A Sag Harbor pharmacy has been on this site since 1859, when William Buck was the original occupant.</td><td class="r">Tucker Burns Roth, (2018) <em>Images of America Sag Harbor</em>, p. 75<a class="buy" href="https://www.abebooks.com/servlet/SearchResults?isbn=9781467128865" target="_blank" rel="nofollow noopener" title="AbeBooks — 11 copies from about US$14 — the Arcadia Images of America volume, by ISBN" onclick="event.stopPropagation()">Buy</a></td></tr><tr data-c="3" tabindex="0"><td class="n">4</td><td class="s">Verse 1</td><td class="l">Hired William Wallace Tooker as apprentice, eighteen-sixty-six in time</td><td class="q">Buck hired William Wallace Tooker as an apprentice in 1866.</td><td class="r">Tucker Burns Roth, (2018) <em>Images of America Sag Harbor</em>, p. 75<a class="buy" href="https://www.abebooks.com/servlet/SearchResults?isbn=9781467128865" target="_blank" rel="nofollow noopener" title="AbeBooks — 11 copies from about US$14 — the Arcadia Images of America volume, by ISBN" onclick="event.stopPropagation()">Buy</a></td></tr><tr data-c="4" tabindex="0"><td class="n">5</td><td class="s">Verse 1</td><td class="l">Tooker purchased the firm in eighteen-seventy-three</td><td class="q">Tooker purchased the firm in 1873 and hired William R. Reimann, selling the firm to Reimann in 1898.</td><td class="r">Tucker Burns Roth, (2018) <em>Images of America Sag Harbor</em>, p. 75<a class="buy" href="https://www.abebooks.com/servlet/SearchResults?isbn=9781467128865" target="_blank" rel="nofollow noopener" title="AbeBooks — 11 copies from about US$14 — the Arcadia Images of America volume, by ISBN" onclick="event.stopPropagation()">Buy</a></td></tr><tr data-c="5" tabindex="0"><td class="n">6</td><td class="s">Verse 1</td><td class="l">Pharmacist, photographer, ethnographer — Algonquin history</td><td class="q">William Wallace Tooker (1848-1917), a pharmacist and owner of the Sag Harbor pharmacy on Main Street, was a photographer, ethnographer, and authority on local Algonquin history and culture.</td><td class="r">Tucker Burns Roth, (2018) <em>Images of America Sag Harbor</em>, p. 121<a class="buy" href="https://www.abebooks.com/servlet/SearchResults?isbn=9781467128865" target="_blank" rel="nofollow noopener" title="AbeBooks — 11 copies from about US$14 — the Arcadia Images of America volume, by ISBN" onclick="event.stopPropagation()">Buy</a></td></tr><tr data-c="6" tabindex="0"><td class="n">7</td><td class="s">Chorus</td><td class="l">Gaslights down the center of Main Street glow</td><td class="q">There were gaslights down the center of Main Street, and cars parked down the center of Main Street.</td><td class="r">Nina Tobier, (2007) <em>Voices of Sag Harbor: A Village Remembered</em>, p. 191<a class="buy" href="https://www.abebooks.com/servlet/SearchResults?tn=Voices+of+Sag+Harbor&amp;an=Tobier" target="_blank" rel="nofollow noopener" title="AbeBooks — 5 copies, from about US$18 — two of them new" onclick="event.stopPropagation()">Buy</a></td></tr><tr data-c="7" tabindex="0"><td class="n">8</td><td class="s">Chorus</td><td class="l">Race's, Brown's, and Reimann's in a row</td><td class="q">There were three drugstores in town: Race's Drugstore, Brown's Drugstore on the corner of Washington Street, and Reimann's Drugstore where the Sag Harbor Pharmacy is today.</td><td class="r">Nina Tobier, (2007) <em>Voices of Sag Harbor: A Village Remembered</em>, p. 191<a class="buy" href="https://www.abebooks.com/servlet/SearchResults?tn=Voices+of+Sag+Harbor&amp;an=Tobier" target="_blank" rel="nofollow noopener" title="AbeBooks — 5 copies, from about US$18 — two of them new" onclick="event.stopPropagation()">Buy</a></td></tr><tr data-c="8" tabindex="0"><td class="n">9</td><td class="s">Chorus</td><td class="l">Where the movie tickets could be bought</td><td class="q">Reimann's Drugstore, where movie tickets could be bought.</td><td class="r">Annette Hinkle, (2017) <em>Sag Harbor: 100 Years of Film in the Village</em>, p. 54<a class="buy" href="https://www.abebooks.com/servlet/SearchResults?isbn=9780997530438" target="_blank" rel="nofollow noopener" title="AbeBooks — 4 copies from about US$25 — searched by ISBN, so every result is this edition" onclick="event.stopPropagation()">Buy</a></td></tr><tr data-c="9" tabindex="0"><td class="n">10</td><td class="s">Chorus</td><td class="l">Elixir on Main — the cure you always sought</td><td class="q">Reimann's Drugstore, where movie tickets could be bought.</td><td class="r">Annette Hinkle, (2017) <em>Sag Harbor: 100 Years of Film in the Village</em>, p. 54<a class="buy" href="https://www.abebooks.com/servlet/SearchResults?isbn=9780997530438" target="_blank" rel="nofollow noopener" title="AbeBooks — 4 copies from about US$25 — searched by ISBN, so every result is this edition" onclick="event.stopPropagation()">Buy</a></td></tr><tr data-c="10" tabindex="0"><td class="n">11</td><td class="s">Verse 2</td><td class="l">Named Mashashimuet, the Place of Great Springs</td><td class="q">Tooker named Mrs. Russell Sage's new park ‘Mashashimuet.’ which means the ‘Place of Great Springs’ in Algonquian.</td><td class="r">Tucker Burns Roth, (2018) <em>Images of America Sag Harbor</em>, p. 121<a class="buy" href="https://www.abebooks.com/servlet/SearchResults?isbn=9781467128865" target="_blank" rel="nofollow noopener" title="AbeBooks — 11 copies from about US$14 — the Arcadia Images of America volume, by ISBN" onclick="event.stopPropagation()">Buy</a></td></tr><tr data-c="11" tabindex="0"><td class="n">12</td><td class="s">Verse 2</td><td class="l">Thirty scholarly books, the knowledge that he brings</td><td class="q">He published 30 scholarly books and pamphlets and authored ‘Indian Place-Names on Long Island’.</td><td class="r">Tucker Burns Roth, (2018) <em>Images of America Sag Harbor</em>, p. 121<a class="buy" href="https://www.abebooks.com/servlet/SearchResults?isbn=9781467128865" target="_blank" rel="nofollow noopener" title="AbeBooks — 11 copies from about US$14 — the Arcadia Images of America volume, by ISBN" onclick="event.stopPropagation()">Buy</a></td></tr><tr data-c="12" tabindex="0"><td class="n">13</td><td class="s">Verse 2</td><td class="l">Tooker sold to Reimann, eighteen-ninety-eight</td><td class="q">Tooker purchased the firm in 1873 and hired William R. Reimann, selling the firm to Reimann in 1898.</td><td class="r">Tucker Burns Roth, (2018) <em>Images of America Sag Harbor</em>, p. 75<a class="buy" href="https://www.abebooks.com/servlet/SearchResults?isbn=9781467128865" target="_blank" rel="nofollow noopener" title="AbeBooks — 11 copies from about US$14 — the Arcadia Images of America volume, by ISBN" onclick="event.stopPropagation()">Buy</a></td></tr><tr data-c="13" tabindex="0"><td class="n">14</td><td class="s">Verse 2</td><td class="l">Artifacts displayed, the Brooklyn Museum's fate</td><td class="q">Native American artifacts displayed at the pharmacy were acquired by the Brooklyn Museum.</td><td class="r">Tucker Burns Roth, (2018) <em>Images of America Sag Harbor</em>, p. 121<a class="buy" href="https://www.abebooks.com/servlet/SearchResults?isbn=9781467128865" target="_blank" rel="nofollow noopener" title="AbeBooks — 11 copies from about US$14 — the Arcadia Images of America volume, by ISBN" onclick="event.stopPropagation()">Buy</a></td></tr><tr data-c="14" tabindex="0"><td class="n">15</td><td class="s">Verse 2</td><td class="l">The Alvin Building reflected in the window pane</td><td class="q">The Alvin Building is reflected in the window.</td><td class="r">Tucker Burns Roth, (2018) <em>Images of America Sag Harbor</em>, p. 75<a class="buy" href="https://www.abebooks.com/servlet/SearchResults?isbn=9781467128865" target="_blank" rel="nofollow noopener" title="AbeBooks — 11 copies from about US$14 — the Arcadia Images of America volume, by ISBN" onclick="event.stopPropagation()">Buy</a></td></tr><tr data-c="15" tabindex="0"><td class="n">16</td><td class="s">Verse 2</td><td class="l">Edwards Bros., Lyon and Sherwood, north on the lane</td><td class="q">Looking north was Edwards Bros., Lyon &amp; Sherwood, and Reimann's drugstore.</td><td class="r">Tucker Burns Roth, (2018) <em>Images of America Sag Harbor</em>, p. 73<a class="buy" href="https://www.abebooks.com/servlet/SearchResults?isbn=9781467128865" target="_blank" rel="nofollow noopener" title="AbeBooks — 11 copies from about US$14 — the Arcadia Images of America volume, by ISBN" onclick="event.stopPropagation()">Buy</a></td></tr><tr data-c="16" tabindex="0"><td class="n">17</td><td class="s">Bridge</td><td class="l">Looking north from the bank in nineteen-twenty-two</td><td class="q">the Sag Harbor Savings Bank… is shown around 1922, the year Main Street was concreted.</td><td class="r">Tucker Burns Roth, (2018) <em>Images of America Sag Harbor</em>, p. 73<a class="buy" href="https://www.abebooks.com/servlet/SearchResults?isbn=9781467128865" target="_blank" rel="nofollow noopener" title="AbeBooks — 11 copies from about US$14 — the Arcadia Images of America volume, by ISBN" onclick="event.stopPropagation()">Buy</a></td></tr><tr data-c="17" tabindex="0"><td class="n">18</td><td class="s">Bridge</td><td class="l">The year Main Street was concreted, everything was new</td><td class="q">is shown around 1922, the year Main Street was concreted.</td><td class="r">Tucker Burns Roth, (2018) <em>Images of America Sag Harbor</em>, p. 73<a class="buy" href="https://www.abebooks.com/servlet/SearchResults?isbn=9781467128865" target="_blank" rel="nofollow noopener" title="AbeBooks — 11 copies from about US$14 — the Arcadia Images of America volume, by ISBN" onclick="event.stopPropagation()">Buy</a></td></tr><tr data-c="18" tabindex="0"><td class="n">19</td><td class="s">Bridge</td><td class="l">Paradise Restaurant was the meeting place to be</td><td class="q">The Paradise Restaurant was the meeting place of Sag Harbor, the place to be.</td><td class="r">Nina Tobier, (2007) <em>Voices of Sag Harbor: A Village Remembered</em>, p. 221<a class="buy" href="https://www.abebooks.com/servlet/SearchResults?tn=Voices+of+Sag+Harbor&amp;an=Tobier" target="_blank" rel="nofollow noopener" title="AbeBooks — 5 copies, from about US$18 — two of them new" onclick="event.stopPropagation()">Buy</a></td></tr><tr data-c="19" tabindex="0"><td class="n">20</td><td class="s">Bridge</td><td class="l">Plans were drawn for homes and deals made over coffee</td><td class="q">Plans were drawn up for homes and businesses, deals were made and settled, problems were solved, and betting took place.</td><td class="r">Nina Tobier, (2007) <em>Voices of Sag Harbor: A Village Remembered</em>, p. 221<a class="buy" href="https://www.abebooks.com/servlet/SearchResults?tn=Voices+of+Sag+Harbor&amp;an=Tobier" target="_blank" rel="nofollow noopener" title="AbeBooks — 5 copies, from about US$18 — two of them new" onclick="event.stopPropagation()">Buy</a></td></tr><tr data-c="20" tabindex="0"><td class="n">21</td><td class="s">Outro</td><td class="l">Telegraph line connecting back to sixty-one</td><td class="q">A telegraph line connecting the two was completed in 1861.</td><td class="r">Weisburg &amp; Donneson, (1975) <em>Guide To Sag Harbor</em>, p. 40</td></tr><tr data-c="21" tabindex="0"><td class="n">22</td><td class="s">Outro</td><td class="l">Sag Harbor Pharmacy — still standing when the day is done</td><td class="q">I am proud to honor and continue that legacy.</td><td class="r">Tice, (2022) <em>Sag Harbor Chamber of Commerce Visitors Guide 2022-2023</em>, p. 23</td></tr></tbody>
+          </table>
+        </div>
+        <aside class="scans" id="scans" aria-live="polite" aria-label="Source pages">
+          <p class="scanidle">The page behind each citation appears here as the song reaches it.</p>
+        </aside>
+      </div>
+      
+    </section>
+  </div>
+  <footer>&copy; Pinball Publishing</footer>
+  <div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Source page">
+    <button class="lbx" id="lbx" type="button" aria-label="Close">Close</button>
+    <img id="lbimg" alt="">
+    <div class="lbcap" id="lbcap"></div>
+  </div>
+</main>
+<script>
+const LYRICS = [{"s": "Verse 1", "l": "One-twenty Main Street, Sag Harbor Pharmacy"}, {"s": "Verse 1", "l": "A staple in the community for over a hundred fifty years"}, {"s": "Verse 1", "l": "William Buck was the original occupant, eighteen-fifty-nine"}, {"s": "Verse 1", "l": "Hired William Wallace Tooker as apprentice, eighteen-sixty-six in time"}, {"s": "Verse 1", "l": "Tooker purchased the firm in eighteen-seventy-three"}, {"s": "Verse 1", "l": "Pharmacist, photographer, ethnographer — Algonquin history"}, {"s": "Chorus", "l": "Gaslights down the center of Main Street glow"}, {"s": "Chorus", "l": "Race's, Brown's, and Reimann's in a row"}, {"s": "Chorus", "l": "Where the movie tickets could be bought"}, {"s": "Chorus", "l": "Elixir on Main — the cure you always sought"}, {"s": "Verse 2", "l": "Named Mashashimuet, the Place of Great Springs"}, {"s": "Verse 2", "l": "Thirty scholarly books, the knowledge that he brings"}, {"s": "Verse 2", "l": "Tooker sold to Reimann, eighteen-ninety-eight"}, {"s": "Verse 2", "l": "Artifacts displayed, the Brooklyn Museum's fate"}, {"s": "Verse 2", "l": "The Alvin Building reflected in the window pane"}, {"s": "Verse 2", "l": "Edwards Bros., Lyon and Sherwood, north on the lane"}, {"s": "Bridge", "l": "Looking north from the bank in nineteen-twenty-two"}, {"s": "Bridge", "l": "The year Main Street was concreted, everything was new"}, {"s": "Bridge", "l": "Paradise Restaurant was the meeting place to be"}, {"s": "Bridge", "l": "Plans were drawn for homes and deals made over coffee"}, {"s": "Outro", "l": "Telegraph line connecting back to sixty-one"}, {"s": "Outro", "l": "Sag Harbor Pharmacy — still standing when the day is done"}], CITES = [{"ref": 1, "sec": "Verse 1", "lyric": "One-twenty Main Street, Sag Harbor Pharmacy", "who": "", "q": "SAG HARBOR PHARMACY… 120 Main Street, Sag Harbor - 631.725.0074 - sagharborpharm.com", "src": "Tice, (2022) Sag Harbor Chamber of Commerce Visitors Guide 2022-2023, p. 23", "page": true}, {"ref": 2, "sec": "Verse 1", "lyric": "A staple in the community for over a hundred fifty years", "who": "", "q": "which has been a staple in the community for over 150 years.", "src": "Tice, (2022) Sag Harbor Chamber of Commerce Visitors Guide 2022-2023, p. 23", "page": true}, {"ref": 3, "sec": "Verse 1", "lyric": "William Buck was the original occupant, eighteen-fifty-nine", "who": "", "q": "A Sag Harbor pharmacy has been on this site since 1859, when William Buck was the original occupant.", "src": "Tucker Burns Roth, (2018) Images of America Sag Harbor, p. 75", "page": true}, {"ref": 4, "sec": "Verse 1", "lyric": "Hired William Wallace Tooker as apprentice, eighteen-sixty-six in time", "who": "", "q": "Buck hired William Wallace Tooker as an apprentice in 1866.", "src": "Tucker Burns Roth, (2018) Images of America Sag Harbor, p. 75", "page": true}, {"ref": 5, "sec": "Verse 1", "lyric": "Tooker purchased the firm in eighteen-seventy-three", "who": "", "q": "Tooker purchased the firm in 1873 and hired William R. Reimann, selling the firm to Reimann in 1898.", "src": "Tucker Burns Roth, (2018) Images of America Sag Harbor, p. 75", "page": true}, {"ref": 6, "sec": "Verse 1", "lyric": "Pharmacist, photographer, ethnographer — Algonquin history", "who": "", "q": "William Wallace Tooker (1848-1917), a pharmacist and owner of the Sag Harbor pharmacy on Main Street, was a photographer, ethnographer, and authority on local Algonquin history and culture.", "src": "Tucker Burns Roth, (2018) Images of America Sag Harbor, p. 121", "page": true}, {"ref": 7, "sec": "Chorus", "lyric": "Gaslights down the center of Main Street glow", "who": "", "q": "There were gaslights down the center of Main Street, and cars parked down the center of Main Street.", "src": "Nina Tobier, (2007) Voices of Sag Harbor: A Village Remembered, p. 191", "page": true}, {"ref": 8, "sec": "Chorus", "lyric": "Race's, Brown's, and Reimann's in a row", "who": "", "q": "There were three drugstores in town: Race's Drugstore, Brown's Drugstore on the corner of Washington Street, and Reimann's Drugstore where the Sag Harbor Pharmacy is today.", "src": "Nina Tobier, (2007) Voices of Sag Harbor: A Village Remembered, p. 191", "page": true}, {"ref": 9, "sec": "Chorus", "lyric": "Where the movie tickets could be bought", "who": "", "q": "Reimann's Drugstore, where movie tickets could be bought.", "src": "Annette Hinkle, (2017) Sag Harbor: 100 Years of Film in the Village, p. 54", "page": true}, {"ref": 10, "sec": "Chorus", "lyric": "Elixir on Main — the cure you always sought", "who": "", "q": "Reimann's Drugstore, where movie tickets could be bought.", "src": "Annette Hinkle, (2017) Sag Harbor: 100 Years of Film in the Village, p. 54", "page": true}, {"ref": 11, "sec": "Verse 2", "lyric": "Named Mashashimuet, the Place of Great Springs", "who": "", "q": "Tooker named Mrs. Russell Sage's new park ‘Mashashimuet.’ which means the ‘Place of Great Springs’ in Algonquian.", "src": "Tucker Burns Roth, (2018) Images of America Sag Harbor, p. 121", "page": true}, {"ref": 12, "sec": "Verse 2", "lyric": "Thirty scholarly books, the knowledge that he brings", "who": "", "q": "He published 30 scholarly books and pamphlets and authored ‘Indian Place-Names on Long Island’.", "src": "Tucker Burns Roth, (2018) Images of America Sag Harbor, p. 121", "page": true}, {"ref": 13, "sec": "Verse 2", "lyric": "Tooker sold to Reimann, eighteen-ninety-eight", "who": "", "q": "Tooker purchased the firm in 1873 and hired William R. Reimann, selling the firm to Reimann in 1898.", "src": "Tucker Burns Roth, (2018) Images of America Sag Harbor, p. 75", "page": true}, {"ref": 14, "sec": "Verse 2", "lyric": "Artifacts displayed, the Brooklyn Museum's fate", "who": "", "q": "Native American artifacts displayed at the pharmacy were acquired by the Brooklyn Museum.", "src": "Tucker Burns Roth, (2018) Images of America Sag Harbor, p. 121", "page": true}, {"ref": 15, "sec": "Verse 2", "lyric": "The Alvin Building reflected in the window pane", "who": "", "q": "The Alvin Building is reflected in the window.", "src": "Tucker Burns Roth, (2018) Images of America Sag Harbor, p. 75", "page": true}, {"ref": 16, "sec": "Verse 2", "lyric": "Edwards Bros., Lyon and Sherwood, north on the lane", "who": "", "q": "Looking north was Edwards Bros., Lyon & Sherwood, and Reimann's drugstore.", "src": "Tucker Burns Roth, (2018) Images of America Sag Harbor, p. 73", "page": true}, {"ref": 17, "sec": "Bridge", "lyric": "Looking north from the bank in nineteen-twenty-two", "who": "", "q": "the Sag Harbor Savings Bank… is shown around 1922, the year Main Street was concreted.", "src": "Tucker Burns Roth, (2018) Images of America Sag Harbor, p. 73", "page": true}, {"ref": 18, "sec": "Bridge", "lyric": "The year Main Street was concreted, everything was new", "who": "", "q": "is shown around 1922, the year Main Street was concreted.", "src": "Tucker Burns Roth, (2018) Images of America Sag Harbor, p. 73", "page": true}, {"ref": 19, "sec": "Bridge", "lyric": "Paradise Restaurant was the meeting place to be", "who": "", "q": "The Paradise Restaurant was the meeting place of Sag Harbor, the place to be.", "src": "Nina Tobier, (2007) Voices of Sag Harbor: A Village Remembered, p. 221", "page": true}, {"ref": 20, "sec": "Bridge", "lyric": "Plans were drawn for homes and deals made over coffee", "who": "", "q": "Plans were drawn up for homes and businesses, deals were made and settled, problems were solved, and betting took place.", "src": "Nina Tobier, (2007) Voices of Sag Harbor: A Village Remembered, p. 221", "page": true}, {"ref": 21, "sec": "Outro", "lyric": "Telegraph line connecting back to sixty-one", "who": "", "q": "A telegraph line connecting the two was completed in 1861.", "src": "Weisburg & Donneson, (1975) Guide To Sag Harbor, p. 40", "page": true}, {"ref": 22, "sec": "Outro", "lyric": "Sag Harbor Pharmacy — still standing when the day is done", "who": "", "q": "I am proud to honor and continue that legacy.", "src": "Tice, (2022) Sag Harbor Chamber of Commerce Visitors Guide 2022-2023, p. 23", "page": true}], LINE_CITE = {"0": [0], "1": [1], "2": [2], "3": [3], "4": [4], "5": [5], "6": [6], "7": [7], "8": [8], "9": [9], "10": [10], "11": [11], "12": [12], "13": [13], "14": [14], "15": [15], "16": [16], "17": [17], "18": [18], "19": [19], "20": [20], "21": [21]}, WT = [{"t": 60.18, "w": [[60.18, "One-twenty"], [61.65, "Main"], [62.02, "Street,"], [62.39, "Sag"], [62.76, "Harbor"], [63.49, "Pharmacy"]]}, {"t": 64.98, "w": [[64.98, "A"], [65.28, "staple"], [65.88, "in"], [66.18, "the"], [66.48, "community"], [67.67, "for"], [67.97, "over"], [68.57, "a"], [68.87, "hundred"], [69.47, "fifty"], [70.06, "years"]]}, {"t": 70.83, "w": [[70.83, "William"], [71.59, "Buck"], [71.98, "was"], [72.36, "the"], [72.74, "original"], [74.27, "occupant,"], [75.41, "eighteen-fifty-nine"]]}, {"t": 78.3, "w": [[78.3, "Hired"], [78.95, "William"], [79.6, "Wallace"], [80.57, "Tooker"], [81.22, "as"], [81.55, "apprentice,"], [82.84, "eighteen-sixty-six"], [84.47, "in"], [84.79, "time"]]}, {"t": 86.06, "w": [[86.06, "Tooker"], [86.73, "purchased"], [87.74, "the"], [88.08, "firm"], [88.42, "in"], [88.75, "eighteen-seventy-three"]]}, {"t": 91.18, "w": [[91.18, "Pharmacist,"], [92.22, "photographer,"], [93.61, "ethnographer"], [95.0, "\u2014"], [95.34, "Algonquin"], [96.39, "history"]]}, {"t": 97.97, "w": [[97.97, "Gaslights"], [98.81, "down"], [99.23, "the"], [99.65, "center"], [100.49, "of"], [100.91, "Main"], [101.33, "Street"], [101.75, "glow"]]}, {"t": 104.75, "w": [[104.75, "Race's,"], [105.59, "Brown's,"], [106.01, "and"], [106.43, "Reimann's"], [107.27, "in"], [107.69, "a"], [108.11, "row"]]}, {"t": 111.54, "w": [[111.54, "Where"], [112.38, "the"], [112.8, "movie"], [113.64, "tickets"], [114.48, "could"], [114.9, "be"], [115.32, "bought"]]}, {"t": 116.59, "w": [[116.59, "Elixir"], [117.85, "on"], [118.27, "Main"], [118.69, "\u2014"], [119.11, "the"], [119.53, "cure"], [120.37, "you"], [120.79, "always"], [121.63, "sought"]]}, {"t": 137.65, "w": [[137.65, "Named"], [138.38, "Mashashimuet,"], [139.85, "the"], [140.22, "Place"], [140.95, "of"], [141.31, "Great"], [141.68, "Springs"]]}, {"t": 142.43, "w": [[142.43, "Thirty"], [143.27, "scholarly"], [144.53, "books,"], [144.95, "the"], [145.37, "knowledge"], [146.63, "that"], [147.05, "he"], [147.47, "brings"]]}, {"t": 149.06, "w": [[149.06, "Tooker"], [149.9, "sold"], [150.32, "to"], [150.74, "Reimann,"], [151.58, "eighteen-ninety-eight"]]}, {"t": 155.68, "w": [[155.68, "Artifacts"], [156.94, "displayed,"], [157.78, "the"], [158.2, "Brooklyn"], [159.04, "Museum's"], [159.88, "fate"]]}, {"t": 161.36, "w": [[161.36, "The"], [161.78, "Alvin"], [162.62, "Building"], [163.46, "reflected"], [164.72, "in"], [165.14, "the"], [165.56, "window"], [166.4, "pane"]]}, {"t": 168.18, "w": [[168.18, "Edwards"], [169.02, "Bros.,"], [169.44, "Lyon"], [169.86, "and"], [170.28, "Sherwood,"], [171.12, "north"], [171.54, "on"], [171.96, "the"], [172.38, "lane"]]}, {"t": 178.35, "w": [[178.35, "Looking"], [179.06, "north"], [179.42, "from"], [179.78, "the"], [180.13, "bank"], [180.49, "in"], [180.85, "nineteen-twenty-two"]]}, {"t": 183.39, "w": [[183.39, "The"], [183.72, "year"], [184.05, "Main"], [184.38, "Street"], [184.71, "was"], [185.04, "concreted,"], [186.03, "everything"], [187.35, "was"], [187.68, "new"]]}, {"t": 188.41, "w": [[188.41, "Paradise"], [190.09, "Restaurant"], [191.35, "was"], [191.77, "the"], [192.19, "meeting"], [193.03, "place"], [193.87, "to"], [194.29, "be"]]}, {"t": 195.85, "w": [[195.85, "Plans"], [196.27, "were"], [197.11, "drawn"], [197.53, "for"], [197.95, "homes"], [198.79, "and"], [199.21, "deals"], [199.63, "made"], [200.47, "over"], [201.31, "coffee"]]}, {"t": 203.29, "w": [[203.29, "Telegraph"], [204.55, "line"], [205.39, "connecting"], [206.65, "back"], [207.07, "to"], [207.49, "sixty-one"]]}, {"t": 210.11, "w": [[210.11, "Sag"], [210.5, "Harbor"], [211.27, "Pharmacy"], [212.43, "\u2014"], [212.81, "still"], [213.2, "standing"], [213.97, "when"], [214.36, "the"], [214.75, "day"], [215.13, "is"], [215.52, "done"]]}], SCANS = {"Tice, (2022) Sag Harbor Chamber of Commerce Visitors Guide 2022-2023, p. 23": {"f": "tice-2022-sag-harbor-chamber-of-commerce-visitors-guide-2022-2023-p-23.jpg", "have": true, "d": "assets/media/asset-01.jpg"}, "Tucker Burns Roth, (2018) Images of America Sag Harbor, p. 75": {"f": "tucker-burns-roth-2018-images-of-america-sag-harbor-p-75.jpg", "have": true, "d": "assets/media/asset-02.jpg"}, "Tucker Burns Roth, (2018) Images of America Sag Harbor, p. 121": {"f": "tucker-burns-roth-2018-images-of-america-sag-harbor-p-121.jpg", "have": true, "d": "assets/media/asset-03.jpg"}, "Nina Tobier, (2007) Voices of Sag Harbor: A Village Remembered, p. 191": {"f": "nina-tobier-2007-voices-of-sag-harbor-a-village-remembered-p-191.jpg", "have": true, "d": "assets/media/asset-04.jpg"}, "Annette Hinkle, (2017) Sag Harbor: 100 Years of Film in the Village, p. 54": {"f": "annette-hinkle-2017-sag-harbor-100-years-of-film-in-the-village-p-54.jpg", "have": true, "d": "assets/media/asset-05.jpg"}, "Tucker Burns Roth, (2018) Images of America Sag Harbor, p. 73": {"f": "tucker-burns-roth-2018-images-of-america-sag-harbor-p-73.jpg", "have": true, "d": "assets/media/asset-06.jpg"}, "Nina Tobier, (2007) Voices of Sag Harbor: A Village Remembered, p. 221": {"f": "nina-tobier-2007-voices-of-sag-harbor-a-village-remembered-p-221.jpg", "have": true, "d": "assets/media/asset-07.jpg"}, "Weisburg & Donneson, (1975) Guide To Sag Harbor, p. 40": {"f": "weisburg-donneson-1975-guide-to-sag-harbor-p-40.jpg", "have": true, "d": "assets/media/asset-08.jpg"}}, NO_SCAN = {"18": "Page 221 carries the Paradise, but not this sentence. The leaf shows Ted Proferes outside the old Paradise, and George Proferes recalling the Spitz furniture store, the O'Briens and Vicky Gardner. The words quoted here sit on a neighbouring page of the same recollection. The leaf is shown because it is the Paradise the line is about; the sentence is not on it.", "19": "As above — page 221 is the right account and the right restaurant, but the sentence about plans drawn and deals settled is printed on an adjoining page."};
+const a = document.getElementById('a'),
+      tbody = document.getElementById('rows'), tbox = document.querySelector('.tablebox');
+
+// ---- the read-along, now in the chart's own lyric cell -------------------
+// Only the current row is split into words, and its original markup is put
+// back when the song moves on, so the chart reads as a chart the rest of the
+// time.
+const CELL = new Map();
+function railOn(tr, n) {
+  if (!tr || !WT || !WT[n]) return;
+  const td = tr.querySelector('td.l');
+  if (!CELL.has(td)) CELL.set(td, td.innerHTML);
+  td.innerHTML = WT[n].w.map(([t, w]) => '<span class="w">' + w + '</span>').join(' ');
+}
+function railOff() {
+  CELL.forEach((html, td) => { td.innerHTML = html; });
+  CELL.clear();
+}
+
+// ---- the chart ------------------------------------------------------------
+[...tbody.rows].forEach(tr => tr.addEventListener('click', () => {
+  const j = +tr.dataset.c;
+  const ks = Object.keys(LINE_CITE).filter(k => (LINE_CITE[k] || []).includes(j))
+                   .map(Number).sort((x, y) => x - y);
+  const i = ks.find(k => WT && WT[k] && WT[k].t > a.currentTime);
+  showScan(j);
+  const k = (i != null ? i : ks[0]);
+  if (WT && k != null && WT[k]) { a.currentTime = WT[k].t; a.play(); }
+}));
+
+// ---- the source page panel ------------------------------------------------
+const scansEl = document.getElementById('scans'), lb = document.getElementById('lb'),
+      lbimg = document.getElementById('lbimg'), lbcap = document.getElementById('lbcap');
+let shownKey = null;
+const srcOf = i => i.d || ('scans/' + i.f);
+const srcLabel = s => s.replace(/^([^.]+)\.\s*/, '<em>$1</em> ');
+
+function showScan(j) {
+  if (j == null || !CITES[j]) return;
+  const src = CITES[j].src;
+  const key = src + '|' + (NO_SCAN[String(j)] ? 'x' : 'o');
+  if (key === shownKey) return;
+  shownKey = key;
+  const info = SCANS[src], blocked = NO_SCAN[String(j)];
+  if (blocked) {
+    // The leaf is on file and worth seeing even when the quoted sentence is not
+    // printed on it -- a full-page plate says plainly why it cannot be.
+    const info0 = SCANS[src];
+    scansEl.innerHTML = (info0 && info0.have
+        ? '<figure class="scan"><button type="button" aria-label="Enlarge">' +
+          '<img src="' + srcOf(info0) + '" alt="' + src + '"></button>' +
+          '<figcaption><strong>Not the leaf this quote is on</strong><br>' +
+          srcLabel(src) + '<br>' + blocked + '</figcaption></figure>'
+        : '<div class="scanmiss"><strong>Not on this leaf</strong>' +
+          srcLabel(src) + '<br><br>' + blocked + '</div>');
+    const btn0 = scansEl.querySelector('button');
+    if (btn0) btn0.addEventListener('click', () => {
+      lbimg.src = srcOf(info0); lbcap.innerHTML = srcLabel(src); lb.hidden = false;
+    });
+    return;
+  }
+  if (info && info.have) {
+    scansEl.innerHTML =
+      '<figure class="scan"><button type="button" aria-label="Enlarge">' +
+      '<img src="' + srcOf(info) + '" alt="' + src + '"></button>' +
+      '<figcaption>' + srcLabel(src) + '</figcaption></figure>';
+    scansEl.querySelector('button').addEventListener('click', () => {
+      lbimg.src = srcOf(info); lbcap.innerHTML = srcLabel(src); lb.hidden = false;
+    });
+  } else if (!info) {
+    scansEl.innerHTML = '<div class="scanmiss"><strong>Page not identified</strong>' +
+      srcLabel(src) + '<br><br>The chart cites the work but not the leaf. ' +
+      'A scan is filed under its page number, so this one cannot be placed ' +
+      'until the page is known.</div>';
+  } else {
+    scansEl.innerHTML = '<div class="scanmiss"><strong>No page on file</strong>' +
+      srcLabel(src) + '<br><br>Drop it in as<br><code>scans/' +
+      info.f + '</code></div>';
+  }
+}
+lb.addEventListener('click', e => { if (e.target !== lbimg) lb.hidden = true; });
+document.getElementById('lbx').addEventListener('click', () => lb.hidden = true);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') lb.hidden = true; });
+[...tbody.rows].forEach(tr => tr.addEventListener('mouseenter', () => showScan(+tr.dataset.c)));
+
+// ---- follow the track, when there are timings to follow -------------------
+if (WT) {
+  let cur = -1;
+  a.addEventListener('timeupdate', () => {
+    const t = a.currentTime + 0.12;
+    let n = -1;
+    for (let i = 0; i < WT.length; i++) { if (WT[i] && WT[i].t <= t) n = i; else break; }
+    if (n !== cur) {
+      cur = n;
+      railOff();
+      if (n >= 0) {
+        const js = LINE_CITE[n] || [];
+        if (js.length) {
+          [...tbody.rows].forEach(tr => tr.classList.toggle('on', js.includes(+tr.dataset.c)));
+          const hit = [...tbody.rows].find(tr => +tr.dataset.c === js[0]);
+          if (hit) {
+            tbox.scrollTo({ top: hit.offsetTop - tbox.clientHeight / 2, behavior: 'smooth' });
+            railOn(hit, n);
+          }
+          showScan(js[0]);
+        }
+      }
+    }
+    if (n >= 0 && WT[n]) {
+      const row = [...tbody.rows].find(tr => tr.classList.contains('on'));
+      const ws = row ? row.querySelectorAll('td.l .w') : [];
+      WT[n].w.forEach(([wt], k) => {
+        if (!ws[k]) return;
+        ws[k].classList.toggle('sung', wt <= t);
+        ws[k].classList.toggle('now', wt <= t && (!WT[n].w[k+1] || WT[n].w[k+1][0] > t));
+      });
+    }
+  });
+}
+</script>
+</body>
+</html>
